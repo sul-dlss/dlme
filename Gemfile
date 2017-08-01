@@ -75,6 +75,7 @@ end
 gem 'blacklight-gallery', '>= 0.3.0'
 gem 'blacklight-oembed', '>= 0.1.0'
 gem 'devise_invitable'
+gem 'devise_token_auth'
 gem 'jquery-rails'
 gem 'rsolr', '>= 1.0'
 
