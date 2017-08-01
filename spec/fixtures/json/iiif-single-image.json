@@ -1,0 +1,32 @@
+{
+  "id": "princeton_x920fz18z",
+  "agg_data_provider": "Princeton University. Firestone Library",
+  "agg_edm_rights": "http://www.princeton.edu/~rbsc/research/rights.html",
+  "agg_is_shown_at": {
+    "wr_id": "http://arks.princeton.edu/ark:/88435/x920fz18z"
+  },
+  "agg_is_shown_by": {
+    "wr_id": "http://libimages.princeton.edu/loris2/pudl0100/posters/eg1_0026/00000001.jp2/full/200,/0/default.jpg",
+    "wr_format": "image/jpeg",
+    "wr_has_service": [{
+      "service_id": "https://libimages.princeton.edu/loris/pudl0100%2Fposters%2Feg1_0026%2F00000001.jp2",
+      "service_conforms_to": "http://iiif.io/api/image",
+      "service_implements": "http://iiif.io/api/image/2/level2.json"
+    }]
+  },
+  "agg_preview": {
+    "wr_id": "http://libimages.princeton.edu/loris2/pudl0100/posters/eg1_0026/00000001.jp2/full/200,/0/default.jpg"
+  },
+  "agg_provider": "Princeton University",
+  "cho_contributor": ["نور الشريف", "نورا", "محمد عبد العزي"],
+  "cho_coverage": ["Egypt"],
+  "cho_date": "1985",
+  "cho_description": "Statue of the goddess Sekhmet from the reign of Amenhotep III, Dynasty 18.  In the San Antonio Art Museum. Created from 27 mobile phone pictures.  Lighting conditions were poor and caused highlight burn outs on front of statue.  Also was unable to obtain photos of top of head so this has been infilled using 3d software",
+  "cho_edm_type": "Image",
+  "cho_identifier": "eg1-0026",
+  "cho_is_part_of": "http://pudl.princeton.edu/collections/pudl0100",
+  "cho_language": "Arabic",
+  "cho_spatial": ["Egypt"],
+  "cho_title": "أجراس الخطر",
+  "cho_type": "Posters",
+}
