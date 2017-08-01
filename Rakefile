@@ -17,3 +17,5 @@ end
 task(:default).clear
 
 task default: %i[rubocop spec]
+
+require 'solr_wrapper/rake_task' unless Rails.env.production?

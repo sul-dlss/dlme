@@ -58,3 +58,18 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem 'blacklight-spotlight'
+
+gem 'friendly_id'
+gem 'riiif', '~> 1.0'
+gem 'sitemap_generator'
+group :development, :test do
+  gem 'solr_wrapper', '>= 0.3'
+end
+
+gem 'blacklight-gallery', '>= 0.3.0'
+gem 'blacklight-oembed', '>= 0.1.0'
+gem 'devise_invitable'
+gem 'jquery-rails'
+gem 'rsolr', '>= 1.0'

@@ -12,4 +12,9 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//
+// Required by Blacklight
+//= require jquery
+//= require blacklight/blacklight
+
 //= require_tree .
