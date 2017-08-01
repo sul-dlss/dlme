@@ -238,6 +238,7 @@ GEM
     parallel (1.11.2)
     parser (2.4.0.0)
       ast (~> 2.2)
+    pg (0.21.0)
     powerpack (0.1.1)
     public_suffix (2.0.5)
     puma (3.9.1)
@@ -439,6 +440,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  pg
   puma (~> 3.7)
   rails (~> 5.1.2)
   riiif (~> 1.0)
@@ -459,4 +461,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.14.6
+   1.15.3
