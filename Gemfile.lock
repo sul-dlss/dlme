@@ -153,6 +153,8 @@ GEM
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
+    devise-guests (0.6.0)
+      devise
     devise_invitable (1.7.2)
       actionmailer (>= 4.1.0)
       devise (>= 4.0.0)
@@ -435,6 +437,8 @@ DEPENDENCIES
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   coveralls
+  devise
+  devise-guests (~> 0.6)
   devise_invitable
   friendly_id
   jbuilder (~> 2.5)
