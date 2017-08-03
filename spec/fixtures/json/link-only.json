@@ -1,9 +1,10 @@
 {
+  "__source": "http://openn.library.upenn.edu/Data/0001/ljs394/data/ljs394_TEI.xml",
   "id": "penn_ljs394",
   "agg_data_provider": "University of Pennsylvania. Rare Book & Manuscript Library",
   "agg_edm_rights": "http://creativecommons.org/publicdomain/mark/1.0/",
   "agg_is_shown_at": {
-    "wr_id": "http://openn.library.upenn.edu/Data/0001/html/ljs394.html"
+    "wr_id": "http://hdl.library.upenn.edu/1017/d/medren/5440810"
   },
   "agg_is_shown_by": {
     "wr_id": "http://openn.library.upenn.edu/Data/0001/ljs394/data/web/0085_0000_web.jpg",
@@ -13,7 +14,7 @@
     "wr_id": "http://openn.library.upenn.edu/Data/0001/ljs394/data/thumb/0085_0000_thumb.jpg"
   },
   "agg_provider": "University of Pennsylvania",
-  "agg_same_as": "http://hdl.library.upenn.edu/1017/d/medren/5440810",
+  "agg_same_as": ["http://hdl.library.upenn.edu/1017/d/medren/5440810", "http://openn.library.upenn.edu/Data/0001/html/ljs394.html"],
   "cho_coverage": ["Egypt", "Syria"],
   "cho_creator": "Jawharī, Ismāʻīl ibn Ḥammād, d. 1003?",
   "cho_date": "13--",
