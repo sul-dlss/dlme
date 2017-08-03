@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe SourceFile, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'has a format' do
+    expect(build(:source_file).format).to eq 'mods'
+  end
 end
