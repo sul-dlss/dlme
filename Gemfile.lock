@@ -166,6 +166,11 @@ GEM
     docile (1.1.5)
     erubi (1.6.1)
     execjs (2.7.0)
+    factory_girl (4.8.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.8.0)
+      factory_girl (~> 4.8.0)
+      railties (>= 3.0.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.12.2)
@@ -445,6 +450,7 @@ DEPENDENCIES
   devise-guests (~> 0.6)
   devise_invitable
   devise_token_auth
+  factory_girl_rails
   friendly_id
   jbuilder (~> 2.5)
   jquery-rails
