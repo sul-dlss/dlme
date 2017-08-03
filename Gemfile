@@ -63,7 +63,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'blacklight-spotlight'
+gem 'blacklight-spotlight', '~> 1.0.0.alpha1'
 
 gem 'friendly_id'
 gem 'riiif', '~> 1.0'
