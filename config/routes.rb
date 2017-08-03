@@ -24,5 +24,5 @@ Rails.application.routes.draw do
   end
 
   mount Riiif::Engine => '/images', as: 'riiif'
-  mount Spotlight::Engine, at: 'spotlight'
+  mount Spotlight::Engine, at: '/'
 end
