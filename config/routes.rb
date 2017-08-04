@@ -22,6 +22,10 @@ Rails.application.routes.draw do
       delete 'clear'
     end
   end
+  
+  resources :exhibits do
+    resources :dlme_jsons, only: :create
+  end
 
   mount Riiif::Engine => '/images', as: 'riiif'
   mount Spotlight::Engine, at: '/'

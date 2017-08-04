@@ -26,7 +26,21 @@ class CatalogController < ApplicationController
     config.document_unique_id_param = 'ids'
 
     # solr field configuration for search results/index views
-    config.index.title_field = 'full_title_tesim'
+    config.index.title_field = 'cho_title_ssim'
+
+    config.add_index_field 'title',       field: 'cho_title_ssim'
+    config.add_index_field 'date',        field: 'cho_date_ssim'
+    config.add_index_field 'provided_by', field: 'agg_data_provider_ssim'
+    config.add_index_field 'extent',      field: 'cho_extent_ssim'
+
+    config.add_facet_field 'language',   field: 'cho_language_ssim'
+    config.add_facet_field 'type',       field: 'cho_edm_type_ssim'
+    config.add_facet_field 'other type', field: 'cho_type_ssim'
+
+    config.add_show_field 'title',       field: 'cho_title_ssim'
+    config.add_show_field 'date',        field: 'cho_date_ssim'
+    config.add_show_field 'provided_by', field: 'agg_data_provider_ssim'
+    config.add_show_field 'extent',      field: 'cho_extent_ssim'
 
     config.add_search_field 'all_fields', label: 'Everything'
 
