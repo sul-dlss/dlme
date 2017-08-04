@@ -1,0 +1,684 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: DLME
+Parameters:
+  S3Bucket:
+    Type: String
+    Description: S3 bucket to the cfn deployment artifacts
+  SolrS3Key:
+    Type: String
+    Description: S3 key to the solr source bundle
+    Default: solr/Dockerfile.zip
+  WebappS3Key:
+    Type: String
+    Description: S3 key to the webapp source bundle
+    Default: webapp.zip
+  KeyName:
+    Type: AWS::EC2::KeyPair::KeyName
+    Description: Name of an existing EC2 KeyPair to enable SSH access to the ECS instances
+  DatabaseUsername:
+    Type: String
+    Description: Database Root Username
+    Default: ebroot
+  DatabasePassword:
+    Type: String
+    Description: Password for the DB Root User
+    NoEcho: 'true'
+  DatabaseName:
+    Type: String
+    Description: Name of the database
+    Default: dlme
+  DatabaseStorageSize:
+    Type: String
+    Description: Size of DB in Gigs
+    Default: 5
+  DatabaseMultiAZ:
+    Type: String
+    Description: Launch the database in multiple availability zones
+    Default: false
+  DatabaseInstanceType:
+    Type: String
+    Description: Instance type to launch
+    Default: db.m4.large
+  WebappInstanceType:
+    Type: String
+    Default: t2.micro
+    Description: Instance type to launch
+  SecretKeyBase:
+    Type: String
+    Description: Secret key for Rails
+    NoEcho: 'true'
+  HealthReportingSystemType:
+    Type: String
+    Description: Health reporting system
+    Default: basic
+    AllowedValues: [enhanced, basic]
+  RedisInstanceType:
+    Type: String
+    Description: Instance type to launch
+    Default: cache.t2.micro
+  SolrCloudInstanceType:
+    Type: String
+    Default: t2.small
+    Description: Instance type to launch
+  SSLCertificateId:
+    Type: String
+    Description: The Amazon Resource Name (ARN) of the SSL certificate
+    Default: ""
+  GoogleAnalyticsId:
+    Type: String
+    Description: The Google Analytics id, e.g UA-111111-1
+    Default: ""
+  ContactEmail:
+    Type: String
+    Description: Email address to which contact form messages are sent
+    Default: ""
+  HoneybadgerApiKey:
+    Type: String
+    Description: The api key for honeybadger.io
+    Default: ""
+  HostedZoneName:
+    Type: String
+    Description: DNS hosted zone to create DNS entries in
+  GitHubToken:
+    Type: String
+    Description: GitHub repository personal access token with repo and admin:repo_hook privileges
+Conditions:
+  HasSSLCertificate: !Not [!Equals [!Ref 'SSLCertificateId', '']]
+Mappings:
+  SubnetConfig:
+    VPC:
+      CIDR: 10.0.0.0/16
+    PrivateSubnetA:
+      CIDR: 10.0.1.0/24
+    PublicSubnetA:
+      CIDR: 10.0.2.0/24
+    PrivateSubnetB:
+      CIDR: 10.0.3.0/24
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: Network Configuration
+        Parameters: [KeyName]
+      - Label:
+          default: Resources
+        Parameters: [WebappInstanceType, DatabaseInstanceType, RedisInstanceType, SolrCloudInstanceType]
+      - Label:
+          default: Application Configuration
+        Parameters: [DatabaseUsername, DatabasePassword, SecretKeyBase, SSLCertificateId]
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: !FindInMap [SubnetConfig, VPC, CIDR]
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
+      Tags:
+        - Key: Name
+          Value: !Ref 'AWS::StackName'
+  PublicSubnetA:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref 'VPC'
+      CidrBlock: !FindInMap [SubnetConfig, PublicSubnetA, CIDR]
+      AvailabilityZone:
+        Fn::Select:
+          - 0
+          - Fn::GetAZs: ''
+      Tags:
+        - Key: Name
+          Value: Public Subnet A
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+  GatewayToInternet:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref 'VPC'
+      InternetGatewayId: !Ref 'InternetGateway'
+  PublicRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref 'VPC'
+  PublicRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref 'PublicRouteTable'
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref 'InternetGateway'
+  PublicSubnetARouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref 'PublicSubnetA'
+      RouteTableId: !Ref 'PublicRouteTable'
+  PrivateSubnetA:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref 'VPC'
+      CidrBlock: !FindInMap [SubnetConfig, PrivateSubnetA, CIDR]
+      AvailabilityZone:
+        Fn::Select:
+          - 0
+          - Fn::GetAZs: ''
+      Tags:
+        - Key: Name
+          Value: Private Subnet A   
+  PrivateSubnetB:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref 'VPC'
+      CidrBlock: !FindInMap [SubnetConfig, PrivateSubnetB, CIDR]
+      AvailabilityZone:
+        Fn::Select:
+          - 1
+          - Fn::GetAZs: ''
+      Tags:
+        - Key: Name
+          Value: Private Subnet B   
+  PrivateRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref 'VPC'
+  PrivateSubnetARouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref 'PrivateSubnetA'
+      RouteTableId: !Ref 'PrivateRouteTable'
+  PrivateSubnetBRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref 'PrivateSubnetB'
+      RouteTableId: !Ref 'PrivateRouteTable'
+  NAT:
+    DependsOn: GatewayToInternet
+    Type: AWS::EC2::NatGateway
+    Properties:
+      AllocationId: !GetAtt [NATEIP, AllocationId]
+      SubnetId: !Ref 'PublicSubnetA'
+  NATEIP:
+    Type: AWS::EC2::EIP
+    Properties:
+      Domain: vpc
+  PrivateRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref 'PrivateRouteTable'
+      DestinationCidrBlock: 0.0.0.0/0
+      NatGatewayId: !Ref 'NAT'
+  S3Endpoint:
+    Type: AWS::EC2::VPCEndpoint
+    Properties:
+      RouteTableIds: [!Ref 'PrivateRouteTable', !Ref 'PublicRouteTable']
+      ServiceName: !Sub 'com.amazonaws.${AWS::Region}.s3'
+      VpcId: !Ref 'VPC'
+  DNS:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: !Ref 'HostedZoneName'
+      VPCs:
+        - VPCId: !Ref 'VPC'
+          VPCRegion: !Ref 'AWS::Region'
+  DefaultSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Default security group
+      VpcId: !Ref 'VPC'
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: tcp
+          FromPort: '22'
+          ToPort: '22'
+      Tags:
+        - Key: Name
+          Value: !Sub '${AWS::StackName}-default'
+  LBSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Webapp load balancer security group
+      VpcId: !Ref 'VPC'
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: tcp
+          FromPort: '443'
+          ToPort: '443'
+      Tags:
+        - Key: Name
+          Value: !Sub '${AWS::StackName}-webapp-lb'
+  WebappSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Webapp security group
+      VpcId: !Ref 'VPC'
+      Tags:
+        - Key: Name
+          Value: !Sub '${AWS::StackName}-webapp'
+  DatabaseSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: RDS security group
+      VpcId: !Ref 'VPC'
+      SecurityGroupIngress:
+        - SourceSecurityGroupId: !Ref 'WebappSecurityGroup'
+          IpProtocol: tcp
+          FromPort: '5432'
+          ToPort: '5432'
+      Tags:
+        - Key: Name
+          Value: !Sub '${AWS::StackName}-db'
+  RedisSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Redis security group
+      VpcId: !Ref 'VPC'
+      SecurityGroupIngress:
+        - SourceSecurityGroupId: !Ref 'WebappSecurityGroup'
+          IpProtocol: tcp
+          FromPort: '6379'
+          ToPort: '6379'
+      Tags:
+        - Key: Name
+          Value: !Sub '${AWS::StackName}-redis'
+  SolrSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Solr security group
+      VpcId: !Ref 'VPC'
+      SecurityGroupIngress:
+        - SourceSecurityGroupId: !Ref 'WebappSecurityGroup'
+          IpProtocol: tcp
+          FromPort: '80'
+          ToPort: '80'
+      Tags:
+        - Key: Name
+          Value: !Sub '${AWS::StackName}-solr'
+  Application:
+    Type: AWS::ElasticBeanstalk::Application
+    Properties:
+      ApplicationName: !Sub ${AWS::StackName}
+      Description: Application
+  EC2Role:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service: [ec2.amazonaws.com]
+          Action: ['sts:AssumeRole']
+      Path: /
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AWSElasticBeanstalkWebTier
+        - arn:aws:iam::aws:policy/AWSElasticBeanstalkMulticontainerDocker
+  EC2InstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Path: /
+      Roles: [!Ref 'EC2Role']
+  SolrApplicationVersion:
+    Type: AWS::ElasticBeanstalk::ApplicationVersion
+    Properties:
+      ApplicationName: !Ref 'Application'
+      Description: Solr service version
+      SourceBundle:
+        S3Bucket: !Ref 'S3Bucket'
+        S3Key: !Ref 'SolrS3Key'
+  SolrEnvironment:
+    Type: AWS::ElasticBeanstalk::Environment
+    Properties:
+      ApplicationName: !Ref 'Application'
+      Description: Solr EB Environment
+      EnvironmentName: solr
+      TemplateName: !Ref 'SolrConfigurationTemplate'
+      VersionLabel: !Ref 'SolrApplicationVersion'
+  SolrConfigurationTemplate:
+    Type: AWS::ElasticBeanstalk::ConfigurationTemplate
+    Properties:
+      ApplicationName: !Ref 'Application'
+      Description: Solr configuration template
+      OptionSettings:
+        - Namespace: aws:autoscaling:asg
+          OptionName: MinSize
+          Value: 1
+        - Namespace: aws:autoscaling:asg
+          OptionName: MaxSize
+          Value: 1
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: InstanceType
+          Value: !Ref 'SolrCloudInstanceType'
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: EC2KeyName
+          Value: !Ref 'KeyName'
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: IamInstanceProfile
+          Value: !Ref 'EC2InstanceProfile'
+        - Namespace: aws:ec2:vpc
+          OptionName: ELBScheme
+          Value: internal
+        - Namespace: aws:ec2:vpc
+          OptionName: Subnets
+          Value: !Ref 'PrivateSubnetA'
+        - Namespace: aws:ec2:vpc
+          OptionName: AssociatePublicIpAddress
+          Value: false
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: SSHSourceRestriction
+          Value: tcp, 22, 22, 10.0.0.0/16
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: SecurityGroups
+          Value: !Ref 'SolrSecurityGroup'
+        - Namespace: aws:elasticbeanstalk:environment
+          OptionName: EnvironmentType
+          Value: SingleInstance
+        - Namespace: aws:elasticbeanstalk:healthreporting:system
+          OptionName: SystemType
+          Value: !Ref 'HealthReportingSystemType'
+        - Namespace: aws:elasticbeanstalk:application
+          OptionName: Application Healthcheck URL
+          Value: HTTP:8983/solr/
+        - Namespace: aws:elasticbeanstalk:environment
+          OptionName: ServiceRole
+          Value: aws-elasticbeanstalk-service-role
+        - Namespace: aws:elasticbeanstalk:managedactions
+          OptionName: ManagedActionsEnabled
+          Value: 'false'
+      SolutionStackName: 64bit Amazon Linux 2017.03 v2.7.1 running Docker 17.03.1-ce
+  EBRecordSet:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      Name: !Sub 'solr.${HostedZoneName}'
+      HostedZoneName: !Sub '${HostedZoneName}.'
+      Type: CNAME
+      TTL: '900'
+      ResourceRecords:
+      - !GetAtt [SolrEnvironment, EndpointURL]
+  DBInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBName: !Ref 'DatabaseName'
+      Engine: postgres
+      MasterUsername: !Ref 'DatabaseUsername'
+      MasterUserPassword: !Ref 'DatabasePassword'
+      DBInstanceClass: !Ref 'DatabaseInstanceType'
+      DBSubnetGroupName: !Ref 'DBSubnetGroup'
+      VPCSecurityGroups:
+        - !Ref 'DatabaseSecurityGroup'
+      AllocatedStorage: !Ref 'DatabaseStorageSize'
+      MultiAZ: !Ref 'DatabaseMultiAZ'
+  DBSubnetGroup:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: RDS Subnet Group
+      SubnetIds:
+        - !Ref 'PrivateSubnetA'
+        - !Ref 'PrivateSubnetB'
+  RedisCluster:
+    Type: AWS::ElastiCache::CacheCluster
+    Properties:
+      CacheNodeType: !Ref 'RedisInstanceType'
+      CacheSubnetGroupName: !Ref 'RedisSubnetGroup'
+      VpcSecurityGroupIds:
+        - !Ref 'RedisSecurityGroup'
+      Engine: redis
+      NumCacheNodes: '1'
+  RedisSubnetGroup:
+    Type: AWS::ElastiCache::SubnetGroup
+    Properties:
+      Description: Cache Subnet Group
+      SubnetIds:
+        - !Ref 'PrivateSubnetA'
+        - !Ref 'PrivateSubnetB'
+  WebappConfigurationTemplate:
+    Type: AWS::ElasticBeanstalk::ConfigurationTemplate
+    Properties:
+      ApplicationName: !Ref 'Application'
+      Description: Webapp configuration template
+      OptionSettings:
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: InstanceType
+          Value: !Ref 'WebappInstanceType'
+        - Namespace: aws:ec2:vpc
+          OptionName: Subnets
+          Value: !Sub '${PrivateSubnetA}, ${PrivateSubnetB}'
+        - Namespace: aws:ec2:vpc
+          OptionName: ELBSubnets
+          Value: !Ref 'PublicSubnetA'
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: EC2KeyName
+          Value: !Ref 'KeyName'
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: SSHSourceRestriction
+          Value: tcp, 22, 22, 10.0.0.0/16
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: SecurityGroups
+          Value: !Ref 'WebappSecurityGroup'
+        - Namespace: aws:elb:loadbalancer
+          OptionName: SecurityGroups
+          Value: !Ref 'LBSecurityGroup'
+        - Namespace: aws:elb:loadbalancer
+          OptionName: CrossZone
+          Value: 'true'
+        - Namespace: aws:elb:policies
+          OptionName: ConnectionDrainingEnabled
+          Value: 'true'
+        - Namespace: aws:autoscaling:launchconfiguration
+          OptionName: IamInstanceProfile
+          Value: !Ref 'EC2InstanceProfile'
+        - Namespace: aws:autoscaling:asg
+          OptionName: MinSize
+          Value: 1
+        - Namespace: aws:autoscaling:asg
+          OptionName: MaxSize
+          Value: 1
+        - Namespace: aws:elasticbeanstalk:environment
+          OptionName: EnvironmentType
+          Value: LoadBalanced
+        - Namespace: aws:elasticbeanstalk:application
+          OptionName: Application Healthcheck URL
+          Value: /status
+        - Namespace: aws:elasticbeanstalk:healthreporting:system
+          OptionName: SystemType
+          Value: !Ref 'HealthReportingSystemType'
+        - Namespace: aws:elasticbeanstalk:environment
+          OptionName: ServiceRole
+          Value: aws-elasticbeanstalk-service-role
+        - Namespace: aws:autoscaling:trigger
+          OptionName: LowerThreshold
+          Value: '30'
+        - Namespace: aws:autoscaling:trigger
+          OptionName: MeasureName
+          Value: CPUUtilization
+        - Namespace: aws:autoscaling:trigger
+          OptionName: Statistic
+          Value: Maximum
+        - Namespace: aws:autoscaling:trigger
+          OptionName: Unit
+          Value: Percent
+        - Namespace: aws:autoscaling:trigger
+          OptionName: UpperThreshold
+          Value: '85'
+        - Namespace: aws:elb:listener:80
+          OptionName: ListenerProtocol
+          Value: HTTP
+        - !If
+          - HasSSLCertificate
+          -
+            Namespace: 'aws:elb:listener:443'
+            OptionName: SSLCertificateId
+            Value: !Ref 'SSLCertificateId'
+          - !Ref 'AWS::NoValue'
+        - !If
+          - HasSSLCertificate
+          -
+            Namespace: 'aws:elb:listener:443'
+            OptionName: InstancePort
+            Value: '80'
+          - !Ref 'AWS::NoValue'
+        - !If
+          - HasSSLCertificate
+          -
+            Namespace: 'aws:elb:listener:443'
+            OptionName: ListenerProtocol
+            Value: HTTPS
+          - !Ref 'AWS::NoValue'
+      SolutionStackName: 64bit Amazon Linux 2017.03 v2.4.2 running Ruby 2.3 (Puma)
+  WebappApplicationVersion:
+    Type: AWS::ElasticBeanstalk::ApplicationVersion
+    Properties:
+      ApplicationName: !Ref 'Application'
+      Description: Webapp service version
+      SourceBundle:
+        S3Bucket: !Ref 'S3Bucket'
+        S3Key: !Ref 'WebappS3Key'
+  WebappEnvironment:
+    Type: AWS::ElasticBeanstalk::Environment
+    Properties:
+      ApplicationName: !Ref 'Application'
+      Description: Webapp Environment
+      EnvironmentName: webapp
+      TemplateName: !Ref 'WebappConfigurationTemplate'
+      VersionLabel: !Ref 'WebappApplicationVersion'
+      CNAMEPrefix: !Ref 'AWS::StackName'
+      OptionSettings:
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: STACK_NAME
+        Value: !Ref 'AWS::StackName'
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: SECRET_KEY_BASE
+        Value: !Ref 'SecretKeyBase'
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: RAILS_GROUPS
+        Value: aws
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: RAILS_SERVE_STATIC_FILES
+        Value: 'true'
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: SOLR_URL
+        Value: !Sub 'http://${EBRecordSet}/solr/'
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: REDIS_HOST
+        Value: !GetAtt [RedisCluster, RedisEndpoint.Address]
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: REDIS_PORT
+        Value: !GetAtt [RedisCluster, RedisEndpoint.Port]
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: RDS_DB_NAME
+        Value: !Ref 'DatabaseName'
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: RDS_USERNAME
+        Value: !Ref 'DatabaseUsername'
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: RDS_PASSWORD
+        Value: !Ref 'DatabasePassword'
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: RDS_HOSTNAME
+        Value: !GetAtt [DBInstance, Endpoint.Address]
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: RDS_PORT
+        Value: !GetAtt [DBInstance, Endpoint.Port]
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: AWS_REGION
+        Value: !Ref 'AWS::Region'
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: SETTINGS__GOOGLE_ANALYTICS_ID
+        Value: !Ref 'GoogleAnalyticsId'
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: SETTINGS__CONTACT_EMAIL
+        Value: !Ref 'ContactEmail'
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: HONEYBADGER_ENV
+        Value: !Ref 'AWS::StackName'
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: HONEYBADGER_API_KEY
+        Value: !Ref 'HoneybadgerApiKey'
+      - !If
+        - HasSSLCertificate
+        -
+          Namespace: 'aws:elasticbeanstalk:application:environment'
+          OptionName: SETTINGS__SSL_CONFIGURED
+          Value: 'true'
+        - !Ref 'AWS::NoValue'  
+  ArtifactStoreBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      VersioningConfiguration:
+        Status: Enabled
+  codepipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      RoleArn: !GetAtt [CPRole, Arn]
+      Stages:
+        - Name: Source
+          Actions:
+            - Name: SourceAction
+              ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Version: '1'
+                Provider: GitHub
+              OutputArtifacts:
+                - Name: SourceOutput
+              Configuration:
+                Owner: 'sul-dlss'
+                Repo: 'dlme'
+                Branch: 'master'
+                OAuthToken: !Ref GitHubToken
+              RunOrder: 1
+        - Name: Release
+          Actions:
+            - Name: ReleaseWebapp
+              InputArtifacts:
+                - Name: SourceOutput
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Version: '1'
+                Provider: ElasticBeanstalk
+              Configuration:
+                ApplicationName: !Ref 'Application'
+                EnvironmentName: webapp
+              RunOrder: 1
+      ArtifactStore:
+        Type: S3
+        Location: !Ref 'ArtifactStoreBucket'
+  CPRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: [codepipeline.amazonaws.com]
+            Action: ['sts:AssumeRole']
+      Path: /
+      Policies:
+        - PolicyName: !Sub ${Application}-codepipeline-service
+          PolicyDocument:
+            Statement:
+              - Action: ['s3:GetObject', 's3:GetObjectVersion', 's3:GetBucketVersioning']
+                Resource: '*'
+                Effect: Allow
+              - Action: ['s3:PutObject']
+                Resource: ['arn:aws:s3:::codepipeline*', 'arn:aws:s3:::elasticbeanstalk*']
+                Effect: Allow
+              - Action: ['codecommit:CancelUploadArchive', 'codecommit:GetBranch', 'codecommit:GetCommit',
+                  'codecommit:GetUploadArchiveStatus', 'codecommit:UploadArchive']
+                Resource: '*'
+                Effect: Allow
+              - Action: ['codedeploy:CreateDeployment', 'codedeploy:GetApplicationRevision',
+                  'codedeploy:GetDeployment', 'codedeploy:GetDeploymentConfig', 'codedeploy:RegisterApplicationRevision']
+                Resource: '*'
+                Effect: Allow
+              - Action: ['elasticbeanstalk:*', 'ec2:*', 'elasticloadbalancing:*', 'autoscaling:*',
+                  'cloudwatch:*', 's3:*', 'sns:*', 'cloudformation:*', 'rds:*', 'sqs:*',
+                  'ecs:*', 'iam:PassRole']
+                Resource: '*'
+                Effect: Allow
+              - Action: ['lambda:InvokeFunction', 'lambda:ListFunctions']
+                Resource: '*'
+                Effect: Allow
+            Version: '2012-10-17'
