@@ -16,3 +16,13 @@ Rails:
 
 Metrics/LineLength:
   Max: 130
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/MultipleExpectations:
+  Max: 6

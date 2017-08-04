@@ -15,7 +15,7 @@
 #   'spotlight/resources/csv_upload/form',
 #   'spotlight/resources/json_upload/form'
 # ]
-# Spotlight::Engine.config.external_resources_partials = []
+Spotlight::Engine.config.external_resources_partials += ['dlme_json/form']
 # Spotlight::Engine.config.default_browse_index_view_type = :gallery
 # Spotlight::Engine.config.default_contact_email = nil
 
