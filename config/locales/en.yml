@@ -34,3 +34,8 @@ en:
     form:
       title: 'DLME JSON'
       add_item: 'Add DLME JSON file'
+  spotlight:
+    resources:
+      upload:
+        form:
+          cho_title_ssim: Title

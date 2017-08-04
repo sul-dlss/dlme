@@ -20,6 +20,7 @@ Metrics/LineLength:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+    - 'app/controllers/catalog_controller.rb'
 
 RSpec/ExampleLength:
   Max: 10
