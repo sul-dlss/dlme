@@ -32,3 +32,11 @@ $ bundle exec rails s
 ## Deploying
 
 This project is configured for continuous deployment to AWS at http://spotlight.dlme.clir.org/
+
+The AWS stack can be built using:
+
+```
+$ aws cloudformation create-stack --stack-name DLME --template-body file://cloudformation/stack.yaml --capabilities CAPABILITY_IAM --parameters file://path/to/some/params.json
+```
+
+After creating the stack, you also need to go into route53 and correct the DNS entry for solr. Change the public, elastic ip address to the internal IP (10.0.x.x).
