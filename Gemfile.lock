@@ -137,6 +137,9 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
+    config (1.4.0)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.1.1)
     coveralls (0.8.21)
       json (>= 1.8, < 3)
       simplecov (~> 0.14.1)
@@ -145,6 +148,7 @@ GEM
       tins (~> 1.6)
     declarative (0.0.9)
     declarative-option (0.1.0)
+    deep_merge (1.1.1)
     deprecation (1.0.0)
       activesupport
     devise (4.3.0)
@@ -464,6 +468,7 @@ DEPENDENCIES
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
+  config
   coveralls
   devise
   devise-guests (~> 0.6)
