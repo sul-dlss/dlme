@@ -17,7 +17,7 @@
 # ]
 # Spotlight::Engine.config.external_resources_partials = []
 # Spotlight::Engine.config.default_browse_index_view_type = :gallery
-# Spotlight::Engine.config.default_contact_email = nil
+Spotlight::Engine.config.default_contact_email = Settings.contact.email
 
 # ==> Solr configuration
 # Spotlight::Engine.config.writable_index = true
@@ -51,7 +51,7 @@
 # ==> Google Analytics integration
 # Spotlight::Engine.config.analytics_provider = nil
 # Spotlight::Engine.config.ga_pkcs12_key_path = nil
-# Spotlight::Engine.config.ga_web_property_id = nil
+Spotlight::Engine.config.ga_web_property_id = Settings.analytics.web_property_id
 # Spotlight::Engine.config.ga_email = nil
 # Spotlight::Engine.config.ga_analytics_options = {}
 # Spotlight::Engine.config.ga_page_analytics_options = config.ga_analytics_options.merge(limit: 5)
