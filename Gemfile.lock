@@ -260,6 +260,8 @@ GEM
     public_suffix (2.0.5)
     puma (3.9.1)
     rack (2.0.3)
+    rack-attack (5.0.1)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rack-timeout (0.4.2)
@@ -477,6 +479,7 @@ DEPENDENCIES
   okcomputer
   pg
   puma (~> 3.7)
+  rack-attack
   rails (~> 5.1.2)
   riiif (~> 1.0)
   rsolr (>= 1.0)
