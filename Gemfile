@@ -82,3 +82,12 @@ gem 'rsolr', '>= 1.0'
 
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
+
+gem 'config'
+
+gem 'honeybadger'
+gem 'lograge'
+gem 'okcomputer'
+gem 'rack-attack'
+gem 'secure_headers'
+gem 'slowpoke'
