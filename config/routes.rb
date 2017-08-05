@@ -27,6 +27,12 @@ Rails.application.routes.draw do
     resources :dlme_jsons, only: :create
   end
 
+  authenticate :user, lambda { |u| Ability.new(u).can? :manage, :sidekiq } do
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
+    Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
+  end
+
   mount Riiif::Engine => '/images', as: 'riiif'
   mount Spotlight::Engine, at: '/'
 end
