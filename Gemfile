@@ -41,11 +41,13 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'coveralls', require: false
   gem 'rspec-rails'
-  gem 'selenium-webdriver'
 
   gem 'factory_girl_rails'
   gem 'rubocop'
   gem 'rubocop-rspec'
+
+  gem 'chromedriver-helper'
+  gem 'selenium-webdriver'
 end
 
 group :development do
