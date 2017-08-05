@@ -16,6 +16,7 @@ before_install:
 
 before_script:
   - bin/rails db:test:prepare
+  - bin/rails assets:precompile
 
 sudo: false
 language: ruby
