@@ -454,7 +454,7 @@ Resources:
           Value: !Ref 'WebappInstanceType'
         - Namespace: aws:ec2:vpc
           OptionName: Subnets
-          Value: !Sub '${PrivateSubnetA}, ${PrivateSubnetB}'
+          Value: !Ref 'PublicSubnetA'
         - Namespace: aws:ec2:vpc
           OptionName: ELBSubnets
           Value: !Ref 'PublicSubnetA'
@@ -463,7 +463,7 @@ Resources:
           Value: !Ref 'KeyName'
         - Namespace: aws:autoscaling:launchconfiguration
           OptionName: SSHSourceRestriction
-          Value: tcp, 22, 22, 10.0.0.0/16
+          Value: tcp, 22, 22, 0.0.0.0/0
         - Namespace: aws:autoscaling:launchconfiguration
           OptionName: SecurityGroups
           Value: !Ref 'WebappSecurityGroup'
