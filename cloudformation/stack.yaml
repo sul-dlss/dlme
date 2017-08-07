@@ -50,7 +50,7 @@ Parameters:
   HealthReportingSystemType:
     Type: String
     Description: Health reporting system
-    Default: enhanced
+    Default: basic
     AllowedValues: [enhanced, basic]
   RedisInstanceType:
     Type: String
@@ -484,19 +484,10 @@ Resources:
           Value: 1
         - Namespace: aws:autoscaling:asg
           OptionName: MaxSize
-          Value: 2
+          Value: 1
         - Namespace: aws:elasticbeanstalk:environment
           OptionName: EnvironmentType
           Value: LoadBalanced
-        - Namespace: aws:elasticbeanstalk:command
-          OptionName: DeploymentPolicy
-          Value: Immutable
-        - Namespace: aws:autoscaling:updatepolicy:rollingupdate
-          OptionName: RollingUpdateEnabled
-          Value: 'true'
-        - Namespace: aws:autoscaling:updatepolicy:rollingupdate
-          OptionName: RollingUpdateType
-          Value: Immutable
         - Namespace: aws:elasticbeanstalk:application
           OptionName: Application Healthcheck URL
           Value: /status
@@ -545,18 +536,6 @@ Resources:
             OptionName: ListenerProtocol
             Value: HTTPS
           - !Ref 'AWS::NoValue'
-        - Namespace: aws:elasticbeanstalk:managedactions:platformupdate
-          OptionName: UpdateLevel
-          Value: minor
-        - Namespace: aws:elasticbeanstalk:managedactions:platformupdate
-          OptionName: InstanceRefreshEnabled
-          Value: 'true'
-        - Namespace: aws:elasticbeanstalk:managedactions
-          OptionName: ManagedActionsEnabled
-          Value: 'true'
-        - Namespace: aws:elasticbeanstalk:managedactions
-          OptionName: PreferredStartTime
-          Value: Sun:00:00
       SolutionStackName: 64bit Amazon Linux 2017.03 v2.4.2 running Ruby 2.3 (Puma)
   WebappApplicationVersion:
     Type: AWS::ElasticBeanstalk::ApplicationVersion
