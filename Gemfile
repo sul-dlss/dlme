@@ -87,6 +87,7 @@ gem 'devise-guests', '~> 0.6'
 
 gem 'config'
 
+gem 'github_api', github: 'piotrmurach/github'
 gem 'honeybadger'
 gem 'lograge'
 gem 'okcomputer'
