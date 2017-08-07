@@ -1,0 +1,25 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+puts 'Loading environment...'
+require File.expand_path('../../config/environment', __FILE__)
+require 'github_importer'
+
+# This retrieves all the files in the directory corresponding to:
+# https://github.com/waynegraham/dlme-metadata/tree/master/maps/records/stanford
+# 1. Get a personal access token from GitHub (https://github.com/settings/tokens)
+#    with the following scopes enabled:
+#    * public_repo
+#    * read:org
+#    * user:email
+# 2. Set an ENV variable named 'GITHUB_TOKEN' containing your token
+
+AUTHORIZATION_TOKEN = ENV['GITHUB_TOKEN'] ||
+                      raise('GitHub authorization token was not found in the GITHUB_TOKEN environment variable')
+USER = 'waynegraham'
+REPO = 'dlme-metadata'
+
+importer = GithubImporter.new(AUTHORIZATION_TOKEN, USER, REPO)
+importer.import('maps/records/stanford') do |filename, mods|
+  puts mods
+end
