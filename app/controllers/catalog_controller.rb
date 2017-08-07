@@ -27,6 +27,7 @@ class CatalogController < ApplicationController
 
     # solr field configuration for search results/index views
     config.index.title_field = 'cho_title_ssim'
+    config.index.thumbnail_field = 'agg_preview.wr_id_ssim'
 
     config.add_index_field 'title',       field: 'cho_title_ssim'
     config.add_index_field 'date',        field: 'cho_date_ssim'
