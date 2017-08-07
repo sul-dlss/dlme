@@ -41,7 +41,7 @@ Parameters:
     Default: db.m4.large
   WebappInstanceType:
     Type: String
-    Default: t2.micro
+    Default: t2.small
     Description: Instance type to launch
   SecretKeyBase:
     Type: String
@@ -50,7 +50,7 @@ Parameters:
   HealthReportingSystemType:
     Type: String
     Description: Health reporting system
-    Default: basic
+    Default: enhanced
     AllowedValues: [enhanced, basic]
   RedisInstanceType:
     Type: String
@@ -312,6 +312,13 @@ Resources:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AWSElasticBeanstalkWebTier
         - arn:aws:iam::aws:policy/AWSElasticBeanstalkMulticontainerDocker
+      Policies:
+      - PolicyDocument:
+          Statement:
+          - Action: s3:*
+            Effect: Allow
+            Resource: !Sub arn:aws:s3:::${UploadBucket}/*
+        PolicyName: !Sub ${AWS::StackName}-S3Access
   EC2InstanceProfile:
     Type: AWS::IAM::InstanceProfile
     Properties:
@@ -430,6 +437,12 @@ Resources:
       SubnetIds:
         - !Ref 'PrivateSubnetA'
         - !Ref 'PrivateSubnetB'
+  UploadBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      VersioningConfiguration:
+        Status: Enabled
   WebappConfigurationTemplate:
     Type: AWS::ElasticBeanstalk::ConfigurationTemplate
     Properties:
@@ -441,7 +454,7 @@ Resources:
           Value: !Ref 'WebappInstanceType'
         - Namespace: aws:ec2:vpc
           OptionName: Subnets
-          Value: !Sub '${PrivateSubnetA}, ${PrivateSubnetB}'
+          Value: !Ref 'PublicSubnetA'
         - Namespace: aws:ec2:vpc
           OptionName: ELBSubnets
           Value: !Ref 'PublicSubnetA'
@@ -450,7 +463,7 @@ Resources:
           Value: !Ref 'KeyName'
         - Namespace: aws:autoscaling:launchconfiguration
           OptionName: SSHSourceRestriction
-          Value: tcp, 22, 22, 10.0.0.0/16
+          Value: tcp, 22, 22, 0.0.0.0/0
         - Namespace: aws:autoscaling:launchconfiguration
           OptionName: SecurityGroups
           Value: !Ref 'WebappSecurityGroup'
@@ -471,10 +484,19 @@ Resources:
           Value: 1
         - Namespace: aws:autoscaling:asg
           OptionName: MaxSize
-          Value: 1
+          Value: 2
         - Namespace: aws:elasticbeanstalk:environment
           OptionName: EnvironmentType
           Value: LoadBalanced
+        - Namespace: aws:elasticbeanstalk:command
+          OptionName: DeploymentPolicy
+          Value: Rolling
+        - Namespace: aws:autoscaling:updatepolicy:rollingupdate
+          OptionName: RollingUpdateEnabled
+          Value: 'true'
+        - Namespace: aws:autoscaling:updatepolicy:rollingupdate
+          OptionName: RollingUpdateType
+          Value: Immutable
         - Namespace: aws:elasticbeanstalk:application
           OptionName: Application Healthcheck URL
           Value: /status
@@ -523,6 +545,18 @@ Resources:
             OptionName: ListenerProtocol
             Value: HTTPS
           - !Ref 'AWS::NoValue'
+        - Namespace: aws:elasticbeanstalk:managedactions:platformupdate
+          OptionName: UpdateLevel
+          Value: minor
+        - Namespace: aws:elasticbeanstalk:managedactions:platformupdate
+          OptionName: InstanceRefreshEnabled
+          Value: 'true'
+        - Namespace: aws:elasticbeanstalk:managedactions
+          OptionName: ManagedActionsEnabled
+          Value: 'true'
+        - Namespace: aws:elasticbeanstalk:managedactions
+          OptionName: PreferredStartTime
+          Value: Sun:00:00
       SolutionStackName: 64bit Amazon Linux 2017.03 v2.4.2 running Ruby 2.3 (Puma)
   WebappApplicationVersion:
     Type: AWS::ElasticBeanstalk::ApplicationVersion
@@ -556,7 +590,7 @@ Resources:
         Value: 'true'
       - Namespace: aws:elasticbeanstalk:application:environment
         OptionName: SOLR_URL
-        Value: !Sub 'http://${EBRecordSet}/solr/'
+        Value: !Sub 'http://${EBRecordSet}/solr/dlme-prod'
       - Namespace: aws:elasticbeanstalk:application:environment
         OptionName: REDIS_HOST
         Value: !GetAtt [RedisCluster, RedisEndpoint.Address]
@@ -587,6 +621,9 @@ Resources:
       - Namespace: aws:elasticbeanstalk:application:environment
         OptionName: SETTINGS__CONTACT_EMAIL
         Value: !Ref 'ContactEmail'
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: SETTINGS__S3__UPLOAD_BUCKET
+        Value: !Ref 'UploadBucket'
       - Namespace: aws:elasticbeanstalk:application:environment
         OptionName: HONEYBADGER_ENV
         Value: !Ref 'AWS::StackName'
