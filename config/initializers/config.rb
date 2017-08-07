@@ -29,7 +29,7 @@ Config.setup do |config|
   #   * nil  - no change
   #   * :downcase - convert to lower case
   #
-  # config.env_converter = :downcase
+  config.env_converter = :downcase
 
   # Parse numeric values as integers instead of strings.
   #
