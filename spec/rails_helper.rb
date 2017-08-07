@@ -55,6 +55,17 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
+  config.before(:all, type: :feature) do
+    # Assets take a long time to compile. This causes two problems:
+    # 1) the profile will show the first feature test taking much longer than it
+    #    normally would.
+    # 2) The first feature test will trigger rack-timeout
+    #
+    # Precompile the assets to prevent these issues.
+    visit '/assets/application.css'
+    visit '/assets/application.js'
+  end
+
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
