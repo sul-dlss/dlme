@@ -616,10 +616,10 @@ Resources:
         OptionName: AWS_REGION
         Value: !Ref 'AWS::Region'
       - Namespace: aws:elasticbeanstalk:application:environment
-        OptionName: SETTINGS__GOOGLE_ANALYTICS_ID
+        OptionName: SETTINGS__ANALYTICS__WEB_PROPERTY_ID
         Value: !Ref 'GoogleAnalyticsId'
       - Namespace: aws:elasticbeanstalk:application:environment
-        OptionName: SETTINGS__CONTACT_EMAIL
+        OptionName: SETTINGS__CONTACT__EMAIL
         Value: !Ref 'ContactEmail'
       - Namespace: aws:elasticbeanstalk:application:environment
         OptionName: SETTINGS__S3__UPLOAD_BUCKET
@@ -629,14 +629,7 @@ Resources:
         Value: !Ref 'AWS::StackName'
       - Namespace: aws:elasticbeanstalk:application:environment
         OptionName: HONEYBADGER_API_KEY
-        Value: !Ref 'HoneybadgerApiKey'
-      - !If
-        - HasSSLCertificate
-        -
-          Namespace: 'aws:elasticbeanstalk:application:environment'
-          OptionName: SETTINGS__SSL_CONFIGURED
-          Value: 'true'
-        - !Ref 'AWS::NoValue'  
+        Value: !Ref 'HoneybadgerApiKey'  
   ArtifactStoreBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
