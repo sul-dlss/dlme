@@ -5,5 +5,5 @@ if Settings.s3.upload_bucket
     config.aws_acl = 'bucket-owner-full-control'
   end
 
-  Spotlight::Engine.config.uploader_storage :aws
+  Spotlight::Engine.config.uploader_storage = :aws
 end
