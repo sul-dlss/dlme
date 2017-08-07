@@ -16,7 +16,7 @@ Config.setup do |config|
 
   # Define ENV variable prefix deciding which variables to load into config.
   #
-  # config.env_prefix = 'Settings'
+  config.env_prefix = 'SETTINGS'
 
   config.use_env = true
 
