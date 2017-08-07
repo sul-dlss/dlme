@@ -58,6 +58,7 @@ group :development do
 end
 
 group :production do
+  gem 'carrierwave-aws'
   gem 'pg'
   gem 'sidekiq'
 end

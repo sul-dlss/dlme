@@ -3,3 +3,6 @@ analytics:
 
 contact:
   email: ~
+
+s3:
+  upload_bucket: ~

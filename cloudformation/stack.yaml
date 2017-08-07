@@ -312,6 +312,13 @@ Resources:
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/AWSElasticBeanstalkWebTier
         - arn:aws:iam::aws:policy/AWSElasticBeanstalkMulticontainerDocker
+      Policies:
+      - PolicyDocument:
+          Statement:
+          - Action: s3:*
+            Effect: Allow
+            Resource: !Sub arn:aws:s3:::${UploadBucket}/*
+        PolicyName: !Sub ${AWS::StackName}-S3Access
   EC2InstanceProfile:
     Type: AWS::IAM::InstanceProfile
     Properties:
@@ -430,6 +437,12 @@ Resources:
       SubnetIds:
         - !Ref 'PrivateSubnetA'
         - !Ref 'PrivateSubnetB'
+  UploadBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      VersioningConfiguration:
+        Status: Enabled
   WebappConfigurationTemplate:
     Type: AWS::ElasticBeanstalk::ConfigurationTemplate
     Properties:
@@ -587,6 +600,9 @@ Resources:
       - Namespace: aws:elasticbeanstalk:application:environment
         OptionName: SETTINGS__CONTACT_EMAIL
         Value: !Ref 'ContactEmail'
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: SETTINGS__S3__UPLOAD_BUCKET
+        Value: !Ref 'UploadBucket'
       - Namespace: aws:elasticbeanstalk:application:environment
         OptionName: HONEYBADGER_ENV
         Value: !Ref 'AWS::StackName'
