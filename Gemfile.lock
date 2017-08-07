@@ -140,6 +140,7 @@ GEM
     config (1.4.0)
       activesupport (>= 3.0)
       deep_merge (~> 1.1.1)
+    connection_pool (2.2.1)
     coveralls (0.8.21)
       json (>= 1.8, < 3)
       simplecov (~> 0.14.1)
@@ -266,6 +267,8 @@ GEM
     rack (2.0.3)
     rack-attack (5.0.1)
       rack
+    rack-protection (2.0.0)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rack-timeout (0.4.2)
@@ -299,6 +302,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redcarpet (3.4.0)
+    redis (3.3.3)
     representable (3.0.4)
       declarative (< 0.1.0)
       declarative-option (< 0.2.0)
@@ -371,6 +375,11 @@ GEM
     selenium-webdriver (3.4.4)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
+    sidekiq (5.0.0)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (>= 1.5.0)
+      redis (~> 3.3, >= 3.3.3)
     signet (0.7.3)
       addressable (~> 2.3)
       faraday (~> 0.9)
@@ -494,6 +503,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   secure_headers
   selenium-webdriver
+  sidekiq
   sitemap_generator
   slowpoke
   solr_wrapper (>= 0.3)
