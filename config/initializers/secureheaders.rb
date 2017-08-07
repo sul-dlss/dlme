@@ -9,7 +9,12 @@ SecureHeaders::Configuration.default do |config|
 
   # thanks to sir-trevor..
   config.csp[:script_src] << '\'unsafe-eval\''
-  
+
+  # thanks to google analytics
+  config.csp[:script_src] << '\'sha256-eIXp0Y9oGnpSZ5jWtc2F33FzWpsGCPLvAyFLl/D0nHo=\''
+  config.csp[:script_src] << 'www.google-analytics.com'
+  config.csp[:img_src] << 'www.google-analytics.com'
+
   if Rails.env.development? || Rails.env.test?
     config.cookies[:secure] = false
     config.hsts = SecureHeaders::OPT_OUT
