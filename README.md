@@ -40,3 +40,12 @@ $ aws cloudformation create-stack --stack-name DLME --template-body file://cloud
 ```
 
 After creating the stack, you also need to go into route53 and correct the DNS entry for solr. Change the public, elastic ip address to the internal IP (10.0.x.x).
+
+## Converting files
+All files must first be converted to the intermediate representation (IR) before
+they can be imported. Do this by doing the following:
+
+### Stanford MODS
+```
+./bin/transform_mods stanford_tk780vf9050 ./spec/fixtures/mods/stanford.mods
+```

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mods xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-3.xsd">
+  <titleInfo>
+    <title>Walters Ms. W.586, Work on the duties of Muslims toward the Prophet Muhammad with an account of his life</title>
+  </titleInfo>
+  <titleInfo type="alternative">
+    <title>al-Shifāʾ fī taʿrīf ḥuqūq al-Muṣṭafá</title>
+  </titleInfo>
+  <titleInfo type="alternative">
+    <title>الشفاء في تعريف حقوق المصطفى</title>
+  </titleInfo>
+  <name type="personal">
+    <namePart>Abū al-Faḍl ʿIyāḍ ibn Mūsá al-Yaḥṣubī al-Bāhilī</namePart>
+    <role>
+      <roleTerm authority="marcrelator" type="text">author</roleTerm>
+    </role>
+  </name>
+  <name type="personal">
+    <namePart>ʿIyāḍ al-Yaḥṣubī (d. 544 AH / 1149 CE)</namePart>
+    <role>
+      <roleTerm authority="marcrelator" type="text">author</roleTerm>
+    </role>
+  </name>
+  <name type="personal">
+    <namePart>ابو الفضل عياض بن موسى اليحصبي الباهلي</namePart>
+    <role>
+      <roleTerm authority="marcrelator" type="text">author</roleTerm>
+    </role>
+  </name>
+  <name type="personal">
+    <namePart>No author name given.</namePart>
+    <role>
+      <roleTerm authority="marcrelator" type="text">author</roleTerm>
+    </role>
+  </name>
+  <name type="personal">
+    <namePart>Salīm al-Rashīd</namePart>
+    <role>
+      <roleTerm authority="marcrelator" type="text">scribe</roleTerm>
+    </role>
+  </name>
+  <typeOfResource manuscript="yes">mixed material</typeOfResource>
+  <abstract>This manuscript is an illuminated copy of the popular work on the duties of Muslims toward the Prophet Muhammad known as al-Shifāʾ by ʿIyāḍ al-Yaḥṣubī (d. 544 AH / 1149 CE). According to the colophon, it was completed in 1191 AH / 1777 CE by Salīm al-Rashīd. The text is written in Turkish naskh script in black ink with incidentals in red and gold. The dark brown leather binding is contemporary with the manuscript. 
+        For full description, see http://www.thedigitalwalters.org/Data/WaltersManuscripts/html/W586/description.html</abstract>
+  <note displayLabel="Language">The primary language in this manuscript is Arabic.</note>
+  <language>
+    <languageTerm authority="iso639-2b" type="text">Arabic</languageTerm>
+  </language>
+  <relatedItem type="constituent">
+    <note displayLabel="Locus">fols. 1b - 242b</note>
+    <titleInfo>
+      <title>al-Shifāʾ fī taʿrīf ḥuqūq al-Muṣṭafá</title>
+    </titleInfo>
+    <titleInfo type="alternative">
+      <title>الشفاء في تعريف حقوق المصطفى</title>
+    </titleInfo>
+    <note displayLabel="Catalog Note(s)">Some marginal corrections; main text enclosed in a golden frame</note>
+  </relatedItem>
+  <physicalDescription>
+    <form type="material">paper</form>
+    <form type="material">Laid paper</form>
+    <note displayLabel="Foliation Statement">Foliation: ii+243+ii</note>
+    <note displayLabel="Dimensions">18.0 x 10.5cm</note>
+    <note displayLabel="Writing Block">11.5 x 5.5cm</note>
+    <note displayLabel="Foliation"/>
+    <note displayLabel="Collation: Notes">Codex mostly made up of quires of ten folios (quinions)</note>
+    <note displayLabel="Catchwords">Written obliquely on versos</note>
+    <note displayLabel="Layout: Columns">1</note>
+    <note displayLabel="Layout: Ruled Lines">23</note>
+    <note displayLabel="Layout: Notes">Framing lines in gold, red, and black</note>
+    <note displayLabel="Hand Note">Written in Turkish naskh script in black ink with incidentals in red and gold</note>
+    <note displayLabel="Binding">Dark brown leather (with flap); lobed central oval with cornerpieces and borders; doublures of red leather with gold-painted ovals and cornerpieces</note>
+    <digitalOrigin>reformatted digital</digitalOrigin>
+    <reformattingQuality>access</reformattingQuality>
+    <internetMediaType>image/jpeg</internetMediaType>
+    <internetMediaType>image/tiff</internetMediaType>
+  </physicalDescription>
+  <note displayLabel="Decoration Note">Illuminated headpiece; framing lines in gold, red, and black</note>
+  <note displayLabel="Decoration Note">fol. 1b  Illuminated incipit page with headpiece  Incipit; headpiece</note>
+  <originInfo>
+    <place>
+      <placeTerm type="text">Turkey</placeTerm>
+    </place>
+    <dateCreated encoding="w3cdtf" keyDate="yes">1777</dateCreated>
+    <issuance>monographic</issuance>
+  </originInfo>
+  <note displayLabel="Date Note">16 Shawwāl 1191 AH / 1777 CE</note>
+  <note displayLabel="Provenance">Seal impression with the name al-Sayyid Abū Bakr al-Ḥilmī and the date 1281[?]AH / 1864-5[?] CE (fol. 1a)</note>
+  <note displayLabel="Acquisition">Walters Art Museum, 1931, by Henry Walters bequest</note>
+  <location>
+    <physicalLocation>The Walters Art Museum, 600 North Charles Street, Baltimore MD 21201.</physicalLocation>
+    <shelfLocator>W.586</shelfLocator>
+  </location>
+  <relatedItem type="isReferencedBy">
+    <note type="citation/reference">Brockelmann, Carl. Geschichte der arabischen Litteratur (New York; Köln: E.J. Brill, 1996), 1: 455, S1: 630.</note>
+  </relatedItem>
+  <recordInfo>
+    <languageOfCataloging>
+      <languageTerm authority="iso639-2b">eng</languageTerm>
+    </languageOfCataloging>
+    <recordContentSource authority="marcorg">CSt</recordContentSource>
+    <recordContentSource>Cataloger: Landau, Amy</recordContentSource>
+    <recordContentSource>Cataloger: Smith, Sita</recordContentSource>
+    <recordOrigin>Transformed from TEI from digitalwalters.org using custom xquery script.</recordOrigin>
+  </recordInfo>
+  <relatedItem type="host">
+    <titleInfo>
+      <title>Walters Manuscripts</title>
+    </titleInfo>
+    <identifier type="uri">http://purl.stanford.edu/ww121ss5000</identifier>
+    <typeOfResource collection="yes"/>
+  </relatedItem>
+  <accessCondition type="useAndReproduction">Licensed for use under Creative Commons Attribution-ShareAlike 3.0 Unported Access Rights, http://creativecommons.org/licenses/by-sa/3.0/legalcode. Images are free for any use, provided you follow the terms of this license. You do not need to apply to the Walters prior to using the images. We ask only that you cite the source of the images as the Walters Art Museum (see citation style at http://www.thedigitalwalters.org/03_ReadMe.html). Additionally, we request that a copy of any work created using these materials be sent to the Curator of Manuscripts and Rare Books at the Walters Art Museum, 600 N. Charles Street, Baltimore, MD 21201, mss-curator@thewalters.org.</accessCondition>
+  <accessCondition type="copyright">All Walters manuscript images and descriptions provided here are copyrighted © The Walters Art Museum.</accessCondition>
+  <accessCondition type="license">CC by-sa: Attribution-ShareAlike 3.0 Unported</accessCondition>
+</mods>

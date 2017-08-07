@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Example usage:
+#   ./bin/transform_mods stanford_tk780vf9050 ./spec/fixtures/mods/stanford.mods
+
+def usage
+  $stderr.puts "Usage: #{$PROGRAM_NAME} <identifier> <mods file>"
+  $stderr.puts 'Please provide a file identifier/path you want to import.'
+end
+
+def valid_arguments?
+  ARGV.size == 2 && File.exist?(ARGV[1])
+end
+
+unless valid_arguments?
+  usage
+  exit(1)
+end
+
+input_file = ARGV[1]
+require 'traject'
+require 'traject/command_line'
+args = ['-c', 'lib/traject/mods_config.rb']
+
+# The Stanford MODS files don't have identifier encoded so pass it in.
+args << '-s' << "identifier=#{ARGV[0]}"
+args << input_file
+
+cmdline = Traject::CommandLine.new(args)
+result = cmdline.execute
+
+exit 1 unless result # non-zero exit status on process telling us there's problems.
