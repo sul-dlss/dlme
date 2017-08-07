@@ -41,7 +41,7 @@ Parameters:
     Default: db.m4.large
   WebappInstanceType:
     Type: String
-    Default: t2.micro
+    Default: t2.small
     Description: Instance type to launch
   SecretKeyBase:
     Type: String
