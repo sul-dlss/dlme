@@ -37,6 +37,11 @@ class CatalogController < ApplicationController
     config.add_facet_field 'type',       field: 'cho_edm_type_ssim'
     config.add_facet_field 'other type', field: 'cho_type_ssim'
 
+    # Have BL send all facet field names to Solr, which has been the default
+    # previously. Simply remove these lines if you'd rather use Solr request
+    # handler defaults, or have no facets.
+    config.add_facet_fields_to_solr_request!
+
     config.add_show_field 'title',       field: 'cho_title_ssim'
     config.add_show_field 'date',        field: 'cho_date_ssim'
     config.add_show_field 'provided_by', field: 'agg_data_provider_ssim'
