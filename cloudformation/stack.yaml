@@ -490,7 +490,7 @@ Resources:
           Value: LoadBalanced
         - Namespace: aws:elasticbeanstalk:command
           OptionName: DeploymentPolicy
-          Value: Rolling
+          Value: Immutable
         - Namespace: aws:autoscaling:updatepolicy:rollingupdate
           OptionName: RollingUpdateEnabled
           Value: 'true'
