@@ -9,6 +9,9 @@ SecureHeaders::Configuration.default do |config|
 
   # thanks to sir-trevor..
   config.csp[:script_src] << '\'unsafe-eval\''
+
+  # thanks to google analytics
+  config.csp[:script_src] << '\'unsafe-inline\''
   
   if Rails.env.development? || Rails.env.test?
     config.cookies[:secure] = false
