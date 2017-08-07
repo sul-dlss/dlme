@@ -590,7 +590,7 @@ Resources:
         Value: 'true'
       - Namespace: aws:elasticbeanstalk:application:environment
         OptionName: SOLR_URL
-        Value: !Sub 'http://${EBRecordSet}/solr/'
+        Value: !Sub 'http://${EBRecordSet}/solr/dlme-prod'
       - Namespace: aws:elasticbeanstalk:application:environment
         OptionName: REDIS_HOST
         Value: !GetAtt [RedisCluster, RedisEndpoint.Address]
