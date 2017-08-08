@@ -35,3 +35,7 @@ RSpec/ExampleLength:
 
 RSpec/MultipleExpectations:
   Max: 6
+
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/import/*'

@@ -9,7 +9,7 @@ class DlmeJsonResourceWriter
 
   def initialize(arg_settings)
     @settings = Traject::Indexer::Settings.new(arg_settings)
-    @exhibit = Spotlight::Exhibit.find_by(slug: @settings.fetch('exhibit_slug'))
+    @exhibit = Spotlight::Exhibit.find_by!(slug: @settings.fetch('exhibit_slug'))
   end
 
   def serialize(_context)
