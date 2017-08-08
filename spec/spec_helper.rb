@@ -17,7 +17,17 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require 'coveralls'
-Coveralls.wear!('rails')
+require 'simplecov'
+
+SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+SimpleCov.start do
+  # Ignore these because simplecov doesn't detect when traject
+  # loads and evals them. See https://github.com/traject/traject/blob/6df447621826b92e26a4675a2f7610f8c78056ff/lib/traject/indexer.rb#L193
+  add_filter 'lib/traject/mods_config.rb'
+  add_filter 'lib/traject/tei_config.rb'
+  add_filter 'config/'
+  add_filter 'db/'
+end
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
