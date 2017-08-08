@@ -10,4 +10,4 @@ s3:
 import:
   user: waynegraham
   repo: dlme-metadata
-  slug: dlme
+  slug: library
