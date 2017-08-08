@@ -92,6 +92,16 @@ class CatalogController < ApplicationController
     config.add_show_field 'agg_is_shown_at', field: 'agg_is_shown_at.wr_id_ssim'
 
     config.add_search_field 'all_fields', label: 'Everything'
+    config.add_search_field 'title', label: 'Title' do |field|
+      field.solr_local_parameters = {
+        qf: '$qf_title'
+      }
+    end
+    config.add_search_field 'author', label: 'Creator / Contributor' do |field|
+      field.solr_local_parameters = {
+        qf: '$author_qf'
+      }
+    end
 
     config.add_sort_field 'relevance', sort: 'score desc', label: 'Relevance'
 

@@ -11,7 +11,7 @@ RSpec.describe DlmeJsonResourceBuilder do
   describe 'to_solr' do
     subject(:solr_doc) { doc_builder.to_solr }
 
-    let(:expected) do
+    let(:expected_untokenized_fields) do
       { '__source_ssim' => 'https://github.com/waynegraham/dlme-metadata/blob/master/princeton/mods/eg1_0095.mods',
         'agg_data_provider_ssim' => 'Princeton University. Firestone Library.',
         'agg_edm_rights_ssim' => 'http://www.princeton.edu/~rbsc/research/rights.html',
@@ -35,8 +35,19 @@ RSpec.describe DlmeJsonResourceBuilder do
         'agg_is_shown_by.wr_format_ssim' => 'image/jpeg' }
     end
 
-    it 'adds my custom data' do
-      expect(solr_doc).to include(expected)
+    let(:expected_tokenized_fields) do
+      { 'cho_contributor_tsim' => ['فاتن حمامة', 'محمود ياسين', 'فريد شوقي', 'بركات'],
+        'cho_coverage_tsim' => ['Egypt'],
+        'cho_spatial_tsim' => ['Egypt'],
+        'cho_title_tsim' => 'افواه و ارانب' }
+    end
+
+    it 'adds untokenized field data' do
+      expect(solr_doc).to include(expected_untokenized_fields)
+    end
+
+    it 'adds tokenized field data' do
+      expect(solr_doc).to include(expected_tokenized_fields)
     end
 
     it 'serializes service information as json blobs' do
