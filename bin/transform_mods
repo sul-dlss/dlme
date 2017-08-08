@@ -1,16 +1,18 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+# This script is just for testing and developing the traject configuration. In
+# production use fetch_and_import instead
 # Example usage:
-#   ./bin/transform_mods stanford_tk780vf9050 ./spec/fixtures/mods/stanford.mods
+#   ./bin/transform_mods stanford_tk780vf9050 dlme ./spec/fixtures/mods/stanford.mods
 
 def usage
-  $stderr.puts "Usage: #{$PROGRAM_NAME} <identifier> <mods file>"
+  $stderr.puts "Usage: #{$PROGRAM_NAME} <identifier> <exhibit slug> <mods file>"
   $stderr.puts 'Please provide a file identifier/path you want to import.'
 end
 
 def valid_arguments?
-  ARGV.size == 2 && File.exist?(ARGV[1])
+  ARGV.size == 3 && File.exist?(ARGV[2])
 end
 
 unless valid_arguments?
@@ -18,13 +20,15 @@ unless valid_arguments?
   exit(1)
 end
 
-input_file = ARGV[1]
-require 'traject'
+input_file = ARGV[2]
+puts 'Loading environment...'
+require File.expand_path('../../config/environment', __FILE__)
 require 'traject/command_line'
 args = ['-c', 'lib/traject/mods_config.rb']
 
 # The Stanford MODS files don't have identifier encoded so pass it in.
 args << '-s' << "identifier=#{ARGV[0]}"
+args << '-s' << "exhibit_slug=#{ARGV[1]}"
 args << input_file
 
 cmdline = Traject::CommandLine.new(args)
