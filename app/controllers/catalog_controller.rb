@@ -19,7 +19,7 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
       qt: 'search',
       rows: 10,
-      fl: '*,agg_is_shown_by_ssm:[json]'
+      fl: '*'
     }
 
     config.document_solr_path = 'get'
@@ -83,6 +83,12 @@ class CatalogController < ApplicationController
     config.add_show_field 'subject', field: 'cho_subject_ssim'
     config.add_show_field 'temporal', field: 'cho_temporal_ssim'
     config.add_show_field 'type', field: 'cho_type_ssim'
+
+    config.add_show_field '__source', field: '__source_ssim'
+    config.add_show_field 'agg_dc_rights', field: 'agg_dc_rights_ssim'
+    config.add_show_field 'agg_edm_rights', field: 'agg_edm_rights_ssim'
+    config.add_show_field 'agg_provider', field: 'agg_provider_ssim'
+    config.add_show_field 'agg_is_shown_at', field: 'agg_is_shown_at.wr_id_ssim'
 
     config.add_search_field 'all_fields', label: 'Everything'
 

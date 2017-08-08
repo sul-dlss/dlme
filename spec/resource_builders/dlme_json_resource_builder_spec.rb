@@ -38,5 +38,14 @@ RSpec.describe DlmeJsonResourceBuilder do
     it 'adds my custom data' do
       expect(solr_doc).to include(expected)
     end
+
+    it 'serializes service information as json blobs' do
+      expect(solr_doc['agg_is_shown_by.wr_has_service_ssim']).to be_an Array
+      expect(solr_doc['agg_is_shown_by.wr_has_service_ssim'].first).to eq({
+        service_id: 'https://libimages.princeton.edu/loris%2Fpudl0100%2Fposters%2Feg1_0095%2F00000001.jp2',
+        service_conforms_to: 'http://iiif.io/api/image',
+        service_implements: 'http://iiif.io/api/image/2/level2.json'
+      }.to_json)
+    end
   end
 end
