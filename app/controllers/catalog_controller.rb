@@ -6,8 +6,8 @@ class CatalogController < ApplicationController
   include Blacklight::Catalog
 
   configure_blacklight do |config|
-    config.show.oembed_field = :oembed_url_ssm
-    config.show.partials.insert(1, :oembed)
+    config.show.oembed_field = :"agg_is_shown_at.wr_id_ssim"
+    config.show.partials.insert(1, :viewer)
 
     config.view.list.partials = %i[thumbnail index_header index]
     config.view.gallery.partials = %i[index_header index]
@@ -15,7 +15,6 @@ class CatalogController < ApplicationController
     config.view.slideshow.partials = [:index]
 
     config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
-    config.show.partials.insert(1, :openseadragon)
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = {
       qt: 'search',

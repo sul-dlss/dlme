@@ -30,4 +30,30 @@ RSpec.describe SolrDocument do
       end
     end
   end
+
+  describe '#embeddable?' do
+    context 'Stanford PURLs' do
+      let(:source) do
+        {
+          'agg_is_shown_at.wr_id_ssim' => 'https://purl.stanford.edu/tk780vf9050'
+        }
+      end
+
+      it 'is true' do
+        expect(document).to be_embeddable
+      end
+    end
+
+    context 'non-embeddable URLs' do
+      let(:source) do
+        {
+          'agg_is_shown_at.wr_id_ssim' => 'http://arks.princeton.edu/ark:/88435/rj4305881'
+        }
+      end
+
+      it 'is true' do
+        expect(document).not_to be_embeddable
+      end
+    end
+  end
 end

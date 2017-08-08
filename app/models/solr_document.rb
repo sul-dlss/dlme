@@ -33,6 +33,16 @@ class SolrDocument
     "#{iiif_services.first['service_id']}/info.json"
   end
 
+  def embeddable?(blacklight_config = CatalogController.blacklight_config)
+    url = first(blacklight_config.show.oembed_field)
+
+    return if url.blank?
+
+    OEmbed::Providers.get(url)
+  rescue OEmbed::NotFound
+    false
+  end
+
   private
 
   def shown_by_service(conforms_to:)
