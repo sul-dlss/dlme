@@ -14,7 +14,7 @@ class DlmeJsonsController < Spotlight::ApplicationController
 
   def create
     @resource.attributes = resource_params
-    if @resource.save
+    if @resource.save_and_index
       flash[:notice] = t('spotlight.resources.upload.success')
       redirect_to spotlight.admin_exhibit_catalog_path(current_exhibit)
     else
