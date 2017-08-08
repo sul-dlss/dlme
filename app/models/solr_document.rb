@@ -22,4 +22,30 @@ class SolrDocument
   # and Blacklight::Document::SemanticFields#to_semantic_values
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
+
+  # overriding the upstream method with our own that knows
+  # how to unpack the agg_is_shown_by > wr_has_service field
+  def to_openseadragon(_view_config = nil)
+    iiif_services = shown_by_service(conforms_to: 'http://iiif.io/api/image')
+
+    return unless iiif_services.any?
+
+    "#{iiif_services.first['service_id']}/info.json"
+  end
+
+  private
+
+  def shown_by_service(conforms_to:)
+    services.select { |service| service['service_conforms_to'] == conforms_to }
+  end
+
+  def services
+    Array(self['agg_is_shown_by.wr_has_service_ssim']).map do |service|
+      if service.is_a? String
+        JSON.parse(service)
+      else
+        service
+      end
+    end
+  end
 end

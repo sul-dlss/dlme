@@ -19,7 +19,7 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
       qt: 'search',
       rows: 10,
-      fl: '*,agg_is_shown_by_ssm:[json]'
+      fl: '*'
     }
 
     config.document_solr_path = 'get'
