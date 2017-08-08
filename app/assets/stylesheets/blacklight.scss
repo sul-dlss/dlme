@@ -3,3 +3,38 @@
 @import 'bootstrap';
 
 @import 'blacklight/blacklight';
+
+#documents {
+  .index_title {
+    font-size: $font-size-large;
+    margin-top: 0;
+  }
+
+  &.documents-list {
+    .document {
+      box-sizing: content-box;
+      min-height: 100px;
+      padding-bottom: $padding-large-vertical;
+      padding-top: $padding-large-vertical;
+    }
+
+    .documentHeader,
+    .document-metadata {
+      margin-left: 120px;
+    }
+
+    .document-thumbnail {
+      float: left;
+      height: 0;
+      margin: 0;
+      padding: 0;
+
+      // we don't know what size thumbnails we're getting so enforce
+      // hard constraints for the index view
+      img {
+        max-height: 200px;
+        width: 100px;
+      }
+    }
+  }
+}
