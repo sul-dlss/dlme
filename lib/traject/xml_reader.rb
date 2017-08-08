@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Reads in MODS records for traject
-class ModsReader
+# Reads in XML records for traject
+class XmlReader
   # @param input_stream [File]
   # @param settings [Traject::Indexer::Settings]
   def initialize(input_stream, settings)

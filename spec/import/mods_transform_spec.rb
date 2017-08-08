@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Transforming mods files' do
+RSpec.describe 'Transforming MODS files' do
   let(:indexer) do
     Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => slug).tap do |i|
       i.load_config_file('lib/traject/mods_config.rb')
