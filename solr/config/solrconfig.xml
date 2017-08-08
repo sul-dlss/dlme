@@ -43,6 +43,8 @@
        -->
         <str name="qf">
           id
+          cho_title_exact_tsim^5000
+          cho_alternative_exact_tsim^2500
           cho_title_tsim^1000
           cho_alternative_tsim^500
 
@@ -59,6 +61,8 @@
        <str name="author_pf">
        </str>
        <str name="title_qf">
+          cho_title_exact_tsim^100
+          cho_alternative_exact_tsim^50
           cho_title_tsim
           cho_alternative_tsim
        </str>
