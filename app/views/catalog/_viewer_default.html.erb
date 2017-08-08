@@ -1,0 +1,5 @@
+<% if document.embeddable? %>
+  <%= render_document_partial(document, 'oembed') %>
+<% else %>
+  <%= render_document_partial(document, 'openseadragon') %>
+<% end %>
