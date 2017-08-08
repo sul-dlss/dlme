@@ -23,5 +23,13 @@ RSpec.describe 'Transforming mods files' do
     expect(dlme['cho_alternative']).to eq ['al-Shifāʾ fī taʿrīf ḥuqūq al-Muṣṭafá',
                                            'الشفاء في تعريف حقوق المصطفى']
     expect(dlme['cho_description'].first).to start_with 'This manuscript is an illuminated copy'
+    expect(dlme['cho_date']).to eq ['1777']
+    expect(dlme['cho_dc_rights'].first).to start_with 'Licensed for use'
+    expect(dlme['cho_creator']).to eq ['Abū al-Faḍl ʿIyāḍ ibn Mūsá al-Yaḥṣubī al-Bāhilī',
+                                       'ʿIyāḍ al-Yaḥṣubī (d. 544 AH / 1149 CE)',
+                                       'ابو الفضل عياض بن موسى اليحصبي الباهلي']
+    expect(dlme['cho_contributor']).to eq ['Salīm al-Rashīd']
+
+    # TODO: where is cho_edm_type found?
   end
 end

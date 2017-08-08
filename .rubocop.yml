@@ -32,9 +32,13 @@ Metrics/MethodLength:
 
 RSpec/ExampleLength:
   Max: 10
+  Exclude:
+    - 'spec/import/*'
 
 RSpec/MultipleExpectations:
   Max: 6
+  Exclude:
+    - 'spec/import/*'
 
 RSpec/DescribeClass:
   Exclude:
