@@ -14,23 +14,20 @@ require 'github_importer'
 
 AUTHORIZATION_TOKEN = ENV['GITHUB_TOKEN'] ||
                       raise('GitHub authorization token was not found in the GITHUB_TOKEN environment variable')
-USER = 'waynegraham'
-REPO = 'dlme-metadata'
-SLUG = 'dlme'
 
 def process_mods(identifier, mods)
-  indexer = Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => SLUG)
+  indexer = Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => Settings.import.slug)
   indexer.load_config_file('lib/traject/mods_config.rb')
   indexer.process(mods)
 end
 
 def process_tei(identifier, tei)
-  indexer = Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => SLUG)
+  indexer = Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => Settings.import.slug)
   indexer.load_config_file('lib/traject/tei_config.rb')
   indexer.process(tei)
 end
 
-importer = GithubImporter.new(AUTHORIZATION_TOKEN, USER, REPO)
+importer = GithubImporter.new(AUTHORIZATION_TOKEN, Settings.import.user, Settings.import.repo)
 importer.import('maps/records/stanford') do |filename, mods|
   identifier = "stanford_#{filename.sub('.mods', '')}"
   process_mods(identifier, mods)
