@@ -1,3 +1,2 @@
-production:
-  queues:
-    - dlme_production_default
+:queues:
+  - dlme_production_default
