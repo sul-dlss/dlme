@@ -6,7 +6,7 @@
   
   <abortOnConfigurationError>${solr.abortOnConfigurationError:true}</abortOnConfigurationError>
   
-  <luceneMatchVersion>6.1.0</luceneMatchVersion>
+  <luceneMatchVersion>6.6.0</luceneMatchVersion>
 
   <directoryFactory name="DirectoryFactory" class="${solr.directoryFactory:solr.StandardDirectoryFactory}"/>
 
@@ -43,13 +43,11 @@
        -->
         <str name="qf">
           id
-          full_title_tesim
-          short_title_tesim
-          alternative_title_tesim
-          active_fedora_model_ssi
-          title_tesim
-          author_tesim
-          subject_tesim
+          cho_title_exact_tsim^5000
+          cho_alternative_exact_tsim^2500
+          cho_title_tsim^1000
+          cho_alternative_tsim^500
+
           all_text_timv
         </str>
         <str name="pf">
@@ -57,20 +55,23 @@
         </str>
 
        <str name="author_qf">
-          author_tesim
+          cho_creator_tsim
+          cho_contributor_tsim
        </str>
        <str name="author_pf">
        </str>
        <str name="title_qf">
-          title_tesim
-          full_title_tesim
-          short_title_tesim
-          alternative_title_tesim
+          cho_title_exact_tsim^100
+          cho_alternative_exact_tsim^50
+          cho_title_tsim
+          cho_alternative_tsim
        </str>
        <str name="title_pf">
        </str>
        <str name="subject_qf">
-          subject_tesim
+          cho_coverage_tsim
+          cho_spatial_tsim
+          cho_temporal_tsim
        </str>
        <str name="subject_pf">
        </str>
@@ -83,8 +84,6 @@
        <str name="facet">true</str>
        <str name="facet.mincount">1</str>
        <str name="facet.limit">10</str>
-       <str name="facet.field">active_fedora_model_ssi</str>
-       <str name="facet.field">subject_ssim</str>
        
        <str name="spellcheck">true</str>
        <str name="spellcheck.dictionary">default</str>
@@ -99,46 +98,12 @@
     </arr>
   </requestHandler>
 
-  <requestHandler name="permissions" class="solr.SearchHandler" >
-    <lst name="defaults">
-      <str name="facet">off</str>
-      <str name="echoParams">all</str>
-      <str name="rows">1</str>
-      <str name="q">{!raw f=id v=$id}</str> <!-- use id=666 instead of q=id:666 -->
-      <str name="fl">
-        id,
-        access_ssim,
-        discover_access_group_ssim,discover_access_person_ssim,
-        read_access_group_ssim,read_access_person_ssim,
-        edit_access_group_ssim,edit_access_person_ssim,
-        depositor_ti,
-        embargo_release_date_dtsi
-        inheritable_access_ssim,
-        inheritable_discover_access_group_ssim,inheritable_discover_access_person_ssim,
-        inheritable_read_access_group_ssim,inheritable_read_access_person_ssim,
-        inheritable_edit_access_group_ssim,inheritable_edit_access_person_ssim,
-        inheritable_embargo_release_date_dtsi
-      </str>
-    </lst>
-  </requestHandler>
-  
   <requestHandler name="standard" class="solr.SearchHandler">
      <lst name="defaults">
        <str name="echoParams">explicit</str>
        <str name="defType">lucene</str>
      </lst>
   </requestHandler>
-
-  <!-- for requests to get a single document; use id=666 instead of q=id:666 -->
-  <requestHandler name="document" class="solr.SearchHandler" >
-    <lst name="defaults">
-      <str name="echoParams">all</str>
-      <str name="fl">*</str>
-      <str name="rows">1</str>
-      <str name="q">{!raw f=id v=$id}</str> <!-- use id=666 instead of q=id:666 -->
-    </lst>
-  </requestHandler>
-
 
   <searchComponent name="spellcheck" class="solr.SpellCheckComponent">
     <str name="queryAnalyzerFieldType">textSpell</str>

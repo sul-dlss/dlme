@@ -15,7 +15,7 @@
     <field name="lng" type="tdouble" stored="true" indexed="true" multiValued="false"/>
     <field name="original_pid_tesim" type="pid_text" stored="true" indexed="true" multiValued="true"/>
 
-    <field name="full_title_ng" type="text_en_ng" stored="false" indexed="true" multiValued="true"/>
+    <field name="cho_title_ng" type="text_en_ng" stored="false" indexed="true" multiValued="true"/>
     <field name="id_ng"         type="text_en_ng" stored="false" indexed="true" multiValued="false"/>
 
    <dynamicField name="*_bbox"   type="location_rpt" stored="true" indexed="true"/>
@@ -37,6 +37,14 @@
     <dynamicField name="*_tsiv" type="text" stored="true" indexed="true" multiValued="false" termVectors="true" termPositions="true" termOffsets="true"/>
     <dynamicField name="*_tsimv" type="text" stored="true" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
     
+    <!-- exact-ish text (_exact_t...); exact matching of whitespace tokenized terms -->
+    <dynamicField name="*_exact_ts" type="text_ws" stored="true" indexed="false" multiValued="false"/>
+    <dynamicField name="*_exact_tsm" type="text_ws" stored="true" indexed="false" multiValued="true"/>
+    <dynamicField name="*_exact_tsi" type="text_ws" stored="true" indexed="true" multiValued="false"/>
+    <dynamicField name="*_exact_tsim" type="text_ws" stored="true" indexed="true" multiValued="true"/>
+    <dynamicField name="*_exact_tsiv" type="text_ws" stored="true" indexed="true" multiValued="false" termVectors="true" termPositions="true" termOffsets="true"/>
+    <dynamicField name="*_exact_tsimv" type="text_ws" stored="true" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+
     <!-- English text (_te...) -->
 <!--
     <dynamicField name="*_tei" type="text_en" stored="false" indexed="true" multiValued="false"/>
@@ -203,7 +211,10 @@
       copyField also supports a maxChars to copy setting.  -->
 
   <copyField source="id" dest="id_ng" maxChars="3000"/>
-  <copyField source="full_title_tesim" dest="full_title_ng" maxChars="3000"/>
+  <copyField source="cho_title_tsim" dest="cho_title_ng" maxChars="3000"/>
+  <copyField source="cho_title_tsim" dest="cho_title_exact_tsim" />
+  <copyField source="cho_alternative_tsim" dest="cho_alternative_exact_tsim" />
+  <copyField source="*_tsim" dest="all_text_timv" maxChars="3000"/>
   <copyField source="*_tesim" dest="all_text_timv" maxChars="3000"/>
 
   <types>
