@@ -24,7 +24,7 @@ Spotlight::Engine.config.default_contact_email = Settings.contact.email
 # Spotlight::Engine.config.solr_batch_size = 20
 # Spotlight::Engine.config.filter_resources_by_exhibit = true
 # Spotlight::Engine.config.autocomplete_search_field = 'autocomplete'
-# Spotlight::Engine.config.default_autocomplete_params = { qf: 'id^1000 full_title_tesim^100 id_ng full_title_ng' }
+Spotlight::Engine.config.default_autocomplete_params = { qf: 'id^1000 cho_title_tsim^100 id_ng full_title_ng' }
 
 # Solr field configurations
 # Spotlight::Engine.config.solr_fields.prefix = ''.freeze

@@ -15,7 +15,7 @@
     <field name="lng" type="tdouble" stored="true" indexed="true" multiValued="false"/>
     <field name="original_pid_tesim" type="pid_text" stored="true" indexed="true" multiValued="true"/>
 
-    <field name="full_title_ng" type="text_en_ng" stored="false" indexed="true" multiValued="true"/>
+    <field name="cho_title_ng" type="text_en_ng" stored="false" indexed="true" multiValued="true"/>
     <field name="id_ng"         type="text_en_ng" stored="false" indexed="true" multiValued="false"/>
 
    <dynamicField name="*_bbox"   type="location_rpt" stored="true" indexed="true"/>
@@ -203,7 +203,7 @@
       copyField also supports a maxChars to copy setting.  -->
 
   <copyField source="id" dest="id_ng" maxChars="3000"/>
-  <copyField source="full_title_tesim" dest="full_title_ng" maxChars="3000"/>
+  <copyField source="cho_title_tsim" dest="cho_title_ng" maxChars="3000"/>
   <copyField source="*_tsim" dest="all_text_timv" maxChars="3000"/>
   <copyField source="*_tesim" dest="all_text_timv" maxChars="3000"/>
 
