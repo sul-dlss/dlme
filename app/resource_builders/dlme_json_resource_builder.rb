@@ -33,16 +33,28 @@ class DlmeJsonResourceBuilder < Spotlight::SolrDocumentBuilder
                                         cho_temporal
                                         cho_title
                                         cho_type].freeze
-  # TODO: need to destructure:
-  # agg_is_shown_at
-  # agg_is_shown_by
-  # agg_preview
+
+  COMPLEX_NON_TOKENIZED_DIRECT_COPY_FIELDS = %w[agg_is_shown_at agg_preview].freeze
 
   def to_solr
     source = resource.json
     { 'id' => source['id'] }.tap do |sink|
       NON_TOKENIZED_DIRECT_COPY_FIELDS.each do |key|
         sink["#{key}_ssim"] = source[key] if source[key]
+      end
+
+      COMPLEX_NON_TOKENIZED_DIRECT_COPY_FIELDS.each do |key|
+        next unless source[key].is_a? Hash
+
+        source[key].each do |k, v|
+          sink["#{key}.#{k}_ssim"] = v
+        end
+      end
+
+      if source['agg_is_shown_by'].is_a? Hash
+        sink['agg_is_shown_by_ssm'] = source['agg_is_shown_by'].to_json
+        sink['agg_is_shown_by.wr_id_ssim'] = source['agg_is_shown_by']['wr_id']
+        sink['agg_is_shown_by.wr_format_ssim'] = source['agg_is_shown_by']['wr_format']
       end
     end
   end

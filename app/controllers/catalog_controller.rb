@@ -19,7 +19,7 @@ class CatalogController < ApplicationController
     config.default_solr_params = {
       qt: 'search',
       rows: 10,
-      fl: '*'
+      fl: '*,agg_is_shown_by_ssm:[json]'
     }
 
     config.document_solr_path = 'get'
@@ -27,6 +27,7 @@ class CatalogController < ApplicationController
 
     # solr field configuration for search results/index views
     config.index.title_field = 'cho_title_ssim'
+    config.index.thumbnail_field = 'agg_preview.wr_id_ssim'
 
     config.add_index_field 'title', field: 'cho_title_ssim'
     config.add_index_field 'date', field: 'cho_date_ssim'
