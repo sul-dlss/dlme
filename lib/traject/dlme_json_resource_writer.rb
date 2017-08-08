@@ -22,15 +22,16 @@ class DlmeJsonResourceWriter
 
   # Add a single context to fedora
   def put(context)
+    attributes = context.output_hash
     json = JSON.generate(context.output_hash)
-    create_resource!(json)
+    create_resource!(attributes.fetch('id').first, json)
   end
 
   private
 
-  def create_resource!(json)
-    resource = DlmeJson.new(data: { json: json },
-                            exhibit: @exhibit)
+  def create_resource!(id, json)
+    resource = DlmeJson.find_or_initialize_by(url: id, exhibit_id: @exhibit.id)
+    resource.data = { json: json }
     resource.save_and_index
   end
 end
