@@ -1,0 +1,3 @@
+production:
+  queues:
+    - dlme_production_default
