@@ -46,6 +46,14 @@ All files must first be converted to the intermediate representation (IR) before
 they can be imported. Do this by doing the following:
 
 ### Stanford MODS
+
+Start by getting a personal access token from GitHub (https://github.com/settings/tokens)
+with the public_repo scope enabled.
+
+Then, run this command (locally on the production machine)
 ```
-./bin/transform_mods stanford_tk780vf9050 ./spec/fixtures/mods/stanford.mods
+GITHUB_TOKEN=<YOUR TOKEN HERE> ./bin/fetch_and_import
 ```
+
+This will pull all the MODS files from https://github.com/waynegraham/dlme-metadata/tree/master/maps/records/stanford 
+and index them into the system.

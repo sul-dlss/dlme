@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 require_relative 'mods_reader'
+require_relative 'dlme_json_resource_writer'
 require_relative 'macros/mods'
 Traject::Indexer.include Macros::Mods
 
 settings do
-  provide 'writer_class_name', 'Traject::DebugWriter'
+  provide 'writer_class_name', 'DlmeJsonResourceWriter'
   provide 'reader_class_name', 'ModsReader'
   provide 'allow_empty_fields', true
 end

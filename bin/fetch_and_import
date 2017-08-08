@@ -10,16 +10,22 @@ require 'github_importer'
 # 1. Get a personal access token from GitHub (https://github.com/settings/tokens)
 #    with the following scopes enabled:
 #    * public_repo
-#    * read:org
-#    * user:email
 # 2. Set an ENV variable named 'GITHUB_TOKEN' containing your token
 
 AUTHORIZATION_TOKEN = ENV['GITHUB_TOKEN'] ||
                       raise('GitHub authorization token was not found in the GITHUB_TOKEN environment variable')
 USER = 'waynegraham'
 REPO = 'dlme-metadata'
+SLUG = 'dlme'
+
+def process_mods(identifier, mods)
+  indexer = Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => SLUG)
+  indexer.load_config_file('lib/traject/mods_config.rb')
+  indexer.process(mods)
+end
 
 importer = GithubImporter.new(AUTHORIZATION_TOKEN, USER, REPO)
 importer.import('maps/records/stanford') do |filename, mods|
-  puts mods
+  identifier = "stanford_#{filename.sub('.mods', '')}"
+  process_mods(identifier, mods)
 end
