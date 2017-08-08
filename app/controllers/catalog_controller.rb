@@ -84,6 +84,12 @@ class CatalogController < ApplicationController
     config.add_show_field 'temporal', field: 'cho_temporal_ssim'
     config.add_show_field 'type', field: 'cho_type_ssim'
 
+    config.add_show_field '__source', field: '__source_ssim'
+    config.add_show_field 'agg_dc_rights', field: 'agg_dc_rights_ssim'
+    config.add_show_field 'agg_edm_rights', field: 'agg_edm_rights_ssim'
+    config.add_show_field 'agg_provider', field: 'agg_provider_ssim'
+    config.add_show_field 'agg_is_shown_at', field: 'agg_is_shown_at.wr_id_ssim'
+
     config.add_search_field 'all_fields', label: 'Everything'
 
     config.add_sort_field 'relevance', sort: 'score desc', label: 'Relevance'
