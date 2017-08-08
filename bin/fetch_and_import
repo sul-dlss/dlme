@@ -24,8 +24,19 @@ def process_mods(identifier, mods)
   indexer.process(mods)
 end
 
+def process_tei(identifier, tei)
+  indexer = Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => SLUG)
+  indexer.load_config_file('lib/traject/tei_config.rb')
+  indexer.process(tei)
+end
+
 importer = GithubImporter.new(AUTHORIZATION_TOKEN, USER, REPO)
 importer.import('maps/records/stanford') do |filename, mods|
   identifier = "stanford_#{filename.sub('.mods', '')}"
   process_mods(identifier, mods)
+end
+
+importer.import('manuscript/records/penn/schoenberg') do |filename, tei|
+  identifier = "penn_#{filename.sub('.xml', '')}"
+  process_tei(identifier, tei)
 end
