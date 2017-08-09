@@ -1,3 +1,6 @@
+application:
+  default_host: ~
+
 analytics:
   web_property_id: ~
 

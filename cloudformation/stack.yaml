@@ -79,6 +79,9 @@ Parameters:
   HostedZoneName:
     Type: String
     Description: DNS hosted zone to create DNS entries in
+  DefaultHostName:
+    Type: String
+    Description: Host name for the public facing webapp
   GitHubToken:
     Type: String
     Description: GitHub repository personal access token with repo and admin:repo_hook privileges
@@ -612,6 +615,16 @@ Resources:
       - Namespace: aws:elasticbeanstalk:application:environment
         OptionName: GITHUB_TOKEN
         Value: !Ref 'GitHubToken'
+      - !If
+        - HasSSLCertificate
+        -
+          Namespace: aws:elasticbeanstalk:application:environment
+          OptionName: SETTINGS__APPLICATION__DEFAULT_HOST
+          Value: !Sub 'https://${DefaultHostName}'
+        -
+          Namespace: aws:elasticbeanstalk:application:environment
+          OptionName: SETTINGS__APPLICATION__DEFAULT_HOST
+          Value: !Sub 'http://${DefaultHostName}'
   ArtifactStoreBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
