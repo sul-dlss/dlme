@@ -1,5 +1,6 @@
 application:
   default_host: ~
+  default_from: ~
 
 analytics:
   web_property_id: ~

@@ -615,6 +615,9 @@ Resources:
       - Namespace: aws:elasticbeanstalk:application:environment
         OptionName: GITHUB_TOKEN
         Value: !Ref 'GitHubToken'
+      - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: SETTINGS__APPLICATION__DEFAULT_FROM
+        Value: !Sub 'no-reply@${DefaultHostName}'
       - !If
         - HasSSLCertificate
         -
