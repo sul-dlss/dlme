@@ -60,7 +60,23 @@
 -->
     <dynamicField name="*_tesiv" type="text_en" stored="true" indexed="true" multiValued="false" termVectors="true" termPositions="true" termOffsets="true"/>
     <dynamicField name="*_tesimv" type="text_en" stored="true" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
-    
+
+    <!-- Arabic text (_tar...) -->
+    <dynamicField name="*_tars" type="text_ar" stored="true" indexed="false" multiValued="false"/>
+    <dynamicField name="*_tarsm" type="text_ar" stored="true" indexed="false" multiValued="true"/>
+    <dynamicField name="*_tarsi" type="text_ar" stored="true" indexed="true" multiValued="false"/>
+    <dynamicField name="*_tarsim" type="text_ar" stored="true" indexed="true" multiValued="true"/>
+    <dynamicField name="*_tarsiv" type="text_ar" stored="true" indexed="true" multiValued="false" termVectors="true" termPositions="true" termOffsets="true"/>
+    <dynamicField name="*_tarsimv" type="text_ar" stored="true" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+
+    <!-- Persian text (_tfa...) -->
+    <dynamicField name="*_tfas" type="text_fa" stored="true" indexed="false" multiValued="false"/>
+    <dynamicField name="*_tfasm" type="text_fa" stored="true" indexed="false" multiValued="true"/>
+    <dynamicField name="*_tfasi" type="text_fa" stored="true" indexed="true" multiValued="false"/>
+    <dynamicField name="*_tfasim" type="text_fa" stored="true" indexed="true" multiValued="true"/>
+    <dynamicField name="*_tfasiv" type="text_fa" stored="true" indexed="true" multiValued="false" termVectors="true" termPositions="true" termOffsets="true"/>
+    <dynamicField name="*_tfasimv" type="text_fa" stored="true" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+
     <!-- string (_s...) -->
 <!--
     <dynamicField name="*_si" type="string" stored="false" indexed="true" multiValued="false"/>
@@ -213,7 +229,19 @@
   <copyField source="id" dest="id_ng" maxChars="3000"/>
   <copyField source="cho_title_tsim" dest="cho_title_ng" maxChars="3000"/>
   <copyField source="cho_title_tsim" dest="cho_title_exact_tsim" />
+  <copyField source="cho_title_tsim" dest="cho_title_tarsim" />
+  <copyField source="cho_title_tsim" dest="cho_title_tesim" />
+  <copyField source="cho_title_tsim" dest="cho_title_tfasim" />
   <copyField source="cho_alternative_tsim" dest="cho_alternative_exact_tsim" />
+  <copyField source="cho_alternative_tsim" dest="cho_alternative_tarsim" />
+  <copyField source="cho_alternative_tsim" dest="cho_alternative_tesim" />
+  <copyField source="cho_alternative_tsim" dest="cho_alternative_tfasim" />
+  <copyField source="cho_creator_tsim" dest="cho_creator_tarsim" />
+  <copyField source="cho_creator_tsim" dest="cho_creator_tesim" />
+  <copyField source="cho_creator_tsim" dest="cho_creator_tfasim" />
+  <copyField source="cho_contributor_tsim" dest="cho_contributor_tarsim" />
+  <copyField source="cho_contributor_tsim" dest="cho_contributor_tesim" />
+  <copyField source="cho_contributor_tsim" dest="cho_contributor_tfasim" />
   <copyField source="*_tsim" dest="all_text_timv" maxChars="3000"/>
   <copyField source="*_tesim" dest="all_text_timv" maxChars="3000"/>
 
@@ -302,6 +330,26 @@
         <filter class="solr.PorterStemFilterFactory"/>
         -->
         <filter class="solr.TrimFilterFactory"/>
+      </analyzer>
+    </fieldType>
+
+    <fieldType name="text_ar" class="solr.TextField" positionIncrementGap="100">
+      <analyzer>
+        <tokenizer class="solr.ICUTokenizerFactory"/>
+        <filter class="solr.ArabicNormalizationFilterFactory"/>
+        <filter class="solr.ArabicStemFilterFactory"/>
+        <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
+      </analyzer>
+    </fieldType>
+
+    <fieldType name="text_fa" class="solr.TextField" positionIncrementGap="100">
+      <analyzer>
+        <!-- for ZWNJ -->
+        <charFilter class="solr.PersianCharFilterFactory"/>
+        <tokenizer class="solr.ICUTokenizerFactory"/>
+        <filter class="solr.ArabicNormalizationFilterFactory"/>
+        <filter class="solr.PersianNormalizationFilterFactory"/>
+        <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
       </analyzer>
     </fieldType>
 
