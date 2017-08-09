@@ -89,7 +89,11 @@ gem 'config'
 
 # The current published version (0.17.0) of github_api
 # requires an old version of faraday. Use master until the next release.
-gem 'github_api', github: 'piotrmurach/github'
+#
+# This gem monkeypatches faraday's parameter generation in ways that are
+# incompatible with our solr query url generation:
+# https://github.com/piotrmurach/github/blob/master/lib/github_api/ext/faraday.rb
+gem 'github_api', github: 'piotrmurach/github', require: false
 
 gem 'honeybadger'
 gem 'lograge'

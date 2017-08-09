@@ -3,6 +3,8 @@
 
 puts 'Loading environment...'
 require File.expand_path('../../config/environment', __FILE__)
+
+require 'github_api'
 require 'github_importer'
 
 # This retrieves all the files in the directory corresponding to:
