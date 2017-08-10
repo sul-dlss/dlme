@@ -58,5 +58,9 @@ RSpec.describe DlmeJsonResourceBuilder do
         service_implements: 'http://iiif.io/api/image/2/level2.json'
       }.to_json)
     end
+
+    it 'adds sortable fields for title' do
+      expect(solr_doc).to include 'sortable_cho_title_ssi' => 'افواه و ارانب'
+    end
   end
 end
