@@ -3,7 +3,9 @@
 module Macros
   # Macros for extracting MODS values from Nokogiri documents
   module Mods
-    NS = { mods: 'http://www.loc.gov/mods/v3' }.freeze
+    NS = { mods: 'http://www.loc.gov/mods/v3',
+           rdf: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
+           dc: 'http://purl.org/dc/elements/1.1/' }.freeze
 
     def extract_name(role: nil, exclude: nil)
       clause = if role
@@ -14,6 +16,16 @@ module Macros
                  raise ArgumentError, 'You must provide either role or exclude parameters'
                end
       extract_mods("/*/mods:name[mods:role/mods:roleTerm/#{clause}]/mods:namePart")
+    end
+
+    def generate_part
+      if extract_mods('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:url')
+        extract_mods('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:url')
+      elsif extract_mods('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:titleInfo/mods:title')
+        extract_mods('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:titleInfo/mods:title')
+      elsif extract_mods('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:identifier')
+        extract_mods('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:identifier')
+      end
     end
 
     # @param xpath [String] the xpath query expression
