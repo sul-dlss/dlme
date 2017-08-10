@@ -48,7 +48,10 @@ class CatalogController < ApplicationController
     config.add_facet_field 'spatial',    field: 'cho_spatial_ssim'
     config.add_facet_field 'temporal',   field: 'cho_temporal_ssim'
     config.add_facet_field 'date',       field: 'cho_date_ssim'
-    config.add_facet_field 'medium',     field: 'cho_medium_ssim'
+    config.add_facet_field 'creator',    field: 'cho_creator_ssim'
+    config.add_facet_field 'contributor', field: 'cho_contributor_ssim'
+    config.add_facet_field 'medium',      field: 'cho_medium_ssim'
+    config.add_facet_field 'dc_rights',   field: 'cho_dc_rights_ssim'
     config.add_facet_field 'provided_by', field: 'agg_data_provider_ssim'
 
     # Have BL send all facet field names to Solr, which has been the default
