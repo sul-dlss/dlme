@@ -51,15 +51,19 @@
           cho_title_tarsim^50
           cho_title_tesim^50
           cho_title_tfasim^50
+          cho_title_ttrsim^50
           cho_alternative_tarsim^10
           cho_alternative_tesim^10
           cho_alternative_tfasim^10
+          cho_alternative_ttrsim^10
           cho_creator_tarsim^100
           cho_creator_tesim^100
           cho_creator_tfasim^100
+          cho_creator_ttrsim^100
           cho_contributor_tarsim^100
           cho_contributor_tesim^100
           cho_contributor_tfasim^100
+          cho_contributor_ttrsim^100
 
           all_text_timv
         </str>
@@ -76,6 +80,8 @@
           cho_contributor_tarsim
           cho_creator_tfasim
           cho_contributor_tfasim
+          cho_creator_ttrsim
+          cho_contributor_ttrsim
        </str>
        <str name="author_pf">
        </str>
@@ -87,9 +93,11 @@
           cho_title_tarsim
           cho_title_tesim
           cho_title_tfasim
+          cho_title_ttrsim
           cho_alternative_tarsim
           cho_alternative_tesim
           cho_alternative_tfasim
+          cho_alternative_ttrsim
        </str>
        <str name="title_pf">
        </str>
