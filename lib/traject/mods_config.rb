@@ -3,13 +3,13 @@
 require_relative 'xml_reader'
 require_relative 'dlme_json_resource_writer'
 require_relative 'macros/mods'
-# require_relative 'macros/stanford'
+require_relative 'macros/stanford'
 require_relative 'macros/xml'
 Traject::Indexer.include Macros::Xml
 Traject::Indexer.include Macros::Mods
 
 settings do
-  provide 'writer_class_name', 'DebugWriter'
+  provide 'writer_class_name', 'DlmeJsonResourceWriter'
   provide 'reader_class_name', 'XmlReader'
   provide 'allow_empty_fields', true
   provide 'agg_provider', 'Stanford University Library'
@@ -97,11 +97,15 @@ to_field 'wr_description', extract_mods('/*/mods:physicalDescription/mods:digita
 to_field 'wr_description', extract_mods('/*/mods:physicalDescription/mods:reformattingQuality')
 to_field 'wr_format', extract_mods('/*/mods:physicalDescription/mods:internetMediaType')
 
-# Service: STANFORD Specific
-# to_field 'service_id', generate_stanford_service
-# to_field 'service_conforms_to', ' '
-# to_field 'service_implements', ' '
-
+# STANFORD Specific
+to_field 'wr_is_referenced_by', lambda { |_record, accumulator, context|
+  accumulator << if context.settings.fetch('identifier')
+                   inst = context.settings.fetch('inst_id') + '_'
+                   druid = context.settings.fetch('identifier').sub! inst, ''
+                   # put druid pattern check here
+                   "https://purl.stanford.edu/#{druid}/iiif/manifest"
+                 end
+}
 # STANFORD Specific
 # to_field 'agg_is_shown_by', generate_stanford_shownby
 # to_field 'agg_preview', generate_stanford_preview
