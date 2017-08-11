@@ -9,7 +9,7 @@ Traject::Indexer.include Macros::Xml
 Traject::Indexer.include Macros::Mods
 
 settings do
-  provide 'writer_class_name', 'DlmeJsonResourceWriter'
+  provide 'writer_class_name', 'DebugWriter'
   provide 'reader_class_name', 'XmlReader'
   provide 'allow_empty_fields', true
   provide 'agg_provider', 'Stanford University Library'
@@ -30,10 +30,8 @@ to_field 'id', lambda { |_record, accumulator, context|
 to_field 'cho_identifier', extract_mods('/*/mods:identifier')
 to_field 'cho_identifier', extract_mods('/*/mods:recordInfo/mods:recordIdentifier')
 to_field 'cho_identifier', extract_mods('/*/mods:location/mods:holdingSimple/mods:copyInformation/mods:itemIdentifier')
-# to_field 'cho_language', normalize_language
-# to_field 'cho_language', normalize_script
-to_field 'cho_language', extract_mods('/*/mods:language/mods:languageTerm')
-to_field 'cho_title', extract_mods('/*/mods:titleInfo[not(@type)]/mods:title')
+to_field 'cho_language', normalize_language
+to_field 'cho_language', normalize_script
 to_field 'cho_title', extract_mods('/*/mods:title/mods:partName')
 to_field 'cho_title', extract_mods('/*/mods:title/mods:partNumber')
 to_field 'cho_title', extract_mods('/*/mods:titleInfo/mods:subTitle')
@@ -52,9 +50,7 @@ to_field 'cho_description', extract_mods('/*/mods:location/mods:holdingSimple/mo
 to_field 'cho_description', extract_mods('/*/mods:note')
 to_field 'cho_description', extract_mods('/*/mods:physicalDescription/mods:note')
 to_field 'cho_description', extract_mods('/*/mods:tableOfContents')
-# To be normalized
-# to_field 'cho_edm_type', normalize_type('/*/mods:typeOfResource')
-to_field 'cho_edm_type', extract_mods('/*/mods:typeOfResource')
+to_field 'cho_edm_type', normalize_type
 to_field 'cho_extent', extract_mods('/*/mods:physicalDescription/mods:extent')
 to_field 'cho_format', extract_mods('/*/mods:physicalDescription/mods:form')
 to_field 'cho_has_part', generate_part
@@ -64,7 +60,7 @@ to_field 'cho_is_part_of', extract_mods('/*/mods:relatedItem[@type="series"]/mod
 to_field 'cho_publisher', extract_mods('/*/mods:originInfo/mods:publisher')
 to_field 'cho_relation', extract_mods('/*/mods:relatedItem/mods:titleInfo[@type="otherVersion"]/mods:title')
 to_field 'cho_relation', extract_mods('/*/mods:relatedItem/mods:titleInfo[not(@*)]/mods:title')
-# Put something in to better coordinate spatial aspects?
+# Better coordinate spatial aspects?
 to_field 'cho_spatial', extract_mods('/*/mods:subject/mods:cartographics/mods:coordinates')
 to_field 'cho_spatial', extract_mods('/*/mods:subject/mods:cartographics/mods:projection')
 to_field 'cho_spatial', extract_mods('/*/mods:subject/mods:cartographics/mods:scale')
@@ -88,12 +84,10 @@ to_field 'cho_temporal', extract_mods('/*/mods:subject/mods:temporal')
 to_field 'cho_type', extract_mods('/*/mods:typeOfResource')
 
 # Agg
-# to_field 'agg_data_provider', extract_mods('/*/mods:location/mods:physicalLocation')
 to_field 'agg_data_provider', lambda { |_record, accumulator, context|
   accumulator << context.settings.fetch('agg_data_provider')
 }
 to_field 'agg_is_shown_at', extract_mods('/*/mods:location/mods:url')
-# to_field 'agg_provider', extract_mods('/*/mods:recordInfo/mods:recordContentSource')
 to_field 'agg_provider', lambda { |_record, accumulator, context|
   accumulator << context.settings.fetch('agg_provider')
 }

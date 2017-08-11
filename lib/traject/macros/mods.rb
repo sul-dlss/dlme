@@ -18,6 +18,18 @@ module Macros
       extract_mods("/*/mods:name[mods:role/mods:roleTerm/#{clause}]/mods:namePart")
     end
 
+    def normalize_type
+      extract_mods('/*/mods:typeOfResource', translation_map: 'types')
+    end
+
+    def normalize_language
+      extract_mods('/*/mods:language/mods:languageTerm', translation_map: 'languages')
+    end
+
+    def normalize_script
+      extract_mods('/*/mods:language/mods:scriptTerm', translation_map: 'scripts')
+    end
+
     def generate_part
       if extract_mods('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:url')
         extract_mods('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:url')
@@ -29,8 +41,8 @@ module Macros
     end
 
     # @param xpath [String] the xpath query expression
-    def extract_mods(xpath)
-      extract_xml(xpath, NS)
+    def extract_mods(xpath, options = {})
+      extract_xml(xpath, NS, options)
     end
   end
 end
