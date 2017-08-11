@@ -19,6 +19,9 @@
   <!-- solr lib dirs -->  
   <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lib" />
   <lib dir="${solr.install.dir:../../../..}/contrib/analysis-extras/lucene-libs" />
+  <lib dir="../../../dist/" regex="solr-langid-\d.*\.jar" />
+  <lib dir="${solr.install.dir:../../../..}/contrib/langid/lib" />
+  <lib dir="${solr.install.dir:../../../..}/contrib/extraction/lib" />
 
   <dataDir>${solr.data.dir:}</dataDir>
 
@@ -150,4 +153,21 @@
   </requestDispatcher>
   
   <requestHandler name="/analysis/field" startup="lazy" class="solr.FieldAnalysisRequestHandler" />
+
+  <initParams path="/update/**">
+    <lst name="defaults">
+      <str name="update.chain">langid</str>
+    </lst>
+  </initParams>
+
+  <updateRequestProcessorChain name="langid">
+    <processor name="langid" class="org.apache.solr.update.processor.TikaLanguageIdentifierUpdateProcessorFactory">
+      <lst name="defaults">
+        <str name="langid.fl">cho_title_tsim</str>
+        <str name="langid.langField">langid_ssim</str>
+      </lst>
+    </processor>
+    <processor class="solr.LogUpdateProcessorFactory" />
+    <processor class="solr.RunUpdateProcessorFactory" />
+  </updateRequestProcessorChain>
 </config>
