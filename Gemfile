@@ -101,4 +101,6 @@ gem 'okcomputer'
 gem 'rack-attack'
 gem 'secure_headers'
 gem 'slowpoke'
+
+gem 'jsonpath'
 gem 'traject'
