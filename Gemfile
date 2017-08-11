@@ -93,7 +93,7 @@ gem 'config'
 # This gem monkeypatches faraday's parameter generation in ways that are
 # incompatible with our solr query url generation:
 # https://github.com/piotrmurach/github/blob/master/lib/github_api/ext/faraday.rb
-gem 'github_api', github: 'piotrmurach/github', require: false
+gem 'octokit', '~> 4.0'
 
 gem 'honeybadger'
 gem 'lograge'

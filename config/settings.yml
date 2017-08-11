@@ -12,6 +12,6 @@ s3:
   upload_bucket: ~
 
 import:
-  user: waynegraham
-  repo: dlme-metadata
+  access_token: ~
+  repo: waynegraham/dlme-metadata
   slug: library
