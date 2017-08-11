@@ -1,0 +1,26 @@
+# Basic mapping from common regex patterns to MODS, MARC, EDM, DCMI type terms.
+
+3d: 3D
+artifact: 3D
+audio: SOUND
+cartographic: CARTOGRAPHIC
+collection: MIXED
+dataset: DATASET
+image: IMAGE
+interactive resource: SOFTWARE
+manuscript: TEXT
+mixed material: MIXED MATERIALS
+moving image: VIDEO
+multimedia: SOUND ; VIDEO
+notated music: MUSIC ; TEXT
+software: SOFTWARE
+software, multimedia: SOFTWARE
+sound: SOUND
+sound recording: SOUND
+sound recording-musical: SOUND
+sound recording-nonmusical: SOUND
+still image: IMAGE
+tactile: 3D
+text: TEXT
+three dimensional object: 3D
+video: VIDEO
