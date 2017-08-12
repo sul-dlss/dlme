@@ -9,8 +9,8 @@
 
 ### MODS/XML (Based on MODS 3.5)
 
-MODS Field (XPath) | DLME MAP Solr Field          | Notes                     
------------------- | ---------------------------- | --------------------------
+MODS Field (XPath) | DLME MAP Field          | Notes                     
+------------------ | ----------------------- | --------------------------
 mods:abstract	|	cho_description	|	Move to abstract?
 mods:accessCondition	|	cho_dc_rights	|
 mods:accessCondition[@type="restriction on access"]	|	cho_dc_rights	|
@@ -135,5 +135,69 @@ mods:titleInfo[not(@\*)]/mods:title	|	cho_title	|
 mods:typeOfResource	|	cho_type, cho_edm_type (normalized)	|	Reuse format?
 
 ### FGDC/XML
+
+FGDC Field (XPath) | DLME MAP Field          | Notes             
+------------------ | ----------------------- | --------------------------
+metainfo/metc/cntinfo/cntorgp/cntorg	|	agg_provider	|
+dataqual/lineage/srcinfo/srctime/timeinfo/rngdates/begdate	|	cho_coverage	|	is related to the parent object / dataset
+dataqual/lineage/srcinfo/srctime/timeinfo/rngdates/enddate	|	cho_coverage	|	is related to the parent object / dataset
+dataqual/lineage/srcinfo/srctime/timeinfo/sngdate/caldate	|	cho_coverage	|	is related to the parent object / dataset
+dataqual/lineage/srcinfo/srccite/citeinfo/pubdate	|	cho_date	|	is related to the parent object / dataset
+idinfo/citation/citeinfo/pubdate	|	cho_date	|
+idinfo/crossref/citeinfo/pubdate	|	cho_date	|
+dataqual/attracc/attraccr	|	cho_description	|
+dataqual/complete	|	cho_description	|
+dataqual/lineage/procstep/procdesc	|	cho_description	|	is related to the parent object / dataset
+dataqual/posacc/horizpa/horizpar	|	cho_description	|
+dataqual/posacc/horizpa/qhorizpa/horizpae	|	cho_description	|
+dataqual/posacc/vertacc/vertaccr	|	cho_description	|
+distinfo/stdorder/digform/digtinfo/filedec	|	cho_description	|
+eainfo/overview/eaover	|	cho_description	|
+idinfo/descript/abstract	|	cho_description	|
+idinfo/descript/purpose	|	cho_description	|
+idinfo/status/update	|	cho_description	|
+idinfo/crossref/citeinfo/othercit	|	cho_extent	|
+distinfo/stdorder/digform/digtinfo/formname	|	cho_format	|
+spdoinfo/direct	|	cho_format	|
+spdoinfo/ptvctinf/sdtsterm/sdtstype	|	cho_format	|
+spdoinfo/rastinfo/rasttype	|	cho_format	|
+idinfo/citation/citeinfo/geoform	|	cho_has_type	|
+idinfo/crossref/citeinfo/geoform	|	cho_has_type	|
+distinfo/resdesc	|	cho_identifier / \_id	|	
+dataqual/lineage/srcinfo/srccite/citeinfo/lworkcit/citeinfo/serinfo/sername	|	cho_is_part_of	|	is related to the parent object / dataset
+dataqual/lineage/srcinfo/srccite/citeinfo/lworkcit/citeinfo/title	|	cho_is_part_of	|	is related to the parent object / dataset
+idinfo/citation/citeinfo/serinfo/sername	|	cho_is_part_of	|
+dataqual/lineage/procstep/proccont/cntinfo/cntorgp/cntorg	|	cho_provenance	|	is related to the parent object / dataset
+idinfo/citation/citeinfo/origin	|	cho_provenance	|
+idinfo/crossref/citeinfo/origin	|	cho_provenance	|
+idinfo/native	|	cho_provenance	|
+idinfo/citation/citeinfo/pubinfo/publish	|	cho_publisher	|
+idinfo/crossref/citeinfo/pubinfo/publish	|	cho_publisher	|
+distinfo/distrib/cntinfo/cntorgp/cntorg	|	cho_publisher / edm:dataProvider	|
+distinfo/distrib/cntinfo/cntpos	|	cho_publisher / edm:dataProvider	|	if not the same as cntorg
+idinfo/accconst	|	cho_rights	|
+idinfo/useconst	|	cho_rights, wr_rights	|
+dataqual/lineage/procstep/srcprod	|	cho_source	|	is related to the parent object / dataset
+dataqual/lineage/procstep/srcused	|	cho_source	|	is related to the parent object / dataset
+dataqual/lineage/srcinfo/srccite/citeinfo/origin	|	cho_source	|	is related to the parent object / dataset
+dataqual/lineage/srcinfo/srccite/citeinfo/pubinfo/publish	|	cho_source	|	is related to the parent object / dataset
+dataqual/lineage/srcinfo/srccite/citeinfo/serinfo/issue	|	cho_source	|	is related to the parent object / dataset
+dataqual/lineage/srcinfo/srccite/citeinfo/serinfo/sername	|	cho_source	|	is related to the parent object / dataset
+dataqual/lineage/srcinfo/srccite/citeinfo/title	|	cho_source	|	is related to the parent object / dataset
+idinfo/keywords/place/placekey	|	cho_spatial	|
+idinfo/spdom/bounding/eastbc	|	cho_spatial	|
+idinfo/spdom/bounding/northbc	|	cho_spatial	|
+idinfo/spdom/bounding/southbc	|	cho_spatial	|
+idinfo/spdom/bounding/westbc	|	cho_spatial	|
+dataqual/lineage/srcinfo/srccite/citeinfo/edition	|	cho_title	|	is related to the parent object / dataset
+eainfo/detailed/attr/attrdomv/codesetd/codesetn	|	cho_title	|	??
+eainfo/detailed/attr/attrdomv/edom/edomvd	|	cho_title	|	??
+idinfo/citation/citeinfo/edition	|	cho_title	|
+idinfo/citation/citeinfo/title	|	cho_title	|
+idinfo/crossref/citeinfo/title	|	cho_title	|
+dataqual/lineage/srcinfo/srccite/citeinfo/geoform	|	cho_type ; cho_edm_type	|	is related to the parent object / dataset
+idinfo/crossref/citeinfo/onlink	|	wr_	|	need to check for full link(s)
+idinfo/datacred	|	wr_description	|
+
 
 ### Met Museum Local Schema CSV

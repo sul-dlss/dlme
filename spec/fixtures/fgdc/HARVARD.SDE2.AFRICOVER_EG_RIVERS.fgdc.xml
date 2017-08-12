@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE metadata SYSTEM "http://www.fgdc.gov/metadata/fgdc-std-001-1998.dtd">
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Food and Agriculture Organization of the United Nations</origin>
+        <origin>Di Gregorio, Antonio</origin>
+        <origin>Egypt. Ministry of Agriculture. Soil and Water Research Institute</origin>
+        <origin>El Mowelhi, Nabil</origin>
+        <pubdate>20020404</pubdate>
+        <title>Egypt Rivers</title>
+        <edition>1st</edition>
+        <geoform>vector digital data</geoform>
+        <pubinfo>
+          <pubplace>Cambridge, Massachusetts</pubplace>
+          <publish>Harvard Map Collection, Harvard College Library</publish>
+        </pubinfo>
+        <onlink>http://hgl.harvard.edu:8080/HGL/jsp/HGL.jsp?action=VColl&amp;VCollName=AFRICOVER_EG_RIVERS</onlink>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>Egypt rivers from The Multipurpose Africover Database for the Environmental Resources produced by the Food and Agriculture Organization of the United Nations (FAO). Scale of the dataset: 1:100,000.The rivers have been produced from visual
+        interpretation of digitally enhanced LANDSAT TM images (Bands 4,3,2) acquired mainly in the year 1997.</abstract>
+      <purpose>The boundaries have been included for orientation purposes.The purpose of the Africover Project is to establish a digital georeferenced database on land cover and a geographic referential for the whole of Africa including: - geodetical
+        homogeneous referential - toponomy - roads - hydrographyThe Multipurpose Africover Database for the Environmental Resources (MADE) is produced at a 1:200,000 scale (1:100,000 for small countries and specific areas).Reinforcing national and
+        sub-regional capacities for the establishment, update and use of the geographic referential and land cover maps and spatial data bases is the core strategy of Africover: this has been the methodology adopted to ensure an operational approach and the
+        sustainability of the initiative.</purpose>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <sngdate>
+          <caldate>20020404</caldate>
+        </sngdate>
+      </timeinfo>
+      <current>publication date</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>None planned</update>
+    </status>
+    <spdom>
+      <bounding>
+        <westbc>29.850088</westbc>
+        <eastbc>33.080360</eastbc>
+        <northbc>31.524937</northbc>
+        <southbc>22.005644</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>LCSH</themekt>
+        <themekey>Rivers</themekey>
+        <themekey>Bodies of water</themekey>
+        <themekey>Hydrography</themekey>
+      </theme>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>inlandWaters</themekey>
+      </theme>
+      <place>
+        <placekt>GNS</placekt>
+        <placekey>Egypt</placekey>
+      </place>
+    </keywords>
+    <accconst>None.</accconst>
+    <useconst>The data remains full property of the owners. It can be accessed, reproduced and distributed given that the owner information is explicitly acknowledged and displayed in the copyright information (I.E. Produced by FAO - Africover). The
+      Authors do not assume any responsibilities for improper use of the data.</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Mr. Antonio Di Gregorio</cntper>
+          <cntorg>FAO Africover</cntorg>
+        </cntperp>
+        <cntpos>Senior Remote Sensing and Land Cover Mapping Expert</cntpos>
+        <cntaddr>
+          <addrtype>mailing address</addrtype>
+          <address>c/o FAO Representative in Kenya</address>
+          <address>PO Box 30470</address>
+          <address>00200</address>
+          <city>Nairobi</city>
+          <state>Nairobi</state>
+          <country>Kenya</country>
+        </cntaddr>
+        <cntvoice>+254-(0)2-4440985/4443331/4443715/4441106</cntvoice>
+        <cntfax>+254-(0)2-4441993</cntfax>
+        <cntemail>antonio.digregorio@africover.org</cntemail>
+        <cntinst>http://www.africover.org/</cntinst>
+      </cntinfo>
+    </ptcontac>
+    <datacred>Food and Agriculture Organization of the United Nations (FAO) and Egypt.</datacred>
+    <native>Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 2; ESRI ArcCatalog 9.2.4.1420</native>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>Unknown</attraccr>
+    </attracc>
+    <logic>Unknown</logic>
+    <complete>Unknown</complete>
+    <posacc>
+      <horizpa>
+        <horizpar>Unknown</horizpar>
+      </horizpa>
+    </posacc>
+    <lineage>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Food and Agriculture Organization of the United Nations</origin>
+            <pubdate>2002</pubdate>
+            <title>Multipurpose Africover Database for the Environmental Resources</title>
+            <geoform>vector digital data</geoform>
+            <pubinfo>
+              <pubplace>Nairobi, Kenya</pubplace>
+              <publish>Food and Agricultural Organization of the United Nations</publish>
+            </pubinfo>
+            <onlink>http://www.africover.org/</onlink>
+          </citeinfo>
+        </srccite>
+        <srcscale>100000</srcscale>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2002</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>africover</srccitea>
+        <srccontr>Source dataset</srccontr>
+      </srcinfo>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Vector</direct>
+    <ptvctinf>
+      <sdtsterm>
+        <sdtstype>String</sdtstype>
+        <ptvctcnt>525</ptvctcnt>
+      </sdtsterm>
+    </ptvctinf>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <geograph>
+        <latres>0.000001</latres>
+        <longres>0.000001</longres>
+        <geogunit>Decimal degrees</geogunit>
+      </geograph>
+      <geodetic>
+        <horizdn>D_WGS_1984</horizdn>
+        <ellips>WGS_1984</ellips>
+        <semiaxis>6378137.000000</semiaxis>
+        <denflat>298.257224</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <detailed>
+      <enttyp>
+        <enttypl>africover_eg_rivers</enttypl>
+        <enttypd>Egypt river</enttypd>
+        <enttypds>FAO</enttypds>
+      </enttyp>
+      <attr>
+        <attrlabl>OBJECTID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Sequential unique whole numbers that are automatically generated.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>AUTO_ID</attrlabl>
+        <attrdef>Internal feature number.</attrdef>
+        <attrdefs>None</attrdefs>
+      </attr>
+      <attr>
+        <attrlabl>SHAPE</attrlabl>
+        <attrdef>Feature geometry.</attrdef>
+        <attrdefs>ESRI</attrdefs>
+        <attrdomv>
+          <udom>Coordinates defining the features.</udom>
+        </attrdomv>
+      </attr>
+      <attr>
+        <attrlabl>SHAPE.LEN</attrlabl>
+        <attrdef>Length of arc in coverage units</attrdef>
+        <attrdefs>ESRI</attrdefs>
+      </attr>
+    </detailed>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Harvard Geospatial Library</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical address</addrtype>
+          <address>Harvard University Library</address>
+          <address>Office For Information Systems</address>
+          <address>90 Mount Auburn Street</address>
+          <city>Cambridge</city>
+          <state>MA</state>
+          <postal>02138</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>617-495-2417</cntvoice>
+        <cntfax>617-496-0440</cntfax>
+        <cntemail>hgl_ref@hulmail.harvard.edu</cntemail>
+        <hours>Monday - Friday, 9:00 am - 4:00 pm EST-USA</hours>
+      </cntinfo>
+    </distrib>
+    <resdesc>Downloadable Data</resdesc>
+    <distliab>Although this data is being distributed by Harvard University, no warranty expressed or implied is made by the University as to the accuracy of the data and related materials. The act of distribution shall not constitute any such warranty,
+      and no responsibility is assumed by the University in the use of this data, or related materials.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>SHAPE</formname>
+          <filedec>ZIP</filedec>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>http://hgl.harvard.edu/</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None</fees>
+      <ordering>Web-based distribution only</ordering>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20080407</metd>
+    <metc>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>Harvard Geospatial Library</cntorg>
+        </cntorgp>
+        <cntpos>Geospatial Resources Cataloger</cntpos>
+        <cntaddr>
+          <addrtype>mailing and physical address</addrtype>
+          <address>Harvard University Library</address>
+          <address>Office For Information Systems</address>
+          <address>90 Mount Auburn Street</address>
+          <city>Cambridge</city>
+          <state>MA</state>
+          <postal>02138</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>617-495-2417</cntvoice>
+        <cntfax>617-496-0440</cntfax>
+        <cntemail>hgl_ref@hulmail.harvard.edu</cntemail>
+        <hours>Monday - Friday, 9:00 am - 4:00 pm EST-USA</hours>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+    <mettc>local time</mettc>
+  </metainfo>
+</metadata>
