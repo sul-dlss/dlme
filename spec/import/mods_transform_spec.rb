@@ -19,17 +19,18 @@ RSpec.describe 'Transforming MODS files' do
     dlme = DlmeJson.last.json
     expect(dlme['id']).to eq ['stanford_tk780vf9050']
     expect(dlme['cho_title']).to eq ['Walters Ms. W.586, Work on the duties of Muslims toward the ' \
-                                     'Prophet Muhammad with an account of his life']
-    expect(dlme['cho_alternative']).to eq ['al-Shifāʾ fī taʿrīf ḥuqūq al-Muṣṭafá',
-                                           'الشفاء في تعريف حقوق المصطفى']
+                                     'Prophet Muhammad with an account of his life',
+                                     'al-Shifāʾ fī taʿrīf ḥuqūq al-Muṣṭafá', 'الشفاء في تعريف حقوق المصطفى']
     expect(dlme['cho_description'].first).to start_with 'This manuscript is an illuminated copy'
     expect(dlme['cho_date']).to eq ['1777']
     expect(dlme['cho_dc_rights'].first).to start_with 'Licensed for use'
+    expect(dlme['cho_edm_type']).to eq ['MIXED MATERIALS']
     expect(dlme['cho_creator']).to eq ['Abū al-Faḍl ʿIyāḍ ibn Mūsá al-Yaḥṣubī al-Bāhilī',
                                        'ʿIyāḍ al-Yaḥṣubī (d. 544 AH / 1149 CE)',
                                        'ابو الفضل عياض بن موسى اليحصبي الباهلي']
     expect(dlme['cho_contributor']).to eq ['Salīm al-Rashīd']
-
-    # TODO: where is cho_edm_type found?
+    expect(dlme['cho_language']).to eq ['ar']
+    expect(dlme['cho_has_part'].first).to start_with 'al-Shifāʾ fī taʿrīf ḥuqūq al-Muṣṭafá'
+    expect(dlme['wr_is_referenced_by']).to eq ['https://purl.stanford.edu/tk780vf9050/iiif/manifest']
   end
 end
