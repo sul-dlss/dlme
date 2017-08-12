@@ -45,6 +45,8 @@
     <dynamicField name="*_exact_tsiv" type="text_ws" stored="true" indexed="true" multiValued="false" termVectors="true" termPositions="true" termOffsets="true"/>
     <dynamicField name="*_exact_tsimv" type="text_ws" stored="true" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
 
+    <dynamicField name="*_fuzzy_tsim" type="text_fuzzy" stored="true" indexed="true" multiValued="true"/>
+
     <!-- English text (_te...) -->
 <!--
     <dynamicField name="*_tei" type="text_en" stored="false" indexed="true" multiValued="false"/>
@@ -246,10 +248,12 @@
   <copyField source="cho_alternative_tsim" dest="cho_alternative_tesim" />
   <copyField source="cho_alternative_tsim" dest="cho_alternative_tfasim" />
   <copyField source="cho_alternative_tsim" dest="cho_alternative_ttrsim" />
+  <copyField source="cho_creator_tsim" dest="cho_creator_fuzzy_tsim" />
   <copyField source="cho_creator_tsim" dest="cho_creator_tarsim" />
   <copyField source="cho_creator_tsim" dest="cho_creator_tesim" />
   <copyField source="cho_creator_tsim" dest="cho_creator_tfasim" />
   <copyField source="cho_creator_tsim" dest="cho_creator_ttrsim" />
+  <copyField source="cho_contributor_tsim" dest="cho_contributor_fuzzy_tsim" />
   <copyField source="cho_contributor_tsim" dest="cho_contributor_tarsim" />
   <copyField source="cho_contributor_tsim" dest="cho_contributor_tesim" />
   <copyField source="cho_contributor_tsim" dest="cho_contributor_tfasim" />
@@ -393,6 +397,16 @@
         <!-- EnglishMinimalStemFilterFactory is less aggressive than PorterStemFilterFactory: -->
         <filter class="solr.EnglishMinimalStemFilterFactory"/>
         <filter class="solr.TrimFilterFactory"/>
+      </analyzer>
+    </fieldType>
+
+    <fieldType name="text_fuzzy" class="solr.TextField">
+      <analyzer>
+        <tokenizer class="solr.ICUTokenizerFactory"/>
+        <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
+        <filter class="solr.BeiderMorseFilterFactory" nameType="GENERIC" ruleType="APPROX"
+                concat="true" languageSet="auto">
+        </filter>
       </analyzer>
     </fieldType>
 
