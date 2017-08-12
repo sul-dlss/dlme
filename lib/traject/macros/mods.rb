@@ -30,13 +30,55 @@ module Macros
       extract_mods('/*/mods:language/mods:scriptTerm', translation_map: 'scripts')
     end
 
-    def generate_part
-      if extract_mods('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:url')
-        extract_mods('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:url')
-      elsif extract_mods('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:titleInfo/mods:title')
-        extract_mods('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:titleInfo/mods:title')
-      elsif extract_mods('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:identifier')
-        extract_mods('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:identifier')
+    def generate_has_part
+      to_field 'cho_has_part' do |record, accumulator|
+        url = record.xpath('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:url', NS).map(&:text)
+        title = record.xpath('/*/mods:relatedItem[@type="constituent"]/mods:titleInfo/mods:title', NS).map(&:text)
+
+        if !url.empty?
+          accumulator << url
+        elsif !title.empty?
+          accumulator << title
+        end
+      end
+    end
+
+    def generate_part_of
+      to_field 'cho_is_part_of' do |record, accumulator|
+        url = record.xpath('/*/mods:relatedItem[@type="host"]/mods:location/mods:url', NS).map(&:text)
+        title = record.xpath('/*/mods:relatedItem[@type="host"]/mods:titleInfo/mods:title', NS).map(&:text)
+
+        if !url.empty?
+          accumulator << url
+        elsif !title.empty?
+          accumulator << title
+        end
+      end
+    end
+
+    def generate_series
+      to_field 'cho_is_part_of' do |record, accumulator|
+        url = record.xpath('/*/mods:relatedItem[@type="series"]/mods:location/mods:url', NS).map(&:text)
+        title = record.xpath('/*/mods:relatedItem[@type="series"]/mods:titleInfo/mods:title', NS).map(&:text)
+
+        if !url.empty?
+          accumulator << url
+        elsif !title.empty?
+          accumulator << title
+        end
+      end
+    end
+
+    def generate_relation
+      to_field 'cho_relation' do |record, accumulator|
+        url = record.xpath('/*/mods:relatedItem[not(@*)]/mods:location/mods:url', NS).map(&:text)
+        title = record.xpath('/*/mods:relatedItem[not(@*)]/mods:titleInfo/mods:title', NS).map(&:text)
+
+        if !url.empty?
+          accumulator << url
+        elsif !title.empty?
+          accumulator << title
+        end
       end
     end
 
