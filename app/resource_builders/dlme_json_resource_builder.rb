@@ -22,6 +22,9 @@ class DlmeJsonResourceBuilder < Spotlight::SolrDocumentBuilder
       TOKENIZED_COPY_FIELDS.each do |key|
         sink["#{key}_tsim"] = source[key] if source[key]
       end
+
+      sink['sortable_cho_title_ssi'] = Array(sink['cho_title_ssim']).first if sink['cho_title_ssim']
+      sink['sortable_cho_creator_ssi'] = Array(sink['cho_creator_ssim']).first if sink['cho_creator_ssim']
     end
   end
 
