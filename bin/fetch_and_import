@@ -4,7 +4,6 @@
 puts 'Loading environment...'
 require File.expand_path('../../config/environment', __FILE__)
 
-require 'github_api'
 require 'github_importer'
 
 # This retrieves all the files in the directory corresponding to:
@@ -13,9 +12,6 @@ require 'github_importer'
 #    with the following scopes enabled:
 #    * public_repo
 # 2. Set an ENV variable named 'GITHUB_TOKEN' containing your token
-
-AUTHORIZATION_TOKEN = ENV['GITHUB_TOKEN'] ||
-                      raise('GitHub authorization token was not found in the GITHUB_TOKEN environment variable')
 
 def process_mods(identifier, mods)
   indexer = Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => Settings.import.slug)
@@ -29,7 +25,7 @@ def process_tei(identifier, tei)
   indexer.process(tei)
 end
 
-importer = GithubImporter.new(AUTHORIZATION_TOKEN, Settings.import.user, Settings.import.repo)
+importer = GithubImporter.new(Settings.import.access_token, Settings.import.repo)
 importer.import('maps/records/stanford') do |filename, mods|
   identifier = "stanford_#{filename.sub('.mods', '')}"
   process_mods(identifier, mods)
