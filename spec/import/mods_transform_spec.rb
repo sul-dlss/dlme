@@ -19,7 +19,7 @@ RSpec.describe 'Transforming MODS files' do
     dlme = DlmeJson.last.json
     expect(dlme['id']).to eq ['stanford_tk780vf9050']
     expect(dlme['agg_data_provider']).to eq ['Stanford University Library']
-    expect(dlme['agg_is_shown_at']).to eq ['https://purl.stanford.edu/tk780vf9050']
+    expect(dlme['agg_is_shown_at'].first['wr_id']).to eq ['https://purl.stanford.edu/tk780vf9050']
     expect(dlme['agg_provider']).to eq ['Stanford University Library']
     expect(dlme['cho_alternative']).to eq ['al-Shifāʾ fī taʿrīf ḥuqūq al-Muṣṭafá', 'الشفاء في تعريف حقوق المصطفى']
     expect(dlme['cho_format']).to eq ['paper', 'Laid paper']
@@ -37,8 +37,17 @@ RSpec.describe 'Transforming MODS files' do
     expect(dlme['cho_language']).to eq ['ar']
     expect(dlme['cho_is_part_of']).to eq ['Walters Manuscripts']
     expect(dlme['cho_has_part']).to eq ['al-Shifāʾ fī taʿrīf ḥuqūq al-Muṣṭafá', 'الشفاء في تعريف حقوق المصطفى']
-    expect(dlme['wr_is_referenced_by']).to eq ['https://purl.stanford.edu/tk780vf9050/iiif/manifest']
-    expect(dlme['wr_description']).to eq ['reformatted digital', 'access']
-    expect(dlme['wr_format']).to eq ['image/jpeg', 'image/tiff']
+
+    expect(dlme['agg_is_shown_by'].first).to include({
+      'wr_id' => ['???'],
+      'wr_has_service' => ['???'],
+      'wr_is_referenced_by' => ['https://purl.stanford.edu/tk780vf9050/iiif/manifest'],
+      'wr_description' => ['reformatted digital', 'access'],
+      'wr_format' => ['image/jpeg', 'image/tiff']
+    })
+
+    expect(dlme['agg_preview'].first).to include({
+        'wr_id' => ['???']
+    })
   end
 end
