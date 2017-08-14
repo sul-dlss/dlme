@@ -57,3 +57,9 @@ This will pull all the MODS files from https://github.com/waynegraham/dlme-metad
 and all the TEI files from https://github.com/waynegraham/dlme-metadata/tree/master/manuscript/records/penn/schoenberg
 transform them to the JSON IR and load them as `DlmeJson` resources in the database.
 At this point they are also indexed into Solr for discovery.
+
+You can also run traject directly:
+
+```
+$ bundle exec traject -c config/traject.rb -c lib/traject/mods_config.rb [path to some file]
+```
