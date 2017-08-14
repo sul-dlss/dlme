@@ -56,14 +56,14 @@ to_field 'cho_edm_type', normalize_type
 to_field 'cho_extent', extract_mods('/*/mods:physicalDescription/mods:extent')
 to_field 'cho_format', extract_mods('/*/mods:physicalDescription/mods:form')
 # cho_has_part
-generate_has_part
+to_field 'cho_has_part', generate_has_part
 to_field 'cho_has_type', extract_mods('/*/mods:genre')
 # cho_is_part_of
-generate_part_of
-generate_series
+to_field 'cho_is_part_of', generate_part_of
+to_field 'cho_is_part_of', generate_series
 to_field 'cho_publisher', extract_mods('/*/mods:originInfo/mods:publisher')
 # cho_relatoin
-generate_relation
+to_field 'cho_relation', generate_relation
 # Better coordinate spatial aspects?
 to_field 'cho_spatial', extract_mods('/*/mods:subject/mods:cartographics/mods:coordinates')
 to_field 'cho_spatial', extract_mods('/*/mods:subject/mods:cartographics/mods:projection')
