@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Macros
-  # Macros for extracting MODS values from Nokogiri documents
+  # Macros for extracting Stanford Specific MODS values from Nokogiri documents
   module Stanford
     NS = { mods: 'http://www.loc.gov/mods/v3',
            rdf: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
@@ -30,14 +30,14 @@ module Macros
       end
     end
 
-    # @param xpath [String] the xpath query expression
     def druid?(identifier)
       identifier =~ /([a-z]{2})(\d{3})([a-z]{2})(\d{4})\z/
     end
 
     def generate_sul_shown_at(druid)
       to_field 'agg_is_shown_at' do |record, accumulator|
-        accumulator << record.xpath('/*/mods:location/mods:url', NS).map(&:text)
+        mods_url = record.xpath('/*/mods:location/mods:url', NS).map(&:text)
+        accumulator.concat(mods_url) if mods_url.present?
         accumulator << "https://purl.stanford.edu/#{druid}"
       end
     end

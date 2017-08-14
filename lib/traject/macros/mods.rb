@@ -35,10 +35,10 @@ module Macros
         url = record.xpath('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:url', NS).map(&:text)
         title = record.xpath('/*/mods:relatedItem[@type="constituent"]/mods:titleInfo/mods:title', NS).map(&:text)
 
-        if !url.empty?
-          accumulator << url
-        elsif !title.empty?
-          accumulator << title
+        if url.present?
+          accumulator.concat(url)
+        elsif title.present?
+          accumulator.concat(title)
         end
       end
     end
@@ -48,10 +48,10 @@ module Macros
         url = record.xpath('/*/mods:relatedItem[@type="host"]/mods:location/mods:url', NS).map(&:text)
         title = record.xpath('/*/mods:relatedItem[@type="host"]/mods:titleInfo/mods:title', NS).map(&:text)
 
-        if !url.empty?
-          accumulator << url
-        elsif !title.empty?
-          accumulator << title
+        if url.present?
+          accumulator.concat(url)
+        elsif title.present?
+          accumulator.concat(title)
         end
       end
     end
@@ -61,10 +61,10 @@ module Macros
         url = record.xpath('/*/mods:relatedItem[@type="series"]/mods:location/mods:url', NS).map(&:text)
         title = record.xpath('/*/mods:relatedItem[@type="series"]/mods:titleInfo/mods:title', NS).map(&:text)
 
-        if !url.empty?
-          accumulator << url
-        elsif !title.empty?
-          accumulator << title
+        if url.present?
+          accumulator.concat(url)
+        elsif title.present?
+          accumulator.concat(title)
         end
       end
     end
@@ -74,10 +74,10 @@ module Macros
         url = record.xpath('/*/mods:relatedItem[not(@*)]/mods:location/mods:url', NS).map(&:text)
         title = record.xpath('/*/mods:relatedItem[not(@*)]/mods:titleInfo/mods:title', NS).map(&:text)
 
-        if !url.empty?
-          accumulator << url
-        elsif !title.empty?
-          accumulator << title
+        if url.present?
+          accumulator.concat(url)
+        elsif title.present?
+          accumulator.concat(title)
         end
       end
     end
