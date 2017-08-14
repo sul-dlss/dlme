@@ -65,6 +65,8 @@
           cho_contributor_tfasim^100
           cho_contributor_ttrsim^100
 
+          cho_creator_fuzzy_tsim
+          cho_contributor_fuzzy_tsim
           all_text_timv
         </str>
         <str name="pf">
@@ -72,16 +74,18 @@
         </str>
 
        <str name="author_qf">
-          cho_creator_tsim^100
-          cho_contributor_tsim^100
-          cho_creator_tesim
-          cho_contributor_tesim
-          cho_creator_tarsim
-          cho_contributor_tarsim
-          cho_creator_tfasim
-          cho_contributor_tfasim
-          cho_creator_ttrsim
-          cho_contributor_ttrsim
+          cho_creator_tsim^1000
+          cho_contributor_tsim^1000
+          cho_creator_tesim^50
+          cho_contributor_tesim^50
+          cho_creator_tarsim^50
+          cho_contributor_tarsim^50
+          cho_creator_tfasim^50
+          cho_contributor_tfasim^50
+          cho_creator_ttrsim^50
+          cho_contributor_ttrsim^50
+          cho_creator_fuzzy_tsim
+          cho_contributor_fuzzy_tsim
        </str>
        <str name="author_pf">
        </str>
