@@ -33,13 +33,13 @@ to_field 'cho_identifier', extract_mods('/*/mods:recordInfo/mods:recordIdentifie
 to_field 'cho_identifier', extract_mods('/*/mods:location/mods:holdingSimple/mods:copyInformation/mods:itemIdentifier')
 to_field 'cho_language', normalize_language
 to_field 'cho_language', normalize_script
-to_field 'cho_title', extract_mods('/*/mods:titleInfo/mods:title[not(@*)]')
-to_field 'cho_title', extract_mods('/*/mods:title/mods:partName')
-to_field 'cho_title', extract_mods('/*/mods:title/mods:partNumber')
-to_field 'cho_title', extract_mods('/*/mods:titleInfo/mods:subTitle')
+to_field 'cho_title', extract_mods('/*/mods:titleInfo[not(@*)]/mods:title')
+to_field 'cho_title', extract_mods('/*/mods:titleInfo[not(@*)]/mods:partName')
+to_field 'cho_title', extract_mods('/*/mods:titleInfo[not(@*)]/mods:partNumber')
+to_field 'cho_title', extract_mods('/*/mods:titleInfo[not(@*)]/mods:subTitle')
 
 # CHO Other
-to_field 'cho_alternative', extract_mods('/*/mods:titleInfo/mods:title[@type]')
+to_field 'cho_alternative', extract_mods('/*/mods:titleInfo[@type]/mods:title')
 to_field 'cho_coverage', extract_mods('/*/mods:originInfo/mods:dateValid')
 to_field 'cho_creator', extract_name(role: 'author')
 to_field 'cho_contributor', extract_name(exclude: 'author')
