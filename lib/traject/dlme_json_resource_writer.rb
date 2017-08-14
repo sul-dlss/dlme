@@ -22,9 +22,13 @@ class DlmeJsonResourceWriter
 
   # Add a single context to fedora
   def put(context)
-    attributes = context.output_hash
-    json = JSON.generate(context.output_hash)
-    create_resource!(attributes.fetch('id').first, json)
+    attributes = context.output_hash.dup
+    id = attributes.fetch('id').first
+
+    deep_reduce_single_valued_arrays!(attributes)
+
+    json = JSON.generate(attributes)
+    create_resource!(id, json)
   end
 
   private
@@ -33,5 +37,19 @@ class DlmeJsonResourceWriter
     resource = DlmeJson.find_or_initialize_by(url: id, exhibit_id: @exhibit.id)
     resource.data = { json: json }
     resource.save_and_index
+  end
+
+  def deep_reduce_single_valued_arrays!(attributes)
+    attributes.transform_values! do |values|
+      values.each do |v|
+        deep_reduce_single_valued_arrays!(v) if v.respond_to? :transform_values!
+      end
+
+      if values.one?
+        values.first
+      else
+        values
+      end
+    end
   end
 end
