@@ -103,14 +103,8 @@ to_field 'agg_is_shown_by' do |record, accumulator, context|
   iiif_json = grab_sul_iiif_links(manifest)
 
   accumulator << transform_values(context,
-<<<<<<< HEAD
                                   wr_id: iiif_thumbnail_from_manifest,
                                   wr_has_service: iiif_service_for_thumbnail,
-=======
-                                  wr_id: process_iiif_thumbnail(iiif_json),
-                                  wr_has_service: process_iiif_thumbnail_service(iiif_json),
-                                  wr_has_protocol: process_iiif_thumbnail_protocol(iiif_json),
->>>>>>> saving mapping updates using nested lambdas
                                   wr_format: extract_mods('/*/mods:physicalDescription/mods:internetMediaType'),
                                   # wr_creator:,
                                   wr_description: [
@@ -119,7 +113,6 @@ to_field 'agg_is_shown_by' do |record, accumulator, context|
                                   ],
                                   # wr_dc_rights:,
                                   # wr_edm_rights: ,
-<<<<<<< HEAD
                                   wr_is_referenced_by: literal("https://purl.stanford.edu/#{druid}/iiif/manifest"))
 end
 
@@ -130,44 +123,6 @@ end
 
 to_field 'agg_is_shown_at' do |_record, accumulator, context|
   accumulator << transform_values(context, wr_id: generate_sul_shown_at)
-=======
-                                  wr_is_referenced_by: literal(manifest)
-                                 )
-end
-
-to_field 'agg_preview' do |record, accumulator, context|
-  druid = generate_druid(record, context)
-  manifest = "https://purl.stanford.edu/#{druid}/iiif/manifest"
-  iiif_json = grab_sul_iiif_links(manifest)
-
-  accumulator << transform_values(context,
-                                  wr_id: process_iiif_thumbnail(iiif_json),
-                                  wr_has_service: process_iiif_thumbnail_service(iiif_json),
-                                  wr_has_protocol: process_iiif_thumbnail_protocol(iiif_json),
-                                  # wr_format:
-                                  # wr_is_referenced_by: literal(manifest)
-                                  # wr_creator:,
-                                  # wr_description:,
-                                  # wr_dc_rights:,
-                                  # wr_edm_rights: ,
-                                 )
-end
-
-to_field 'agg_is_shown_at' do |record, accumulator, context|
-  druid = generate_druid(record, context)
-
-  accumulator << transform_values(context,
-                                  wr_id: literal(generate_sul_shown_at(druid)),
-                                  # wr_has_service:
-                                  # wr_has_protocol:
-                                  # wr_format:
-                                  # wr_is_referenced_by: literal(manifest)
-                                  # wr_creator:,
-                                  # wr_description:,
-                                  # wr_dc_rights:,
-                                  # wr_edm_rights: ,
-                                 )
->>>>>>> saving mapping updates using nested lambdas
 end
 
 # Not using agg_has_view since we have the above
