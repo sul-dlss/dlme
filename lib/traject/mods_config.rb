@@ -20,7 +20,7 @@ settings do
   provide 'inst_id', 'stanford'
 end
 
-# Record Identifier
+# Spotlight DLME IR Record Identifier
 to_field 'id', lambda { |_record, accumulator, context|
   accumulator << if context.settings.fetch('identifier').include? context.settings.fetch('inst_id')
                    context.settings.fetch('identifier')
@@ -57,22 +57,17 @@ to_field 'cho_description', extract_mods('/*/mods:tableOfContents')
 to_field 'cho_edm_type', normalize_type
 to_field 'cho_extent', extract_mods('/*/mods:physicalDescription/mods:extent')
 to_field 'cho_format', extract_mods('/*/mods:physicalDescription/mods:form')
-# cho_has_part
 to_field 'cho_has_part', generate_has_part
 to_field 'cho_has_type', extract_mods('/*/mods:genre')
-# cho_is_part_of
 to_field 'cho_is_part_of', generate_part_of
 to_field 'cho_is_part_of', generate_series
 to_field 'cho_publisher', extract_mods('/*/mods:originInfo/mods:publisher')
-# cho_relatoin
 to_field 'cho_relation', generate_relation
-# Better coordinate spatial aspects?
 to_field 'cho_spatial', extract_mods('/*/mods:subject/mods:cartographics/mods:coordinates')
 to_field 'cho_spatial', extract_mods('/*/mods:subject/mods:cartographics/mods:projection')
 to_field 'cho_spatial', extract_mods('/*/mods:subject/mods:cartographics/mods:scale')
 to_field 'cho_spatial', extract_mods('/*/mods:subject/mods:geographic')
 to_field 'cho_spatial', extract_mods('/*/mods:subject/mods:geographicCode')
-# there must be a better xpath way to iterate over text of all possible children
 to_field 'cho_spatial', extract_mods('/*/mods:subject/mods:hierarchicalGeographic/mods:area')
 to_field 'cho_spatial', extract_mods('/*/mods:subject/mods:hierarchicalGeographic/mods:city')
 to_field 'cho_spatial', extract_mods('/*/mods:subject/mods:hierarchicalGeographic/mods:citySection')
@@ -90,20 +85,32 @@ to_field 'cho_subject', extract_mods('/*/mods:subject/mods:titleInfo/mods:title'
 to_field 'cho_temporal', extract_mods('/*/mods:subject/mods:temporal')
 to_field 'cho_type', extract_mods('/*/mods:typeOfResource')
 
-# Agg
+# Aggregation Object(s)
+# flat fields
 to_field 'agg_data_provider', lambda { |_record, accumulator, context|
   accumulator << context.settings.fetch('agg_data_provider')
 }
 to_field 'agg_provider', lambda { |_record, accumulator, context|
   accumulator << context.settings.fetch('agg_provider')
 }
+# agg_dc_rights:,
+# agg_edm_rights: ,
 
+# nested fields
 to_field 'agg_is_shown_by' do |record, accumulator, context|
   druid = generate_druid(record, context)
+  manifest = "https://purl.stanford.edu/#{druid}/iiif/manifest"
+  iiif_json = grab_sul_iiif_links(manifest)
 
   accumulator << transform_values(context,
+<<<<<<< HEAD
                                   wr_id: iiif_thumbnail_from_manifest,
                                   wr_has_service: iiif_service_for_thumbnail,
+=======
+                                  wr_id: process_iiif_thumbnail(iiif_json),
+                                  wr_has_service: process_iiif_thumbnail_service(iiif_json),
+                                  wr_has_protocol: process_iiif_thumbnail_protocol(iiif_json),
+>>>>>>> saving mapping updates using nested lambdas
                                   wr_format: extract_mods('/*/mods:physicalDescription/mods:internetMediaType'),
                                   # wr_creator:,
                                   wr_description: [
@@ -112,6 +119,7 @@ to_field 'agg_is_shown_by' do |record, accumulator, context|
                                   ],
                                   # wr_dc_rights:,
                                   # wr_edm_rights: ,
+<<<<<<< HEAD
                                   wr_is_referenced_by: literal("https://purl.stanford.edu/#{druid}/iiif/manifest"))
 end
 
@@ -122,7 +130,47 @@ end
 
 to_field 'agg_is_shown_at' do |_record, accumulator, context|
   accumulator << transform_values(context, wr_id: generate_sul_shown_at)
+=======
+                                  wr_is_referenced_by: literal(manifest)
+                                 )
 end
+
+to_field 'agg_preview' do |record, accumulator, context|
+  druid = generate_druid(record, context)
+  manifest = "https://purl.stanford.edu/#{druid}/iiif/manifest"
+  iiif_json = grab_sul_iiif_links(manifest)
+
+  accumulator << transform_values(context,
+                                  wr_id: process_iiif_thumbnail(iiif_json),
+                                  wr_has_service: process_iiif_thumbnail_service(iiif_json),
+                                  wr_has_protocol: process_iiif_thumbnail_protocol(iiif_json),
+                                  # wr_format:
+                                  # wr_is_referenced_by: literal(manifest)
+                                  # wr_creator:,
+                                  # wr_description:,
+                                  # wr_dc_rights:,
+                                  # wr_edm_rights: ,
+                                 )
+end
+
+to_field 'agg_is_shown_at' do |record, accumulator, context|
+  druid = generate_druid(record, context)
+
+  accumulator << transform_values(context,
+                                  wr_id: literal(generate_sul_shown_at(druid)),
+                                  # wr_has_service:
+                                  # wr_has_protocol:
+                                  # wr_format:
+                                  # wr_is_referenced_by: literal(manifest)
+                                  # wr_creator:,
+                                  # wr_description:,
+                                  # wr_dc_rights:,
+                                  # wr_edm_rights: ,
+                                 )
+>>>>>>> saving mapping updates using nested lambdas
+end
+
+# Not using agg_has_view since we have the above
 
 def iiif_thumbnail_from_manifest
   literal('???')

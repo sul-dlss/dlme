@@ -19,7 +19,7 @@ module Macros
 
     def apply_translation(values, options)
       translation_map = Traject::TranslationMap.new(options[:translation_map])
-      # without monkeypatching (further) with translation map, could add
+      # without overwriting (further) translation map, could add
       # fuzzy match method here after pulling array out of TM
       translation_map.translate_array! values
     end
