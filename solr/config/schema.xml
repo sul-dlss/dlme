@@ -77,6 +77,14 @@
     <dynamicField name="*_tfasiv" type="text_fa" stored="true" indexed="true" multiValued="false" termVectors="true" termPositions="true" termOffsets="true"/>
     <dynamicField name="*_tfasimv" type="text_fa" stored="true" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
 
+    <!-- Turkish text (_ttr...) -->
+    <dynamicField name="*_ttrs" type="text_tr" stored="true" indexed="false" multiValued="false"/>
+    <dynamicField name="*_ttrsm" type="text_tr" stored="true" indexed="false" multiValued="true"/>
+    <dynamicField name="*_ttrsi" type="text_tr" stored="true" indexed="true" multiValued="false"/>
+    <dynamicField name="*_ttrsim" type="text_tr" stored="true" indexed="true" multiValued="true"/>
+    <dynamicField name="*_ttrsiv" type="text_tr" stored="true" indexed="true" multiValued="false" termVectors="true" termPositions="true" termOffsets="true"/>
+    <dynamicField name="*_ttrsimv" type="text_tr" stored="true" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+
     <!-- string (_s...) -->
 <!--
     <dynamicField name="*_si" type="string" stored="false" indexed="true" multiValued="false"/>
@@ -232,16 +240,20 @@
   <copyField source="cho_title_tsim" dest="cho_title_tarsim" />
   <copyField source="cho_title_tsim" dest="cho_title_tesim" />
   <copyField source="cho_title_tsim" dest="cho_title_tfasim" />
+  <copyField source="cho_title_tsim" dest="cho_title_ttrsim" />
   <copyField source="cho_alternative_tsim" dest="cho_alternative_exact_tsim" />
   <copyField source="cho_alternative_tsim" dest="cho_alternative_tarsim" />
   <copyField source="cho_alternative_tsim" dest="cho_alternative_tesim" />
   <copyField source="cho_alternative_tsim" dest="cho_alternative_tfasim" />
+  <copyField source="cho_alternative_tsim" dest="cho_alternative_ttrsim" />
   <copyField source="cho_creator_tsim" dest="cho_creator_tarsim" />
   <copyField source="cho_creator_tsim" dest="cho_creator_tesim" />
   <copyField source="cho_creator_tsim" dest="cho_creator_tfasim" />
+  <copyField source="cho_creator_tsim" dest="cho_creator_ttrsim" />
   <copyField source="cho_contributor_tsim" dest="cho_contributor_tarsim" />
   <copyField source="cho_contributor_tsim" dest="cho_contributor_tesim" />
   <copyField source="cho_contributor_tsim" dest="cho_contributor_tfasim" />
+  <copyField source="cho_contributor_tsim" dest="cho_contributor_ttrsim" />
   <copyField source="*_tsim" dest="all_text_timv" maxChars="3000"/>
   <copyField source="*_tesim" dest="all_text_timv" maxChars="3000"/>
 
@@ -350,6 +362,15 @@
         <filter class="solr.ArabicNormalizationFilterFactory"/>
         <filter class="solr.PersianNormalizationFilterFactory"/>
         <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
+      </analyzer>
+    </fieldType>
+
+    <!-- Turkish -->
+    <fieldType name="text_tr" class="solr.TextField" positionIncrementGap="100">
+      <analyzer> 
+        <tokenizer class="solr.ICUTokenizerFactory"/>
+        <filter class="solr.ICUFoldingFilterFactory"/>  <!-- NFKC, case folding, diacritics removed -->
+        <filter class="solr.SnowballPorterFilterFactory" language="Turkish"/>
       </analyzer>
     </fieldType>
 
