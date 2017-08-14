@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 module Macros
+  # DLME helpers for traject mappings
   module DLME
+    # construct a structured hash using values extracted using traject
     def transform_values(context, hash)
       hash.transform_values do |lambdas|
         accumulator = []

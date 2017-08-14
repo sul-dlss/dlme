@@ -102,29 +102,25 @@ to_field 'agg_is_shown_by' do |record, accumulator, context|
   druid = generate_druid(record, context)
 
   accumulator << transform_values(context,
-    wr_id: iiif_thumbnail_from_manifest,
-    wr_has_service: iiif_service_for_thumbnail,
-    wr_format: extract_mods('/*/mods:physicalDescription/mods:internetMediaType'),
-    # wr_creator:,
-    wr_description: [
-      extract_mods('/*/mods:physicalDescription/mods:digitalOrigin'),
-      extract_mods('/*/mods:physicalDescription/mods:reformattingQuality')
-    ],
-    # wr_dc_rights:,
-    # wr_edm_rights: ,
-    wr_is_referenced_by: literal("https://purl.stanford.edu/#{druid}/iiif/manifest")
-  )
+                                  wr_id: iiif_thumbnail_from_manifest,
+                                  wr_has_service: iiif_service_for_thumbnail,
+                                  wr_format: extract_mods('/*/mods:physicalDescription/mods:internetMediaType'),
+                                  # wr_creator:,
+                                  wr_description: [
+                                    extract_mods('/*/mods:physicalDescription/mods:digitalOrigin'),
+                                    extract_mods('/*/mods:physicalDescription/mods:reformattingQuality')
+                                  ],
+                                  # wr_dc_rights:,
+                                  # wr_edm_rights: ,
+                                  wr_is_referenced_by: literal("https://purl.stanford.edu/#{druid}/iiif/manifest"))
 end
 
-to_field 'agg_preview' do |record, accumulator, context|
-  druid = generate_druid(record, context)
-
+to_field 'agg_preview' do |_record, accumulator, context|
   accumulator << transform_values(context,
-    wr_id: iiif_thumbnail_from_manifest
-  )
+                                  wr_id: iiif_thumbnail_from_manifest)
 end
 
-to_field 'agg_is_shown_at' do |record, accumulator, context|
+to_field 'agg_is_shown_at' do |_record, accumulator, context|
   accumulator << transform_values(context, wr_id: generate_sul_shown_at)
 end
 
