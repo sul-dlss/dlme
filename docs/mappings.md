@@ -130,8 +130,8 @@ mods:title/mods:partNumber	|	cho_title	|
 mods:title/mods:partNumber	|	n/a	|	Append to mods:titleInfo/mods:title[not(@\*)] cho_title?
 mods:titleInfo/mods:subTitle	|	cho_title	|
 mods:titleInfo/mods:subTitle	|	n/a	|	Append to mods:titleInfo/mods:title[not(@\*)] cho_title?
-mods:titleInfo/mods:title[@type]	|	cho_alternative	|
-mods:titleInfo/mods:title[not(@\*)]	|	cho_title	|
+mods:titleInfo[@type]/mods:title	|	cho_alternative	|
+mods:titleInfo[not(@\*)]/mods:title	|	cho_title	|
 mods:typeOfResource	|	cho_type, cho_edm_type (normalized)	|	Reuse format?
 
 ### FGDC/XML
