@@ -38,16 +38,12 @@ RSpec.describe 'Transforming MODS files' do
     expect(dlme['cho_is_part_of']).to eq 'Walters Manuscripts'
     expect(dlme['cho_has_part']).to eq ['al-Shifāʾ fī taʿrīf ḥuqūq al-Muṣṭafá', 'الشفاء في تعريف حقوق المصطفى']
 
-    expect(dlme['agg_is_shown_by']).to include({
-      'wr_id' => '???',
-      'wr_has_service' => '???',
-      'wr_is_referenced_by' => 'https://purl.stanford.edu/tk780vf9050/iiif/manifest',
-      'wr_description' => ['reformatted digital', 'access'],
-      'wr_format' => ['image/jpeg', 'image/tiff']
-    })
+    expect(dlme['agg_is_shown_by']).to include('wr_id' => '???',
+                                               'wr_has_service' => '???',
+                                               'wr_is_referenced_by' => 'https://purl.stanford.edu/tk780vf9050/iiif/manifest',
+                                               'wr_description' => ['reformatted digital', 'access'],
+                                               'wr_format' => ['image/jpeg', 'image/tiff'])
 
-    expect(dlme['agg_preview']).to include({
-      'wr_id' => '???'
-    })
+    expect(dlme['agg_preview']).to include('wr_id' => '???')
   end
 end
