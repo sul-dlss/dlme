@@ -6,20 +6,6 @@ module Macros
     NS = { mods: 'http://www.loc.gov/mods/v3',
            rdf: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
            dc: 'http://purl.org/dc/elements/1.1/' }.freeze
-    # SOURCE SPECIFIC METHODS
-    # Macros for extracting Stanford-specific values from Nokogiri documents
-    def generate_sul_manifest
-      lambda { |record, accumulator, context|
-        druid = generate_druid(record, context)
-        # eventually add a test that calls IIIF service to check
-        if druid.present? && druid?(druid.chomp('druid:'))
-          manifest = "https://purl.stanford.edu/#{druid}/iiif/manifest"
-          accumulator << manifest
-          grab_sul_iiif_links(manifest)
-          generate_sul_shown_at(druid)
-        end
-      }
-    end
 
     def generate_druid(record, context)
       if context.settings.fetch('identifier')
@@ -34,8 +20,9 @@ module Macros
       identifier =~ /([a-z]{2})(\d{3})([a-z]{2})(\d{4})\z/
     end
 
-    def generate_sul_shown_at(druid)
-      to_field 'agg_is_shown_at' do |record, accumulator|
+    def generate_sul_shown_at
+      lambda do |record, accumulator, context|
+        druid = generate_druid(record, context)
         mods_url = record.xpath('/*/mods:location/mods:url', NS).map(&:text)
         accumulator.concat(mods_url) if mods_url.present?
         accumulator << "https://purl.stanford.edu/#{druid}"
