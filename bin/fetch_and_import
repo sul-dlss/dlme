@@ -10,5 +10,5 @@ require File.expand_path('../../config/environment', __FILE__)
 #    * public_repo
 # 2. Set an ENV variable named 'SETTINGS__IMPORT__ACCESS_TOKEN' containing your token
 
-PennImportJob.perform_later(Settings.import.access_token)
-StanfordImportJob.perform_later(Settings.import.access_token)
+PennImportJob.perform_later
+StanfordImportJob.perform_later
