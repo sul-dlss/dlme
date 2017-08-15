@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'traject/iiif'
+require_relative 'iiif'
 
 module Macros
   # Macros for extracting Stanford Specific MODS values from Nokogiri documents
@@ -23,12 +23,13 @@ module Macros
     end
 
     # This is a URL for the Digital Object in its information context
-    def generate_sul_shown_at(druid)
+    def generate_sul_shown_at(record, druid)
       mods_url = record.xpath('/*/mods:location/mods:url', NS).map(&:text)
-      if druid.preset?
+      if druid.present?
         "https://purl.stanford.edu/#{druid}"
       elsif mods_url.present?
         mods_url.first
+      end
     end
   end
 end

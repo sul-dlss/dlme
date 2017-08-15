@@ -87,52 +87,72 @@ to_field 'cho_type', extract_mods('/*/mods:typeOfResource')
 
 # Aggregation Object(s)
 # flat fields
-to_field 'agg_data_provider', lambda { |_record, accumulator, context|
+to_field 'agg_data_provider', lambda { |record, accumulator, context|
   accumulator << context.settings.fetch('agg_data_provider')
 }
-to_field 'agg_provider', lambda { |_record, accumulator, context|
+to_field 'agg_provider', lambda { |record, accumulator, context|
   accumulator << context.settings.fetch('agg_provider')
 }
 # agg_dc_rights:,
-# agg_edm_rights: ,
+# agg_edm_rights:,
+# agg_same_as
 
 # nested fields
+
+# Not using agg_has_view since we have the above
+to_field 'agg_is_shown_at' do |record, accumulator, context|
+  druid = generate_druid(record, context)
+
+  accumulator << transform_values(context, wr_id: literal(generate_sul_shown_at(record, druid)))
+end
+
 to_field 'agg_is_shown_by' do |record, accumulator, context|
   druid = generate_druid(record, context)
   manifest = "https://purl.stanford.edu/#{druid}/iiif/manifest"
   iiif_json = grab_sul_iiif_links(manifest)
 
   accumulator << transform_values(context,
-                                  wr_id: iiif_thumbnail_from_manifest,
-                                  wr_has_service: iiif_service_for_thumbnail,
-                                  wr_format: extract_mods('/*/mods:physicalDescription/mods:internetMediaType'),
-                                  # wr_creator:,
+                                  # wr_creator:, wr_dc_rights:, wr_edm_rights:
                                   wr_description: [
                                     extract_mods('/*/mods:physicalDescription/mods:digitalOrigin'),
                                     extract_mods('/*/mods:physicalDescription/mods:reformattingQuality')
                                   ],
-                                  # wr_dc_rights:,
-                                  # wr_edm_rights: ,
-                                  wr_is_referenced_by: literal("https://purl.stanford.edu/#{druid}/iiif/manifest"))
+                                  wr_format: extract_mods('/*/mods:physicalDescription/mods:internetMediaType'),
+                                  wr_has_service: literal(process_iiif_sequences_service_id(iiif_json)),
+                                  wr_id: literal(process_iiif_sequences(iiif_json)),
+                                  wr_is_referenced_by: literal(manifest))
 end
 
-to_field 'agg_preview' do |_record, accumulator, context|
+to_field 'agg_preview' do |record, accumulator, context|
+  druid = generate_druid(record, context)
+  manifest = "https://purl.stanford.edu/#{druid}/iiif/manifest"
+  iiif_json = grab_sul_iiif_links(manifest)
+
   accumulator << transform_values(context,
-                                  wr_id: iiif_thumbnail_from_manifest)
+                                  wr_format: extract_mods('/*/mods:physicalDescription/mods:internetMediaType'),
+                                  wr_has_service: literal(process_iiif_thumbnail_service(iiif_json)),
+                                  wr_id: literal(process_iiif_thumbnail(iiif_json)),
+                                  wr_is_referenced_by: literal(manifest))
 end
 
-to_field 'agg_is_shown_at' do |_record, accumulator, context|
-  accumulator << transform_values(context, wr_id: generate_sul_shown_at)
+# Service Objects
+def iiif_thumbnail_service(iiif_json)
+  lambda {
+    accumulator << transform_values(context,
+                                    service_id: literal(process_iiif_thumbnail_service(iiif_json)),
+                                    service_conforms_to: literal(process_iiif_thumbnail_conforms_to(iiif_json)),
+                                    service_implements: literal(process_iiif_thumbnail_protocol(iiif_json)))
+  }
 end
 
-# Not using agg_has_view since we have the above
-
-def iiif_thumbnail_from_manifest
-  literal('???')
-end
-
-def iiif_service_for_thumbnail
-  literal('???')
+# Service Objects
+def iiif_sequences_service(iiif_json)
+  lambda {
+    accumulator << transform_values(context,
+                                    service_id: literal(process_iiif_sequences_service(iiif_json)),
+                                    service_conforms_to: literal(process_iiif_sequences_conforms_to(iiif_json)),
+                                    service_implements: literal(process_iiif_sequences_protocol(iiif_json)))
+  }
 end
 
 # STANFORD Specific
