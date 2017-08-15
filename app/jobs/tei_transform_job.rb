@@ -5,7 +5,8 @@ class TeiTransformJob < ApplicationJob
   queue_as :default
 
   def perform(identifier, tei)
-    indexer = Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => Settings.import.slug)
+    indexer = Traject::Indexer.new('identifier' => identifier)
+    indexer.load_config_file('config/traject.rb')
     indexer.load_config_file('lib/traject/tei_config.rb')
     indexer.process(tei)
   end
