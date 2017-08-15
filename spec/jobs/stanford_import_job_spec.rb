@@ -4,12 +4,11 @@ require 'rails_helper'
 
 RSpec.describe StanfordImportJob, type: :job do
   let(:importer) { double }
-  let(:indexer) { instance_double(Traject::Indexer, load_config_file: true, process: true) }
 
   before do
     allow(GithubImporter).to receive(:new).and_return(importer)
-    allow(Traject::Indexer).to receive(:new).and_return(indexer)
-    allow(importer).to receive(:import).and_yield('foo', 'bar')
+    allow(importer).to receive(:import).and_yield('foo.mods', 'bar')
+    allow(ModsTransformJob).to receive(:perform_later)
   end
 
   it 'imports files' do
@@ -21,10 +20,7 @@ RSpec.describe StanfordImportJob, type: :job do
     expect(importer).to have_received(:import)
       .with('maps/records/stanford')
 
-    expect(indexer).to have_received(:load_config_file)
-      .with('lib/traject/mods_config.rb')
-
-    expect(indexer).to have_received(:process)
-      .with('bar')
+    expect(ModsTransformJob).to have_received(:perform_later)
+      .with('stanford_foo', 'bar')
   end
 end

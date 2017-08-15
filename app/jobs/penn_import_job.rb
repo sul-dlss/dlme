@@ -4,18 +4,13 @@
 class PennImportJob < GithubImportJob
   private
 
+  # This is called once for each file in the directory
   def process_file(filename, tei)
     identifier = "penn_#{filename.sub('.xml', '')}"
-    process_tei(identifier, tei)
+    TeiTransformJob.perform_later(identifier, tei)
   end
 
   def import_directory
     Settings.import.directory.penn
-  end
-
-  def process_tei(identifier, tei)
-    indexer = Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => Settings.import.slug)
-    indexer.load_config_file('lib/traject/tei_config.rb')
-    indexer.process(tei)
   end
 end

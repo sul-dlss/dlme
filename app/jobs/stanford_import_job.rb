@@ -4,18 +4,13 @@
 class StanfordImportJob < GithubImportJob
   private
 
+  # This is called once for each file in the directory
   def process_file(filename, mods)
     identifier = "stanford_#{filename.sub('.mods', '')}"
-    process_mods(identifier, mods)
+    ModsTransformJob.perform_later(identifier, mods)
   end
 
   def import_directory
     Settings.import.directory.stanford
-  end
-
-  def process_mods(identifier, mods)
-    indexer = Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => Settings.import.slug)
-    indexer.load_config_file('lib/traject/mods_config.rb')
-    indexer.process(mods)
   end
 end
