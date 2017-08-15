@@ -20,6 +20,13 @@ class DlmeJsonsController < Spotlight::ApplicationController
   end
 
   def show
+    # default render
+  end
+
+  def destroy
+    Blacklight.default_index.connection.delete_by_id @resource.json['id']
+    @resource.destroy
+    redirect_back(fallback_location: root_path)
   end
 
   def create

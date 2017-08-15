@@ -20,9 +20,20 @@ RSpec.describe DlmeJsonsController do
 
   describe 'GET show' do
     let(:dlme_json) { create(:dlme_json) }
+
     it 'is successful' do
       get :show, params: { exhibit_id: exhibit.slug, id: dlme_json }
       expect(response).to be_success
+    end
+  end
+
+  describe 'DELETE destroy' do
+    let!(:dlme_json) { create(:dlme_json) }
+
+    it 'is successful' do
+      expect { delete :destroy, params: { exhibit_id: exhibit.slug, id: dlme_json } }
+        .to change { DlmeJson.count }.by(-1)
+      expect(response).to be_redirect
     end
   end
 end

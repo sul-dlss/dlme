@@ -4,4 +4,9 @@
   <h2><%= @resource.url %></h2>
   <p>Last updated: <time datetime="<%= @resource.updated_at %>"><%= l @resource.updated_at, format: :short %></time></p>
   <pre><%= JSON.pretty_unparse @resource.json %></pre>
+  <%= button_to "Delete",
+                [current_exhibit, @resource],
+                method: :delete,
+                class: 'btn btn-danger',
+                data: { confirm: 'Are you sure you want to destroy this source?' } %>
 </div>

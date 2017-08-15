@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   end
 
   resources :exhibits do
-    resources :dlme_jsons, only: [:create, :index, :show]
+    resources :dlme_jsons, only: [:create, :index, :show, :destroy]
   end
 
   authenticate :user, lambda { |u| Ability.new(u).can? :manage, :sidekiq } do

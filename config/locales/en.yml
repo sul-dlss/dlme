@@ -35,6 +35,9 @@ en:
       title: 'DLME JSON'
       add_item: 'Add DLME JSON file'
   spotlight:
+    curation:
+      sidebar:
+        sources: 'Sources'
     resources:
       upload:
         form:
