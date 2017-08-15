@@ -18,18 +18,6 @@ module Macros
       extract_mods("/*/mods:name[mods:role/mods:roleTerm/#{clause}]/mods:namePart")
     end
 
-    def normalize_type
-      extract_mods('/*/mods:typeOfResource', translation_map: 'types')
-    end
-
-    def normalize_language
-      extract_mods('/*/mods:language/mods:languageTerm', translation_map: 'languages')
-    end
-
-    def normalize_script
-      extract_mods('/*/mods:language/mods:scriptTerm', translation_map: 'scripts')
-    end
-
     def generate_has_part
       lambda { |record, accumulator|
         url = record.xpath('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:url', NS).map(&:text)
@@ -42,6 +30,34 @@ module Macros
         end
       }
     end
+
+    def generate_mods_id
+      lambda { |record, accumulator, context|
+        identifier = select_identifier(record, context)
+
+        if identifier.present?
+          accumulator << if identifier.include? context.settings.fetch('inst_id')
+                           identifier
+                         elsif identifier.include? context.settings.fetch('inst_id')
+                           context.settings.fetch('inst_id') + '_' + identifier
+                         end
+        end
+      }
+    end
+
+    # rubocop:disable Metrics/AbcSize
+    def select_identifier(record, context)
+      if record.xpath('/*/mods:identifier', NS).map(&:text).present?
+        record.xpath('/*/mods:identifier', NS).map(&:text)
+      elsif context.settings.key?('identifier')
+        identifier = context.settings.fetch('identifier')
+        File.basename(identifier, File.extname(identifier))
+      elsif context.settings.key?('command_line.filename')
+        identifier = context.settings.fetch('command_line.filename')
+        File.basename(identifier, File.extname(identifier))
+      end
+    end
+    # rubocop:enable Metrics/AbcSize
 
     def generate_part_of
       lambda { |record, accumulator|
@@ -80,6 +96,18 @@ module Macros
           accumulator.concat(title)
         end
       }
+    end
+
+    def normalize_type
+      extract_mods('/*/mods:typeOfResource', translation_map: 'types')
+    end
+
+    def normalize_language
+      extract_mods('/*/mods:language/mods:languageTerm', translation_map: 'languages')
+    end
+
+    def normalize_script
+      extract_mods('/*/mods:language/mods:scriptTerm', translation_map: 'scripts')
     end
 
     # @param xpath [String] the xpath query expression

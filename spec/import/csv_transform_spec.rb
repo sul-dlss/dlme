@@ -16,7 +16,7 @@ RSpec.describe 'Transforming CSV files' do
   it 'does the transform' do
     expect { indexer.process(data) }.to change { DlmeJson.count }.by(3)
     dlme = DlmeJson.last.json
-    expect(dlme['id']).to eq [321_383]
-    expect(dlme['cho_title']).to eq ['Stamp seal']
+    expect(dlme['id']).to eq 321_383
+    expect(dlme['cho_title']).to eq 'Stamp seal'
   end
 end

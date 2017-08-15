@@ -9,6 +9,7 @@ require_relative 'macros/stanford'
 Traject::Indexer.include Macros::DLME
 Traject::Indexer.include Macros::Xml
 Traject::Indexer.include Macros::Mods
+Traject::Indexer.include Macros::IIIF
 Traject::Indexer.include Macros::Stanford
 
 settings do
@@ -21,13 +22,7 @@ settings do
 end
 
 # Spotlight DLME IR Record Identifier
-to_field 'id', lambda { |_record, accumulator, context|
-  accumulator << if context.settings.fetch('identifier').include? context.settings.fetch('inst_id')
-                   context.settings.fetch('identifier')
-                 else
-                   context.settings.fetch('inst_id') + '_' + context.settings.fetch('identifier')
-                 end
-}
+to_field 'id', generate_mods_id
 
 # CHO Required
 to_field 'cho_identifier', extract_mods('/*/mods:identifier')
@@ -87,10 +82,10 @@ to_field 'cho_type', extract_mods('/*/mods:typeOfResource')
 
 # Aggregation Object(s)
 # flat fields
-to_field 'agg_data_provider', lambda { |record, accumulator, context|
+to_field 'agg_data_provider', lambda { |_record, accumulator, context|
   accumulator << context.settings.fetch('agg_data_provider')
 }
-to_field 'agg_provider', lambda { |record, accumulator, context|
+to_field 'agg_provider', lambda { |_record, accumulator, context|
   accumulator << context.settings.fetch('agg_provider')
 }
 # agg_dc_rights:,
@@ -111,16 +106,17 @@ to_field 'agg_is_shown_by' do |record, accumulator, context|
   manifest = "https://purl.stanford.edu/#{druid}/iiif/manifest"
   iiif_json = grab_sul_iiif_links(manifest)
 
-  accumulator << transform_values(context,
-                                  # wr_creator:, wr_dc_rights:, wr_edm_rights:
-                                  wr_description: [
-                                    extract_mods('/*/mods:physicalDescription/mods:digitalOrigin'),
-                                    extract_mods('/*/mods:physicalDescription/mods:reformattingQuality')
-                                  ],
-                                  wr_format: extract_mods('/*/mods:physicalDescription/mods:internetMediaType'),
-                                  wr_has_service: literal(process_iiif_sequences_service_id(iiif_json)),
-                                  wr_id: literal(process_iiif_sequences(iiif_json)),
-                                  wr_is_referenced_by: literal(manifest))
+  if iiif_json.present?
+    accumulator << transform_values(context,
+                                    wr_description: [
+                                      extract_mods('/*/mods:physicalDescription/mods:digitalOrigin'),
+                                      extract_mods('/*/mods:physicalDescription/mods:reformattingQuality')
+                                    ],
+                                    wr_format: extract_mods('/*/mods:physicalDescription/mods:internetMediaType'),
+                                    wr_has_service: iiif_sequences_service(iiif_json),
+                                    wr_id: literal(process_iiif_sequences(iiif_json)),
+                                    wr_is_referenced_by: literal(manifest))
+  end
 end
 
 to_field 'agg_preview' do |record, accumulator, context|
@@ -128,16 +124,18 @@ to_field 'agg_preview' do |record, accumulator, context|
   manifest = "https://purl.stanford.edu/#{druid}/iiif/manifest"
   iiif_json = grab_sul_iiif_links(manifest)
 
-  accumulator << transform_values(context,
-                                  wr_format: extract_mods('/*/mods:physicalDescription/mods:internetMediaType'),
-                                  wr_has_service: literal(process_iiif_thumbnail_service(iiif_json)),
-                                  wr_id: literal(process_iiif_thumbnail(iiif_json)),
-                                  wr_is_referenced_by: literal(manifest))
+  if iiif_json.present?
+    accumulator << transform_values(context,
+                                    wr_format: extract_mods('/*/mods:physicalDescription/mods:internetMediaType'),
+                                    wr_has_service: iiif_thumbnail_service(iiif_json),
+                                    wr_id: literal(process_iiif_thumbnail(iiif_json)),
+                                    wr_is_referenced_by: literal(manifest))
+  end
 end
 
 # Service Objects
 def iiif_thumbnail_service(iiif_json)
-  lambda {
+  lambda { |_record, accumulator, context|
     accumulator << transform_values(context,
                                     service_id: literal(process_iiif_thumbnail_service(iiif_json)),
                                     service_conforms_to: literal(process_iiif_thumbnail_conforms_to(iiif_json)),
@@ -147,11 +145,11 @@ end
 
 # Service Objects
 def iiif_sequences_service(iiif_json)
-  lambda {
+  lambda { |_record, accumulator, context|
     accumulator << transform_values(context,
-                                    service_id: literal(process_iiif_sequences_service(iiif_json)),
+                                    service_id: literal(process_iiif_sequences_service_id(iiif_json)),
                                     service_conforms_to: literal(process_iiif_sequences_conforms_to(iiif_json)),
-                                    service_implements: literal(process_iiif_sequences_protocol(iiif_json)))
+                                    service_implements: literal(process_iiif_sequences_service_protocol(iiif_json)))
   }
 end
 
