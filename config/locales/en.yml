@@ -30,7 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  dlme_json:
+  dlme_jsons:
     form:
       title: 'DLME JSON'
       add_item: 'Add DLME JSON file'

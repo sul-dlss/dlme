@@ -8,9 +8,19 @@ class DlmeJsonsController < Spotlight::ApplicationController
   before_action :authenticate_user!
 
   load_and_authorize_resource :exhibit, class: Spotlight::Exhibit
-  before_action :build_resource
+  before_action :build_resource, only: :create
 
-  load_and_authorize_resource class: 'DlmeJsons', through_association: 'exhibit.resources', instance_name: 'resource'
+  load_and_authorize_resource class: 'DlmeJson',
+                              through_association: 'exhibit.resources',
+                              instance_name: 'resource',
+                              except: :index
+
+  def index
+    @resources = DlmeJson.accessible_by(current_ability).order(:url).page params[:page]
+  end
+
+  def show
+  end
 
   def create
     @resource.attributes = resource_params

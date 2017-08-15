@@ -1,0 +1,7 @@
+<%= render 'spotlight/shared/exhibit_sidebar' %>
+<div id="content" class="col-md-9">
+  <h1>Sources</h1>
+  <h2><%= @resource.url %></h2>
+  <p>Last updated: <time datetime="<%= @resource.updated_at %>"><%= l @resource.updated_at, format: :short %></time></p>
+  <pre><%= JSON.pretty_unparse @resource.json %></pre>
+</div>

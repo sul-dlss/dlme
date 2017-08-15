@@ -22,9 +22,9 @@ Rails.application.routes.draw do
       delete 'clear'
     end
   end
-  
+
   resources :exhibits do
-    resources :dlme_jsons, only: :create
+    resources :dlme_jsons, only: [:create, :index, :show]
   end
 
   authenticate :user, lambda { |u| Ability.new(u).can? :manage, :sidekiq } do
