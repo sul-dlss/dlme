@@ -19,7 +19,11 @@
 require 'coveralls'
 require 'simplecov'
 
-SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+                                                                 SimpleCov::Formatter::HTMLFormatter,
+                                                                 Coveralls::SimpleCov::Formatter
+                                                               ])
+
 SimpleCov.start do
   # Ignore these because simplecov doesn't detect when traject
   # loads and evals them. See https://github.com/traject/traject/blob/6df447621826b92e26a4675a2f7610f8c78056ff/lib/traject/indexer.rb#L193
