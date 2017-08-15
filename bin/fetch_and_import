@@ -4,34 +4,11 @@
 puts 'Loading environment...'
 require File.expand_path('../../config/environment', __FILE__)
 
-require 'github_importer'
-
-# This retrieves all the files in the directory corresponding to:
-# https://github.com/waynegraham/dlme-metadata/tree/master/maps/records/stanford
+# This retrieves all the files in the configured github directories and imports them
 # 1. Get a personal access token from GitHub (https://github.com/settings/tokens)
 #    with the following scopes enabled:
 #    * public_repo
-# 2. Set an ENV variable named 'GITHUB_TOKEN' containing your token
+# 2. Set an ENV variable named 'SETTINGS__IMPORT__ACCESS_TOKEN' containing your token
 
-def process_mods(identifier, mods)
-  indexer = Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => Settings.import.slug)
-  indexer.load_config_file('lib/traject/mods_config.rb')
-  indexer.process(mods)
-end
-
-def process_tei(identifier, tei)
-  indexer = Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => Settings.import.slug)
-  indexer.load_config_file('lib/traject/tei_config.rb')
-  indexer.process(tei)
-end
-
-importer = GithubImporter.new(Settings.import.access_token, Settings.import.repo)
-importer.import('maps/records/stanford') do |filename, mods|
-  identifier = "stanford_#{filename.sub('.mods', '')}"
-  process_mods(identifier, mods)
-end
-
-importer.import('manuscript/records/penn/schoenberg') do |filename, tei|
-  identifier = "penn_#{filename.sub('.xml', '')}"
-  process_tei(identifier, tei)
-end
+PennImportJob.perform_later(Settings.import.access_token)
+StanfordImportJob.perform_later(Settings.import.access_token)

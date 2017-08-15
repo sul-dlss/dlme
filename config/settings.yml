@@ -15,3 +15,6 @@ import:
   access_token: ~
   repo: waynegraham/dlme-metadata
   slug: library
+  directory:
+    penn:     'manuscript/records/penn/schoenberg'
+    stanford: 'maps/records/stanford'
