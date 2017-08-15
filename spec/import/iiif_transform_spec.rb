@@ -17,8 +17,8 @@ RSpec.describe 'Transforming IIIF files' do
   it 'does the transform' do
     expect { indexer.process(data) }.to change { DlmeJson.count }.by(1)
     dlme = DlmeJson.last.json
-    expect(dlme['id']).to eq ['stanford_tk780vf9050']
-    expect(dlme['cho_title']).to eq ['Walters Ms. W.586, Work on the duties of Muslims toward the ' \
-                                     'Prophet Muhammad with an account of his life']
+    expect(dlme['id']).to eq 'stanford_tk780vf9050'
+    expect(dlme['cho_title']).to eq 'Walters Ms. W.586, Work on the duties of Muslims toward the ' \
+                                    'Prophet Muhammad with an account of his life'
   end
 end
