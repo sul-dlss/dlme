@@ -31,6 +31,11 @@
 
 en:
   dlme_jsons:
+    edit:
+      add_item: "Save"
+    update:
+      success: 'DLME JSON was saved'
+      error:   'There was a problem saving the JSON'
     form:
       title: 'DLME JSON'
       add_item: 'Add DLME JSON file'
