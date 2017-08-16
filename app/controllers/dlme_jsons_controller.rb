@@ -8,9 +8,41 @@ class DlmeJsonsController < Spotlight::ApplicationController
   before_action :authenticate_user!
 
   load_and_authorize_resource :exhibit, class: Spotlight::Exhibit
-  before_action :build_resource
+  before_action :build_resource, only: :create
 
-  load_and_authorize_resource class: 'DlmeJsons', through_association: 'exhibit.resources', instance_name: 'resource'
+  load_and_authorize_resource class: 'DlmeJson',
+                              through_association: 'exhibit.resources',
+                              instance_name: 'resource',
+                              except: :index
+
+  def index
+    @resources = DlmeJson.accessible_by(current_ability).order(:url).page params[:page]
+  end
+
+  def show
+    # default render
+  end
+
+  def edit
+    # default render
+  end
+
+  def destroy
+    Blacklight.default_index.connection.delete_by_id @resource.json['id']
+    @resource.destroy
+    redirect_back(fallback_location: root_path)
+  end
+
+  def update
+    @resource.attributes = resource_params
+    if @resource.save_and_index
+      flash[:notice] = t('dlme_jsons.update.success')
+      redirect_to exhibit_dlme_jsons_path(current_exhibit)
+    else
+      flash[:error] = t('dlme_jsons.update.error')
+      render :edit
+    end
+  end
 
   def create
     @resource.attributes = resource_params

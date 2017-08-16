@@ -1,0 +1,11 @@
+<%= render 'spotlight/shared/exhibit_sidebar' %>
+<div id="content" class="col-md-9">
+  <h1>Sources</h1>
+  <ul>
+    <% @resources.each do |r| %>
+      <li><%= link_to r.url, [current_exhibit, r] %></li>
+    <% end %>
+  </ul>
+
+  <%= paginate @resources %>
+</div>
