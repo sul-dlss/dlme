@@ -81,6 +81,7 @@ gem 'blacklight-oembed', '>= 0.1.0'
 gem 'devise_invitable'
 gem 'devise_token_auth'
 gem 'jquery-rails'
+gem 'rails_autolink'
 gem 'rsolr', '>= 1.0'
 
 gem 'devise'

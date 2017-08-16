@@ -4,7 +4,6 @@
 # Simplified catalog controller
 class CatalogController < ApplicationController
   include Blacklight::Catalog
-
   configure_blacklight do |config|
     config.show.oembed_field = :"agg_is_shown_at.wr_id_ssim"
     config.show.partials.insert(1, :viewer)
@@ -34,7 +33,7 @@ class CatalogController < ApplicationController
     config.add_index_field 'provided_by', field: 'agg_data_provider_ssim'
     config.add_index_field 'extent', field: 'cho_extent_ssim'
     config.add_index_field 'creator', field: 'cho_creator_ssim'
-    config.add_index_field 'description', field: 'cho_description_ssim'
+    config.add_index_field 'description', field: 'cho_description_ssim', autolink: true
     config.add_index_field 'language', field: 'cho_language_ssim'
     config.add_index_field 'medium', field: 'cho_medium_ssim'
     config.add_index_field 'provenance', field: 'cho_provenance_ssim'
@@ -51,7 +50,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'creator',    field: 'cho_creator_ssim'
     config.add_facet_field 'contributor', field: 'cho_contributor_ssim'
     config.add_facet_field 'medium',      field: 'cho_medium_ssim'
-    config.add_facet_field 'dc_rights',   field: 'cho_dc_rights_ssim'
+    config.add_facet_field 'dc_rights',   field: 'cho_dc_rights_ssim', autolink: true
     config.add_facet_field 'provided_by', field: 'agg_data_provider_ssim'
 
     # Have BL send all facet field names to Solr, which has been the default
@@ -67,20 +66,20 @@ class CatalogController < ApplicationController
     config.add_show_field 'contributor', field: 'cho_contributor_ssim'
     config.add_show_field 'coverage', field: 'cho_coverage_ssim'
     config.add_show_field 'creator', field: 'cho_creator_ssim'
-    config.add_show_field 'dc_rights', field: 'cho_dc_rights_ssim'
-    config.add_show_field 'description', field: 'cho_description_ssim'
+    config.add_show_field 'dc_rights', field: 'cho_dc_rights_ssim', autolink: true
+    config.add_show_field 'description', field: 'cho_description_ssim', autolink: true
     config.add_show_field 'edm_type', field: 'cho_edm_type_ssim'
     config.add_show_field 'format', field: 'cho_format_ssim'
     config.add_show_field 'has_part', field: 'cho_has_part_ssim'
     config.add_show_field 'has_type', field: 'cho_has_type_ssim'
     config.add_show_field 'identifier', field: 'cho_identifier_ssim'
-    config.add_show_field 'is_part_of', field: 'cho_is_part_of_ssim'
+    config.add_show_field 'is_part_of', field: 'cho_is_part_of_ssim', autolink: true
     config.add_show_field 'language', field: 'cho_language_ssim'
     config.add_show_field 'medium', field: 'cho_medium_ssim'
     config.add_show_field 'provenance', field: 'cho_provenance_ssim'
     config.add_show_field 'publisher', field: 'cho_publisher_ssim'
     config.add_show_field 'relation', field: 'cho_relation_ssim'
-    config.add_show_field 'same_as', field: 'cho_same_as_ssim'
+    config.add_show_field 'same_as', field: 'cho_same_as_ssim', autolink: true
     config.add_show_field 'source', field: 'cho_source_ssim'
     config.add_show_field 'spatial', field: 'cho_spatial_ssim'
     config.add_show_field 'subject', field: 'cho_subject_ssim'
@@ -89,9 +88,9 @@ class CatalogController < ApplicationController
 
     config.add_show_field '__source', field: '__source_ssim'
     config.add_show_field 'agg_dc_rights', field: 'agg_dc_rights_ssim'
-    config.add_show_field 'agg_edm_rights', field: 'agg_edm_rights_ssim'
+    config.add_show_field 'agg_edm_rights', field: 'agg_edm_rights_ssim', autolink: true
     config.add_show_field 'agg_provider', field: 'agg_provider_ssim'
-    config.add_show_field 'agg_is_shown_at', field: 'agg_is_shown_at.wr_id_ssim'
+    config.add_show_field 'agg_is_shown_at', field: 'agg_is_shown_at.wr_id_ssim', autolink: true
 
     config.add_search_field 'all_fields', label: 'Everything'
     config.add_search_field 'title', label: 'Title' do |field|
