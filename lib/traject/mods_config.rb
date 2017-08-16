@@ -104,7 +104,7 @@ end
 to_field 'agg_is_shown_by' do |record, accumulator, context|
   druid = generate_druid(record, context)
   manifest = "https://purl.stanford.edu/#{druid}/iiif/manifest"
-  iiif_json = grab_sul_iiif_links(manifest)
+  iiif_json = grab_iiif_manifest(manifest)
 
   if iiif_json.present?
     accumulator << transform_values(context,
@@ -114,7 +114,7 @@ to_field 'agg_is_shown_by' do |record, accumulator, context|
                                     ],
                                     wr_format: extract_mods('/*/mods:physicalDescription/mods:internetMediaType'),
                                     wr_has_service: iiif_sequences_service(iiif_json),
-                                    wr_id: literal(process_iiif_sequences(iiif_json)),
+                                    wr_id: literal(iiif_sequence_id(iiif_json)),
                                     wr_is_referenced_by: literal(manifest))
   end
 end
@@ -122,13 +122,13 @@ end
 to_field 'agg_preview' do |record, accumulator, context|
   druid = generate_druid(record, context)
   manifest = "https://purl.stanford.edu/#{druid}/iiif/manifest"
-  iiif_json = grab_sul_iiif_links(manifest)
+  iiif_json = grab_iiif_manifest(manifest)
 
   if iiif_json.present?
     accumulator << transform_values(context,
                                     wr_format: extract_mods('/*/mods:physicalDescription/mods:internetMediaType'),
                                     wr_has_service: iiif_thumbnail_service(iiif_json),
-                                    wr_id: literal(process_iiif_thumbnail(iiif_json)),
+                                    wr_id: literal(iiif_thumbnail_id(iiif_json)),
                                     wr_is_referenced_by: literal(manifest))
   end
 end
@@ -137,9 +137,9 @@ end
 def iiif_thumbnail_service(iiif_json)
   lambda { |_record, accumulator, context|
     accumulator << transform_values(context,
-                                    service_id: literal(process_iiif_thumbnail_service(iiif_json)),
-                                    service_conforms_to: literal(process_iiif_thumbnail_conforms_to(iiif_json)),
-                                    service_implements: literal(process_iiif_thumbnail_protocol(iiif_json)))
+                                    service_id: literal(iiif_thumbnail_service_id(iiif_json)),
+                                    service_conforms_to: literal(iiif_thumbnail_service_conforms_to(iiif_json)),
+                                    service_implements: literal(iiif_thumbnail_service_protocol(iiif_json)))
   }
 end
 
@@ -147,9 +147,9 @@ end
 def iiif_sequences_service(iiif_json)
   lambda { |_record, accumulator, context|
     accumulator << transform_values(context,
-                                    service_id: literal(process_iiif_sequences_service_id(iiif_json)),
-                                    service_conforms_to: literal(process_iiif_sequences_conforms_to(iiif_json)),
-                                    service_implements: literal(process_iiif_sequences_service_protocol(iiif_json)))
+                                    service_id: literal(iiif_sequence_service_id(iiif_json)),
+                                    service_conforms_to: literal(iiif_sequence_service_conforms_to(iiif_json)),
+                                    service_implements: literal(iiif_sequence_service_protocol(iiif_json)))
   }
 end
 
