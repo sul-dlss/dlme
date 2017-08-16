@@ -8,6 +8,8 @@ module Macros
       ::JSON.parse(resp.body)
     rescue Faraday::Error
       nil
+    rescue ::JSON::ParserError
+      nil
     end
 
     def process_iiif_thumbnail(manifest_json)
