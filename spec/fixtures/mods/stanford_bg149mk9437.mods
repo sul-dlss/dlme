@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mods xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/mods/v3" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" version="3.4" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
+  <titleInfo>
+    <title>Syrian Refugee Camps, Turkey, Jordan and Iraq, October 2013</title>
+  </titleInfo>
+  <name type="corporate">
+    <namePart>United States. Department of State. Humanitarian Information Unit</namePart>
+    <role>
+      <roleTerm type="text" authority="marcrelator">creator</roleTerm>
+    </role>
+  </name>
+  <typeOfResource>cartographic</typeOfResource>
+  <typeOfResource>software, multimedia</typeOfResource>
+  <genre authority="lcgft" valueURI="http://id.loc.gov/authorities/genreForms/gf2011026297">Geospatial data</genre>
+  <genre authority="rdacontent" valueURI="http://rdvocab.info/termList/RDAContentType/1001">cartographic dataset</genre>
+  <originInfo>
+    <publisher>United States. Department of State. Humanitarian Information Unit</publisher>
+    <place>
+      <placeTerm type="text">Washington, DC, US</placeTerm>
+    </place>
+    <dateIssued encoding="w3cdtf" keyDate="yes">2013</dateIssued>
+    <dateValid encoding="w3cdtf">2013</dateValid>
+  </originInfo>
+  <language>
+    <languageTerm authority="iso639-2b">eng</languageTerm>
+  </language>
+  <physicalDescription>
+    <form>Shapefile</form>
+    <extent>0.001</extent>
+    <digitalOrigin>born digital</digitalOrigin>
+  </physicalDescription>
+  <subject authority="EPSG" valueURI="http://opengis.net/def/crs/EPSG/0/4326" displayLabel="WGS84">
+    <cartographics>
+      <scale>Scale not given.</scale>
+      <projection>EPSG::4326</projection>
+      <coordinates>(E 35°29ʹ28ʺ--E 45°36ʹ37ʺ/N 38°20ʹ24ʺ--N 31°54ʹ40ʺ)</coordinates>
+    </cartographics>
+  </subject>
+  <abstract displayLabel="Abstract" lang="eng">This point shapefile contains verified data about the geographic location (point geometry), name, and operational status of refugee camps hosting Syrian refugees in Turkey, Jordan, and Iraq. Only refugee camps operated by the United Nations High Commissioner for Refugees (UNHCR) or the Government of Turkey are included. Compiled by the U.S Department of State, Humanitarian Information Unit (INR/GGI/HIU), each attribute in the dataset (including name, location, and status) is verified against multiple sources. Locations are verified using high-resolution commercial satellite imagery and/or known areas of population. Additionally, all data is checked against various news sources. Locations are only accurate down to the city level. The designation field gives the type of site and the status of the site. Sites can be "Official Camps", camp settlements that are officially established and maintained by the United Nations or host country. Sites can also be "Transitional Camps", which is a typical camp structure but designed to be temporary or used on as needed basis. There can also be "Transitional Facilities"; these are facilities that are being used to temporarily house refugees. There can also be other sites such as host families or facilities, or other accommodations. Status of these sites can be Planned, Under Construction, Staged, Open, or Closed. The data contained herein is entirely unclassified and is current as of 21 October 2013.</abstract>
+  <abstract displayLabel="Purpose" lang="eng">The mission of the Humanitarian Information Unit (HIU) is to serve as a U.S. Government interagency center to identify, collect, analyze, and disseminate all-source information critical to U.S. Government decision-makers and partners in preparation for and response to humanitarian emergencies worldwide, and to promote innovative technologies and best practices for humanitarian information management.</abstract>
+  <note displayLabel="Preferred citation" lang="eng">U.S. Department of State, Humanitarian Information Unit (INR/GGI/HIU). (2013) Syrian Refugee Camps, Turkey, Jordan and Iraq, October 2013. U.S. Department of State. Humanitarian Information Unit. Available at: http://purl.stanford.edu/bg149mk9437.</note>
+  <note displayLabel="Supplemental information">The name and status are obtained from the UNHCR data portal (accessible at http://data.unhcr.org/syrianrefugees/regional.php). The locations are obtained from the U.S. Department of State, Bureau of Population, Refugees, and Migration (PRM) and the National Geospatial-Intelligence Agency's GEOnet Names Server (GNS) (accessible at http://geonames.nga.mil/ggmagaz/). The name and status for each refugee camp is verified with PRM. 
+</note>
+  <subject>
+    <topic authority="lcsh" authorityURI="http://id.loc.gov/authorities/subjects.html" lang="eng">Refugee camps</topic>
+  </subject>
+  <subject>
+    <topic authority="lcsh" authorityURI="http://id.loc.gov/authorities/subjects.html" lang="eng">Refugee</topic>
+  </subject>
+  <subject>
+    <geographic lang="eng">Iraq</geographic>
+  </subject>
+  <subject>
+    <geographic lang="eng">Turkey</geographic>
+  </subject>
+  <subject>
+    <geographic lang="eng">Jordan</geographic>
+  </subject>
+  <subject>
+    <geographic lang="eng">Syria</geographic>
+  </subject>
+  <subject>
+    <temporal encoding="w3cdtf">2013</temporal>
+  </subject>
+  <subject>
+    <topic authority="ISO19115TopicCategory" authorityURI="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_TopicCategoryCode" valueURI="location">Location</topic>
+  </subject>
+  <subject>
+    <topic authority="ISO19115TopicCategory" authorityURI="http://www.isotc211.org/2005/resources/Codelist/gmxCodelists.xml#MD_TopicCategoryCode" valueURI="society">Society</topic>
+  </subject>
+  <location>
+    <url>http://purl.stanford.edu/bg149mk9437</url>
+  </location>
+  <recordInfo>
+    <recordContentSource>Stanford</recordContentSource>
+    <recordIdentifier>edu.stanford.purl:bg149mk9437</recordIdentifier>
+    <recordOrigin>This record was translated from ISO 19139 to MODS v.3 using an xsl transformation.</recordOrigin>
+    <languageOfCataloging>
+      <languageTerm authority="iso639-2b" type="code">eng</languageTerm>
+    </languageOfCataloging>
+  </recordInfo>
+  <extension displayLabel="geo">
+    <rdf:RDF xmlns:gml="http://www.opengis.net/gml/3.2/" xmlns:dc="http://purl.org/dc/elements/1.1/">
+      <rdf:Description rdf:about="http://purl.stanford.edu/bg149mk9437">
+        <dc:format>application/x-esri-shapefile; format=Shapefile</dc:format>
+        <dc:type>Dataset#Point</dc:type>
+        <gml:boundedBy>
+          <gml:Envelope gml:srsName="EPSG:4326">
+            <gml:lowerCorner>35.491042 31.911235</gml:lowerCorner>
+            <gml:upperCorner>45.610139 38.34</gml:upperCorner>
+          </gml:Envelope>
+        </gml:boundedBy>
+        <dc:coverage rdf:resource="" dc:language="eng" dc:title="Iraq"/>
+        <dc:coverage rdf:resource="" dc:language="eng" dc:title="Turkey"/>
+        <dc:coverage rdf:resource="" dc:language="eng" dc:title="Jordan"/>
+        <dc:coverage rdf:resource="" dc:language="eng" dc:title="Syria"/>
+      </rdf:Description>
+    </rdf:RDF>
+  </extension>
+  <relatedItem type="host">
+    <titleInfo>
+      <title>U.S. Department of State, Humanitarian Information Unit GIS Maps and Data</title>
+    </titleInfo>
+    <location>
+      <url>https://purl.stanford.edu/zy496qj4689</url>
+    </location>
+    <typeOfResource collection="yes"/>
+  </relatedItem>
+  <accessCondition type="useAndReproduction">This item is in the public domain.  There are no restrictions on use.</accessCondition>
+</mods>
