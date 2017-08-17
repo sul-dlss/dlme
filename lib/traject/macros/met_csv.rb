@@ -61,7 +61,7 @@ module Macros
 
     def data_provider
       lambda do |row, accumulator, _context|
-        accumulator << "#{[row['Department'], row['Repository']].select(&:present?).join(', ')}"
+        accumulator << [row['Department'], row['Repository']].select(&:present?).join(', ')
       end
     end
   end
