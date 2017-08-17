@@ -613,7 +613,7 @@ Resources:
         OptionName: HONEYBADGER_API_KEY
         Value: !Ref 'HoneybadgerApiKey'
       - Namespace: aws:elasticbeanstalk:application:environment
-        OptionName: GITHUB_TOKEN
+        OptionName: SETTINGS__IMPORT__ACCESS_TOKEN
         Value: !Ref 'GitHubToken'
       - Namespace: aws:elasticbeanstalk:application:environment
         OptionName: SETTINGS__APPLICATION__DEFAULT_FROM
