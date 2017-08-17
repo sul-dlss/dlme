@@ -5,7 +5,6 @@ require 'rails_helper'
 RSpec.describe DlmeJsonsController do
   let(:exhibit) { create(:exhibit) }
   let(:curator) { create(:exhibit_curator, exhibit: exhibit) }
-  let(:json) { '{"key":"value"}' }
 
   before do
     sign_in curator
@@ -50,11 +49,16 @@ RSpec.describe DlmeJsonsController do
     let(:dlme_json) { create(:dlme_json) }
 
     context 'when save is successful' do
+      let(:json) do
+        '{"id":"test_id", "agg_provider":"controller_test", ' \
+        '"agg_data_provider":"controller_test", "cho_title":["Ancient artifact"]}'
+      end
+
       it 'redirects to the list page' do
         patch :update, params: { exhibit_id: exhibit.slug,
                                  id: dlme_json,
-                                 dlme_json: { data: { json: '{"foo":"bar"}' } } }
-        expect(dlme_json.reload.data[:json]).to eq '{"foo":"bar"}'
+                                 dlme_json: { data: { json: json } } }
+        expect(dlme_json.reload.data[:json]).to eq json
         expect(response).to be_redirect
       end
     end

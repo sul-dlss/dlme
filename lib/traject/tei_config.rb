@@ -11,6 +11,8 @@ settings do
   provide 'writer_class_name', 'DlmeJsonResourceWriter'
   provide 'reader_class_name', 'XmlReader'
   provide 'allow_empty_fields', true
+  provide 'agg_provider', 'University of Pennsylvania Library'
+  provide 'agg_data_provider', 'University of Pennsylvania Library'
 end
 
 to_field 'id', lambda { |_record, accumulator, context|
@@ -26,3 +28,12 @@ rights_query = '/*/tei:teiHeader/tei:fileDesc/tei:publicationStmt/tei:availabili
 to_field 'cho_dc_rights', extract_tei(rights_query, trim: true)
 to_field 'cho_creator', extract_tei("#{ms_desc}/tei:msContents/tei:msItem/tei:author")
 # ??? to_field 'cho_contributor', ???
+
+# Aggregation Object(s)
+# flat fields
+to_field 'agg_data_provider', lambda { |_record, accumulator, context|
+  accumulator << context.settings.fetch('agg_data_provider')
+}
+to_field 'agg_provider', lambda { |_record, accumulator, context|
+  accumulator << context.settings.fetch('agg_provider')
+}
