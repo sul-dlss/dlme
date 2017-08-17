@@ -21,6 +21,6 @@ class GithubImporter
 
   def retrieve_file(path)
     blob = gh.contents(repo, path: path)
-    Base64.decode64(blob.content)
+    Base64.decode64(blob.content).force_encoding('UTF-8')
   end
 end
