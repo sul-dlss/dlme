@@ -68,7 +68,7 @@ RSpec.describe 'Transforming MODS files' do
         i.load_config_file('lib/traject/mods_config.rb')
       end
     end
-    let(:identifier) { 'stanford_bg149mk9437' }
+    let(:identifier) { 'stanford_maps/records/stanford/bg149mk9437' }
     let(:fixture_file_path) { File.join(fixture_path, 'mods/stanford_bg149mk9437.mods') }
     let(:mods) { File.open(fixture_file_path).read }
     let(:exhibit) { create(:exhibit) }
