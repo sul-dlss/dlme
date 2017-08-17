@@ -31,6 +31,7 @@ SimpleCov.start do
   add_filter 'lib/traject/tei_config.rb'
   add_filter 'config/'
   add_filter 'db/'
+  add_filter 'spec/'
 end
 
 RSpec.configure do |config|
