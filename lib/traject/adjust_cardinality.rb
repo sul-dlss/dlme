@@ -55,6 +55,8 @@ class AdjustCardinality
   end
 
   def process_node(original, fields)
+    return if original.nil?
+
     original.except(*fields).tap do |corrected|
       fields.each do |field|
         corrected[field] = original.fetch(field).first
