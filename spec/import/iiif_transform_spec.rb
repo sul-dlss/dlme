@@ -4,7 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'Transforming IIIF files' do
   let(:indexer) do
-    Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => slug).tap do |i|
+    Traject::Indexer.new('identifier' => identifier,
+                         'exhibit_slug' => slug,
+                         'agg_provider' => 'Test case',
+                         'agg_data_provider' => 'Test case').tap do |i|
       i.load_config_file('lib/traject/iiif_config.rb')
     end
   end
@@ -18,7 +21,10 @@ RSpec.describe 'Transforming IIIF files' do
     expect { indexer.process(data) }.to change { DlmeJson.count }.by(1)
     dlme = DlmeJson.last.json
     expect(dlme['id']).to eq 'stanford_tk780vf9050'
-    expect(dlme['cho_title']).to eq 'Walters Ms. W.586, Work on the duties of Muslims toward the ' \
-                                    'Prophet Muhammad with an account of his life'
+    expect(dlme['agg_provider']).to eq 'Test case'
+    expect(dlme['agg_data_provider']).to eq 'Test case'
+
+    expect(dlme['cho_title']).to eq ['Walters Ms. W.586, Work on the duties of Muslims toward the ' \
+                                     'Prophet Muhammad with an account of his life']
   end
 end

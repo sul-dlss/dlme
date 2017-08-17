@@ -13,7 +13,7 @@ RSpec.describe DlmeJson do
     subject(:valid?) { instance.valid? }
 
     context 'when the JSON is valid' do
-      let(:json) { '{}' }
+      let(:json) { File.read('spec/fixtures/json/embeddable.json') }
 
       it 'sets no errors' do
         expect(valid?).to be true

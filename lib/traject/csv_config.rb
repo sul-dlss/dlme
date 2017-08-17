@@ -13,3 +13,12 @@ end
 # MET Museum
 to_field 'id', column('Object ID')
 to_field 'cho_title', column('Object Name')
+
+# Aggregation Object(s)
+# flat fields
+to_field 'agg_data_provider', lambda { |_record, accumulator, context|
+  accumulator << context.settings.fetch('agg_data_provider')
+}
+to_field 'agg_provider', lambda { |_record, accumulator, context|
+  accumulator << context.settings.fetch('agg_provider')
+}

@@ -84,10 +84,10 @@ gem 'jquery-rails'
 gem 'rails_autolink'
 gem 'rsolr', '>= 1.0'
 
+gem 'config'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
-
-gem 'config'
+gem 'dry-validation'
 
 # The current published version (0.17.0) of github_api
 # requires an old version of faraday. Use master until the next release.

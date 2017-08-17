@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'traject'
+require_relative 'adjust_cardinality'
 
 # Write the traject output to the database as a DlmeJson and index it into solr
 class DlmeJsonResourceWriter
@@ -25,9 +26,7 @@ class DlmeJsonResourceWriter
     attributes = context.output_hash.dup
     id = attributes.fetch('id').first
 
-    deep_reduce_single_valued_arrays!(attributes)
-
-    json = JSON.generate(attributes)
+    json = JSON.generate(AdjustCardinality.call(attributes))
     create_resource!(id, json)
   end
 
@@ -36,20 +35,9 @@ class DlmeJsonResourceWriter
   def create_resource!(id, json)
     resource = DlmeJson.find_or_initialize_by(url: id, exhibit_id: @exhibit.id)
     resource.data = { json: json }
-    resource.save_and_index
+    return if resource.save_and_index
+    logger.warn "Unable to save resource #{id} because: #{resource.errors.full_messages}"
   end
 
-  def deep_reduce_single_valued_arrays!(attributes)
-    attributes.transform_values! do |values|
-      values.each do |v|
-        deep_reduce_single_valued_arrays!(v) if v.respond_to? :transform_values!
-      end
-
-      if values.one?
-        values.first
-      else
-        values
-      end
-    end
-  end
+  delegate :logger, to: :Rails
 end

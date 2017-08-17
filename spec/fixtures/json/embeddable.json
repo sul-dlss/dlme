@@ -7,19 +7,19 @@
   },
   "agg_is_shown_by": {
     "wr_id": "https://dg5bepmjyhz9h.cloudfront.net/urls/0a29475b11334f75a394fc95ff70dffa/dist/thumbnails/553cb09cb34d4bdd813d8bfcb9c79d48/1024.jpeg",
-    "wr_format": "image/jpeg"
+    "wr_format": ["image/jpeg"]
   },
   "agg_preview": {
     "wr_id": "https://dg5bepmjyhz9h.cloudfront.net/urls/0a29475b11334f75a394fc95ff70dffa/dist/thumbnails/553cb09cb34d4bdd813d8bfcb9c79d48/448.jpeg"
   },
   "agg_provider": "Sketchfab",
-  "cho_contributor": "danderson4",
+  "cho_contributor": ["danderson4"],
   "cho_coverage": ["Egypt"],
-  "cho_creator": "danderson4",
-  "cho_date": "2015",
-  "cho_description": "Statue of the goddess Sekhmet from the reign of Amenhotep III, Dynasty 18.  In the San Antonio Art Museum. Created from 27 mobile phone pictures.  Lighting conditions were poor and caused highlight burn outs on front of statue.  Also was unable to obtain photos of top of head so this has been infilled using 3d software",
-  "cho_edm_type": "3D Model",
+  "cho_creator": ["danderson4"],
+  "cho_date": ["2015"],
+  "cho_description": ["Statue of the goddess Sekhmet from the reign of Amenhotep III, Dynasty 18.  In the San Antonio Art Museum. Created from 27 mobile phone pictures.  Lighting conditions were poor and caused highlight burn outs on front of statue.  Also was unable to obtain photos of top of head so this has been infilled using 3d software"],
+  "cho_edm_type": ["3D Model"],
   "cho_spatial": ["Egypt"],
-  "cho_title": "Sekhmet Statue",
+  "cho_title": ["Sekhmet Statue"],
   "cho_type": ["statue", "photogrammetry"]
 }

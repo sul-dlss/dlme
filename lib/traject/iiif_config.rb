@@ -15,3 +15,12 @@ to_field 'id', lambda { |_record, accumulator, context|
   accumulator << context.settings.fetch('identifier')
 }
 to_field 'cho_title', extract_json('$.label')
+
+# Aggregation Object(s)
+# flat fields
+to_field 'agg_data_provider', lambda { |_record, accumulator, context|
+  accumulator << context.settings.fetch('agg_data_provider')
+}
+to_field 'agg_provider', lambda { |_record, accumulator, context|
+  accumulator << context.settings.fetch('agg_provider')
+}
