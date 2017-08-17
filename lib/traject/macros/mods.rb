@@ -18,19 +18,6 @@ module Macros
       extract_mods("/*/mods:name[mods:role/mods:roleTerm/#{clause}]/mods:namePart")
     end
 
-    def generate_has_part
-      lambda { |record, accumulator|
-        url = record.xpath('/*/mods:relatedItem[@type="constituent"]/mods:location/mods:url', NS).map(&:text)
-        title = record.xpath('/*/mods:relatedItem[@type="constituent"]/mods:titleInfo/mods:title', NS).map(&:text)
-
-        if url.present?
-          accumulator.concat(url)
-        elsif title.present?
-          accumulator.concat(title)
-        end
-      }
-    end
-
     def generate_mods_id
       lambda { |record, accumulator, context|
         identifier = select_identifier(record, context)
@@ -59,43 +46,17 @@ module Macros
     end
     # rubocop:enable Metrics/AbcSize
 
-    def generate_part_of
-      lambda { |record, accumulator|
-        url = record.xpath('/*/mods:relatedItem[@type="host"]/mods:location/mods:url', NS).map(&:text)
-        title = record.xpath('/*/mods:relatedItem[@type="host"]/mods:titleInfo/mods:title', NS).map(&:text)
+    def generate_relation(xpath)
+      lambda do |record, accumulator|
+        url = record.xpath("#{xpath}/mods:location/mods:url", NS).map(&:text)
+        title = record.xpath("#{xpath}/mods:titleInfo/mods:title", NS).map(&:text)
 
         if url.present?
           accumulator.concat(url)
         elsif title.present?
           accumulator.concat(title)
         end
-      }
-    end
-
-    def generate_series
-      lambda { |record, accumulator|
-        url = record.xpath('/*/mods:relatedItem[@type="series"]/mods:location/mods:url', NS).map(&:text)
-        title = record.xpath('/*/mods:relatedItem[@type="series"]/mods:titleInfo/mods:title', NS).map(&:text)
-
-        if url.present?
-          accumulator.concat(url)
-        elsif title.present?
-          accumulator.concat(title)
-        end
-      }
-    end
-
-    def generate_relation
-      lambda { |record, accumulator|
-        url = record.xpath('/*/mods:relatedItem[not(@*)]/mods:location/mods:url', NS).map(&:text)
-        title = record.xpath('/*/mods:relatedItem[not(@*)]/mods:titleInfo/mods:title', NS).map(&:text)
-
-        if url.present?
-          accumulator.concat(url)
-        elsif title.present?
-          accumulator.concat(title)
-        end
-      }
+      end
     end
 
     def normalize_type

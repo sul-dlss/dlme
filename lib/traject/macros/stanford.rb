@@ -24,15 +24,7 @@ module Macros
 
     def generate_druid(record, context)
       mods_id = select_identifier(record, context)
-      if mods_id.present?
-        identifier = mods_id.dup
-        identifier.sub! 'stanford_', ''
-      elsif context.settings.fetch('identifier')
-        identifier = context.settings.fetch('identifier').dup
-        identifier.sub! 'stanford_', ''
-      else
-        record.xpath('/*/mods:identifier', NS).map(&:text)
-      end
+      mods_id.sub 'stanford_', '' if mods_id.present?
     end
 
     def druid?(identifier)
