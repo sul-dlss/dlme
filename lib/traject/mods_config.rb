@@ -15,7 +15,6 @@ Traject::Indexer.include Macros::Stanford
 settings do
   provide 'writer_class_name', 'DlmeJsonResourceWriter'
   provide 'reader_class_name', 'XmlReader'
-  provide 'allow_empty_fields', true
   provide 'agg_provider', 'Stanford University Library'
   provide 'agg_data_provider', 'Stanford University Library'
   provide 'inst_id', 'stanford'

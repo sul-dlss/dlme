@@ -22,14 +22,18 @@ module Macros
       lambda { |record, accumulator, context|
         identifier = select_identifier(record, context)
 
-        if identifier.present?
-          accumulator << if identifier.include? context.settings.fetch('inst_id')
-                           identifier
-                         elsif identifier.include? context.settings.fetch('inst_id')
-                           context.settings.fetch('inst_id') + '_' + identifier
-                         end
-        end
+        accumulator << identifier_with_prefix(context, identifier) if identifier.present?
       }
+    end
+
+    def identifier_with_prefix(context, identifier)
+      prefix = context.settings.fetch('inst_id') + '_'
+
+      if identifier.starts_with? prefix
+        identifier
+      else
+        prefix + identifier
+      end
     end
 
     # rubocop:disable Metrics/AbcSize
