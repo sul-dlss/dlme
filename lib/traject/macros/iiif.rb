@@ -5,7 +5,7 @@ module Macros
   module IIIF
     def grab_iiif_manifest(manifest)
       resp = Faraday.get URI.parse(manifest)
-      ::JSON.parse(resp.body) if resp.status == 200
+      ::JSON.parse(resp.body) if resp.success?
     end
 
     def iiif_thumbnail_id(iiif_json)
@@ -25,23 +25,23 @@ module Macros
     end
 
     def iiif_sequence_id(iiif_json)
-      rep_iiif_resource(iiif_json).dig('@id') if rep_iiif_resource(iiif_json).present?
+      rep_iiif_resource(iiif_json).dig('@id')
     end
 
     def iiif_sequence_service_id(iiif_json)
-      rep_iiif_resource(iiif_json).dig('service', '@id') if rep_iiif_resource(iiif_json).present?
+      rep_iiif_resource(iiif_json).dig('service', '@id')
     end
 
     def iiif_sequence_service_protocol(iiif_json)
-      rep_iiif_resource(iiif_json).dig('service', 'profile') if rep_iiif_resource(iiif_json).present?
+      rep_iiif_resource(iiif_json).dig('service', 'profile')
     end
 
     def iiif_sequence_service_conforms_to(iiif_json)
-      iiif_service_conforms_to(rep_iiif_resource(iiif_json).dig('service', 'profile')) if rep_iiif_resource(iiif_json).present?
+      iiif_service_conforms_to(rep_iiif_resource(iiif_json).dig('service', 'profile'))
     end
 
     def rep_iiif_resource(manifest_json)
-      manifest_json['sequences'].first['canvases'].first['images'].first['resource']
+      manifest_json['sequences'].first['canvases'].first['images'].first['resource'] || {}
     end
 
     def iiif_service_conforms_to(service_profile)
