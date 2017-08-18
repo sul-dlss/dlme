@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801230155) do
+ActiveRecord::Schema.define(version: 20170818203907) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -35,6 +35,38 @@ ActiveRecord::Schema.define(version: 20170801230155) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
+  end
+
+  create_table "harvested_resources", force: :cascade do |t|
+    t.string "url", null: false
+    t.string "original_filename", null: false
+    t.string "multihash", null: false
+    t.integer "harvest_id", null: false
+    t.integer "pipeline_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["harvest_id"], name: "index_harvested_resources_on_harvest_id"
+    t.index ["pipeline_id"], name: "index_harvested_resources_on_pipeline_id"
+  end
+
+  create_table "harvests", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pipelines", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_pipelines_on_name", unique: true
+  end
+
+  create_table "resource_contents", force: :cascade do |t|
+    t.string "multihash", null: false
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["multihash"], name: "index_resource_contents_on_multihash"
   end
 
   create_table "searches", force: :cascade do |t|

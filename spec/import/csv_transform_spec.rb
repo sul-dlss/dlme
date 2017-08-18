@@ -15,12 +15,12 @@ RSpec.describe 'Transforming CSV files' do
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 
+  before do
+    allow(CreateResourceJob).to receive(:perform_later)
+  end
+
   it 'does the transform' do
-    expect { indexer.process(data) }.to change { DlmeJson.count }.by(3)
-    dlme = DlmeJson.last.json
-    expect(dlme['id']).to eq '321383'
-    expect(dlme['cho_title']).to eq ['Stamp seal']
-    expect(dlme['agg_provider']).to eq 'Test case'
-    expect(dlme['agg_data_provider']).to eq 'Test case'
+    indexer.process(data)
+    expect(CreateResourceJob).to have_received(:perform_later).exactly(3).times
   end
 end

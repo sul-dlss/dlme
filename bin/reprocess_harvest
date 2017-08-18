@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+puts 'Loading environment...'
+require File.expand_path('../../config/environment', __FILE__)
+
+# This reprocesses all the resources from a previous harvest.
+# Provide the Harvest id as the argument
+harvest_id = ARGV[0]
+unless harvest_id
+  $stderr.puts "Usage: #{$PROGRAM_NAME} <harvest_id>"
+  exit(1)
+end
+
+harvest = Harvest.find(harvest_id)
+ReprocessJob.perform_later(harvest)

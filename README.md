@@ -46,17 +46,25 @@ All files must first be converted to the intermediate representation (IR) before
 they can be imported.
 
 Start by getting a personal access token from GitHub (https://github.com/settings/tokens)
-with the public_repo scope enabled.
+with the public_repo scope enabled.  Put this in an environment variable called
+`SETTINGS__IMPORT__ACCESS_TOKEN` (or put it in `settings.local.yml`)
 
 Then, run this command (locally on the production machine)
 ```
-GITHUB_TOKEN=<YOUR TOKEN HERE> ./bin/fetch_and_import
+ ./bin/fetch_and_import
 ```
 
 This will pull all the MODS files from https://github.com/waynegraham/dlme-metadata/tree/master/maps/records/stanford
 and all the TEI files from https://github.com/waynegraham/dlme-metadata/tree/master/manuscript/records/penn/schoenberg
+and pull them into the local database.  It will launch background jobs to
 transform them to the JSON IR and load them as `DlmeJson` resources in the database.
 At this point they are also indexed into Solr for discovery.
+
+If you want to repeat the transformation jobs without refetching the data you
+may use: 
+```
+./bin/reprocess_harvest <harvest_id>
+```
 
 You can also run traject directly:
 

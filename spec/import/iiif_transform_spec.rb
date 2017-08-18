@@ -17,14 +17,20 @@ RSpec.describe 'Transforming IIIF files' do
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 
-  it 'does the transform' do
-    expect { indexer.process(data) }.to change { DlmeJson.count }.by(1)
-    dlme = DlmeJson.last.json
-    expect(dlme['id']).to eq 'stanford_tk780vf9050'
-    expect(dlme['agg_provider']).to eq 'Test case'
-    expect(dlme['agg_data_provider']).to eq 'Test case'
+  before do
+    allow(CreateResourceJob).to receive(:perform_later)
+  end
 
-    expect(dlme['cho_title']).to eq ['Walters Ms. W.586, Work on the duties of Muslims toward the ' \
-                                     'Prophet Muhammad with an account of his life']
+  it 'does the transform' do
+    indexer.process(data)
+    expect(CreateResourceJob).to have_received(:perform_later) do |_id, _two, json|
+      dlme = JSON.parse(json)
+      expect(dlme['id']).to eq 'stanford_tk780vf9050'
+      expect(dlme['agg_provider']).to eq 'Test case'
+      expect(dlme['agg_data_provider']).to eq 'Test case'
+
+      expect(dlme['cho_title']).to eq ['Walters Ms. W.586, Work on the duties of Muslims toward the ' \
+                                       'Prophet Muhammad with an account of his life']
+    end
   end
 end

@@ -7,11 +7,12 @@ class GithubImporter
     @repo = repo
   end
 
+  # Creates a HarvestedResource for each file in the directory
   # Yields to the block once for each file in the directory
-  # @yield [path, file] Gives the filename and filecontents to the block for
-  def import(path)
+  # @yield [HarvestedResource] Gives the harvested resource
+  def import(path, harvest, pipeline)
     gh.contents(repo, path: path).each do |resource|
-      yield(resource.path, retrieve_file(resource))
+      yield(retrieve_file(resource, harvest, pipeline))
     end
   end
 
@@ -19,8 +20,27 @@ class GithubImporter
 
   attr_reader :gh, :repo
 
-  def retrieve_file(resource)
+  # Creates a HarvestedResource and an ResourceContent if it doesn't already exist
+  # for the resource harvested from Github
+  # @param path [String] the resource to retrieve
+  # @param harvest [Harvest] the harvest instance this resource belongs to
+  # @param pipeline [Pipeline] the transformation pipeline this resource belongs to
+  # @return [HarvestedResource] the newly created resource from github
+  def retrieve_file(resource, harvest, pipeline)
     blob = gh.blob(repo, resource.sha)
-    Base64.decode64(blob.content).force_encoding('UTF-8')
+
+    multihash = Multihashes.encode(blob.sha, 'sha1')
+    resource = harvest.harvested_resources.create!(multihash: multihash,
+                                                   url: blob.git_url,
+                                                   original_filename: blob.path,
+                                                   pipeline: pipeline)
+    ResourceContent.persist(multihash) { decode(blob.content) }
+    resource
+  end
+
+  # @param encoded [String] a Base64 encoded String
+  # @return [String] the decoded text with UTF-8 encoding
+  def decode(encoded)
+    Base64.decode64(encoded).force_encoding('UTF-8')
   end
 end
