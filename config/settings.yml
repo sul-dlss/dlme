@@ -18,3 +18,4 @@ import:
   directory:
     penn:     'manuscript/records/penn/schoenberg'
     stanford: 'maps/records/stanford'
+    metcsv: 'museum/records'
