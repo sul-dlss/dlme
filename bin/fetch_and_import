@@ -12,3 +12,4 @@ require File.expand_path('../../config/environment', __FILE__)
 
 PennImportJob.perform_later
 StanfordImportJob.perform_later
+MetCsvImportJob.perform_later
