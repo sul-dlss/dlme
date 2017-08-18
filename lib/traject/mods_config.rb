@@ -6,11 +6,12 @@ require_relative 'macros/dlme'
 require_relative 'macros/mods'
 require_relative 'macros/xml'
 require_relative 'macros/stanford'
-Traject::Indexer.include Macros::DLME
-Traject::Indexer.include Macros::Xml
-Traject::Indexer.include Macros::Mods
-Traject::Indexer.include Macros::IIIF
-Traject::Indexer.include Macros::Stanford
+
+extend Macros::DLME
+extend Macros::Xml
+extend Macros::Mods
+extend Macros::IIIF
+extend Macros::Stanford
 
 settings do
   provide 'writer_class_name', 'DlmeJsonResourceWriter'
@@ -80,13 +81,9 @@ to_field 'cho_temporal', extract_mods('/*/mods:subject/mods:temporal')
 to_field 'cho_type', extract_mods('/*/mods:typeOfResource')
 
 # Aggregation Object(s)
-# flat fields
-to_field 'agg_data_provider', lambda { |_record, accumulator, context|
-  accumulator << context.settings.fetch('agg_data_provider')
-}
-to_field 'agg_provider', lambda { |_record, accumulator, context|
-  accumulator << context.settings.fetch('agg_provider')
-}
+to_field 'agg_data_provider', data_provider
+to_field 'agg_provider', provider
+
 # agg_dc_rights:,
 # agg_edm_rights:,
 # agg_same_as

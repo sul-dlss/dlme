@@ -13,5 +13,19 @@ module Macros
         accumulator
       end
     end
+
+    def provider
+      from_settings('agg_provider')
+    end
+
+    def data_provider
+      from_settings('agg_data_provider')
+    end
+
+    def from_settings(field)
+      lambda { |_record, accumulator, context|
+        accumulator << context.settings.fetch(field)
+      }
+    end
   end
 end

@@ -4,6 +4,7 @@ require_relative 'xml_reader'
 require_relative 'dlme_json_resource_writer'
 require_relative 'macros/tei'
 require_relative 'macros/xml'
+extend Macros::DLME
 extend Macros::Xml
 extend Macros::Tei
 
@@ -30,10 +31,5 @@ to_field 'cho_creator', extract_tei("#{ms_desc}/tei:msContents/tei:msItem/tei:au
 # ??? to_field 'cho_contributor', ???
 
 # Aggregation Object(s)
-# flat fields
-to_field 'agg_data_provider', lambda { |_record, accumulator, context|
-  accumulator << context.settings.fetch('agg_data_provider')
-}
-to_field 'agg_provider', lambda { |_record, accumulator, context|
-  accumulator << context.settings.fetch('agg_provider')
-}
+to_field 'agg_data_provider', data_provider
+to_field 'agg_provider', provider

@@ -3,6 +3,9 @@
 require_relative 'csv_reader'
 require_relative 'dlme_json_resource_writer'
 require_relative 'macros/csv'
+require_relative 'macros/dlme'
+
+extend Macros::DLME
 extend Macros::Csv
 settings do
   provide 'writer_class_name', 'DlmeJsonResourceWriter'
@@ -15,10 +18,5 @@ to_field 'id', column('Object ID')
 to_field 'cho_title', column('Object Name')
 
 # Aggregation Object(s)
-# flat fields
-to_field 'agg_data_provider', lambda { |_record, accumulator, context|
-  accumulator << context.settings.fetch('agg_data_provider')
-}
-to_field 'agg_provider', lambda { |_record, accumulator, context|
-  accumulator << context.settings.fetch('agg_provider')
-}
+to_field 'agg_data_provider', data_provider
+to_field 'agg_provider', provider
