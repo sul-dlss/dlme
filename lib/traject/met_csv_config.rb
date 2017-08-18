@@ -5,9 +5,9 @@ require_relative 'dlme_json_resource_writer'
 require_relative 'macros/dlme'
 require_relative 'macros/met_csv'
 require_relative 'macros/csv'
-extend Macros::MetCsv
+extend Macros::DLME
 extend Macros::Csv
-Traject::Indexer.include Macros::DLME
+extend Macros::MetCsv
 
 settings do
   provide 'writer_class_name', 'DlmeJsonResourceWriter'
@@ -16,9 +16,7 @@ settings do
   provide 'agg_provider', 'Metropolitan Museum of Art'
 end
 
-to_field 'agg_provider', lambda { |_record, accumulator, context|
-  accumulator << context.settings.fetch('agg_provider')
-}
+to_field 'agg_provider', provider
 
 # MET Museum
 to_field 'id', column('Object ID')

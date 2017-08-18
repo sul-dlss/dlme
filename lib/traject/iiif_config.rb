@@ -2,8 +2,11 @@
 
 require_relative 'json_reader'
 require_relative 'dlme_json_resource_writer'
+require_relative 'macros/dlme'
 require_relative 'macros/json'
-Traject::Indexer.include Macros::JSON
+
+extend Macros::DLME
+extend Macros::JSON
 
 settings do
   provide 'writer_class_name', 'DlmeJsonResourceWriter'
@@ -17,10 +20,5 @@ to_field 'id', lambda { |_record, accumulator, context|
 to_field 'cho_title', extract_json('$.label')
 
 # Aggregation Object(s)
-# flat fields
-to_field 'agg_data_provider', lambda { |_record, accumulator, context|
-  accumulator << context.settings.fetch('agg_data_provider')
-}
-to_field 'agg_provider', lambda { |_record, accumulator, context|
-  accumulator << context.settings.fetch('agg_provider')
-}
+to_field 'agg_data_provider', data_provider
+to_field 'agg_provider', provider

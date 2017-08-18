@@ -59,6 +59,7 @@ module Macros
       end
     end
 
+    # This overrides the dlme macro of the same name
     def data_provider
       lambda do |row, accumulator, _context|
         accumulator << [row['Department'], row['Repository']].select(&:present?).join(', ')
