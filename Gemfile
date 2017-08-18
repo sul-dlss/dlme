@@ -99,6 +99,7 @@ gem 'octokit', '~> 4.0'
 
 gem 'honeybadger'
 gem 'lograge'
+gem 'multihashes'
 gem 'okcomputer'
 gem 'rack-attack'
 gem 'secure_headers'

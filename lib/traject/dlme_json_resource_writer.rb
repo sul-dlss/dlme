@@ -25,18 +25,14 @@ class DlmeJsonResourceWriter
   def put(context)
     attributes = context.output_hash.dup
     id = attributes.fetch('id').first
-
     json = JSON.generate(AdjustCardinality.call(attributes))
-    create_resource!(id, json)
+    create_resource(id, json)
   end
 
   private
 
-  def create_resource!(id, json)
-    resource = DlmeJson.find_or_initialize_by(url: id, exhibit_id: @exhibit.id)
-    resource.data = { json: json }
-    return if resource.save_and_index
-    logger.warn "Unable to save resource #{id} because: #{resource.errors.full_messages}"
+  def create_resource(id, json)
+    CreateResourceJob.perform_later(id, @exhibit, json)
   end
 
   delegate :logger, to: :Rails

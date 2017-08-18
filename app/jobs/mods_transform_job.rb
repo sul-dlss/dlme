@@ -4,10 +4,10 @@
 class ModsTransformJob < ApplicationJob
   queue_as :default
 
-  def perform(identifier, mods)
-    indexer = Traject::Indexer.new('identifier' => identifier)
+  def perform(resource)
+    indexer = Traject::Indexer.new('identifier' => resource.identifier)
     indexer.load_config_file(Rails.root + 'config/traject.rb')
     indexer.load_config_file(Rails.root + 'lib/traject/mods_config.rb')
-    indexer.process(mods)
+    indexer.process(resource.content)
   end
 end

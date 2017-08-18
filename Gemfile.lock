@@ -293,6 +293,7 @@ GEM
     minitest (5.10.3)
     multi_json (1.12.1)
     multi_xml (0.6.0)
+    multihashes (0.1.2)
     multipart-post (2.0.0)
     nio4r (2.1.0)
     nokogiri (1.8.0)
@@ -569,6 +570,7 @@ DEPENDENCIES
   jsonpath
   listen (>= 3.0.5, < 3.2)
   lograge
+  multihashes
   octokit (~> 4.0)
   okcomputer
   pg

@@ -4,10 +4,10 @@
 class MetCsvTransformJob < ApplicationJob
   queue_as :default
 
-  def perform(identifier, met_csv)
-    indexer = Traject::Indexer.new('identifier' => identifier)
+  def perform(resource)
+    indexer = Traject::Indexer.new
     indexer.load_config_file(Rails.root + 'config/traject.rb')
     indexer.load_config_file(Rails.root + 'lib/traject/met_csv_config.rb')
-    indexer.process(met_csv)
+    indexer.process(resource.content)
   end
 end
