@@ -11,7 +11,7 @@ class GithubImporter
   # @yield [path, file] Gives the filename and filecontents to the block for
   def import(path)
     gh.contents(repo, path: path).each do |resource|
-      yield(resource.path, retrieve_file(resource.path))
+      yield(resource.path, retrieve_file(resource))
     end
   end
 
@@ -19,8 +19,8 @@ class GithubImporter
 
   attr_reader :gh, :repo
 
-  def retrieve_file(path)
-    blob = gh.contents(repo, path: path)
+  def retrieve_file(resource)
+    blob = gh.blob(repo, resource.sha)
     Base64.decode64(blob.content).force_encoding('UTF-8')
   end
 end
