@@ -595,6 +595,9 @@ Resources:
         OptionName: RDS_PORT
         Value: !GetAtt [DBInstance, Endpoint.Port]
       - Namespace: aws:elasticbeanstalk:application:environment
+        OptionName: RAILS_MAX_THREADS
+        Value: 5
+      - Namespace: aws:elasticbeanstalk:application:environment
         OptionName: AWS_REGION
         Value: !Ref 'AWS::Region'
       - Namespace: aws:elasticbeanstalk:application:environment
