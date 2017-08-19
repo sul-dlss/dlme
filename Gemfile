@@ -47,6 +47,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rubocop'
   gem 'rubocop-rspec'
+  gem 'solr_wrapper', '>= 0.3'
 end
 
 group :development do
@@ -72,9 +73,6 @@ gem 'blacklight-spotlight', '~> 1.0.0.alpha1'
 gem 'friendly_id'
 gem 'riiif', '~> 1.0'
 gem 'sitemap_generator'
-group :development, :test do
-  gem 'solr_wrapper', '>= 0.3'
-end
 
 gem 'blacklight-gallery', '>= 0.3.0'
 gem 'blacklight-oembed', '>= 0.1.0'
