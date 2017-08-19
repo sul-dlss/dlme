@@ -11,7 +11,7 @@ require File.expand_path('../../config/environment', __FILE__)
 # 2. Set an ENV variable named 'SETTINGS__IMPORT__ACCESS_TOKEN' containing your token
 
 harvest = Harvest.create
-PennImportJob.perform_later(harvest)
-StanfordImportJob.perform_later(harvest)
-MetCsvImportJob.perform_later(harvest)
+PennImportJob.perform_later(harvest, Settings.import.directory.penn, 'penn_tei')
+StanfordImportJob.perform_later(harvest, Settings.import.directory.stanford, 'stanford_mods')
+MetCsvImportJob.perform_later(harvest, Settings.import.directory.metcsv, 'met_csv')
 puts "Started harvest (#{harvest.id}) in the background\n"
