@@ -13,7 +13,7 @@ RSpec.describe ModsTransformJob, type: :job do
     described_class.perform_now('IDENTIFIER', 'MODSXML')
 
     expect(indexer).to have_received(:load_config_file)
-      .with('lib/traject/mods_config.rb')
+      .with(Rails.root + 'lib/traject/mods_config.rb')
 
     expect(indexer).to have_received(:process)
       .with('MODSXML')

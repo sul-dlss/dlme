@@ -6,8 +6,8 @@ class ModsTransformJob < ApplicationJob
 
   def perform(identifier, mods)
     indexer = Traject::Indexer.new('identifier' => identifier)
-    indexer.load_config_file('config/traject.rb')
-    indexer.load_config_file('lib/traject/mods_config.rb')
+    indexer.load_config_file(Rails.root + 'config/traject.rb')
+    indexer.load_config_file(Rails.root + 'lib/traject/mods_config.rb')
     indexer.process(mods)
   end
 end
