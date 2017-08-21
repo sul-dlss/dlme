@@ -33,14 +33,30 @@ RSpec.describe ::Autolink do
     context 'when autolink is in the config' do
       let(:field_config) { Blacklight::Configuration::NullField.new(autolink: true) }
 
-      it 'makes links' do
-        render
-        expect(terminator).to have_received(:new).with(['a <a href="http://example.com">http://example.com</a>', 'b'],
-                                                       field_config,
-                                                       document,
-                                                       context,
-                                                       options,
-                                                       [])
+      context 'for http links' do
+        it 'makes links' do
+          render
+          expect(terminator).to have_received(:new).with(['a <a href="http://example.com">http://example.com</a>', 'b'],
+                                                         field_config,
+                                                         document,
+                                                         context,
+                                                         options,
+                                                         [])
+        end
+      end
+
+      context 'for mail_to links' do
+        let(:values) { ['a tracie@example.com', 'b'] }
+
+        it 'makes links' do
+          render
+          expect(terminator).to have_received(:new).with(['a <a href="mailto:tracie@example.com">tracie@example.com</a>', 'b'],
+                                                         field_config,
+                                                         document,
+                                                         context,
+                                                         options,
+                                                         [])
+        end
       end
     end
   end
