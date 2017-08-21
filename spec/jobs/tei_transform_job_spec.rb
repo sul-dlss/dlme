@@ -13,7 +13,7 @@ RSpec.describe TeiTransformJob, type: :job do
     described_class.perform_now('IDENTIFIER', 'TEIXML')
 
     expect(indexer).to have_received(:load_config_file)
-      .with('lib/traject/tei_config.rb')
+      .with(Rails.root + 'lib/traject/tei_config.rb')
 
     expect(indexer).to have_received(:process)
       .with('TEIXML')

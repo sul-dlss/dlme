@@ -13,7 +13,7 @@ RSpec.describe MetCsvTransformJob, type: :job do
     described_class.perform_now('IDENTIFIER', 'METCSV')
 
     expect(indexer).to have_received(:load_config_file)
-      .with('lib/traject/met_csv_config.rb')
+      .with(Rails.root + 'lib/traject/met_csv_config.rb')
 
     expect(indexer).to have_received(:process)
       .with('METCSV')
