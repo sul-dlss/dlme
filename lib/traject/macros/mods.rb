@@ -75,9 +75,28 @@ module Macros
       extract_mods('/*/mods:language/mods:scriptTerm', translation_map: 'scripts')
     end
 
+    # Take several different queries and combine them to find titles
+    def mods_titles(options = {})
+      lambda do |xml, accumulator, _context|
+        result = query_for_titles(xml)
+        result = result.map(&:strip) if options.key?(:trim)
+        result = result.uniq if options[:allow_duplicate_values] == false
+        accumulator.concat(result)
+      end
+    end
+
     # @param xpath [String] the xpath query expression
     def extract_mods(xpath, options = {})
       extract_xml(xpath, NS, options)
+    end
+
+    private
+
+    def query_for_titles(xml)
+      xml.xpath('/*/mods:titleInfo[not(@*)]/mods:title', NS).map(&:text) +
+        xml.xpath('/*/mods:titleInfo[not(@*)]/mods:partName', NS).map(&:text) +
+        xml.xpath('/*/mods:titleInfo[not(@*)]/mods:partNumber', NS).map(&:text) +
+        xml.xpath('/*/mods:titleInfo[not(@*)]/mods:subTitle', NS).map(&:text)
     end
   end
 end

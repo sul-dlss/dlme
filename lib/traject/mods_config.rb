@@ -30,10 +30,7 @@ to_field 'cho_identifier', extract_mods('/*/mods:recordInfo/mods:recordIdentifie
 to_field 'cho_identifier', extract_mods('/*/mods:location/mods:holdingSimple/mods:copyInformation/mods:itemIdentifier')
 to_field 'cho_language', normalize_language
 to_field 'cho_language', normalize_script
-to_field 'cho_title', extract_mods('/*/mods:titleInfo[not(@*)]/mods:title')
-to_field 'cho_title', extract_mods('/*/mods:titleInfo[not(@*)]/mods:partName')
-to_field 'cho_title', extract_mods('/*/mods:titleInfo[not(@*)]/mods:partNumber')
-to_field 'cho_title', extract_mods('/*/mods:titleInfo[not(@*)]/mods:subTitle')
+to_field 'cho_title', mods_titles(allow_duplicate_values: false)
 
 # CHO Other
 to_field 'cho_alternative', extract_mods('/*/mods:titleInfo[@type]/mods:title')
