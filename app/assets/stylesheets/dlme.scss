@@ -1,0 +1,21 @@
+/* override blacklight to hide the sidebar */
+.blacklight-catalog-show {
+  #content {
+    width: 100%;
+  }
+
+  #sidebar {
+    display: none;
+  }
+}
+
+/* override spotlight to make the metadata list wider */
+.blacklight-catalog-show .dl-horizontal {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.oembed-widget {
+  width: 80%;
+  margin-left: 10%;
+}
