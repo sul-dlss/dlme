@@ -5,6 +5,10 @@
 class CatalogController < ApplicationController
   include Blacklight::Catalog
   configure_blacklight do |config|
+    # Disable bookmarks
+    config.index.document_actions[:bookmark].if = false
+    config.show.document_actions[:bookmark].if = false
+
     config.show.oembed_field = :"agg_is_shown_at.wr_id_ssim"
     config.show.partials.insert(1, :viewer)
 
