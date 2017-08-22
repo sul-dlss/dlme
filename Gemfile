@@ -105,4 +105,4 @@ gem 'secure_headers'
 gem 'slowpoke'
 
 gem 'jsonpath'
-gem 'traject'
+gem 'traject', github: 'jcoyne/traject', branch: 'pathname'

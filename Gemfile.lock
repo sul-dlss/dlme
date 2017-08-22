@@ -1,3 +1,18 @@
+GIT
+  remote: https://github.com/jcoyne/traject.git
+  revision: 960810605913815028a8a8073d83acca43a62862
+  branch: pathname
+  specs:
+    traject (2.3.3)
+      concurrent-ruby (>= 0.8.0)
+      dot-properties (>= 0.1.1)
+      hashie (~> 3.1)
+      httpclient (~> 2.5)
+      marc (~> 1.0)
+      marc-fastxmlwriter (~> 1.0)
+      slop (>= 3.4.5, < 4.0)
+      yell
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -500,15 +515,6 @@ GEM
     tins (1.15.0)
     tophat (2.3.1)
       actionpack (>= 3.0.0)
-    traject (2.3.3)
-      concurrent-ruby (>= 0.8.0)
-      dot-properties (>= 0.1.1)
-      hashie (~> 3.1)
-      httpclient (~> 2.5)
-      marc (~> 1.0)
-      marc-fastxmlwriter (~> 1.0)
-      slop (>= 3.4.5, < 4.0)
-      yell
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.3)
@@ -592,11 +598,11 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
-  traject
+  traject!
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.15.3
+   1.15.4
