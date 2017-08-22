@@ -9,6 +9,7 @@ require File.expand_path('../../config/environment', __FILE__)
 #    with the following scopes enabled:
 #    * public_repo
 # 2. Set an ENV variable named 'SETTINGS__IMPORT__ACCESS_TOKEN' containing your token
+Rails.application.eager_load!
 
 harvest = Harvest.create
 ImportJob.perform_later(harvest)
