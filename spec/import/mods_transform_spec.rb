@@ -6,6 +6,7 @@ RSpec.describe 'Transforming MODS files' do
   describe 'Transform MODS Manuscript file' do
     let(:indexer) do
       Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => slug).tap do |i|
+        i.load_config_file('config/traject.rb')
         i.load_config_file('lib/traject/mods_config.rb')
       end
     end
@@ -59,6 +60,26 @@ RSpec.describe 'Transforming MODS files' do
       expect(dlme['cho_title']).to eq ['Walters Ms. W.586, Work on the duties of Muslims toward the ' \
                                       'Prophet Muhammad with an account of his life']
       expect(dlme['cho_type']).to eq ['mixed material']
+    end
+
+    context 'with duplicate values' do
+      let(:mods) do
+        '<?xml version="1.0" encoding="UTF-8"?>
+        <mods xmlns="http://www.loc.gov/mods/v3">
+          <titleInfo>
+            <title>My title</title>
+            <partNumber>My title</title>
+            <partName>My subtitle</partName>
+            <subTitle>My subtitle</subTitle>
+          </titleInfo>
+        </mods>'
+      end
+
+      it 'deduplicates' do
+        expect { indexer.process(mods) }.to change { DlmeJson.count }.by(1)
+        dlme = DlmeJson.last.json
+        expect(dlme['cho_title']).to eq ['My title', 'My subtitle']
+      end
     end
   end
 
