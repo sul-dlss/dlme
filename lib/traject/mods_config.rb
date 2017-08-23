@@ -16,8 +16,6 @@ extend Macros::Stanford
 settings do
   provide 'writer_class_name', 'DlmeJsonResourceWriter'
   provide 'reader_class_name', 'XmlReader'
-  provide 'agg_provider', 'Stanford University Library'
-  provide 'agg_data_provider', 'Stanford University Library'
 end
 
 # Spotlight DLME IR Record Identifier

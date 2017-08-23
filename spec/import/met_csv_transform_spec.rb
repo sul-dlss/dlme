@@ -18,7 +18,8 @@ RSpec.describe 'Transforming MET CSV files' do
 
   let(:provide) do
     { 'exhibit_slug' => slug,
-      'writer_class_name' => 'Traject::JsonWriter' }
+      'writer_class_name' => 'Traject::JsonWriter',
+      'agg_provider' => 'Metropolitan Museum of Art' }
   end
   let(:writer) { instance_double Traject::JsonWriter, put: '' }
 
