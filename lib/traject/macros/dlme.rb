@@ -27,5 +27,17 @@ module Macros
         accumulator << context.settings.fetch(field)
       }
     end
+
+    def identifier_with_prefix(context, identifier)
+      return identifier unless context.settings.key?('inst_id')
+
+      prefix = context.settings.fetch('inst_id') + '_'
+
+      if identifier.starts_with? prefix
+        identifier
+      else
+        prefix + identifier
+      end
+    end
   end
 end
