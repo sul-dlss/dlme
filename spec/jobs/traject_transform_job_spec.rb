@@ -2,16 +2,19 @@
 
 require 'rails_helper'
 
-RSpec.describe TeiTransformJob, type: :job do
+RSpec.describe TrajectTransformJob, type: :job do
   let(:indexer) { instance_double(Traject::Indexer, load_config_file: true, process: true) }
-  let(:harvested_resource) { instance_double(HarvestedResource, content: 'TEIXML', identifier: 'penn_ljs189') }
+  let(:harvested_resource) { instance_double(HarvestedResource, content: 'TEIXML', original_filename: 'ljs189.xml') }
+  let(:config) { Settings.import.sources.penn_tei }
 
   before do
     allow(Traject::Indexer).to receive(:new).and_return(indexer)
   end
 
   it 'imports files' do
-    described_class.perform_now(harvested_resource)
+    described_class.perform_now(harvested_resource, config)
+    expect(indexer).to have_received(:load_config_file)
+      .with(Rails.root + 'config/traject.rb')
 
     expect(indexer).to have_received(:load_config_file)
       .with(Rails.root + 'lib/traject/tei_config.rb')

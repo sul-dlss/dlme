@@ -14,8 +14,19 @@ s3:
 import:
   access_token: ~
   repo: waynegraham/dlme-metadata
-  slug: library
-  directory:
-    penn:     'manuscript/records/penn/schoenberg'
-    stanford: 'maps/records/stanford'
-    metcsv: 'museum/records'
+  properties:
+    exhibit_slug: library
+  sources:
+    penn_tei:
+      directory: manuscript/records/penn/schoenberg
+      traject_file: tei_config
+      properties:
+        inst_id: penn
+    stanford_mods:
+      directory: maps/records/stanford
+      traject_file: mods_config
+      properties:
+        inst_id: stanford
+    met_csv:
+      directory: museum/records
+      traject_file: met_csv_config

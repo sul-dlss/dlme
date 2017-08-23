@@ -4,12 +4,12 @@ require 'rails_helper'
 
 RSpec.describe 'Transforming TEI files' do
   let(:indexer) do
-    Traject::Indexer.new('identifier' => identifier,
-                         'exhibit_slug' => slug).tap do |i|
+    Traject::Indexer.new('command_line.filename' => fixture_file_path,
+                         'exhibit_slug' => slug,
+                         'inst_id' => 'penn').tap do |i|
       i.load_config_file('lib/traject/tei_config.rb')
     end
   end
-  let(:identifier) { 'penn_ljs394' }
   let(:fixture_file_path) { File.join(fixture_path, 'tei/penn_ljs394.xml') }
   let(:data) { File.open(fixture_file_path).read }
   let(:exhibit) { create(:exhibit) }

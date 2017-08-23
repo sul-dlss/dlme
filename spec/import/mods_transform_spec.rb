@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Transforming MODS files' do
   let(:provide) do
-    { 'identifier' => identifier, 'exhibit_slug' => slug }
+    { 'identifier' => identifier, 'exhibit_slug' => slug, 'inst_id' => 'stanford' }
   end
   let(:indexer) do
     Traject::Indexer.new(provide).tap do |i|

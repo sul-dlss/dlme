@@ -18,7 +18,8 @@ settings do
 end
 
 to_field 'id', lambda { |_record, accumulator, context|
-  accumulator << context.settings.fetch('identifier')
+  bare_id = File.basename(context.settings.fetch('command_line.filename'), '.*')
+  accumulator << identifier_with_prefix(context, bare_id)
 }
 ms_desc = '/*/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc'
 
