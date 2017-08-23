@@ -3,8 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Transforming MODS files' do
+  let(:provide) do
+    { 'identifier' => identifier, 'exhibit_slug' => slug }
+  end
   let(:indexer) do
-    Traject::Indexer.new('identifier' => identifier, 'exhibit_slug' => slug).tap do |i|
+    Traject::Indexer.new(provide).tap do |i|
       i.load_config_file('config/traject.rb')
       i.load_config_file('lib/traject/mods_config.rb')
     end
@@ -70,7 +73,7 @@ RSpec.describe 'Transforming MODS files' do
     end
 
     context 'with duplicate values' do
-      let(:mods) do
+      let(:data) do
         '<?xml version="1.0" encoding="UTF-8"?>
         <mods xmlns="http://www.loc.gov/mods/v3">
           <titleInfo>
@@ -81,11 +84,23 @@ RSpec.describe 'Transforming MODS files' do
           </titleInfo>
         </mods>'
       end
+      let(:provide) do
+        { 'identifier' => 'foo',
+          'exhibit_slug' => slug,
+          'writer_class_name' => 'Traject::JsonWriter' }
+      end
+      let(:writer) { instance_double Traject::JsonWriter, put: '' }
+
+      before do
+        allow(Traject::JsonWriter).to receive(:new).and_return(writer)
+      end
 
       it 'deduplicates' do
-        expect { indexer.process(mods) }.to change { DlmeJson.count }.by(1)
-        dlme = DlmeJson.last.json
-        expect(dlme['cho_title']).to eq ['My title', 'My subtitle']
+        indexer.process(data)
+        expect(writer).to have_received(:put) do |context|
+          dlme = context.output_hash
+          expect(dlme['cho_title']).to eq ['My title', 'My subtitle']
+        end
       end
     end
   end
