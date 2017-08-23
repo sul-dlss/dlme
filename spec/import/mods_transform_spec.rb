@@ -4,7 +4,13 @@ require 'rails_helper'
 
 RSpec.describe 'Transforming MODS files' do
   let(:provide) do
-    { 'identifier' => identifier, 'exhibit_slug' => slug, 'inst_id' => 'stanford' }
+    {
+      'command_line.filename' => fixture_file_path,
+      'exhibit_slug' => slug,
+      'inst_id' => 'stanford',
+      'agg_provider' => 'Stanford Libraries',
+      'agg_data_provider' => 'Stanford Libraries'
+    }
   end
   let(:indexer) do
     Traject::Indexer.new(provide).tap do |i|
@@ -29,7 +35,7 @@ RSpec.describe 'Transforming MODS files' do
       expect(CreateResourceJob).to have_received(:perform_later) do |_id, _two, json|
         dlme = JSON.parse(json)
         expect(dlme['id']).to eq 'stanford_tk780vf9050'
-        expect(dlme['agg_data_provider']).to eq 'Stanford University Library'
+        expect(dlme['agg_data_provider']).to eq 'Stanford Libraries'
         expect(dlme['agg_is_shown_at']).to include('wr_id' => 'https://purl.stanford.edu/tk780vf9050')
         expect(dlme['agg_is_shown_by']).to include('wr_description' => ['reformatted digital', 'access'],
                                                    'wr_format' => ['image/jpeg', 'image/tiff'],
@@ -51,7 +57,7 @@ RSpec.describe 'Transforming MODS files' do
                                                'wr_id' =>
                                                'https://stacks.stanford.edu/image/iiif/tk780vf9050%2FW586_000001_300/full/!400,400/0/default.jpg',
                                                'wr_is_referenced_by' => ['https://purl.stanford.edu/tk780vf9050/iiif/manifest'])
-        expect(dlme['agg_provider']).to eq 'Stanford University Library'
+        expect(dlme['agg_provider']).to eq 'Stanford Libraries'
         expect(dlme['cho_alternative']).to eq ['al-Shifāʾ fī taʿrīf ḥuqūq al-Muṣṭafá', 'الشفاء في تعريف حقوق المصطفى']
         expect(dlme['cho_contributor']).to eq ['Salīm al-Rashīd']
         expect(dlme['cho_creator']).to eq ['Abū al-Faḍl ʿIyāḍ ibn Mūsá al-Yaḥṣubī al-Bāhilī',
@@ -87,7 +93,9 @@ RSpec.describe 'Transforming MODS files' do
       let(:provide) do
         { 'identifier' => 'foo',
           'exhibit_slug' => slug,
-          'writer_class_name' => 'Traject::JsonWriter' }
+          'writer_class_name' => 'Traject::JsonWriter',
+          'agg_provider' => 'Stanford Libraries',
+          'agg_data_provider' => 'Stanford Libraries' }
       end
       let(:writer) { instance_double Traject::JsonWriter, put: '' }
 

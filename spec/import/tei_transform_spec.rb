@@ -6,6 +6,7 @@ RSpec.describe 'Transforming TEI files' do
   let(:indexer) do
     Traject::Indexer.new('command_line.filename' => fixture_file_path,
                          'exhibit_slug' => slug,
+                         'agg_provider' => 'University of Pennsylvania Library',
                          'inst_id' => 'penn').tap do |i|
       i.load_config_file('lib/traject/tei_config.rb')
     end
