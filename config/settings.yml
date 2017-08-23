@@ -29,4 +29,5 @@ import:
         inst_id: stanford
     met_csv:
       directory: museum/records
+      only: !ruby/regexp '/met_museum_records.csv/'
       traject_file: met_csv_config
