@@ -25,7 +25,7 @@ import:
         inst_id: penn
     stanford_mods:
       directory: maps/records/stanford
-      traject_file: mods_config
+      traject_file: stanford_mods_config
       properties:
         agg_provider: Stanford Libraries
         agg_data_provider: Stanford Libraries
