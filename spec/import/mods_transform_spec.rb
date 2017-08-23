@@ -61,7 +61,7 @@ RSpec.describe 'Transforming MODS files' do
         expect(dlme['cho_date']).to eq ['1777']
         expect(dlme['cho_description'].first).to start_with 'This manuscript is an illuminated copy'
         expect(dlme['cho_dc_rights'].first).to start_with 'Licensed for use'
-        expect(dlme['cho_edm_type']).to eq ['MIXED MATERIALS']
+        expect(dlme['cho_edm_type']).to eq ['text']
         expect(dlme['cho_format']).to eq ['paper', 'Laid paper']
         expect(dlme['cho_has_part']).to eq ['al-Shifāʾ fī taʿrīf ḥuqūq al-Muṣṭafá', 'الشفاء في تعريف حقوق المصطفى']
         expect(dlme['cho_is_part_of']).to eq ['Walters Manuscripts']
@@ -117,7 +117,7 @@ RSpec.describe 'Transforming MODS files' do
         expect(dlme['id']).to eq 'stanford_bg149mk9437'
         expect(dlme['agg_is_shown_at']).to include('wr_id' => 'https://purl.stanford.edu/bg149mk9437')
         expect(dlme['cho_coverage']).to eq ['2013']
-        expect(dlme['cho_edm_type']).to eq %w[CARTOGRAPHIC SOFTWARE]
+        expect(dlme['cho_edm_type']).to eq %w[cartographic software]
         expect(dlme['cho_format']).to eq ['Shapefile']
         expect(dlme['cho_has_type']).to eq ['Geospatial data',
                                             'cartographic dataset',

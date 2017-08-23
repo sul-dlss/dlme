@@ -63,4 +63,4 @@ to_field 'cho_spatial', column('River')
 to_field 'cho_spatial', column('Subregion')
 to_field 'cho_title', column('Title')
 to_field 'cho_edm_type', edm_type
-to_field 'cho_type', type_if_classification
+to_field 'cho_type', literal('Image')

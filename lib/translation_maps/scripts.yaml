@@ -1,189 +1,189 @@
-# Basic mapping from webscraped script names to tags
+# basic mapping from webscraped script names to tags
 
-Adlam: Adlm
-Afaka: Afak
-Caucasian Albanian: Aghb
-Ahom: Ahom
-Arabic: Arab
-Arabic (Nastaliq variant): Aran
-Imperial Aramaic: Armi
-Armenian: Armn
-Avestan: Avst
-Balinese: Bali
-Bamum: Bamu
-Bassa Vah: Bass
-Batak: Batk
-Bengali: Beng
-Bhaiksuki: Bhks
-Blissymbols: Blis
-Bopomofo: Bopo
-Brahmi: Brah
-Braille: Brai
-Buginese: Bugi
-Buhid: Buhd
-Chakma: Cakm
-Unified Canadian Aboriginal Syllabics: Cans
-Carian: Cari
-Cham: Cham
-Cherokee: Cher
-Cirth: Cirt
-Coptic: Copt
-Cypriot: Cprt
-Cyrillic: Cyrl
-Cyrillic (Old Church Slavonic variant): Cyrs
-Devanagari: Deva
-Dogra: Dogr
-Deseret: Dsrt
-Duployan shorthand: Dupl
-Egyptian demotic: Egyd
-Egyptian hieratic: Egyh
-Egyptian hieroglyphs: Egyp
-Elbasan: Elba
-Ethiopic: Ethi
-Khutsuri (Asomtavruli and Nuskhuri): Geok
-Georgian (Mkhedruli and Mtavruli): Geor
-Glagolitic: Glag
-Gunjala Gondi: Gong
-Masaram Gondi: Gonm
-Gothic: Goth
-Grantha: Gran
-Greek: Grek
-Gujarati: Gujr
-Gurmukhi: Guru
-Han with Bopomofo (alias for Han + Bopomofo): Hanb
-Hangul: Hang
-Han: Hani
-Hanunoo: Hano
-Han (Simplified variant): Hans
-Han (Traditional variant): Hant
-Hatran: Hatr
-Hebrew: Hebr
-Hiragana: Hira
-Anatolian Hieroglyphs: Hluw
-Pahawh Hmong: Hmng
-Japanese syllabaries (alias for Hiragana + Katakana): Hrkt
-Old Hungarian: Hung
-Indus: Inds
-Old Italic (Etruscan: Ital
-Jamo (alias for Jamo subset of Hangul): Jamo
-Javanese: Java
-Japanese (alias for Han + Hiragana + Katakana): Jpan
-Jurchen: Jurc
-Kayah Li: Kali
-Katakana: Kana
-Kharoshthi: Khar
-Khmer: Khmr
-Khojki: Khoj
-Khitan large script: Kitl
-Khitan small script: Kits
-Kannada: Knda
-Korean (alias for Hangul + Han): Kore
-Kpelle: Kpel
-Kaithi: Kthi
-Tai Tham: Lana
-Lao: Laoo
-Latin (Fraktur variant): Latf
-Latin (Gaelic variant): Latg
-Latin: Latn
-Leke: Leke
-Lepcha: Lepc
-Limbu: Limb
-Linear A: Lina
-Linear B: Linb
-Lisu: Lisu
-Loma: Loma
-Lycian: Lyci
-Lydian: Lydi
-Mahajani: Mahj
-Makasar: Maka
-Mandaic: Mand
-Manichaean: Mani
-Marchen: Marc
-Mayan hieroglyphs: Maya
-Medefaidrin: Medf
-Mende Kikakui: Mend
-Meroitic Cursive: Merc
-Meroitic Hieroglyphs: Mero
-Malayalam: Mlym
-Modi: Modi
-Mongolian: Mong
-Moon: Moon
-Mro: Mroo
-Meitei Mayek: Mtei
-Multani: Mult
-Myanmar: Mymr
-Old North Arabian: Narb
-Nabataean: Nbat
-Newa: Newa
-Nakhi Geba: Nkgb
-N’Ko: Nkoo
-Nüshu: Nshu
-Ogham: Ogam
-Ol Chiki: Olck
-Old Turkic: Orkh
-Oriya: Orya
-Osage: Osge
-Osmanya: Osma
-Palmyrene: Palm
-Pau Cin Hau: Pauc
-Old Permic: Perm
-Phags-pa: Phag
-Inscriptional Pahlavi: Phli
-Psalter Pahlavi: Phlp
-Book Pahlavi: Phlv
-Phoenician: Phnx
-Klingon (KLI pIqaD): Piqd
-Miao: Plrd
-Inscriptional Parthian: Prti
-Rejang: Rjng
-Rongorongo: Roro
-Runic: Runr
-Samaritan: Samr
-Sarati: Sara
-Old South Arabian: Sarb
-Saurashtra: Saur
-SignWriting: Sgnw
-Shavian: Shaw
-Sharada: Shrd
-Siddham: Sidd
-Khudawadi: Sind
-Sinhala: Sinh
-Sora Sompeng: Sora
-Soyombo: Soyo
-Sundanese: Sund
-Syloti Nagri: Sylo
-Syriac: Syrc
-Syriac (Estrangelo variant): Syre
-Syriac (Western variant): Syrj
-Syriac (Eastern variant): Syrn
-Tagbanwa: Tagb
-Takri: Takr
-Tai Le: Tale
-New Tai Lue: Talu
-Tamil: Taml
-Tangut: Tang
-Tai Viet: Tavt
-Telugu: Telu
-Tengwar: Teng
-Tifinagh: Tfng
-Tagalog: Tglg
-Thaana: Thaa
-Thai: Thai
-Tibetan: Tibt
-Tirhuta: Tirh
-Ugaritic: Ugar
-Vai: Vaii
-Visible Speech: Visp
-Warang Citi: Wara
-Woleai: Wole
-Old Persian: Xpeo
-Sumero-Akkadian cuneiform: Xsux
-Yi: Yiii
-Zanabazar Square: Zanb
-Code for inherited script: Zinh
-Mathematical notation: Zmth
-Symbols (Emoji variant): Zsye
-Symbols: Zsym
-Code for unwritten documents: Zxxx
-Code for undetermined script: Zyyy
-Code for uncoded script: Zzzz
+adlam: adlm
+afaka: afak
+caucasian albanian: aghb
+ahom: ahom
+arabic: arab
+arabic (nastaliq variant): aran
+imperial aramaic: armi
+armenian: armn
+avestan: avst
+balinese: bali
+bamum: bamu
+bassa vah: bass
+batak: batk
+bengali: beng
+bhaiksuki: bhks
+blissymbols: blis
+bopomofo: bopo
+brahmi: brah
+braille: brai
+buginese: bugi
+buhid: buhd
+chakma: cakm
+unified canadian aboriginal syllabics: cans
+carian: cari
+cham: cham
+cherokee: cher
+cirth: cirt
+coptic: copt
+cypriot: cprt
+cyrillic: cyrl
+cyrillic (old church slavonic variant): cyrs
+devanagari: deva
+dogra: dogr
+deseret: dsrt
+duployan shorthand: dupl
+egyptian demotic: egyd
+egyptian hieratic: egyh
+egyptian hieroglyphs: egyp
+elbasan: elba
+ethiopic: ethi
+khutsuri (asomtavruli and nuskhuri): geok
+georgian (mkhedruli and mtavruli): geor
+glagolitic: glag
+gunjala gondi: gong
+masaram gondi: gonm
+gothic: goth
+grantha: gran
+greek: grek
+gujarati: gujr
+gurmukhi: guru
+han with bopomofo (alias for han + bopomofo): hanb
+hangul: hang
+han: hani
+hanunoo: hano
+han (simplified variant): hans
+han (traditional variant): hant
+hatran: hatr
+hebrew: hebr
+hiragana: hira
+anatolian hieroglyphs: hluw
+pahawh hmong: hmng
+japanese syllabaries (alias for hiragana + katakana): hrkt
+old hungarian: hung
+indus: inds
+old italic (etruscan: ital
+jamo (alias for jamo subset of hangul): jamo
+javanese: java
+japanese (alias for han + hiragana + katakana): jpan
+jurchen: jurc
+kayah li: kali
+katakana: kana
+kharoshthi: khar
+khmer: khmr
+khojki: khoj
+khitan large script: kitl
+khitan small script: kits
+kannada: knda
+korean (alias for hangul + han): kore
+kpelle: kpel
+kaithi: kthi
+tai tham: lana
+lao: laoo
+latin (fraktur variant): latf
+latin (gaelic variant): latg
+latin: latn
+leke: leke
+lepcha: lepc
+limbu: limb
+linear a: lina
+linear b: linb
+lisu: lisu
+loma: loma
+lycian: lyci
+lydian: lydi
+mahajani: mahj
+makasar: maka
+mandaic: mand
+manichaean: mani
+marchen: marc
+mayan hieroglyphs: maya
+medefaidrin: medf
+mende kikakui: mend
+meroitic cursive: merc
+meroitic hieroglyphs: mero
+malayalam: mlym
+modi: modi
+mongolian: mong
+moon: moon
+mro: mroo
+meitei mayek: mtei
+multani: mult
+myanmar: mymr
+old north arabian: narb
+nabataean: nbat
+newa: newa
+nakhi geba: nkgb
+n’ko: nkoo
+nüshu: nshu
+ogham: ogam
+ol chiki: olck
+old turkic: orkh
+oriya: orya
+osage: osge
+osmanya: osma
+palmyrene: palm
+pau cin hau: pauc
+old permic: perm
+phags-pa: phag
+inscriptional pahlavi: phli
+psalter pahlavi: phlp
+book pahlavi: phlv
+phoenician: phnx
+klingon (kli piqad): piqd
+miao: plrd
+inscriptional parthian: prti
+rejang: rjng
+rongorongo: roro
+runic: runr
+samaritan: samr
+sarati: sara
+old south arabian: sarb
+saurashtra: saur
+signwriting: sgnw
+shavian: shaw
+sharada: shrd
+siddham: sidd
+khudawadi: sind
+sinhala: sinh
+sora sompeng: sora
+soyombo: soyo
+sundanese: sund
+syloti nagri: sylo
+syriac: syrc
+syriac (estrangelo variant): syre
+syriac (western variant): syrj
+syriac (eastern variant): syrn
+tagbanwa: tagb
+takri: takr
+tai le: tale
+new tai lue: talu
+tamil: taml
+tangut: tang
+tai viet: tavt
+telugu: telu
+tengwar: teng
+tifinagh: tfng
+tagalog: tglg
+thaana: thaa
+thai: thai
+tibetan: tibt
+tirhuta: tirh
+ugaritic: ugar
+vai: vaii
+visible speech: visp
+warang citi: wara
+woleai: wole
+old persian: xpeo
+sumero-akkadian cuneiform: xsux
+yi: yiii
+zanabazar square: zanb
+code for inherited script: zinh
+mathematical notation: zmth
+symbols (emoji variant): zsye
+symbols: zsym
+code for unwritten documents: zxxx
+code for undetermined script: zyyy
+code for uncoded script: zzzz

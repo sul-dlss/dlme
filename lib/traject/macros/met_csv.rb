@@ -46,12 +46,6 @@ module Macros
       end
     end
 
-    def type_if_classification
-      lambda do |row, accumulator, _context|
-        accumulator << 'three dimensional object' unless row[CLASSIFICATION].empty?
-      end
-    end
-
     def public_domain
       lambda do |row, accumulator, _context|
         accumulator << 'Public Domain' if row[PUBLIC_DOMAIN] == 'True'

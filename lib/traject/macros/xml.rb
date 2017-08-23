@@ -21,6 +21,7 @@ module Macros
       translation_map = Traject::TranslationMap.new(options[:translation_map])
       # without overwriting (further) translation map, could add
       # fuzzy match method here after pulling array out of TM
+      values = Array(values).map(&:downcase)
       translation_map.translate_array! values
     end
   end
