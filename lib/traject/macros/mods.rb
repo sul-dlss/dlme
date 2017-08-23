@@ -26,16 +26,6 @@ module Macros
       }
     end
 
-    def identifier_with_prefix(context, identifier)
-      prefix = context.settings.fetch('inst_id') + '_'
-
-      if identifier.starts_with? prefix
-        identifier
-      else
-        prefix + identifier
-      end
-    end
-
     # rubocop:disable Metrics/AbcSize
     def select_identifier(record, context)
       if record.xpath('/*/mods:identifier', NS).map(&:text).present?

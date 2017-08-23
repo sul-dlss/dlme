@@ -18,7 +18,6 @@ settings do
   provide 'reader_class_name', 'XmlReader'
   provide 'agg_provider', 'Stanford University Library'
   provide 'agg_data_provider', 'Stanford University Library'
-  provide 'inst_id', 'stanford'
 end
 
 # Spotlight DLME IR Record Identifier

@@ -10,8 +10,8 @@ class GithubImporter
   # Creates a HarvestedResource for each file in the directory
   # Yields to the block once for each file in the directory
   # @yield [HarvestedResource] Gives the harvested resource
-  def import(path, harvest, pipeline)
-    gh.contents(repo, path: path).each do |resource|
+  def import(harvest, pipeline)
+    gh.contents(repo, path: pipeline.config.directory).each do |resource|
       yield(retrieve_file(resource, harvest, pipeline))
     end
   end
@@ -26,18 +26,20 @@ class GithubImporter
   # @param harvest [Harvest] the harvest instance this resource belongs to
   # @param pipeline [Pipeline] the transformation pipeline this resource belongs to
   # @return [HarvestedResource] the newly created resource from github
-  def retrieve_file(resource, harvest, pipeline)
-    multihash = Multihashes.encode(resource.sha, 'sha1')
+  def retrieve_file(source_resource, harvest, pipeline)
+    multihash = Multihashes.encode(source_resource.sha, 'sha1')
 
-    harvest.harvested_resources.create!(multihash: multihash,
-                                        url: resource.git_url,
-                                        original_filename: resource.path,
-                                        pipeline: pipeline)
+    resource = harvest.harvested_resources.create!(multihash: multihash,
+                                                   url: source_resource.git_url,
+                                                   original_filename: source_resource.path,
+                                                   pipeline: pipeline)
 
     ResourceContent.persist(multihash) do
-      blob = gh.blob(repo, resource.sha)
+      blob = gh.blob(repo, source_resource.sha)
       decode(blob.content)
     end
+
+    resource
   end
 
   # @param encoded [String] a Base64 encoded String
