@@ -58,11 +58,11 @@ module Macros
     end
 
     def normalize_language
-      extract_mods('/*/mods:language/mods:languageTerm', translation_map: 'languages')
+      extract_mods('/*/mods:language/mods:languageTerm', translation_map: ['languages', default: '__passthrough__'])
     end
 
     def normalize_script
-      extract_mods('/*/mods:language/mods:scriptTerm', translation_map: 'scripts')
+      extract_mods('/*/mods:language/mods:scriptTerm', translation_map: ['scripts', default: '__passthrough__'])
     end
 
     # @param xpath [String] the xpath query expression
