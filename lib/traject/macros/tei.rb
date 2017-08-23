@@ -9,5 +9,13 @@ module Macros
     def extract_tei(xpath, options = {})
       extract_xml(xpath, NS, options)
     end
+
+    def generate_data_provider(xpath)
+      lambda do |record, accumulator|
+        repository = record.xpath("#{xpath}/tei:repository", NS).map(&:text)
+        institution = record.xpath("#{xpath}/tei:institution", NS).map(&:text)
+        accumulator << [repository, institution].join(', ')
+      end
+    end
   end
 end
