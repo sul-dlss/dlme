@@ -12,7 +12,7 @@ class GithubImporter
   # @yield [HarvestedResource] Gives the harvested resource
   def import(harvest, pipeline)
     gh.contents(repo, path: pipeline.config.directory).each do |resource|
-      next if pipeline.filter && resource.name !~ pipeline.only
+      next if pipeline.config.only && resource.name !~ pipeline.config.only
 
       yield(retrieve_file(resource, harvest, pipeline))
     end
