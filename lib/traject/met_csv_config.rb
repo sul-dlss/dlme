@@ -36,6 +36,17 @@ to_field 'agg_is_shown_at' do |_record, accumulator, context|
   accumulator << transform_values(context,
                                   'wr_id' => [column('Link Resource')])
 end
+
+to_field 'agg_preview' do |_record, accumulator, context|
+  ident = context.output_hash['id'].first
+  image_json = fetch_met_thumbnail(ident)
+
+  if image_json.present?
+    thumbnail = image_json['results'].first['webImageUrl']
+    accumulator << transform_values(context, 'wr_id' => literal(thumbnail))
+  end
+end
+
 to_field 'cho_spatial', column('Locale')
 to_field 'cho_spatial', column('Locus')
 to_field 'cho_medium', column('Medium')

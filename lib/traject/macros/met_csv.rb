@@ -65,5 +65,11 @@ module Macros
         accumulator << [row['Department'], row['Repository']].select(&:present?).join(', ')
       end
     end
+
+    def fetch_met_thumbnail(id)
+      uri = URI("http://www.metmuseum.org/api/Collection/additionalImages?crdId=#{id}")
+      resp = Faraday.get uri
+      ::JSON.parse(resp.body) if resp.success?
+    end
   end
 end
