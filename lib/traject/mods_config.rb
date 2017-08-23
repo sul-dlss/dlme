@@ -35,12 +35,24 @@ to_field 'cho_title', extract_mods('/*/mods:titleInfo[not(@*)]/mods:subTitle')
 # CHO Other
 to_field 'cho_alternative', extract_mods('/*/mods:titleInfo[@type]/mods:title')
 to_field 'cho_coverage', extract_mods('/*/mods:originInfo/mods:dateValid')
-to_field 'cho_creator', extract_name(role: 'author')
-to_field 'cho_contributor', extract_name(exclude: 'author')
+to_field 'cho_coverage', extract_mods('/*/mods:originInfo/mods:place/mods:placeTerm')
+to_field 'cho_creator', extract_name(role: %w[author creator])
+to_field 'cho_contributor', extract_name(exclude: %w[author creator])
 to_field 'cho_date', extract_mods('/*/mods:originInfo/mods:dateCreated')
 to_field 'cho_date', extract_mods('/*/mods:originInfo/mods:copyrightDate')
 to_field 'cho_date', extract_mods('/*/mods:originInfo/mods:dateIssued')
-to_field 'cho_dc_rights', extract_mods('/*/mods:accessCondition')
+to_field 'cho_dc_rights', first(
+  extract_mods('/*/mods:accessCondition[@type="restrictionOnAccess"]/@xlink:href'),
+  extract_mods('/*/mods:accessCondition[@type="restriction on access"]')
+)
+to_field 'cho_dc_rights', first(
+  extract_mods('/*/mods:accessCondition[@type="useAndReproduction"]/@xlink:href'),
+  extract_mods('/*/mods:accessCondition[@type="use and reproduction"]')
+)
+to_field 'cho_dc_rights', conditional(
+  ->(_record, context) { context.output_hash['cho_dc_rights'].blank? },
+  extract_mods('/*/mods:accessCondition')
+)
 to_field 'cho_description', extract_mods('/*/mods:abstract')
 to_field 'cho_description', extract_mods('/*/mods:location/mods:holdingSimple/mods:copyInformation/mods:note')
 to_field 'cho_description', extract_mods('/*/mods:note')

@@ -9,9 +9,9 @@ module Macros
 
     def extract_name(role: nil, exclude: nil)
       clause = if role
-                 "text() = '#{role}'"
+                 Array(role).map { |r| "text() = '#{r}'" }.join(' or ')
                elsif exclude
-                 "text() != '#{exclude}'"
+                 Array(exclude).map { |r| "text() != '#{r}'" }.join(' and ')
                else
                  raise ArgumentError, 'You must provide either role or exclude parameters'
                end
