@@ -5,7 +5,8 @@ module Macros
   module Mods
     NS = { mods: 'http://www.loc.gov/mods/v3',
            rdf: 'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
-           dc: 'http://purl.org/dc/elements/1.1/' }.freeze
+           dc: 'http://purl.org/dc/elements/1.1/',
+           xlink: 'http://www.w3.org/1999/xlink' }.freeze
 
     def extract_name(role: nil, exclude: nil)
       clause = if role
@@ -28,8 +29,8 @@ module Macros
 
     # rubocop:disable Metrics/AbcSize
     def select_identifier(record, context)
-      if record.xpath('/*/mods:identifier', NS).map(&:text).present?
-        record.xpath('/*/mods:identifier', NS).map(&:text)
+      if record.xpath('/*/mods:identifier', NS).map(&:text).reject(&:blank?).any?
+        record.xpath('/*/mods:identifier', NS).map(&:text).reject(&:blank?).first
       elsif context.settings.key?('command_line.filename')
         identifier = context.settings.fetch('command_line.filename')
         File.basename(identifier, File.extname(identifier))

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?oxygen SCHSchema="http://library.princeton.edu/departments/tsd/metadoc/main/mods.sch"?><mods:mods xmlns:mods="http://www.loc.gov/mods/v3"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd"
+           version="3.4">
+   <mods:titleInfo script="Arab" lang="ara">
+      <mods:title>ابو كرتونة</mods:title>
+   </mods:titleInfo>
+   <mods:name authority="local" type="personal" script="Arab" lang="ara">
+      <mods:namePart type="family">محمود عبد العزيز</mods:namePart>
+      <mods:role>
+         <mods:roleTerm type="code" authority="marcrelator">act</mods:roleTerm>
+      </mods:role>
+   </mods:name>
+   <mods:name authority="local" type="personal" script="Arab" lang="ara">
+      <mods:namePart type="family">سماح النور</mods:namePart>
+      <mods:role>
+         <mods:roleTerm type="code" authority="marcrelator">act</mods:roleTerm>
+      </mods:role>
+   </mods:name>
+   <mods:name authority="local" type="personal" script="Arab" lang="ara">
+      <mods:namePart type="family">محمد حسيب</mods:namePart>
+      <mods:role>
+         <mods:roleTerm type="code" authority="marcrelator">drt</mods:roleTerm>
+      </mods:role>
+   </mods:name>
+   <mods:typeOfResource>still image</mods:typeOfResource>
+   <mods:genre authority="aat">Posters</mods:genre>
+   <mods:originInfo>
+      <mods:place>
+         <mods:placeTerm type="text">Egypt</mods:placeTerm>
+      </mods:place>
+      <mods:dateCreated encoding="w3cdtf" keyDate="yes">1990</mods:dateCreated>
+   </mods:originInfo>
+   <mods:language>
+      <mods:languageTerm type="code" authority="iso639-2b">ara</mods:languageTerm>
+   </mods:language>
+   <mods:physicalDescription>
+      <mods:extent>1 piece.</mods:extent>
+   </mods:physicalDescription>
+   <mods:relatedItem type="host">
+      <mods:typeOfResource>still image</mods:typeOfResource>
+      <mods:titleInfo>
+         <mods:title>Middle Eastern Film Posters Digitization Initiative</mods:title>
+      </mods:titleInfo>
+      <mods:location>
+         <mods:url>http://pudl.princeton.edu/collections/pudl0100</mods:url>
+      </mods:location>
+   </mods:relatedItem>
+   <mods:identifier type="local">eg1-0019</mods:identifier>
+   <mods:location>
+      <mods:physicalLocation type="text">Princeton University Library. Firestone Library.</mods:physicalLocation>
+      <mods:physicalLocation type="code" authority="marcorg">NjP</mods:physicalLocation>
+      <mods:holdingSimple>
+         <mods:copyInformation>
+            <mods:subLocation>Curator's office</mods:subLocation>
+            <mods:shelfLocator>Cabinet 11/13</mods:shelfLocator>
+         </mods:copyInformation>
+      </mods:holdingSimple>
+   </mods:location>
+   <mods:accessCondition xmlns:xlink="http://www.w3.org/1999/xlink" type="useAndReproduction"
+                         xlink:href="http://www.princeton.edu/~rbsc/research/rights.html">Use and reproduction</mods:accessCondition>
+   <mods:accessCondition xmlns:xlink="http://www.w3.org/1999/xlink" type="restrictionOnAccess"
+                         xlink:href="http://www.princeton.edu/~rbsc/research/rules.html">Restrictions on access</mods:accessCondition>
+   <mods:recordInfo>
+      <mods:recordContentSource authority="marcorg">NjP</mods:recordContentSource>
+      <mods:recordIdentifier>http://diglib.princeton.edu/mdata/pudl0100/posters/eg1_0019.mods</mods:recordIdentifier>
+      <mods:languageOfCataloging>
+         <mods:languageTerm authority="iso639-2b" type="code">ara</mods:languageTerm>
+      </mods:languageOfCataloging>
+   </mods:recordInfo>
+</mods:mods>

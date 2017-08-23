@@ -36,3 +36,10 @@ import:
       traject_file: met_csv_config
       properties:
         agg_provider: Metropolitan Museum of Art
+    princeton_mods:
+      directory: movie-posters/records/princeton
+      traject_file: mods_config
+      properties:
+        agg_provider: Princeton University Library
+        agg_data_provider: Princeton University Library
+        inst_id: princeton
