@@ -27,8 +27,8 @@ import:
       directory: maps/records/stanford
       traject_file: mods_config
       properties:
-        agg_provider: Stanford University Library
-        agg_data_provider: Stanford University Library
+        agg_provider: Stanford Libraries
+        agg_data_provider: Stanford Libraries
         inst_id: stanford
     met_csv:
       directory: museum/records
