@@ -27,15 +27,17 @@ class GithubImporter
   # @param pipeline [Pipeline] the transformation pipeline this resource belongs to
   # @return [HarvestedResource] the newly created resource from github
   def retrieve_file(resource, harvest, pipeline)
-    blob = gh.blob(repo, resource.sha)
+    multihash = Multihashes.encode(resource.sha, 'sha1')
 
-    multihash = Multihashes.encode(blob.sha, 'sha1')
-    resource = harvest.harvested_resources.create!(multihash: multihash,
-                                                   url: blob.git_url,
-                                                   original_filename: blob.path,
-                                                   pipeline: pipeline)
-    ResourceContent.persist(multihash) { decode(blob.content) }
-    resource
+    harvest.harvested_resources.create!(multihash: multihash,
+                                        url: resource.git_url,
+                                        original_filename: resource.path,
+                                        pipeline: pipeline)
+
+    ResourceContent.persist(multihash) do
+      blob = gh.blob(repo, resource.sha)
+      decode(blob.content)
+    end
   end
 
   # @param encoded [String] a Base64 encoded String
