@@ -12,8 +12,8 @@ class TrajectTransformJob < ApplicationJob
 
   def traject_indexer(resource, pipeline)
     Traject::Indexer.new(traject_config(resource, pipeline)).tap do |indexer|
-      indexer.load_config_file(Rails.root + 'config/traject.rb'))
-      indexer.load_config_file(Rails.root + "lib/traject/#{pipeline.config.traject_file}.rb")
+      indexer.load_config_file((Rails.root + 'config/traject.rb').to_s)
+      indexer.load_config_file((Rails.root + "lib/traject/#{pipeline.config.traject_file}.rb").to_s)
     end
   end
 

@@ -14,10 +14,10 @@ RSpec.describe TrajectTransformJob, type: :job do
   it 'imports files' do
     described_class.perform_now(harvested_resource, config)
     expect(indexer).to have_received(:load_config_file)
-      .with(Rails.root + 'config/traject.rb')
+      .with((Rails.root + 'config/traject.rb').to_s).and_call_original
 
     expect(indexer).to have_received(:load_config_file)
-      .with(Rails.root + 'lib/traject/tei_config.rb')
+      .with((Rails.root + 'lib/traject/tei_config.rb').to_s).and_call_original
 
     expect(indexer).to have_received(:process)
       .with('TEIXML')
