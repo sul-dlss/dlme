@@ -1,0 +1,3 @@
+import:
+  properties:
+    processing_thread_pool: 0
