@@ -18,6 +18,21 @@ module Macros
     DEPARTMENT = 'Department'
     REPOSITORY = 'Repository'
 
+    def met_thumbnail
+      lambda do |_record, accumulator, context|
+        ident = context.output_hash['id'].first
+        image_json = fetch_met_thumbnail(ident)
+
+        return if image_json.blank?
+        # Some records e.g. 321624, don't return any results
+        result = image_json['results'].first
+        if result
+          thumbnail = result['webImageUrl']
+          accumulator << transform_values(context, 'wr_id' => literal(thumbnail))
+        end
+      end
+    end
+
     def generate_creator
       lambda do |row, accumulator, _context|
         accumulator << [row[DISPLAY_NAME], row[SUFFIX], artist_role_bio(row)].select(&:present?).join(', ')
