@@ -26,9 +26,5 @@ module Macros
       mods_id = select_identifier(record, context)
       mods_id.sub 'stanford_', '' if mods_id.present?
     end
-
-    def druid?(identifier)
-      identifier =~ /([a-z]{2})(\d{3})([a-z]{2})(\d{4})\z/
-    end
   end
 end
