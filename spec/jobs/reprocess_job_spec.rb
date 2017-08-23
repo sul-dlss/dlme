@@ -7,12 +7,8 @@ RSpec.describe ReprocessJob, type: :job do
   let(:pipeline) { Pipeline.for('stanford_mods') }
   let(:config) { Settings.import.sources.stanford_mods }
 
-  before do
-    allow(TrajectTransformJob).to receive(:perform_later)
-  end
-
   it 'processes resources' do
     described_class.perform_now(harvested_resource.harvest)
-    expect(TrajectTransformJob).to have_received(:perform_later).with(harvested_resource, config)
+    expect(TrajectTransformJob).to have_been_enqueued.with(harvested_resource, pipeline)
   end
 end

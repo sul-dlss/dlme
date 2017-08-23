@@ -32,6 +32,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Warden::Test::Helpers, type: :feature
   config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include ActiveJob::TestHelper, type: :job
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -65,6 +66,10 @@ RSpec.configure do |config|
     # Precompile the assets to prevent these issues.
     visit '/assets/application.css'
     visit '/assets/application.js'
+  end
+
+  config.after(:each, type: :job) do
+    clear_enqueued_jobs
   end
 
   # Filter lines from Rails gems in backtraces.
