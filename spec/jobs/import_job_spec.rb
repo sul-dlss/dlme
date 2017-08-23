@@ -17,8 +17,8 @@ RSpec.describe ImportJob, type: :job do
   it 'triggers a harvest for all configured sources' do
     described_class.perform_now(harvest)
 
-    expect(GithubImportJob).to have_been_enqueued.with(harvest, "penn_tei")
-    expect(GithubImportJob).to have_been_enqueued.with(harvest, "stanford_mods")
-    expect(GithubImportJob).to have_been_enqueued.with(harvest, "met_csv")
+    expect(GithubImportJob).to have_been_enqueued.with(harvest, 'penn_tei')
+    expect(GithubImportJob).to have_been_enqueued.with(harvest, 'stanford_mods')
+    expect(GithubImportJob).to have_been_enqueued.with(harvest, 'met_csv')
   end
 end

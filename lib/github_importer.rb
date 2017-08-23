@@ -10,8 +10,8 @@ class GithubImporter
   # Creates a HarvestedResource for each file in the directory
   # Yields to the block once for each file in the directory
   # @yield [HarvestedResource] Gives the harvested resource
-  def import(path, harvest, pipeline)
-    gh.contents(repo, path: path).each do |resource|
+  def import(harvest, pipeline)
+    gh.contents(repo, path: pipeline.config.directory).each do |resource|
       yield(retrieve_file(resource, harvest, pipeline))
     end
   end

@@ -5,13 +5,13 @@ class ReprocessJob < ApplicationJob
   # @param harvest [Harvest] the harvest instance of the resources
   def perform(harvest)
     harvest.harvested_resources.each do |resource|
-      process_resource(resource, resource.pipeline.config)
+      process_resource(resource, resource.pipeline)
     end
   end
 
   private
 
-  def process_resource(resource, config)
-    TrajectTransformJob.perform_later(resource, config)
+  def process_resource(resource, pipeline)
+    TrajectTransformJob.perform_later(resource, pipeline)
   end
 end

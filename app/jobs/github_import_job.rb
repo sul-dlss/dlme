@@ -8,18 +8,18 @@ class GithubImportJob < ApplicationJob
   # @param harvest [Harvest] the harvest instance this job belongs to.
   # @param pipeline_name [String] the name of the pipeline to use for transformation
   # @param config [Config::Options] configuration options for the pipeline
-  def perform(harvest, pipeline_name, config)
+  def perform(harvest, pipeline_name)
     pipeline = Pipeline.for(pipeline_name)
-    importer.import(config.directory, harvest, pipeline) do |resource|
-      process_resource(resource, config)
+    importer.import(harvest, pipeline) do |resource|
+      process_resource(resource, pipeline)
     end
   end
 
   private
 
   # Now that the resource is harvested, kick off a job to transform it to IR
-  def process_resource(resource, config)
-    TrajectTransformJob.perform_later(resource, config)
+  def process_resource(resource, pipeline)
+    TrajectTransformJob.perform_later(resource, pipeline)
   end
 
   def github_token
