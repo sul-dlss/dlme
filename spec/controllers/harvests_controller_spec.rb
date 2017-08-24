@@ -26,4 +26,18 @@ RSpec.describe HarvestsController do
       expect(ImportJob).to have_received(:perform_later).with(Harvest)
     end
   end
+
+  describe 'POST transform' do
+    let(:harvest) { Harvest.create! }
+
+    before do
+      allow(ReprocessJob).to receive(:perform_later)
+    end
+
+    it 'is successful' do
+      post :transform, params: { id: harvest }
+      expect(response).to redirect_to harvests_path
+      expect(ReprocessJob).to have_received(:perform_later).with(Harvest)
+    end
+  end
 end
