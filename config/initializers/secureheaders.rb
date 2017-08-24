@@ -13,8 +13,9 @@ SecureHeaders::Configuration.default do |config|
   # thanks to google analytics
   config.csp[:script_src] << '\'sha256-GFpwrduTw94NOGmBZ2ivuwcZIMsfyYQWMDV25hR82Ds=\''
   config.csp[:script_src] << 'www.google-analytics.com'
-  config.csp[:img_src] << 'www.google-analytics.com'
-  config.csp[:img_src] << 'http://images.metmuseum.org'
+
+  # The metmuseum doesn't support https. :(
+  config.csp[:img_src] = ['*']
 
   if Rails.env.development? || Rails.env.test?
     config.cookies[:secure] = false
