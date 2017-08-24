@@ -7,6 +7,8 @@ require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
+require_relative 'support/controller_level_helpers'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -67,6 +69,9 @@ RSpec.configure do |config|
     visit '/assets/application.css'
     visit '/assets/application.js'
   end
+
+  config.include(ControllerLevelHelpers, type: :helper)
+  config.before(:each, type: :helper) { initialize_controller_helpers(helper) }
 
   config.after(:each, type: :job) do
     clear_enqueued_jobs
