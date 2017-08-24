@@ -12,7 +12,6 @@ extend Macros::MetCsv
 settings do
   provide 'writer_class_name', 'DlmeJsonResourceWriter'
   provide 'reader_class_name', 'CsvReader'
-  provide 'allow_empty_fields', true
 end
 
 to_field 'agg_provider', provider

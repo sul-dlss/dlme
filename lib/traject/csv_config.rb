@@ -10,7 +10,6 @@ extend Macros::Csv
 settings do
   provide 'writer_class_name', 'DlmeJsonResourceWriter'
   provide 'reader_class_name', 'CsvReader'
-  provide 'allow_empty_fields', true
 end
 
 # MET Museum

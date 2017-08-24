@@ -11,7 +11,6 @@ extend Macros::JSON
 settings do
   provide 'writer_class_name', 'DlmeJsonResourceWriter'
   provide 'reader_class_name', 'JsonReader'
-  provide 'allow_empty_fields', true
 end
 
 to_field 'id', lambda { |_record, accumulator, context|
