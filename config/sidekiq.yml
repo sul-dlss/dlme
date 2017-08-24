@@ -1,2 +1,3 @@
 :queues:
   - dlme_production_default
+  - default
