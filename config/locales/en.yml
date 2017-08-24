@@ -30,6 +30,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  data:
+    section: "Manage data"
   dlme_jsons:
     edit:
       add_item: "Save"
@@ -39,6 +41,9 @@ en:
     form:
       title: 'DLME JSON'
       add_item: 'Add DLME JSON file'
+  harvests:
+    index:
+      header: 'Harvests'
   spotlight:
     curation:
       sidebar:
