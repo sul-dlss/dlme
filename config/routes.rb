@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     resources :dlme_jsons
   end
 
+  resources :harvests, only: [:index, :create]
+
   authenticate :user, lambda { |u| Ability.new(u).can? :manage, :sidekiq } do
     require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'

@@ -1,0 +1,35 @@
+<div id="content" class="col-md-9 exhibit-admin">
+
+  <%= page_title t(:'data.section') %>
+  <%= button_to 'Begin new harvest', harvests_path, class: "btn btn-primary",
+                                                    style: "position: absolute; top: 0; right:0" %>
+
+  <% pipelines = Pipeline.all.pluck(:id, :name).to_h %>
+  <table class="table">
+    <caption>Number of files imported in each pipeline</caption>
+    <thead>
+      <tr>
+        <th>When</th>
+        <th>Total</th>
+        <% pipelines.each do |_, name| %>
+          <th><%= name %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+    <% @harvests.order('created_at desc').each do |harvest| %>
+      <tr>
+        <td><%= time_ago_in_words harvest.created_at %></td>
+        <td><%= harvest.harvested_resources.count %></td>
+        <% pipelines.each do |id, _| %>
+          <td><%= harvest.harvested_resources.where(pipeline_id: id).count %></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<aside class="col-md-3">
+  <%= render "shared/site_sidebar" %>
+</aside>
