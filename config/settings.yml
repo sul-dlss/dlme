@@ -43,3 +43,9 @@ import:
         agg_provider: Princeton University Library
         agg_data_provider: Princeton University Library
         inst_id: princeton
+    numismatics:
+     directory: coins
+     traject_file: numismatic_csv_config
+     properties:
+       agg_provider: American Numismatic Society
+       inst_id: ans
