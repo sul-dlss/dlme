@@ -12,8 +12,6 @@ extend Macros::Tei
 settings do
   provide 'writer_class_name', 'DlmeJsonResourceWriter'
   provide 'reader_class_name', 'XmlReader'
-  provide 'allow_empty_fields', true
-  provide 'agg_provider', 'University of Pennsylvania Library'
 end
 
 to_field 'id', lambda { |_record, accumulator, context|

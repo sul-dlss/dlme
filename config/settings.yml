@@ -21,13 +21,25 @@ import:
       directory: manuscript/records/penn/schoenberg
       traject_file: tei_config
       properties:
+        agg_provider: University of Pennsylvania Library
         inst_id: penn
     stanford_mods:
       directory: maps/records/stanford
-      traject_file: mods_config
+      traject_file: stanford_mods_config
       properties:
+        agg_provider: Stanford Libraries
+        agg_data_provider: Stanford Libraries
         inst_id: stanford
     met_csv:
       directory: museum/records
       only: !ruby/regexp '/met_museum_records.csv/'
       traject_file: met_csv_config
+      properties:
+        agg_provider: Metropolitan Museum of Art
+    princeton_mods:
+      directory: movie-posters/records/princeton
+      traject_file: mods_config
+      properties:
+        agg_provider: Princeton University Library
+        agg_data_provider: Princeton University Library
+        inst_id: princeton

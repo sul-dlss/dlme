@@ -14,6 +14,24 @@ module Macros
       end
     end
 
+    # try a bunch of macros and short-circuit after one returns values
+    def first(*macros)
+      lambda do |record, accumulator, context|
+        macros.lazy.map do |lambda|
+          lambda.call(record, accumulator, context)
+        end.reject(&:blank?).first
+      end
+    end
+
+    # only accumulate values if a condition is met
+    def conditional(condition, lambda)
+      lambda do |record, accumulator, context|
+        if condition.call(record, context)
+          lambda.call(record, accumulator, context)
+        end
+      end
+    end
+
     def provider
       from_settings('agg_provider')
     end
