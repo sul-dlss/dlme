@@ -10,20 +10,22 @@
     <thead>
       <tr>
         <th>When</th>
-        <th>Total</th>
+        <th style="text-align: center">Total</th>
         <% pipelines.each do |_, name| %>
-          <th><%= name %></th>
+          <th style="text-align: center"><%= name %></th>
         <% end %>
+        <th></th>
       </tr>
     </thead>
     <tbody>
     <% @harvests.order('created_at desc').each do |harvest| %>
       <tr>
-        <td><%= time_ago_in_words harvest.created_at %></td>
-        <td><%= harvest.harvested_resources.count %></td>
+        <td><%= time_ago_in_words harvest.created_at %> ago</td>
+        <td style="text-align: right"><%= harvest.harvested_resources.count %></td>
         <% pipelines.each do |id, _| %>
-          <td><%= harvest.harvested_resources.where(pipeline_id: id).count %></td>
+          <td style="text-align: right"><%= harvest.harvested_resources.where(pipeline_id: id).count %></td>
         <% end %>
+        <td style="text-align: right"><%= button_to "Transform to Resources", transform_harvest_path(harvest), class: 'btn btn-xs' %></td>
       </tr>
     <% end %>
     </tbody>
