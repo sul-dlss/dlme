@@ -14,6 +14,10 @@ AllCops:
 Rails:
   Enabled: true
 
+Metrics/ClassLength:
+  Exclude:
+    - 'app/controllers/catalog_controller.rb'
+
 Metrics/LineLength:
   Max: 130
 

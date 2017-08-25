@@ -37,10 +37,17 @@ class CatalogController < ApplicationController
     config.add_index_field 'provided_by', field: 'agg_data_provider_ssim'
     config.add_index_field 'extent', field: 'cho_extent_ssim'
     config.add_index_field 'creator', field: 'cho_creator_ssim'
-    config.add_index_field 'description', field: 'cho_description_ssim', autolink: true
+    config.add_index_field 'description',
+                           field: 'cho_description_ssim',
+                           autolink: true,
+                           paragraph: true,
+                           join_with: ''
     config.add_index_field 'language', field: 'cho_language_ssim'
     config.add_index_field 'medium', field: 'cho_medium_ssim'
-    config.add_index_field 'provenance', field: 'cho_provenance_ssim'
+    config.add_index_field 'provenance',
+                           field: 'cho_provenance_ssim',
+                           paragraph: true,
+                           join_with: ''
     config.add_index_field 'source', field: 'cho_source_ssim'
     config.add_index_field 'spatial', field: 'cho_spatial_ssim'
     config.add_index_field 'temporal', field: 'cho_temporal_ssim'
@@ -71,7 +78,11 @@ class CatalogController < ApplicationController
     config.add_show_field 'coverage', field: 'cho_coverage_ssim'
     config.add_show_field 'creator', field: 'cho_creator_ssim'
     config.add_show_field 'dc_rights', field: 'cho_dc_rights_ssim', autolink: true
-    config.add_show_field 'description', field: 'cho_description_ssim', autolink: true
+    config.add_show_field 'description',
+                          field: 'cho_description_ssim',
+                          autolink: true,
+                          paragraph: true,
+                          join_with: ''
     config.add_show_field 'edm_type', field: 'cho_edm_type_ssim'
     config.add_show_field 'format', field: 'cho_format_ssim'
     config.add_show_field 'has_part', field: 'cho_has_part_ssim'
@@ -80,7 +91,10 @@ class CatalogController < ApplicationController
     config.add_show_field 'is_part_of', field: 'cho_is_part_of_ssim', autolink: true
     config.add_show_field 'language', field: 'cho_language_ssim'
     config.add_show_field 'medium', field: 'cho_medium_ssim'
-    config.add_show_field 'provenance', field: 'cho_provenance_ssim'
+    config.add_show_field 'provenance',
+                          field: 'cho_provenance_ssim',
+                          paragraph: true,
+                          join_with: ''
     config.add_show_field 'publisher', field: 'cho_publisher_ssim'
     config.add_show_field 'relation', field: 'cho_relation_ssim'
     config.add_show_field 'same_as', field: 'cho_same_as_ssim', autolink: true

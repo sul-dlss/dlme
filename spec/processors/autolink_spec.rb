@@ -9,7 +9,7 @@ RSpec.describe ::Autolink do
   let(:options) { double }
   let(:terminator) { class_double Blacklight::Rendering::Terminator, new: term_instance }
   let(:term_instance) { instance_double Blacklight::Rendering::Terminator, render: '' }
-  let(:stack) { [described_class, terminator] }
+  let(:stack) { [terminator] }
   let(:processor) { described_class.new(values, field_config, document, context, options, stack) }
 
   describe '#render' do
@@ -69,7 +69,8 @@ RSpec.describe ::Autolink do
                          Blacklight::Rendering::LinkToFacet,
                          Blacklight::Rendering::Microdata,
                          Autolink,
-                         Blacklight::Rendering::Join]
+                         Paragraph,
+                         Join]
     }
   end
 end
