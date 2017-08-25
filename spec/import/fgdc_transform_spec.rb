@@ -4,18 +4,14 @@ require 'rails_helper'
 
 RSpec.describe 'Transforming FGDC files' do
   describe 'Transform Harvard FGDC file' do
-    let(:indexer) do
-      Traject::Indexer.new('exhibit_slug' => slug, 'source' => 'harvard_fgdc').tap do |i|
-        i.load_config_file('config/traject.rb')
-        i.load_config_file('lib/traject/fgdc_config.rb')
-      end
-    end
+    let(:indexer) { Pipeline.for('harvard_fgdc').indexer(HarvestedResource.new(original_filename: fixture_file_path)) }
     let(:fixture_file_path) { File.join(fixture_path, 'fgdc/HARVARD.SDE2.AFRICOVER_EG_RIVERS.fgdc.xml') }
     let(:data) { File.open(fixture_file_path).read }
     let(:exhibit) { create(:exhibit) }
     let(:slug) { exhibit.slug }
 
     before do
+      indexer.settings['exhibit_slug'] = slug
       allow(CreateResourceJob).to receive(:perform_later)
     end
 

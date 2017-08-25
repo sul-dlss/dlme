@@ -3,26 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe 'Transforming MODS files' do
-  let(:provide) do
-    {
-      'command_line.filename' => fixture_file_path,
-      'exhibit_slug' => slug,
-      'inst_id' => 'stanford',
-      'agg_provider' => 'Stanford Libraries',
-      'agg_data_provider' => 'Stanford Libraries'
-    }
-  end
-  let(:indexer) do
-    Traject::Indexer.new(provide).tap do |i|
-      i.load_config_file('config/traject.rb')
-      i.load_config_file('lib/traject/stanford_mods_config.rb')
-    end
-  end
+  let(:indexer) { Pipeline.for('stanford_mods').indexer(HarvestedResource.new(original_filename: fixture_file_path)) }
   let(:data) { File.open(fixture_file_path).read }
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 
   before do
+    indexer.settings['exhibit_slug'] = slug
     allow(CreateResourceJob).to receive(:perform_later)
   end
 
@@ -90,16 +77,10 @@ RSpec.describe 'Transforming MODS files' do
           </titleInfo>
         </mods>'
       end
-      let(:provide) do
-        { 'identifier' => 'foo',
-          'exhibit_slug' => slug,
-          'writer_class_name' => 'Traject::JsonWriter',
-          'agg_provider' => 'Stanford Libraries',
-          'agg_data_provider' => 'Stanford Libraries' }
-      end
       let(:writer) { instance_double Traject::JsonWriter, put: '' }
 
       before do
+        indexer.settings['writer_class_name'] = 'Traject::JsonWriter'
         allow(Traject::JsonWriter).to receive(:new).and_return(writer)
       end
 

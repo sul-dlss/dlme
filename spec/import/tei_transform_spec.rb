@@ -3,20 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Transforming TEI files' do
-  let(:indexer) do
-    Traject::Indexer.new('command_line.filename' => fixture_file_path,
-                         'exhibit_slug' => slug,
-                         'agg_provider' => 'University of Pennsylvania Library',
-                         'inst_id' => 'penn').tap do |i|
-      i.load_config_file('lib/traject/tei_config.rb')
-    end
-  end
+  let(:indexer) { Pipeline.for('penn_tei').indexer(HarvestedResource.new(original_filename: fixture_file_path)) }
   let(:fixture_file_path) { File.join(fixture_path, 'tei/penn_ljs394.xml') }
   let(:data) { File.open(fixture_file_path).read }
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 
   before do
+    indexer.settings['exhibit_slug'] = slug
     allow(CreateResourceJob).to receive(:perform_later)
   end
 

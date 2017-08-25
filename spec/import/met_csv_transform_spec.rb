@@ -3,11 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Transforming MET CSV files' do
-  let(:indexer) do
-    Traject::Indexer.new(provide).tap do |i|
-      i.load_config_file('lib/traject/met_csv_config.rb')
-    end
-  end
+  let(:indexer) { Pipeline.for('met_csv').indexer(HarvestedResource.new(original_filename: fixture_file_path)) }
   let(:fixture_file_path) { File.join(fixture_path, 'csv/met.csv') }
   let(:data) do
     # Read the first 4 lines (1 for headers and 3 for the first record)
@@ -24,6 +20,7 @@ RSpec.describe 'Transforming MET CSV files' do
   let(:writer) { instance_double Traject::JsonWriter, put: '' }
 
   before do
+    indexer.settings.merge! provide
     allow(Traject::JsonWriter).to receive(:new).and_return(writer)
   end
 
