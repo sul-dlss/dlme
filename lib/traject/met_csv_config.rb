@@ -42,7 +42,7 @@ to_field 'cho_spatial', column('Locus')
 to_field 'cho_medium', column('Medium')
 to_field 'cho_date', generate_object_date
 to_field 'cho_date', column('Object Date')
-to_field 'cho_identifier', column('Object ID')
+to_field 'cho_identifier', column('Object Number')
 to_field 'cho_source', column('Object Number')
 to_field 'cho_temporal', column('Period')
 to_field 'cho_spatial', column('Region')
