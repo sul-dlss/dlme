@@ -6,8 +6,12 @@ module MetThumbnailFetcher
     image_json = make_request(ident)
 
     return if image_json.blank?
-    raise "No results found in #{ident}\n#{image_json}" unless image_json.key?('results')
-    # Some records e.g. 321624, don't return any results
+    unless image_json['results']
+      # Some records have null results
+      Rails.logger.warn "No results found in #{ident}\n#{image_json}"
+      return
+    end
+    # Some records e.g. 321624, return empty results
     result = image_json['results'].first
     result['webImageUrl'] if result
   end
