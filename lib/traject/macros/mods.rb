@@ -27,19 +27,13 @@ module Macros
       }
     end
 
-    # rubocop:disable Metrics/AbcSize
     def select_identifier(record, context)
       if record.xpath('/*/mods:identifier', NS).map(&:text).reject(&:blank?).any?
         record.xpath('/*/mods:identifier', NS).map(&:text).reject(&:blank?).first
-      elsif context.settings.key?('command_line.filename')
-        identifier = context.settings.fetch('command_line.filename')
-        File.basename(identifier, File.extname(identifier))
-      elsif context.settings.key?('identifier')
-        identifier = context.settings.fetch('identifier')
-        File.basename(identifier, File.extname(identifier))
+      else
+        default_identifier(context)
       end
     end
-    # rubocop:enable Metrics/AbcSize
 
     def generate_relation(xpath)
       lambda do |record, accumulator|

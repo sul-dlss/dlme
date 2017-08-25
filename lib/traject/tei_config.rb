@@ -15,7 +15,7 @@ settings do
 end
 
 to_field 'id', lambda { |_record, accumulator, context|
-  bare_id = File.basename(context.settings.fetch('command_line.filename'), '.*')
+  bare_id = default_identifier(context)
   accumulator << identifier_with_prefix(context, bare_id)
 }
 
