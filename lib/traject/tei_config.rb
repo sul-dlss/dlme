@@ -30,6 +30,14 @@ to_field 'agg_is_shown_at' do |_record, accumulator, context|
   accumulator << transform_values(context,
                                   'wr_id' => [extract_tei("#{ms_desc}/#{ms_id}/tei:altIdentifier[@type='resource']/tei:idno")])
 end
+to_field 'agg_is_shown_by' do |_record, accumulator, context|
+  accumulator << transform_values(context,
+                                  'wr_id' => [penn_image_uri(penn_web_image_query)])
+end
+to_field 'agg_preview' do |_record, accumulator, context|
+  accumulator << transform_values(context,
+                                  'wr_id' => [penn_image_uri(penn_thumbnail_image_query)])
+end
 ms_contents = 'tei:msContents'
 to_field 'cho_description', extract_tei("#{ms_desc}/#{ms_contents}/tei:summary")
 to_field 'cho_language', extract_tei("#{ms_desc}/#{ms_contents}/tei:textLang")

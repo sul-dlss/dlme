@@ -33,6 +33,8 @@ RSpec.describe 'Transforming TEI files' do
                                             'Deposit by Lawrence J. Schoenberg and Barbara Brizdle, 2011.']
       expect(dlme['cho_identifier']).to include 'LJS 394'
       expect(dlme['agg_is_shown_at']).to include('wr_id' => 'http://hdl.library.upenn.edu/1017/d/medren/5440810')
+      expect(dlme['agg_is_shown_by']).to eq('wr_id' => 'http://openn.library.upenn.edu/Data/0001/ljs394/data/web/0085_0000_web.jpg')
+      expect(dlme['agg_preview']).to eq('wr_id' => 'http://openn.library.upenn.edu/Data/0001/ljs394/data/thumb/0085_0000_thumb.jpg')
       expect(dlme['cho_description'].first).to start_with 'Volume from a 14th-century copy'
       expect(dlme['cho_language']).to include 'Arabic'
       expect(dlme['cho_title'].first).to start_with 'Section of'
