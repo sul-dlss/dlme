@@ -57,5 +57,14 @@ module Macros
         prefix + identifier
       end
     end
+
+    def default_identifier(context)
+      identifier = if context.settings.key?('command_line.filename')
+                     context.settings.fetch('command_line.filename')
+                   elsif context.settings.key?('identifier')
+                     context.settings.fetch('identifier')
+                   end
+      File.basename(identifier, File.extname(identifier)) if identifier.present?
+    end
   end
 end
