@@ -9,7 +9,7 @@ class CsvReader
   def initialize(input_stream, settings)
     @settings = Traject::Indexer::Settings.new settings
     @input_stream = input_stream
-    @csv = CSV.parse(input_stream, headers: true, converters: :numeric)
+    @csv = CSV.parse(input_stream, headers: true)
   end
 
   delegate :each, to: :csv
