@@ -23,7 +23,7 @@ module Macros
 
     def normalize_numismatic_date
       lambda do |row, accumulator, _context|
-        accumulator << row['Year'].tr('|', '-')
+        accumulator << row['Year'].to_s.tr('|', '-')
       end
     end
   end
