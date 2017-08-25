@@ -40,11 +40,14 @@ module Macros
     end
 
     def artist_date_range(row)
-      @artist_date_range ||= [row[BEGIN_DATE], row[END_DATE]].select(&:present?).join(' - ')
+      [row[BEGIN_DATE], row[END_DATE]].select(&:present?).join(' - ')
     end
 
     def artist_role_bio(row)
-      @artist_role_bio ||= "#{artist_date_range(row)} (#{[row[ROLE], row[BIO]].select(&:present?).join(' ; ')})"
+      role = [row[ROLE], row[BIO]].select(&:present?).join(' ; ')
+      artist_info = artist_date_range(row)
+      artist_info += " (#{role})" if role.present?
+      artist_info
     end
 
     def generate_object_date
