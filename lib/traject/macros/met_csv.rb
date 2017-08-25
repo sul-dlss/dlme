@@ -21,13 +21,8 @@ module Macros
     def met_thumbnail
       lambda do |_record, accumulator, context|
         ident = context.output_hash['id'].first
-        image_json = fetch_met_thumbnail(ident)
-
-        return if image_json.blank?
-        # Some records e.g. 321624, don't return any results
-        result = image_json['results'].first
-        if result
-          thumbnail = result['webImageUrl']
+        thumbnail = MetThumbnailFetcher.fetch(ident)
+        if thumbnail
           accumulator << transform_values(context, 'wr_id' => literal(thumbnail))
         end
       end
@@ -76,12 +71,6 @@ module Macros
       lambda do |row, accumulator, _context|
         accumulator << [row['Department'], row['Repository']].select(&:present?).join(', ')
       end
-    end
-
-    def fetch_met_thumbnail(id)
-      uri = URI("http://www.metmuseum.org/api/Collection/additionalImages?crdId=#{id}")
-      resp = Faraday.get uri
-      ::JSON.parse(resp.body) if resp.success?
     end
   end
 end
