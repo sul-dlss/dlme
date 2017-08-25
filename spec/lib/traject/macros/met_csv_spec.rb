@@ -26,19 +26,15 @@ RSpec.describe Macros::MetCsv do
                       source_record: source_record)
     end
 
-    let(:response) { instance_double Faraday::Response, body: json, success?: true }
-
     before do
-      allow(Faraday).to receive(:get)
-        .with(URI('http://www.metmuseum.org/api/Collection/additionalImages?crdId=12312'))
-        .and_return(response)
+      allow(MetThumbnailFetcher).to receive(:fetch)
+        .with('12312')
+        .and_return(thumbnail_url)
       extractor.call(nil, accum, context)
     end
 
     context 'when there is no thumbnail' do
-      let(:json) do
-        '{"results":[]}'
-      end
+      let(:thumbnail_url) { nil }
 
       it 'sets the value' do
         expect(accum).to eq []
@@ -46,9 +42,7 @@ RSpec.describe Macros::MetCsv do
     end
 
     context 'when there is a thumbnail' do
-      let(:json) do
-        '{"results":[{"webImageUrl":"http://images.metmuseum.org/images/3"}]}'
-      end
+      let(:thumbnail_url) { 'http://images.metmuseum.org/images/3' }
 
       it 'sets the value' do
         expect(accum).to eq [{ 'wr_id' => ['http://images.metmuseum.org/images/3'] }]
