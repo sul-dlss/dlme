@@ -17,7 +17,7 @@ end
 to_field 'agg_provider', provider
 
 # MET Museum
-to_field 'id', normalize_numismatic_id
+to_field 'id', normalize_prefixed_id('RecordId')
 
 to_field 'cho_contributor', column('Authority', split: '|')
 to_field 'cho_description', column('Denomination')
