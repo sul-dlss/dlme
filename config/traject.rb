@@ -8,5 +8,8 @@ settings do
   ::Settings.import.properties.each do |k, v|
     provide k, v
   end
+  ::Settings.import.sources[fetch('source')].properties.each do |k, v|
+    provide k, v
+  end if key? 'source'
   provide 'allow_duplicate_values', false
 end

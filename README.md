@@ -61,7 +61,7 @@ transform them to the JSON IR and load them as `DlmeJson` resources in the datab
 At this point they are also indexed into Solr for discovery.
 
 If you want to repeat the transformation jobs without refetching the data you
-may use: 
+may use:
 ```
 ./bin/reprocess_harvest <harvest_id>
 ```
@@ -69,5 +69,11 @@ may use:
 You can also run traject directly:
 
 ```
-$ bundle exec traject -c config/traject.rb -c lib/traject/mods_config.rb [path to some file]
+$ bundle exec traject -c config/traject.rb -c lib/traject/mods_config.rb -s source="source of data as set in config/settings" [path to some file]
+```
+
+Example:
+
+```
+$ bundle exec traject -c config/traject.rb -c lib/traject/fgdc_config.rb -s source='harvard_fgdc' spec/fixtures/fgdc/HARVARD.SDE2.AFRICOVER_EG_RIVERS.fgdc.xml 
 ```
