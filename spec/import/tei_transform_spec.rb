@@ -32,7 +32,6 @@ RSpec.describe 'Transforming TEI files' do
                                             'Sold by Sam Fogg Ltd. (London) to Lawrence J. Schoenberg, Nov. 2000.',
                                             'Deposit by Lawrence J. Schoenberg and Barbara Brizdle, 2011.']
       expect(dlme['cho_identifier']).to include 'LJS 394'
-      expect(dlme['wr_id']).to include '5440810'
       expect(dlme['agg_is_shown_at']).to include('wr_id' => 'http://hdl.library.upenn.edu/1017/d/medren/5440810')
       expect(dlme['cho_description'].first).to start_with 'Volume from a 14th-century copy'
       expect(dlme['cho_language']).to include 'Arabic'

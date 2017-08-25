@@ -26,7 +26,6 @@ to_field 'cho_dc_rights', extract_tei("#{pub_stmt}/tei:availability/tei:licence"
 ms_desc = '/*/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc'
 ms_id = 'tei:msIdentifier'
 to_field 'cho_identifier', extract_tei("#{ms_desc}/#{ms_id}/tei:idno[@type='call-number']")
-to_field 'wr_id', extract_tei("#{ms_desc}/#{ms_id}/tei:altIdentifier[@type='bibid']/tei:idno")
 to_field 'agg_is_shown_at' do |_record, accumulator, context|
   accumulator << transform_values(context,
                                   'wr_id' => [extract_tei("#{ms_desc}/#{ms_id}/tei:altIdentifier[@type='resource']/tei:idno")])
