@@ -4,6 +4,6 @@
   <%= render_document_partial(document, 'openseadragon') %>
 <% elsif has_thumbnail?(document) %>
   <%= link_to document.first('agg_is_shown_at.wr_id_ssim').presence || '#' do %>
-    <%= render_thumbnail_tag(document, {}, false) %>
+    <%= render_thumbnail_tag(document, {}, suppress_link: true) %>
   <% end %>
 <% end %>

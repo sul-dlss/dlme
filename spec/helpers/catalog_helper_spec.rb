@@ -36,9 +36,18 @@ RSpec.describe CatalogHelper do
     end
 
     context 'when the document does not have a thumbnail field' do
-      it 'renders default thumbnail' do
+      it 'renders default thumbnail with a link' do
         draw
         expect(helper).to have_received(:link_to_document).with(document, /default.*\.png/, {})
+      end
+
+      context 'and suppress_link is passed' do
+        subject(:draw) { helper.render_thumbnail_tag(document, {}, suppress_link: true) }
+
+        it 'renders default thumbnail without a link' do
+          expect(draw).to match(/default.*\.png/)
+          expect(helper).not_to have_received(:link_to_document)
+        end
       end
     end
   end

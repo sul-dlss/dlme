@@ -22,6 +22,7 @@ module CatalogHelper
     value = super
     return value if value
     image = image_tag 'default.png', image_options
+    return image if url_options == false || url_options[:suppress_link]
     link_to_document document, image, url_options
   end
 end
