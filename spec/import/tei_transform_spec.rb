@@ -39,7 +39,6 @@ RSpec.describe 'Transforming TEI files' do
       expect(dlme['cho_title'].first).to start_with 'Section of'
       expect(dlme['cho_creator'].first).to start_with 'Jawhar'
       expect(dlme['cho_spatial']).to include 'Egypt or Syria'
-      expect(dlme['cho_spatial']).to include 'Written in Egypt or Syria in the 14th century.'
       expect(dlme['cho_date']).to include '13--'
       expect(dlme['cho_extent']).to include 'Written in 27 long lines.'
       expect(dlme['cho_extent']).to include '203 leaves : 269 x 172 (198 x 125) mm. bound to 269 x 180 mm'

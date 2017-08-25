@@ -40,7 +40,6 @@ to_field 'cho_title', extract_tei("#{ms_desc}/#{ms_contents}/#{ms_item}/tei:titl
 to_field 'cho_creator', extract_tei("#{ms_desc}/#{ms_contents}/#{ms_item}/tei:author")
 
 ms_origin = 'tei:history/tei:origin'
-to_field 'cho_spatial', extract_tei("#{ms_desc}/#{ms_origin}/tei:p")
 to_field 'cho_date', extract_tei("#{ms_desc}/#{ms_origin}/tei:origDate")
 to_field 'cho_spatial', extract_tei("#{ms_desc}/#{ms_origin}/tei:origPlace")
 to_field 'cho_provenance', extract_tei("#{ms_desc}/tei:history/tei:provenance")
