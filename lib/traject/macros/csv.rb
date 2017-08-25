@@ -14,9 +14,9 @@ module Macros
       end
     end
 
-    def normalize_numismatic_id
+    def normalize_prefixed_id(header_or_index)
       lambda do |row, accumulator, context|
-        identifier = row['RecordId'].parameterize
+        identifier = row[header_or_index].to_s.parameterize
         accumulator << identifier_with_prefix(context, identifier) if identifier.present?
       end
     end
@@ -24,6 +24,18 @@ module Macros
     def normalize_numismatic_date
       lambda do |row, accumulator, _context|
         accumulator << row['Year'].tr('|', '-')
+      end
+    end
+
+    def normalize_penn_egyptian_provider
+      lambda do |row, accumulator, _context|
+        accumulator << "#{row['curatorial_section']} Section, Penn Museum"
+      end
+    end
+
+    def normalize_penn_egyptian_shown_by
+      lambda do |row, accumulator, _context|
+        accumulator << "https://www.penn.museum/collections/object_images.php?irn={#{row['emuIRN']}}"
       end
     end
   end

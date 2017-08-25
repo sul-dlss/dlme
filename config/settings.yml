@@ -39,6 +39,7 @@ import:
       traject_file: met_csv_config
       properties:
         agg_provider: Metropolitan Museum of Art
+        inst_id: met
     princeton_mods:
       directory: movie-posters/records/princeton
       traject_file: mods_config
@@ -47,8 +48,15 @@ import:
         agg_data_provider: Princeton University Library
         inst_id: princeton
     numismatics:
-     directory: coins
-     traject_file: numismatic_csv_config
-     properties:
-       agg_provider: American Numismatic Society
-       inst_id: ans
+      directory: coins
+      traject_file: numismatic_csv_config
+      properties:
+        agg_provider: American Numismatic Society
+        inst_id: ans
+    penn_egyptian:
+      directory: museum/records
+      only: !ruby/regexp '/egyptian-20170820.csv/'
+      trajact_file: penn_egyptian_config
+      properties:
+        agg_provider: Penn Museum
+        inst_id: penn_museum
