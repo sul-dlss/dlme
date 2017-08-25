@@ -17,5 +17,11 @@ module Macros
         accumulator << [repository, institution].join(', ')
       end
     end
+
+    def public_domain
+      lambda do |_, accumulator|
+        accumulator << 'http://creativecommons.org/publicdomain/mark/1.0/'
+      end
+    end
   end
 end

@@ -56,3 +56,5 @@ to_field 'cho_subject', extract_tei("#{profile_desc}/tei:keywords[@n='subjects']
 # Provider fields [REQUIRED]
 to_field 'agg_provider', provider
 to_field 'agg_data_provider', generate_data_provider("#{ms_desc}/#{ms_id}")
+
+to_field 'agg_edm_rights', public_domain

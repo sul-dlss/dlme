@@ -50,6 +50,7 @@ RSpec.describe 'Transforming TEI files' do
       expect(dlme['cho_subject']).to include 'Traditional medicine--Formulae, receipts, prescriptions'
       expect(dlme['agg_provider']).to eq 'University of Pennsylvania Library'
       expect(dlme['agg_data_provider']).to eq 'Rare Book & Manuscript Library, University of Pennsylvania'
+      expect(dlme['agg_edm_rights']).to eq ['http://creativecommons.org/publicdomain/mark/1.0/']
     end
   end
 end
