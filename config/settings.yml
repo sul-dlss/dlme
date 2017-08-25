@@ -56,7 +56,7 @@ import:
     penn_egyptian:
       directory: museum/records
       only: !ruby/regexp '/egyptian-20170820.csv/'
-      trajact_file: penn_egyptian_config
+      traject_file: penn_egyptian_config
       properties:
         agg_provider: Penn Museum
         inst_id: penn_museum
