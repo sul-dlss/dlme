@@ -55,17 +55,17 @@ class CatalogController < ApplicationController
     config.add_index_field 'spatial', field: 'cho_spatial_ssim'
     config.add_index_field 'temporal', field: 'cho_temporal_ssim'
 
-    config.add_facet_field 'language',   field: 'cho_language_ssim'
-    config.add_facet_field 'type',       field: 'cho_edm_type_ssim'
-    config.add_facet_field 'other type', field: 'cho_type_ssim'
-    config.add_facet_field 'spatial',    field: 'cho_spatial_ssim'
-    config.add_facet_field 'temporal',   field: 'cho_temporal_ssim'
-    config.add_facet_field 'date',       field: 'cho_date_ssim'
-    config.add_facet_field 'creator',    field: 'cho_creator_ssim'
-    config.add_facet_field 'contributor', field: 'cho_contributor_ssim'
-    config.add_facet_field 'medium',      field: 'cho_medium_ssim'
-    config.add_facet_field 'dc_rights',   field: 'cho_dc_rights_ssim', autolink: true
-    config.add_facet_field 'provided_by', field: 'agg_data_provider_ssim'
+    config.add_facet_field 'language',   field: 'cho_language_ssim', limit: true
+    config.add_facet_field 'type',       field: 'cho_edm_type_ssim', limit: true
+    config.add_facet_field 'other type', field: 'cho_type_ssim', limit: true
+    config.add_facet_field 'spatial',    field: 'cho_spatial_ssim', limit: true
+    config.add_facet_field 'temporal',   field: 'cho_temporal_ssim', limit: true
+    config.add_facet_field 'date',       field: 'cho_date_ssim', limit: true
+    config.add_facet_field 'creator',    field: 'cho_creator_ssim', limit: true
+    config.add_facet_field 'contributor', field: 'cho_contributor_ssim', limit: true
+    config.add_facet_field 'medium',      field: 'cho_medium_ssim', limit: true
+    config.add_facet_field 'dc_rights',   field: 'cho_dc_rights_ssim', limit: true
+    config.add_facet_field 'provided_by', field: 'agg_data_provider_ssim', limit: true
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
