@@ -16,6 +16,9 @@ import:
   repo: waynegraham/dlme-metadata
   properties:
     exhibit_slug: library
+    # Because we're using background jobs, we don't use a thread pool.
+    # Using a threadpool would require a larger ActiveRecord connection pool
+    processing_thread_pool: 0
   sources:
     penn_tei:
       directory: manuscript/records/penn/schoenberg
