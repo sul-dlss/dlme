@@ -13,6 +13,7 @@ RSpec.describe Macros::MetCsv do
       include Traject::Macros::Basic # for literal()
     end
   end
+  let(:instance) { klass.new }
 
   describe 'met_thumbnail' do
     subject(:extractor) { instance.met_thumbnail }
@@ -24,8 +25,6 @@ RSpec.describe Macros::MetCsv do
                       output_hash: { 'id' => ['12312'] },
                       source_record: source_record)
     end
-
-    let(:instance) { klass.new }
 
     let(:response) { instance_double Faraday::Response, body: json, success?: true }
 
@@ -54,6 +53,16 @@ RSpec.describe Macros::MetCsv do
       it 'sets the value' do
         expect(accum).to eq [{ 'wr_id' => ['http://images.metmuseum.org/images/3'] }]
       end
+    end
+  end
+
+  describe 'artist_role_bio' do
+    subject { instance.artist_role_bio(row) }
+
+    let(:row) { { 'Artist Begin Date' => '', 'Artist End Date' => '' } }
+
+    context 'when artist role and bio are blank' do
+      it { is_expected.to be_empty }
     end
   end
 end
