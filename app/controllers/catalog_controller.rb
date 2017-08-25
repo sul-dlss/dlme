@@ -9,6 +9,9 @@ class CatalogController < ApplicationController
     config.index.document_actions[:bookmark].if = false
     config.show.document_actions[:bookmark].if = false
 
+    # Remove bookmark/saved searches/history from the navbar
+    config.navbar.partials = {}
+
     config.show.oembed_field = :"agg_is_shown_at.wr_id_ssim"
     config.show.partials.insert(1, :viewer)
 
