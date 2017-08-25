@@ -43,6 +43,10 @@ class SolrDocument
     false
   end
 
+  def openseadragonable?(blacklight_config = CatalogController.blacklight_config)
+    to_openseadragon(blacklight_config.view_config(:show)).present?
+  end
+
   private
 
   def shown_by_service(conforms_to:)

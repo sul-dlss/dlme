@@ -34,9 +34,32 @@ RSpec.describe 'catalog/_viewer_default.html.erb', type: :view do
     end
   end
 
-  context 'for other resources' do
+  context 'for openseadragonable resources' do
+    let(:source) do
+      {
+        'agg_is_shown_by.wr_has_service_ssim' => {
+          'service_id' => 'http://example.com/iiif/resource',
+          'service_conforms_to' => 'http://iiif.io/api/image'
+        }.to_json
+      }
+    end
+
     it 'renders openseadragon for iiif-able resources' do
       expect(rendered).to include 'openseadragon'
+    end
+  end
+
+  context 'for resources with thumbnails' do
+    let(:source) do
+      {
+        'agg_is_shown_at.wr_id_ssim' => 'http://example.com/resource/',
+        'agg_preview.wr_id_ssim' => 'http://example.com/resource.jpg'
+      }
+    end
+
+    it 'renders a thumbnail that links to the source' do
+      expect(rendered).to have_link href: 'http://example.com/resource/'
+      expect(rendered).to have_selector 'a > img[@src="http://example.com/resource.jpg"]'
     end
   end
 end
