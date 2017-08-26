@@ -9,9 +9,9 @@ RSpec.describe MetThumbnailFetcher do
     let(:response) { instance_double Faraday::Response, body: json, success?: true }
 
     before do
-      allow(Faraday).to receive(:get)
-        .with(URI('http://www.metmuseum.org/api/Collection/additionalImages?crdId=12312'))
-        .and_return(response)
+      allow(DLME::Utils).to receive(:fetch_json)
+        .with('http://www.metmuseum.org/api/Collection/additionalImages?crdId=12312')
+        .and_return(JSON.parse(json))
     end
 
     context 'when the results are empty' do

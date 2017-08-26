@@ -88,7 +88,8 @@ gem 'config'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'dry-validation'
-
+gem 'faraday'
+gem 'faraday-http-cache'
 gem 'octokit', '~> 4.0'
 
 gem 'honeybadger'

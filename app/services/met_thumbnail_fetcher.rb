@@ -17,9 +17,7 @@ module MetThumbnailFetcher
   end
 
   def self.make_request(id)
-    uri = URI("http://www.metmuseum.org/api/Collection/additionalImages?crdId=#{id}")
-    resp = Faraday.get uri
-    ::JSON.parse(resp.body) if resp.success?
+    DLME::Utils.fetch_json("http://www.metmuseum.org/api/Collection/additionalImages?crdId=#{id}")
   end
   private_class_method :make_request
 end
