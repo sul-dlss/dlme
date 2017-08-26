@@ -14,22 +14,6 @@ module Macros
       end
     end
 
-    def self.apply_extraction_options(result, options = {})
-      result = result.flat_map { |s| s.split(options[:split]) } if options.key?(:split)
-      result = result.collect(&:strip) if options.key?(:trim)
-      result = apply_translation(result, options) if options.key?(:translation_map)
-      result = options[:default] if options.key?(:default) && result.empty?
-      result
-    end
-
-    def self.apply_translation(values, options)
-      translation_map = Traject::TranslationMap.new(*Array(options[:translation_map]))
-      # without overwriting (further) translation map, could add
-      # fuzzy match method here after pulling array out of TM
-      values = Array(values).map(&:downcase)
-      translation_map.translate_array values
-    end
-
     # try a bunch of macros and short-circuit after one returns values
     def first(*macros)
       lambda do |record, accumulator, context|

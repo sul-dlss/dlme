@@ -11,7 +11,7 @@ module Macros
     def extract_xml(xpath, namespaces, options = {})
       lambda do |xml, accumulator, _context|
         result = xml.xpath(xpath, namespaces).map(&:text)
-        result = Macros::DLME.apply_extraction_options(result, options)
+        result = Macros::Extraction.apply_extraction_options(result, options)
         accumulator.concat(result)
       end
     end
