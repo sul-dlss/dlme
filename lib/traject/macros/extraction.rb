@@ -6,6 +6,67 @@ module Macros
     def self.apply_extraction_options(result, options = {})
       TransformPipeline.new(options).transform(result)
     end
+    
+    def self.traject_step(&block)
+      TrajectStep.new(&block)
+    end
+    
+    class TrajectStep
+      attr_reader :block
+
+      def initialize(&block)
+        @block = block
+      end
+      
+      def call(*args)
+        block.call(*args)
+      end
+      
+      def arity(*args)
+        block.arity(*args)
+      end
+      
+      def >(other)
+        TrajectPipeline.new(self, wrap_lambda(other))
+      end
+      
+      def |(other)
+        TrajectPipeline.new(self, wrap_lambda(other))
+      end
+
+      private
+      
+      def wrap_lambda(other)
+        if other.is_a? TrajectStep
+          other
+        else
+          TrajectStep.new(&other)
+        end
+      end
+    end
+    
+    class TrajectPipeline
+      attr_reader :steps
+      def initialize(*steps)
+        @steps = steps
+      end
+      
+      def call(record, accumulator, context)
+        steps.inject(accumulator) { |acc, step| step.call(record, acc, context); acc }
+      end
+      
+      def arity(*args)
+        return method(:call).arity(*args)
+      end
+
+      def >(other)
+        TrajectPipeline.new(self, other)
+      end
+      
+      def |(other)
+        TrajectPipeline.new(self, other)
+      end
+    end
 
     # Pipeline for transforming extracted values into normalized values
     class TransformPipeline

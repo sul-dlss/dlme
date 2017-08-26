@@ -32,6 +32,12 @@ module Macros
       end
     end
 
+    def split(splitter)
+      lambda do |_, accumulator, _|
+        accumulator.map! { |v| v.split(splitter) }
+      end
+    end
+
     def provider
       from_settings('agg_provider')
     end

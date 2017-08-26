@@ -22,11 +22,9 @@ to_field 'id', normalize_prefixed_id('emuIRN')
 
 to_field 'cho_provenance', column('accession_credit_line')
 to_field 'cho_creator', column('creator')
-to_field 'cho_coverage', column('culture', split: '|')
+to_field 'cho_coverage', column('culture') > split('|') 
 to_field 'agg_data_provider', normalize_penn_egyptian_provider
-to_field 'cho_date', column('date_made')
-to_field 'cho_date', column('date_made_early')
-to_field 'cho_date', column('date_made_late')
+to_field 'cho_date', column('date_made') | column('date_made_early') | column('date_made_late')
 to_field 'cho_description', column('description')
 to_field 'cho_identifier', column('emuIRN')
 to_field 'cho_subject', column('iconography')
