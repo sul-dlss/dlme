@@ -3,6 +3,7 @@
 require_relative 'json_reader'
 require_relative 'dlme_json_resource_writer'
 require_relative 'macros/dlme'
+require_relative 'macros/extraction'
 require_relative 'macros/json'
 
 extend Macros::DLME
