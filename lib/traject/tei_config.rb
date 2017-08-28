@@ -26,10 +26,17 @@ to_field 'cho_dc_rights', extract_tei("#{pub_stmt}/tei:availability/tei:licence"
 ms_desc = '/*/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc'
 ms_id = 'tei:msIdentifier'
 to_field 'cho_identifier', extract_tei("#{ms_desc}/#{ms_id}/tei:idno[@type='call-number']")
-to_field 'wr_id', extract_tei("#{ms_desc}/#{ms_id}/tei:altIdentifier[@type='bibid']/tei:idno")
 to_field 'agg_is_shown_at' do |_record, accumulator, context|
   accumulator << transform_values(context,
                                   'wr_id' => [extract_tei("#{ms_desc}/#{ms_id}/tei:altIdentifier[@type='resource']/tei:idno")])
+end
+to_field 'agg_is_shown_by' do |_record, accumulator, context|
+  accumulator << transform_values(context,
+                                  'wr_id' => [penn_image_uri(penn_web_image_query)])
+end
+to_field 'agg_preview' do |_record, accumulator, context|
+  accumulator << transform_values(context,
+                                  'wr_id' => [penn_image_uri(penn_thumbnail_image_query)])
 end
 ms_contents = 'tei:msContents'
 to_field 'cho_description', extract_tei("#{ms_desc}/#{ms_contents}/tei:summary")
@@ -40,7 +47,6 @@ to_field 'cho_title', extract_tei("#{ms_desc}/#{ms_contents}/#{ms_item}/tei:titl
 to_field 'cho_creator', extract_tei("#{ms_desc}/#{ms_contents}/#{ms_item}/tei:author")
 
 ms_origin = 'tei:history/tei:origin'
-to_field 'cho_spatial', extract_tei("#{ms_desc}/#{ms_origin}/tei:p")
 to_field 'cho_date', extract_tei("#{ms_desc}/#{ms_origin}/tei:origDate")
 to_field 'cho_spatial', extract_tei("#{ms_desc}/#{ms_origin}/tei:origPlace")
 to_field 'cho_provenance', extract_tei("#{ms_desc}/tei:history/tei:provenance")
@@ -58,3 +64,5 @@ to_field 'cho_subject', extract_tei("#{profile_desc}/tei:keywords[@n='subjects']
 # Provider fields [REQUIRED]
 to_field 'agg_provider', provider
 to_field 'agg_data_provider', generate_data_provider("#{ms_desc}/#{ms_id}")
+
+to_field 'agg_edm_rights', public_domain

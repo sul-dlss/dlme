@@ -32,14 +32,14 @@ RSpec.describe 'Transforming TEI files' do
                                             'Sold by Sam Fogg Ltd. (London) to Lawrence J. Schoenberg, Nov. 2000.',
                                             'Deposit by Lawrence J. Schoenberg and Barbara Brizdle, 2011.']
       expect(dlme['cho_identifier']).to include 'LJS 394'
-      expect(dlme['wr_id']).to include '5440810'
       expect(dlme['agg_is_shown_at']).to include('wr_id' => 'http://hdl.library.upenn.edu/1017/d/medren/5440810')
+      expect(dlme['agg_is_shown_by']).to eq('wr_id' => 'http://openn.library.upenn.edu/Data/0001/ljs394/data/web/0085_0000_web.jpg')
+      expect(dlme['agg_preview']).to eq('wr_id' => 'http://openn.library.upenn.edu/Data/0001/ljs394/data/thumb/0085_0000_thumb.jpg')
       expect(dlme['cho_description'].first).to start_with 'Volume from a 14th-century copy'
       expect(dlme['cho_language']).to include 'Arabic'
       expect(dlme['cho_title'].first).to start_with 'Section of'
       expect(dlme['cho_creator'].first).to start_with 'Jawhar'
       expect(dlme['cho_spatial']).to include 'Egypt or Syria'
-      expect(dlme['cho_spatial']).to include 'Written in Egypt or Syria in the 14th century.'
       expect(dlme['cho_date']).to include '13--'
       expect(dlme['cho_extent']).to include 'Written in 27 long lines.'
       expect(dlme['cho_extent']).to include '203 leaves : 269 x 172 (198 x 125) mm. bound to 269 x 180 mm'
@@ -52,6 +52,7 @@ RSpec.describe 'Transforming TEI files' do
       expect(dlme['cho_subject']).to include 'Traditional medicine--Formulae, receipts, prescriptions'
       expect(dlme['agg_provider']).to eq 'University of Pennsylvania Library'
       expect(dlme['agg_data_provider']).to eq 'Rare Book & Manuscript Library, University of Pennsylvania'
+      expect(dlme['agg_edm_rights']).to eq ['http://creativecommons.org/publicdomain/mark/1.0/']
     end
   end
 end
