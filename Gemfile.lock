@@ -222,6 +222,8 @@ GEM
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
     ffi (1.9.18)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     friendly_id (5.2.1)
       activerecord (>= 4.0.0)
     github-markup (1.6.1)
@@ -563,6 +565,7 @@ DEPENDENCIES
   devise_token_auth
   dry-validation
   factory_girl_rails
+  font-awesome-rails
   friendly_id
   honeybadger
   jbuilder (~> 2.5)
