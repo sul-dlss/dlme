@@ -3,20 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe 'Transforming Nuministics CSV file' do
-  let(:indexer) do
-    Traject::Indexer.new('command_line.filename' => fixture_file_path,
-                         'exhibit_slug' => slug,
-                         'agg_provider' => 'American Numismatics Society',
-                         'inst_id' => 'ans').tap do |i|
-      i.load_config_file('lib/traject/numismatic_csv_config.rb')
-    end
-  end
+  let(:indexer) { Pipeline.for('numismatics').indexer(HarvestedResource.new(original_filename: fixture_file_path)) }
   let(:fixture_file_path) { File.join(fixture_path, 'csv/numismatic_islam_department.csv') }
   let(:data) { File.open(fixture_file_path).read }
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 
   before do
+    indexer.settings['exhibit_slug'] = slug
     allow(CreateResourceJob).to receive(:perform_later)
   end
 
@@ -24,7 +18,7 @@ RSpec.describe 'Transforming Nuministics CSV file' do
     indexer.process(data)
     expect(CreateResourceJob).to have_received(:perform_later) do |_id, _two, json|
       dlme = JSON.parse(json)
-      expect(dlme['agg_provider']).to eq 'American Numismatics Society'
+      expect(dlme['agg_provider']).to eq 'American Numismatic Society'
 
       # MET Museum
       expect(dlme['id']).to eq 'ans_1975-93-862'

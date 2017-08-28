@@ -3,35 +3,20 @@
 require 'rails_helper'
 
 RSpec.describe 'Transforming MODS files' do
-  let(:config) do
-    {
-      'command_line.filename' => fixture_file_path,
-      'exhibit_slug' => slug
-    }.merge(provider_config)
-  end
-  let(:indexer) do
-    Traject::Indexer.new(config).tap do |i|
-      i.load_config_file('config/traject.rb')
-      i.load_config_file('lib/traject/mods_config.rb')
-    end
-  end
   let(:data) { File.open(fixture_file_path).read }
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 
   before do
+    indexer.settings['exhibit_slug'] = slug
     allow(CreateResourceJob).to receive(:perform_later)
   end
 
   describe 'Transform Princeton MODS file' do
+    let(:indexer) { Pipeline.for('princeton_mods').indexer(HarvestedResource.new(original_filename: fixture_file_path)) }
+
     let(:identifier) { 'movie-posters/records/princeton/eg1_0019.mods' }
     let(:fixture_file_path) { File.join(fixture_path, 'mods/eg1_0019.mods') }
-
-    let(:provider_config) do
-      { 'agg_provider' => 'Princeton University Library',
-        'agg_data_provider' => 'Princeton University Library',
-        'inst_id' => 'princeton' }
-    end
 
     it 'does the transform' do
       indexer.process(data)

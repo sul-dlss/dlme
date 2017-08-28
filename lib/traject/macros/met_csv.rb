@@ -20,7 +20,7 @@ module Macros
 
     def met_thumbnail
       lambda do |_record, accumulator, context|
-        ident = context.output_hash['id'].first
+        ident = context.output_hash['id'].first.sub(/^met_/, '')
         thumbnail = MetThumbnailFetcher.fetch(ident)
         if thumbnail
           accumulator << transform_values(context, 'wr_id' => literal(thumbnail))
