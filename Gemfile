@@ -88,13 +88,8 @@ gem 'config'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'dry-validation'
-
-# The current published version (0.17.0) of github_api
-# requires an old version of faraday. Use master until the next release.
-#
-# This gem monkeypatches faraday's parameter generation in ways that are
-# incompatible with our solr query url generation:
-# https://github.com/piotrmurach/github/blob/master/lib/github_api/ext/faraday.rb
+gem 'faraday'
+gem 'faraday-http-cache'
 gem 'octokit', '~> 4.0'
 
 gem 'honeybadger'
