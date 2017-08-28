@@ -107,3 +107,5 @@ gem 'slowpoke'
 
 gem 'jsonpath'
 gem 'traject'
+
+gem 'font-awesome-rails'
