@@ -74,3 +74,11 @@ import:
           agg_provider: Harvard University Library
           agg_data_provider: Harvard University. Center for Geographic Analysis
           inst_id: harvard
+    penn_marc:
+      directory: marc/
+      only: !ruby/regexp '/penn-Mideastmarc.mrc/'
+      traject_file: marc_config
+      properties:
+          agg_provider: University of Pennsylvania Libraries
+          agg_data_provider: University of Pennsylvania Libraries
+          inst_id: penn_marc
