@@ -25,7 +25,7 @@ class DlmeJsonResourceWriter
   def put(context)
     attributes = context.output_hash.dup
     id = attributes.fetch('id').first
-    json = JSON.generate(AdjustCardinality.call(attributes))
+    json = JSON.generate(AdjustCardinality.call(attributes)).unicode_normalize
     create_resource(id, json)
   end
 
