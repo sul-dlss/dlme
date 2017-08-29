@@ -26,13 +26,13 @@ module Macros
       end
     end
 
-    def normalize_penn_egyptian_provider
+    def normalize_penn_museum_provider
       lambda do |row, accumulator, _context|
         accumulator << "#{row['curatorial_section']} Section, Penn Museum"
       end
     end
 
-    def normalize_penn_egyptian_shown_by
+    def normalize_penn_museum_shown_by
       lambda do |row, accumulator, _context|
         accumulator << "https://www.penn.museum/collections/object_images.php?irn={#{row['emuIRN']}}"
       end
