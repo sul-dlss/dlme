@@ -14,7 +14,7 @@
 //= require turbolinks
 //
 // Required by Blacklight
-//= require jquery
+//= require jquery3
 //= require blacklight/blacklight
 
 //= require_tree .
