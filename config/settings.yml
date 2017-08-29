@@ -60,6 +60,13 @@ import:
       properties:
         agg_provider: Penn Museum
         inst_id: penn_museum
+    penn_near_east:
+      directory: museum/records
+      only: !ruby/regexp '/near_eastern-20170820.csv/'
+      traject_file: penn_near_east_config
+      properties:
+        agg_provider: Penn Museum
+        inst_id: penn_museum
     harvard_fgdc:
       directory: maps/records/harvard
       traject_file: fgdc_config
