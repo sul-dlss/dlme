@@ -29,6 +29,24 @@ module Macros
         values.map(&:strip)
       end
 
+      def append(values, append_string)
+        values.flat_map do |v|
+          "#{v}#{append_string}"
+        end
+      end
+
+      def replace(values, options)
+        values.flat_map do |v|
+          v.gsub(options[0], options[1])
+        end
+      end
+
+      def insert(values, insert_string)
+        values.flat_map do |v|
+          insert_string.gsub('%s', v)
+        end
+      end
+
       def translation_map(values, maps)
         translation_map = Traject::TranslationMap.new(*Array(maps))
         # without overwriting (further) translation map, could add

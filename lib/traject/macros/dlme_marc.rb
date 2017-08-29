@@ -6,7 +6,7 @@ module Macros
     def marc_lang_to_code
       lambda { |record, accumulator, _context|
         languages = marc_languages.yield(record, accumulator)
-        language_codes = Macros::DLME.apply_extraction_options(languages, translation_map: 'languages')
+        language_codes = Macros::Extraction.apply_extraction_options(languages, translation_map: 'languages')
         accumulator.concat(language_codes)
       }
     end
@@ -26,7 +26,7 @@ module Macros
     def marc_type_to_edm
       lambda { |record, accumulator, _context|
         leader06 = record.leader.byteslice(6)
-        edm_types = Macros::DLME.apply_extraction_options(leader06, translation_map: 'types')
+        edm_types = Macros::Extraction.apply_extraction_options(leader06, translation_map: 'types')
         accumulator.concat(edm_types)
       }
     end
