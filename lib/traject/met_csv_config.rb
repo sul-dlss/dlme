@@ -3,6 +3,7 @@
 require_relative 'csv_reader'
 require_relative 'dlme_json_resource_writer'
 require_relative 'macros/dlme'
+require_relative 'macros/extraction'
 require_relative 'macros/met_csv'
 require_relative 'macros/csv'
 extend Macros::DLME

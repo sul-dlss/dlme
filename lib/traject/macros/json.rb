@@ -8,7 +8,7 @@ module Macros
     def extract_json(path, options = {})
       lambda do |json, accumulator, _context|
         result = Array(JsonPath.on(json, path))
-        result = Macros::DLME.apply_extraction_options(result, options)
+        result = Macros::Extraction.apply_extraction_options(result, options)
         accumulator.concat(result)
       end
     end

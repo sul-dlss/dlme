@@ -8,7 +8,7 @@ module Macros
       lambda do |row, accumulator, _context|
         return if row[header_or_index].to_s.empty?
         result = Array(row[header_or_index].to_s)
-        result = Macros::DLME.apply_extraction_options(result, options)
+        result = Macros::Extraction.apply_extraction_options(result, options)
         accumulator.concat(result)
       end
     end
