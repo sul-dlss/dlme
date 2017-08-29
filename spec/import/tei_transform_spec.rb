@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Transforming TEI files' do
   let(:indexer) { Pipeline.for('penn_tei').indexer(HarvestedResource.new(original_filename: fixture_file_path)) }
   let(:fixture_file_path) { File.join(fixture_path, 'tei/penn_ljs394.xml') }
-  let(:data) { File.open(fixture_file_path).read }
+  let(:data) { File.open(fixture_file_path) }
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 

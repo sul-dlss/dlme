@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Transforming MODS files' do
-  let(:data) { File.open(fixture_file_path).read }
+  let(:data) { File.open(fixture_file_path) }
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 

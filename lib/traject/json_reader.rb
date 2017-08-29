@@ -7,7 +7,7 @@ class JsonReader
   def initialize(input_stream, settings)
     @settings = Traject::Indexer::Settings.new settings
     @input_stream = input_stream
-    @json = JSON.parse(input_stream)
+    @json = JSON.parse(input_stream.read)
   end
 
   attr_reader :json

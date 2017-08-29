@@ -6,7 +6,7 @@ class HarvestedResource < ApplicationRecord
   belongs_to :pipeline
 
   def content
-    resource_content.body
+    StringIO.new(resource_content.body)
   end
 
   def resource_content

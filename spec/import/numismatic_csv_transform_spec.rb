@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Transforming Nuministics CSV file' do
   let(:indexer) { Pipeline.for('numismatics').indexer(HarvestedResource.new(original_filename: fixture_file_path)) }
   let(:fixture_file_path) { File.join(fixture_path, 'csv/numismatic_islam_department.csv') }
-  let(:data) { File.open(fixture_file_path).read }
+  let(:data) { File.open(fixture_file_path) }
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 
