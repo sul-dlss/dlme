@@ -39,7 +39,7 @@ RSpec.describe 'Transforming Nuministics CSV file' do
       expect(dlme['cho_spatial']).to eq ['NE Africa']
       expect(dlme['cho_title']).to eq ['Glass 3 wuqiyya of Zaffar b. Shabba, NE Africa, 739 - 740. 1975.93.862']
       expect(dlme['cho_identifier']).to include 'http://numismatics.org/search/id/1975.93.862'
-      expect(dlme['cho_date']).to eq ['739-740']
+      expect(dlme['cho_date']).to eq ['739 - 740']
       expect(dlme['agg_is_shown_at']).to include('wr_id' => 'http://numismatics.org/search/id/1975.93.862')
     end
   end
