@@ -12,7 +12,7 @@
         <th>When</th>
         <th style="text-align: center">Total</th>
         <% pipelines.each do |_, name| %>
-          <th style="text-align: center"><%= name %></th>
+          <th style="text-align: right"><%= name.humanize %></th>
         <% end %>
         <th></th>
       </tr>
