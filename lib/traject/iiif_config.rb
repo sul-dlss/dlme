@@ -15,7 +15,8 @@ settings do
 end
 
 to_field 'id', lambda { |_record, accumulator, context|
-  accumulator << context.settings.fetch('identifier')
+  identifier = default_identifier(context)
+  accumulator << identifier_with_prefix(context, identifier) if identifier.present?
 }
 to_field 'cho_title', extract_json('$.label')
 

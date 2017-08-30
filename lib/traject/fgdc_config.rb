@@ -17,7 +17,7 @@ settings do
 end
 
 # Record Identifier
-to_field 'id', generate_fgdc_id
+to_field 'id', generate_fgdc_id(prefixed: true)
 
 # CHO Required
 to_field 'cho_identifier', generate_fgdc_id
