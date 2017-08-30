@@ -20,6 +20,22 @@ import:
     # Using a threadpool would require a larger ActiveRecord connection pool
     processing_thread_pool: 0
   sources:
+    # # data source name; required, unique
+    # stanford_mods: 
+    #   # The directory for the data in GitHub repo ; required
+    #   directory: # e.g. maps/records/stanford
+    #   # Regex for what file to pull from source GH directory ; optional
+    #   only: # e.g. !ruby/regexp '/met_museum_records.csv/' 
+    #   # Traject Mapping config file found in lib/traject ; required
+    #   traject_file: # e.g. stanford_mods_config 
+    #   # Settings for the data import source ; required
+    #   properties: 
+    #     # Who delivered the data directly to DLME ; required
+    #     agg_provider: # e.g. Stanford Libraries 
+    #     # Who created the data originally ; optional
+    #     agg_data_provider: # e.g. Stanford Libraries 
+    #     # Prefixes the solr document ID ; optional
+    #     inst_id: # e.g. stanford 
     penn_tei:
       directory: manuscript/records/penn/schoenberg
       traject_file: tei_config
