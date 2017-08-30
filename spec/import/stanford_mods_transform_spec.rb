@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Transforming MODS files' do
   let(:indexer) { Pipeline.for('stanford_mods').indexer(HarvestedResource.new(original_filename: fixture_file_path)) }
-  let(:data) { File.open(fixture_file_path).read }
+  let(:data) { File.open(fixture_file_path) }
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 

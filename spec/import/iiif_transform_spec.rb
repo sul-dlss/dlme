@@ -13,7 +13,7 @@ RSpec.describe 'Transforming IIIF files' do
   end
   let(:identifier) { 'stanford_tk780vf9050' }
   let(:fixture_file_path) { File.join(fixture_path, 'iiif/manifest.json') }
-  let(:data) { File.open(fixture_file_path).read }
+  let(:data) { File.open(fixture_file_path) }
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 

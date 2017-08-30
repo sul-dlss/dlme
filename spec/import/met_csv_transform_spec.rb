@@ -7,7 +7,7 @@ RSpec.describe 'Transforming MET CSV files' do
   let(:fixture_file_path) { File.join(fixture_path, 'csv/met.csv') }
   let(:data) do
     # Read the first 4 lines (1 for headers and 3 for the first record)
-    File.open(fixture_file_path) { |f| f.readline + f.readline + f.readline + f.readline }
+    StringIO.new(File.open(fixture_file_path) { |f| f.readline + f.readline + f.readline + f.readline })
   end
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }

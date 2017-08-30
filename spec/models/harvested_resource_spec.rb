@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe HarvestedResource, type: :model do
   describe '#content' do
-    subject { harvested_resource.content }
+    subject { harvested_resource.content.read }
 
     before do
       create(:resource_content, multihash: multihash, body: 'this is a unique thing')

@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Transforming Penn Egyptian Museum CSV file' do
   let(:indexer) { Pipeline.for('penn_egyptian').indexer(HarvestedResource.new(original_filename: fixture_file_path)) }
   let(:fixture_file_path) { File.join(fixture_path, 'csv/penn_egyptian.csv') }
-  let(:data) { File.open(fixture_file_path).read }
+  let(:data) { File.open(fixture_file_path) }
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 
