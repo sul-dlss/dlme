@@ -7,6 +7,20 @@ RSpec.describe SolrDocument do
 
   let(:source) { {} }
 
+  describe '#export_formats' do
+    it 'has the ir format registered' do
+      expect(document.export_formats).to include :ir
+    end
+  end
+
+  describe '#export_as_ir' do
+    let(:source) { { '__raw_resource_json_ss' => '{}' } }
+
+    it 'returns the raw resource document' do
+      expect(document.export_as_ir).to eq '{}'
+    end
+  end
+
   describe '#to_openseadragon' do
     context 'for a document with IIIF service' do
       let(:source) do

@@ -42,6 +42,11 @@ RSpec.describe DlmeJsonResourceBuilder do
         'cho_title_tsim' => 'افواه و ارانب' }
     end
 
+    it 'adds the original source record' do
+      expect(solr_doc).to include('__raw_resource_json_ss')
+      expect(JSON.parse(solr_doc['__raw_resource_json_ss'])).to eq JSON.parse(json)
+    end
+
     it 'adds untokenized field data' do
       expect(solr_doc).to include(expected_untokenized_fields)
     end

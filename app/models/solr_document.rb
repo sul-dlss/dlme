@@ -23,6 +23,15 @@ class SolrDocument
   # Recommendation: Use field names from Dublin Core
   use_extension(Blacklight::Document::DublinCore)
 
+  def initialize(*args)
+    super
+    will_export_as(:ir)
+  end
+
+  def export_as_ir
+    fetch('__raw_resource_json_ss', '')
+  end
+
   # overriding the upstream method with our own that knows
   # how to unpack the agg_is_shown_by > wr_has_service field
   def to_openseadragon(_view_config = nil)
