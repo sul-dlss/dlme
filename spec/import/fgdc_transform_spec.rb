@@ -19,7 +19,7 @@ RSpec.describe 'Transforming FGDC files' do
       indexer.process(data)
       expect(CreateResourceJob).to have_received(:perform_later) do |_id, _two, json|
         dlme = JSON.parse(json)
-        expect(dlme['id']).to eq 'AFRICOVER_EG_RIVERS'
+        expect(dlme['id']).to eq 'harvard_AFRICOVER_EG_RIVERS'
         expect(dlme['agg_data_provider']).to eq 'Harvard University. Center for Geographic Analysis'
         expect(dlme['agg_provider']).to eq 'Harvard University Library'
         # rubocop:disable Metrics/LineLength
