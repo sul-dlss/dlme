@@ -83,9 +83,14 @@ body {
 .breadcrumb {
   background-color: transparent;
   border-bottom: 1px solid $color-gray-medium;
+  padding-left: 0;
 
   > .active {
     color: $color-black-medium;
+  }
+
+  > li + li:before {
+    color: $color-black-light;
   }
 }
 
@@ -117,4 +122,12 @@ body {
     padding-bottom: 4px;
     padding-top: 4px;
   }
+}
+
+#sidebar ol.sidenav > li > h4 {
+  border-bottom: 0;
+}
+
+#sidebar .top-panel-heading {
+  padding: 6px 0;
 }
