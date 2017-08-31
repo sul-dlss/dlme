@@ -20,6 +20,9 @@ to_field 'id', lambda { |_record, accumulator, context|
   accumulator << identifier_with_prefix(context, bare_id)
 }
 
+# Information on how this record was processed
+to_field '__pipeline', pipeline
+
 pub_stmt = '/*/tei:teiHeader/tei:fileDesc/tei:publicationStmt'
 to_field 'cho_publisher', extract_tei("#{pub_stmt}/tei:publisher")
 to_field 'cho_dc_rights', extract_tei("#{pub_stmt}/tei:availability/tei:licence", trim: true)

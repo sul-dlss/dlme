@@ -19,6 +19,10 @@ to_field 'agg_provider', provider
 
 # MET Museum
 to_field 'id', normalize_prefixed_id('Object ID')
+
+# Information on how this record was processed
+to_field '__pipeline', pipeline
+
 to_field 'cho_format', column('Object Name')
 to_field 'cho_creator', generate_creator
 to_field 'cho_spatial', column('City')

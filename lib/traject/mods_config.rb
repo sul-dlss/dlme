@@ -22,6 +22,9 @@ end
 # Spotlight DLME IR Record Identifier
 to_field 'id', generate_mods_id
 
+# Information on how this record was processed
+to_field '__pipeline', pipeline
+
 # CHO Required
 to_field 'cho_identifier', extract_mods('/*/mods:identifier')
 to_field 'cho_identifier', extract_mods('/*/mods:recordInfo/mods:recordIdentifier')

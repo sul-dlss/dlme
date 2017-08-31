@@ -20,6 +20,9 @@ to_field 'agg_provider', provider
 # MET Museum
 to_field 'id', normalize_prefixed_id('RecordId')
 
+# Information on how this record was processed
+to_field '__pipeline', pipeline
+
 to_field 'cho_contributor', column('Authority', split: '|')
 to_field 'cho_description', column('Denomination')
 to_field 'agg_data_provider', column('Department')

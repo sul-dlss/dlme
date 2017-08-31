@@ -34,6 +34,7 @@ DlmeJsonSchema = Dry::Validation.Schema do
   # See https://github.com/sul-dlss/dlme/blob/master/docs/application_profile.md#oreaggregation
   required('id').filled(:str?)
   optional('__source').filled(:str?)
+  optional('__pipeline').filled(:str?)
   # Since the IR is a flattened projection of the MAP, 'agg_aggregated_cho' is not used.
   required('agg_data_provider').filled(:str?)
   optional('agg_dc_rights') { array? { each(:str?) } }

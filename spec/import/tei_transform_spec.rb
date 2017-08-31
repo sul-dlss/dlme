@@ -19,6 +19,7 @@ RSpec.describe 'Transforming TEI files' do
     expect(CreateResourceJob).to have_received(:perform_later) do |_id, _two, json|
       dlme = JSON.parse(json)
       expect(dlme['id']).to eq 'penn_ljs394'
+      expect(dlme['__pipeline']).to eq 'penn_tei'
       expect(dlme['cho_publisher']).to include 'The University of Pennsylvania Libraries'
       expect(dlme['cho_dc_rights'].first).to start_with 'This description is'
       expect(dlme['cho_dc_rights'].second).to match(/^All\s+referenced images/)

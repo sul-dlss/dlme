@@ -21,6 +21,9 @@ to_field 'id', extract_marc('001', first: true) do |_record, accumulator, _conte
   accumulator.collect! { |s| "penn_#{s}" }
 end
 
+# Information on how this record was processed
+to_field '__pipeline', pipeline
+
 # CHO Required
 to_field 'cho_identifier', extract_marc('001')
 to_field 'cho_identifier', extract_marc('010a')

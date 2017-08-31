@@ -66,5 +66,11 @@ module Macros
                    end
       File.basename(identifier, File.extname(identifier)) if identifier.present?
     end
+
+    def pipeline
+      lambda do |_record, accumulator, context|
+        accumulator << context.settings['pipeline']
+      end
+    end
   end
 end
