@@ -37,7 +37,8 @@ class CatalogController < ApplicationController
 
     config.add_index_field 'title', field: 'cho_title_ssim'
     config.add_index_field 'date', field: 'cho_date_ssim'
-    config.add_index_field 'provided_by', field: 'agg_data_provider_ssim'
+    config.add_index_field 'holding institution', field: 'agg_data_provider_ssim'
+    config.add_index_field 'source institution', field: 'agg_provider_ssim'
     config.add_index_field 'extent', field: 'cho_extent_ssim'
     config.add_index_field 'creator', field: 'cho_creator_ssim'
     config.add_index_field 'description',
@@ -65,10 +66,10 @@ class CatalogController < ApplicationController
     config.add_facet_field 'contributor', field: 'cho_contributor_ssim', limit: true
     config.add_facet_field 'medium',      field: 'cho_medium_ssim', limit: true
     config.add_facet_field 'dc_rights',   field: 'cho_dc_rights_ssim', limit: true
-    config.add_facet_field 'provided_by', field: 'agg_data_provider_ssim', limit: true
+    config.add_facet_field 'holding_institution', field: 'agg_data_provider_ssim', limit: true
 
     # "administrative"-like facets
-    config.add_facet_field 'data provider', field: 'agg_provider_ssim', limit: true
+    config.add_facet_field 'source_institution', field: 'agg_provider_ssim', limit: true
     config.add_facet_field 'thumbnail', query: {
       yes: { label: 'Yes', fq: 'agg_preview.wr_id_ssim:[* TO *]' },
       no: { label: 'No', fq: '-agg_preview.wr_id_ssim:[* TO *]' }
@@ -77,9 +78,17 @@ class CatalogController < ApplicationController
       yes: { label: 'Yes', fq: 'agg_is_shown_at.wr_id_ssim:[* TO *]' },
       no: { label: 'No', fq: '-agg_is_shown_at.wr_id_ssim:[* TO *]' }
     }
+    config.add_facet_field 'shown by', query: {
+      yes: { label: 'Yes', fq: 'agg_is_shown_by.wr_id_ssim:[* TO *]' },
+      no: { label: 'No', fq: '-agg_is_shown_by.wr_id_ssim:[* TO *]' }
+    }
     config.add_facet_field 'empty fields', query: {
-      no_cho_title:     { label: 'No CHO Title', fq: '-cho_title_ssim:[* TO *]' },
-      no_cho_dc_rights: { label: 'No CHO DC Rights', fq: '-cho_dc_rights_ssim:[* TO *]' }
+      no_cho_title: { label: 'No CHO Title', fq: '-cho_title_ssim:[* TO *]' },
+      no_cho_edm_type: { label: 'No CHO Type', fq: '-cho_edm_type_ssim:[* TO *]' },
+      no_cho_dc_rights: { label: 'No CHO DC Rights', fq: '-cho_dc_rights_ssim:[* TO *]' },
+      no_agg_edm_rights: { label: 'No Agg EDM Rights', fq: '-agg_edm_rights_ssim:[* TO *]' },
+      no_agg_provider: { label: 'No Source Institution', fq: '-agg_provider_ssim:[* TO *]' },
+      no_agg_data_provider: { label: 'No Holding Institution', fq: '-agg_data_provider_ssim:[* TO *]' }
     }
     config.add_facet_field 'indexed at', query: {
       day: { label: 'within 1 day', fq: "timestamp:[#{(Time.zone.now - 1.day).iso8601} TO *]" },
@@ -96,7 +105,8 @@ class CatalogController < ApplicationController
 
     config.add_show_field 'title', field: 'cho_title_ssim'
     config.add_show_field 'date', field: 'cho_date_ssim'
-    config.add_show_field 'provided_by', field: 'agg_data_provider_ssim'
+    config.add_show_field 'holding_institution', field: 'agg_data_provider_ssim'
+    config.add_show_field 'source_institution', field: 'agg_provider_ssim'
     config.add_show_field 'extent', field: 'cho_extent_ssim'
     config.add_show_field 'alternative', field: 'cho_alternative_ssim'
     config.add_show_field 'contributor', field: 'cho_contributor_ssim'
