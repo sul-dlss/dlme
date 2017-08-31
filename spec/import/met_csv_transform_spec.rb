@@ -32,4 +32,19 @@ RSpec.describe 'Transforming MET CSV files' do
         .to eq [{ 'wr_id' => ['http://images.metmuseum.org/CRDImages/an/web-large/ss74_51_4366gp.JPG'] }]
     end
   end
+
+  context 'with empty data' do
+    let(:empty_row) { ',,,object_id_value,' }
+    let(:data) { File.open(fixture_file_path) { |f| f.readline + empty_row } }
+
+    it 'does the transform and omits empty contructed fields' do
+      indexer.process(data)
+
+      expect(writer).to have_received(:put) do |context|
+        dlme = context.output_hash
+        expect(dlme['cho_creator']).to be_blank
+        expect(dlme['agg_data_provider']).to be_blank
+      end
+    end
+  end
 end
