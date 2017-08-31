@@ -55,7 +55,7 @@ module Macros
 
     def edm_type
       lambda do |row, accumulator, _context|
-        accumulator << '3D' if row[CLASSIFICATION].present?
+        accumulator << 'Image' if row[CLASSIFICATION].present?
       end
     end
 
