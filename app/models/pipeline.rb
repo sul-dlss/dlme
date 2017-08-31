@@ -20,6 +20,8 @@ class Pipeline < ApplicationRecord
   private
 
   def traject_config(resource)
-    config.properties.to_h.merge('command_line.filename' => resource.original_filename)
+    config.properties.to_h.merge('command_line.filename' => resource.original_filename,
+                                 'harvested_resource_id' => resource.id,
+                                 'harvest_id' => resource.harvest_id)
   end
 end

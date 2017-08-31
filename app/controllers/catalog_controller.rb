@@ -86,6 +86,8 @@ class CatalogController < ApplicationController
        week: { label: 'within 7 days', fq: "timestamp:[#{(Time.zone.now - 7.days).iso8601} TO *]" },
        month: { label: 'within 31 days', fq: "timestamp:[#{(Time.zone.now - 31.days).iso8601} TO *]" }
     }
+    config.add_facet_field 'traject config', field: 'traject_context_source_ssim', limit: true
+    config.add_facet_field 'harvest', field: 'traject_context_harvest_id_ssim', limit: true
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request

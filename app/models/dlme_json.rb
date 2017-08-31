@@ -6,10 +6,16 @@ class DlmeJson < Spotlight::Resource
   validate :valid_json_syntax?
   validate :valid_schema?
 
+  store :data, accessors: %i[json metadata]
+
   # @return [Hash]
   # @raise [JSON::ParserError] if the json is not parsable
   def json
-    @json ||= JSON.parse(data[:json])
+    @json ||= JSON.parse(super)
+  end
+
+  def metadata
+    super || {}
   end
 
   private

@@ -4,9 +4,13 @@ require 'rails_helper'
 
 RSpec.describe DlmeJsonResourceBuilder do
   let(:doc_builder) { described_class.new(resource) }
-  let(:resource) { DlmeJson.new(data: { json: json }) }
+  let(:resource) { DlmeJson.new(json: json, metadata: metadata) }
   let(:fixture_file_path) { File.join(fixture_path, 'json/iiif-single-image.json') }
   let(:json) { File.open(fixture_file_path).read }
+  let(:metadata) do
+    { 'traject_context_command_line.filename' => fixture_file_path,
+      'traject_context_source' => 'dlme_json_resource_spec' }
+  end
 
   describe 'to_solr' do
     subject(:solr_doc) { doc_builder.to_solr }
@@ -66,6 +70,11 @@ RSpec.describe DlmeJsonResourceBuilder do
 
     it 'adds sortable fields for title' do
       expect(solr_doc).to include 'sortable_cho_title_ssi' => 'افواه و ارانب'
+    end
+
+    it 'includes metadata context fields' do
+      expect(solr_doc).to include 'traject_context_command_line.filename_ssim' => fixture_file_path,
+                                  'traject_context_source_ssim' => 'dlme_json_resource_spec'
     end
   end
 end
