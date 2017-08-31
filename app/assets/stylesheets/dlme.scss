@@ -22,10 +22,10 @@
 
 body {
   background-image: asset-url("dlme-background.png");
-  margin-bottom: 140px;
+  margin-bottom: $footer-height + $footer-top-margin;
 
-  @media (max-width: 767px) {
-    margin-bottom: 180px;
+  @media (max-width: 991px) {
+    margin-bottom: $footer-height + $footer-top-margin + $footer-mobile-adjustment;
   }
 }
 
@@ -130,4 +130,15 @@ body {
 
 #sidebar .top-panel-heading {
   padding: 6px 0;
+}
+
+// Overrides for mobile viewports
+@media (max-width: 767px) {
+  .navbar-default .navbar-form {
+    border-color: transparent;
+  }
+
+  #sidebar .top-panel-heading {
+    border: 0;
+  }
 }

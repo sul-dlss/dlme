@@ -6,23 +6,11 @@
   background-color: #cacccb;
   border-top: 2px solid #ababba;
   bottom: 0;
-  height: 120px;
-  margin-top: 20px;
+  height: $footer-height;
+  margin-top: $footer-top-margin;
   padding: 20px 10px 12px;
   position: absolute;
   width: 100%;
-
-  .footer-container {
-    display: table;
-    height: 100%;
-  }
-
-  .logos,
-  .clir-address {
-    display: table-cell;
-    float: none;
-    vertical-align: middle;
-  }
 
   .logos {
     font-size: 22px;
@@ -48,7 +36,6 @@
   .clir-address {
     color: #333;
     padding-top: 0;
-    width: 100%;
 
     .vcard {
       font-size: 15px;
@@ -70,24 +57,31 @@
     img {
       margin-bottom: 3px;
     }
+
+    > li:first-child {
+      padding-left: 0;
+    }
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
   .footer {
-    height: 160px;
-  }
+    height: $footer-height + $footer-mobile-adjustment;
+    padding-top: 15px;
+    text-align: center;
 
-  .footer .footer-container {
-    .logos,
-    .clir-address {
-      float: left;
-      text-align: center;
-      width: 100%;
+    .logos {
+      font-size: 20px;
     }
 
     .clir-address {
       margin-top: 12px;
     }
+  }
+}
+
+@media (max-width: 567px) {
+  .footer .logos {
+    font-size: 16px;
   }
 }
