@@ -18,6 +18,10 @@ to_field 'id', lambda { |_record, accumulator, context|
   identifier = default_identifier(context)
   accumulator << identifier_with_prefix(context, identifier) if identifier.present?
 }
+
+# Information on how this record was processed
+to_field '__pipeline', pipeline
+
 to_field 'cho_title', extract_json('$.label')
 
 # Aggregation Object(s)

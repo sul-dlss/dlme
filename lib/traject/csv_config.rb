@@ -15,6 +15,10 @@ end
 
 # MET Museum
 to_field 'id', column('Object ID')
+
+# Information on how this record was processed
+to_field '__pipeline', pipeline
+
 to_field 'cho_title', column('Object Name')
 
 # Aggregation Object(s)

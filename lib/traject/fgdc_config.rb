@@ -19,6 +19,9 @@ end
 # Record Identifier
 to_field 'id', generate_fgdc_id(prefixed: true)
 
+# Information on how this record was processed
+to_field '__pipeline', pipeline
+
 # CHO Required
 to_field 'cho_identifier', generate_fgdc_id
 to_field 'cho_title', extract_fgdc('/*/idinfo/citation/citeinfo/title')

@@ -66,6 +66,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'medium',      field: 'cho_medium_ssim', limit: true
     config.add_facet_field 'dc_rights',   field: 'cho_dc_rights_ssim', limit: true
     config.add_facet_field 'provided_by', field: 'agg_data_provider_ssim', limit: true
+    config.add_facet_field 'pipeline',    field: '__pipeline_ssim', if: :superadmin?
 
     # "administrative"-like facets
     config.add_facet_field 'data provider', field: 'agg_provider_ssim', limit: true
@@ -150,5 +151,11 @@ class CatalogController < ApplicationController
     config.add_sort_field 'creator', sort: 'sortable_cho_creator_ssi asc, sortable_cho_creator_ssi asc', label: 'Creator'
 
     config.add_field_configuration_to_solr_request!
+  end
+
+  private
+
+  def superadmin?
+    current_user.superadmin?
   end
 end

@@ -1,5 +1,6 @@
 {
   "__source": "https://github.com/waynegraham/dlme-metadata/blob/master/princeton/mods/eg1_0095.mods",
+  "__pipeline": "princeton_mods",
   "id": "princeton_rj4305881",
   "agg_data_provider": "Princeton University. Firestone Library.",
   "agg_edm_rights": "http://www.princeton.edu/~rbsc/research/rights.html",

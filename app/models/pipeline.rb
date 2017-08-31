@@ -10,6 +10,7 @@ class Pipeline < ApplicationRecord
     Settings.import.sources[name]
   end
 
+  # @return [Traject::Indexer] the indexer to use, loaded with the necessary configs
   def indexer(resource)
     Traject::Indexer.new(traject_config(resource)).tap do |indexer|
       indexer.load_config_file((Rails.root + 'config/traject.rb').to_s)
@@ -19,7 +20,10 @@ class Pipeline < ApplicationRecord
 
   private
 
+  # @return [Hash] properties to pass into the indexer
   def traject_config(resource)
-    config.properties.to_h.merge('command_line.filename' => resource.original_filename)
+    config.properties.to_h
+          .merge('command_line.filename' => resource.original_filename,
+                 'pipeline' => name)
   end
 end

@@ -20,6 +20,9 @@ to_field 'agg_provider', provider
 # MET Museum
 to_field 'id', normalize_prefixed_id('emuIRN')
 
+# Information on how this record was processed
+to_field '__pipeline', pipeline
+
 to_field 'cho_provenance', column('accession_credit_line')
 to_field 'cho_creator', column('creator')
 to_field 'cho_coverage', column('culture', split: '|')
