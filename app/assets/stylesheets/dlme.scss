@@ -19,3 +19,11 @@
   width: 80%;
   margin-left: 10%;
 }
+
+body {
+  margin-bottom: 140px;
+
+  @media (max-width: 767px) {
+    margin-bottom: 180px;
+  }
+}
