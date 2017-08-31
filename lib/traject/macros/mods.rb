@@ -53,7 +53,15 @@ module Macros
     end
 
     def normalize_language
-      extract_mods('/*/mods:language/mods:languageTerm', translation_map: ['languages', default: '__passthrough__'])
+      mods_lang_label_xp = '/*/mods:language/mods:languageTerm[@authority="iso639-2b"][@type="text"]'
+      mods_lang_code_xp = '/*/mods:language/mods:languageTerm[@authority="iso639-2b"][@type="code"]'
+      mods_lang_xp = '/*/mods:language/mods:languageTerm'
+      first(
+        extract_mods(mods_lang_label_xp),
+        extract_mods(mods_lang_code_xp, translation_map: ['marc_languages']),
+        # the last one is separate to eventually pass fuzzy matching parameters
+        extract_mods(mods_lang_xp, translation_map: ['marc_languages', default: '__passthrough__'])
+      )
     end
 
     def normalize_script
