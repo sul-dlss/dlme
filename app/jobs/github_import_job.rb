@@ -7,7 +7,6 @@ require 'github_importer'
 class GithubImportJob < ApplicationJob
   # @param harvest [Harvest] the harvest instance this job belongs to.
   # @param pipeline_name [String] the name of the pipeline to use for transformation
-  # @param config [Config::Options] configuration options for the pipeline
   def perform(harvest, pipeline_name)
     pipeline = Pipeline.for(pipeline_name)
     importer.import(harvest, pipeline) do |resource|
