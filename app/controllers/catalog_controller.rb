@@ -71,21 +71,23 @@ class CatalogController < ApplicationController
     config.add_facet_field 'data provider', field: 'agg_provider_ssim', limit: true
     config.add_facet_field 'thumbnail', query: {
       yes: { label: 'Yes', fq: 'agg_preview.wr_id_ssim:[* TO *]' },
-      no: { label: 'No', fq: '-agg_preview.wr_id_ssim:[* TO *]' },
+      no: { label: 'No', fq: '-agg_preview.wr_id_ssim:[* TO *]' }
     }
     config.add_facet_field 'shown at', query: {
       yes: { label: 'Yes', fq: 'agg_is_shown_at.wr_id_ssim:[* TO *]' },
-      no: { label: 'No', fq: '-agg_is_shown_at.wr_id_ssim:[* TO *]' },
+      no: { label: 'No', fq: '-agg_is_shown_at.wr_id_ssim:[* TO *]' }
     }
     config.add_facet_field 'empty fields', query: {
       no_cho_title:     { label: 'No CHO Title', fq: '-cho_title_ssim:[* TO *]' },
-      no_cho_dc_rights: { label: 'No CHO DC Rights', fq: "-cho_dc_rights_ssim:[* TO *]" },
+      no_cho_dc_rights: { label: 'No CHO DC Rights', fq: '-cho_dc_rights_ssim:[* TO *]' }
     }
     config.add_facet_field 'indexed at', query: {
-       day: { label: 'within 1 day', fq: "timestamp:[#{(Time.zone.now - 1.day).iso8601} TO *]" },
-       week: { label: 'within 7 days', fq: "timestamp:[#{(Time.zone.now - 7.days).iso8601} TO *]" },
-       month: { label: 'within 31 days', fq: "timestamp:[#{(Time.zone.now - 31.days).iso8601} TO *]" }
+      day: { label: 'within 1 day', fq: "timestamp:[#{(Time.zone.now - 1.day).iso8601} TO *]" },
+      week: { label: 'within 7 days', fq: "timestamp:[#{(Time.zone.now - 7.days).iso8601} TO *]" },
+      month: { label: 'within 31 days', fq: "timestamp:[#{(Time.zone.now - 31.days).iso8601} TO *]" }
     }
+    config.add_facet_field 'traject config', field: 'traject_context_source_ssim', limit: true
+    config.add_facet_field 'harvest', field: 'traject_context_harvest_id_ssim', limit: true
 
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request

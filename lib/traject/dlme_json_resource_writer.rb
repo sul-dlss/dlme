@@ -26,13 +26,21 @@ class DlmeJsonResourceWriter
     attributes = context.output_hash.dup
     id = attributes.fetch('id').first
     json = JSON.generate(AdjustCardinality.call(attributes)).unicode_normalize
-    create_resource(id, json)
+    create_resource(id, json, metadata(context))
   end
 
   private
 
-  def create_resource(id, json)
-    CreateResourceJob.perform_later(id, @exhibit, json)
+  def create_resource(id, json, metadata)
+    CreateResourceJob.perform_later(id, @exhibit, json, metadata)
+  end
+
+  def metadata(context)
+    keys = ['command_line.filename', 'source', 'position', 'harvested_resource_id', 'harvest_id']
+
+    context.settings.slice(*keys).transform_keys do |key|
+      "traject_context_#{key}"
+    end
   end
 
   delegate :logger, to: :Rails
