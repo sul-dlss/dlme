@@ -13,6 +13,7 @@
 .blacklight-catalog-show .dl-horizontal {
   width: 80%;
   margin-left: 10%;
+  margin-top: 20px;
 }
 
 .oembed-widget {
@@ -21,7 +22,7 @@
 }
 
 body {
-  background-image: asset-url("dlme-background.png");
+  background-color: $color-gray-lightest;
   margin-bottom: $footer-height + $footer-top-margin;
 
   @media (max-width: 991px) {
@@ -77,7 +78,8 @@ body {
 }
 
 .thumbnail {
-  background-color: $color-gray-lightest;
+  background-color: transparent;
+  border: 0;
 }
 
 .breadcrumb {
@@ -148,10 +150,6 @@ body {
 
 .facet_limit-active > .panel-heading + .panel-collapse > .panel-body {
   border-top-color: $color-gray-medium;
-}
-
-.thumbnail {
-  background-color: $color-gray-light;
 }
 
 // Overrides for mobile viewports
