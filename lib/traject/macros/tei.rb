@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'extraction'
+
 module Macros
   # Macros for extracting TEI values from Nokogiri documents
   module Tei
@@ -15,6 +17,24 @@ module Macros
         repository = record.xpath("#{xpath}/tei:repository", NS).map(&:text)
         institution = record.xpath("#{xpath}/tei:institution", NS).map(&:text)
         accumulator << [repository, institution].join(', ')
+      end
+    end
+
+    def main_language
+      tei_main_lang_xp = '/*/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents/tei:textLang/@mainLang'
+      tei_lang_text_xp = '/*/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents/tei:textLang'
+      first(
+        extract_tei(tei_main_lang_xp, translation_map: ['marc_languages', default: '__passthrough__']),
+        # the last one is separate to eventually pass fuzzy matching parameters
+        extract_tei(tei_lang_text_xp, translation_map: ['marc_languages', default: '__passthrough__'])
+      )
+    end
+
+    def other_languages
+      tei_other_langs_xp = '/*/tei:teiHeader/tei:fileDesc/tei:sourceDesc/tei:msDesc/tei:msContents/tei:textLang/@otherLangs'
+      new_pipeline = Macros::Extraction::TransformPipeline.new(translation_map: 'marc_languages')
+      lambda do |record, accumulator|
+        accumulator.concat(new_pipeline.transform(record.xpath(tei_other_langs_xp, NS).first.value.split(' ')))
       end
     end
 

@@ -25,7 +25,7 @@ end
 to_field 'cho_identifier', extract_marc('001')
 to_field 'cho_identifier', extract_marc('010a')
 to_field 'cho_identifier', oclcnum
-to_field 'cho_language', marc_lang_to_code
+to_field 'cho_language', marc_languages
 to_field 'cho_title', extract_marc('245', trim_punctuation: true)
 
 # CHO Other
