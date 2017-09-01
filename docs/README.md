@@ -7,7 +7,7 @@
 
 ## Steps for Adding Data to DLME
 
-To be added.
+[How to add a data provider to DLME](add_data_source.md)
 
 ## Details on Specific Data & Tool Choices for this DLME Application
 
