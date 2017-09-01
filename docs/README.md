@@ -3,6 +3,7 @@
 ## Using this Documentation
 
 * [Metadata Application Profile](application_profile.md)
+* [Metadata mappings spreadsheet](https://docs.google.com/spreadsheets/d/1Sp7uMHizVX7xN7xN9mm-vgEuESQBovXO-qenAo_TV-w/edit)
 * [Information for Data Providers](providers.md)
 
 ## Steps for Adding Data to DLME
