@@ -30,7 +30,7 @@ RSpec.describe 'Transforming TEI files' do
       expect(dlme['agg_is_shown_by']).to eq('wr_id' => 'http://openn.library.upenn.edu/Data/0001/ljs394/data/web/0085_0000_web.jpg')
       expect(dlme['agg_preview']).to eq('wr_id' => 'http://openn.library.upenn.edu/Data/0001/ljs394/data/thumb/0085_0000_thumb.jpg')
       expect(dlme['cho_description'].first).to start_with 'Volume from a 14th-century copy'
-      expect(dlme['cho_language']).to include 'Arabic'
+      expect(dlme['cho_language']).to eq(['Hebrew', 'Judeo-Arabic'])
       expect(dlme['cho_title'].first).to start_with 'Section of'
       expect(dlme['cho_creator'].first).to start_with 'Jawhar'
       expect(dlme['cho_spatial']).to include 'Egypt or Syria'

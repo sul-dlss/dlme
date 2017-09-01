@@ -41,7 +41,8 @@ to_field 'agg_preview' do |_record, accumulator, context|
 end
 ms_contents = 'tei:msContents'
 to_field 'cho_description', extract_tei("#{ms_desc}/#{ms_contents}/tei:summary")
-to_field 'cho_language', extract_tei("#{ms_desc}/#{ms_contents}/tei:textLang")
+to_field 'cho_language', main_language
+to_field 'cho_language', other_languages
 
 ms_item = 'tei:msItem'
 to_field 'cho_title', extract_tei("#{ms_desc}/#{ms_contents}/#{ms_item}/tei:title")
