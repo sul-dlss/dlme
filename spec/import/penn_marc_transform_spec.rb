@@ -36,7 +36,7 @@ RSpec.describe 'Transforming MARC records' do
         # expect(dlme['cho_has_part']).to eq
         expect(dlme['cho_identifier']).to eq %w[5861076 819418825]
         # expect(dlme['cho_is_part_of']).to eq
-        expect(dlme['cho_language']).to eq %w[Arabic Hebrew ar iw]
+        expect(dlme['cho_language']).to eq %w[Arabic Hebrew]
         expect(dlme['cho_medium']).to eq ['paper']
         expect(dlme['cho_subject']).to eq ['Medicine Early works to 1800.', 'Medicine, Arab.', 'Medicine, Medieval.']
         expect(dlme['cho_title']).to eq ['[al-Amrāḍ al-juzʼīyah] [manuscript].']
@@ -69,7 +69,7 @@ RSpec.describe 'Transforming MARC records' do
         # expect(dlme['cho_has_part']).to eq
         expect(dlme['cho_identifier']).to eq %w[4805622 779347172]
         # expect(dlme['cho_is_part_of']).to eq
-        expect(dlme['cho_language']).to eq %w[Arabic ar]
+        expect(dlme['cho_language']).to eq ['Arabic']
         expect(dlme['cho_medium']).to eq ['paper, ill']
         expect(dlme['cho_subject']).to eq ['Geometry Early works to 1800.', 'Mathematics, Greek.']
         expect(dlme['cho_title']).to eq ['[Gathering from Ikhtiṣār min al-maqālāt min kitāb Uqlīdis] [manuscript].']
