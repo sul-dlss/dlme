@@ -22,10 +22,10 @@
 
 body {
   background-image: asset-url("dlme-background.png");
-  margin-bottom: 140px;
+  margin-bottom: $footer-height + $footer-top-margin;
 
-  @media (max-width: 767px) {
-    margin-bottom: 180px;
+  @media (max-width: 991px) {
+    margin-bottom: $footer-height + $footer-top-margin + $footer-mobile-adjustment;
   }
 }
 
@@ -46,7 +46,7 @@ body {
 
 .nav > li > a:hover,
 .nav > li > a:focus {
-  background-color: $color-gray-lightest;
+  background-color: $color-gray-medium;
 }
 
 .nav-tabs > li.active > a,
@@ -130,4 +130,41 @@ body {
 
 #sidebar .top-panel-heading {
   padding: 6px 0;
+}
+
+.masthead .site-title {
+  white-space: normal;
+}
+
+.facet_limit-active {
+  border-color: $color-gray-medium;
+}
+
+.facet_limit-active > .panel-heading {
+  background-color: $color-gray-medium;
+  border-color: $color-black-light;
+  color: $color-blackish;
+}
+
+.facet_limit-active > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: $color-gray-medium;
+}
+
+.thumbnail {
+  background-color: $color-gray-light;
+}
+
+// Overrides for mobile viewports
+@media (max-width: 767px) {
+  .navbar-default .navbar-form {
+    border-color: transparent;
+  }
+
+  #sidebar .top-panel-heading {
+    border: 0;
+  }
+
+  .masthead .site-title {
+    text-align: center;
+  }
 }
