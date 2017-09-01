@@ -152,6 +152,17 @@ body {
   border-top-color: $color-gray-medium;
 }
 
+.pagination>.active>a,
+.pagination>.active>a:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span,
+.pagination>.active>span:hover,
+.pagination>.active>span:focus {
+  color: $color-blackish;
+  background-color: $color-gray-medium;
+  border-color: $color-gray-medium;
+}
+
 // Overrides for mobile viewports
 @media (max-width: 767px) {
   .navbar-default .navbar-form {
