@@ -21,11 +21,12 @@ import:
     processing_thread_pool: 0
   sources:
     yale_csv:
-      directory: medical_manuscripts/Arabic_and_Persian_Medical_Books_and_Manuscripts_P32_Yale_17_8_20.csv
+      directory: medical_manuscripts
+      only: !ruby/regexp '/^Arabic_and_Persian(.*).csv/'
       traject_file: yale_csv_config
       properties:
         agg_provider: Yale University Libraries
-        agg_data_provider: Yale University Libraries
+        # agg_data_provider: Yale University Libraries
         inst_id: yale
     penn_tei:
       directory: manuscript/records/penn/schoenberg
