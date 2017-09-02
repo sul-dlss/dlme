@@ -22,7 +22,8 @@ RSpec.describe TrajectTransformJob, type: :job do
     expect(indexer).to have_received(:load_config_file)
       .with((Rails.root + 'lib/traject/tei_config.rb').to_s)
 
-    expect(indexer).to have_received(:process)
-      .with('TEIXML')
+    expect(indexer).to have_received(:process) do |io|
+      expect(io.read).to eq 'TEIXML'
+    end
   end
 end

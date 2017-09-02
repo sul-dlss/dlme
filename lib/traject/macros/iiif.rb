@@ -4,8 +4,7 @@ module Macros
   # Macros for extracting Stanford Specific MODS values from Nokogiri documents
   module IIIF
     def grab_iiif_manifest(manifest)
-      resp = Faraday.get URI.parse(manifest)
-      ::JSON.parse(resp.body) if resp.success?
+      ::DLME::Utils.fetch_json(manifest)
     end
 
     def iiif_thumbnail_id(iiif_json)

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Transforming MODS files' do
   let(:indexer) { Pipeline.for('stanford_mods').indexer(HarvestedResource.new(original_filename: fixture_file_path)) }
-  let(:data) { File.open(fixture_file_path).read }
+  let(:data) { File.open(fixture_file_path) }
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 
@@ -58,7 +58,7 @@ RSpec.describe 'Transforming MODS files' do
         expect(dlme['cho_format']).to eq ['paper', 'Laid paper']
         expect(dlme['cho_has_part']).to eq ['al-Shifāʾ fī taʿrīf ḥuqūq al-Muṣṭafá', 'الشفاء في تعريف حقوق المصطفى']
         expect(dlme['cho_is_part_of']).to eq ['Walters Manuscripts']
-        expect(dlme['cho_language']).to eq ['ar']
+        expect(dlme['cho_language']).to eq ['Arabic']
         expect(dlme['cho_title']).to eq ['Walters Ms. W.586, Work on the duties of Muslims toward the ' \
                                         'Prophet Muhammad with an account of his life']
         expect(dlme['cho_type']).to eq ['mixed material']

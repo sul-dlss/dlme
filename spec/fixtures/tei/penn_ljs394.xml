@@ -42,7 +42,7 @@
           </msIdentifier>
           <msContents>
             <summary>Volume from a 14th-century copy of a 10th-century dictionary of the Arabic language. Words are indexed by their last root letter, with this volume covering the letters za' to lam. Marginal notes by a reader and proofreader. Later pastedown on inner cover has remedies written in Arabic and Persian.</summary>
-            <textLang>Arabic</textLang>
+            <textLang mainLang="heb" otherLangs="jrb">Hebrew</textLang>
             <msItem>
               <title>Section of Tāj al-lughah wa-ṣiḥāḥ al-ʻArabīyah</title>
               <author>Jawharī, Ismāʻīl ibn Ḥammād, d. 1003?</author>

@@ -31,7 +31,7 @@ If certain information such as identifiers or links to digital objects or image 
 More in-depth documentation is available below:
 
 * [Application profile](application_profile.md)
-* [Mappings](mappings.md)
+* [Metadata mappings](https://docs.google.com/spreadsheets/d/1Sp7uMHizVX7xN7xN9mm-vgEuESQBovXO-qenAo_TV-w/edit)
 
 ## Suggested object delivery mechanisms
 

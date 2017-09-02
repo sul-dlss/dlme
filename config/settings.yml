@@ -20,13 +20,28 @@ import:
     # Using a threadpool would require a larger ActiveRecord connection pool
     processing_thread_pool: 0
   sources:
+    # # data source name; required, unique
+    # stanford_mods:
+    #   # The directory for the data in GitHub repo ; required
+    #   directory: # e.g. maps/records/stanford
+    #   # Regex for what file to pull from source GH directory ; optional
+    #   only: # e.g. !ruby/regexp '/met_museum_records.csv/'
+    #   # Traject Mapping config file found in lib/traject ; required
+    #   traject_file: # e.g. stanford_mods_config
+    #   # Settings for the data import source ; required
+    #   properties:
+    #     # Who delivered the data directly to DLME ; required
+    #     agg_provider: # e.g. Stanford Libraries
+    #     # Who created the data originally ; optional
+    #     agg_data_provider: # e.g. Stanford Libraries
+    #     # Prefixes the solr document ID ; optional
+    #     inst_id: # e.g. stanford
     yale_csv:
       directory: medical_manuscripts
       only: !ruby/regexp '/^Arabic_and_Persian(.*).csv/'
       traject_file: yale_csv_config
       properties:
         agg_provider: Yale University Libraries
-        # agg_data_provider: Yale University Libraries
         inst_id: yale
     penn_tei:
       directory: manuscript/records/penn/schoenberg
@@ -68,6 +83,13 @@ import:
       properties:
         agg_provider: Penn Museum
         inst_id: penn_museum
+    penn_near_east:
+      directory: museum/records
+      only: !ruby/regexp '/near_eastern-20170820.csv/'
+      traject_file: penn_near_east_config
+      properties:
+        agg_provider: Penn Museum
+        inst_id: penn_museum
     harvard_fgdc:
       directory: maps/records/harvard
       traject_file: fgdc_config
@@ -75,3 +97,11 @@ import:
           agg_provider: Harvard University Library
           agg_data_provider: Harvard University. Center for Geographic Analysis
           inst_id: harvard
+    penn_marc:
+      directory: marc/
+      only: !ruby/regexp '/penn-Mideastmarc.mrc/'
+      traject_file: marc_config
+      properties:
+          agg_provider: University of Pennsylvania Libraries
+          agg_data_provider: University of Pennsylvania Libraries
+          inst_id: penn_marc

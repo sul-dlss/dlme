@@ -13,9 +13,156 @@
 .blacklight-catalog-show .dl-horizontal {
   width: 80%;
   margin-left: 10%;
+  margin-top: 20px;
 }
 
 .oembed-widget {
   width: 80%;
   margin-left: 10%;
+}
+
+body {
+  background-color: $color-gray-lightest;
+  margin-bottom: $footer-height + $footer-top-margin;
+
+  @media (max-width: 991px) {
+    margin-bottom: $footer-height + $footer-top-margin + $footer-mobile-adjustment;
+  }
+}
+
+/* overrides for visual design changes */
+.btn-primary {
+  background-color: $color-black-light;
+  border-color: darken($color-black-light, 4%);
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .dropdown-toggle.btn-primary {
+  background-color: $color-black-medium;
+  border-color: darken($color-black-medium, 4%);
+}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+  background-color: $color-gray-medium;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background-color: $color-gray-lightest;
+}
+
+.table {
+  background-color: $color-gray-lightest;
+  border: 1px solid $color-gray-medium;
+
+  thead {
+    background-color: $color-gray-light;
+  }
+}
+
+.table-striped > tbody > tr:nth-of-type(even) {
+  background-color: $color-gray-light;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: $color-gray-lightest;
+}
+
+.dl-invert dt {
+  color: $color-black-medium;
+}
+
+.thumbnail {
+  background-color: transparent;
+  border: 0;
+}
+
+.breadcrumb {
+  background-color: transparent;
+  border-bottom: 1px solid $color-gray-medium;
+  padding-left: 0;
+
+  > .active {
+    color: $color-black-medium;
+  }
+
+  > li + li:before {
+    color: $color-black-light;
+  }
+}
+
+// Ajustments to sidebars, more compact vertical spacing
+#sidebar li {
+  margin-top: 0;
+}
+
+#sidebar h4 {
+  border-bottom: 1px solid $color-gray-medium;
+  font-weight: 300;
+  font-size: 20px;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+
+  &.nav-heading {
+    margin-bottom: 6px;
+    padding-left: 3px;
+    padding-top: 0;
+  }
+}
+
+#sidebar ul.nav > li a {
+  padding: 3px 12px 6px 3px;
+
+  .blacklight-about_pages-show & {
+    padding-bottom: 4px;
+    padding-top: 4px;
+  }
+}
+
+#sidebar ol.sidenav > li > h4 {
+  border-bottom: 0;
+}
+
+#sidebar .top-panel-heading {
+  padding: 6px 0;
+}
+
+.masthead .site-title {
+  white-space: normal;
+}
+
+.facet_limit-active {
+  border-color: $color-gray-medium;
+}
+
+.facet_limit-active > .panel-heading {
+  background-color: $color-gray-medium;
+  border-color: $color-black-light;
+  color: $color-blackish;
+}
+
+.facet_limit-active > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: $color-gray-medium;
+}
+
+// Overrides for mobile viewports
+@media (max-width: 767px) {
+  .navbar-default .navbar-form {
+    border-color: transparent;
+  }
+
+  #sidebar .top-panel-heading {
+    border: 0;
+  }
+
+  .masthead .site-title {
+    text-align: center;
+  }
 }

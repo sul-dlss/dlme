@@ -6,7 +6,7 @@ RSpec.describe 'Transforming FGDC files' do
   describe 'Transform Harvard FGDC file' do
     let(:indexer) { Pipeline.for('harvard_fgdc').indexer(HarvestedResource.new(original_filename: fixture_file_path)) }
     let(:fixture_file_path) { File.join(fixture_path, 'fgdc/HARVARD.SDE2.AFRICOVER_EG_RIVERS.fgdc.xml') }
-    let(:data) { File.open(fixture_file_path).read }
+    let(:data) { File.open(fixture_file_path) }
     let(:exhibit) { create(:exhibit) }
     let(:slug) { exhibit.slug }
 
@@ -19,7 +19,7 @@ RSpec.describe 'Transforming FGDC files' do
       indexer.process(data)
       expect(CreateResourceJob).to have_received(:perform_later) do |_id, _two, json|
         dlme = JSON.parse(json)
-        expect(dlme['id']).to eq 'AFRICOVER_EG_RIVERS'
+        expect(dlme['id']).to eq 'harvard_AFRICOVER_EG_RIVERS'
         expect(dlme['agg_data_provider']).to eq 'Harvard University. Center for Geographic Analysis'
         expect(dlme['agg_provider']).to eq 'Harvard University Library'
         # rubocop:disable Metrics/LineLength

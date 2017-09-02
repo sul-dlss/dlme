@@ -16,8 +16,9 @@ class DlmeJsonResourceBuilder < Spotlight::SolrDocumentBuilder
 
   def to_solr
     source = resource.json
-    { 'id' => source['id'] }.tap do |sink|
+    { 'id' => source['id'], '__raw_resource_json_ss' => JSON.pretty_generate(source) }.tap do |sink|
       transform_to_untokenized_solr_fields(source, sink: sink)
+      transform_to_untokenized_solr_fields(resource.metadata, sink: sink)
 
       TOKENIZED_COPY_FIELDS.each do |key|
         sink["#{key}_tsim"] = source[key] if source[key]

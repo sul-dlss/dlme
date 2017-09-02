@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Transforming MODS files' do
-  let(:data) { File.open(fixture_file_path).read }
+  let(:data) { File.open(fixture_file_path) }
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 
@@ -25,7 +25,7 @@ RSpec.describe 'Transforming MODS files' do
 
         expect(dlme['id']).to eq 'princeton_eg1-0019'
         expect(dlme['cho_identifier']).to eq ['eg1-0019', 'http://diglib.princeton.edu/mdata/pudl0100/posters/eg1_0019.mods']
-        expect(dlme['cho_language']).to eq ['ara']
+        expect(dlme['cho_language']).to eq ['Arabic']
         expect(dlme['cho_coverage']).to eq ['Egypt']
         expect(dlme['cho_contributor'].length).to eq 3
         expect(dlme['cho_date']).to eq ['1990']

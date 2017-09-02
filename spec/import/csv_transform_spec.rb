@@ -11,7 +11,7 @@ RSpec.describe 'Transforming CSV files' do
     end
   end
   let(:fixture_file_path) { File.join(fixture_path, 'csv/met.csv') }
-  let(:data) { File.open(fixture_file_path).read }
+  let(:data) { File.open(fixture_file_path) }
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 

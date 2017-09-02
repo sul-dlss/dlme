@@ -3,6 +3,7 @@
 require_relative 'xml_reader'
 require_relative 'dlme_json_resource_writer'
 require_relative 'macros/dlme'
+require_relative 'macros/extraction'
 require_relative 'macros/fgdc'
 require_relative 'macros/xml'
 
@@ -16,7 +17,7 @@ settings do
 end
 
 # Record Identifier
-to_field 'id', generate_fgdc_id
+to_field 'id', generate_fgdc_id(prefixed: true)
 
 # CHO Required
 to_field 'cho_identifier', generate_fgdc_id

@@ -8,7 +8,7 @@ module Macros
     def extract_json(path, options = {})
       lambda do |json, accumulator, _context|
         result = Array(JsonPath.on(json, path))
-        result = result.map(&:strip) if options.key?(:trim)
+        result = Macros::Extraction.apply_extraction_options(result, options)
         accumulator.concat(result)
       end
     end

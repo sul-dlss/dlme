@@ -5,6 +5,7 @@
 require_relative 'csv_reader'
 require_relative 'dlme_json_resource_writer'
 require_relative 'macros/dlme'
+require_relative 'macros/extraction'
 require_relative 'macros/csv'
 extend Macros::DLME
 extend Macros::Csv
@@ -40,7 +41,7 @@ to_field 'cho_description', column('Reverse Type')
 to_field 'cho_title', column('Title')
 to_field 'cho_identifier', column('URI')
 to_field 'cho_description', column('Weight')
-to_field 'cho_date', normalize_numismatic_date
+to_field 'cho_date', column('Year', replace: ['|', ' - '])
 to_field 'agg_is_shown_at' do |_record, accumulator, context|
   accumulator << transform_values(context,
                                   'wr_id' => [column('URI')])

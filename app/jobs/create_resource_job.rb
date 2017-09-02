@@ -4,10 +4,13 @@
 class CreateResourceJob < ApplicationJob
   queue_as :default
 
-  def perform(id, exhibit, json)
+  def perform(id, exhibit, json, metadata = {})
     resource = DlmeJson.find_or_initialize_by(url: id, exhibit_id: exhibit.id)
-    resource.data = { json: json }
-    return if resource.save_and_index
-    logger.warn "Unable to save resource #{id} because: #{resource.errors.full_messages}"
+    resource.attributes = { json: json, metadata: metadata }
+    unless resource.save
+      logger.warn "Unable to save resource #{id} because: #{resource.errors.full_messages}"
+      return
+    end
+    resource.reindex
   end
 end

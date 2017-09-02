@@ -1,34 +1,87 @@
-$clir-burgundy: #560319;
-$dlf-blue:      #046BA5;
-$bg-gray:       #eef2f5;
-
 @import 'https://fonts.googleapis.com/css?family=Crimson+Text:600';
 @import 'https://cdn.rawgit.com/clirdlf/logo-fonts/master/style.min.css';
 @import 'https://cdn.rawgit.com/clirdlf/logo-fonts/master/clir-font/stylesheet.min.css';
 
-.bg-gray {
-  background: $bg-gray;
-  border-top: 1px solid darken($bg-gray, 40%);
-}
+.footer {
+  background-color: #cacccb;
+  border-top: 2px solid #ababba;
+  bottom: 0;
+  height: $footer-height;
+  margin-top: $footer-top-margin;
+  padding: 20px 10px 12px;
+  position: absolute;
+  width: 100%;
 
-footer {
-  .clir-color { color: $clir-burgundy; }
-  .clir-font  { font-family: 'A028', serif; color: #97a0af; }
-  .dlf-font   { font-family: 'Crimson Text', serif; }
-  .dlf-color  { color: $dlf-blue; }
-
-  .logo {
+  .logos {
     font-size: 22px;
     letter-spacing: 1px;
-    margin-bottom: 0;
 
     a:hover {
       text-decoration: none;
     }
+
+    .clir-logo {
+      color: $clir-burgundy;
+      font-family: 'A028', serif;
+      margin-right: 10px;
+    }
+
+    .dlf-logo {
+      color: $dlf-blue;
+      font-family: 'Crimson Text', serif;
+      font-size: 1.2em;
+    }
   }
 
-  .footer-alt {
-    border-top: 1px solid rgba(151,160,175, 0.2);
-    padding-top: 20px;
+  .clir-address {
+    color: #333;
+    padding-top: 0;
+
+    .vcard {
+      font-size: 15px;
+      margin-bottom: 0;
+    }
+
+    .email {
+      font-weight: 500;
+    }
+  }
+
+  .social-links {
+    margin-top: 12px;
+
+    a {
+      color: $color-blackish;
+    }
+
+    img {
+      margin-bottom: 3px;
+    }
+
+    > li:first-child {
+      padding-left: 0;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .footer {
+    height: $footer-height + $footer-mobile-adjustment;
+    padding-top: 15px;
+    text-align: center;
+
+    .logos {
+      font-size: 20px;
+    }
+
+    .clir-address {
+      margin-top: 12px;
+    }
+  }
+}
+
+@media (max-width: 567px) {
+  .footer .logos {
+    font-size: 16px;
   }
 }

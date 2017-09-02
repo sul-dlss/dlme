@@ -23,11 +23,17 @@ module Macros
       end
     end
 
-    def generate_fgdc_id
+    def generate_fgdc_id(prefixed: false)
       lambda { |record, accumulator, context|
         identifier = select_identifier(record, context)
 
-        accumulator << identifier if identifier.present?
+        next if identifier.blank?
+
+        accumulator << if prefixed
+                         identifier_with_prefix(context, identifier)
+                       else
+                         identifier
+                       end
       }
     end
 

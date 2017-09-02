@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Transforming Nuministics CSV file' do
   let(:indexer) { Pipeline.for('numismatics').indexer(HarvestedResource.new(original_filename: fixture_file_path)) }
   let(:fixture_file_path) { File.join(fixture_path, 'csv/numismatic_islam_department.csv') }
-  let(:data) { File.open(fixture_file_path).read }
+  let(:data) { File.open(fixture_file_path) }
   let(:exhibit) { create(:exhibit) }
   let(:slug) { exhibit.slug }
 
@@ -39,7 +39,7 @@ RSpec.describe 'Transforming Nuministics CSV file' do
       expect(dlme['cho_spatial']).to eq ['NE Africa']
       expect(dlme['cho_title']).to eq ['Glass 3 wuqiyya of Zaffar b. Shabba, NE Africa, 739 - 740. 1975.93.862']
       expect(dlme['cho_identifier']).to include 'http://numismatics.org/search/id/1975.93.862'
-      expect(dlme['cho_date']).to eq ['739-740']
+      expect(dlme['cho_date']).to eq ['739 - 740']
       expect(dlme['agg_is_shown_at']).to include('wr_id' => 'http://numismatics.org/search/id/1975.93.862')
     end
   end

@@ -30,7 +30,7 @@ module Macros
 
     def generate_creator
       lambda do |row, accumulator, _context|
-        accumulator << [row[DISPLAY_NAME], row[SUFFIX], artist_role_bio(row)].select(&:present?).join(', ')
+        accumulator << [row[DISPLAY_NAME], row[SUFFIX], artist_role_bio(row)].select(&:present?).join(', ').presence
       end
     end
 
@@ -55,7 +55,7 @@ module Macros
 
     def edm_type
       lambda do |row, accumulator, _context|
-        accumulator << '3D' unless row[CLASSIFICATION].empty?
+        accumulator << 'Image' if row[CLASSIFICATION].present?
       end
     end
 
@@ -69,7 +69,7 @@ module Macros
     # This overrides the dlme macro of the same name
     def data_provider
       lambda do |row, accumulator, _context|
-        accumulator << [row['Department'], row['Repository']].select(&:present?).join(', ')
+        accumulator << [row['Department'], row['Repository']].select(&:present?).join(', ').presence
       end
     end
   end

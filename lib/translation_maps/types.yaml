@@ -28,3 +28,17 @@ text: text
 three dimensional object: image
 vector digital data: dataset
 video: video
+# MARC types
+a: text
+c: text
+d: text
+e: cartographic
+f: cartographic
+g: image
+i: sound
+j: sound
+k: image
+m: software
+p: text
+r: image
+t: text
