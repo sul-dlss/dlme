@@ -5,16 +5,20 @@
 * [Metadata Application Profile](application_profile.md)
 * [Metadata mappings spreadsheet](https://docs.google.com/spreadsheets/d/1Sp7uMHizVX7xN7xN9mm-vgEuESQBovXO-qenAo_TV-w/edit)
 * [Information for Data Providers](providers.md)
-
-## Steps for Adding Data to DLME
-
-[How to add a data provider to DLME](add_data_source.md)
+* [How to add a data provider to DLME](add_data_source.md)
 
 ## Details on Specific Data & Tool Choices for this DLME Application
 
 Part of building this proof of concept includes making some decisions for data that effect providers' adding of data to this repository.
 
 Some of these decisions are areas to be explicitly revisited as part of future work cycles, but for clarity of users and providers now, we detail some specific points here.
+
+### Dataflow through the Application
+
+At present, this diagram represents how data travels from being queued up for inclusion to internal representation in the DLME application's database and metadata included the discovery index:
+
+![overview diagram](https://docs.google.com/drawings/d/e/2PACX-1vTFw2LtovfIngR5wk-XcYLHOO-loPIxeUJqRQihsjchmTP9hiIoa5IvxSdGBd2aOvenF2HMx9H2rHUI/pub?w=3372&h=1608)
+[Link to diagram in Google Drawings](https://docs.google.com/drawings/d/116Z4PzOrwiYGgc81nTUaM7pE6cAOwhCd3HnC3NTtWSo/edit?usp=sharing)
 
 ### Languages Normalization
 
