@@ -11,7 +11,7 @@ complete configuration.
 2. [XML / MODS](#mods)
 3. [MARC](#marc)
 
-## Comma Separated Values <a name="csv" />
+## Comma Separated Values
 
 ### Example Source Data
 
@@ -35,7 +35,7 @@ to_field 'agg_data_provider', data_provider
 to_field 'agg_provider', provider
 ```
 
-## XML / MODS <a name="mods" />
+## XML / MODS
 
 ### Example Source Data
 
@@ -64,7 +64,7 @@ to_field 'agg_data_provider', data_provider
 to_field 'agg_provider', provider
 ```
 
-## MARC <a name="marc" />
+## MARC
 
 ### Example Configuration
 

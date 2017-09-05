@@ -1,17 +1,14 @@
-# Data Documentation for the Digital Library of the Middle East Application
+# Data Documentation for the Digital Library of the Middle East
 
 ## Using this Documentation
 
-* [Metadata Application Profile](application_profile.md)
-* [Metadata mappings spreadsheet](https://docs.google.com/spreadsheets/d/1Sp7uMHizVX7xN7xN9mm-vgEuESQBovXO-qenAo_TV-w/edit)
-* [Information for Data Providers](providers.md)
-* [How to add a data provider to DLME](add_data_source.md)
+This is documentation about the data choices in the existing DLME application as well as information for data providers.
 
-## Details on Specific Data & Tool Choices for this DLME Application
+For data providers, start by reading our [Information for Data Providers](providers.md) page. For information on our data choices for this application, keep reading.
 
-Part of building this proof of concept includes making some decisions for data that effect providers' adding of data to this repository.
+## Specific Data Choices for this DLME Application
 
-Some of these decisions are areas to be explicitly revisited as part of future work cycles, but for clarity of users and providers now, we detail some specific points here.
+Part of building this proof of concept includes making some decisions for data processing that effect providers' adding of data to this repository. Some of these decisions are areas to be explicitly revisited as part of future work cycles, but for clarity of users and providers now, we detail some specific points here.
 
 ### Dataflow through the Application
 
@@ -19,6 +16,20 @@ At present, this diagram represents how data travels from being queued up for in
 
 ![overview diagram](https://docs.google.com/drawings/d/e/2PACX-1vTFw2LtovfIngR5wk-XcYLHOO-loPIxeUJqRQihsjchmTP9hiIoa5IvxSdGBd2aOvenF2HMx9H2rHUI/pub?w=3372&h=1608)
 [Link to diagram in Google Drawings](https://docs.google.com/drawings/d/116Z4PzOrwiYGgc81nTUaM7pE6cAOwhCd3HnC3NTtWSo/edit?usp=sharing)
+
+### XML Handling
+
+At present, we expect that metadata loaded as XML will have one record per XML document. This unfortunately is hard-coded in our extract XML methods for the mapping configurations (and in our Xpath expectations).
+
+It is queued up for future technical work to be able to handle multi-record and single record XML documents.
+
+### Controlled Vocabularies & Look-ups (Translation Maps)
+
+Right now, the following controlled vocabularies / look-ups are used:
+
+* **Languages / Scripts:** We try to match language values to iso639-2b labels using Traject's built-in [marc_language translation map](https://github.com/traject/traject/blob/master/lib/translation_maps/marc_languages.yaml). Read more about this below.
+* **EDM (Europeana Data Model) Types:** We normalize formats, types, and forms to also present one of one of these possible cho_edm_type values: 3d, cartographic, collection, dataset, image, interactive resource, software, sound, text, video. These types are an extension of the Europeana Data Model Types, and they are mapped in [the DLME translation map for types](../lib/translation_maps/types.yaml).
+* **Service Conforms To:** Services right now are skewed towards IIIF services, so the available values for this are 'http://iiif.io/api/image/', 'http://iiif.io/api/auth/', 'http://iiif.io/api/presentation/' or 'http://iiif.io/api/search/'.
 
 ### Languages Normalization
 
@@ -69,6 +80,6 @@ MARC Languages are codes are equivalent to those of `ISO 639-2b` codes and parti
 
 A future work cycle would be to analyze and update mappings, if needed, for stricter adherence to `ISO639-2b` labels instead of MARC language labels.
 
-## Contact & Where to Find Help
+## Contact information
 
-To be added.
+For more information, please contact [dlme-tech-data@lists.stanford.edu](mailto:dlme-tech-data@lists.stanford.edu).

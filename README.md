@@ -2,6 +2,15 @@
 
 # Digital Library of the Middle East
 
+## Dataflows
+
+This diagram represents how data gets loading into the application and ends up in the Solr index:
+
+![overview diagram](https://docs.google.com/drawings/d/e/2PACX-1vTFw2LtovfIngR5wk-XcYLHOO-loPIxeUJqRQihsjchmTP9hiIoa5IvxSdGBd2aOvenF2HMx9H2rHUI/pub?w=3372&h=1608)
+[Link to diagram in Google Drawings](https://docs.google.com/drawings/d/116Z4PzOrwiYGgc81nTUaM7pE6cAOwhCd3HnC3NTtWSo/edit?usp=sharing)
+
+You can read more about our data and related documentation in our [data documentation](docs/README.md).
+
 ## Configuration
 
 The AWS deployment needs to provide the follow environment configuration:
@@ -75,5 +84,5 @@ $ bundle exec traject -c config/traject.rb -c lib/traject/mods_config.rb -s sour
 Example:
 
 ```
-$ bundle exec traject -c config/traject.rb -c lib/traject/fgdc_config.rb -s source='harvard_fgdc' spec/fixtures/fgdc/HARVARD.SDE2.AFRICOVER_EG_RIVERS.fgdc.xml 
+$ bundle exec traject -c config/traject.rb -c lib/traject/fgdc_config.rb -s source='harvard_fgdc' spec/fixtures/fgdc/HARVARD.SDE2.AFRICOVER_EG_RIVERS.fgdc.xml
 ```
