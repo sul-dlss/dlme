@@ -31,6 +31,12 @@ Right now, the following controlled vocabularies / look-ups are used:
 * **EDM (Europeana Data Model) Types:** We normalize formats, types, and forms to also present one of one of these possible cho_edm_type values: 3d, cartographic, collection, dataset, image, interactive resource, software, sound, text, video. These types are an extension of the Europeana Data Model Types, and they are mapped in [the DLME translation map for types](../lib/translation_maps/types.yaml).
 * **Service Conforms To:** Services right now are skewed towards IIIF services, so the available values for this are 'http://iiif.io/api/image/', 'http://iiif.io/api/auth/', 'http://iiif.io/api/presentation/' or 'http://iiif.io/api/search/'.
 
+None of these normalizations or look-ups currently employ fuzzy matching; if the provided field value doesn't exactly match a value in the translation map, then a match is not made. In the configuration files, you can select the options for passing through the original value if a match is not made like so:
+
+```
+extract_mods('/*/mods:language/mods:scriptTerm', translation_map: ['scripts', default: '__passthrough__'])
+```
+
 ### Languages Normalization
 
 Language (`cho_language`) is a mandatory if applicable field for DLME objects. Discovery of objects via clear and consistent language facets is a prioritized discovery path we hope to support in this work. As such, we do normalize as able languages mapped to DLME objects to display labels from `iso639-2b` - the labels, not the codes.
