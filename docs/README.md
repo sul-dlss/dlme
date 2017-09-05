@@ -19,9 +19,20 @@ At present, this diagram represents how data travels from being queued up for in
 
 ### XML Handling
 
-At present, we expect that metadata loaded as XML will have one record per XML document. This unfortunately is hard-coded in our extract XML methods for the mapping configurations (and in our Xpath expectations).
+At present, we expect that metadata loaded as XML will have one record per XML document (or file). This unfortunately is hard-coded in our extract XML methods for the mapping configurations (and in our Xpath expectations).
 
 It is queued up for future technical work to be able to handle multi-record and single record XML documents.
+
+### URL Look-ups for Preview, Object in Context, Services, etc.
+
+For the majority of the metadata provided to this DLME demonstration, URLs for the digital object in context, the thumbnail, an oEmbed or IIIF service representations, or related, were not consistently provided.
+
+As such, where we were able to discern the logic, we have to develop DLME-specific Traject macros specific to data providers to then generate these URLs. Examples of this work include:
+
+- [the IIIF manifest lookups written for Stanford MODS records](https://github.com/sul-dlss/dlme/blob/master/lib/traject/macros/iiif.rb#L6)
+- [the Metropolitan Museum CSV records then leverage a Metropolitan Museum Open Data API to retrieve thumbnail URLs](https://github.com/sul-dlss/dlme/blob/master/lib/traject/macros/met_csv.rb#L24)
+
+For future data providers, being able to perform URL look-ups or generation based on values in the records (in particular, identifiers) will continue to be tricky and probably require the writing of similar macros.
 
 ### Controlled Vocabularies & Look-ups (Translation Maps)
 
