@@ -9,9 +9,9 @@ Currently, we have readers to accept metadata in the following formats:
 * XML
 * CSV
 * MARC21 binary
-* JSON
+* JSON (not tested)
 
-We have data mappings in existence for MODS, MARC21, TEI, FGDC, IIIF, and a number of local CSV schema.
+We have data mappings in existence for MODS, MARC21, TEI, FGDC, IIIF, and a number of local schema in CSV.
 
 ## DLME Object Record requirements
 
@@ -31,9 +31,9 @@ If certain information such as identifiers, links to digital objects, or image t
 
 ## In-Depth Data Provider Documentation
 
-* [Metadata ingested into the DLME needs to be mapped to the DLME Metadata Application Profile (MAP), or the available classes, fields, and definitions (including requirements) for objects described in DLME. You can read more details on the DLME MAP at this link.](application_profile.md)
-* [After understanding the DLME MAP, data providers will need to provide a metadata mapping from your provided metadata to our DLME MAP. You need to pay special attention to the required fields (identifier, title, language if applicable and URL to view the object). To get started, you can view existing mappings or add your own mapping to our open DLME Mappings Google spreadsheet.](https://docs.google.com/spreadsheets/d/1Sp7uMHizVX7xN7xN9mm-vgEuESQBovXO-qenAo_TV-w/edit)
-* [How to add a data provider to DLME](add_data_source.md)
+* [Metadata ingested into the DLME needs to be mapped to the DLME Metadata Application Profile (MAP), or the available classes, fields, and definitions (including requirements) for objects described in DLME. You can read more details on the DLME MAP at this link](application_profile.md).
+* [After understanding the DLME MAP, data providers will need to provide a metadata mapping from your provided metadata to our DLME MAP. You need to pay special attention to the required fields (identifier, title, language if applicable and URL to view the object). To get started, you can view existing mappings or add your own mapping to our open DLME Mappings Google spreadsheet](https://docs.google.com/spreadsheets/d/1Sp7uMHizVX7xN7xN9mm-vgEuESQBovXO-qenAo_TV-w/edit).
+* [The above and more is described in our documentation for adding new data sources to DLME](add_data_source.md).
 
 ## Suggested Digital Object Delivery Mechanism
 
