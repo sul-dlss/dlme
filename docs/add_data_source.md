@@ -7,13 +7,13 @@ This process leverages extensions to [Traject, a configuration-based MARC to Sol
 ## Steps
 
 1. [Load Your Metadata into Our DLME Metadata GitHub Repository](#1-stage-your-metadata)
-2. [Create a Branch on This GitHub Repository](#2-create-a-dlme-github-repo-branch)
+2. [Create a Branch on This GitHub Repository](#2-create-a-dlme-github-repository-branch)
 3. [Add Your Data Source's Settings](#3-add-your-data-source-settings)
 4. [Establish data mapping](#4-create-your-data-mapping)
-5. [Write mapping configuration](#config)
-6. [[Optional] Write mapping macro for data transformations](#macro)
-7. [Write spec to test data mapping and provide fixture data for testing](#test-data-mapping)
-8. [Create Your Pull Request]()
+5. [Write mapping configuration](#5-create-your-mapping-configuration-file)
+6. [Optional: Write mapping macro for data transformations](#6-mapping-macros)
+7. [Write spec to test data mapping and provide fixture data for testing](#7-test-your-data-mapping)
+8. [Create Your Pull Request](#8-create-a-pull-request)
 
 ## 1. Stage Your Metadata
 
