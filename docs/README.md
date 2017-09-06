@@ -1,20 +1,52 @@
-# Data Documentation for the Digital Library of the Middle East Application
+# Data Documentation for the Digital Library of the Middle East
 
 ## Using this Documentation
 
-* [Metadata Application Profile](application_profile.md)
-* [Metadata mappings spreadsheet](https://docs.google.com/spreadsheets/d/1Sp7uMHizVX7xN7xN9mm-vgEuESQBovXO-qenAo_TV-w/edit)
-* [Information for Data Providers](providers.md)
+This is documentation about the data choices in the existing DLME application as well as information for data providers.
 
-## Steps for Adding Data to DLME
+For data providers, start by reading our [Information for Data Providers](providers.md) page. For information on our data choices for this application, keep reading.
 
-[How to add a data provider to DLME](add_data_source.md)
+## Specific Data Choices for this DLME Application
 
-## Details on Specific Data & Tool Choices for this DLME Application
+Part of building this proof of concept includes making some decisions for data processing that effect providers' adding of data to this repository. Some of these decisions are areas to be explicitly revisited as part of future work cycles, but for clarity of users and providers now, we detail some specific points here.
 
-Part of building this proof of concept includes making some decisions for data that effect providers' adding of data to this repository.
+### Dataflow through the Application
 
-Some of these decisions are areas to be explicitly revisited as part of future work cycles, but for clarity of users and providers now, we detail some specific points here.
+At present, this diagram represents how data travels from being queued up for inclusion to internal representation in the DLME application's database and metadata included the discovery index:
+
+![overview diagram](https://docs.google.com/drawings/d/e/2PACX-1vTFw2LtovfIngR5wk-XcYLHOO-loPIxeUJqRQihsjchmTP9hiIoa5IvxSdGBd2aOvenF2HMx9H2rHUI/pub?w=3372&h=1608)
+[Link to diagram in Google Drawings](https://docs.google.com/drawings/d/116Z4PzOrwiYGgc81nTUaM7pE6cAOwhCd3HnC3NTtWSo/edit?usp=sharing)
+
+### XML Handling
+
+At present, we expect that metadata loaded as XML will have one record per XML document (or file). This unfortunately is hard-coded in our extract XML methods for the mapping configurations (and in our Xpath expectations).
+
+It is queued up for future technical work to be able to handle multi-record and single record XML documents.
+
+### URL Look-ups for Preview, Object in Context, Services, etc.
+
+For the majority of the metadata provided to this DLME demonstration, URLs for the digital object in context, the thumbnail, an oEmbed or IIIF service representations, or related, were not consistently provided.
+
+As such, where we were able to discern the logic, we have to develop DLME-specific Traject macros specific to data providers to then generate these URLs. Examples of this work include:
+
+- [the IIIF manifest lookups written for Stanford MODS records](https://github.com/sul-dlss/dlme/blob/master/lib/traject/macros/iiif.rb#L6)
+- [the Metropolitan Museum CSV records then leverage a Metropolitan Museum Open Data API to retrieve thumbnail URLs](https://github.com/sul-dlss/dlme/blob/master/lib/traject/macros/met_csv.rb#L24)
+
+For future data providers, being able to perform URL look-ups or generation based on values in the records (in particular, identifiers) will continue to be tricky and probably require the writing of similar macros.
+
+### Controlled Vocabularies & Look-ups (Translation Maps)
+
+Right now, the following controlled vocabularies / look-ups are used:
+
+* **Languages / Scripts:** We try to match language values to iso639-2b labels using Traject's built-in [marc_language translation map](https://github.com/traject/traject/blob/master/lib/translation_maps/marc_languages.yaml). Read more about this below.
+* **EDM (Europeana Data Model) Types:** We normalize formats, types, and forms to also present one of one of these possible cho_edm_type values: 3d, cartographic, collection, dataset, image, interactive resource, software, sound, text, video. These types are an extension of the Europeana Data Model Types, and they are mapped in [the DLME translation map for types](../lib/translation_maps/types.yaml).
+* **Service Conforms To:** Services right now are skewed towards IIIF services, so the available values for this are 'http://iiif.io/api/image/', 'http://iiif.io/api/auth/', 'http://iiif.io/api/presentation/' or 'http://iiif.io/api/search/'.
+
+None of these normalizations or look-ups currently employ fuzzy matching; if the provided field value doesn't exactly match a value in the translation map, then a match is not made. In the configuration files, you can select the options for passing through the original value if a match is not made like so:
+
+```
+extract_mods('/*/mods:language/mods:scriptTerm', translation_map: ['scripts', default: '__passthrough__'])
+```
 
 ### Languages Normalization
 
@@ -65,6 +97,6 @@ MARC Languages are codes are equivalent to those of `ISO 639-2b` codes and parti
 
 A future work cycle would be to analyze and update mappings, if needed, for stricter adherence to `ISO639-2b` labels instead of MARC language labels.
 
-## Contact & Where to Find Help
+## Contact information
 
-To be added.
+For more information, please contact [dlme-tech-data@lists.stanford.edu](mailto:dlme-tech-data@lists.stanford.edu).

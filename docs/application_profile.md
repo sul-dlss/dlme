@@ -1,37 +1,31 @@
 # DLME Application Profile and Schema Mapping
 
-## Assumptions for initial prototype
+## Assumptions for DLME Initial Prototype
 
-* DLME needs to aggregate data about cultural heritage objects sourced from
-multiple institutions using various schemas into a common index
-* Any application profile, model, used etc. for DLME should be based on a
-preexisting application profile, and document any needed divergences
-* For the prototype phase, any downstream publication or production of RDF
-should be considered secondary
-* Subsequently, context classes may not be applicable if data is only available
-as literals
+* DLME needs to aggregate data about cultural heritage objects sourced from multiple institutions using various schemas into a common index
+* Any application profile, model, used etc. for DLME should be based on a pre-existing application profile and document any needed divergences
+* For the prototype phase, any downstream publication or production of RDF should be considered secondary
+* Subsequently, context classes (e.g. Agents, Subjects, Events) may not be applicable if data is only available as literals
 
 ## Common / Current Data Models to DLME Application Profile Mappings
 
 * Schemas are selected based on their appearance in [this GH repo](https://github.com/waynegraham/dlme-metadata) containing metadata for batch loading
-* Notes and some basic analysis of data for mapping purposes is in [this Google spreadsheet](https://docs.google.com/spreadsheets/d/1Sp7uMHizVX7xN7xN9mm-vgEuESQBovXO-qenAo_TV-w/edit?usp=sharing) (the mappings are then migrated here for review / completion)
+* Notes and some basic analysis of data for mapping purposes is in [this Google spreadsheet](https://docs.google.com/spreadsheets/d/1Sp7uMHizVX7xN7xN9mm-vgEuESQBovXO-qenAo_TV-w/edit?usp=sharing)
+* [Details on How To Add Data to DLME from a New Provider to DLME](add_data_source.md)
 
 ## Application profile
 
-The DLME Prototype Application Profile a subset of the [Europeana Data Model](http://pro.europeana.eu/share-your-data/data-guidelines/edm-documentation).
-Currently, the Application Profile only focuses on implementation of EDM's core
-classes (i.e. `ore:Aggregation`, `edm:ProvidedCHO`, and `edm:WebResource`), plus
-the [EDM Profile for IIIF](http://pro.europeana.eu/files/Europeana_Professional/Share_your_data/Technical_requirements/EDM_profiles/IIIFtoEDM_profile_042016.pdf).
+The DLME Prototype Application Profile a subset of the [Europeana Data Model](http://pro.europeana.eu/share-your-data/data-guidelines/edm-documentation). Currently, the Application Profile only focuses on implementation of EDM's core classes (i.e. `ore:Aggregation`, `edm:ProvidedCHO`, and `edm:WebResource`), plus the [EDM Profile for IIIF](http://pro.europeana.eu/files/Europeana_Professional/Share_your_data/Technical_requirements/EDM_profiles/IIIFtoEDM_profile_042016.pdf).
 
 ![Drawing of basic model](model.png)
 
 ### Expectation key
 
-| Code   | Description |
-| ------ | ----------- |
-| **M**  | Mandatory   |
-| **M+** | Mandatory if applicable |
-| **R**  | Recommended |
+| Code   | Description               |
+| ------ | ------------------------- |
+| **M**  | Mandatory                 |
+| **M+** | Mandatory if applicable   |
+| **R**  | Recommended               |
 | **R+** | Recommended if applicable |
 
 ### Namespaces
