@@ -58,6 +58,7 @@ import:
         inst_id: met
     princeton_mods:
       directory: movie-posters/records/princeton
+      only: !ruby/regexp '/(.*)+.mods/'
       traject_file: mods_config
       properties:
         agg_provider: Princeton University Library
