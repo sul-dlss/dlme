@@ -293,11 +293,42 @@ Macros are additions to Traject that allow for more complication mappings - fiel
 
 Traject macros provide a facility for more complex data transformation. For more information on how to use macros, you can [review the existing macros](../lib/traject/macros) for examples, or check out the original [Traject documentation on macros and custom logic](https://github.com/traject/traject/blob/master/doc/indexing_rules.md).
 
-## 7. Test data mapping
+## 7. Test Your Data Mapping
+
+There are a few ways to test your data mapping - one method to run the conversion locally and check the output ; another to add unit tests to the DLME codebase for automatic monitoring of the conversion output as part of the codebase' continuous integration and code coverage.
 
 Add a `my_new_source_spec.rb` file to `spec/import`.
 
-### Data Test Structure
+### Convert Your Data Locally
+
+Where you cloned this repository and are working on this branch, you can run Traject locally with your new mapping configuration, but to an `DebugWriter` output that shows the output of the converted data (as YAML) in your shell or stdout for your setup.
+
+At the top level of where you have this repository, with the appropriate gems installed, you can run this command in your shell:
+
+```
+bundle exec traject -c config/traject.rb -c lib/traject/my_new_source_config.rb -s source='my_source' -w DebugWriter [PATH TO YOUR METADATA FILE] source='data_source_name'
+```
+
+For example, this command runs Traject locally with the Stanford MODS configuration on our fixture or test MODS XML data and outputs to the DebugWriter:
+
+```
+bundle exec traject -c config/traject.rb -c lib/traject/mods_config.rb -w DebugWriter spec/fixtures/mods/stanford_bg149mk9437.mods  -s source='stanford_mods'
+```
+
+More information on this command:
+
+- `-c config/traject.rb` configuration sets up the local traject configuration
+- `-c lib/traject/mods_config.rb` reads the Stanford MODS mapping configuration
+- `-w DebugWriter` calls the writer that outputs the converted result to stdout
+- `spec/fixtures/mods/stanford_bg149mk9437.mods` is our MODS/XML to be converted (for checking test output, it is recommended to get a subset of your metadata records to convert against - 1 or 2 records instead of the full set, if you want to review the output)
+- `-s source='stanford_mods'` points to your mapping's settings in our `config/settings.yml` work (described in step 3) so it can load any needed static values
+
+### Add Data Tests
+
+We strongly recommend that you add data tests to this codebase as well to check the expected output of your mapping configuration. To do this, you need to create and add three things:
+
+- **Fixture data:** select 1 or 2 records (the more representative of your overall dataset, the better), give them an appropriate and meaningful name, and add them to a folder for your data type (create one if it doesn't exist): `spec/fixtures/data-format/my_test_record_.xyz`
+- **Data Output Expectation Test:** for the given fixture data, this test will run the conversion with your mapping configuration on it then check the results are what you want. These tests are added to `spec/import`, have an appropriate name (i.e. `source_data_format_spec.rb`), and look like so:
 
 ```
 # frozen_string_literal: true
@@ -327,17 +358,28 @@ RSpec.describe 'Transforming My New Data Source file' do
 end
 ```
 
-### Testing configuration
+You can see examples of relevant tests in that `spec/import` folder.
 
-Run your import spec:
+### Run Data Tests Locally
+
+You can test the output of your created data tests by running rspec locally:
 
 `rspec spec/import/my_new_source_spec.rb`
 
-### Running Your Data Locally Verifying data file mapping
+This will produce a report that indicates any failures - where the conversion output and the spec's expectations do not match.
 
-```
-bundle exec traject -c config/traject.rb -c lib/traject/my_new_source_config.rb -s source='my_source' -w DebugWriter
-[PATH TO COMPLETE DATA FILE]
-```
+If you want to run a full report of your branch's changes (this is optional), you can run the following to run rubocop (which checks your Ruby syntax), runs all the tests, and checks for code coverage (if tests exist for all the code in this database):
+
+`coveralls report`
 
 ## 8. Create a Pull Request
+
+After you have added your mapping configuration, updated the settings to be able to pull your metadata, added your metadata to the DLME Metadata repository, and done any testing needed, you want to create a pull request on this DLME repository to add your data to the master branch.
+
+As this DLME codebase is running continuous integration, your branch will be tested (by rubocop, rspec, coveralls). Once approved and merged into master, it automatically updates the codebase deployed to our DLME code on the production server.
+
+At that point, you should be able to go to the DLME website and kick off a `Harvest Records` job in the DLME project dashboard. If at any point you just want to rerun the indexing, you can use the `Reprocess` button. For your selected data source, it will leverage the configuration and metadata you just added above.
+
+## Contact information
+
+For more information, please contact [dlme-tech-data@lists.stanford.edu](mailto:dlme-tech-data@lists.stanford.edu).
