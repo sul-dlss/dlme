@@ -40,7 +40,7 @@ import:
       directory: manuscript/records/penn/schoenberg
       traject_file: tei_config
       properties:
-        agg_provider: University of Pennsylvania Library
+        agg_provider: University of Pennsylvania Libraries
         inst_id: penn
     stanford_mods:
       directory: maps/records/stanford
