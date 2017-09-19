@@ -95,7 +95,7 @@ gem 'lograge'
 gem 'multihashes'
 gem 'okcomputer'
 gem 'rack-attack'
-gem 'secure_headers'
+gem 'secure_headers', '~> 3.7'
 gem 'slowpoke'
 
 gem 'jsonpath'
