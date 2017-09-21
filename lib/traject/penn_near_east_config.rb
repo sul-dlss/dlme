@@ -47,11 +47,14 @@ to_field 'cho_spatial', column('provenience', split: '|')
 to_field 'cho_description', column('technique', split: '|')
 
 to_field 'agg_is_shown_at' do |_record, accumulator, context|
-  accumulator << transform_values(context,
-                                  'wr_id' => [column('url')])
+  accumulator << transform_values(
+    context,
+    'wr_id' => [column('url')]
+  )
 end
 to_field 'agg_is_shown_by' do |_record, accumulator, context|
-  accumulator << transform_values(context,
-                                  'wr_id' => [column('emuIRN',
-                                                     insert: 'https://www.penn.museum/collections/object_images.php?irn={%s}')])
+  accumulator << transform_values(
+    context,
+    'wr_id' => [column('image')]
+  )
 end
