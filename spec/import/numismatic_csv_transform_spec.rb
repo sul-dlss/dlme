@@ -21,26 +21,25 @@ RSpec.describe 'Transforming Nuministics CSV file' do
       expect(dlme['agg_provider']).to eq 'American Numismatic Society'
 
       # MET Museum
-      expect(dlme['id']).to eq 'ans_1975-93-862'
+      expect(dlme['id']).to eq 'ans_1975-93-86'
 
-      expect(dlme['cho_contributor']).to include 'Zaffar b. Shabba'
-      expect(dlme['cho_contributor']).to include 'al-Qasim b. `Ubayd Allah'
-      expect(dlme['cho_description']).to include '3 wuqiyya'
+      expect(dlme['cho_contributor']).to include 'al-Mu`izz'
+      expect(dlme['cho_description']).to include '2.84'
       expect(dlme['agg_data_provider']).to eq 'Islamic'
-      expect(dlme['cho_extent']).to eq nil
-      expect(dlme['cho_temporal']).to eq ['Umayyad glass']
+      expect(dlme['cho_extent']).to include '22.0'
+      expect(dlme['cho_temporal']).to eq ['Fatimid glass']
       expect(dlme['cho_coverage']).to eq nil
       expect(dlme['cho_medium']).to eq ['Glass']
       expect(dlme['cho_creator']).to eq nil
       expect(dlme['cho_format']).to eq ['Weight']
-      expect(dlme['cho_description']).to include '...sim b. ...Allah / Zaffar b....'
-      expect(dlme['cho_identifier']).to include '1975.93.862'
-      expect(dlme['cho_source']).to eq ['Morton.89']
+      expect(dlme['cho_identifier']).to include '1975.93.86'
+      expect(dlme['cho_source']).to eq ['B.13']
       expect(dlme['cho_spatial']).to eq ['NE Africa']
-      expect(dlme['cho_title']).to eq ['Glass 3 wuqiyya of Zaffar b. Shabba, NE Africa, 739 - 740. 1975.93.862']
-      expect(dlme['cho_identifier']).to include 'http://numismatics.org/search/id/1975.93.862'
-      expect(dlme['cho_date']).to eq ['739 - 740']
-      expect(dlme['agg_is_shown_at']).to include('wr_id' => 'http://numismatics.org/search/id/1975.93.862')
+      expect(dlme['cho_title']).to eq ['Glass Weight, NE Africa, 953 - 975. 1975.93.86']
+      expect(dlme['cho_identifier']).to include 'http://numismatics.org/collection/1975.93.86'
+      expect(dlme['cho_date']).to eq ['953 - 975']
+      expect(dlme['agg_is_shown_at']).to include('wr_id' => 'http://numismatics.org/collection/1975.93.86')
+      expect(dlme['agg_is_shown_by']).to include('wr_id' => 'http://numismatics.org/collectionimages/19501999/1975/1975.93.86.obv.width175.jpg')
     end
   end
 end
