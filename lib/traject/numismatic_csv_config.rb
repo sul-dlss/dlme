@@ -7,8 +7,10 @@ require_relative 'dlme_json_resource_writer'
 require_relative 'macros/dlme'
 require_relative 'macros/extraction'
 require_relative 'macros/csv'
+require_relative 'macros/numismatic_csv'
 extend Macros::DLME
 extend Macros::Csv
+extend Macros::NumismaticCsv
 
 settings do
   provide 'writer_class_name', 'DlmeJsonResourceWriter'
@@ -22,7 +24,7 @@ to_field 'id', normalize_prefixed_id('RecordId')
 
 to_field 'cho_contributor', column('Authority', split: '|')
 to_field 'cho_description', column('Denomination')
-to_field 'agg_data_provider', column('Department')
+to_field 'agg_data_provider', provider_department
 to_field 'cho_extent', column('Diameter')
 to_field 'cho_temporal', column('Dynasty')
 to_field 'cho_date', column('Era')

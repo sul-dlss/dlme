@@ -25,7 +25,7 @@ RSpec.describe 'Transforming Nuministics CSV file' do
 
       expect(dlme['cho_contributor']).to include 'al-Mu`izz'
       expect(dlme['cho_description']).to include '2.84'
-      expect(dlme['agg_data_provider']).to eq 'Islamic'
+      expect(dlme['agg_data_provider']).to eq 'Islamic Department, American Numismatic Society'
       expect(dlme['cho_extent']).to include '22.0'
       expect(dlme['cho_temporal']).to eq ['Fatimid glass']
       expect(dlme['cho_coverage']).to eq nil

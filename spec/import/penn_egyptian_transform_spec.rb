@@ -38,7 +38,7 @@ RSpec.describe 'Transforming Penn Egyptian Museum CSV file' do
       expect(dlme['cho_spatial']).to include 'Egypt'
       expect(dlme['cho_spatial']).to include 'Abydos'
       expect(dlme['agg_is_shown_at']).to include('wr_id' => 'http://www.penn.museum/collections/object/286472')
-      expect(dlme['agg_is_shown_by']).to include('wr_id' => 'https://www.penn.museum/collections/object_images.php?irn={286472}')
+      expect(dlme['agg_is_shown_by']).to include('wr_id' => 'https://upmaa-pennmuseum.netdna-ssl.com/collections/images/image_not_available_300.jpg')
     end
   end
 end
