@@ -26,7 +26,7 @@ task ci: [:rubocop] do
 
   SolrWrapper.wrap(port: '8983') do |solr|
     solr.with_collection(name: 'blacklight-core',
-                         dir: File.join(File.expand_path(File.dirname(__FILE__)), 'solr', 'config')) do
+                         dir: File.join(__dir__, 'solr', 'config')) do
       # run the tests
       Rake::Task['spec'].invoke
     end

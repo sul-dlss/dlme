@@ -13,7 +13,10 @@ module MetThumbnailFetcher
     end
     # Some records e.g. 321624, return empty results
     result = image_json['results'].first
+    # rubocop:disable Style/SafeNavigation
+    # Disabled due to https://github.com/bbatsov/rubocop/issues/4766 should be a fix in 0.50.1
     result['webImageUrl'] if result
+    # rubocop:enable Style/SafeNavigation
   end
 
   def self.make_request(id)

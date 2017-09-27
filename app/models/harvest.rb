@@ -2,5 +2,5 @@
 
 # Model for a single harvest of data
 class Harvest < ApplicationRecord
-  has_many :harvested_resources
+  has_many :harvested_resources, dependent: :destroy
 end
