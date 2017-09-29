@@ -82,7 +82,7 @@ GEM
       bootstrap-sass (~> 3.0)
       rails
       ruby-oembed
-    blacklight-spotlight (1.0.0.alpha2)
+    blacklight-spotlight (1.0.0)
       acts-as-taggable-on (~> 5.0)
       almond-rails (~> 0.1)
       autoprefixer-rails
@@ -556,7 +556,7 @@ PLATFORMS
 DEPENDENCIES
   blacklight-gallery (>= 0.3.0)
   blacklight-oembed (>= 0.1.0)
-  blacklight-spotlight (~> 1.0.0.alpha2)
+  blacklight-spotlight (~> 1.0)
   byebug
   capybara (~> 2.13)
   carrierwave-aws
