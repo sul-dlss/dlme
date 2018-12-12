@@ -47,7 +47,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rubocop'
   gem 'rubocop-rspec'
-  gem 'solr_wrapper', '>= 0.3'
+  gem 'solr_wrapper'
 end
 
 group :development do
