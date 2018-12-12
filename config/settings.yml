@@ -13,7 +13,7 @@ s3:
 
 import:
   access_token: ~
-  repo: waynegraham/dlme-metadata
+  repo: waynegraham/dlme-metadata # Need to change this to dlss-labs fork
   properties:
     exhibit_slug: library
     # Because we're using background jobs, we don't use a thread pool.
@@ -99,3 +99,52 @@ import:
           agg_provider: University of Pennsylvania Libraries
           agg_data_provider: University of Pennsylvania Libraries
           inst_id: penn_marc
+    bnf_ideo:
+      directory: bnf/ideo/data
+      traject_file: bnf_ideo_config
+      properties:
+          agg_provider: The Bibliothèque nationale de France
+          agg_data_provider: The Bibliothèque nationale de France
+          inst_id: bnf
+    bnf_bo:
+      directory: bnf/bo/data
+      traject_file: bnf_bo_config
+      properties:
+          agg_provider: The Bibliothèque nationale de France
+          agg_data_provider: The Bibliothèque nationale de France
+          inst_id: bnf
+    bnf_ifea:
+      directory: bnf/ifea/data
+      traject_file: bnf_ifea_config
+      properties:
+          agg_provider: The Bibliothèque nationale de France
+          agg_data_provider: The Bibliothèque nationale de France
+          inst_id: bnf
+    bnf_salt:
+      directory: bnf/salt/data
+      traject_file: bnf_salt_config
+      properties:
+          agg_provider: The Bibliothèque nationale de France
+          agg_data_provider: The Bibliothèque nationale de France
+          inst_id: bnf
+    bnf_ebaf:
+      directory: bnf/ebaf/data
+      traject_file: bnf_ebaf_config
+      properties:
+          agg_provider: The Bibliothèque nationale de France
+          agg_data_provider: The Bibliothèque nationale de France
+          inst_id: bnf
+    bnf_cealex:
+      directory: bnf/cealex/data
+      traject_file: bnf_cealex_config
+      properties:
+          agg_provider: The Bibliothèque nationale de France
+          agg_data_provider: The Bibliothèque nationale de France
+          inst_id: bnf
+    bnf_ifao:
+      directory: bnf/ifao/data
+      traject_file: bnf_ifao_config
+      properties:
+          agg_provider: The Bibliothèque nationale de France
+          agg_data_provider: The Bibliothèque nationale de France
+          inst_id: bnf
