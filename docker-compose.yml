@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: ./
+    environment:
+      - RAILS_LOG_TO_STDOUT=true
+    image: 'suldlss/dlme:latest'
+    ports:
+      - "3000"
+  ruby:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile.ruby
+    image: 'suldlss/dlme:ruby-latest'
