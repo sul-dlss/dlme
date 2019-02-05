@@ -12,11 +12,12 @@ RSpec.describe CatalogHelper do
   end
 
   describe 'render_thumbnail_tag' do
+    subject(:draw) { helper.render_thumbnail_tag(document) }
+
     before do
       allow(helper).to receive(:link_to_document)
       helper.blacklight_config = blacklight_config
     end
-    subject(:draw) { helper.render_thumbnail_tag(document) }
 
     let(:blacklight_config) do
       Blacklight::Configuration.new(index: Blacklight::OpenStructWithHashAccess.new(thumbnail_field: :xyz))

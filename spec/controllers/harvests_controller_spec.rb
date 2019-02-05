@@ -20,6 +20,7 @@ RSpec.describe HarvestsController do
     before do
       allow(ImportJob).to receive(:perform_later)
     end
+
     it 'is successful' do
       post :create
       expect(response).to redirect_to harvests_path

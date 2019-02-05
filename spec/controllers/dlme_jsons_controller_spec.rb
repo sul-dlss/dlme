@@ -68,6 +68,7 @@ RSpec.describe DlmeJsonsController do
         allow(DlmeJson).to receive(:find).and_return(dlme_json)
         allow(dlme_json).to receive(:save_and_index).and_return(false)
       end
+
       it 'draws the edit page' do
         patch :update, params: { exhibit_id: exhibit.slug,
                                  id: dlme_json,
