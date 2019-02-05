@@ -379,7 +379,7 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
-    retriable (3.1.1)
+    retriable (3.1.2)
     riiif (1.7.0)
       deprecation (>= 1.0.0)
       railties (>= 4.2, < 6)
@@ -422,9 +422,9 @@ GEM
     rubocop-rspec (1.17.1)
       rubocop (>= 0.50.0)
     ruby-oembed (0.12.0)
-    ruby-progressbar (1.8.3)
+    ruby-progressbar (1.10.0)
     ruby_dep (1.5.0)
-    rubyzip (1.2.1)
+    rubyzip (1.2.2)
     safely_block (0.2.0)
       errbase
     sass (3.5.1)
@@ -474,7 +474,7 @@ GEM
       rack-timeout (>= 0.3.0)
       rails
       safely_block
-    solr_wrapper (1.1.0)
+    solr_wrapper (2.1.0)
       faraday
       retriable
       ruby-progressbar
@@ -610,4 +610,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.15.4
+   1.17.3
