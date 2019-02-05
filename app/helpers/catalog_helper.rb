@@ -5,11 +5,11 @@ module CatalogHelper
   include Blacklight::CatalogHelperBehavior
 
   # Overriding Blacklight so that everything has a thumbnail
-  # rubocop:disable Style/PredicateName
+  # rubocop:disable Naming/PredicateName
   def has_thumbnail?(_document)
     true
   end
-  # rubocop:enable Style/PredicateName
+  # rubocop:enable Naming/PredicateName
 
   # @note thumbnail handling moves to a presenter in Blacklight 7.
   # overriding to provide a default thumbnail if none exists
