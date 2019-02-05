@@ -29,14 +29,19 @@ And these database configuration settings:
   port: "<%= ENV['RDS_PORT'] %>"
 ```
 
-## Development
+## Local Development
 
-You can spin up the rails server, jetty, and populate the solr index using these commands:
+Most recently run with Ruby 2.5.3
+
+After running bundle install you can spin up the rails server, jetty, and populate the solr index using these commands:
 
 ```console
-$ bundle exec solr_wrapper
-$ bundle exec rails s
+$ bundle exec solr_wrapper 
+$ rake spotlight:initialize #new shell window
+$ REMOTE_USER=admin@admin.edu bundle exec rails s
 ```
+
+Once the dlme rails app is running you can create an exhibit. The title will need to be 'dlme' and the URL slug will need to be 'library'
 
 ## Deploying
 
