@@ -30,7 +30,7 @@ RSpec.describe 'Transforming MODS files' do
                                                                          'https://stacks.stanford.edu/image/iiif/tk780vf9050%2FW586_000001_300',
                                                                           'service_conforms_to' => ['http://iiif.io/api/image/'],
                                                                           'service_implements' =>
-                                                                         'http://iiif.io/api/image/2/level1.json' }],
+                                                                         'http://iiif.io/api/image/2/level2.json' }],
                                                    'wr_id' =>
                                                    'https://stacks.stanford.edu/image/iiif/tk780vf9050%2FW586_000001_300/full/full/0/default.jpg',
                                                    'wr_is_referenced_by' =>
@@ -40,7 +40,7 @@ RSpec.describe 'Transforming MODS files' do
                                                                      'https://stacks.stanford.edu/image/iiif/tk780vf9050%2FW586_000001_300',
                                                                       'service_conforms_to' => ['http://iiif.io/api/image/'],
                                                                       'service_implements' =>
-                                                                     'http://iiif.io/api/image/2/level1.json' }],
+                                                                     'http://iiif.io/api/image/2/level2.json' }],
                                                'wr_id' =>
                                                'https://stacks.stanford.edu/image/iiif/tk780vf9050%2FW586_000001_300/full/!400,400/0/default.jpg',
                                                'wr_is_referenced_by' => ['https://purl.stanford.edu/tk780vf9050/iiif/manifest'])
