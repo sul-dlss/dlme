@@ -1,10 +1,8 @@
-require '/Users/jtim/Dropbox/DLSS/DLME/dlme/lib/traject/xml_reader'
-require '/Users/jtim/Dropbox/DLSS/DLME/dlme/lib/traject/dlme_json_resource_writer'
-require '/Users/jtim/Dropbox/DLSS/DLME/dlme/lib/traject/macros/dlme'
-require '/Users/jtim/Dropbox/DLSS/DLME/dlme/lib/traject/macros/extraction'
-require '/Users/jtim/Dropbox/DLSS/DLME/dlme/lib/traject/macros/xml'
-
-require 'digest/md5'
+require_relative 'xml_reader'
+require_relative 'dlme_json_resource_writer'
+require_relative 'macros/dlme'
+require_relative 'macros/extraction'
+require_relative 'macros/xml'
 
 extend Macros::DLME
 extend Macros::Xml
