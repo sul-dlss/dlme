@@ -7,7 +7,6 @@ AllCops:
   DisplayCopNames: true
   Exclude:
     - 'db/**/*'
-    - 'lib/traject/**/*'
     - 'config/**/*'
     - 'vendor/**/*'
     - 'spec/fixtures/**/*'
