@@ -35,6 +35,11 @@ Requires docker.
 
 ```console
 $ docker-compose up -d
+[FIRST RUN]
+$ docker-compose run app rake db:setup
+$ docker-compose stop
+$ docker-compose up -d
+[ -------- ]
 $ docker ps (to retrieve the container id)
 $ docker exec -it (container id) /bin/sh
 $ rake spotlight:initialize #new shell window
