@@ -31,7 +31,7 @@ require_relative 'support/controller_level_helpers'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include Warden::Test::Helpers, type: :feature
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include ActiveJob::TestHelper, type: :job
