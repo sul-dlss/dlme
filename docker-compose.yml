@@ -6,11 +6,28 @@ services:
       context: ./
     environment:
       - RAILS_LOG_TO_STDOUT=true
+      - RDS_DB_NAME=dlme
+      - RDS_USERNAME=postgres
+      - RDS_PASSWORD=sekret
+      - RDS_HOSTNAME=db
+      - RDS_PORT=5432
+      - SECRET_KEY_BASE="${SECRET_KEY_BASE}"
     image: 'suldlss/dlme:latest'
     ports:
-      - "3000"
-  ruby:
-    build:
-      context: ./
-      dockerfile: ./docker/Dockerfile.ruby
-    image: 'suldlss/dlme:ruby-latest'
+      - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      - dlme
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=sekret
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    networks:
+      - dlme
+networks:
+  dlme:
