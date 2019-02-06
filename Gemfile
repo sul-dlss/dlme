@@ -20,6 +20,10 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Needed while we deploy to elasticbeanstalk to work around:
+#   'Autoprefixer doesn't support Node v4.6.0. Update it.'
+gem 'mini_racer'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
