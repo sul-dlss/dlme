@@ -31,14 +31,18 @@ And these database configuration settings:
 
 ## Local Development
 
-Most recently run with Ruby 2.5.3
-
-After running bundle install you can spin up the rails server, jetty, and populate the solr index using these commands:
+Requires docker.
 
 ```console
-$ bundle exec solr_wrapper 
+$ docker-compose up -d
+[FIRST RUN]
+$ docker-compose run app rake db:setup
+$ docker-compose stop
+$ docker-compose up -d
+[ -------- ]
+$ docker ps (to retrieve the container id)
+$ docker exec -it (container id) /bin/sh
 $ rake spotlight:initialize #new shell window
-$ REMOTE_USER=admin@admin.edu bundle exec rails s
 ```
 
 Once the dlme rails app is running you can create an exhibit. The title will need to be 'dlme' and the URL slug will need to be 'library'
