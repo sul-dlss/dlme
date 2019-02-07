@@ -1,0 +1,7 @@
+.git
+.dockerignore
+.bybug_history
+log/*
+tmp/*
+postgres-data/*
+solr-data/*
