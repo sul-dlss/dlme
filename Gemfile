@@ -104,6 +104,6 @@ gem 'secure_headers', '~> 3.7'
 gem 'slowpoke'
 
 gem 'jsonpath'
-gem 'traject', '~> 2.3'
+gem 'traject', '~> 3.0'
 
 gem 'font-awesome-rails'

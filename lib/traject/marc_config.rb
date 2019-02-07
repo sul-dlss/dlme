@@ -8,6 +8,7 @@ require_relative 'macros/dlme_marc'
 require_relative 'macros/extraction'
 
 extend Macros::DLME
+extend Traject::Macros::Marc21
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 extend Macros::DlmeMarc
