@@ -16,6 +16,8 @@ end
 
 record = 'srw:record/srw:recordData/oai_dc:dc'
 
+NS = { srw: "http://www.loc.gov/zing/srw/", oai_dc: "http://www.openarchives.org/OAI/2.0/oai_dc/", dc: "http://purl.org/dc/elements/1.1/"}
+
 # Cho Required
 to_field 'id', extract_xml("#{record}/dc:identifier", NS), strip
 to_field 'cho_title', extract_xml("#{record}/dc:title", NS), strip
