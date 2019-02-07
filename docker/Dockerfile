@@ -10,9 +10,6 @@ ENV RAILS_SERVE_STATIC_FILES=true
 # Create and set the working directory as /opt
 WORKDIR /opt
 
-# Expose port 3000
-EXPOSE 3000
-
 # Copy the Gemfile and Gemfile.lock, and run bundle install prior to copying all source files
 # This is an optimization that will prevent the need to re-run bundle install when only source
 # code is changed and not dependencies.

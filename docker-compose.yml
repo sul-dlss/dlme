@@ -4,6 +4,7 @@ services:
   app:
     build:
       context: ./
+      dockerfile: ./docker/Dockerfile
     environment:
       - RAILS_LOG_TO_STDOUT=true
       - RDS_DB_NAME=dlme
@@ -16,6 +17,26 @@ services:
     image: 'suldlss/dlme:latest'
     ports:
       - "3000:3000"
+    depends_on:
+      - db
+    networks:
+      - dlme
+  worker:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile-worker
+    environment:
+      - RAILS_LOG_TO_STDOUT=true
+      - RDS_DB_NAME=dlme
+      - RDS_USERNAME=postgres
+      - RDS_PASSWORD=sekret
+      - RDS_HOSTNAME=db
+      - RDS_PORT=5432
+      - SOLR_URL=http://localhost:8983/solr/dlme
+      - SECRET_KEY_BASE="${SECRET_KEY_BASE}"
+    image: 'suldlss/dlme-worker:latest'
+    ports:
+      - "3001:3001"
     depends_on:
       - db
     networks:
