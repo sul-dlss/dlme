@@ -29,8 +29,8 @@ to_field 'cho_date', extract_xml("#{record}/dc:date", LOC_NS), strip
 to_field 'cho_description', extract_xml("#{record}/dc:description", LOC_NS), strip
 to_field 'cho_dc_rights', extract_xml("#{record}/dc:rights", LOC_NS), strip
 to_field 'cho_format', extract_xml("#{record}/dc:format", LOC_NS), strip
-to_field 'cho_type', extract_xml("#{record}/dc:type", LOC_NS), first_only, strip, traLOC_NSlation_map('types'), default('image')
-to_field 'cho_language', extract_xml("#{record}/dc:language", LOC_NS), first_only, strip, traLOC_NSlation_map('marc_languages')
+to_field 'cho_type', extract_xml("#{record}/dc:type", LOC_NS), first_only, strip, translation_map('types'), default('image')
+to_field 'cho_language', extract_xml("#{record}/dc:language", LOC_NS), first_only, strip, translation_map('marc_languages')
 to_field 'cho_publisher', extract_xml("#{record}/dc:publisher", LOC_NS), strip
 to_field 'cho_relation', extract_xml("#{record}/dc:relation", LOC_NS), strip
 to_field 'cho_source', extract_xml("#{record}/dc:source", LOC_NS), strip
