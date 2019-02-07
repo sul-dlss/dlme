@@ -47,7 +47,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'selenium-webdriver'
 
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails', '~> 4.8.0'
   gem 'rails-controller-testing'
   gem 'rubocop', '~> 0.57.1'
   gem 'rubocop-rspec'
@@ -72,7 +72,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'blacklight-spotlight', '1.0.0.alpha2'
+gem 'blacklight-spotlight', '~> 1.1.0'
 
 gem 'friendly_id'
 gem 'iiif-presentation', '~> 0.2.0'
