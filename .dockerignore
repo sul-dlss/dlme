@@ -1,6 +1,6 @@
 .git
 .dockerignore
-.bybug_history
+.byebug_history
 log/*
 tmp/*
 postgres-data/*

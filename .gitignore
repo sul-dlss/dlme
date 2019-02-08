@@ -31,7 +31,6 @@ config/environments/*.local.yml
 
 /public/uploads/
 /public/assets/
-yarn.lock
 
 # Ignore any docker-compose created volume data
 /postgres-data/
