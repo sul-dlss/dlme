@@ -29,7 +29,7 @@ RSpec.describe ::Join do
                                                        [])
       end
 
-      context 'and no_html is set' do
+      context 'when no_html is set' do
         let(:options) { { no_html: true } }
 
         it 'joins with ;' do
