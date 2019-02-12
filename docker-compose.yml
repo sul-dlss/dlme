@@ -4,6 +4,8 @@ services:
   app:
     build:
       context: ./
+      args:
+      - SECRET_KEY_BASE
     environment:
       - RAILS_LOG_TO_STDOUT=true
       - RDS_DB_NAME=dlme
