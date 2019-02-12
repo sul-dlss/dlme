@@ -11,7 +11,7 @@ services:
       - RDS_PASSWORD=sekret
       - RDS_HOSTNAME=postgres
       - RDS_PORT=5432
-      - SOLR_URL=http://localhost:8983/solr/dlme
+      - SOLR_URL=http://solr:8983/solr/dlme
       - SECRET_KEY_BASE="${SECRET_KEY_BASE}"
     image: 'suldlss/dlme:latest'
     ports:
@@ -31,7 +31,7 @@ services:
       - RDS_PASSWORD=sekret
       - RDS_HOSTNAME=postgres
       - RDS_PORT=5432
-      - SOLR_URL=http://localhost:8983/solr/dlme
+      - SOLR_URL=http://solr:8983/solr/dlme
       - SECRET_KEY_BASE="${SECRET_KEY_BASE}"
       - PORT=3001
     image: 'suldlss/dlme-worker:latest'
