@@ -9,7 +9,7 @@ services:
       - RDS_DB_NAME=dlme
       - RDS_USERNAME=postgres
       - RDS_PASSWORD=sekret
-      - RDS_HOSTNAME=db
+      - RDS_HOSTNAME=postgres
       - RDS_PORT=5432
       - SOLR_URL=http://localhost:8983/solr/dlme
       - SECRET_KEY_BASE="${SECRET_KEY_BASE}"
@@ -17,10 +17,31 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      - postgres
     networks:
       - dlme
-  db:
+  worker:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile-worker
+    environment:
+      - RAILS_LOG_TO_STDOUT=true
+      - RDS_DB_NAME=dlme
+      - RDS_USERNAME=postgres
+      - RDS_PASSWORD=sekret
+      - RDS_HOSTNAME=postgres
+      - RDS_PORT=5432
+      - SOLR_URL=http://localhost:8983/solr/dlme
+      - SECRET_KEY_BASE="${SECRET_KEY_BASE}"
+      - PORT=3001
+    image: 'suldlss/dlme-worker:latest'
+    ports:
+      - "3001:3001"
+    depends_on:
+      - postgres
+    networks:
+      - dlme
+  postgres:
     image: postgres
     ports:
       - "5432:5432"
@@ -42,5 +63,42 @@ services:
       - dlme
     networks:
       - dlme
+  redis:
+    image: 'redis:4.0-alpine'
+    ports:
+      - "6379:6379"
+    command: redis-server --requirepass sekret
+    volumes:
+      - 'redis:/data'
+    networks:
+      - dlme
+  sidekiq:
+    depends_on:
+      - 'postgres'
+      - 'redis'
+    build: .
+    command: sidekiq -C config/sidekiq.yml.erb
+    volumes:
+      - '.:/app'
+    env_file:
+      - '.env'
+    networks:
+      - dlme
+  cable:
+    depends_on:
+      - 'redis'
+    build: .
+    command: puma -p 28080 cable/config.ru
+    ports:
+      - '28080:28080'
+    volumes:
+      - '.:/app'
+    env_file:
+      - '.env'
+    networks:
+      - dlme
 networks:
   dlme:
+volumes:
+  redis:
+  postgres:
