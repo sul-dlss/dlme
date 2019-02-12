@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170829215442) do
+ActiveRecord::Schema.define(version: 20190212145330) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -199,6 +199,16 @@ ActiveRecord::Schema.define(version: 20170829215442) do
     t.index ["exhibit_id"], name: "index_spotlight_filters_on_exhibit_id"
   end
 
+  create_table "spotlight_languages", force: :cascade do |t|
+    t.string "locale", null: false
+    t.boolean "public"
+    t.string "text"
+    t.integer "exhibit_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exhibit_id"], name: "index_spotlight_languages_on_exhibit_id"
+  end
+
   create_table "spotlight_locks", force: :cascade do |t|
     t.string "on_type"
     t.integer "on_id"
@@ -225,8 +235,8 @@ ActiveRecord::Schema.define(version: 20170829215442) do
     t.string "type"
     t.string "slug"
     t.string "scope"
-    t.text "content"
-    t.integer "weight", default: 50
+    t.text "content", limit: 16777215
+    t.integer "weight", default: 1000
     t.boolean "published"
     t.integer "exhibit_id"
     t.integer "created_by_id"
@@ -237,7 +247,11 @@ ActiveRecord::Schema.define(version: 20170829215442) do
     t.boolean "display_sidebar"
     t.boolean "display_title"
     t.integer "thumbnail_id"
+    t.string "locale", default: "en"
+    t.integer "default_locale_page_id"
+    t.index ["default_locale_page_id"], name: "index_spotlight_pages_on_default_locale_page_id"
     t.index ["exhibit_id"], name: "index_spotlight_pages_on_exhibit_id"
+    t.index ["locale"], name: "index_spotlight_pages_on_locale"
     t.index ["parent_page_id"], name: "index_spotlight_pages_on_parent_page_id"
     t.index ["slug", "scope"], name: "index_spotlight_pages_on_slug_and_scope", unique: true
   end
@@ -293,6 +307,7 @@ ActiveRecord::Schema.define(version: 20170829215442) do
     t.integer "masthead_id"
     t.integer "thumbnail_id"
     t.string "default_index_view_type"
+    t.boolean "search_box", default: false
     t.index ["exhibit_id"], name: "index_spotlight_searches_on_exhibit_id"
     t.index ["slug", "scope"], name: "index_spotlight_searches_on_slug_and_scope", unique: true
   end
@@ -313,7 +328,7 @@ ActiveRecord::Schema.define(version: 20170829215442) do
     t.string "document_type"
     t.integer "resource_id"
     t.string "resource_type"
-    t.binary "index_status"
+    t.binary "index_status", limit: 10485760
     t.index ["document_type", "document_id"], name: "spotlight_solr_document_sidecars_solr_document"
     t.index ["exhibit_id", "document_type", "document_id"], name: "spotlight_solr_document_sidecars_exhibit_document"
     t.index ["exhibit_id"], name: "index_spotlight_solr_document_sidecars_on_exhibit_id"
@@ -328,15 +343,35 @@ ActiveRecord::Schema.define(version: 20170829215442) do
     t.datetime "created_at"
     t.string "taggable_type"
     t.integer "taggable_id"
+    t.index ["context"], name: "index_taggings_on_context"
     t.index ["tag_id", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
     t.index ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+    t.index ["taggable_id", "taggable_type", "tagger_id", "context"], name: "taggings_idy"
+    t.index ["taggable_id"], name: "index_taggings_on_taggable_id"
     t.index ["taggable_type", "taggable_id"], name: "index_taggings_on_taggable_type_and_taggable_id"
+    t.index ["taggable_type"], name: "index_taggings_on_taggable_type"
+    t.index ["tagger_id", "tagger_type"], name: "index_taggings_on_tagger_id_and_tagger_type"
+    t.index ["tagger_id"], name: "index_taggings_on_tagger_id"
   end
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "translations", force: :cascade do |t|
+    t.string "locale"
+    t.string "key"
+    t.text "value"
+    t.text "interpolations"
+    t.boolean "is_proc", default: false
+    t.integer "exhibit_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exhibit_id", "key", "locale"], name: "index_translations_on_exhibit_id_and_key_and_locale", unique: true
+    t.index ["exhibit_id"], name: "index_translations_on_exhibit_id"
   end
 
   create_table "users", force: :cascade do |t|
