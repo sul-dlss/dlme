@@ -13,7 +13,7 @@ RSpec.describe DlmeJsonsController do
   describe 'GET index' do
     it 'is successful' do
       get :index, params: { exhibit_id: exhibit.slug }
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -22,7 +22,7 @@ RSpec.describe DlmeJsonsController do
 
     it 'is successful' do
       get :show, params: { exhibit_id: exhibit.slug, id: dlme_json }
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -31,7 +31,7 @@ RSpec.describe DlmeJsonsController do
 
     it 'is successful' do
       get :edit, params: { exhibit_id: exhibit.slug, id: dlme_json }
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
