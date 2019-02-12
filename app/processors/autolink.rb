@@ -7,6 +7,7 @@ class Autolink < Blacklight::Rendering::AbstractStep
 
   def render
     return next_step(values) unless config.autolink
+
     next_step(values.map { |x| auto_link(x) })
   end
 end

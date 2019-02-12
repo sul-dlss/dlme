@@ -51,7 +51,7 @@ group :development, :test do
 
   gem 'factory_bot_rails', '~> 4.8.0'
   gem 'rails-controller-testing'
-  gem 'rubocop', '~> 0.57.1'
+  gem 'rubocop', '~> 0.63.1'
   gem 'rubocop-rspec'
   gem 'solr_wrapper'
 end

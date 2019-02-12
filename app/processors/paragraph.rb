@@ -6,6 +6,7 @@ class Paragraph < Blacklight::Rendering::AbstractStep
 
   def render
     return next_step(values) unless config.paragraph
+
     next_step(values.map { |x| content_tag(:p, x) })
   end
 end
