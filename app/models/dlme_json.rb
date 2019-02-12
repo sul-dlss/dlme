@@ -30,6 +30,7 @@ class DlmeJson < Spotlight::Resource
   def valid_schema?
     schema_errors = DlmeJsonSchema.call(json).errors
     return if schema_errors.empty?
+
     errors.add(:json, squash_errors(schema_errors))
   rescue JSON::ParserError
     false

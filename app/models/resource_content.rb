@@ -8,6 +8,7 @@ class ResourceContent < ApplicationRecord
   # @return [void]
   def self.persist(multihash)
     return if ResourceContent.where(multihash: multihash).exists?
+
     ResourceContent.create!(multihash: multihash, body: yield)
   end
 end

@@ -15,8 +15,6 @@ class Join < Blacklight::Rendering::AbstractStep
   end
 
   def default_joiner
-    # rubocop:disable Rails/OutputSafety
     options[:no_html] ? '; ' : '<br>'.html_safe
-    # rubocop:enable Rails/OutputSafety
   end
 end
