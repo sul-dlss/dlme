@@ -6,6 +6,7 @@ LABEL maintainer="Aaron Collier <aaron.collier@stanford.edu>"
 # Set default RAILS environment
 ENV RAILS_ENV=production
 ENV RAILS_SERVE_STATIC_FILES=true
+ARG SECRET_KEY_BASE
 
 # Create and set the working directory as /opt
 WORKDIR /opt
@@ -19,5 +20,6 @@ COPY Gemfile.lock /opt
 RUN bundle install
 
 COPY . .
+RUN rake assets:precompile
 # Start the server by default, listening for all connections
 CMD puma -C config/puma.rb
