@@ -6,7 +6,7 @@ RSpec.describe ::Join do
   include Capybara::RSpecMatchers
   let(:document) { instance_double(SolrDocument) }
   let(:context) { double }
-  let(:options) { double }
+  let(:options) { {} }
   let(:terminator) { class_double Blacklight::Rendering::Terminator, new: term_instance }
   let(:term_instance) { instance_double Blacklight::Rendering::Terminator, render: '' }
   let(:stack) { [terminator] }
@@ -27,6 +27,20 @@ RSpec.describe ::Join do
                                                        context,
                                                        options,
                                                        [])
+      end
+
+      context 'and no_html is set' do
+        let(:options) { { no_html: true } }
+
+        it 'joins with ;' do
+          render
+          expect(terminator).to have_received(:new).with('a; b',
+                                                         field_config,
+                                                         document,
+                                                         context,
+                                                         options,
+                                                         [])
+        end
       end
     end
 
