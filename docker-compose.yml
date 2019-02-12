@@ -101,4 +101,3 @@ networks:
   dlme:
 volumes:
   redis:
-  postgres:
