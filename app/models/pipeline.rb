@@ -9,19 +9,4 @@ class Pipeline < ApplicationRecord
   def config
     Settings.import.sources[name]
   end
-
-  def indexer(resource)
-    Traject::Indexer.new(traject_config(resource)).tap do |indexer|
-      indexer.load_config_file((Rails.root + 'config/traject.rb').to_s)
-      indexer.load_config_file((Rails.root + "lib/traject/#{config.traject_file}.rb").to_s)
-    end
-  end
-
-  private
-
-  def traject_config(resource)
-    config.properties.to_h.merge('command_line.filename' => resource.original_filename,
-                                 'harvested_resource_id' => resource.id,
-                                 'harvest_id' => resource.harvest_id)
-  end
 end

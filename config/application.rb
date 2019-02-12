@@ -16,7 +16,5 @@ module Dlme
     # -- all .rb files in that directory are automatically loaded.
 
     config.middleware.use Rack::Attack
-
-    require 'dlme/utils'
   end
 end
