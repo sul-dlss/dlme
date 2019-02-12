@@ -13,7 +13,7 @@ services:
       - RDS_PASSWORD=sekret
       - RDS_HOSTNAME=postgres
       - RDS_PORT=5432
-      - SOLR_URL=http://localhost:8983/solr/dlme
+      - SOLR_URL=http://solr:8983/solr/dlme
       - SECRET_KEY_BASE="${SECRET_KEY_BASE}"
     image: 'suldlss/dlme:latest'
     ports:
@@ -37,11 +37,13 @@ services:
     ports:
       - "8983:8983"
     volumes:
-      - ./solr-data:/opt/solr/server/solr/mycores"
+      - ./solr-data:/opt/solr/server/solr/mycores
+      - ./solr/config:/solr-setup/conf
     entrypoint:
       - docker-entrypoint.sh
       - solr-precreate
       - dlme
+      - /solr-setup/conf
     networks:
       - dlme
   redis:
