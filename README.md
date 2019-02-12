@@ -40,9 +40,7 @@ $ docker-compose run app rake db:setup
 $ docker-compose stop
 $ docker-compose up -d
 [ -------- ]
-$ docker ps (to retrieve the container id)
-$ docker exec -it (container id) /bin/sh
-$ rake spotlight:initialize #new shell window
+$ docker exec -it dlme_app_1 rake spotlight:initialize
 ```
 
 Once the dlme rails app is running you can create an exhibit. The title will need to be 'dlme' and the URL slug will need to be 'library'
