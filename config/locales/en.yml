@@ -48,7 +48,7 @@ en:
     curation:
       sidebar:
         sources: 'Sources'
-        harvests: 'Manage data'
+        transform: 'Transform data'
     resources:
       upload:
         form:

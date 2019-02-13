@@ -12,8 +12,8 @@
     <li><%= link_to t(:'spotlight.admin_users.index.page_title'), spotlight.admin_users_path %></li>
   <% end %>
 
-  <% if can? :manange, Harvest %>
-    <li><%= link_to t(:'spotlight.curation.sidebar.harvests'), harvests_path %></li>
+  <% if can? :manange, :transform %>
+    <li><%= link_to t(:'spotlight.curation.sidebar.transform'), transform_path %></li>
   <% end %>
 </ul>
 

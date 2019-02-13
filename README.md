@@ -16,8 +16,12 @@ You can read more about our data and related documentation in our [data document
 The AWS deployment needs to provide the follow environment configuration:
 
 ```
-SOLR_URL
+AWS_ACCESS_KEY_ID
+AWS_REGION
+AWS_SECRET_ACCESS_KEY
 SECRET_KEY_BASE
+SETTINGS__SNS__TOPIC_ARN
+SOLR_URL
 ```
 
 And these database configuration settings:
