@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   resources :exhibits do
     resources :dlme_jsons
+    resource :s3_harvester, controller: :"s3_harvester", only: [:create]
   end
 
   resource :transform, only: [:show, :create]
