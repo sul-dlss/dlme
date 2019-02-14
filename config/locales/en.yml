@@ -49,7 +49,6 @@ en:
       sidebar:
         sources: 'Sources'
         transform: 'Transform data'
-    resources:
-      upload:
-        form:
-          cho_title_ssim: Title
+    search:
+      fields:
+        cho_title_ssim: Title
