@@ -24,16 +24,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
                                                                  Coveralls::SimpleCov::Formatter
                                                                ])
 
-SimpleCov.start('rails') do
-  # Ignore these because simplecov doesn't detect when traject
-  # loads and evals them. See https://github.com/traject/traject/blob/6df447621826b92e26a4675a2f7610f8c78056ff/lib/traject/indexer.rb#L193
-  add_filter 'lib/traject/mods_config.rb'
-  add_filter 'lib/traject/tei_config.rb'
-
-  # the upstream default is app + lib, but track_files doesn't respect any
-  # applied filters. https://github.com/colszowka/simplecov/issues/610
-  track_files 'app/**/*.rb'
-end
+SimpleCov.start('rails')
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
