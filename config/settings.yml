@@ -11,6 +11,9 @@ contact:
 s3:
   upload_bucket: ~
 
+sns:
+  topic_arn: ~
+
 import:
   access_token: ~
   repo: waynegraham/dlme-metadata # Need to change this to dlss-labs fork

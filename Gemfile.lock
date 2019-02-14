@@ -66,6 +66,9 @@ GEM
       aws-sdk-core (~> 3, >= 3.39.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
+    aws-sdk-sns (1.9.0)
+      aws-sdk-core (~> 3, >= 3.39.0)
+      aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.3)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -600,6 +603,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aws-sdk-sns
   blacklight-gallery (>= 0.3.0)
   blacklight-oembed (>= 0.1.0)
   blacklight-spotlight (~> 2.3)
