@@ -6,6 +6,7 @@ services:
       context: ./
       args:
       - SECRET_KEY_BASE
+      dockerfile: docker/Dockerfile
     environment:
       - RAILS_LOG_TO_STDOUT=true
       - RDS_DB_NAME=dlme
@@ -61,8 +62,7 @@ services:
       - 'redis'
     build:
       context: ./
-      args:
-      - SECRET_KEY_BASE
+      dockerfile: docker/Dockerfile.worker
     command: sidekiq -C config/sidekiq.yml.erb
     volumes:
       - '.:/app'

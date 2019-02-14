@@ -1,0 +1,28 @@
+# This image's actual base image
+FROM ruby:2.5-alpine3.9
+
+LABEL maintainer="Justin Coyne <jcoyne85@stanford.edu>"
+
+# Set default RAILS environment
+ENV RAILS_ENV=production
+ENV BUNDLER_VERSION=2.0.1
+ARG SECRET_KEY_BASE
+
+# Create and set the working directory as /opt
+WORKDIR /opt
+
+RUN apk add --no-cache build-base libxml2-dev libxslt-dev postgresql-dev \
+    && gem install bundler
+
+# Copy the Gemfile and Gemfile.lock, and run bundle install prior to copying all source files
+# This is an optimization that will prevent the need to re-run bundle install when only source
+# code is changed and not dependencies.
+COPY Gemfile /opt
+COPY Gemfile.lock /opt
+
+RUN bundle config build.nokogiri --use-system-libraries \
+    && bundle install --without development test
+
+COPY . .
+# Start the server by default, listening for all connections
+CMD sidekiq -C config/sidekiq.yml.erb
