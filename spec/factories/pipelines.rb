@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :pipeline do
-    name 'MyString'
+    name { 'MyString' }
   end
 end

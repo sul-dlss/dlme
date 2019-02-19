@@ -62,15 +62,15 @@ RSpec.describe ::Autolink do
   end
 
   describe 'Blacklight::Rendering::Pipeline#operations' do
-    subject { Blacklight::Rendering::Pipeline.operations }
+    subject(:operations) { Blacklight::Rendering::Pipeline.operations }
 
     it {
-      is_expected.to eq [Blacklight::Rendering::HelperMethod,
-                         Blacklight::Rendering::LinkToFacet,
-                         Blacklight::Rendering::Microdata,
-                         Autolink,
-                         Paragraph,
-                         Join]
+      expect(operations).to eq [Blacklight::Rendering::HelperMethod,
+                                Blacklight::Rendering::LinkToFacet,
+                                Blacklight::Rendering::Microdata,
+                                Autolink,
+                                Paragraph,
+                                Join]
     }
   end
 end
