@@ -36,11 +36,15 @@ en:
     edit:
       add_item: "Save"
     update:
-      success: 'DLME JSON was saved'
-      error:   'There was a problem saving the JSON'
+      success: 'DLME JSON was saved.'
+      error:   'There was a problem saving the JSON.'
     form:
       title: 'DLME JSON'
       add_item: 'Add DLME JSON file'
+  dlme_s3s:
+    form:
+      title: 'DLME S3 Fetch'
+      add_item: 'Fetch'
   harvests:
     index:
       header: 'Harvests'
@@ -52,3 +56,9 @@ en:
     search:
       fields:
         cho_title_ssim: Title
+    resources:
+      fetch:
+          error: 'There was a problem fetching the file.'
+      create:
+        error: 'There was an problem with record %{index}. Adding items stopped.'
+        success: '%{index} DLME JSON records were saved.'

@@ -73,7 +73,7 @@ RSpec.describe DlmeJsonsController do
         patch :update, params: { exhibit_id: exhibit.slug,
                                  id: dlme_json,
                                  dlme_json: { data: { json: 'foobar' } } }
-        expect(flash[:error]).to eq 'There was a problem saving the JSON'
+        expect(flash[:error]).to eq 'There was a problem saving the JSON.'
         expect(response).to render_template('edit')
       end
     end

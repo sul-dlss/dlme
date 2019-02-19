@@ -488,8 +488,6 @@ GEM
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
     scrub_rb (1.0.1)
-    secure_headers (3.7.3)
-      useragent
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
@@ -584,7 +582,6 @@ GEM
       unf_ext
     unf_ext (0.0.7.5)
     unicode-display_width (1.4.1)
-    useragent (0.16.10)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
@@ -647,7 +644,6 @@ DEPENDENCIES
   rubocop (~> 0.63.1)
   rubocop-rspec
   sass-rails (~> 5.0)
-  secure_headers (~> 3.7)
   selenium-webdriver
   sidekiq
   sitemap_generator
