@@ -70,7 +70,7 @@ The DLME Prototype Application Profile a subset of the [Europeana Data Model](ht
 | cho_subject      | `dc:subject`      | R           | 0...n       | literal     | The topic of the resource. | |
 | cho_temporal     | `dct:temporal`    | R           | 0...n       | literal     | Temporal characteristics of the resource. | |
 | cho_title        | `dc:title`        | M           | 1...n       | literal     | A name given to the resource. | |
-| cho_type         | `dc:type`         | R           | 0...n       | literal     | Everything that doesn't fit into cho_edm_type.  | cf `edm:type` for faceting |
+| cho_type         | `dc:type`         | R           | 0...n       | literal     | The value found in the incoming metadata without any applied transformations.  | cf `edm:type` for faceting |
 
 ### `ore:Aggregation`
 
