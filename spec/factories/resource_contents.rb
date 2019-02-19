@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :resource_content do
-    multihash 'MyString'
-    body 'MyText'
+    multihash { 'MyString' }
+    body { 'MyText' }
   end
 end
