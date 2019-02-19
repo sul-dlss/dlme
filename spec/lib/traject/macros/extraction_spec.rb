@@ -44,7 +44,7 @@ RSpec.describe Macros::Extraction do
     end
 
     describe '#translation_map' do
-      let(:options) { { translation_map: 'types' } }
+      let(:options) { { translation_map: 'edm_types' } }
 
       it 'looks up a value from the translation map' do
         expect(pipeline.transform(['audio'])).to eq ['sound']
