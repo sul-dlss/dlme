@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190212145330) do
+ActiveRecord::Schema.define(version: 2019_02_22_125738) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -235,7 +238,7 @@ ActiveRecord::Schema.define(version: 20190212145330) do
     t.string "type"
     t.string "slug"
     t.string "scope"
-    t.text "content", limit: 16777215
+    t.text "content"
     t.integer "weight", default: 1000
     t.boolean "published"
     t.integer "exhibit_id"
@@ -328,7 +331,7 @@ ActiveRecord::Schema.define(version: 20190212145330) do
     t.string "document_type"
     t.integer "resource_id"
     t.string "resource_type"
-    t.binary "index_status", limit: 10485760
+    t.binary "index_status"
     t.index ["document_type", "document_id"], name: "spotlight_solr_document_sidecars_solr_document"
     t.index ["exhibit_id", "document_type", "document_id"], name: "spotlight_solr_document_sidecars_exhibit_document"
     t.index ["exhibit_id"], name: "index_spotlight_solr_document_sidecars_on_exhibit_id"
@@ -359,6 +362,16 @@ ActiveRecord::Schema.define(version: 20190212145330) do
     t.string "name"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "transform_results", force: :cascade do |t|
+    t.string "url", null: false
+    t.string "data_path", null: false
+    t.boolean "success", null: false
+    t.integer "records", null: false
+    t.datetime "timestamp", null: false
+    t.integer "duration", null: false
+    t.text "error"
   end
 
   create_table "translations", force: :cascade do |t|
@@ -408,7 +421,7 @@ ActiveRecord::Schema.define(version: 20190212145330) do
     t.integer "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
-    t.text "object", limit: 1073741823
+    t.text "object"
     t.datetime "created_at"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end

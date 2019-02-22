@@ -30,6 +30,8 @@ Rails.application.routes.draw do
 
   resource :transform, only: [:show, :create]
 
+  resource :transform_result, only: [:create, :show]
+
   authenticate :user, lambda { |u| Ability.new(u).can? :manage, :sidekiq } do
     require 'sidekiq/web'
     mount Sidekiq::Web => '/sidekiq'

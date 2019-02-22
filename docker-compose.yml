@@ -16,6 +16,9 @@ services:
       - RDS_PORT=5432
       - SOLR_URL=http://solr:8983/solr/dlme
       - SECRET_KEY_BASE
+      # For development
+      - RAILS_SERVE_STATIC_FILES=true
+      - RAILS_ENV=development
     image: 'suldlss/dlme:latest'
     ports:
       - "3000:3000"
@@ -23,6 +26,10 @@ services:
       - postgres
     networks:
       - dlme
+    # For running in dev
+    volumes:
+      - ".:/opt/"
+    command: rails server
   postgres:
     image: postgres
     ports:
@@ -68,6 +75,18 @@ services:
       - '.:/app'
     env_file:
       - '.env'
+    networks:
+      - dlme
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "4575:4575"
+      - "4572:4572"
+      - "8080:8080"
+    environment:
+      - SERVICES=sns,s3
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - DEBUG=1
     networks:
       - dlme
 networks:

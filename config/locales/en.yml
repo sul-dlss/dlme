@@ -53,6 +53,7 @@ en:
       sidebar:
         sources: 'Sources'
         transform: 'Transform data'
+        transform_notification: 'Transform results'
     search:
       fields:
         cho_title_ssim: Title
