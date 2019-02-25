@@ -7,31 +7,50 @@ class S3HarvesterController < Spotlight::ApplicationController
 
   load_and_authorize_resource :exhibit, class: Spotlight::Exhibit
 
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/MethodLength
   def create
     authorize! :create, DlmeJson
-    resp = fetch(params['url'])
-    unless resp&.success?
-      flash[:error] = t('spotlight.resources.fetch.error')
-      return redirect_to spotlight.new_exhibit_resource_path(current_exhibit)
-    end
-    items = resp.body.split("\n")
-    items.each_with_index do |item, index|
-      object = DlmeJson.new(data: { json: item }, exhibit: current_exhibit)
-      unless object.valid?
-        flash[:error] = t('spotlight.resources.create.error', index: index + 1)
-        return redirect_to spotlight.new_exhibit_resource_path(current_exhibit)
-      end
-      object.save_and_index
-    end
-    flash[:notice] = t('spotlight.resources.create.success', index: items.count)
-    redirect_to spotlight.admin_exhibit_catalog_path(current_exhibit)
+    created = create_items(params['url'])
+    created.error ? on_error_redirect(created) : on_success_redirect(created)
   end
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/MethodLength
 
   private
+
+  BatchCreateResponse = Struct.new(:error, :count)
+
+  # rubocop:disable Metrics/AbcSize
+  def create_items(url)
+    resp = fetch(url)
+    return BatchCreateResponse.new(t('spotlight.resources.fetch.error'), nil) unless resp&.success?
+
+    items = resp.body.split("\n")
+
+    items.each_with_index do |item, index|
+      object = create_or_update_item(item)
+
+      return BatchCreateResponse.new(t('spotlight.resources.create.error', index: index + 1), nil) unless object.valid?
+
+      object.save_and_index
+    end
+    BatchCreateResponse.new(nil, items.count)
+  end
+  # rubocop:enable Metrics/AbcSize
+
+  def create_or_update_item(item)
+    json = JSON.parse(item)
+    object = DlmeJson.find_or_initialize_by(url: json['id'], exhibit: current_exhibit)
+    object.data = { json: item }
+    object
+  end
+
+  def on_error_redirect(created)
+    redirect_to spotlight.new_exhibit_resource_path(current_exhibit),
+                flash: { error: created.error }
+  end
+
+  def on_success_redirect(created)
+    redirect_to spotlight.admin_exhibit_catalog_path(current_exhibit),
+                notice: t('spotlight.resources.create.success', index: created.count)
+  end
 
   def fetch(url)
     Faraday.get(url)
