@@ -454,10 +454,6 @@ GEM
     sassc (2.0.0)
       ffi (~> 1.9.6)
       rake
-    sawyer (0.8.1)
-      addressable (>= 2.3.5, < 2.6)
-      faraday (~> 0.8, < 1.0)
-    scrub_rb (1.0.1)
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
