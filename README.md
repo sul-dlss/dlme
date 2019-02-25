@@ -37,17 +37,67 @@ And these database configuration settings:
 
 Requires docker.
 
+For the local development described below, the webapp will be running in a docker container in development mode. Local 
+code will be shared into the container so that the webapp will be dynamically reloaded. 
+
 ```console
 $ docker-compose up -d
 [FIRST RUN]
-$ docker-compose run app rake db:setup
-$ docker-compose stop
+$ docker-compose run -e RAILS_ENV=development app rake db:setup
+$ docker-compose stop app
 $ docker-compose up -d
 [ -------- ]
-$ docker exec -it dlme_app_1 rake spotlight:initialize
+$ docker exec -e RAILS_ENV=development -it dlme_app_1 rake spotlight:initialize
 ```
 
-Once the dlme rails app is running you can create an exhibit. The title will need to be 'dlme' and the URL slug will need to be 'library'
+Once the dlme rails app is running you can create an exhibit. The title will need to be 'dlme' and the URL slug will 
+need to be 'library'.
+
+### Local transforms
+Configure localstack:
+
+```
+AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws sns \
+	--endpoint-url=http://localhost:4575 create-topic \
+	--region us-east-1 \
+	--name dlme-transform
+
+AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws s3api \
+	--endpoint-url=http://localhost:4572 create-bucket \
+	--region us-east-1 \
+	--bucket dlme-transform
+
+AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws sns \
+	--endpoint-url=http://localhost:4575 subscribe \
+	--topic-arn arn:aws:sns:us-east-1:123456789012:dlme-transform \
+	--protocol http \
+	--region us-east-1 \
+	--notification-endpoint http://app:3000/transform_result
+```
+Note that this will need to be repeated ever time localstack is started.
+
+To perform a local transform that will write to localstack S3 and send a notification to localstack SNS: 
+
+```
+docker run --rm -e S3_BUCKET=dlme-transform \
+                -e AWS_ACCESS_KEY_ID=999999 \
+                -e AWS_SECRET_ACCESS_KEY=1231 \
+                -e AWS_DEFAULT_REGION=us-east-1 \
+                -e SNS_TOPIC_ARN=arn:aws:sns:us-east-1:123456789012:dlme-transform \
+                -e SNS_ENDPOINT_URL=http://localhost:4575 \
+                -e S3_ENDPOINT_URL=http://localhost:4572 \
+                -e S3_BASE_URL=http://localstack:4572 \
+                -e SKIP_FETCH_CONFIG=true \
+                -e SKIP_FETCH_DATA=true \
+                -v $(pwd)/.:/opt/traject \
+                -v $(pwd)/../dlme-traject:/opt/traject/config \
+                -v $(pwd)/../dlme-metadata:/opt/traject/data \
+                -v $(pwd)/output:/opt/traject/output \
+                --network="host" \
+                suldlss/dlme-transform:latest \
+                stanford/maps/data/kj751hs0595.mods
+```
+
 
 ## Deploying
 
