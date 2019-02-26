@@ -60,3 +60,6 @@ en:
       create:
         error: 'There was an problem with record %{index}. Adding items stopped.'
         success: '%{index} DLME JSON records were saved.'
+  transforms:
+    notification:
+      sent: 'Transform request sent.'

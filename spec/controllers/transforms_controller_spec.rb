@@ -25,6 +25,7 @@ RSpec.describe TransformsController do
     it 'redirects to the list page' do
       post :create
       expect(TransformNotification).to have_received(:publish)
+      expect(flash[:notice]).to be_present
       expect(response).to be_redirect
     end
   end
