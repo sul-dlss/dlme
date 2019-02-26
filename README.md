@@ -98,18 +98,17 @@ docker run --rm -e S3_BUCKET=dlme-transform \
                 stanford/maps/data/kj751hs0595.mods
 ```
 
-
-## Deploying
-
-This project is configured for continuous deployment to AWS at http://spotlight.dlme.clir.org/
-
-The AWS stack can be built using:
-
+## Docker
+### Build image
 ```
-$ aws cloudformation create-stack --stack-name DLME --template-body file://cloudformation/stack.yaml --capabilities CAPABILITY_IAM --parameters file://path/to/some/params.json
+docker build . -f docker/Dockerfile -t suldlss/dlme:latest --build-arg SECRET_KEY_BASE=<your secret key base>
 ```
 
-After creating the stack, you also need to go into route53 and correct the DNS entry for solr. Change the public, elastic ip address to the internal IP (10.0.x.x).
+### Deploy
+```
+docker push suldlss/dlme:latest
+```
+
 
 ## Converting files
 All files must first be converted to the intermediate representation (IR) before they can be imported. This is done by the https://github.com/sul-dlss/dlme-transform repository.
