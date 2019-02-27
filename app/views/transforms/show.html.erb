@@ -1,3 +1,9 @@
 <%= bootstrap_form_tag url: transform_path do %>
-<button class="btn btn-primary">Begin transform</button>
+  <div class="form-group">
+    <%= text_field_tag :data_dir, '', class: 'form-control' %>
+    <small class="text-muted">
+      For example, <code>stanford/maps</code> or <code>stanford/maps/data/kj751hs0595.mods</code>. Leave blank to transform all.
+    </small>
+  </div>
+  <button class="btn btn-primary">Begin transform</button>
 <% end %>
