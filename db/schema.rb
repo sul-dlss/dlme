@@ -10,10 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_22_125738) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 2019_02_27_145747) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -38,38 +35,6 @@ ActiveRecord::Schema.define(version: 2019_02_22_125738) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
-  end
-
-  create_table "harvested_resources", force: :cascade do |t|
-    t.string "url", null: false
-    t.string "original_filename", null: false
-    t.string "multihash", null: false
-    t.integer "harvest_id", null: false
-    t.integer "pipeline_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["harvest_id"], name: "index_harvested_resources_on_harvest_id"
-    t.index ["pipeline_id"], name: "index_harvested_resources_on_pipeline_id"
-  end
-
-  create_table "harvests", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "pipelines", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_pipelines_on_name", unique: true
-  end
-
-  create_table "resource_contents", force: :cascade do |t|
-    t.string "multihash", null: false
-    t.text "body", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["multihash"], name: "index_resource_contents_on_multihash"
   end
 
   create_table "searches", force: :cascade do |t|
@@ -238,7 +203,7 @@ ActiveRecord::Schema.define(version: 2019_02_22_125738) do
     t.string "type"
     t.string "slug"
     t.string "scope"
-    t.text "content"
+    t.text "content", limit: 16777215
     t.integer "weight", default: 1000
     t.boolean "published"
     t.integer "exhibit_id"
@@ -331,7 +296,7 @@ ActiveRecord::Schema.define(version: 2019_02_22_125738) do
     t.string "document_type"
     t.integer "resource_id"
     t.string "resource_type"
-    t.binary "index_status"
+    t.binary "index_status", limit: 10485760
     t.index ["document_type", "document_id"], name: "spotlight_solr_document_sidecars_solr_document"
     t.index ["exhibit_id", "document_type", "document_id"], name: "spotlight_solr_document_sidecars_exhibit_document"
     t.index ["exhibit_id"], name: "index_spotlight_solr_document_sidecars_on_exhibit_id"
@@ -421,7 +386,7 @@ ActiveRecord::Schema.define(version: 2019_02_22_125738) do
     t.integer "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
-    t.text "object"
+    t.text "object", limit: 1073741823
     t.datetime "created_at"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
