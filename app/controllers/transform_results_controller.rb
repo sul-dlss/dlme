@@ -22,6 +22,8 @@ class TransformResultsController < Spotlight::ApplicationController
 
   private
 
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
   def build_notification
     notification_msg = JSON.parse(JSON.parse(request.raw_post)['Message'])
     {
@@ -33,5 +35,11 @@ class TransformResultsController < Spotlight::ApplicationController
       duration: notification_msg['duration'],
       error: notification_msg['error']
     }
+  rescue JSON::ParserError
+    # Capturing and logging so that can get SNS subscription confirmation message.
+    logger.error request.raw_post
+    raise
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 end
