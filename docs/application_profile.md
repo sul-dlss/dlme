@@ -11,7 +11,6 @@
 
 * Schemas are selected based on their appearance in [this GH repo](https://github.com/waynegraham/dlme-metadata) containing metadata for batch loading
 * Notes and some basic analysis of data for mapping purposes is in [this Google spreadsheet](https://docs.google.com/spreadsheets/d/1Sp7uMHizVX7xN7xN9mm-vgEuESQBovXO-qenAo_TV-w/edit?usp=sharing)
-* [Details on How To Add Data to DLME from a New Provider to DLME](add_data_source.md)
 
 ## Application profile
 
