@@ -6,10 +6,6 @@ This is documentation about the data choices in the existing DLME application as
 
 For data providers, start by reading our [Information for Data Providers](providers.md) page. For information on our data choices for this application, keep reading.
 
-## Specific Data Choices for this DLME Application
-
-Part of building this proof of concept includes making some decisions for data processing that effect providers' adding of data to this repository. Some of these decisions are areas to be explicitly revisited as part of future work cycles, but for clarity of users and providers now, we detail some specific points here.
-
 ### Dataflow through the Application
 
 At present, this diagram represents how data travels from being queued up for inclusion to internal representation in the DLME application's database and metadata included the discovery index:
