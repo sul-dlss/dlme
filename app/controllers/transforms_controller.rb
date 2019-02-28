@@ -12,7 +12,7 @@ class TransformsController < Spotlight::ApplicationController
   def create
     authorize! :create, :transform
     TransformNotification.publish(params['data_dir'])
-    flash[:notice] = t('transform.notification.sent')
+    flash[:notice] = t('transforms.notification.sent')
     redirect_to root_path
   end
 end
