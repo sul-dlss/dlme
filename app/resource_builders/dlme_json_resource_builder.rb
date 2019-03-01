@@ -14,6 +14,7 @@ class DlmeJsonResourceBuilder < Spotlight::SolrDocumentBuilder
     cho_temporal
   ].freeze
 
+  # rubocop:disable Metrics/AbcSize
   def to_solr
     source = resource.json
     { :id => source['id'], '__raw_resource_json_ss' => JSON.pretty_generate(source) }.tap do |sink|
@@ -28,9 +29,11 @@ class DlmeJsonResourceBuilder < Spotlight::SolrDocumentBuilder
       sink['sortable_cho_creator_ssi'] = Array(sink['cho_creator_ssim']).first if sink['cho_creator_ssim']
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   private
 
+  # rubocop:disable Metrics/MethodLength
   def transform_to_untokenized_solr_fields(source = {}, sink: {}, prefix: '')
     source.each do |key, value|
       case value
@@ -49,4 +52,5 @@ class DlmeJsonResourceBuilder < Spotlight::SolrDocumentBuilder
 
     sink
   end
+  # rubocop:enable Metrics/MethodLength
 end
