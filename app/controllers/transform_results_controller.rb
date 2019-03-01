@@ -12,7 +12,7 @@ class TransformResultsController < Spotlight::ApplicationController
   # This is invoked by SNS HTTP subscription
   def create
     TransformResult.create(build_notification)
-    head :ok
+    head :created
   end
 
   def show
@@ -22,10 +22,16 @@ class TransformResultsController < Spotlight::ApplicationController
 
   private
 
-  # rubocop:disable Metrics/AbcSize
-  # rubocop:disable Metrics/MethodLength
+  # @return [JSON] the deserialized JSON within the ++Message++ attribute of the JSON request body
+  def notification_msg
+    @notification_msg ||= JSON.parse(params['Message'])
+  rescue JSON::ParserError
+    # Capturing and logging so that can get SNS subscription confirmation message.
+    logger.error request.raw_post
+    raise
+  end
+
   def build_notification
-    notification_msg = JSON.parse(JSON.parse(request.raw_post)['Message'])
     {
       url: notification_msg['url'],
       data_path: notification_msg['data_path'],
@@ -35,11 +41,5 @@ class TransformResultsController < Spotlight::ApplicationController
       duration: notification_msg['duration'],
       error: notification_msg['error']
     }
-  rescue JSON::ParserError
-    # Capturing and logging so that can get SNS subscription confirmation message.
-    logger.error request.raw_post
-    raise
   end
-  # rubocop:enable Metrics/AbcSize
-  # rubocop:enable Metrics/MethodLength
 end
