@@ -5,6 +5,7 @@ require 'rails/all'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+require './lib/middleware/fix_sns_json_middleware'
 
 module Dlme
   class Application < Rails::Application
@@ -16,5 +17,6 @@ module Dlme
     # -- all .rb files in that directory are automatically loaded.
 
     config.middleware.use Rack::Attack
+    config.middleware.insert_before(ActionDispatch::Static, FixSnsJsonMiddleware)
   end
 end

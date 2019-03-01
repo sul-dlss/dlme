@@ -24,7 +24,9 @@ RSpec.describe 'transform results', type: :request do
       '"TopicArn": "arn:aws:sns:us-east-1:123456789012:dlme-transform", "MessageId": "8456e5c9-2fcf-4866-9c4f-b5bf3b898938"}'
     end
 
-    let(:headers) { { 'Content-Type' => 'application/json' } }
+    # The SNS https endpoint is setting Content-Type to 'text/plain' even though it's pushing JSON.
+    # See https://forums.aws.amazon.com/thread.jspa?threadID=69413
+    let(:headers) { { 'Content-Type' => 'text/plain' } }
 
     before do
       allow(TransformResult).to receive(:create)
