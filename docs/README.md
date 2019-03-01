@@ -1,12 +1,8 @@
 # Data Documentation for the Digital Library of the Middle East
 
-## Using this Documentation
+For data providers, start by reading our [Information for Data Providers](providers.md) page. 
 
-This is documentation about the data choices in the existing DLME application as well as information for data providers.
-
-For data providers, start by reading our [Information for Data Providers](providers.md) page. For information on our data choices for this application, keep reading.
-
-### Dataflow through the Application
+## Dataflow through the Application
 
 At present, this diagram represents how data travels from being queued up for inclusion to internal representation in the DLME application's database and metadata included the discovery index:
 
