@@ -13,3 +13,5 @@ s3:
 
 sns:
   topic_arn: ~
+
+allow_robots: false
