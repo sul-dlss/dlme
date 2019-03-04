@@ -4,7 +4,7 @@ FROM starefossen/ruby-node:2-10
 LABEL maintainer="Aaron Collier <aaron.collier@stanford.edu>"
 
 # Set default RAILS environment
-ENV RAILS_ENV=production
+ENV RAILS_ENV=development
 ENV RAILS_SERVE_STATIC_FILES=true
 ENV BUNDLER_VERSION=2.0.1
 ARG SECRET_KEY_BASE
@@ -21,9 +21,9 @@ COPY Gemfile /opt
 COPY Gemfile.lock /opt
 
 RUN bundle config build.nokogiri --use-system-libraries \
-    && bundle install --without development test
+    && bundle install
 
 COPY . .
-RUN rake assets:precompile
+
 # Start the server by default, listening for all connections
 CMD puma -C config/puma.rb

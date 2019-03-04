@@ -6,7 +6,7 @@ services:
       context: ./
       args:
       - SECRET_KEY_BASE
-      dockerfile: docker/Dockerfile
+      dockerfile: docker/Dockerfile.dev
     environment:
       - RAILS_LOG_TO_STDOUT=true
       - RDS_DB_NAME=dlme
