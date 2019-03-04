@@ -17,6 +17,6 @@ module Dlme
     # -- all .rb files in that directory are automatically loaded.
 
     config.middleware.use Rack::Attack
-    config.middleware.insert_before(ActionDispatch::Static, FixSnsJsonMiddleware)
+    config.middleware.insert_after(Rack::Attack, FixSnsJsonMiddleware)
   end
 end
