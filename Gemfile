@@ -43,6 +43,7 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'coveralls', require: false
   gem 'rspec-rails'
+  gem 'rspec_junit_formatter'
   gem 'selenium-webdriver'
 
   gem 'factory_bot_rails', '~> 4.8.0'
