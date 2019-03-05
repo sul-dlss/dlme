@@ -58,7 +58,7 @@ services:
     image: 'redis:4.0-alpine'
     ports:
       - "6379:6379"
-    command: redis-server --requirepass sekret
+    command: redis-server
     volumes:
       - 'redis:/data'
     networks:
