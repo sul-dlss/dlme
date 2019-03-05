@@ -37,20 +37,17 @@ And these database configuration settings:
 
 Requires docker.
 
-For the local development described below, the webapp will be running in a docker container in development mode. Local 
-code will be shared into the container so that the webapp will be dynamically reloaded. 
+For the local development described below, the webapp will be running in a docker container in development mode. Local
+code will be shared into the container so that the webapp will be dynamically reloaded.
 
 ```console
 $ docker-compose up -d
 [FIRST RUN]
-$ docker-compose run -e RAILS_ENV=development app rake db:setup
-$ docker-compose stop app
-$ docker-compose up -d
-[ -------- ]
-$ docker exec -e RAILS_ENV=development -it dlme_app_1 rake spotlight:initialize
+$ docker-compose run app rake db:setup
+$ docker-compose run app rake spotlight:initialize
 ```
 
-Once the dlme rails app is running you can create an exhibit. The title will need to be 'dlme' and the URL slug will 
+Once the dlme rails app is running you can create an exhibit. The title will need to be 'dlme' and the URL slug will
 need to be 'library'.
 
 ### Local transforms
@@ -76,7 +73,7 @@ AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws sns \
 ```
 Note that this will need to be repeated ever time localstack is started.
 
-To perform a local transform that will write to localstack S3 and send a notification to localstack SNS: 
+To perform a local transform that will write to localstack S3 and send a notification to localstack SNS:
 
 ```
 docker run --rm -e S3_BUCKET=dlme-transform \
