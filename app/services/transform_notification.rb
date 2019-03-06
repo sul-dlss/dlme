@@ -9,7 +9,7 @@ class TransformNotification
   def publish(data_dir)
     client.publish(
       topic_arn: Settings.sns.topic_arn,
-      message: data_dir
+      message: message(data_dir)
     )
   end
 
@@ -17,5 +17,9 @@ class TransformNotification
 
   def client
     Aws::SNS::Client.new
+  end
+
+  def message(data_dir)
+    JSON.generate(data_dir: data_dir)
   end
 end
