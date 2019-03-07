@@ -16,6 +16,8 @@ services:
       - RDS_PORT=5432
       - SOLR_URL=http://solr:8983/solr/dlme
       - SECRET_KEY_BASE
+      - REDIS_HOST
+      - REDIS_PORT
       # For development
       - RAILS_SERVE_STATIC_FILES=true
       - RAILS_ENV=development
@@ -77,6 +79,8 @@ services:
       - '.env'
     networks:
       - dlme
+    environment:
+      - SOLR_URL=http://solr:8983/solr/dlme
   localstack:
     image: localstack/localstack
     ports:

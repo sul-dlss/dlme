@@ -42,10 +42,12 @@ For the local development described below, the webapp will be running in a docke
 code will be shared into the container so that the webapp will be dynamically reloaded.
 
 ```console
-$ docker-compose up -d
 [FIRST RUN]
+$ docker-compose up -d postgres
 $ docker-compose run app rake db:setup
 $ docker-compose run app rake spotlight:initialize
+[THEN]
+$ docker-compose up -d
 ```
 
 Once the dlme rails app is running you can create an exhibit. The title will need to be 'dlme' and the URL slug will
