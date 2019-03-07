@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   end
 
   resource :transform, only: [:show, :create]
+  resource :robots, only: [:show], format: 'txt'
 
   resource :transform_result, only: [:create, :show]
 
