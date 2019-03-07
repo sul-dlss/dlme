@@ -50,7 +50,7 @@ GEM
       rails (>= 4.2, < 6)
     arel (9.0.0)
     ast (2.4.0)
-    autoprefixer-rails (9.4.9)
+    autoprefixer-rails (9.4.10.1)
       execjs
     aws-eventstream (1.0.1)
     aws-partitions (1.141.0)
@@ -96,7 +96,7 @@ GEM
       bootstrap-sass (~> 3.0)
       rails
       ruby-oembed
-    blacklight-spotlight (2.3.2)
+    blacklight-spotlight (2.3.3)
       acts-as-taggable-on (>= 5.0, < 7)
       almond-rails (~> 0.1)
       autoprefixer-rails
