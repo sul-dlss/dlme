@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   mount Blacklight::Oembed::Engine, at: 'oembed'
   devise_for :users
   mount Blacklight::Engine => '/'
+
+  resources :suggest, only: :index, defaults: { format: 'json' }
+
+
   concern :searchable, Blacklight::Routes::Searchable.new
 
   resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
@@ -11,7 +15,7 @@ Rails.application.routes.draw do
 
   concern :exportable, Blacklight::Routes::Exportable.new
 
-  resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog' do
+  resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog', id: Blacklight::Engine.config.routes.identifier_constraint do
     concerns :exportable
   end
 
