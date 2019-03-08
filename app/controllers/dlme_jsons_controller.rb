@@ -8,8 +8,6 @@ class DlmeJsonsController < Spotlight::ApplicationController
   before_action :authenticate_user!
 
   load_and_authorize_resource :exhibit, class: Spotlight::Exhibit
-  before_action :build_resource, only: :create
-
   load_and_authorize_resource class: 'DlmeJson',
                               through_association: 'exhibit.resources',
                               instance_name: 'resource',
@@ -46,21 +44,18 @@ class DlmeJsonsController < Spotlight::ApplicationController
 
   # Called when submitting the form with JSON on it.
   def create
+    @resource.exhibit = current_exhibit
     @resource.attributes = resource_params
     if @resource.save_and_index
-      flash[:notice] = t('spotlight.resources.upload.success')
-      redirect_to spotlight.admin_exhibit_catalog_path(current_exhibit)
+      redirect_to spotlight.admin_exhibit_catalog_path(current_exhibit),
+                  notice: t('spotlight.resources.upload.success')
     else
-      flash[:error] = t('spotlight.resources.upload.error')
-      redirect_to spotlight.new_exhibit_resource_path(current_exhibit)
+      redirect_to spotlight.new_exhibit_resource_path(current_exhibit),
+                  flash: { error: t('spotlight.resources.upload.error') }
     end
   end
 
   private
-
-  def build_resource
-    @resource ||= DlmeJson.new exhibit: current_exhibit
-  end
 
   def resource_params
     params.require(:dlme_json).permit(data: [:json])
