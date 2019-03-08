@@ -15,9 +15,11 @@ class TransformResultsController < Spotlight::ApplicationController
     head :created
   end
 
+  # This is invoked by transform_result.js
   def show
     authorize! :show, :transform
     @results = TransformResult.order(timestamp: :desc).limit(20)
+    render formats: :json
   end
 
   private

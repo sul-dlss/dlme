@@ -17,4 +17,6 @@
 //= require jquery3
 //= require blacklight/blacklight
 
+//= require transform_result
+
 //= require_tree .
