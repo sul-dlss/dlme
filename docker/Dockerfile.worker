@@ -19,6 +19,7 @@ RUN apk add --no-cache build-base \
                        gmp-dev \
                        tzdata \
                        sqlite-dev \
+                       git \
     && gem install bundler
 
 # Copy the Gemfile and Gemfile.lock, and run bundle install prior to copying all source files
