@@ -56,10 +56,7 @@ en:
         cho_title_ssim: Title
     resources:
       fetch:
-          error: 'There was a problem fetching the file.'
-      create:
-        error: 'There was an problem with record %{index}. Adding items stopped.'
-        success: '%{index} DLME JSON records were saved.'
+          queued: 'Queued for processing.'
   transforms:
     notification:
       sent: 'Transform request sent.'
