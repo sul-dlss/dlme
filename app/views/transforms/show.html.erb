@@ -2,27 +2,14 @@
   <h1 class="page-header"><%= t('.header') %></h1>
   <ul class="nav nav-tabs" role="tablist">
     <li class="active" role="presentation">
-      <a href="#new-transform" role="tab" data-toggle="tab">Transform data</a>
+      <a href="#transform-results" role="tab" data-toggle="tab">Transform results</a>
     </li>
     <li role="presentation">
-      <a href="#transform-results" role="tab" data-toggle="tab">Transform results</a>
+      <a href="#new-transform" role="tab" data-toggle="tab">Transform data</a>
     </li>
   </ul>
   <div class="tab-content">
-    <div id="new-transform" class="tab-pane active" role="tabpanel">
-      <div class="row col-md-12">
-        <%= bootstrap_form_tag url: transform_path do %>
-          <div class="form-group">
-            <%= text_field_tag :data_dir, '', class: 'form-control' %>
-            <small class="text-muted">
-              For example, <code>stanford/maps</code> or <code>stanford/maps/data/kj751hs0595.mods</code>. Leave blank to transform all.
-            </small>
-          </div>
-          <button class="btn btn-primary">Begin transform</button>
-        <% end %>
-      </div>
-    </div>
-    <div id="transform-results" class="tab-pane" role="tabpanel">
+    <div id="transform-results" class="tab-pane active" role="tabpanel">
       <template id="transform-result-spinner">
 
       </template>
@@ -75,6 +62,19 @@
         </style>
         <div class="spinner-border"></div>
       </transform-status>
+    </div>
+    <div id="new-transform" class="tab-pane" role="tabpanel">
+      <div class="row col-md-12">
+        <%= bootstrap_form_tag url: transform_path do %>
+          <div class="form-group">
+            <%= text_field_tag :data_dir, '', class: 'form-control' %>
+            <small class="text-muted">
+              For example, <code>stanford/maps</code> or <code>stanford/maps/data/kj751hs0595.mods</code>. Leave blank to transform all.
+            </small>
+          </div>
+          <button class="btn btn-primary">Begin transform</button>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

@@ -45,9 +45,9 @@ class TransformStatus extends HTMLElement {
                 <td>${item['records']}</td>
                 <td>${this.formattedDate(item['timestamp'])}</td>
                 <td>${item['duration']}</td>
-                <td>${item['error']}</td>
+                <td>${item['error'] ? item['error'] : ''}</td>
               </tr>` })
-    return htmlNodes.join()
+    return htmlNodes.join("\n")
   }
 
   formattedDate(timestamp) {

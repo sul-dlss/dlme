@@ -28,7 +28,7 @@ RSpec.describe TransformsController do
       post :create, params: { data_dir: data_dir }
       expect(TransformNotification).to have_received(:publish).with(data_dir)
       expect(flash[:notice]).to be_present
-      expect(response).to be_redirect
+      expect(response).to redirect_to transform_path
     end
   end
 end
