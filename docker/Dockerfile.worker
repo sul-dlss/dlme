@@ -18,6 +18,7 @@ RUN apk add --no-cache build-base \
                        postgresql-dev \
                        gmp-dev \
                        tzdata \
+                       sqlite-dev \
     && gem install bundler
 
 # Copy the Gemfile and Gemfile.lock, and run bundle install prior to copying all source files
@@ -27,7 +28,7 @@ COPY Gemfile /opt
 COPY Gemfile.lock /opt
 
 RUN bundle config build.nokogiri --use-system-libraries \
-    && bundle install --without development test
+    && bundle install
 
 COPY . .
 # Start the server by default, listening for all connections
