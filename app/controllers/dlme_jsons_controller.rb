@@ -44,6 +44,7 @@ class DlmeJsonsController < Spotlight::ApplicationController
     end
   end
 
+  # Called when submitting the form with JSON on it.
   def create
     @resource.attributes = resource_params
     if @resource.save_and_index

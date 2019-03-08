@@ -63,7 +63,7 @@ RSpec.describe DlmeJsonsController do
       end
     end
 
-    context 'when save is successful' do
+    context 'when save is unsuccessful' do
       before do
         allow(DlmeJson).to receive(:find).and_return(dlme_json)
         allow(dlme_json).to receive(:save_and_index).and_return(false)
@@ -75,6 +75,35 @@ RSpec.describe DlmeJsonsController do
                                  dlme_json: { data: { json: 'foobar' } } }
         expect(flash[:error]).to eq 'There was a problem saving the JSON.'
         expect(response).to render_template('edit')
+      end
+    end
+  end
+
+  describe 'POST create' do
+    context 'when save is successful' do
+      let(:json) do
+        '{"id":"test_id", "agg_provider":"controller_test", ' \
+        '"agg_data_provider":"controller_test", "cho_title":["Ancient artifact"]}'
+      end
+
+      it 'redirects to the list page' do
+        expect do
+          post :create, params: { exhibit_id: exhibit.slug,
+                                  dlme_json: { data: { json: json } } }
+        end.to change(DlmeJson, :count).by(1)
+        expect(response).to be_redirect
+      end
+    end
+
+    context 'when save is unsuccessful' do
+      it 'draws the new page' do
+        expect do
+          post :create, params: { exhibit_id: exhibit.slug,
+                                  dlme_json: { data: { json: 'foobar' } } }
+        end.not_to change(DlmeJson, :count)
+
+        expect(flash[:error]).to eq 'There was a problem uploading your object.'
+        expect(response).to be_redirect
       end
     end
   end
