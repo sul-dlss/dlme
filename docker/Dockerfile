@@ -8,6 +8,7 @@ ENV RAILS_ENV=production
 ENV RAILS_SERVE_STATIC_FILES=true
 ENV BUNDLER_VERSION=2.0.1
 ARG SECRET_KEY_BASE
+ARG BUNDLE_WITHOUT="development test"
 
 # Create and set the working directory as /opt
 WORKDIR /opt
@@ -20,7 +21,8 @@ RUN gem install bundler
 COPY Gemfile /opt
 COPY Gemfile.lock /opt
 
-RUN bundle install
+RUN bundle config build.nokogiri --use-system-libraries \
+    && bundle install --without ${BUNDLE_WITHOUT}
 
 COPY . .
 RUN rake assets:precompile
