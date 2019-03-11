@@ -2,6 +2,24 @@
 
 # Responsible for describing the JSON schema for the intermediate representation.
 # rubocop:disable Metrics/BlockLength
+
+# See https://github.com/sul-dlss/dlme/blob/master/docs/application_profile.md#svcsservice
+ServicesSchema = Dry::Validation.Schema do
+  # See https://github.com/sul-dlss/dlme/blob/master/docs/application_profile.md#svcsservice
+  required('service_id').filled(:str?)
+  required('service_conforms_to') { array? { each(:str?) } }
+  optional('service_implements').filled(:str?)
+end
+
+# See https://github.com/sul-dlss/dlme/blob/master/docs/application_profile.md#edmwebresource
+EDMWebResourceSchema = Dry::Validation.Schema do
+  required('wr_id').filled(:str?)
+  optional('wr_format') { array? { each(:str?) } }
+  optional('wr_has_service').each do
+    schema(ServicesSchema)
+  end
+end
+
 DlmeJsonSchema = Dry::Validation.Schema do
   # See https://github.com/sul-dlss/dlme/blob/master/docs/application_profile.md#edmprovidedcho
   optional('cho_alternative') { array? { each(:str?) } }
@@ -38,27 +56,15 @@ DlmeJsonSchema = Dry::Validation.Schema do
   required('agg_data_provider').filled(:str?)
   optional('agg_dc_rights') { array? { each(:str?) } }
   optional('agg_edm_rights') { array? { each(:str?) } } # At least one is required
-  optional('agg_has_view') # TODO add schema?
 
-  optional('agg_is_shown_at').schema do # 0 or 1
-    required('wr_id').filled(:str?)
+  optional('agg_has_view').each do # 0 to n
+    schema(EDMWebResourceSchema)
   end
-  optional('agg_is_shown_by').schema do # 0 or 1
-    # See https://github.com/sul-dlss/dlme/blob/master/docs/application_profile.md#edmwebresource
-    required('wr_id').filled(:str?)
-    optional('wr_format') { array? { each(:str?) } }
-    optional('wr_has_service').each do
-      schema do
-        # See https://github.com/sul-dlss/dlme/blob/master/docs/application_profile.md#svcsservice
-        required('service_id').filled(:str?)
-        required('service_conforms_to') { array? { each(:str?) } }
-        optional('service_implements').filled(:str?)
-      end
-    end
-  end
-  optional('agg_preview').schema do # 0 or 1
-    required('wr_id').filled(:str?)
-  end
+
+  optional('agg_is_shown_at').schema(EDMWebResourceSchema) # 0 or 1
+  optional('agg_is_shown_by').schema(EDMWebResourceSchema) # 0 or 1
+  optional('agg_preview').schema(EDMWebResourceSchema) # 0 or 1
+
   required('agg_provider').filled(:str?)
   optional('agg_same_as') { array? { each(:str?) } } # reference
 end
