@@ -73,8 +73,7 @@ gem 'aws-sdk-sns'
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem 'blacklight', github: 'projectblacklight/blacklight', branch: 'allow_dots'
-gem 'blacklight-spotlight', github: 'projectblacklight/spotlight', branch: 'dots'
+gem 'blacklight-spotlight', '~> 2.4'
 
 gem 'friendly_id'
 gem 'iiif-presentation', '~> 0.2.0'
