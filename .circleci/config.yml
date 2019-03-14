@@ -150,7 +150,7 @@ workflows:
     - build-image:
         filters:
           branches:
-            only: master
+            only: versioned_images
     - publish-latest:
         requires:
         - build-image
