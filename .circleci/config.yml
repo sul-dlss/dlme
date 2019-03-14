@@ -156,7 +156,7 @@ workflows:
         - build-image
         filters:
           branches:
-            only: version_images
+            only: versioned_images
   build-tags:
     jobs:
     - build-image:
