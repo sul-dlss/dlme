@@ -1,6 +1,13 @@
-version: 2
+version: 2.1
+executors:
+  docker-publisher:
+    environment:
+      WEBAPP_IMAGE_NAME: suldlss/dlme
+      WORKER_IMAGE_NAME: suldlss/dlme-worker
+    docker:
+    - image: circleci/buildpack-deps:stretch
 jobs:
-  build:
+  test:
     docker:
     - image: circleci/ruby:2.5.3-stretch-node
       environment:
@@ -72,33 +79,97 @@ jobs:
     - store_test_results:
         path: test_results
 
-  register_image:
-    docker:
-    - image: circleci/buildpack-deps:stretch
+  build-image:
+    executor: docker-publisher
     steps:
-    - setup_remote_docker:
-        version: 18.05.0-ce
     - checkout
+    - setup_remote_docker
     - run:
-        name: Build Image & Register Task
+        name: Build Docker image
         command: |
-          docker build . -f docker/Dockerfile -t suldlss/dlme:latest --build-arg SECRET_KEY_BASE=$MASTER_KEY
-          docker build . -f docker/Dockerfile.worker -t suldlss/dlme-worker:latest
-          docker login -u $DOCKER_USER -p $DOCKER_PASS
-          docker push suldlss/dlme:latest
-          docker push suldlss/dlme-worker:latest
+          docker build . -f docker/Dockerfile -t $WEBAPP_IMAGE_NAME:latest .  --build-arg SECRET_KEY_BASE=$MASTER_KEY
+          docker build . -f docker/Dockerfile.worker -t $WORKER_IMAGE_NAME:latest .
+    - run:
+        name: Archive Docker image
+        command: |
+          docker save -o webapp_image.tar $WEBAPP_IMAGE_NAME
+          docker save -o worker_image.tar $WORKER_IMAGE_NAME
+    - persist_to_workspace:
+        root: .
+        paths:
+        - ./webapp_image.tar
+        - ./worker_image.tar
+  publish-latest:
+    executor: docker-publisher
+    steps:
+    - attach_workspace:
+        at: /tmp/workspace
+    - setup_remote_docker
+    - run:
+        name: Load archived Docker image
+        command: |
+          docker load -i /tmp/workspace/webapp_image.tar
+          docker load -i /tmp/workspace/worker_image.tar
+    - run:
+        name: Publish Docker Image to Docker Hub
+        command: |
+          echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+          docker push $WEBAPP_IMAGE_NAME:latest
+          docker push $WORKER_IMAGE_NAME:latest
+  publish-tag:
+    executor: docker-publisher
+    steps:
+    - attach_workspace:
+        at: /tmp/workspace
+    - setup_remote_docker
+    - run:
+        name: Load archived Docker image
+        command: |
+          docker load -i /tmp/workspace/webapp_image.tar
+          docker load -i /tmp/workspace/worker_image.tar
+    - run:
+        name: Publish Docker Image to Docker Hub
+        command: |
+          echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+          docker tag $WEBAPP_IMAGE_NAME:latest $WEBAPP_IMAGE_NAME:$CIRCLE_TAG
+          docker tag $WORKER_IMAGE_NAME:latest $WORKER_IMAGE_NAME:$CIRCLE_TAG
 
+          docker push $WEBAPP_IMAGE_NAME:$CIRCLE_TAG
+          docker push $WORKER_IMAGE_NAME:$CIRCLE_TAG
 workflows:
   version: 2
 
-  build:
+  test:
     jobs:
-    - build:
+    - test:
         filters:
           branches:
             ignore: master
-    - register_image:
-        requires:
+  build:
+    jobs:
+    - build-image:
         filters:
           branches:
             only: master
+    - publish-latest:
+        requires:
+        - build-image
+        filters:
+          branches:
+            only: master
+  build-tags:
+    jobs:
+    - build-image:
+        filters:
+          tags:
+            only: /^[0-9]+\.[0-9]+\.[0-9]+/
+          branches:
+            ignore: /.*/
+    - publish-tag:
+        requires:
+        - build-image
+        filters:
+          tags:
+            only: /^[0-9]+\.[0-9]+\.[0-9]+/
+          branches:
+            ignore: /.*/
