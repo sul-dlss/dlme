@@ -89,11 +89,13 @@ jobs:
         command: |
           docker build . -f docker/Dockerfile -t $WEBAPP_IMAGE_NAME:latest .  --build-arg SECRET_KEY_BASE=$MASTER_KEY
           docker build . -f docker/Dockerfile.worker -t $WORKER_IMAGE_NAME:latest .
+
     - run:
         name: Archive Docker image
         command: |
           docker save -o webapp_image.tar $WEBAPP_IMAGE_NAME
           docker save -o worker_image.tar $WORKER_IMAGE_NAME
+
     - persist_to_workspace:
         root: .
         paths:
@@ -110,12 +112,14 @@ jobs:
         command: |
           docker load -i /tmp/workspace/webapp_image.tar
           docker load -i /tmp/workspace/worker_image.tar
+
     - run:
         name: Publish Docker Image to Docker Hub
         command: |
           echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
           docker push $WEBAPP_IMAGE_NAME:latest
           docker push $WORKER_IMAGE_NAME:latest
+
   publish-tag:
     executor: docker-publisher
     steps:
@@ -127,15 +131,16 @@ jobs:
         command: |
           docker load -i /tmp/workspace/webapp_image.tar
           docker load -i /tmp/workspace/worker_image.tar
+
     - run:
         name: Publish Docker Image to Docker Hub
         command: |
           echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
           docker tag $WEBAPP_IMAGE_NAME:latest $WEBAPP_IMAGE_NAME:$CIRCLE_TAG
           docker tag $WORKER_IMAGE_NAME:latest $WORKER_IMAGE_NAME:$CIRCLE_TAG
-
           docker push $WEBAPP_IMAGE_NAME:$CIRCLE_TAG
           docker push $WORKER_IMAGE_NAME:$CIRCLE_TAG
+
 workflows:
   version: 2
 
