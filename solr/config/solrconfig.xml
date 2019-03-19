@@ -121,18 +121,8 @@
        <str name="facet">true</str>
        <str name="facet.mincount">1</str>
        <str name="facet.limit">10</str>
-       
-       <str name="spellcheck">true</str>
-       <str name="spellcheck.dictionary">default</str>
-       <str name="spellcheck.onlyMorePopular">true</str>
-       <str name="spellcheck.extendedResults">true</str>
-       <str name="spellcheck.collate">false</str>
-       <str name="spellcheck.count">5</str>
 
      </lst>
-    <arr name="last-components">
-      <str>spellcheck</str>
-    </arr>
   </requestHandler>
 
   <requestHandler name="standard" class="solr.SearchHandler">
@@ -141,19 +131,6 @@
        <str name="defType">lucene</str>
      </lst>
   </requestHandler>
-
-  <searchComponent name="spellcheck" class="solr.SpellCheckComponent">
-    <str name="queryAnalyzerFieldType">textSpell</str>
-    <!-- Multiple "Spell Checkers" can be declared and used by this component
-      (e.g. for title_spell field)
-      -->
-    <lst name="spellchecker">
-      <str name="name">default</str>
-      <str name="field">spell</str>
-      <str name="spellcheckIndexDir">./spell</str>
-      <str name="buildOnOptimize">true</str>
-    </lst>
-  </searchComponent>
   
   <requestHandler name="/replication" class="solr.ReplicationHandler" startup="lazy" /> 
   
