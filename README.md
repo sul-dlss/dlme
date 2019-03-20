@@ -109,9 +109,7 @@ docker build . -f docker/Dockerfile -t suldlss/dlme:latest --build-arg SECRET_KE
 docker push suldlss/dlme:latest
 ```
 
-#### Submit a pull request to update the container in AWS
-
-[Follow the README instructions in terraform.](https://github.com/sul-dlss/terraform-aws/tree/master/organizations/production/dlme)
+Deploy Updated containers to AWS ([Development](https://github.com/sul-dlss/terraform-aws/blob/master/organizations/development/dlme/README.md) / [Staging](https://github.com/sul-dlss/terraform-aws/blob/master/organizations/staging/dlme/README.md) / [Production](https://github.com/sul-dlss/terraform-aws/blob/master/organizations/production/dlme/README.md)).
 
 ## Converting files
 All files must first be converted to the intermediate representation (IR) before they can be imported. This is done by the https://github.com/sul-dlss/dlme-transform repository.
