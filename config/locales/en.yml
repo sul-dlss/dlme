@@ -14,7 +14,16 @@ en:
     form:
       title: 'DLME S3 Fetch'
       add_item: 'Fetch'
+  s3_delete:
+    new:
+      add_item: Delete Items
+  s3_harvester:
+    remove:
+      header: Delete Items
   spotlight:
+    catalog:
+      admin_header:
+        delete_resource: Delete Items
     curation:
       sidebar:
         sources: 'Sources'

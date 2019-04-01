@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe DlmeJsonResourceBuilder do
   let(:doc_builder) { described_class.new(resource) }
-  let(:resource) { DlmeJson.new(json: json, metadata: metadata) }
+  let(:exhibit) { create(:exhibit) }
+  let(:resource) { DlmeJson.new(json: json, metadata: metadata, exhibit: exhibit) }
   let(:fixture_file_path) { File.join(fixture_path, 'json/iiif-single-image.json') }
   let(:json) { File.open(fixture_file_path).read }
   let(:metadata) do
