@@ -1,3 +1,5 @@
+require 'open-uri'
+
 # ==> User model
 # Note that your chosen model must include Spotlight::User mixin
 # Spotlight::Engine.config.user_class = '::User'
@@ -49,9 +51,17 @@ Spotlight::Engine.config.default_autocomplete_params = { qf: 'id^1000 cho_title_
 # Spotlight::Engine.config.featured_image_square_size = [400, 400]
 
 # ==> Google Analytics integration
+if Settings.analytics.pkcs12_key && Settings.analytics.pkcs12_key_path
+  File.open(Settings.analytics.pkcs12_key_path, "wb") do |file|
+    open(Settings.analytics.pkcs12_key, "rb") do |read_file|
+      file.write(read_file.read)
+    end
+  end
+end
+
 # Spotlight::Engine.config.analytics_provider = nil
-# Spotlight::Engine.config.ga_pkcs12_key_path = nil
+Spotlight::Engine.config.ga_pkcs12_key_path = Settings.analytics.pkcs12_key_path
 Spotlight::Engine.config.ga_web_property_id = Settings.analytics.web_property_id
-# Spotlight::Engine.config.ga_email = nil
+Spotlight::Engine.config.ga_email = Settings.analytics.email
 # Spotlight::Engine.config.ga_analytics_options = {}
 # Spotlight::Engine.config.ga_page_analytics_options = config.ga_analytics_options.merge(limit: 5)
