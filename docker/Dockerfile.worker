@@ -21,6 +21,8 @@ RUN apk add --no-cache build-base \
                        sqlite-dev \
     && gem install bundler
 
+RUN apk add --no-cache git
+
 # Copy the Gemfile and Gemfile.lock, and run bundle install prior to copying all source files
 # This is an optimization that will prevent the need to re-run bundle install when only source
 # code is changed and not dependencies.
