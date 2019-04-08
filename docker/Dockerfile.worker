@@ -7,6 +7,7 @@ LABEL maintainer="Justin Coyne <jcoyne85@stanford.edu>"
 ENV RAILS_ENV=production
 ENV BUNDLER_VERSION=2.0.1
 ARG SECRET_KEY_BASE
+ARG BUNDLE_WITHOUT="development test"
 
 # Create and set the working directory as /opt
 WORKDIR /opt
@@ -30,7 +31,7 @@ COPY Gemfile /opt
 COPY Gemfile.lock /opt
 
 RUN bundle config build.nokogiri --use-system-libraries \
-    && bundle install
+    && bundle install --without ${BUNDLE_WITHOUT}
 
 COPY . .
 # Start the server by default, listening for all connections
