@@ -23,6 +23,7 @@ services:
       # For development
       - RAILS_SERVE_STATIC_FILES=true
       - RAILS_ENV=development
+      - HOST=0.0.0.0
     image: 'suldlss/dlme:latest'
     ports:
       - "3000:3000"
