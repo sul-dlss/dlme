@@ -13,15 +13,15 @@ ARG BUNDLE_WITHOUT="development test"
 # Create and set the working directory as /opt
 WORKDIR /opt
 
-RUN gem install bundler
-
 # Copy the Gemfile and Gemfile.lock, and run bundle install prior to copying all source files
 # This is an optimization that will prevent the need to re-run bundle install when only source
 # code is changed and not dependencies.
 COPY Gemfile /opt
 COPY Gemfile.lock /opt
 
-RUN bundle config build.nokogiri --use-system-libraries \
+RUN gem update --system \
+    && gem install bundler \
+    && bundle config build.nokogiri --use-system-libraries \
     && bundle install --without ${BUNDLE_WITHOUT}
 
 COPY . .
