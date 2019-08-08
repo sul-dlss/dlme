@@ -29,10 +29,12 @@ class DlmeJson < Spotlight::Resource
   end
 
   def valid_schema?
-    schema_errors = DlmeJsonSchema.call(json).errors
-    return if schema_errors.empty?
+    # If not coerced to a hash, #errors returns a Dry::Schema::MessageSet. Doing
+    # this to provide looser coupling.
+    schema_errors_hash = DlmeJsonSchema.call(json).errors.to_h
+    return if schema_errors_hash.empty?
 
-    errors.add(:json, squash_errors(schema_errors))
+    errors.add(:json, squash_errors(schema_errors_hash))
   rescue JSON::ParserError
     false
   end
