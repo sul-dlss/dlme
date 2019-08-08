@@ -95,6 +95,6 @@ gem 'honeybadger'
 gem 'lograge'
 gem 'okcomputer'
 gem 'rack-attack'
-gem 'slowpoke'
+gem 'slowpoke', '~> 0.3.0'
 
 gem 'font-awesome-rails'
