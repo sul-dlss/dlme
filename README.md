@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/sul-dlss/dlme.svg)](https://travis-ci.org/sul-dlss/dlme) [![Coverage Status](https://coveralls.io/repos/sul-dlss/dlme/badge.svg?branch=master&service=github)](https://coveralls.io/github/sul-dlss/dlme?branch=master)
+[[![CircleCI](https://circleci.com/gh/sul-dlss/dlme.svg?style=svg)](https://circleci.com/gh/sul-dlss/dlme)
+[![Coverage Status](https://coveralls.io/repos/github/sul-dlss/dlme/badge.svg)](https://coveralls.io/github/sul-dlss/dlme)
 
 # Digital Library of the Middle East
 
