@@ -90,6 +90,11 @@ gem 'config'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'dry-validation'
+# Pinning dry-schema because 1.3.3 causes an argument error
+# when doing:
+#   required(:service_conforms_to) { array? { each(:str?) } }
+# see https://github.com/dry-rb/dry-schema/issues/186
+gem 'dry-schema', '1.3.2'
 
 gem 'honeybadger'
 gem 'lograge'
