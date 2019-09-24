@@ -1,12 +1,15 @@
-<%= bootstrap_form_tag(url: exhibit_s3_harvester_path(exhibit_id: current_exhibit)) do |f| %>
-              <div class="form-group">
-                <%= text_field_tag :url, 'https://', class: 'form-control' %>
-              </div>
-              <div class="form-actions">
-                <div class="primary-actions">
-                  <%= cancel_link "", :back, class: 'btn btn-default' %>
-                  <%= f.submit t('.add_item'), class: 'btn btn-primary' %>
-                </div>
-              </div>
-
-              <% end %>
+<%= bootstrap_form_tag(url: exhibit_s3_harvester_path(exhibit_id: current_exhibit),
+                       html: { class: 'form-horizontal' }) do |f| %>
+  <div class="form-group">
+    <%= label_tag :url, 'URL:', class: 'col-md-2 control-label' %>
+    <div class="col-md-10">
+      <%= text_field_tag :url, nil, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <div class="primary-actions">
+      <%= cancel_link "", :back, class: 'btn btn-default' %>
+      <%= f.submit t('.add_item'), class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
