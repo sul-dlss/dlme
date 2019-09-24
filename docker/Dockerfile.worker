@@ -1,5 +1,4 @@
-# This image's actual base image
-FROM ruby:2.5-alpine3.9
+FROM ruby:2.6.3-alpine
 
 LABEL maintainer="Justin Coyne <jcoyne85@stanford.edu>"
 

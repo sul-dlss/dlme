@@ -1,5 +1,13 @@
-# This image's actual base image
-FROM starefossen/ruby-node:2-10
+FROM ruby:2.6.3-alpine
+
+RUN apk add --update --no-cache \
+      nodejs \
+      tzdata \
+      libxml2-dev \
+      libxslt-dev \
+      postgresql-dev \
+      sqlite-dev \
+      yarn
 
 LABEL maintainer="Aaron Collier <aaron.collier@stanford.edu>"
 
@@ -13,18 +21,23 @@ ARG BUNDLE_WITHOUT="development test"
 # Create and set the working directory as /opt
 WORKDIR /opt
 
+RUN gem update --system && \
+  gem install bundler && \
+  bundle config build.nokogiri --use-system-libraries
+
 # Copy the Gemfile and Gemfile.lock, and run bundle install prior to copying all source files
 # This is an optimization that will prevent the need to re-run bundle install when only source
 # code is changed and not dependencies.
 COPY Gemfile /opt
 COPY Gemfile.lock /opt
 
-RUN gem update --system \
-    && gem install bundler \
-    && bundle config build.nokogiri --use-system-libraries \
-    && bundle install --without ${BUNDLE_WITHOUT}
+RUN apk --no-cache add --virtual build-dependencies \
+  build-base \
+  && bundle install --without ${BUNDLE_WITHOUT} \
+  && apk del build-dependencies
 
 COPY . .
+
 RUN rake assets:precompile
 # Start the server by default, listening for all connections
 CMD puma -C config/puma.rb
