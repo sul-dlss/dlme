@@ -29,11 +29,36 @@ class TransformStatus extends HTMLElement {
   }
 
   displayResults(data) {
-    var tableTemplate = this.getAttribute("table")
+    var templateId = this.getAttribute("table")
     this.shadowRoot.innerHTML = ''
-    var table = document.getElementById(tableTemplate).content.cloneNode(true)
-    table.querySelector('tbody').innerHTML = this.rows(data.results)
-    this.shadowRoot.appendChild(table)
+    var template = document.getElementById(templateId).content.cloneNode(true)
+    template.querySelector('tbody').innerHTML = this.rows(data.data)
+    this.setPrevious(data.links.prev, template)
+    this.setNext(data.links.next, template)
+    this.shadowRoot.appendChild(template)
+  }
+
+  setPrevious(url, template) {
+    const button = template.getElementById('prev')
+    if (!url) {
+      button.disabled = true
+      return
+    }
+    button.addEventListener('click', () => {
+      this.fetchData(url)
+    })
+  }
+
+  setNext(url, template) {
+    const button = template.getElementById('next')
+
+    if (!url) {
+      button.disabled = true
+      return
+    }
+    button.addEventListener('click', () => {
+      this.fetchData(url)
+    })
   }
 
   rows(rows) {

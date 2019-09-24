@@ -18,6 +18,7 @@
           .table {
               width: 100%;
               margin-bottom: 1rem;
+              margin-top: 1rem;
               color: #212529;
           }
 
@@ -26,21 +27,56 @@
             	vertical-align: top;
             	border-top: 1px solid #dee2e6;
           }
+
+          .btn {
+          	display: inline-block;
+          	font-weight: 400;
+          	color: #fff;
+          	text-align: center;
+          	vertical-align: middle;
+          	-webkit-user-select: none;
+          	-moz-user-select: none;
+          	-ms-user-select: none;
+          	user-select: none;
+          	background-color: #007bff;
+          	border: 1px solid #007bff;
+          	padding: .375rem .75rem;
+          	font-size: 16px;
+          	line-height: 1.5;
+          	border-radius: .25rem;
+          	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+          }
+
+          button:not(:disabled) {
+            cursor: pointer;
+          }
+
+          .btn:disabled {
+            color: #fff;
+            background-color: #6c757d;
+            border-color: #6c757d;
+          }
           </style>
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Url</th>
-                <th scope="col">Data path</th>
-                <th scope="col">Result</th>
-                <th scope="col">Records</th>
-                <th scope="col">Timestamp</th>
-                <th scope="col">Duration (secs)</th>
-                <th scope="col">Errors</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+          <% # Has to have a single root element %>
+          <div>
+            <button id='prev' class="btn">Previous</button>
+            <button id='next' class="btn">Next</button>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Url</th>
+                  <th scope="col">Data path</th>
+                  <th scope="col">Result</th>
+                  <th scope="col">Records</th>
+                  <th scope="col">Timestamp</th>
+                  <th scope="col">Duration (secs)</th>
+                  <th scope="col">Errors</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
       </template>
       <transform-status table="transform-result-table" url="/transform_result">
         <style>
