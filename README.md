@@ -110,6 +110,18 @@ docker build . -f docker/Dockerfile -t suldlss/dlme:latest --build-arg SECRET_KE
 docker push suldlss/dlme:latest
 ```
 
+If you want to deploy a tagged version (recommended), then all you have to do is make a release on github. First create a tag
+```
+git tag 1.1.3
+git push origin --tags
+```
+
+Then go to https://github.com/sul-dlss/dlme/releases/new?tag=1.1.3
+and "Publish Release"
+
+This will trigger circle to create a tagged image on docker hub.
+
+
 Deploy Updated containers to AWS ([Development](https://github.com/sul-dlss/terraform-aws/blob/master/organizations/development/dlme/README.md) / [Staging](https://github.com/sul-dlss/terraform-aws/blob/master/organizations/staging/dlme/README.md) / [Production](https://github.com/sul-dlss/terraform-aws/blob/master/organizations/production/dlme/README.md)).
 
 ## Converting files
