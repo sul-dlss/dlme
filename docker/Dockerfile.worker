@@ -4,7 +4,7 @@ LABEL maintainer="Justin Coyne <jcoyne85@stanford.edu>"
 
 # Set default RAILS environment
 ENV RAILS_ENV=production
-ENV BUNDLER_VERSION=2.0.1
+ENV BUNDLER_VERSION=2.0.2
 ARG SECRET_KEY_BASE
 ARG BUNDLE_WITHOUT="development test"
 
