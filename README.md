@@ -45,6 +45,7 @@ code will be shared into the container so that the webapp will be dynamically re
 ```console
 [FIRST RUN]
 $ docker-compose up -d postgres
+$ docker-compose build app
 $ docker-compose run app rake db:setup
 $ docker-compose run app rake spotlight:initialize
 [THEN]
