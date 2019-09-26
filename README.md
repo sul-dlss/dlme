@@ -56,27 +56,33 @@ Once the dlme rails app is running you can create an exhibit. The title will nee
 need to be 'library'.
 
 ### Local transforms
-Configure localstack:
+
+First, install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html).
+
+Configure AWS CLI to use localstack-run endpoints:
 
 ```
 AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws sns \
-	--endpoint-url=http://localhost:4575 create-topic \
-	--region us-east-1 \
-	--name dlme-transform
+    --endpoint-url=http://localhost:4575 create-topic \
+    --region us-east-1 \
+    --name dlme-transform
 
 AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws s3api \
-	--endpoint-url=http://localhost:4572 create-bucket \
-	--region us-east-1 \
-	--bucket dlme-transform
+    --endpoint-url=http://localhost:4572 create-bucket \
+    --region us-east-1 \
+    --bucket dlme-transform
 
 AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws sns \
-	--endpoint-url=http://localhost:4575 subscribe \
-	--topic-arn arn:aws:sns:us-east-1:123456789012:dlme-transform \
-	--protocol http \
-	--region us-east-1 \
-	--notification-endpoint http://app:3000/transform_result
+    --endpoint-url=http://localhost:4575 subscribe \
+    --topic-arn arn:aws:sns:us-east-1:123456789012:dlme-transform \
+    --protocol http \
+    --region us-east-1 \
+    --notification-endpoint http://app:3000/transform_result
 ```
+
 Note that this will need to be repeated ever time localstack is started.
+
+Make sure you have cloned the [dlme-metadata](https://github.com/sul-dlss/dlme-metadata), [dlme-transform](https://github.com/sul-dlss/dlme-transform), and [dlme-traject](https://github.com/sul-dlss/dlme-traject) repositories in sibling directories to the `dlme` directory.
 
 To perform a local transform that will write to localstack S3 and send a notification to localstack SNS:
 
@@ -91,10 +97,10 @@ docker run --rm -e S3_BUCKET=dlme-transform \
                 -e S3_BASE_URL=http://localstack:4572 \
                 -e SKIP_FETCH_CONFIG=true \
                 -e SKIP_FETCH_DATA=true \
-                -v $(pwd)/.:/opt/traject \
+                -v $(pwd)/../dlme-transform:/opt/traject \
                 -v $(pwd)/../dlme-traject:/opt/traject/config \
                 -v $(pwd)/../dlme-metadata:/opt/traject/data \
-                -v $(pwd)/output:/opt/traject/output \
+                -v $(pwd)/tmp/output:/opt/traject/output \
                 --network="host" \
                 suldlss/dlme-transform:latest \
                 stanford/maps/data/kj751hs0595.mods
