@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe 'transform results', type: :request do
   context 'when signed in' do
     let(:curator) { create(:exhibit_curator) }
+    let(:body) { JSON.parse(response.body).with_indifferent_access }
 
     before do
       sign_in curator
@@ -13,6 +14,11 @@ RSpec.describe 'transform results', type: :request do
     it 'shows transform results' do
       get '/transform_result'
       expect(response).to have_http_status(:ok)
+    end
+
+    it 'includes navigation links' do
+      get '/transform_result'
+      expect(body[:links]).not_to be_nil
     end
   end
 
