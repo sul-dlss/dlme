@@ -7,10 +7,32 @@ class S3HarvesterController < Spotlight::ApplicationController
 
   load_and_authorize_resource :exhibit, class: Spotlight::Exhibit
 
+  # rubocop:disable Metrics/AbcSize
   def create
     authorize! :create, DlmeJson
+
+    if any_duplicate_identifiers?
+      return redirect_to spotlight.new_exhibit_resource_path(current_exhibit),
+                         flash: { error: t('dlme_s3s.form.error') }
+    end
+
     FetchResourcesJob.perform_later params['url'], current_exhibit
     redirect_to spotlight.admin_exhibit_catalog_path(current_exhibit),
                 notice: t('spotlight.resources.fetch.queued')
+  end
+  # rubocop:enable Metrics/AbcSize
+
+  private
+
+  def any_duplicate_identifiers?
+    ids = body.split("\n").map do |json|
+      JSON.parse(json)['id']
+    end
+
+    ids.size != ids.uniq.size
+  end
+
+  def body
+    Faraday.get(params['url']).body
   end
 end
