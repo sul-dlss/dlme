@@ -13,7 +13,7 @@ ar:
         create: إرسال
         created: .نشكرك على رسالتك. لقد تم إرسال ملاحظاتك واقتراحاتك
   spotlight:
-    about_pages: نبذة عن الصفحات
+    about_pages:
       contacts:
         header: عنوان فرعي
     header_links:
