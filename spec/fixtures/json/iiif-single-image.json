@@ -2,6 +2,7 @@
   "__source": "https://github.com/waynegraham/dlme-metadata/blob/master/princeton/mods/eg1_0095.mods",
   "id": "princeton_rj4305881",
   "agg_data_provider": "Princeton University. Firestone Library.",
+  "agg_data_provider_country": "United States of America",
   "agg_edm_rights": "http://www.princeton.edu/~rbsc/research/rights.html",
   "agg_is_shown_at": {
     "wr_id": "http://arks.princeton.edu/ark:/88435/rj4305881"
@@ -19,6 +20,7 @@
     "wr_id": "http://libimages.princeton.edu/loris2/pudl0100%2Fposters%2Feg1_0095%2F00000001.jp2/full/200,/0/default.jpg"
   },
   "agg_provider": "Princeton University",
+  "agg_provider_country": "United States of America",
   "cho_contributor": ["فاتن حمامة", "محمود ياسين", "فريد شوقي", "بركات"],
   "cho_coverage": ["Egypt"],
   "cho_date": "1977",
