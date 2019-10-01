@@ -19,8 +19,10 @@ RSpec.describe DlmeJsonResourceBuilder do
     let(:expected_untokenized_fields) do
       { '__source_ssim' => 'https://github.com/waynegraham/dlme-metadata/blob/master/princeton/mods/eg1_0095.mods',
         'agg_data_provider_ssim' => 'Princeton University. Firestone Library.',
+        'agg_data_provider_country_ssim' => 'United States of America',
         'agg_edm_rights_ssim' => 'http://www.princeton.edu/~rbsc/research/rights.html',
         'agg_provider_ssim' => 'Princeton University',
+        'agg_provider_country_ssim' => 'United States of America',
         'cho_contributor_ssim' => ['فاتن حمامة', 'محمود ياسين', 'فريد شوقي', 'بركات'],
         'cho_coverage_ssim' => ['Egypt'],
         'cho_date_ssim' => '1977',
