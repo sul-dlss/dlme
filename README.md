@@ -82,7 +82,7 @@ AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws sns \
 
 Note that this will need to be repeated ever time localstack is started.
 
-Make sure you have cloned the [dlme-metadata](https://github.com/sul-dlss/dlme-metadata), [dlme-transform](https://github.com/sul-dlss/dlme-transform), and [dlme-traject](https://github.com/sul-dlss/dlme-traject) repositories in sibling directories to the `dlme` directory.
+Make sure you have cloned the [dlme-metadata](https://github.com/sul-dlss/dlme-metadata) and [dlme-transform](https://github.com/sul-dlss/dlme-transform) repositories in sibling directories to the `dlme` directory.
 
 To perform a local transform that will write to localstack S3 and send a notification to localstack SNS:
 
@@ -95,10 +95,8 @@ docker run --rm -e S3_BUCKET=dlme-transform \
                 -e SNS_ENDPOINT_URL=http://localhost:4575 \
                 -e S3_ENDPOINT_URL=http://localhost:4572 \
                 -e S3_BASE_URL=http://localstack:4572 \
-                -e SKIP_FETCH_CONFIG=true \
                 -e SKIP_FETCH_DATA=true \
                 -v $(pwd)/../dlme-transform:/opt/traject \
-                -v $(pwd)/../dlme-traject:/opt/traject/config \
                 -v $(pwd)/../dlme-metadata:/opt/traject/data \
                 -v $(pwd)/tmp/output:/opt/traject/output \
                 --network="host" \
