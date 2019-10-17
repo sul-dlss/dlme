@@ -15,11 +15,21 @@ RSpec.describe FetchResourcesJob, type: :job do
         '"agg_data_provider":"controller_test", "cho_title":["Ancient artifact"]}'
   end
 
-  context 'when the record is unique' do
-    before do
-      allow(Faraday).to receive(:get).and_return(mock_response)
-    end
+  before do
+    allow(Faraday).to receive(:get).and_return(mock_response)
+  end
 
+  context 'with invalid data' do
+    let(:json) { '{}' }
+
+    it 'raises a RuntimeError' do
+      expect do
+        described_class.perform_now(url, exhibit)
+      end.to raise_error(RuntimeError, "Resource 1 in #{url} is not valid.")
+    end
+  end
+
+  context 'when the record is unique' do
     it 'adds the record' do
       expect { described_class.perform_now(url, exhibit) }.to change(DlmeJson, :count).by(1)
       expect(Faraday).to have_received(:get).with(url)
@@ -28,7 +38,6 @@ RSpec.describe FetchResourcesJob, type: :job do
 
   context 'when the record is not unique' do
     before do
-      allow(Faraday).to receive(:get).and_return(mock_response)
       create(:dlme_json, url: 'test_id', exhibit: exhibit)
     end
 
