@@ -10,6 +10,8 @@ AllCops:
     - 'config/**/*'
     - 'vendor/**/*'
     - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
+    - 'postgres-data/**/*'
 
 Rails:
   Enabled: true
