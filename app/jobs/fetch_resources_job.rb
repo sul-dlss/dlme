@@ -21,9 +21,11 @@ class FetchResourcesJob < ApplicationJob
     resource = DlmeJson.find_or_initialize_by(url: json['id'], exhibit: exhibit)
     resource.data = { json: item }
 
-    raise "Resource #{index + 1} in #{url} is not valid." unless resource.valid?
+    raise "Resource #{index + 1} in #{url} is not valid: #{resource.errors.full_messages.to_sentence}" unless resource.valid?
 
     resource.save
     resource.reindex
+  rescue JSON::ParserError
+    raise "Resource #{index + 1} in #{url} is invalid JSON: #{item}"
   end
 end

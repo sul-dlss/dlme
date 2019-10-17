@@ -19,13 +19,26 @@ RSpec.describe FetchResourcesJob, type: :job do
     allow(Faraday).to receive(:get).and_return(mock_response)
   end
 
-  context 'with invalid data' do
+  context 'with data that does not pass schema validation' do
     let(:json) { '{}' }
+
+    # rubocop:disable Metrics/LineLength
+    it 'raises a RuntimeError and includes schema validation errors' do
+      expect do
+        described_class.perform_now(url, exhibit)
+      end.to raise_error(RuntimeError,
+                         "Resource 1 in #{url} is not valid: Json 'cho_title' is missing. 'id' is missing. 'agg_data_provider' is missing. 'agg_provider' is missing")
+    end
+    # rubocop:enable Metrics/LineLength
+  end
+
+  context 'with data that is not valid JSON' do
+    let(:json) { 'foo bar' }
 
     it 'raises a RuntimeError' do
       expect do
         described_class.perform_now(url, exhibit)
-      end.to raise_error(RuntimeError, "Resource 1 in #{url} is not valid.")
+      end.to raise_error(RuntimeError, "Resource 1 in #{url} is invalid JSON: #{json}")
     end
   end
 
