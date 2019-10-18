@@ -4,7 +4,6 @@
 class DlmeJson < Spotlight::Resource
   self.document_builder_class = DlmeJsonResourceBuilder
   validate :valid_json_syntax?
-  validate :valid_schema?
   validates :url, uniqueness: { scope: :exhibit_id }
 
   store :data, accessors: %i[json metadata]
@@ -26,17 +25,6 @@ class DlmeJson < Spotlight::Resource
     true
   rescue JSON::ParserError
     errors.add(:json, 'Invalid JSON')
-  end
-
-  def valid_schema?
-    # If not coerced to a hash, #errors returns a Dry::Schema::MessageSet. Doing
-    # this to provide looser coupling.
-    schema_errors_hash = DlmeJsonSchema.call(json).errors.to_h
-    return if schema_errors_hash.empty?
-
-    errors.add(:json, squash_errors(schema_errors_hash))
-  rescue JSON::ParserError
-    false
   end
 
   # Given a hash with keys as strings and values as either arrays or hashes

@@ -20,3 +20,6 @@ sns:
   topic_arn: ~
 
 allow_robots: false
+
+feature_flags:
+  allow_json_upload: false
