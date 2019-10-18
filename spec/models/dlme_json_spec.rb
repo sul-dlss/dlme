@@ -29,14 +29,5 @@ RSpec.describe DlmeJson do
         expect(instance.errors[:json]).to eq ['Invalid JSON']
       end
     end
-
-    context 'when the JSON is not semantically correct' do
-      let(:json) { '{"id":"baddy"}' }
-
-      it 'sets an error' do
-        expect(valid?).to be false
-        expect(instance.errors[:json]).to eq ["'cho_title' is missing. 'agg_data_provider' is missing. 'agg_provider' is missing"]
-      end
-    end
   end
 end
