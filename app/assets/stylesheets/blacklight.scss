@@ -28,8 +28,8 @@
       // we don't know what size thumbnails we're getting so enforce
       // hard constraints for the index view
       img {
-        max-height: 200px;
-        width: 100px;
+        max-height: 100px;
+        max-width: 100px;
       }
     }
   }
