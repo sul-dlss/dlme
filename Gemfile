@@ -36,10 +36,10 @@ group :development, :test do
   gem 'byebug'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 3.0'
-  gem 'coveralls', require: false
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'
   gem 'selenium-webdriver'
+  gem 'simplecov'
 
   gem 'factory_bot_rails', '~> 5.0'
   gem 'rails-controller-testing'

@@ -16,6 +16,7 @@ jobs:
         BUNDLE_PATH: vendor/bundle
         RAILS_ENV: test
         NOKOGIRI_USE_SYSTEM_LIBRARIES: true
+        CC_TEST_REPORTER_ID: 0603d31c367f7e726e4db6e249d4b62025c768000d43b02259a65e8486812362
     - image: solr:7
       command: bin/solr -cloud -noprompt -f -p 8983
     steps:
@@ -64,16 +65,32 @@ jobs:
         name: Check styles using rubocop
         command: bundle exec rubocop
 
+    - run:
+        name: Setup Code Climate test-reporter
+        command: |
+          # download test reporter as a static binary
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
+          chmod +x ./tmp/cc-test-reporter
+
     # Run rspec in parallel
     - run:
         name: Run rspec in parallel
         command: |
+          ./tmp/cc-test-reporter before-build
           bundle exec rspec --profile 10 \
                             --format RspecJunitFormatter \
                             --out test_results/rspec.xml \
                             --format progress \
                             $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-
+    - run:
+        name: Code Climate Test Coverage
+        command: |
+          ./tmp/cc-test-reporter format-coverage -t simplecov -o "coverage/codeclimate.$CIRCLE_NODE_INDEX.json"
+    - run:
+        name: Upload coverage results to Code Climate
+        command: |
+          ./tmp/cc-test-reporter sum-coverage coverage/codeclimate.*.json -p 1 -o coverage/codeclimate.total.json
+          ./tmp/cc-test-reporter upload-coverage -i coverage/codeclimate.total.json
 
     # Save test results for timing analysis
     - store_test_results:
