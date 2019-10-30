@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_27_145747) do
+ActiveRecord::Schema.define(version: 2019_10_30_150808) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -117,6 +117,17 @@ ActiveRecord::Schema.define(version: 2019_02_27_145747) do
     t.datetime "updated_at"
     t.string "field_type"
     t.boolean "readonly_field", default: false
+    t.boolean "is_multiple", default: false
+  end
+
+  create_table "spotlight_custom_search_fields", force: :cascade do |t|
+    t.string "slug"
+    t.string "field"
+    t.text "configuration"
+    t.integer "exhibit_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exhibit_id"], name: "index_spotlight_custom_search_fields_on_exhibit_id"
   end
 
   create_table "spotlight_exhibits", force: :cascade do |t|
@@ -217,6 +228,7 @@ ActiveRecord::Schema.define(version: 2019_02_27_145747) do
     t.integer "thumbnail_id"
     t.string "locale", default: "en"
     t.integer "default_locale_page_id"
+    t.string "content_type"
     t.index ["default_locale_page_id"], name: "index_spotlight_pages_on_default_locale_page_id"
     t.index ["exhibit_id"], name: "index_spotlight_pages_on_exhibit_id"
     t.index ["locale"], name: "index_spotlight_pages_on_locale"

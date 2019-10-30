@@ -2,8 +2,6 @@
 
 source 'https://rubygems.org'
 
-ruby '2.6.3'
-
 gem 'rails', '~> 5.2.2'
 
 # Use Puma as the app server
@@ -32,20 +30,22 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3', '~> 1.3.6'
+  gem 'sqlite3', '~> 1.4'
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
+  gem 'capybara', '~> 3.0'
   gem 'coveralls', require: false
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'
   gem 'selenium-webdriver'
 
-  gem 'factory_bot_rails', '~> 4.8.0'
+  gem 'factory_bot_rails', '~> 5.0'
   gem 'rails-controller-testing'
-  gem 'rubocop', '~> 0.65.0'
+  gem 'rubocop', '~> 0.65'
+  gem 'rubocop-performance'
+  gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'solr_wrapper'
 end
@@ -67,11 +67,11 @@ end
 
 gem 'aws-sdk-sns'
 
-gem 'blacklight-spotlight', '~> 2.4'
+gem 'blacklight-spotlight', '~> 2.11'
 
 gem 'friendly_id'
 gem 'iiif-presentation', '~> 0.2.0'
-gem 'riiif', '~> 1.0'
+gem 'riiif', '~> 2.0'
 gem 'sitemap_generator'
 
 gem 'blacklight-gallery', '>= 0.3.0'
