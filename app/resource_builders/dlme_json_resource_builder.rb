@@ -14,6 +14,7 @@ class DlmeJsonResourceBuilder < Spotlight::SolrDocumentBuilder
     cho_temporal
   ].freeze
 
+  # rubocop:disable Metrics/MethodLength
   # rubocop:disable Metrics/AbcSize
   def to_solr
     source = resource.json
@@ -22,7 +23,18 @@ class DlmeJsonResourceBuilder < Spotlight::SolrDocumentBuilder
       transform_to_untokenized_solr_fields(resource.metadata, sink: sink)
 
       TOKENIZED_COPY_FIELDS.each do |key|
-        sink["#{key}_tsim"] = source[key] if source[key]
+        next unless source[key]
+
+        # Handle hashes specially because if a hash slips through to Solr, Solr
+        # gets unhappy and will return a 400 error.
+        if source[key].is_a?(Hash)
+          source[key].each do |language_code, values|
+            sink["#{key}.#{language_code}_tsim"] = values
+            sink["sortable_#{key}.#{language_code}_ssi"] = values.first
+          end
+        else
+          sink["#{key}_tsim"] = source[key]
+        end
       end
 
       sink['sortable_cho_title_ssi'] = Array(sink['cho_title_ssim']).first if sink['cho_title_ssim']
@@ -30,6 +42,7 @@ class DlmeJsonResourceBuilder < Spotlight::SolrDocumentBuilder
     end
   end
   # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 
   private
 

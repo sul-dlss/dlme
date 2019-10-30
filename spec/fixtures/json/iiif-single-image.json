@@ -22,6 +22,7 @@
   "agg_provider": "Princeton University",
   "agg_provider_country": "United States of America",
   "cho_contributor": ["فاتن حمامة", "محمود ياسين", "فريد شوقي", "بركات"],
+  "cho_creator": ["Jane Q. Doe", "John X. Doe"],
   "cho_coverage": ["Egypt"],
   "cho_date": "1977",
   "cho_edm_type": "Image",
@@ -31,6 +32,6 @@
   "cho_is_part_of": "http://pudl.princeton.edu/collections/pudl0100",
   "cho_language": "Arabic",
   "cho_spatial": ["Egypt"],
-  "cho_title": "افواه و ارانب",
+  "cho_title": {"ar-Arab": ["افواه و ارانب"]},
   "cho_type": "Posters"
 }
