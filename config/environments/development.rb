@@ -28,8 +28,10 @@ Rails.application.configure do
   end
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
-  config.active_job.queue_adapter     = :sidekiq
-  config.active_job.queue_name_prefix = "dlme_#{Rails.env}"
+  if ENV['REDIS_HOST']
+    config.active_job.queue_adapter     = :sidekiq
+    config.active_job.queue_name_prefix = "dlme_#{Rails.env}"
+  end
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
