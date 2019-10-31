@@ -10,7 +10,18 @@ require 'rspec/rails'
 require_relative 'support/controller_level_helpers'
 require 'selenium-webdriver'
 
-Capybara.javascript_driver = :selenium_chrome_headless
+Capybara.javascript_driver = :headless_chrome
+
+Capybara.register_driver :headless_chrome do |app|
+  Capybara::Selenium::Driver.load_selenium
+  browser_options = ::Selenium::WebDriver::Chrome::Options.new.tap do |opts|
+    opts.args << '--headless'
+    opts.args << '--disable-gpu'
+    opts.args << '--no-sandbox'
+    opts.args << '--window-size=1280,1696'
+  end
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
+end
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
