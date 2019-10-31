@@ -9,7 +9,4 @@ class ApplicationController < ActionController::Base
   layout 'blacklight'
 
   protect_from_forgery with: :exception
-
-  # This can be removed after upgrading to Blacklight 7
-  skip_after_action :discard_flash_if_xhr
 end

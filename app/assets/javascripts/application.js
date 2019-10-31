@@ -15,6 +15,7 @@
 //
 // Required by Blacklight
 //= require jquery3
+//= require bootstrap
 //= require blacklight/blacklight
 
 //= require transform_result

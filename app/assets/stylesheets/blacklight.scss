@@ -2,7 +2,7 @@
 
 #documents {
   .index_title {
-    font-size: $font-size-large;
+    font-size: $font-size-lg;
     margin-top: 0;
   }
 
@@ -10,8 +10,8 @@
     .document {
       box-sizing: content-box;
       min-height: 100px;
-      padding-bottom: $padding-large-vertical;
-      padding-top: $padding-large-vertical;
+      padding-bottom: spacer(3);
+      padding-top: spacer(3);
     }
 
     .documentHeader,
