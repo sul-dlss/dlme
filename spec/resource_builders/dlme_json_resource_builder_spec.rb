@@ -33,7 +33,7 @@ RSpec.describe DlmeJsonResourceBuilder do
         'cho_is_part_of_ssim' => 'http://pudl.princeton.edu/collections/pudl0100',
         'cho_language_ssim' => 'Arabic',
         'cho_spatial_ssim' => ['Egypt'],
-        'cho_title_ssim' => 'افواه و ارانب',
+        'cho_title.ar-Arab_ssim' => ['افواه و ارانب'],
         'cho_type_ssim' => 'Posters',
         :id => 'princeton_rj4305881',
         'agg_is_shown_at.wr_id_ssim' => 'http://arks.princeton.edu/ark:/88435/rj4305881',
@@ -46,7 +46,7 @@ RSpec.describe DlmeJsonResourceBuilder do
       { 'cho_contributor_tsim' => ['فاتن حمامة', 'محمود ياسين', 'فريد شوقي', 'بركات'],
         'cho_coverage_tsim' => ['Egypt'],
         'cho_spatial_tsim' => ['Egypt'],
-        'cho_title_tsim' => 'افواه و ارانب' }
+        'cho_title.ar-Arab_tsim' => ['افواه و ارانب'] }
     end
 
     it 'adds the original source record' do
@@ -71,13 +71,14 @@ RSpec.describe DlmeJsonResourceBuilder do
       }.to_json)
     end
 
-    it 'adds sortable fields for title' do
-      expect(solr_doc).to include 'sortable_cho_title_ssi' => 'افواه و ارانب'
+    it 'adds sortable fields' do
+      expect(solr_doc).to include('sortable_cho_title.ar-Arab_ssi' => 'افواه و ارانب')
+      expect(solr_doc).to include('sortable_cho_creator_ssi' => 'Jane Q. Doe')
     end
 
     it 'includes metadata context fields' do
-      expect(solr_doc).to include 'traject_context_command_line.filename_ssim' => fixture_file_path,
-                                  'traject_context_source_ssim' => 'dlme_json_resource_spec'
+      expect(solr_doc).to include('traject_context_command_line.filename_ssim' => fixture_file_path,
+                                  'traject_context_source_ssim' => 'dlme_json_resource_spec')
     end
   end
 end
