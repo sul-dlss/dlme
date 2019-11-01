@@ -38,10 +38,18 @@ Rails.application.routes.draw do
 
   resource :transform_result, only: [:create, :show]
 
-  authenticate :user, lambda { |u| Ability.new(u).can? :manage, :sidekiq } do
-    require 'sidekiq/web'
-    mount Sidekiq::Web => '/sidekiq'
-    Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
+  begin
+    authenticate :user, lambda { |u| Ability.new(u).can? :manage, :sidekiq } do
+      require 'sidekiq/web'
+      mount Sidekiq::Web => '/sidekiq'
+      Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
+    end
+  rescue LoadError => e
+    # If we get here, the sidekiq gem wasn't available (probably because you
+    # bundle installed without the production gems). As a placeholder, we'll
+    # print the original exception if you try to load the page (using a very
+    # basic Rack app:)
+    get '/sidekiq', to: lambda { |_| [500, {}, ['Problem loading sidekiq/web: ', e.to_s]] }
   end
 
   mount Riiif::Engine => '/images', as: 'riiif'
