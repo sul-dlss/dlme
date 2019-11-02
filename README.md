@@ -37,8 +37,41 @@ And these database configuration settings:
 
 ## Local Development
 
-Requires docker.
+### Without Docker
+The DLME application can be run in a standard ruby/rails environment locally using SolrWrapper, sqlite3, etc.
 
+In order to not have to use Postgres locally (and use sqlite for for development), you'll want to bundle install without the production dependencies.
+
+```bash
+$ bundle install --without production
+```
+
+You can run the standard rails setup script which will run your database migrations, etc.
+
+```bash
+$ ./bin/setup
+```
+
+To start Solr, you can use the `solr_wrapper` command.
+
+```bash
+$ solr_wrapper
+```
+
+Start the rails app
+
+```bash
+$ rails s
+```
+
+You can create an admin user to login to the application by running Spotlight's `initialize` task.
+
+```bash
+$ bundle exec rake spotlight:initialize
+```
+
+
+### With Docker
 For the local development described below, the webapp will be running in a docker container in development mode. Local
 code will be shared into the container so that the webapp will be dynamically reloaded.
 
@@ -56,6 +89,8 @@ Once the dlme rails app is running you can create an exhibit. The title will nee
 need to be 'library'.
 
 ### Local transforms
+
+Requires docker. If you are doing work on the DLME application you may not need to do local transforms and instead pull them from an S3 bucket.
 
 First, install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html).
 
