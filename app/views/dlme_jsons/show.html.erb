@@ -6,7 +6,7 @@
   <pre><%= JSON.pretty_unparse @resource.json %></pre>
   <%= link_to "Edit",
               [:edit, current_exhibit, @resource],
-              class: 'btn btn-default' %>
+              class: 'btn btn-secondary' %>
   <%= button_to "Delete",
                 [current_exhibit, @resource],
                 method: :delete,
