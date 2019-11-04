@@ -1,0 +1,24 @@
+// Source: https://cdn.rawgit.com/clirdlf/logo-fonts/master/clir-font/stylesheet.css
+@font-face {
+  font-family: 'A028';
+  src: font-url('A028-Med.eot');
+  src: font-url('A028-Med.eot?#iefix') format('embedded-opentype'),
+       font-url('A028-Med.woff2') format('woff2'),
+       font-url('A028-Med.woff') format('woff'),
+       font-url('A028-Med.ttf') format('truetype'),
+       font-url('A028-Med.svg#A028-Med') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'A028';
+  src: font-url('A028-Ext.eot');
+  src: font-url('A028-Ext.eot?#iefix') format('embedded-opentype'),
+       font-url('A028-Ext.woff2') format('woff2'),
+       font-url('A028-Ext.woff') format('woff'),
+       font-url('A028-Ext.ttf') format('truetype'),
+       font-url('A028-Ext.svg#A028-Ext') format('svg');
+  font-weight: 800;
+  font-style: normal;
+}
