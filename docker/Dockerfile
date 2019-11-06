@@ -39,6 +39,13 @@ RUN apk --no-cache add --virtual build-dependencies \
 
 COPY . .
 
+# Run this again while we're point at spotlight master, otherwise bundler complains:
+# > The git source https://github.com/projectblacklight/spotlight.git is not yet checked out.
+RUN apk --no-cache add --virtual build-dependencies \
+  build-base \
+  && bundle install --without ${BUNDLE_WITHOUT} \
+  && apk del build-dependencies
+
 RUN rake assets:precompile
 # Start the server by default, listening for all connections
 CMD puma -C config/puma.rb
