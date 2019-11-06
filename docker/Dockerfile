@@ -7,7 +7,8 @@ RUN apk add --update --no-cache \
       libxslt-dev \
       postgresql-dev \
       sqlite-dev \
-      yarn
+      yarn \
+      git
 
 LABEL maintainer="Aaron Collier <aaron.collier@stanford.edu>"
 
