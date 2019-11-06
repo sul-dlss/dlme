@@ -80,10 +80,14 @@ class CatalogController < ApplicationController
     config.add_facet_field 'contributor', field: 'cho_contributor_ssim', limit: true
     config.add_facet_field 'medium',      field: 'cho_medium_ssim', limit: true
     config.add_facet_field 'dc_rights',   field: 'cho_dc_rights_ssim', limit: true
-    config.add_facet_field 'holding_institution', field: 'agg_data_provider_ssim', limit: true
+    locale_encoded_fields.call('agg_data_provider').each do |code, field|
+      config.add_facet_field "holding_institution (#{code})", field: field, limit: true
+    end
 
     # "administrative"-like facets
-    config.add_facet_field 'source_institution', field: 'agg_provider_ssim', limit: true
+    locale_encoded_fields.call('agg_provider').each do |code, field|
+      config.add_facet_field "source_institution (#{code})", field: field, limit: true
+    end
     config.add_facet_field 'thumbnail', query: {
       yes: { label: 'Yes', fq: 'agg_preview.wr_id_ssim:[* TO *]' },
       no: { label: 'No', fq: '-agg_preview.wr_id_ssim:[* TO *]' }
