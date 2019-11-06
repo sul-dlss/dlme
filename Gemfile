@@ -68,7 +68,7 @@ end
 
 gem 'aws-sdk-sns'
 
-gem 'blacklight-spotlight', '~> 2.11'
+gem 'blacklight-spotlight', github: 'projectblacklight/spotlight'
 
 gem 'friendly_id'
 gem 'iiif-presentation', '~> 0.2.0'
@@ -92,4 +92,5 @@ gem 'okcomputer'
 gem 'rack-attack'
 gem 'slowpoke', '~> 0.3.0'
 
+gem 'bootstrap', '~> 4.0'
 gem 'font-awesome-rails'

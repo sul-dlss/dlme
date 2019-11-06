@@ -22,7 +22,6 @@
 }
 
 body {
-  background-color: $color-gray-lightest;
   margin-bottom: $footer-height + $footer-top-margin;
 
   @media (max-width: 991px) {
@@ -32,17 +31,7 @@ body {
 
 /* overrides for visual design changes */
 .btn-primary {
-  background-color: $color-black-light;
-  border-color: darken($color-black-light, 4%);
-}
-
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active,
-.open > .dropdown-toggle.btn-primary {
-  background-color: $color-black-medium;
-  border-color: darken($color-black-medium, 4%);
+  @include button-variant($color-black-light, $color-black-light);
 }
 
 .nav > li > a:hover,

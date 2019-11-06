@@ -68,3 +68,7 @@ Spotlight::Engine.config.ga_web_property_id = Settings.analytics.web_property_id
 Spotlight::Engine.config.ga_email = Settings.analytics.email
 # Spotlight::Engine.config.ga_analytics_options = {}
 # Spotlight::Engine.config.ga_page_analytics_options = config.ga_analytics_options.merge(limit: 5)
+
+Spotlight::Engine.config.routes.solr_documents = {
+  constraints: { id: %r{.+} }
+}

@@ -9,13 +9,13 @@ Rails.application.routes.draw do
 
   concern :searchable, Blacklight::Routes::Searchable.new
 
-  resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
+  resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog', id: %r{.+} do
     concerns :searchable
   end
 
   concern :exportable, Blacklight::Routes::Exportable.new
 
-  resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog', id: Blacklight::Engine.config.routes.identifier_constraint do
+  resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog', id: %r{.+} do
     concerns :exportable
   end
 
