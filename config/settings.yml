@@ -23,3 +23,13 @@ allow_robots: false
 
 feature_flags:
   allow_json_upload: false
+
+acceptable_bcp47_codes:
+  - ar-Arab
+  - ar-Latn
+  - en
+  - fa-Arab
+  - fa-Latn
+  - fr
+  - tr-Arab
+  - tr-Latn
