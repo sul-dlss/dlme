@@ -33,6 +33,7 @@ RSpec.describe DlmeJsonResourceBuilder do
         'cho_is_part_of_ssim' => 'http://pudl.princeton.edu/collections/pudl0100',
         'cho_language_ssim' => 'Arabic',
         'cho_spatial_ssim' => ['Egypt'],
+        'cho_title_ssim' => ['افواه و ارانب'],
         'cho_title.ar-Arab_ssim' => ['افواه و ارانب'],
         'cho_type_ssim' => 'Posters',
         :id => 'princeton_rj4305881',
@@ -46,6 +47,7 @@ RSpec.describe DlmeJsonResourceBuilder do
       { 'cho_contributor_tsim' => ['فاتن حمامة', 'محمود ياسين', 'فريد شوقي', 'بركات'],
         'cho_coverage_tsim' => ['Egypt'],
         'cho_spatial_tsim' => ['Egypt'],
+        'cho_title_tsim' => ['افواه و ارانب'],
         'cho_title.ar-Arab_tsim' => ['افواه و ارانب'] }
     end
 
