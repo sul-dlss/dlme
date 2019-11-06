@@ -28,6 +28,8 @@ class DlmeJsonResourceBuilder < Spotlight::SolrDocumentBuilder
         # Handle hashes specially because if a hash slips through to Solr, Solr
         # gets unhappy and will return a 400 error.
         if source[key].is_a?(Hash)
+          sink["#{key}_tsim"] = source[key].values.flatten
+
           source[key].each do |language_code, values|
             sink["#{key}.#{language_code}_tsim"] = values
             sink["sortable_#{key}.#{language_code}_ssi"] = values.first
@@ -52,6 +54,7 @@ class DlmeJsonResourceBuilder < Spotlight::SolrDocumentBuilder
       case value
       when Hash
         transform_to_untokenized_solr_fields(value, sink: sink, prefix: "#{key}.")
+        sink["#{prefix}#{key}_ssim"] = value.values.flatten
       when Array
         sink["#{prefix}#{key}_ssim"] = if value.any? { |x| x.is_a? Hash }
                                          value.map(&:to_json)
