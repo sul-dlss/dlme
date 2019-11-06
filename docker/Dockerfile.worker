@@ -19,7 +19,7 @@ RUN apk add --no-cache build-base \
                        gmp-dev \
                        tzdata \
                        sqlite-dev \
-                       git
+                       git \
     && gem install bundler
 
 RUN apk add --no-cache git
