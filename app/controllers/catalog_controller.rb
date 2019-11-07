@@ -123,49 +123,20 @@ class CatalogController < ApplicationController
     # handler defaults, or have no facets.
     config.add_facet_fields_to_solr_request!
 
-    locale_encoded_fields.call('cho_title').each do |code, field|
-      config.add_show_field "title (#{code})", field: field
-    end
-    config.add_show_field 'date', field: 'cho_date_ssim'
-
-    locale_encoded_fields.call('agg_data_provider').each do |code, field|
-      config.add_show_field "holding_institution (#{code})", field: field
-    end
-
-    locale_encoded_fields.call('agg_provider').each do |code, field|
-      config.add_show_field "source_institution (#{code})", field: field
-    end
-
-    config.add_show_field 'extent', field: 'cho_extent_ssim'
     config.add_show_field 'alternative', field: 'cho_alternative_ssim'
     config.add_show_field 'contributor', field: 'cho_contributor_ssim'
     config.add_show_field 'coverage', field: 'cho_coverage_ssim'
-    config.add_show_field 'creator', field: 'cho_creator_ssim'
     config.add_show_field 'dc_rights', field: 'cho_dc_rights_ssim', autolink: true
-    config.add_show_field 'description',
-                          field: 'cho_description_ssim',
-                          autolink: true,
-                          paragraph: true,
-                          join_with: ''
     config.add_show_field 'edm_type', field: 'cho_edm_type_ssim'
     config.add_show_field 'format', field: 'cho_format_ssim'
     config.add_show_field 'has_part', field: 'cho_has_part_ssim'
     config.add_show_field 'has_type', field: 'cho_has_type_ssim'
     config.add_show_field 'identifier', field: 'cho_identifier_ssim'
     config.add_show_field 'is_part_of', field: 'cho_is_part_of_ssim', autolink: true
-    config.add_show_field 'language', field: 'cho_language_ssim'
-    config.add_show_field 'medium', field: 'cho_medium_ssim'
-    config.add_show_field 'provenance',
-                          field: 'cho_provenance_ssim',
-                          paragraph: true,
-                          join_with: ''
     config.add_show_field 'publisher', field: 'cho_publisher_ssim'
     config.add_show_field 'relation', field: 'cho_relation_ssim'
     config.add_show_field 'same_as', field: 'cho_same_as_ssim', autolink: true
-    config.add_show_field 'source', field: 'cho_source_ssim'
-    config.add_show_field 'spatial', field: 'cho_spatial_ssim'
     config.add_show_field 'subject', field: 'cho_subject_ssim'
-    config.add_show_field 'temporal', field: 'cho_temporal_ssim'
     config.add_show_field 'type', field: 'cho_type_ssim'
 
     config.add_show_field '__source', field: '__source_ssim'
