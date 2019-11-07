@@ -30,6 +30,7 @@ class CatalogController < ApplicationController
 
     config.document_solr_path = 'get'
     config.document_unique_id_param = 'ids'
+    config.raw_endpoint.enabled = true
 
     locale_encoded_fields = lambda do |field_prefix, suffix = 'ssim'|
       (Settings.acceptable_bcp47_codes << 'none').map do |code|
