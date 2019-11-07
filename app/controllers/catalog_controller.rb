@@ -39,20 +39,33 @@ class CatalogController < ApplicationController
       end.to_h
     end
 
+    multilingual_locale_aware_field = lambda do |field_prefix, suffix = 'ssim', &block|
+      langs = Settings.acceptable_bcp47_codes + ['none']
+      block.yield({
+        pattern: "#{field_prefix}.%{lang}_#{suffix}",
+        langs: langs,
+        values: lambda do |field_config, document|
+          field_config.langs.flat_map do |lang|
+            Blacklight::FieldRetriever.new(document, field_config.merge(field: field_config.pattern % { lang: lang }, values: nil)).fetch
+          end
+        end
+      })
+    end
+
     config.index.title_field = locale_encoded_fields.call('cho_title').values
     config.index.thumbnail_field = 'agg_preview.wr_id_ssim'
     config.index.default_thumbnail = 'default.png'
 
-    locale_encoded_fields.call('cho_title').each do |code, field|
-      config.add_index_field "title (#{code})", field: field
+    multilingual_locale_aware_field.call('cho_title') do |field_config|
+      config.add_index_field 'title', **field_config
     end
 
     config.add_index_field 'date', field: 'cho_date_ssim'
-    locale_encoded_fields.call('agg_data_provider').each do |code, field|
-      config.add_index_field "holding institution (#{code})", field: field
+    multilingual_locale_aware_field.call('agg_data_provider') do |field_config|
+      config.add_index_field 'holding institution', **field_config
     end
-    locale_encoded_fields.call('agg_provider').each do |code, field|
-      config.add_index_field "source institution (#{code})", field: field
+    multilingual_locale_aware_field.call('agg_provider') do |field_config|
+      config.add_index_field 'source institution', **field_config
     end
 
     config.add_index_field 'extent', field: 'cho_extent_ssim'
@@ -142,8 +155,8 @@ class CatalogController < ApplicationController
     config.add_show_field '__source', field: '__source_ssim'
     config.add_show_field 'agg_dc_rights', field: 'agg_dc_rights_ssim'
     config.add_show_field 'agg_edm_rights', field: 'agg_edm_rights_ssim', autolink: true
-    locale_encoded_fields.call('agg_provider').each do |code, field|
-      config.add_show_field "agg_provider institution (#{code})", field: field
+    multilingual_locale_aware_field.call('agg_provider') do |field_config|
+      config.add_show_field 'agg_provider institution', **field_config
     end
     config.add_show_field 'agg_is_shown_at', field: 'agg_is_shown_at.wr_id_ssim', autolink: true
 
