@@ -32,15 +32,28 @@ class CatalogController < ApplicationController
     config.document_unique_id_param = 'ids'
     config.raw_endpoint.enabled = true
 
-    # solr field configuration for search results/index views
-    config.index.title_field = 'cho_title_ssim'
+    locale_encoded_fields = lambda do |field_prefix, suffix = 'ssim'|
+      (Settings.acceptable_bcp47_codes << 'none').map do |code|
+        [code, "#{field_prefix}.#{code}_#{suffix}"]
+      end.to_h
+    end
+
+    config.index.title_field = locale_encoded_fields.call('cho_title').values
     config.index.thumbnail_field = 'agg_preview.wr_id_ssim'
     config.index.default_thumbnail = 'default.png'
 
-    config.add_index_field 'title', field: 'cho_title_ssim'
+    locale_encoded_fields.call('cho_title').each do |code, field|
+      config.add_index_field "title (#{code})", field: field
+    end
+
     config.add_index_field 'date', field: 'cho_date_ssim'
-    config.add_index_field 'holding institution', field: 'agg_data_provider_ssim'
-    config.add_index_field 'source institution', field: 'agg_provider_ssim'
+    locale_encoded_fields.call('agg_data_provider').each do |code, field|
+      config.add_index_field "holding institution (#{code})", field: field
+    end
+    locale_encoded_fields.call('agg_provider').each do |code, field|
+      config.add_index_field "source institution (#{code})", field: field
+    end
+
     config.add_index_field 'extent', field: 'cho_extent_ssim'
     config.add_index_field 'creator', field: 'cho_creator_ssim'
     config.add_index_field 'description',
@@ -68,10 +81,14 @@ class CatalogController < ApplicationController
     config.add_facet_field 'contributor', field: 'cho_contributor_ssim', limit: true
     config.add_facet_field 'medium',      field: 'cho_medium_ssim', limit: true
     config.add_facet_field 'dc_rights',   field: 'cho_dc_rights_ssim', limit: true
-    config.add_facet_field 'holding_institution', field: 'agg_data_provider_ssim', limit: true
+    locale_encoded_fields.call('agg_data_provider').each do |code, field|
+      config.add_facet_field "holding_institution (#{code})", field: field, limit: true
+    end
 
     # "administrative"-like facets
-    config.add_facet_field 'source_institution', field: 'agg_provider_ssim', limit: true
+    locale_encoded_fields.call('agg_provider').each do |code, field|
+      config.add_facet_field "source_institution (#{code})", field: field, limit: true
+    end
     config.add_facet_field 'thumbnail', query: {
       yes: { label: 'Yes', fq: 'agg_preview.wr_id_ssim:[* TO *]' },
       no: { label: 'No', fq: '-agg_preview.wr_id_ssim:[* TO *]' }
@@ -105,10 +122,19 @@ class CatalogController < ApplicationController
     # handler defaults, or have no facets.
     config.add_facet_fields_to_solr_request!
 
-    config.add_show_field 'title', field: 'cho_title_ssim'
+    locale_encoded_fields.call('cho_title').each do |code, field|
+      config.add_show_field "title (#{code})", field: field
+    end
     config.add_show_field 'date', field: 'cho_date_ssim'
-    config.add_show_field 'holding_institution', field: 'agg_data_provider_ssim'
-    config.add_show_field 'source_institution', field: 'agg_provider_ssim'
+
+    locale_encoded_fields.call('agg_data_provider').each do |code, field|
+      config.add_show_field "holding_institution (#{code})", field: field
+    end
+
+    locale_encoded_fields.call('agg_provider').each do |code, field|
+      config.add_show_field "source_institution (#{code})", field: field
+    end
+
     config.add_show_field 'extent', field: 'cho_extent_ssim'
     config.add_show_field 'alternative', field: 'cho_alternative_ssim'
     config.add_show_field 'contributor', field: 'cho_contributor_ssim'
@@ -144,7 +170,9 @@ class CatalogController < ApplicationController
     config.add_show_field '__source', field: '__source_ssim'
     config.add_show_field 'agg_dc_rights', field: 'agg_dc_rights_ssim'
     config.add_show_field 'agg_edm_rights', field: 'agg_edm_rights_ssim', autolink: true
-    config.add_show_field 'agg_provider', field: 'agg_provider_ssim'
+    locale_encoded_fields.call('agg_provider').each do |code, field|
+      config.add_show_field "agg_provider institution (#{code})", field: field
+    end
     config.add_show_field 'agg_is_shown_at', field: 'agg_is_shown_at.wr_id_ssim', autolink: true
 
     config.add_search_field 'all_fields', label: 'Everything'
