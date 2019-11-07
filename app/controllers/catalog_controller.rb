@@ -30,6 +30,7 @@ class CatalogController < ApplicationController
 
     config.document_solr_path = 'get'
     config.document_unique_id_param = 'ids'
+    config.raw_endpoint.enabled = true
 
     # solr field configuration for search results/index views
     config.index.title_field = 'cho_title_ssim'
