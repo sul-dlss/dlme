@@ -1,6 +1,11 @@
 application:
   default_host: ~
-  default_from: ~
+
+action_mailer:
+  default_options:
+    from: ~
+  default_url_options:
+    host: ~
 
 # pkcs12_key: URI to key file location in S3
 # pkcs12_key_path: Path that will be used to store the PKCS12 Key file
