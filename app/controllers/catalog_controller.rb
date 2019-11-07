@@ -34,7 +34,7 @@ class CatalogController < ApplicationController
     config.raw_endpoint.enabled = true
 
     locale_encoded_fields = lambda do |field_prefix, suffix = 'ssim'|
-      (Settings.acceptable_bcp47_codes << 'none').map do |code|
+      (Settings.acceptable_bcp47_codes + ['none']).map do |code|
         [code, "#{field_prefix}.#{code}_#{suffix}"]
       end.to_h
     end
