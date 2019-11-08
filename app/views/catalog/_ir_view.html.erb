@@ -1,0 +1,33 @@
+<% if can? :debug, Spotlight::Exhibit %>
+  <div class="accordion w-100">
+    <div class="card">
+      <div class="card-header" id="headingIr">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseIr" aria-expanded="false" aria-controls="collapseOne">
+            Intermediate Representation
+          </button>
+        </h2>
+      </div>
+
+      <div id="collapseIr" class="collapse" aria-labelledby="headingIr">
+        <div class="card-body">
+          <%= debug document.intermediate_representation %>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingSolr">
+        <h2 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSolr" aria-expanded="false" aria-controls="collapseSolr">
+            Solr Document
+          </button>
+        </h2>
+      </div>
+      <div id="collapseSolr" class="collapse" aria-labelledby="headingSolr">
+        <div class="card-body" style="width: 800px;">
+          <%= debug document.to_h %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
