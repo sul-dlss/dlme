@@ -39,6 +39,10 @@ class SolrDocument
     to_openseadragon(blacklight_config.view_config(:show)).present?
   end
 
+  def intermediate_representation
+    JSON.parse(fetch('__raw_resource_json_ss'))
+  end
+
   private
 
   def shown_by_service(conforms_to:)
