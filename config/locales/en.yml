@@ -38,6 +38,18 @@ en:
       fetch:
           queued: 'Queued for processing.'
   statistics:
+    dashboard:
+      header:
+        total_items:
+          one: 1 item
+          other: '%{count} items'
+        total_types:
+          one: 1 item type
+          other: '%{count} item types'
+      items:
+        by_language: By language
+        by_type: By type
+        total_html: Items &middot; %{total}
     header: Statistics
   transforms:
     notification:
