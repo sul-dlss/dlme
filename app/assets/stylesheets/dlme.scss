@@ -85,44 +85,6 @@ body {
   }
 }
 
-// Ajustments to sidebars, more compact vertical spacing
-#sidebar li {
-  margin-top: 0;
-}
-
-#sidebar h4 {
-  border-bottom: 1px solid $color-gray-medium;
-  font-weight: 300;
-  font-size: 20px;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
-  padding-bottom: 3px;
-  padding-left: 3px;
-
-  &.nav-heading {
-    margin-bottom: 6px;
-    padding-left: 3px;
-    padding-top: 0;
-  }
-}
-
-#sidebar ul.nav > li a {
-  padding: 3px 12px 6px 3px;
-
-  .blacklight-about_pages-show & {
-    padding-bottom: 4px;
-    padding-top: 4px;
-  }
-}
-
-#sidebar ol.sidenav > li > h4 {
-  border-bottom: 0;
-}
-
-#sidebar .top-panel-heading {
-  padding: 6px 0;
-}
-
 .masthead .site-title {
   white-space: normal;
 }
