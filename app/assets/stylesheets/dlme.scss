@@ -83,18 +83,18 @@ body {
   white-space: normal;
 }
 
-.facet_limit-active {
-  border-color: $color-gray-medium;
-}
+.facet-limit-active {
+  border-color: $color-gray-medium !important;
 
-.facet_limit-active > .panel-heading {
-  background-color: $color-gray-medium;
-  border-color: $color-black-light;
-  color: $color-blackish;
-}
+  & > .card-header {
+    background-color: $color-gray-medium !important;
+    border-color: $color-black-light;
+    color: $color-blackish;
+  }
 
-.facet_limit-active > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: $color-gray-medium;
+  & > .card-header + .panel-collapse > .card-body {
+    border-top-color: $color-gray-medium;
+  }
 }
 
 // Overrides for mobile viewports
