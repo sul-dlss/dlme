@@ -1,1 +1,17 @@
 <h1 class="page-title"><%= t('statistics.header') %></h1>
+
+<div class="row d-none d-md-flex justify-content-around">
+  <div class="jumbotron col-4-md">
+    <h2 class="display-6">
+      <%= t('statistics.dashboard.header.total_items', count: @statistics_dashboard.items.total) %>
+    </h2>
+    <hr class="my-4">
+    <p class="text-center">
+      <%= t('statistics.dashboard.header.total_types', count: @statistics_dashboard.items.by_type.count) %>
+    </p>
+  </div>
+</div>
+
+<hr />
+
+<%= render @statistics_dashboard.items %>

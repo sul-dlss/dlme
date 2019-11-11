@@ -1,0 +1,57 @@
+<h2><%= t('statistics.dashboard.items.total_html', total: items.total) %></h2>
+<div class="row">
+  <div class="col-6">
+    <table class="table table-striped by-type">
+      <thead>
+        <tr>
+          <th><%= t('statistics.dashboard.items.by_type') %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% items.by_type.each do |field| %>
+          <tr>
+            <td>
+              <%= link_to path_for_facet(items.type_field, field['value']) do %>
+                <%= facet_display_value(items.type_field, field['value']) %>
+              <% end %>
+            </td>
+            <td class="text-right"><%= field['count'] %></td>
+          </tr>
+          <% field['pivot'].each do |pivot| %>
+            <tr>
+              <td class="pl-5">
+                <%= link_to "#{path_for_facet(items.sub_type_field, pivot['value'])}&#{{ f: { items.type_field => [field['value']] } }.to_query}" do %>
+                  <%= facet_display_value(items.sub_type_field, pivot['value']) %>
+                <% end %>
+              </td>
+              <td class="text-right"><%= pivot['count'] %></td>
+            </tr>
+          <% end if field['pivot'] %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-6">
+    <table class="table table-striped by-language">
+      <thead>
+        <tr>
+          <th><%= t('statistics.dashboard.items.by_language') %></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% items.by_language.each do |field| %>
+          <tr>
+            <td>
+              <%= link_to path_for_facet(items.language_field, field['value']) do %>
+                <%= facet_display_value(items.language_field, field['value']) %>
+              <% end %>
+            </td>
+            <td class="text-right"><%= field['count'] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

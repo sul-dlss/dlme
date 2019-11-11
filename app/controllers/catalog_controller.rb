@@ -110,6 +110,8 @@ class CatalogController < ApplicationController
     arabic_locale = ->(*_) { I18n.locale == :ar }
     en_locale = ->(*_) { I18n.locale == :en }
 
+    config.add_facet_field 'type_pivot_en', pivot: %w[cho_edm_type.en_ssim cho_has_type.en_ssim], if: false
+    config.add_facet_field 'type_pivot_ar', pivot: %w[cho_edm_type.ar-Arab_ssim cho_has_type.ar-Arab_ssim], if: false
     config.add_facet_field 'language_ar',    field: 'cho_language.ar-Arab_ssim', limit: true, if: arabic_locale
     config.add_facet_field 'language_en',    field: 'cho_language.en_ssim', limit: true, if: en_locale
     config.add_facet_field 'type_ar',    field: 'cho_edm_type.ar-Arab_ssim', limit: true, if: arabic_locale
