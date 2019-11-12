@@ -1,11 +1,23 @@
 $breadcrumb-item-padding-x: 0.5rem !default;
 @import 'bootstrap/rtl';
 
-/** The upstream stylsheet doesn't expect dir="rtl" on the <html> element.. */
 .rtl,
 [dir="rtl"] {
+  /** The upstream stylsheet doesn't expect dir="rtl" on the <html> element.. */
   & body {
     text-align: right;
     direction: rtl;
   }
+
+  /** Fix margins for the inline list (used in the footer) */
+  .list-inline-item {
+    &:last-child {
+      margin-right: 0.5rem;
+    }
+
+    &:first-child {
+      margin-right: 0;
+    }
+  }
+
 }
