@@ -18,6 +18,10 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     margin-right: 0;
   }
 
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: "\\";
+  }
+
   /** Fix margins for the inline list (used in the footer) */
   .list-inline-item {
     &:last-child {
