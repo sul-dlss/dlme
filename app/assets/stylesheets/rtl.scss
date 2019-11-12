@@ -1,0 +1,11 @@
+$breadcrumb-item-padding-x: 0.5rem !default;
+@import 'bootstrap/rtl';
+
+/** The upstream stylsheet doesn't expect dir="rtl" on the <html> element.. */
+.rtl,
+[dir="rtl"] {
+  & body {
+    text-align: right;
+    direction: rtl;
+  }
+}
