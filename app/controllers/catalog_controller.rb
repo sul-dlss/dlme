@@ -21,6 +21,10 @@ class CatalogController < ApplicationController
     config.view.masonry.partials = [:index]
     config.view.slideshow.partials = [:index]
 
+    config.add_results_collection_tool(:sort_widget)
+    config.add_results_collection_tool(:per_page_widget)
+    config.add_results_collection_tool(:view_type_group)
+
     config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
     ## Default parameters to send to solr for all search-like requests. See also SolrHelper#solr_search_params
     config.default_solr_params = {
