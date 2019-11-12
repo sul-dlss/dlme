@@ -72,73 +72,29 @@ body {
 }
 
 .breadcrumb {
-  background-color: transparent;
   border-bottom: 1px solid $color-gray-medium;
   padding-left: 0;
-
-  > .active {
-    color: $color-black-medium;
-  }
-
-  > li + li:before {
-    color: $color-black-light;
-  }
-}
-
-// Ajustments to sidebars, more compact vertical spacing
-#sidebar li {
-  margin-top: 0;
-}
-
-#sidebar h4 {
-  border-bottom: 1px solid $color-gray-medium;
-  font-weight: 300;
-  font-size: 20px;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
-  padding-bottom: 3px;
-  padding-left: 3px;
-
-  &.nav-heading {
-    margin-bottom: 6px;
-    padding-left: 3px;
-    padding-top: 0;
-  }
-}
-
-#sidebar ul.nav > li a {
-  padding: 3px 12px 6px 3px;
-
-  .blacklight-about_pages-show & {
-    padding-bottom: 4px;
-    padding-top: 4px;
-  }
-}
-
-#sidebar ol.sidenav > li > h4 {
-  border-bottom: 0;
-}
-
-#sidebar .top-panel-heading {
-  padding: 6px 0;
+  padding-right: 0;
+  margin-left: $breadcrumb-padding-x;
+  margin-right: $breadcrumb-padding-x;
 }
 
 .masthead .site-title {
   white-space: normal;
 }
 
-.facet_limit-active {
-  border-color: $color-gray-medium;
-}
+.facet-limit-active {
+  border-color: $color-gray-medium !important;
 
-.facet_limit-active > .panel-heading {
-  background-color: $color-gray-medium;
-  border-color: $color-black-light;
-  color: $color-blackish;
-}
+  & > .card-header {
+    background-color: $color-gray-medium !important;
+    border-color: $color-black-light;
+    color: $color-blackish;
+  }
 
-.facet_limit-active > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: $color-gray-medium;
+  & > .card-header + .panel-collapse > .card-body {
+    border-top-color: $color-gray-medium;
+  }
 }
 
 // Overrides for mobile viewports
