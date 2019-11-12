@@ -29,12 +29,16 @@ en:
       sidebar:
         sources: 'Sources'
         transform: 'Transform data'
+    main_navigation:
+      statistics: Statistics
     search:
       fields:
         cho_title_ssim: Title
     resources:
       fetch:
           queued: 'Queued for processing.'
+  statistics:
+    header: Statistics
   transforms:
     notification:
       sent: 'Transform request sent.'

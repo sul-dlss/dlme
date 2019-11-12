@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     resources :dlme_jsons if Settings.feature_flags.allow_json_upload
     resource :s3_harvester, controller: :"s3_harvester", only: [:create]
     resource :s3_delete, controller: :s3_delete, only: [:new, :create]
+    resource :statistics, only: :show
   end
 
   resource :transform, only: [:show, :create]
