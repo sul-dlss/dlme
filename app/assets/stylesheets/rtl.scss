@@ -14,6 +14,10 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     padding-left: 0;
   }
 
+  dd {
+    margin-right: 0;
+  }
+
   /** Fix margins for the inline list (used in the footer) */
   .list-inline-item {
     &:last-child {
@@ -42,5 +46,23 @@ $breadcrumb-item-padding-x: 0.5rem !default;
 
   .facet-values .facet-count {
     text-align: left;
+  }
+
+  .documents-list .document .document-thumbnail,
+  #documents.documents-list .document-thumbnail {
+    float: right;
+  }
+
+  #documents.documents-list .documentHeader, #documents.documents-list .document-metadata {
+    margin-left: 0;
+    margin-right: 120px;
+  }
+
+  .slideshow-documents .grid .document {
+    float: right;
+  }
+
+  .view-type-list {
+      transform: scale(-1);
   }
 }
