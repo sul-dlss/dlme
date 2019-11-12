@@ -38,25 +38,62 @@ class CatalogController < ApplicationController
     config.raw_endpoint.enabled = true
 
     locale_encoded_fields = lambda do |field_prefix, suffix = 'ssim'|
-      (Settings.acceptable_bcp47_codes << 'none').map do |code|
+      (Settings.acceptable_bcp47_codes + ['none']).map do |code|
         [code, "#{field_prefix}.#{code}_#{suffix}"]
       end.to_h
     end
 
-    config.index.title_field = locale_encoded_fields.call('cho_title').values
+    lang_config = {
+      'ar' => [%w[ar-Arab ar-Latn], default: (%w[en none] + Settings.acceptable_bcp47_codes).uniq],
+      'en' => ['en', default: (%w[ar-Arab ar-Latn none] + Settings.acceptable_bcp47_codes).uniq]
+    }.with_indifferent_access
+
+    multilingual_locale_aware_field = lambda do |field_prefix, suffix = 'ssim', &block|
+      block.yield(
+        {
+          pattern: "#{field_prefix}.%<lang>s_#{suffix}",
+          values: lambda do |field_config, document|
+            pref_langs, options = lang_config[I18n.locale]
+
+            values = Array.wrap(pref_langs).flatten.map do |lang|
+              subfield_config = field_config.merge(field: format(field_config.pattern, lang: lang), values: nil)
+              Blacklight::FieldRetriever.new(document, subfield_config).fetch
+            end
+
+            if values.none?(&:any?)
+              values = Array.wrap(options[:default]).flatten.map do |lang|
+                subfield_config = field_config.merge(field: format(field_config.pattern, lang: lang), values: nil)
+                Blacklight::FieldRetriever.new(document, subfield_config).fetch
+              end
+            end
+
+            if field_config.first
+              values.find(&:any?)
+            else
+              values.flatten
+            end
+          end
+        }
+      )
+    end
+
+    multilingual_locale_aware_field.call('cho_title') do |field_config|
+      config.index.title_field = Blacklight::Configuration::Field.new(first: true, **field_config)
+    end
+
     config.index.thumbnail_field = 'agg_preview.wr_id_ssim'
     config.index.default_thumbnail = 'default.png'
 
-    locale_encoded_fields.call('cho_title').each do |code, field|
-      config.add_index_field "title (#{code})", field: field
+    multilingual_locale_aware_field.call('cho_title') do |field_config|
+      config.add_index_field 'title', **field_config
     end
 
     config.add_index_field 'date', field: 'cho_date_ssim'
-    locale_encoded_fields.call('agg_data_provider').each do |code, field|
-      config.add_index_field "holding institution (#{code})", field: field
+    multilingual_locale_aware_field.call('agg_data_provider') do |field_config|
+      config.add_index_field 'holding institution', **field_config
     end
-    locale_encoded_fields.call('agg_provider').each do |code, field|
-      config.add_index_field "source institution (#{code})", field: field
+    multilingual_locale_aware_field.call('agg_provider') do |field_config|
+      config.add_index_field 'source institution', **field_config
     end
 
     config.add_index_field 'extent', field: 'cho_extent_ssim'
@@ -127,56 +164,27 @@ class CatalogController < ApplicationController
     # handler defaults, or have no facets.
     config.add_facet_fields_to_solr_request!
 
-    locale_encoded_fields.call('cho_title').each do |code, field|
-      config.add_show_field "title (#{code})", field: field
-    end
-    config.add_show_field 'date', field: 'cho_date_ssim'
-
-    locale_encoded_fields.call('agg_data_provider').each do |code, field|
-      config.add_show_field "holding_institution (#{code})", field: field
-    end
-
-    locale_encoded_fields.call('agg_provider').each do |code, field|
-      config.add_show_field "source_institution (#{code})", field: field
-    end
-
-    config.add_show_field 'extent', field: 'cho_extent_ssim'
     config.add_show_field 'alternative', field: 'cho_alternative_ssim'
     config.add_show_field 'contributor', field: 'cho_contributor_ssim'
     config.add_show_field 'coverage', field: 'cho_coverage_ssim'
-    config.add_show_field 'creator', field: 'cho_creator_ssim'
     config.add_show_field 'dc_rights', field: 'cho_dc_rights_ssim', autolink: true
-    config.add_show_field 'description',
-                          field: 'cho_description_ssim',
-                          autolink: true,
-                          paragraph: true,
-                          join_with: ''
     config.add_show_field 'edm_type', field: 'cho_edm_type_ssim'
     config.add_show_field 'format', field: 'cho_format_ssim'
     config.add_show_field 'has_part', field: 'cho_has_part_ssim'
     config.add_show_field 'has_type', field: 'cho_has_type_ssim'
     config.add_show_field 'identifier', field: 'cho_identifier_ssim'
     config.add_show_field 'is_part_of', field: 'cho_is_part_of_ssim', autolink: true
-    config.add_show_field 'language', field: 'cho_language_ssim'
-    config.add_show_field 'medium', field: 'cho_medium_ssim'
-    config.add_show_field 'provenance',
-                          field: 'cho_provenance_ssim',
-                          paragraph: true,
-                          join_with: ''
     config.add_show_field 'publisher', field: 'cho_publisher_ssim'
     config.add_show_field 'relation', field: 'cho_relation_ssim'
     config.add_show_field 'same_as', field: 'cho_same_as_ssim', autolink: true
-    config.add_show_field 'source', field: 'cho_source_ssim'
-    config.add_show_field 'spatial', field: 'cho_spatial_ssim'
     config.add_show_field 'subject', field: 'cho_subject_ssim'
-    config.add_show_field 'temporal', field: 'cho_temporal_ssim'
     config.add_show_field 'type', field: 'cho_type_ssim'
 
     config.add_show_field '__source', field: '__source_ssim'
     config.add_show_field 'agg_dc_rights', field: 'agg_dc_rights_ssim'
     config.add_show_field 'agg_edm_rights', field: 'agg_edm_rights_ssim', autolink: true
-    locale_encoded_fields.call('agg_provider').each do |code, field|
-      config.add_show_field "agg_provider institution (#{code})", field: field
+    multilingual_locale_aware_field.call('agg_provider') do |field_config|
+      config.add_show_field 'agg_provider institution', **field_config
     end
     config.add_show_field 'agg_is_shown_at', field: 'agg_is_shown_at.wr_id_ssim', autolink: true
 
