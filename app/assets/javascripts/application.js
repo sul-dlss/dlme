@@ -13,12 +13,13 @@
 //= require rails-ujs
 //= require turbolinks
 //
+//
 // Required by Blacklight
 //= require jquery3
-//= require bootstrap
-//= require bootstrap/util
 //= require popper
 //= require twitter/typeahead
+//= require bootstrap
+//= require bootstrap/util
 //= require blacklight/blacklight
 
 //= require transform_result
