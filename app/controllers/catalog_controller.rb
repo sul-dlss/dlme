@@ -37,12 +37,6 @@ class CatalogController < ApplicationController
     config.document_unique_id_param = 'ids'
     config.raw_endpoint.enabled = true
 
-    locale_encoded_fields = lambda do |field_prefix, suffix = 'ssim'|
-      (Settings.acceptable_bcp47_codes + ['none']).map do |code|
-        [code, "#{field_prefix}.#{code}_#{suffix}"]
-      end.to_h
-    end
-
     lang_config = {
       'ar' => [%w[ar-Arab ar-Latn], default: (%w[en none] + Settings.acceptable_bcp47_codes).uniq],
       'en' => ['en', default: (%w[ar-Arab ar-Latn none] + Settings.acceptable_bcp47_codes).uniq]
@@ -113,8 +107,13 @@ class CatalogController < ApplicationController
     config.add_index_field 'spatial', field: 'cho_spatial_ssim'
     config.add_index_field 'temporal', field: 'cho_temporal_ssim'
 
-    config.add_facet_field 'language',   field: 'cho_language_ssim', limit: true
-    config.add_facet_field 'type',       field: 'cho_edm_type_ssim', limit: true
+    arabic_locale = ->(*_) { I18n.locale == :ar }
+    en_locale = ->(*_) { I18n.locale == :en }
+
+    config.add_facet_field 'language_ar',    field: 'cho_language.ar-Arab_ssim', limit: true, if: arabic_locale
+    config.add_facet_field 'language_en',    field: 'cho_language.en_ssim', limit: true, if: en_locale
+    config.add_facet_field 'type_ar',    field: 'cho_edm_type.ar-Arab_ssim', limit: true, if: arabic_locale
+    config.add_facet_field 'type_en',    field: 'cho_edm_type.en_ssim', limit: true, if: en_locale
     config.add_facet_field 'other type', field: 'cho_type_ssim', limit: true
     config.add_facet_field 'spatial',    field: 'cho_spatial_ssim', limit: true
     config.add_facet_field 'temporal',   field: 'cho_temporal_ssim', limit: true
@@ -123,14 +122,11 @@ class CatalogController < ApplicationController
     config.add_facet_field 'contributor', field: 'cho_contributor_ssim', limit: true
     config.add_facet_field 'medium',      field: 'cho_medium_ssim', limit: true
     config.add_facet_field 'dc_rights',   field: 'cho_dc_rights_ssim', limit: true
-    locale_encoded_fields.call('agg_data_provider').each do |code, field|
-      config.add_facet_field "holding_institution (#{code})", field: field, limit: true
-    end
+    config.add_facet_field 'agg_data_provider_ar',    field: 'agg_data_provider.ar-Arab_ssim', limit: true, if: arabic_locale
+    config.add_facet_field 'agg_data_provider_en',    field: 'agg_data_provider.en_ssim', limit: true, if: en_locale
+    config.add_facet_field 'agg_provider_ar',    field: 'agg_provider.ar-Arab_ssim', limit: true, if: arabic_locale
+    config.add_facet_field 'agg_provider_en',    field: 'agg_provider.en_ssim', limit: true, if: en_locale
 
-    # "administrative"-like facets
-    locale_encoded_fields.call('agg_provider').each do |code, field|
-      config.add_facet_field "source_institution (#{code})", field: field, limit: true
-    end
     config.add_facet_field 'thumbnail', query: {
       yes: { label: 'Yes', fq: 'agg_preview.wr_id_ssim:[* TO *]' },
       no: { label: 'No', fq: '-agg_preview.wr_id_ssim:[* TO *]' }
