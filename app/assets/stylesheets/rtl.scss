@@ -18,6 +18,10 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     margin-right: 0;
   }
 
+  .dl-invert dt {
+    text-align: left;
+  }
+
   .breadcrumb-item + .breadcrumb-item::before {
     content: "\\";
   }
