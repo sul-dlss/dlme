@@ -1,0 +1,72 @@
+$breadcrumb-item-padding-x: 0.5rem !default;
+@import 'bootstrap/rtl';
+
+.rtl,
+[dir="rtl"] {
+  /** The upstream stylsheet doesn't expect dir="rtl" on the <html> element.. */
+  & body {
+    text-align: right;
+    direction: rtl;
+  }
+
+  /** Upstream is a little too eager reseting styles.. */
+  .list-unstyled {
+    padding-left: 0;
+  }
+
+  dd {
+    margin-right: 0;
+  }
+
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: "\\";
+  }
+
+  /** Fix margins for the inline list (used in the footer) */
+  .list-inline-item {
+    &:last-child {
+      margin-right: 0.5rem;
+    }
+
+    &:first-child {
+      margin-right: 0;
+    }
+  }
+
+  /** Blacklight-specific overrides */
+  #skip-link {
+    left: inherit;
+    right: 10px;
+  }
+
+  .facet-field-heading button::after {
+    float: left;
+    transform: rotate(-90deg);
+  }
+
+  .facet-field-heading button.collapsed::after {
+    transform: rotate(0deg);
+  }
+
+  .facet-values .facet-count {
+    text-align: left;
+  }
+
+  .documents-list .document .document-thumbnail,
+  #documents.documents-list .document-thumbnail {
+    float: right;
+  }
+
+  #documents.documents-list .documentHeader, #documents.documents-list .document-metadata {
+    margin-left: 0;
+    margin-right: 120px;
+  }
+
+  .slideshow-documents .grid .document {
+    float: right;
+  }
+
+  .view-type-list {
+      transform: scale(-1);
+  }
+}
