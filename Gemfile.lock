@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/projectblacklight/spotlight.git
-  revision: 7dd5e8566a6f06639a1e8601cc4d65128f1bafd6
+  revision: dc2f4fba5c8287cc49e586bd30f2deb72090592d
   specs:
     blacklight-spotlight (3.0.0.alpha)
       acts-as-taggable-on (>= 5.0, < 7)
@@ -94,17 +94,17 @@ GEM
     autoprefixer-rails (9.7.1)
       execjs
     aws-eventstream (1.0.3)
-    aws-partitions (1.238.0)
-    aws-sdk-core (3.76.0)
+    aws-partitions (1.239.0)
+    aws-sdk-core (3.77.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
-      aws-partitions (~> 1, >= 1.228.0)
+      aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
     aws-sdk-kms (1.25.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.53.0)
-      aws-sdk-core (~> 3, >= 3.71.0)
+    aws-sdk-s3 (1.54.0)
+      aws-sdk-core (~> 3, >= 3.77.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
     aws-sdk-sns (1.20.0)
@@ -124,7 +124,7 @@ GEM
       jbuilder (~> 2.7)
       kaminari (>= 0.15)
       rails (>= 5.1, < 7)
-    blacklight-gallery (1.1.0)
+    blacklight-gallery (1.1.1)
       blacklight (~> 7.0)
       bootstrap (~> 4.0)
       openseadragon (>= 0.2.0)
@@ -339,7 +339,7 @@ GEM
     paper_trail (10.3.1)
       activerecord (>= 4.2)
       request_store (~> 1.1)
-    parallel (1.18.0)
+    parallel (1.19.0)
     parser (2.6.5.0)
       ast (~> 2.4.0)
     pg (1.1.4)
@@ -444,7 +444,7 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
-    rubocop-performance (1.5.0)
+    rubocop-performance (1.5.1)
       rubocop (>= 0.71.0)
     rubocop-rails (2.3.2)
       rack (>= 1.1)
