@@ -5,7 +5,7 @@
 
 ## Dataflows
 
-This diagram represents how data gets loading into the application:
+This diagram represents how data gets loaded into the application:
 
 ![overview diagram](https://docs.google.com/drawings/d/e/2PACX-1vTBFJJgiPqs58fNWC-lTBdw5wKNN0-OgLBu7EUoJcfyDXFu6VTKkhxNUKcNSX4f1Mf_mHHI2zH_ezZj/pub?w=960&h=720)
 [Link to diagram in Google Drawings](https://docs.google.com/drawings/d/1jEspB9tO6-_LyiN-q0jQwfEPtiaztgHzL6CgRKXiyBk/edit)
@@ -38,7 +38,7 @@ And these database configuration settings:
 ## Local Development
 
 ### Without Docker
-The DLME application can be run in a standard ruby/rails environment locally using SolrWrapper, sqlite3, etc.
+The DLME application can be run in a standard Ruby/Rails environment locally using SolrWrapper, sqlite3, etc.
 
 In order to not have to use Postgres locally (and use sqlite for for development), you'll want to bundle install without the production dependencies.
 
@@ -46,7 +46,7 @@ In order to not have to use Postgres locally (and use sqlite for for development
 $ bundle install --without production
 ```
 
-You can run the standard rails setup script which will run your database migrations, etc.
+You can run the standard Rails setup script which will run your database migrations, etc.
 
 ```bash
 $ ./bin/setup
@@ -58,7 +58,7 @@ To start Solr, you can use the `solr_wrapper` command.
 $ solr_wrapper
 ```
 
-Start the rails app
+Start the Rails app
 
 ```bash
 $ rails s
@@ -85,12 +85,12 @@ $ docker-compose run app rake spotlight:initialize
 $ docker-compose up -d
 ```
 
-Once the dlme rails app is running you can create an exhibit. The title will need to be 'dlme' and the URL slug will
+Once the DLME Rails app is running you can create an exhibit. The title will need to be 'dlme' and the URL slug will
 need to be 'library'.
 
 ### Local transforms
 
-Requires docker. If you are doing work on the DLME application you may not need to do local transforms and instead pull them from an S3 bucket.
+Requires docker. If you are doing work on the DLME application you may not need to do local transforms and instead may be able to pull transform results from an S3 bucket.
 
 First, install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html).
 
@@ -115,7 +115,7 @@ AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws sns \
     --notification-endpoint http://app:3000/transform_result
 ```
 
-Note that this will need to be repeated ever time localstack is started.
+Note that this will need to be repeated every time localstack is started.
 
 Make sure you have cloned the [dlme-metadata](https://github.com/sul-dlss/dlme-metadata) and [dlme-transform](https://github.com/sul-dlss/dlme-transform) repositories in sibling directories to the `dlme` directory.
 
