@@ -126,6 +126,20 @@ class CatalogController < ApplicationController
     config.add_facet_field 'agg_data_provider_en',    field: 'agg_data_provider.en_ssim', limit: true, if: en_locale
     config.add_facet_field 'agg_provider_ar',    field: 'agg_provider.ar-Arab_ssim', limit: true, if: arabic_locale
     config.add_facet_field 'agg_provider_en',    field: 'agg_provider.en_ssim', limit: true, if: en_locale
+    config.add_facet_field 'cho_type_facet.en_ssim',
+                           partial: 'blacklight/hierarchy/facet_hierarchy',
+                           label: 'Type en',
+                           if: en_locale
+    config.add_facet_field 'cho_type_facet.ar-Arab_ssim',
+                           partial: 'blacklight/hierarchy/facet_hierarchy',
+                           label: 'Type ar',
+                           if: arabic_locale
+    config.facet_display = {
+      hierarchy: {
+        'cho_type_facet.en' => [['ssim'], ':'],
+        'cho_type_facet.ar-Arab' => [['ssim'], ':']
+      }
+    }
 
     config.add_facet_field 'thumbnail', query: {
       yes: { label: 'Yes', fq: 'agg_preview.wr_id_ssim:[* TO *]' },
