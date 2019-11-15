@@ -189,6 +189,8 @@ class CatalogController < ApplicationController
     config.add_show_field 'same_as', field: 'cho_same_as_ssim', autolink: true
     config.add_show_field 'subject', field: 'cho_subject_ssim'
     config.add_show_field 'type', field: 'cho_type_ssim'
+    config.add_show_field 'type_en', field: 'cho_type_facet.en_ssim', helper_method: :link_type_hierarchy, if: en_locale
+    config.add_show_field 'type_ar', field: 'cho_type_facet.ar-Arab_ssim', helper_method: :link_type_hierarchy, if: arabic_locale
 
     config.add_show_field '__source', field: '__source_ssim'
     config.add_show_field 'agg_dc_rights', field: 'agg_dc_rights_ssim'
