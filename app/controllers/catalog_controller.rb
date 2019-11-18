@@ -128,6 +128,20 @@ class CatalogController < ApplicationController
     config.add_facet_field 'agg_data_provider_en',    field: 'agg_data_provider.en_ssim', limit: true, if: en_locale
     config.add_facet_field 'agg_provider_ar',    field: 'agg_provider.ar-Arab_ssim', limit: true, if: arabic_locale
     config.add_facet_field 'agg_provider_en',    field: 'agg_provider.en_ssim', limit: true, if: en_locale
+    config.add_facet_field 'cho_type_facet.en_ssim',
+                           partial: 'blacklight/hierarchy/facet_hierarchy',
+                           label: 'Type en',
+                           if: en_locale
+    config.add_facet_field 'cho_type_facet.ar-Arab_ssim',
+                           partial: 'blacklight/hierarchy/facet_hierarchy',
+                           label: 'Type ar',
+                           if: arabic_locale
+    config.facet_display = {
+      hierarchy: {
+        'cho_type_facet.en' => [['ssim'], ':'],
+        'cho_type_facet.ar-Arab' => [['ssim'], ':']
+      }
+    }
 
     config.add_facet_field 'thumbnail', query: {
       yes: { label: 'Yes', fq: 'agg_preview.wr_id_ssim:[* TO *]' },
@@ -177,6 +191,8 @@ class CatalogController < ApplicationController
     config.add_show_field 'same_as', field: 'cho_same_as_ssim', autolink: true
     config.add_show_field 'subject', field: 'cho_subject_ssim'
     config.add_show_field 'type', field: 'cho_type_ssim'
+    config.add_show_field 'type_en', field: 'cho_type_facet.en_ssim', helper_method: :link_type_hierarchy, if: en_locale
+    config.add_show_field 'type_ar', field: 'cho_type_facet.ar-Arab_ssim', helper_method: :link_type_hierarchy, if: arabic_locale
 
     config.add_show_field '__source', field: '__source_ssim'
     config.add_show_field 'agg_dc_rights', field: 'agg_dc_rights_ssim'
