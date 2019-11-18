@@ -4,22 +4,28 @@
 # A class to model the statistics on the exhibit statistics dashboard.
 # This Dashboard class requires that a Blacklight SearchServices is injected into it
 class StatisticsDashboard
+  LOCALE_MAP = { 'ar' => 'ar-Arab' }.with_indifferent_access
+
   attr_reader :search_service
   def initialize(search_service:)
     @search_service = search_service
   end
 
   def items
-    @items ||= Items.new(search_service)
+    @items ||= Items.new(response)
+  end
+
+  private
+
+  def response
+    @response ||= search_service.search_results&.first || {}
   end
 
   # Represents data in the Itms section of the dashboard
   class Items
-    LOCALE_MAP = { 'ar' => 'ar-Arab' }.with_indifferent_access
-
-    attr_reader :search_service
-    def initialize(search_service)
-      @search_service = search_service
+    attr_reader :response
+    def initialize(response)
+      @response = response
     end
 
     def total
@@ -59,7 +65,7 @@ class StatisticsDashboard
     end
 
     def mapped_locale
-      LOCALE_MAP[I18n.locale] || I18n.locale
+      StatisticsDashboard::LOCALE_MAP[I18n.locale] || I18n.locale
     end
 
     def facet_fields
@@ -72,10 +78,6 @@ class StatisticsDashboard
 
     def facets
       response.dig('facet_counts') || {}
-    end
-
-    def response
-      @response ||= search_service.search_results&.first || {}
     end
   end
 end
