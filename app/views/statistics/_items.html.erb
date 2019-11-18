@@ -12,8 +12,8 @@
         <% items.by_type.each do |field| %>
           <tr>
             <td>
-              <%= link_to path_for_facet(items.type_field, field['value']) do %>
-                <%= facet_display_value(items.type_field, field['value']) %>
+              <%= link_to path_for_facet(items.type_facet, field['value']) do %>
+                <%= facet_display_value(items.type_facet, field['value']) %>
               <% end %>
             </td>
             <td class="text-right"><%= field['count'] %></td>
@@ -21,8 +21,8 @@
           <% field['pivot'].each do |pivot| %>
             <tr>
               <td class="pl-5">
-                <%= link_to "#{path_for_facet(items.sub_type_field, pivot['value'])}&#{{ f: { items.type_field => [field['value']] } }.to_query}" do %>
-                  <%= facet_display_value(items.sub_type_field, pivot['value']) %>
+                <%= link_to path_for_facet(items.type_facet, [field['value'], pivot['value']].join(':')) do %>
+                  <%= facet_display_value(items.type_facet, pivot['value']) %>
                 <% end %>
               </td>
               <td class="text-right"><%= pivot['count'] %></td>
