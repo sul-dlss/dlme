@@ -73,4 +73,17 @@ $breadcrumb-item-padding-x: 0.5rem !default;
   .view-type-list {
       transform: scale(-1);
   }
+
+  // Fix spacing on facet icons/counts
+  ul.facet-hierarchy {
+    .facet-count {
+      float: left;
+      text-align: left;
+    }
+
+    .twiddle:before {
+      margin-left: 0;
+      margin-right: -15px;
+    }
+  }
 }
