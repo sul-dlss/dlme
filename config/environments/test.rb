@@ -45,4 +45,6 @@ Rails.application.configure do
   config.action_view.raise_on_missing_translations = true
 
   config.slowpoke.timeout = 60
+
+  config.middleware.insert_after(Rack::Attack, FixSnsJsonMiddleware)
 end
