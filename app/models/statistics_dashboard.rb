@@ -40,12 +40,8 @@ class StatisticsDashboard
       end
     end
 
-    def type_field
-      "cho_edm_type.#{mapped_locale}_ssim"
-    end
-
-    def sub_type_field
-      "cho_has_type.#{mapped_locale}_ssim"
+    def type_facet
+      "cho_type_facet.#{mapped_locale}_ssim"
     end
 
     def by_type
@@ -53,6 +49,14 @@ class StatisticsDashboard
     end
 
     private
+
+    def type_field
+      "cho_edm_type.#{mapped_locale}_ssim"
+    end
+
+    def sub_type_field
+      "cho_has_type.#{mapped_locale}_ssim"
+    end
 
     def mapped_locale
       LOCALE_MAP[I18n.locale] || I18n.locale

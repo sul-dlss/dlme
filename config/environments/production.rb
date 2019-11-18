@@ -93,4 +93,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.lograge.enabled = true
+
+  config.middleware.insert_after(Rack::Attack, FixSnsJsonMiddleware)
 end
