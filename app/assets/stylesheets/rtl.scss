@@ -1,6 +1,18 @@
 $breadcrumb-item-padding-x: 0.5rem !default;
 @import 'bootstrap/rtl';
 
+.facet-label {
+  unicode-bidi: plaintext;
+}
+
+.index_title a {
+  unicode-bidi: plaintext;
+}
+
+.document-metadata {
+  dd { unicode-bidi: plaintext; }
+}
+
 .rtl,
 [dir="rtl"] {
   /** The upstream stylsheet doesn't expect dir="rtl" on the <html> element.. */
