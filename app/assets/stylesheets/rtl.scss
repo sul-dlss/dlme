@@ -86,6 +86,15 @@ $breadcrumb-item-padding-x: 0.5rem !default;
       transform: scale(-1);
   }
 
+  .constraint-value {
+    display: flex;
+  }
+
+  .applied-filter .filter-name:after {
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+  }
+
   // Fix spacing on facet icons/counts
   ul.facet-hierarchy {
     .facet-count {
