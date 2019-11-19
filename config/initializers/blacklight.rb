@@ -3,5 +3,6 @@ Blacklight::Rendering::Pipeline.operations = [Blacklight::Rendering::HelperMetho
                                               Blacklight::Rendering::LinkToFacet,
                                               Blacklight::Rendering::Microdata,
                                               Autolink,
+                                              BidiWrap,
                                               Paragraph,
                                               Join]
