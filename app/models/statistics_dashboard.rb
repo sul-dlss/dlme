@@ -15,6 +15,10 @@ class StatisticsDashboard
     @items ||= Items.new(response)
   end
 
+  def contributors
+    @contributors ||= Contributors.new(response)
+  end
+
   private
 
   def response
@@ -70,6 +74,70 @@ class StatisticsDashboard
 
     def facet_fields
       facets['facet_fields'] || {}
+    end
+
+    def pivot_facets
+      facets['facet_pivot'] || {}
+    end
+
+    def facets
+      response.dig('facet_counts') || {}
+    end
+  end
+
+  # Represents data in the Contributors section of the dashboard
+  class Contributors
+    attr_reader :response
+    def initialize(response)
+      @response = response
+    end
+
+    def total
+      institutions&.count || 0
+    end
+
+    def institutions
+      @institutions ||= (pivot_facets["#{provider_field},#{countries_field}"] || []).collect do |facet|
+        Institution.new(facet)
+      end
+    end
+
+    def to_partial_path
+      'statistics/contributors'
+    end
+
+    def provider_field
+      "agg_provider.#{mapped_locale}_ssim"
+    end
+
+    # Represents each row in the Contributors table
+    class Institution
+      attr_reader :facet
+      def initialize(facet)
+        @facet = facet
+      end
+
+      def name
+        facet['value']
+      end
+
+      def country
+        facet['pivot']&.first&.[]('value')
+      end
+
+      def item_count
+        facet['count']
+      end
+    end
+
+    private
+
+    def countries_field
+      "agg_provider_country.#{mapped_locale}_ssim"
+    end
+
+    def mapped_locale
+      StatisticsDashboard::LOCALE_MAP[I18n.locale] || I18n.locale
     end
 
     def pivot_facets
