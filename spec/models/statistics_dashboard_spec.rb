@@ -92,6 +92,20 @@ RSpec.describe StatisticsDashboard do
       expect(contributors.total).to be 2
     end
 
+    describe '#total_countries' do
+      before do
+        stub_response['facet_counts']['facet_pivot']['agg_provider.en_ssim,agg_provider_country.en_ssim'] << {
+          'value' => 'Institution 3', 'count' => '100', 'pivot' => [country1]
+        }
+      end
+
+      it 'has the total number of unique countries that the institutions are from' do
+        expect(contributors.institutions.count).to eq 3
+        expect(contributors.institutions.last.name).to be 'Institution 3' # validate our new institution is present
+        expect(contributors.total_countries).to eq 2 # Our new institution has the same country as "Institution 1"
+      end
+    end
+
     it 'has a locale aware provider_field accessor' do
       expect(contributors.provider_field).to eq 'agg_provider.en_ssim'
 

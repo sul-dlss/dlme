@@ -104,6 +104,10 @@ class StatisticsDashboard
       institutions&.count || 0
     end
 
+    def total_countries
+      institutions.collect(&:country).uniq.count
+    end
+
     def institutions
       @institutions ||= (pivot_facets["#{provider_field},#{countries_field}"] || []).collect do |facet|
         Institution.new(facet)
