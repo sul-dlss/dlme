@@ -53,6 +53,7 @@ Rails.application.routes.draw do
       get '/sidekiq', to: lambda { |_| [500, {}, ['Problem loading sidekiq/web: ', e.to_s]] }
     end
   end
+
   Blacklight::Engine.routes.default_scope = { path: "(:locale)", locale: Regexp.union(Spotlight::Engine.config.i18n_locales.keys.map(&:to_s)), module: 'blacklight' }
   mount Blacklight::Engine => '/'
 
