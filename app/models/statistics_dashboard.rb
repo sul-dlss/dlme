@@ -19,6 +19,18 @@ class StatisticsDashboard
     @contributors ||= Contributors.new(response)
   end
 
+  class << self
+    def locale_aware_field(field_name, suffix = 'ssim')
+      "#{field_name}.#{mapped_locale}_#{suffix}"
+    end
+
+    private
+
+    def mapped_locale
+      StatisticsDashboard::LOCALE_MAP[I18n.locale] || I18n.locale
+    end
+  end
+
   private
 
   def response
@@ -41,7 +53,7 @@ class StatisticsDashboard
     end
 
     def language_field
-      "cho_language.#{mapped_locale}_ssim"
+      StatisticsDashboard.locale_aware_field('cho_language')
     end
 
     def by_language
@@ -51,7 +63,7 @@ class StatisticsDashboard
     end
 
     def type_facet
-      "cho_type_facet.#{mapped_locale}_ssim"
+      StatisticsDashboard.locale_aware_field('cho_type_facet')
     end
 
     def by_type
@@ -61,15 +73,11 @@ class StatisticsDashboard
     private
 
     def type_field
-      "cho_edm_type.#{mapped_locale}_ssim"
+      StatisticsDashboard.locale_aware_field('cho_edm_type')
     end
 
     def sub_type_field
-      "cho_has_type.#{mapped_locale}_ssim"
-    end
-
-    def mapped_locale
-      StatisticsDashboard::LOCALE_MAP[I18n.locale] || I18n.locale
+      StatisticsDashboard.locale_aware_field('cho_has_type')
     end
 
     def facet_fields
@@ -107,7 +115,7 @@ class StatisticsDashboard
     end
 
     def provider_field
-      "agg_provider.#{mapped_locale}_ssim"
+      StatisticsDashboard.locale_aware_field('agg_provider')
     end
 
     # Represents each row in the Contributors table
@@ -133,11 +141,7 @@ class StatisticsDashboard
     private
 
     def countries_field
-      "agg_provider_country.#{mapped_locale}_ssim"
-    end
-
-    def mapped_locale
-      StatisticsDashboard::LOCALE_MAP[I18n.locale] || I18n.locale
+      StatisticsDashboard.locale_aware_field('agg_provider_country')
     end
 
     def pivot_facets
