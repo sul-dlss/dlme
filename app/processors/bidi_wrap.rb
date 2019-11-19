@@ -12,6 +12,8 @@ class BidiWrap < Blacklight::Rendering::AbstractStep
   private
 
   def wrap(val)
+    return val if options[:no_html]
+
     content_tag :bdi, val, class: 'metadata-value'
   end
 end
