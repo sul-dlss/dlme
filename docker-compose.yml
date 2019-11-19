@@ -1,4 +1,4 @@
-version: '3'
+version: '3.6'
 
 services:
   app:
@@ -30,8 +30,6 @@ services:
       - "3000:3000"
     depends_on:
       - postgres
-    networks:
-      - dlme
     # For running in dev
     volumes:
       - ".:/opt/"
@@ -43,9 +41,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=sekret
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
-    networks:
-      - dlme
+      - postgres-data:/var/lib/postgresql/data
   solr:
     image: solr
     ports:
@@ -58,8 +54,6 @@ services:
       - solr-precreate
       - dlme
       - /solr-setup/conf
-    networks:
-      - dlme
   redis:
     image: 'redis:4.0-alpine'
     ports:
@@ -67,8 +61,6 @@ services:
     command: redis-server
     volumes:
       - 'redis:/data'
-    networks:
-      - dlme
   sidekiq:
     depends_on:
       - 'postgres'
@@ -84,8 +76,6 @@ services:
       - '.:/app'
     env_file:
       - '.env'
-    networks:
-      - dlme
     environment:
       - SOLR_URL=http://solr:8983/solr/dlme
       - RAILS_ENV=development
@@ -99,9 +89,6 @@ services:
       - SERVICES=sns,s3
       - DOCKER_HOST=unix:///var/run/docker.sock
       - DEBUG=1
-    networks:
-      - dlme
-networks:
-  dlme:
 volumes:
   redis:
+  postgres-data:

@@ -33,5 +33,4 @@ config/environments/*.local.yml
 /public/assets/
 
 # Ignore any docker-compose created volume data
-/postgres-data/
 /solr-data/

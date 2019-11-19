@@ -25,6 +25,8 @@
   "cho_creator": ["Jane Q. Doe", "John X. Doe"],
   "cho_coverage": ["Egypt"],
   "cho_date": "1977",
+  "cho_date_range_hijri": [1384, 1385, 1386, 1387],
+  "cho_date_range_norm": [1977, 1978, 1979],
   "cho_edm_type": "Image",
   "cho_extent": "1 piece",
   "cho_has_type": "Posters",
