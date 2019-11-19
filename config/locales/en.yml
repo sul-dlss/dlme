@@ -1,6 +1,10 @@
 en:
   data:
     section: "Manage data"
+  date_field: "%{gregorian_dates} / %{hijri_dates}"
+  date_field_gregorian: "%{dates} (Gregorian)"
+  date_field_hijri: "%{dates} (Hijri)"
+  date_range: "%{min} - %{max}"
   dlme_jsons:
     edit:
       add_item: "Save"

@@ -82,6 +82,13 @@ class CatalogController < ApplicationController
       config.add_index_field 'title', **field_config
     end
 
+    config.add_index_field 'date range', helper_method: :display_date_ranges, values: (lambda do |_field_config, document|
+      {
+        gregorian: document.fetch('cho_date_range_norm_ssim', []).map(&:to_i),
+        hijri: document.fetch('cho_date_range_hijri_ssim', []).map(&:to_i)
+      }
+    end)
+
     config.add_index_field 'date', field: 'cho_date_ssim'
     multilingual_locale_aware_field.call('agg_data_provider') do |field_config|
       config.add_index_field 'holding institution', **field_config

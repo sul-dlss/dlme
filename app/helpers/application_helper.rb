@@ -14,4 +14,42 @@ module ApplicationHelper
       ' › '
     )
   end
+
+  # Generate a display value for multi-calendar date ranges
+  def display_date_ranges(values: [], **_args)
+    values = Array(values).map do |value|
+      gregorian_dates = roll_up_date_range_values(value[:gregorian] || [])
+      hijri_dates = roll_up_date_range_values(value[:hijri] || [])
+
+      display_date_range(gregorian_dates: gregorian_dates, hijri_dates: hijri_dates)
+    end.compact
+
+    safe_join(values, '<br />'.html_safe) if values.any?
+  end
+
+  private
+
+  def display_date_range(gregorian_dates:, hijri_dates:)
+    gregorian_dates_str = I18n.t(:date_field_gregorian, dates: gregorian_dates.to_sentence) if gregorian_dates.any?
+    hijri_dates_str = I18n.t(:date_field_hijri, dates: hijri_dates.to_sentence) if hijri_dates.any?
+
+    if gregorian_dates.any? && hijri_dates.any?
+      I18n.t(:date_field,
+             gregorian_dates: gregorian_dates_str,
+             hijri_dates: hijri_dates_str)
+    else
+      gregorian_dates_str || hijri_dates_str
+    end
+  end
+
+  def roll_up_date_range_values(values)
+    values.sort.chunk_while { |i, j| i + 1 == j }.map do |arr|
+      if arr.length == 1
+        arr.first
+      else
+        min, max = arr.minmax
+        I18n.t(:date_range, min: min, max: max)
+      end
+    end
+  end
 end
