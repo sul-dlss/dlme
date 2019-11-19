@@ -39,15 +39,6 @@ GIT
       tophat
       underscore-rails (~> 1.6)
 
-GIT
-  remote: https://github.com/sul-dlss/blacklight-hierarchy.git
-  revision: 8fd4a13209fcaa8ad13df2808edb0e7fcb873f94
-  specs:
-    blacklight-hierarchy (3.0.0.alpha)
-      blacklight (~> 7.0)
-      jquery-rails
-      rails (>= 4.1, < 6)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -100,7 +91,7 @@ GEM
       rails (>= 4.2, < 6)
     arel (9.0.0)
     ast (2.4.0)
-    autoprefixer-rails (9.7.1)
+    autoprefixer-rails (9.7.2)
       execjs
     aws-eventstream (1.0.3)
     aws-partitions (1.240.0)
@@ -133,11 +124,15 @@ GEM
       jbuilder (~> 2.7)
       kaminari (>= 0.15)
       rails (>= 5.1, < 7)
-    blacklight-gallery (1.1.1)
+    blacklight-gallery (1.2.0)
       blacklight (~> 7.0)
       bootstrap (~> 4.0)
       openseadragon (>= 0.2.0)
-      rails
+      rails (~> 5.1)
+    blacklight-hierarchy (3.0.0)
+      blacklight (~> 7.0)
+      jquery-rails
+      rails (>= 4.1, < 6)
     blacklight-oembed (1.0.0)
       blacklight (~> 7.0)
       rails
@@ -585,7 +580,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk-sns
   blacklight-gallery (>= 0.3.0)
-  blacklight-hierarchy!
+  blacklight-hierarchy
   blacklight-oembed (>= 0.1.0)
   blacklight-spotlight!
   bootsnap (>= 1.1.0)

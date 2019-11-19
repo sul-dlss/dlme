@@ -78,7 +78,7 @@ gem 'riiif', '~> 2.0'
 gem 'sitemap_generator'
 
 gem 'blacklight-gallery', '>= 0.3.0'
-gem 'blacklight-hierarchy', github: 'sul-dlss/blacklight-hierarchy'
+gem 'blacklight-hierarchy'
 gem 'blacklight-oembed', '>= 0.1.0'
 gem 'jquery-rails'
 gem 'rails_autolink'
