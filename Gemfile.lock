@@ -1,6 +1,6 @@
 GIT
-  remote: https://github.com/projectblacklight/spotlight.git
-  revision: 261f4a1a12a22bf4c61a7026b746eb10c6dec882
+  remote: git://github.com/projectblacklight/spotlight.git
+  revision: d17659b7a83252f5cf44c22133cdf28f83504ec8
   specs:
     blacklight-spotlight (3.0.0.alpha)
       acts-as-taggable-on (>= 5.0, < 7)
@@ -40,7 +40,7 @@ GIT
       underscore-rails (~> 1.6)
 
 GIT
-  remote: https://github.com/sul-dlss/blacklight-hierarchy.git
+  remote: git://github.com/sul-dlss/blacklight-hierarchy.git
   revision: 8fd4a13209fcaa8ad13df2808edb0e7fcb873f94
   specs:
     blacklight-hierarchy (3.0.0.alpha)
@@ -112,7 +112,7 @@ GEM
     aws-sdk-kms (1.25.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.55.0)
+    aws-sdk-s3 (1.56.0)
       aws-sdk-core (~> 3, >= 3.77.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
