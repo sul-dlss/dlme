@@ -43,6 +43,12 @@ en:
           queued: 'Queued for processing.'
   statistics:
     dashboard:
+      contributors:
+        table:
+          country: Country
+          institution: Institution
+          items: Items
+        total_html: Contributors &middot; %{total}
       header:
         total_items:
           one: 1 item

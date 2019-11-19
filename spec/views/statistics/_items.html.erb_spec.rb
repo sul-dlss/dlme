@@ -31,12 +31,7 @@ RSpec.describe 'statistics/_items.html.erb', type: :view do
   end
 
   let(:items) do
-    StatisticsDashboard::Items.new(
-      instance_double(
-        'SearchService',
-        search_results: [stub_response]
-      )
-    )
+    StatisticsDashboard::Items.new(stub_response)
   end
 
   describe 'By type section' do

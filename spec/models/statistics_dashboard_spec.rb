@@ -70,4 +70,51 @@ RSpec.describe StatisticsDashboard do
       end
     end
   end
+
+  describe 'Contributors' do
+    let(:contributors) { dashboard.contributors }
+
+    let(:country1) { { 'value' => 'Country 1', 'count' => '500' } }
+    let(:country2) { { 'value' => 'Country 2', 'count' => '300' } }
+
+    let(:stub_response) do
+      { 'facet_counts' => { 'facet_pivot' => {
+        'agg_provider.en_ssim,agg_provider_country.en_ssim' => [
+          { 'value' => 'Institution 1', 'count' => '500', 'pivot' => [country1] },
+          { 'value' => 'Institution 2', 'count' => '300', 'pivot' => [country2] }
+        ]
+      } } }
+    end
+
+    it { expect(contributors).to be_kind_of(StatisticsDashboard::Contributors) }
+
+    it 'has the total from the total number of institutions in the response' do
+      expect(contributors.total).to be 2
+    end
+
+    it 'has a locale aware provider_field accessor' do
+      expect(contributors.provider_field).to eq 'agg_provider.en_ssim'
+
+      allow(I18n).to receive(:locale).and_return('ar')
+
+      expect(contributors.provider_field).to eq 'agg_provider.ar-Arab_ssim'
+    end
+
+    describe '#institutions' do
+      let(:institutions) { contributors.institutions }
+
+      it { expect(institutions.length).to eq 2 }
+      it { expect(institutions).to all(be_kind_of(StatisticsDashboard::Contributors::Institution)) }
+
+      it 'has a name, an item count, and the country' do
+        expect(institutions.first.name).to eq 'Institution 1'
+        expect(institutions.first.country).to eq 'Country 1'
+        expect(institutions.first.item_count).to eq '500'
+
+        expect(institutions.last.name).to eq 'Institution 2'
+        expect(institutions.last.country).to eq 'Country 2'
+        expect(institutions.last.item_count).to eq '300'
+      end
+    end
+  end
 end

@@ -1,0 +1,20 @@
+<h2><%= t('statistics.dashboard.contributors.total_html', total: contributors.total) %></h2>
+
+<table class="table table-striped contributors">
+  <thead>
+    <tr>
+      <th><%= t('statistics.dashboard.contributors.table.institution') %></th>
+      <th><%= t('statistics.dashboard.contributors.table.country') %></th>
+      <th><%= t('statistics.dashboard.contributors.table.items') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% contributors.institutions.each do |institution| %>
+      <tr>
+        <td><%= link_to institution.name, path_for_facet(contributors.provider_field, institution.name) %></td>
+        <td><%= institution.country %></td>
+        <td><%= institution.item_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
