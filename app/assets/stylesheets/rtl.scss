@@ -98,4 +98,20 @@ $breadcrumb-item-padding-x: 0.5rem !default;
       margin-right: -15px;
     }
   }
+
+  // blacklight-hierarchy overrides
+
+  ul.facet-hierarchy {
+    padding-right: 0;
+
+    .h-node {
+      padding-left: 0;
+      padding-right: 15px;
+    }
+
+    .h-leaf {
+      margin-left: 0;
+      margin-right: 15px;
+    }
+  }
 }

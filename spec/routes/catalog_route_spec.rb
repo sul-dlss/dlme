@@ -11,7 +11,7 @@ RSpec.describe 'Catalog controller', type: :routing do
 
       it 'routes to #show' do
         expect(get('/1/catalog/gallica.bnf.fr')).to route_to('spotlight/catalog#show', exhibit_id: '1', id: 'gallica.bnf.fr')
-        expect(solr_document_path(doc)).to eq '/catalog/https:%2F%2Fgallica.bnf.fr%2Fark:%2F12148%2Fbpt6k91073505'
+        expect(solr_document_path(nil, doc)).to eq '/catalog/https:%2F%2Fgallica.bnf.fr%2Fark:%2F12148%2Fbpt6k91073505'
       end
     end
   end

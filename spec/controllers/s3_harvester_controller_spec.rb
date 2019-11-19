@@ -5,7 +5,6 @@ require 'rails_helper'
 RSpec.describe S3HarvesterController do
   let(:curator) { create(:exhibit_curator, exhibit: exhibit) }
   let(:exhibit) { create(:exhibit) }
-  let(:spotlight) { Spotlight::Engine.routes.url_helpers }
   let(:url) { 'http://s3/mybucket/myfile.json' }
 
   before do
