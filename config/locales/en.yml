@@ -50,6 +50,12 @@ en:
           items: Items
         total_html: Contributors &middot; %{total}
       header:
+        total_contributors:
+          one: 1 contributor
+          other: '%{count} contributors'
+        total_countries:
+          one: 1 country
+          other: '%{count} countries'
         total_items:
           one: 1 item
           other: '%{count} items'
