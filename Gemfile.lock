@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/projectblacklight/spotlight.git
+  remote: https://github.com/projectblacklight/spotlight.git
   revision: d17659b7a83252f5cf44c22133cdf28f83504ec8
   specs:
     blacklight-spotlight (3.0.0.alpha)
@@ -40,7 +40,7 @@ GIT
       underscore-rails (~> 1.6)
 
 GIT
-  remote: git://github.com/sul-dlss/blacklight-hierarchy.git
+  remote: https://github.com/sul-dlss/blacklight-hierarchy.git
   revision: 8fd4a13209fcaa8ad13df2808edb0e7fcb873f94
   specs:
     blacklight-hierarchy (3.0.0.alpha)

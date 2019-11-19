@@ -26,6 +26,8 @@ RSpec.describe DlmeJsonResourceBuilder do
         'cho_contributor_ssim' => ['فاتن حمامة', 'محمود ياسين', 'فريد شوقي', 'بركات'],
         'cho_coverage_ssim' => ['Egypt'],
         'cho_date_ssim' => '1977',
+        'cho_date_range_norm_isim' => [1977, 1978, 1979],
+        'cho_date_range_hijri_isim' => [1384, 1385, 1386, 1387],
         'cho_edm_type_ssim' => 'Image',
         'cho_extent_ssim' => '1 piece',
         'cho_has_type_ssim' => 'Posters',

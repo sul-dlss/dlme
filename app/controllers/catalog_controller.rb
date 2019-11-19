@@ -84,8 +84,8 @@ class CatalogController < ApplicationController
 
     config.add_index_field 'date range', helper_method: :display_date_ranges, values: (lambda do |_field_config, document|
       {
-        gregorian: document.fetch('cho_date_range_norm_ssim', []).map(&:to_i),
-        hijri: document.fetch('cho_date_range_hijri_ssim', []).map(&:to_i)
+        gregorian: document.fetch('cho_date_range_norm_isim', []),
+        hijri: document.fetch('cho_date_range_hijri_isim', [])
       }
     end)
 
