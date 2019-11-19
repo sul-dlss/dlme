@@ -14,6 +14,13 @@ class DlmeJsonResourceBuilder < Spotlight::SolrDocumentBuilder
     cho_temporal
   ].freeze
 
+  FIELD_SUFFIXES = {
+    cho_date_range_hijri: 'isim',
+    cho_date_range_norm: 'isim'
+  }.with_indifferent_access.freeze
+
+  DEFAULT_FIELD_SUFFIX = 'ssim'
+
   # rubocop:disable Metrics/MethodLength
   # rubocop:disable Metrics/AbcSize
   def to_solr
@@ -51,22 +58,27 @@ class DlmeJsonResourceBuilder < Spotlight::SolrDocumentBuilder
   # rubocop:disable Metrics/MethodLength
   def transform_to_untokenized_solr_fields(source = {}, sink: {}, prefix: '')
     source.each do |key, value|
+      solr_field = "#{prefix}#{key}_#{field_suffix_for(key)}"
       case value
       when Hash
         transform_to_untokenized_solr_fields(value, sink: sink, prefix: "#{key}.")
-        sink["#{prefix}#{key}_ssim"] = value.values.flatten
+        sink[solr_field] = value.values.flatten
       when Array
-        sink["#{prefix}#{key}_ssim"] = if value.any? { |x| x.is_a? Hash }
-                                         value.map(&:to_json)
-                                       else
-                                         value
-                                       end
+        sink[solr_field] = if value.any? { |x| x.is_a? Hash }
+                             value.map(&:to_json)
+                           else
+                             value
+                           end
       else
-        sink["#{prefix}#{key}_ssim"] = value
+        sink[solr_field] = value
       end
     end
 
     sink
   end
   # rubocop:enable Metrics/MethodLength
+
+  def field_suffix_for(field_name)
+    FIELD_SUFFIXES.fetch(field_name, DEFAULT_FIELD_SUFFIX)
+  end
 end
