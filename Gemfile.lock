@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projectblacklight/spotlight.git
-  revision: d17659b7a83252f5cf44c22133cdf28f83504ec8
+  revision: 809034ccc6aefb9e964057971d8d6f0bf6bf06ca
   specs:
     blacklight-spotlight (3.0.0.alpha)
       acts-as-taggable-on (>= 5.0, < 7)
