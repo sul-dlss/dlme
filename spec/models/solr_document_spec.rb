@@ -13,6 +13,22 @@ RSpec.describe SolrDocument do
     end
   end
 
+  describe '#intermediate_representation' do
+    context 'without an IR' do
+      it 'is an empty hash' do
+        expect(document.intermediate_representation).to be_empty
+      end
+    end
+
+    context 'with some data' do
+      let(:source) { { '__raw_resource_json_ss' => { a: 1 }.to_json } }
+
+      it 'returns the raw resource document' do
+        expect(document.intermediate_representation).to include 'a' => 1
+      end
+    end
+  end
+
   describe '#export_as_ir' do
     let(:source) { { '__raw_resource_json_ss' => '{}' } }
 

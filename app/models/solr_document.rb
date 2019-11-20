@@ -40,7 +40,7 @@ class SolrDocument
   end
 
   def intermediate_representation
-    JSON.parse(fetch('__raw_resource_json_ss'))
+    JSON.parse(fetch('__raw_resource_json_ss', '{}'))
   end
 
   private
