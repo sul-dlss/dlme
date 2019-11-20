@@ -72,7 +72,8 @@ class CatalogController < ApplicationController
     end
 
     multilingual_locale_aware_field.call('cho_title') do |field_config|
-      config.index.title_field = Blacklight::Configuration::Field.new(first: true, no_html: true, **field_config)
+      config.index.title_field = Blacklight::Configuration::Field.new(first: true, **field_config)
+      config.show.html_title_field = Blacklight::Configuration::Field.new(first: true, no_html: true, **field_config)
     end
 
     config.index.thumbnail_field = 'agg_preview.wr_id_ssim'

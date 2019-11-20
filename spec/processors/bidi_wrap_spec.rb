@@ -30,7 +30,7 @@ RSpec.describe BidiWrap do
     end
 
     context 'when no_html is set' do
-      let(:options) { { no_html: true } }
+      let(:field_config) { Blacklight::Configuration::NullField.new no_html: true }
 
       it 'does nothing' do
         render
