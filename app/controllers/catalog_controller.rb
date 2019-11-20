@@ -18,7 +18,6 @@ class CatalogController < ApplicationController
 
     config.view.list.partials = %i[thumbnail index_header index]
     config.view.gallery.partials = %i[index_header index]
-    config.view.masonry.partials = [:index]
     config.view.slideshow.partials = [:index]
 
     config.add_results_collection_tool(:sort_widget)
