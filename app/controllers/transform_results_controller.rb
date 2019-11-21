@@ -26,7 +26,11 @@ class TransformResultsController < Spotlight::ApplicationController
 
   # @return [JSON] the deserialized JSON within the ++Message++ attribute of the JSON request body
   def notification_msg
-    @notification_msg ||= JSON.parse(params['Message'])
+    # We need to parse the raw_post data because AWS sends this to us as
+    # 'Content-type: text/plain' and rails discards it as part of the params hash.
+    # We then parse the 'Message' payload of the JSON which is also a JSON serialized string.
+    # See https://forums.aws.amazon.com/thread.jspa?threadID=69413
+    @notification_msg ||= JSON.parse(json_parsed_raw_post['Message'])
   rescue JSON::ParserError
     # Capturing and logging so that can get SNS subscription confirmation message.
     logger.error request.raw_post
@@ -43,5 +47,9 @@ class TransformResultsController < Spotlight::ApplicationController
       duration: notification_msg['duration'],
       error: notification_msg['error']
     }
+  end
+
+  def json_parsed_raw_post
+    JSON.parse(request.raw_post)
   end
 end
