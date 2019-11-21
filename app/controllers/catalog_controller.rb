@@ -20,7 +20,6 @@ class CatalogController < ApplicationController
 
     config.view.list.partials = %i[thumbnail index_header index]
     config.view.gallery.partials = %i[index_header index]
-    config.view.masonry.partials = [:index]
     config.view.slideshow.partials = [:index]
 
     config.add_results_collection_tool(:sort_widget)
@@ -74,7 +73,8 @@ class CatalogController < ApplicationController
     end
 
     multilingual_locale_aware_field.call('cho_title') do |field_config|
-      config.index.title_field = Blacklight::Configuration::Field.new(first: true, no_html: true, **field_config)
+      config.index.title_field = Blacklight::Configuration::Field.new(first: true, **field_config)
+      config.show.html_title_field = Blacklight::Configuration::Field.new(first: true, no_html: true, **field_config)
     end
 
     config.index.thumbnail_field = 'agg_preview.wr_id_ssim'
