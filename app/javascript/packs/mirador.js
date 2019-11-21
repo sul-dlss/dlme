@@ -19,4 +19,25 @@
 
 // not compatible with IE or edge
 import Mirador from 'mirador'
-Mirador.viewer({id:'m3'})
+const manifestUrl = document.querySelector('#m3').dataset.iiifManifest
+
+Mirador.viewer({
+  id: 'm3',
+  window: {
+    allowClose: false,
+    allowFullscreen: true,
+    allowMaximize: false,
+    authNewWindowCenter: 'screen',
+    hideWindowTitle: true,
+  },
+  workspace: {
+    showZoomControls: true,
+    type: 'single',
+  },
+  workspaceControlPanel: {
+    enabled: false,
+  },
+  windows: [
+    {loadedManifest: manifestUrl}
+  ]
+})

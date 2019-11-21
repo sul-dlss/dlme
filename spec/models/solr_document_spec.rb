@@ -86,4 +86,31 @@ RSpec.describe SolrDocument do
       end
     end
   end
+
+  describe '#iiif_manifest_url' do
+    context 'known IIIF provider' do
+      let(:source) do
+        {
+          'agg_provider.en_ssim' => ['Bodleian Libraries'],
+          'agg_is_shown_at_ssim' => ['https://digital.bodleian.ox.ac.uk/inquire/p/22974622-d838-4496-8835-33ecda85f21f']
+        }
+      end
+
+      it 'maps id to manifest url' do
+        expect(document.iiif_manifest_url).to eq 'https://iiif.bodleian.ox.ac.uk/iiif/manifest/22974622-d838-4496-8835-33ecda85f21f.json'
+      end
+    end
+
+    context '' do
+      let(:source) do
+        {
+          'agg_provider.en_ssim' => ['unknown library']
+        }
+      end
+
+      it 'is false' do
+        expect(document.iiif_manifest_url).to eq false
+      end
+    end
+  end
 end
