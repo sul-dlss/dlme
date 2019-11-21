@@ -35,6 +35,19 @@ class SolrDocument
     false
   end
 
+  def iiifable?
+    iiif_manifest_url.present?
+  end
+
+  def iiif_manifest_url
+    case first('agg_provider.en_ssim')
+    when 'Bodleian Libraries'
+      "https://iiif.bodleian.ox.ac.uk/iiif/manifest/#{first('agg_is_shown_at_ssim')&.split('/')&.last}.json"
+    else
+      false
+    end
+  end
+
   def openseadragonable?(blacklight_config = CatalogController.blacklight_config)
     to_openseadragon(blacklight_config.view_config(:show)).present?
   end
