@@ -9,6 +9,8 @@ AllCops:
   TargetRubyVersion: 2.4
   DisplayCopNames: true
   Exclude:
+    - 'bin/webpack*'
+    - 'node_modules/**/*'
     - 'db/**/*'
     - 'config/**/*'
     - 'vendor/**/*'
