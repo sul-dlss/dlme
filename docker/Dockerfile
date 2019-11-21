@@ -8,7 +8,8 @@ RUN apk add --update --no-cache \
       postgresql-dev \
       sqlite-dev \
       yarn \
-      git
+      git \
+      imagemagick
 
 LABEL maintainer="Aaron Collier <aaron.collier@stanford.edu>"
 
