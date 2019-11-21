@@ -42,6 +42,10 @@ jobs:
         name: Bundle Install
         command: bundle check || bundle install
 
+    - run:
+          name: Yarn Install
+          command: yarn install --cache-folder ~/.cache/yarn
+
     # Store bundle cache
     - save_cache:
         key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
