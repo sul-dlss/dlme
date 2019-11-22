@@ -150,11 +150,13 @@ class CatalogController < ApplicationController
     config.add_facet_field 'cho_type_facet.en_ssim',
                            partial: 'blacklight/hierarchy/facet_hierarchy',
                            label: 'Type en',
-                           if: en_locale
+                           if: en_locale,
+                           limit: -1 # unlimited
     config.add_facet_field 'cho_type_facet.ar-Arab_ssim',
                            partial: 'blacklight/hierarchy/facet_hierarchy',
                            label: 'Type ar',
-                           if: arabic_locale
+                           if: arabic_locale,
+                           limit: -1 # unlimited
     config.facet_display = {
       hierarchy: {
         'cho_type_facet.en' => [['ssim'], ':'],
