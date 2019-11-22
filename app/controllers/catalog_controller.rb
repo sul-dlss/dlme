@@ -70,7 +70,12 @@ class CatalogController < ApplicationController
     end
 
     multilingual_locale_aware_field.call('cho_title') do |field_config|
-      config.index.title_field = Blacklight::Configuration::Field.new(first: true, **field_config)
+      title_field_pattern = Blacklight::Configuration::Field.new(first: true, **field_config)[:pattern]
+      pref_langs, options = lang_config[I18n.locale]
+
+      config.index.title_field = (Array.wrap(pref_langs) + Array.wrap(options[:default])).compact.uniq.map do |lang|
+        format(title_field_pattern, lang: lang)
+      end
       config.show.html_title_field = Blacklight::Configuration::Field.new(first: true, no_html: true, **field_config)
     end
 
