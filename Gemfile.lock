@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projectblacklight/spotlight.git
-  revision: 809034ccc6aefb9e964057971d8d6f0bf6bf06ca
+  revision: a8c60279a9c11821e2c262935802d796ab0adfd8
   specs:
     blacklight-spotlight (3.0.0.alpha)
       acts-as-taggable-on (>= 5.0, < 7)
@@ -94,8 +94,8 @@ GEM
     autoprefixer-rails (9.7.2)
       execjs
     aws-eventstream (1.0.3)
-    aws-partitions (1.240.0)
-    aws-sdk-core (3.78.0)
+    aws-partitions (1.243.0)
+    aws-sdk-core (3.80.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
@@ -103,7 +103,7 @@ GEM
     aws-sdk-kms (1.25.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.56.0)
+    aws-sdk-s3 (1.57.0)
       aws-sdk-core (~> 3, >= 3.77.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
@@ -124,7 +124,7 @@ GEM
       jbuilder (~> 2.7)
       kaminari (>= 0.15)
       rails (>= 5.1, < 7)
-    blacklight-gallery (1.2.0)
+    blacklight-gallery (1.2.1)
       blacklight (~> 7.0)
       bootstrap (~> 4.0)
       openseadragon (>= 0.2.0)
@@ -137,9 +137,8 @@ GEM
       blacklight (~> 7.0)
       rails
       ruby-oembed
-    blacklight_range_limit (7.1.0)
+    blacklight_range_limit (7.2.0)
       blacklight (>= 7.0)
-      rails (>= 3.0)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
     bootstrap (4.3.1)
@@ -346,7 +345,7 @@ GEM
     paper_trail (10.3.1)
       activerecord (>= 4.2)
       request_store (~> 1.1)
-    parallel (1.19.0)
+    parallel (1.19.1)
     parser (2.6.5.0)
       ast (~> 2.4.0)
     pg (1.1.4)
@@ -592,7 +591,7 @@ DEPENDENCIES
   blacklight-hierarchy
   blacklight-oembed (>= 0.1.0)
   blacklight-spotlight!
-  blacklight_range_limit
+  blacklight_range_limit (~> 7.2)
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.0)
   byebug
