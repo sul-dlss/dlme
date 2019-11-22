@@ -98,3 +98,5 @@ gem 'slowpoke', '~> 0.3.0'
 
 gem 'bootstrap', '~> 4.0'
 gem 'font-awesome-rails'
+
+gem 'webpacker', '~> 4.x'

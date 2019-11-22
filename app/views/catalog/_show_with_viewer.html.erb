@@ -1,4 +1,7 @@
-<% if document.embeddable? %>
+<% if document.iiifable? %>
+  <%= render_document_partial(document, 'mirador') %>
+  <%= render 'show', document: document %>
+<% elsif document.embeddable? %>
   <%= render_document_partial(document, 'oembed') %>
   <%= render 'show', document: document %>
 <% elsif document.openseadragonable? %>
