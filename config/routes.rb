@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
     resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog', id: %r{.+} do
       concerns :searchable
+      concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
     end
 
     concern :exportable, Blacklight::Routes::Exportable.new
@@ -32,6 +33,8 @@ Rails.application.routes.draw do
       resource :s3_harvester, controller: :"s3_harvester", only: [:create]
       resource :s3_delete, controller: :s3_delete, only: [:new, :create]
       resource :statistics, only: :show
+
+      get "catalog/range_limit" => "spotlight/catalog#range_limit"
     end
 
     resource :transform, only: [:show, :create]
