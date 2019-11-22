@@ -15,8 +15,7 @@ class CatalogController < ApplicationController
     config.navbar.partials = {}
 
     config.show.oembed_field = :"agg_is_shown_at.wr_id_ssim"
-    config.show.partials.insert(1, :viewer)
-    config.show.partials.append(:ir_view)
+    config.show.partials = %i[show_header show_with_viewer ir_view]
 
     config.view.list.partials = %i[thumbnail index_header index]
     config.view.gallery.partials = %i[index_header index]

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'catalog/_viewer_default.html.erb', type: :view do
+RSpec.describe 'catalog/_show_with_viewer.html.erb', type: :view do
   let(:document) { SolrDocument.new(source) }
   let(:source) { {} }
   let(:blacklight_config) { CatalogController.blacklight_config }
@@ -23,10 +23,10 @@ RSpec.describe 'catalog/_viewer_default.html.erb', type: :view do
     stub_template 'catalog/_openseadragon_default.html.erb' => 'openseadragon'
 
     allow(controller).to receive_messages(blacklight_config: blacklight_config)
-    render partial: 'catalog/viewer_default', locals: { document: document, blacklight_config: blacklight_config }
+    render partial: 'catalog/show_with_viewer', locals: { document: document, blacklight_config: blacklight_config }
   end
 
-  context 'for embeddable resources' do
+  context 'with an embeddable resource' do
     let(:source) { { 'agg_is_shown_at.wr_id_ssim' => ['https://purl.stanford.edu/tk780vf9050'] } }
 
     it 'renders oembed for embeddable resources' do
@@ -34,7 +34,7 @@ RSpec.describe 'catalog/_viewer_default.html.erb', type: :view do
     end
   end
 
-  context 'for openseadragonable resources' do
+  context 'with an openseadragonable resource' do
     let(:source) do
       {
         'agg_is_shown_by.wr_has_service_ssim' => [{
@@ -49,7 +49,7 @@ RSpec.describe 'catalog/_viewer_default.html.erb', type: :view do
     end
   end
 
-  context 'for resources with thumbnails' do
+  context 'with a resource with thumbnails' do
     let(:source) do
       {
         'agg_is_shown_at.wr_id_ssim' => ['http://example.com/resource/'],

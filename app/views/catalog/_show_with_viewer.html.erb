@@ -1,0 +1,18 @@
+<% if document.embeddable? %>
+  <%= render_document_partial(document, 'oembed') %>
+  <%= render 'show', document: document %>
+<% elsif document.openseadragonable? %>
+  <%= render_document_partial(document, 'openseadragon') %>
+  <%= render 'show', document: document %>
+<% elsif has_thumbnail?(document) %>
+  <div class="row">
+    <div class="thumbnail-viewer col-12 col-md-4">
+      <%= link_to document.first('agg_is_shown_at.wr_id_ssim').presence || '#' do %>
+        <%= render_thumbnail_tag(document, {}, suppress_link: true) %>
+      <% end %>
+    </div>
+    <div class="metadata col-12 col-md-8">
+      <%= render 'show', document: document %>
+    </div>
+  </div>
+<% end %>
