@@ -11,7 +11,7 @@
   <div class="row">
     <div class="thumbnail-viewer col-12 col-md-4">
       <%= link_to document.first('agg_is_shown_at.wr_id_ssim').presence || '#' do %>
-        <%= render_thumbnail_tag(document, {}, suppress_link: true) %>
+        <%= render_thumbnail_tag(document, { class: 'img-thumbnail' }, suppress_link: true) %>
       <% end %>
     </div>
     <div class="metadata col-12 col-md-8">
