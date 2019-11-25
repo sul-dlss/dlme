@@ -59,7 +59,8 @@ RSpec.describe 'catalog/_show_with_viewer.html.erb', type: :view do
 
     it 'renders a thumbnail that links to the source' do
       expect(rendered).to have_link href: 'http://example.com/resource/'
-      expect(rendered).to have_selector 'a > img[@src="http://example.com/resource.jpg"]'
+      expect(rendered).to have_selector 'a img[@src="http://example.com/resource.jpg"]'
+      expect(rendered).to have_text 'View on contributor website'
     end
   end
 end

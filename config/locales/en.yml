@@ -1,4 +1,7 @@
 en:
+  catalog:
+    show_with_viewer:
+      view_on_contributor_website: View on contributor website
   data:
     section: "Manage data"
   date_field: "%{gregorian_dates} / %{hijri_dates}"
