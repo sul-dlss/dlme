@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projectblacklight/spotlight.git
-  revision: cce919304cd24c504959ea0904eef7887421cd26
+  revision: b7da8ed75029f9beb4817ca91501489649bad7ac
   specs:
     blacklight-spotlight (3.0.0.alpha)
       acts-as-taggable-on (>= 5.0, < 7)
@@ -94,7 +94,7 @@ GEM
     autoprefixer-rails (9.7.2)
       execjs
     aws-eventstream (1.0.3)
-    aws-partitions (1.245.0)
+    aws-partitions (1.246.0)
     aws-sdk-core (3.82.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -137,7 +137,7 @@ GEM
       blacklight (~> 7.0)
       rails
       ruby-oembed
-    blacklight_range_limit (7.2.0)
+    blacklight_range_limit (7.3.1)
       blacklight (>= 7.0)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
@@ -591,7 +591,7 @@ DEPENDENCIES
   blacklight-hierarchy
   blacklight-oembed (>= 0.1.0)
   blacklight-spotlight!
-  blacklight_range_limit (~> 7.2)
+  blacklight_range_limit (~> 7.3)
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.0)
   byebug

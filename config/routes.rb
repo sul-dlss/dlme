@@ -35,6 +35,9 @@ Rails.application.routes.draw do
       resource :statistics, only: :show
 
       get "catalog/range_limit" => "spotlight/catalog#range_limit"
+      get "home/range_limit" => "spotlight/home_pages#range_limit"
+      get "catalog/range_limit_panel/:id" => "spotlight/catalog#range_limit_panel"
+      get "home/range_limit_panel/:id" => "spotlight/home_pages#range_limit_panel"
     end
 
     resource :transform, only: [:show, :create]

@@ -136,7 +136,15 @@ class CatalogController < ApplicationController
     config.add_facet_field 'spatial',    field: 'cho_spatial_ssim', limit: true
     config.add_facet_field 'temporal',   field: 'cho_temporal_ssim', limit: true
     config.add_facet_field 'source_date', field: 'cho_date_ssim', limit: true
-    config.add_facet_field 'cho_date_range_norm_isim', field: 'cho_date_range_norm_isim', range: true
+    # Using an explicit partial for the date ranges so the configuration works for the home page
+    config.add_facet_field 'cho_date_range_norm_isim',
+                           field: 'cho_date_range_norm_isim',
+                           range: true,
+                           partial: 'blacklight_range_limit/range_limit_panel'
+    config.add_facet_field 'cho_date_range_hijri_isim',
+                           field: 'cho_date_range_hijri_isim',
+                           range: true,
+                           partial: 'blacklight_range_limit/range_limit_panel'
     config.add_facet_field 'creator',     field: 'cho_creator_ssim', limit: true
     config.add_facet_field 'contributor', field: 'cho_contributor_ssim', limit: true
     config.add_facet_field 'medium',      field: 'cho_medium_ssim', limit: true
