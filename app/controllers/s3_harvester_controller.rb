@@ -26,9 +26,9 @@ class S3HarvesterController < Spotlight::ApplicationController
 
   def any_duplicate_identifiers?
     ids = body.split("\n").map do |json|
-      JSON.parse(json)['id']
+      JSON.parse(json)['id'] unless json.empty?
     end
-
+    ids.reject!(&:nil?).reject!(&:empty?)
     ids.size != ids.uniq.size
   end
 
