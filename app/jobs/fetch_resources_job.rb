@@ -17,6 +17,8 @@ class FetchResourcesJob < ApplicationJob
   private
 
   def create_or_update_resource(item, exhibit, index, url)
+    return if item.empty?
+
     json = JSON.parse(item)
     resource = DlmeJson.find_or_initialize_by(url: json['id'], exhibit: exhibit)
     resource.data = { json: item }
