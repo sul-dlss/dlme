@@ -8,7 +8,7 @@ RSpec.describe 'Statistics page', type: :feature do
       'response' => { 'numFound' => 100 },
       'facet_counts' => {
         'facet_pivot' => {
-          'agg_provider.en_ssim,agg_provider_country.en_ssim' => [
+          'agg_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_ssim' => [
             { 'value' => 'Institution 1', 'count' => '500', 'pivot' => [
               { 'value' => 'Country 1', 'count' => '500' }
             ] },

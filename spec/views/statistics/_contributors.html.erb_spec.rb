@@ -16,12 +16,12 @@ RSpec.describe 'statistics/_contributors.html.erb', type: :view do
   let(:stub_response) do
     { 'facet_counts' => {
       'facet_pivot' => {
-        'agg_provider.en_ssim,agg_provider_country.en_ssim' => [
+        'agg_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_ssim' => [
           { 'value' => 'Institution 1', 'count' => '500', 'pivot' => [
-            { 'value' => 'Country 1', 'count' => '500' }
+            { 'value' => 'Country 1', 'count' => '500', 'pivot' => %w[Does Not Matter] }
           ] },
           { 'value' => 'Institution 2', 'count' => '300', 'pivot' => [
-            { 'value' => 'Country 2', 'count' => '300' }
+            { 'value' => 'Country 2', 'count' => '300', 'pivot' => ['thing'] }
           ] }
         ]
       }
@@ -44,6 +44,11 @@ RSpec.describe 'statistics/_contributors.html.erb', type: :view do
     expect(rendered).to have_css('table tbody tr:nth-child(2) td', text: 'Institution 2')
     expect(rendered).to have_css('table tbody tr:nth-child(2) td', text: 'Country 2')
     expect(rendered).to have_css('table tbody tr:nth-child(2) td', text: '300')
+  end
+
+  it 'includes the collection count' do
+    expect(rendered).to have_css('table tbody tr:nth-child(1) td', text: '3')
+    expect(rendered).to have_css('table tbody tr:nth-child(2) td', text: '1')
   end
 
   it 'links to the institution' do

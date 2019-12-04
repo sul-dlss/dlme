@@ -5,7 +5,8 @@
     <tr>
       <th><%= t('statistics.dashboard.contributors.table.institution') %></th>
       <th><%= t('statistics.dashboard.contributors.table.country') %></th>
-      <th><%= t('statistics.dashboard.contributors.table.items') %></th>
+      <th class="text-right"><%= t('statistics.dashboard.contributors.table.collections') %></th>
+      <th class="text-right"><%= t('statistics.dashboard.contributors.table.items') %></th>
     </tr>
   </thead>
   <tbody>
@@ -13,7 +14,8 @@
       <tr>
         <td><%= link_to institution.name, path_for_facet(contributors.provider_field, institution.name) %></td>
         <td><%= institution.country %></td>
-        <td><%= institution.item_count %></td>
+        <td class="text-right"><%= institution.collection_count %></td>
+        <td class="text-right"><%= institution.item_count %></td>
       </tr>
     <% end %>
   </tbody>

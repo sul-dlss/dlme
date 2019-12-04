@@ -109,7 +109,8 @@ class StatisticsDashboard
     end
 
     def institutions
-      @institutions ||= (pivot_facets["#{provider_field},#{countries_field}"] || []).collect do |facet|
+      pivot_field = "#{provider_field},#{countries_field},#{collections_field}"
+      @institutions ||= (pivot_facets[pivot_field] || []).collect do |facet|
         Institution.new(facet)
       end
     end
@@ -134,11 +135,21 @@ class StatisticsDashboard
       end
 
       def country
-        facet['pivot']&.first&.[]('value')
+        country_facet&.[]('value')
+      end
+
+      def collection_count
+        country_facet&.[]('pivot')&.length
       end
 
       def item_count
         facet['count']
+      end
+
+      private
+
+      def country_facet
+        facet['pivot']&.first
       end
     end
 
@@ -146,6 +157,10 @@ class StatisticsDashboard
 
     def countries_field
       StatisticsDashboard.locale_aware_field('agg_provider_country')
+    end
+
+    def collections_field
+      'agg_data_provider_collection_ssim'
     end
 
     def pivot_facets
