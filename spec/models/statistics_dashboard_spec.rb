@@ -74,12 +74,22 @@ RSpec.describe StatisticsDashboard do
   describe 'Contributors' do
     let(:contributors) { dashboard.contributors }
 
-    let(:country1) { { 'value' => 'Country 1', 'count' => '500' } }
-    let(:country2) { { 'value' => 'Country 2', 'count' => '300' } }
+    let(:country1) do
+      {
+        'value' => 'Country 1',
+        'count' => '500',
+        'pivot' => [
+          { value: 'the/coll/1', 'count' => '5' },
+          { value: 'the/coll/2', 'count' => '2' },
+          { value: 'the/coll/3', 'count' => '50' }
+        ]
+      }
+    end
+    let(:country2) { { 'value' => 'Country 2', 'count' => '300', 'pivot' => [{ value: 'coll/1', 'count' => '3' }] } }
 
     let(:stub_response) do
       { 'facet_counts' => { 'facet_pivot' => {
-        'agg_provider.en_ssim,agg_provider_country.en_ssim' => [
+        'agg_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_ssim' => [
           { 'value' => 'Institution 1', 'count' => '500', 'pivot' => [country1] },
           { 'value' => 'Institution 2', 'count' => '300', 'pivot' => [country2] }
         ]
@@ -94,7 +104,8 @@ RSpec.describe StatisticsDashboard do
 
     describe '#total_countries' do
       before do
-        stub_response['facet_counts']['facet_pivot']['agg_provider.en_ssim,agg_provider_country.en_ssim'] << {
+        pivot_field = 'agg_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_ssim'
+        stub_response['facet_counts']['facet_pivot'][pivot_field] << {
           'value' => 'Institution 3', 'count' => '100', 'pivot' => [country1]
         }
       end
@@ -128,6 +139,11 @@ RSpec.describe StatisticsDashboard do
         expect(institutions.last.name).to eq 'Institution 2'
         expect(institutions.last.country).to eq 'Country 2'
         expect(institutions.last.item_count).to eq '300'
+      end
+
+      it 'has a collection count that adds all the collection numbers' do
+        expect(institutions.first.collection_count).to eq 3
+        expect(institutions.last.collection_count).to eq 1
       end
     end
   end
