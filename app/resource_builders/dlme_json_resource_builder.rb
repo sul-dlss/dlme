@@ -48,6 +48,9 @@ class DlmeJsonResourceBuilder < Spotlight::SolrDocumentBuilder
 
       sink['sortable_cho_title_ssi'] = Array(sink['cho_title_ssim']).first if sink['cho_title_ssim']
       sink['sortable_cho_creator_ssi'] = Array(sink['cho_creator_ssim']).first if sink['cho_creator_ssim']
+      if sink['agg_is_shown_at.wr_is_referenced_by_ssim']
+        sink['agg_is_shown_at.wr_is_referenced_by_ssi'] = Array(sink['agg_is_shown_at.wr_is_referenced_by_ssim']).first
+      end
     end
   end
   # rubocop:enable Metrics/AbcSize
