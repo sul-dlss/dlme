@@ -17,6 +17,8 @@ class DeleteResourcesJob < ApplicationJob
   private
 
   def remove_resource(json:, exhibit:)
+    return if json.empty?
+
     item = JSON.parse(json)
     resource = DlmeJson.find_by(url: item['id'], exhibit: exhibit)
     return unless resource
