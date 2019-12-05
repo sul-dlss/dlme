@@ -38,3 +38,9 @@
 .document-metadata .metadata-value {
   max-width: 50ch;
 }
+
+#sortAndPerPage {
+  .btn {
+    @extend .btn-sm;
+  }
+}

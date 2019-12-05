@@ -122,10 +122,14 @@ class CatalogController < ApplicationController
     config.add_facet_field 'type_pivot_ar', pivot: %w[cho_edm_type.ar-Arab_ssim cho_has_type.ar-Arab_ssim], if: false
 
     config.add_facet_field 'contributor_pivot_en',
-                           pivot: %w[agg_provider.en_ssim agg_provider_country.en_ssim],
+                           pivot: %w[agg_provider.en_ssim agg_provider_country.en_ssim agg_data_provider_collection_ssim],
                            if: false
     config.add_facet_field 'contributor_pivot_ar',
-                           pivot: %w[agg_provider.ar-Arab_ssim agg_provider_country.ar-Arab_ssim],
+                           pivot: %w[
+                             agg_provider.ar-Arab_ssim
+                             agg_provider_country.ar-Arab_ssim
+                             agg_data_provider_collection_ssim
+                           ],
                            if: false
 
     config.add_facet_field 'language_ar',    field: 'cho_language.ar-Arab_ssim', limit: true, if: arabic_locale

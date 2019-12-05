@@ -49,7 +49,8 @@
   },
   "id": "36ebabd9-4d62-4d8e-8e7b-1afd048e872e",
   "agg_is_shown_at": {
-    "wr_id": "https://digital.bodleian.ox.ac.uk/inquire/p/748a9d50-5a3a-440e-ab9d-567dd68b6abb"
+    "wr_id": "https://digital.bodleian.ox.ac.uk/inquire/p/748a9d50-5a3a-440e-ab9d-567dd68b6abb",
+    "wr_is_referenced_by": "https://iiif.bodleian.ox.ac.uk/iiif/manifest/22974622-d838-4496-8835-33ecda85f21f.json"
   },
   "agg_preview": {
     "wr_id": "https://iiif.bodleian.ox.ac.uk/iiif/image/36ebabd9-4d62-4d8e-8e7b-1afd048e872e/full/256,/0/default.jpg"

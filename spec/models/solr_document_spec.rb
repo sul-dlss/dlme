@@ -91,8 +91,7 @@ RSpec.describe SolrDocument do
     context 'known IIIF provider' do
       let(:source) do
         {
-          'agg_provider.en_ssim' => ['Bodleian Libraries'],
-          'agg_is_shown_at_ssim' => ['https://digital.bodleian.ox.ac.uk/inquire/p/22974622-d838-4496-8835-33ecda85f21f']
+          'agg_is_shown_at.wr_is_referenced_by_ssi' => ['https://iiif.bodleian.ox.ac.uk/iiif/manifest/22974622-d838-4496-8835-33ecda85f21f.json']
         }
       end
 
@@ -104,12 +103,11 @@ RSpec.describe SolrDocument do
     context '' do
       let(:source) do
         {
-          'agg_provider.en_ssim' => ['unknown library']
         }
       end
 
       it 'is false' do
-        expect(document.iiif_manifest_url).to eq false
+        expect(document.iiif_manifest_url).to be_blank
       end
     end
   end
