@@ -37,51 +37,17 @@ class CatalogController < ApplicationController
     config.document_unique_id_param = 'ids'
     config.raw_endpoint.enabled = true
 
-    lang_config = {
-      'ar' => [%w[ar-Arab ar-Latn], default: (%w[en none] + Settings.acceptable_bcp47_codes).uniq],
-      'en' => ['en', default: (%w[ar-Arab ar-Latn none] + Settings.acceptable_bcp47_codes).uniq]
-    }.with_indifferent_access
-
-    multilingual_locale_aware_field = lambda do |field_prefix, suffix = 'ssim', &block|
-      block.yield(
-        {
-          pattern: "#{field_prefix}.%<lang>s_#{suffix}",
-          values: lambda do |field_config, document|
-            pref_langs, options = lang_config[I18n.locale]
-
-            values = Array.wrap(pref_langs).flatten.map do |lang|
-              subfield_config = field_config.merge(field: format(field_config.pattern, lang: lang), values: nil)
-              Blacklight::FieldRetriever.new(document, subfield_config).fetch
-            end
-
-            if values.none?(&:any?)
-              values = Array.wrap(options[:default]).flatten.map do |lang|
-                subfield_config = field_config.merge(field: format(field_config.pattern, lang: lang), values: nil)
-                Blacklight::FieldRetriever.new(document, subfield_config).fetch
-              end
-            end
-
-            if field_config.first
-              values.find(&:any?)
-            else
-              values.flatten
-            end
-          end
-        }
-      )
-    end
-
-    multilingual_locale_aware_field.call('cho_title') do |field_config|
-      config.index.title_field = Blacklight::Configuration::Field.new(first: true, **field_config)
-      config.show.html_title_field = Blacklight::Configuration::Field.new(first: true, no_html: true, **field_config)
-    end
+    config.index.title_field = Blacklight::Configuration::Field.new(first: true, **multilingual_locale_aware_field('cho_title'))
+    config.show.html_title_field = Blacklight::Configuration::Field.new(
+      first: true,
+      no_html: true,
+      **multilingual_locale_aware_field('cho_title')
+    )
 
     config.index.thumbnail_field = 'agg_preview.wr_id_ssim'
     config.index.default_thumbnail = 'default.png'
 
-    multilingual_locale_aware_field.call('cho_title') do |field_config|
-      config.add_index_field 'title', **field_config
-    end
+    config.add_index_field 'title', **multilingual_locale_aware_field('cho_title')
 
     config.add_index_field 'date range', helper_method: :display_date_ranges, values: (lambda do |_field_config, document|
       {
@@ -91,12 +57,8 @@ class CatalogController < ApplicationController
     end)
 
     config.add_index_field 'date', field: 'cho_date_ssim'
-    multilingual_locale_aware_field.call('agg_data_provider') do |field_config|
-      config.add_index_field 'holding institution', **field_config
-    end
-    multilingual_locale_aware_field.call('agg_provider') do |field_config|
-      config.add_index_field 'source institution', **field_config
-    end
+    config.add_index_field 'holding institution', **multilingual_locale_aware_field('agg_data_provider')
+    config.add_index_field 'source institution', **multilingual_locale_aware_field('agg_provider')
 
     config.add_index_field 'extent', field: 'cho_extent_ssim'
     config.add_index_field 'creator', field: 'cho_creator_ssim'
@@ -230,9 +192,7 @@ class CatalogController < ApplicationController
     config.add_show_field '__source', field: '__source_ssim'
     config.add_show_field 'agg_dc_rights', field: 'agg_dc_rights_ssim'
     config.add_show_field 'agg_edm_rights', field: 'agg_edm_rights_ssim', autolink: true
-    multilingual_locale_aware_field.call('agg_provider') do |field_config|
-      config.add_show_field 'agg_provider institution', **field_config
-    end
+    config.add_show_field 'agg_provider institution', multilingual_locale_aware_field('agg_provider')
     config.add_show_field 'agg_is_shown_at', field: 'agg_is_shown_at.wr_id_ssim', autolink: true
 
     config.add_search_field 'all_fields', label: 'Everything'
@@ -252,5 +212,41 @@ class CatalogController < ApplicationController
     config.add_sort_field 'creator', sort: 'sortable_cho_creator_ssi asc, sortable_cho_creator_ssi asc', label: 'Creator'
 
     config.add_field_configuration_to_solr_request!
+  end
+
+  private
+
+  def lang_config
+    @lang_config ||= {
+      'ar' => [%w[ar-Arab ar-Latn], default: (%w[en none] + Settings.acceptable_bcp47_codes).uniq],
+      'en' => ['en', default: (%w[ar-Arab ar-Latn none] + Settings.acceptable_bcp47_codes).uniq]
+    }.with_indifferent_access
+  end
+
+  def multilingual_locale_aware_field field_prefix, suffix = 'ssim'
+    {
+      pattern: "#{field_prefix}.%<lang>s_#{suffix}",
+      values: lambda do |field_config, document|
+        pref_langs, options = lang_config[I18n.locale]
+
+        values = Array.wrap(pref_langs).flatten.map do |lang|
+          subfield_config = field_config.merge(field: format(field_config.pattern, lang: lang), values: nil)
+          Blacklight::FieldRetriever.new(document, subfield_config).fetch
+        end
+
+        if values.none?(&:any?)
+          values = Array.wrap(options[:default]).flatten.map do |lang|
+            subfield_config = field_config.merge(field: format(field_config.pattern, lang: lang), values: nil)
+            Blacklight::FieldRetriever.new(document, subfield_config).fetch
+          end
+        end
+
+        if field_config.first
+          values.find(&:any?)
+        else
+          values.flatten
+        end
+      end
+    }
   end
 end
