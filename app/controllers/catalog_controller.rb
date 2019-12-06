@@ -241,6 +241,11 @@ class CatalogController < ApplicationController
           end
         end
 
+        if values.none?(&:any?)
+          subfield_config = field_config.merge(field: "#{field_prefix}_#{suffix}", values: nil)
+          values = Blacklight::FieldRetriever.new(document, subfield_config).fetch
+        end
+
         if field_config.first
           values.find(&:any?)
         else
