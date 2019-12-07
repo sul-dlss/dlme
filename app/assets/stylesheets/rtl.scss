@@ -95,8 +95,9 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     padding-right: 0.3em;
   }
 
-  // Fix spacing on facet icons/counts
+  // blacklight-hierarchy overrides
   ul.facet-hierarchy {
+    // Fix spacing on facet icons/counts
     .facet-count {
       float: left;
       text-align: left;
@@ -106,12 +107,6 @@ $breadcrumb-item-padding-x: 0.5rem !default;
       margin-left: 0;
       margin-right: -15px;
     }
-  }
-
-  // blacklight-hierarchy overrides
-
-  ul.facet-hierarchy {
-    padding-right: 0;
 
     .h-node {
       padding-left: 0;
@@ -121,6 +116,12 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     .h-leaf {
       margin-left: 0;
       margin-right: 15px;
+    }
+
+    padding-right: 0;
+
+    ul {
+      padding-right: 0;
     }
   }
 }
