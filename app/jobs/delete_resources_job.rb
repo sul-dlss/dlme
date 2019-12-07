@@ -7,17 +7,17 @@ class DeleteResourcesJob < ApplicationJob
   def perform(url, exhibit)
     resp = Faraday.get(url)
 
-    resource = resp.body.split("\n")
-    resource.each do |json|
-      remove_resource(json: json, exhibit: exhibit)
+    resources = NdjsonNormalizer.normalize(resp.body, url)
+    resources.each do |item|
+      remove_resource(item: item, exhibit: exhibit)
     end
-    logger.info("#{resource.count} records were removed from #{url}.")
+
+    logger.info("#{resources.count} records were removed from #{url}.")
   end
 
   private
 
-  def remove_resource(json:, exhibit:)
-    item = JSON.parse(json)
+  def remove_resource(item:, exhibit:)
     resource = DlmeJson.find_by(url: item['id'], exhibit: exhibit)
     return unless resource
 
