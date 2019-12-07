@@ -21,6 +21,10 @@ AllCops:
 Rails:
   Enabled: true
 
+Metrics/AbcSize:
+  Exclude:
+    - 'app/controllers/concerns/multilingual_locale_aware_field.rb'
+
 Metrics/ClassLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
@@ -32,6 +36,10 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'app/controllers/catalog_controller.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'app/controllers/concerns/multilingual_locale_aware_field.rb'
 
 RSpec/ExampleLength:
   Max: 10
