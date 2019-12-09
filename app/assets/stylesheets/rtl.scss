@@ -124,4 +124,10 @@ $breadcrumb-item-padding-x: 0.5rem !default;
       padding-right: 0;
     }
   }
+
+  .limit_content.range_limit{
+    .profile, form.range_limit {
+      direction: ltr;
+    }
+  }
 }
