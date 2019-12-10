@@ -7,6 +7,9 @@ RSpec.describe 'Statistics page', type: :feature do
     {
       'response' => { 'numFound' => 100 },
       'facet_counts' => {
+        'facet_fields' => {
+          'agg_data_provider_collection_ssim' => ['Value 1', '500', 'Value 2', '300']
+        },
         'facet_pivot' => {
           'agg_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_ssim' => [
             { 'value' => 'Institution 1', 'count' => '500', 'pivot' => [
@@ -42,6 +45,11 @@ RSpec.describe 'Statistics page', type: :feature do
   it 'has a page available to users via a menu item in the exhibit navbar' do
     expect(page).to have_css('.exhibit-navbar li.nav-item.active', text: 'Statistics')
     expect(page).to have_css('h1', text: 'Statistics')
+  end
+
+  it 'has a collections jumbotron section' do
+    expect(page).to have_css('.jumbotron h2', text: '2 collections')
+    expect(page).to have_css('.jumbotron p', text: '2 contributors')
   end
 
   it 'has an items section' do

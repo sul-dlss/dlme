@@ -19,6 +19,20 @@ RSpec.describe StatisticsDashboard do
     expect(dashboard.items).to be_a StatisticsDashboard::Items
   end
 
+  describe 'Collections' do
+    let(:stub_response) do
+      { 'facet_counts' => { 'facet_fields' => {
+        'agg_data_provider_collection_ssim' => ['Value 1', '500', 'Value 2', '300']
+      } } }
+    end
+
+    describe '#total' do
+      it 'is the number of collections' do
+        expect(dashboard.collections.total).to eq 2
+      end
+    end
+  end
+
   describe 'Items' do
     let(:items) { dashboard.items }
 

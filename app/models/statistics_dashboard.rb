@@ -5,6 +5,22 @@
 # This Dashboard class requires that a Blacklight SearchServices is injected into it
 class StatisticsDashboard
   LOCALE_MAP = { 'ar' => 'ar-Arab' }.with_indifferent_access
+  SOLR_PARAMS = {
+    rows: 0,
+    facet: true,
+    'facet.limit': -1,
+    'facet.field': [
+      'agg_provider_country.ar-Arab_ssim',
+      'agg_provider_country.en_ssim',
+      'agg_data_provider_collection_ssim'
+    ],
+    'facet.pivot': [
+      %w[cho_edm_type.en_ssim cho_has_type.en_ssim].join(','),
+      %w[cho_edm_type.ar-Arab_ssim cho_has_type.ar-Arab_ssim].join(','),
+      %w[agg_provider.en_ssim agg_provider_country.en_ssim agg_data_provider_collection_ssim].join(','),
+      %w[agg_provider.ar-Arab_ssim agg_provider_country.ar-Arab_ssim agg_data_provider_collection_ssim].join(',')
+    ]
+  }.freeze
 
   attr_reader :search_service
   def initialize(search_service:)
@@ -17,6 +33,10 @@ class StatisticsDashboard
 
   def contributors
     @contributors ||= Contributors.new(response)
+  end
+
+  def collections
+    @collections ||= Collections.new(response)
   end
 
   class << self
@@ -38,25 +58,7 @@ class StatisticsDashboard
   end
 
   def search_builder
-    search_service.search_builder.merge(solr_params)
-  end
-
-  def solr_params
-    {
-      rows: 0,
-      facet: true,
-      'facet.limit': -1,
-      'facet.field': [
-        'agg_provider_country.ar-Arab_ssim',
-        'agg_provider_country.en_ssim'
-      ],
-      'facet.pivot': [
-        %w[cho_edm_type.en_ssim cho_has_type.en_ssim].join(','),
-        %w[cho_edm_type.ar-Arab_ssim cho_has_type.ar-Arab_ssim].join(','),
-        %w[agg_provider.en_ssim agg_provider_country.en_ssim agg_data_provider_collection_ssim].join(','),
-        %w[agg_provider.ar-Arab_ssim agg_provider_country.ar-Arab_ssim agg_data_provider_collection_ssim].join(',')
-      ]
-    }
+    search_service.search_builder.merge(SOLR_PARAMS)
   end
 
   # Represents data in the Itms section of the dashboard
@@ -108,6 +110,38 @@ class StatisticsDashboard
 
     def pivot_facets
       facets['facet_pivot'] || {}
+    end
+
+    def facets
+      response.dig('facet_counts') || {}
+    end
+  end
+
+  # Represents data in the Collections section of the dashboard
+  class Collections
+    attr_reader :response
+    def initialize(response)
+      @response = response
+    end
+
+    def total
+      collections&.count || 0
+    end
+
+    def collections
+      @collections ||= (facet_fields[collections_field] || []).each_slice(2).collect do |(value, count)|
+        { 'value' => value, 'count' => count }
+      end
+    end
+
+    private
+
+    def collections_field
+      'agg_data_provider_collection_ssim'
+    end
+
+    def facet_fields
+      facets['facet_fields'] || {}
     end
 
     def facets

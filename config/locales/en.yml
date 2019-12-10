@@ -54,6 +54,9 @@ en:
           items: Items
         total_html: Contributors &middot; %{total}
       header:
+        total_collections:
+          one: 1 collection
+          other: '%{count} collections'
         total_contributors:
           one: 1 contributor
           other: '%{count} contributors'
