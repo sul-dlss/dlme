@@ -3,7 +3,9 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^4.2.0",
-    "mirador": "^3.0.0-beta.0"
+    "mirador": "^3.0.0-beta.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.9.0"

@@ -15,10 +15,7 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-// import Mirador from 'mirador/dist/es/src/index.js'
-
-// not compatible with IE or edge
-import Mirador from 'mirador'
+import Mirador from 'mirador/dist/es/src/index.js'
 const manifestUrl = document.querySelector('#m3').dataset.iiifManifest
 
 Mirador.viewer({
