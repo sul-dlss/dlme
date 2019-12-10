@@ -34,7 +34,29 @@ class StatisticsDashboard
   private
 
   def response
-    @response ||= search_service.search_results&.first || {}
+    @response ||= search_service.repository.search(search_builder)
+  end
+
+  def search_builder
+    search_service.search_builder.merge(solr_params)
+  end
+
+  def solr_params
+    {
+      rows: 0,
+      facet: true,
+      'facet.limit': -1,
+      'facet.field': [
+        'agg_provider_country.ar-Arab_ssim',
+        'agg_provider_country.en_ssim'
+      ],
+      'facet.pivot': [
+        %w[cho_edm_type.en_ssim cho_has_type.en_ssim].join(','),
+        %w[cho_edm_type.ar-Arab_ssim cho_has_type.ar-Arab_ssim].join(','),
+        %w[agg_provider.en_ssim agg_provider_country.en_ssim agg_data_provider_collection_ssim].join(','),
+        %w[agg_provider.ar-Arab_ssim agg_provider_country.ar-Arab_ssim agg_data_provider_collection_ssim].join(',')
+      ]
+    }
   end
 
   # Represents data in the Itms section of the dashboard
