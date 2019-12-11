@@ -151,6 +151,8 @@ GEM
     breadcrumbs_on_rails (3.0.1)
     builder (3.2.4)
     byebug (11.0.1)
+    cache_with_locale (0.0.1)
+      rails
     cancancan (3.0.1)
     capybara (3.29.0)
       addressable
@@ -595,6 +597,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.0)
   byebug
+  cache_with_locale
   capybara (~> 3.0)
   carrierwave-aws
   coffee-rails (~> 4.2)
