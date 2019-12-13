@@ -15,11 +15,13 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-// import Mirador from 'mirador/dist/es/src/index.js'
+// Polyfills needed for IE and Edge
+import 'core-js/stable';
+import 'url-polyfill/url-polyfill';
+import 'unfetch/polyfill';
 
-// not compatible with IE or edge
-import Mirador from 'mirador'
-const manifestUrl = document.querySelector('#m3').dataset.iiifManifest
+import Mirador from 'mirador/dist/es/src/index.js';
+const manifestUrl = document.querySelector('#m3').dataset.iiifManifest;
 
 Mirador.viewer({
   id: 'm3',
