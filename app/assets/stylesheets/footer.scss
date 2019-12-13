@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Crimson+Text:600');
 @import 'clirdlf-logo-font';
 @import 'clirdlf-clir-font';
 
 .footer {
-  background-color: #cacccb;
-  border-top: 2px solid #ababba;
+  background-color: $footer-background-color;
+  border-top: 2px solid $gray-900;
   bottom: 0;
   height: $footer-height;
   margin-top: $footer-top-margin;
@@ -21,63 +20,58 @@
     }
 
     .clir-logo {
-      color: $clir-burgundy;
+      color: $color-gray-light;
       font-family: 'A028', serif;
-      margin-right: 10px;
-    }
-
-    .dlf-logo {
-      color: $dlf-blue;
-      font-family: 'Crimson Text', serif;
-      font-size: 1.2em;
     }
   }
 
-  .clir-address {
-    color: #333;
-    padding-top: 0;
-
-    .vcard {
-      font-size: 15px;
-      margin-bottom: 0;
-    }
-
-    .email {
-      font-weight: 500;
-    }
+  .partner-heading {
+    color: $color-gray-light;
+    font-size: 16px;
+    font-weight: 300;
+    margin-right: 12px;
+    text-align: left;
   }
 
-  .social-links {
-    margin-top: 12px;
+  .partner-logo {
+    display: inline-block;
+    margin-top: 10px;
 
-    a {
-      color: $color-blackish;
-    }
-
-    img {
-      margin-bottom: 3px;
+    .mellon-logo {
+      height: 50px;
     }
   }
 }
 
 @media (max-width: 991px) {
   .footer {
-    height: $footer-height + $footer-mobile-adjustment;
     padding-top: 15px;
     text-align: center;
 
     .logos {
       font-size: 20px;
     }
-
-    .clir-address {
-      margin-top: 12px;
-    }
   }
 }
 
-@media (max-width: 567px) {
-  .footer .logos {
-    font-size: 16px;
+@media (max-width: 575px) {
+  .footer {
+    height: $footer-height + $footer-mobile-adjustment;
+
+    .logos {
+      font-size: 16px;
+    }
+
+    .partner-logo {
+      margin-top: 6px;
+
+      .mellon-logo {
+        height: 40px;
+      }
+    }
+
+    .mellon {
+      margin-top: $spacer * 1.5;
+    }
   }
 }
