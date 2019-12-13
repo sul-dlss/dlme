@@ -1,7 +1,6 @@
 $breadcrumb-item-padding-x: 0.5rem !default;
 @import 'bootstrap/rtl';
 
-.facet-label,
 .filter-value,
 .tooltip-inner,
 .document-metadata dd,
@@ -62,6 +61,10 @@ $breadcrumb-item-padding-x: 0.5rem !default;
 
   .facet-values .facet-count {
     text-align: left;
+  }
+
+  .facet-values .remove {
+    padding-right: 0.5rem;
   }
 
   .documents-list .document .document-thumbnail,
