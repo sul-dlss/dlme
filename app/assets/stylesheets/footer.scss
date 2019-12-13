@@ -1,6 +1,3 @@
-@import 'clirdlf-logo-font';
-@import 'clirdlf-clir-font';
-
 .footer {
   background-color: $footer-background-color;
   border-top: 2px solid $gray-900;
@@ -19,9 +16,14 @@
       text-decoration: none;
     }
 
-    .clir-logo {
-      color: $color-gray-light;
-      font-family: 'A028', serif;
+    .clir-logo .blacklight-icons {
+      height: 40px;
+      width: 100px;
+      svg {
+        height: 100%;
+        fill: $color-gray-light;
+        width: 100%;
+      }
     }
   }
 
