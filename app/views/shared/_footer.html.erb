@@ -1,50 +1,38 @@
 <footer class="footer" role="contentinfo">
   <div class="container">
-    <div class="row">
-      <div class="col-md-4 logos">
+    <div class="row justify-content-around">
+      <div class="col-5 col-sm-4 d-flex justify-content-center logos">
         <a href="https://www.clir.org/">
           <span class="clir-logo">
             <i class="icon-clir-logo-square"></i>
             CLIR
           </span>
-          <span class="dlf-logo">
-            <i class="icon-dlf-logo"></i>
-            DLF
-          </span>
         </a>
       </div>
-      <div class="col-md-8 clir-address">
-        <p class="vcard">
-          <span class="fn org">CLIR+DLF</span>,
-          <span class="adr">
-            <span class="street-address">2221 South Clark Street</span>,
-            <span class="locality">Arlington</span>,
-            <span class="region">VA</span>
-            <span class="postal-code">22202</span>
+      <div class="col-7 col-sm-4 d-flex justify-content-center">
+        <div class="partner-heading">
+          <%= t('footer.partnership_heading') %>
+          <br>
+          <span class="partner-logo">
+            <a href="https://library.stanford.edu/">
+              <%= image_tag("StanfordLibraries-logo-whitetext.svg", height: "25", alt: "logo for Stanford Libraries") %>
+            </a>
           </span>
-        </p>
-        <span class="email">
-          <a href="mailto:dlme@clir.org">dlme@clir.org</a>
-        </span>
-        <ul class="list-inline social-links">
-          <li class="list-inline-item">
-            <a href="https://twitter.com/digilibraryme/">
-              <%= image_tag("twitter-icon.png", height: "25", alt: "") %>Twitter
+        </div>
+      </div>
+      <div class="col-sm-4 d-flex justify-content-center">
+        <div class="partner-heading mellon">
+          <%= t('footer.project_support_heading') %>
+          <br>
+          <span class="partner-logo">
+            <a href="https://mellon.org/">
+              <span class="sr-only">
+                <%= t('footer.project_support_text') %>
+              </span>
+              <%= image_tag("mellon-logo-home-white.png", class: "mellon-logo", alt: "logo for The Andrew W. Mellon Foundation") %>
             </a>
-          </li>
-          <li class="list-inline-item">
-            <a href="https://github.com/sul-dlss/dlme">
-              <%= image_tag("github-icon.png", height: "15", alt: "") %>
-              Github
-            </a>
-          </li>
-          <li class="list-inline-item">
-            <a href="#">
-              <%= image_tag("email-icon.png", height: "15", alt: "") %>
-              Email List
-            </a>
-          </li>
-        </ul>
+          </span>
+        </div>
       </div>
     </div>
   </div>

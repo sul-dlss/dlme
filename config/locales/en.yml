@@ -1,4 +1,8 @@
 en:
+  footer:
+    partnership_heading: In partnership with
+    project_support_heading: Project supported by
+    project_support_text: The Andrew W. Mellon Foundation
   catalog:
     show_with_viewer:
       view_on_contributor_website: View on contributor website
