@@ -1,46 +1,4 @@
 ar:
-  data:
-    section: "Manage data"
-  date_field: "%{gregorian_dates} / %{hijri_dates}"
-  date_field_gregorian: "%{dates} (Gregorian)"
-  date_field_hijri: "%{dates} (Hijri)"
-  date_range: "%{min} - %{max}"
-  dlme_jsons:
-    edit:
-      add_item: "Save"
-    update:
-      success: 'DLME JSON was saved.'
-      error:   'There was a problem saving the JSON.'
-    form:
-      title: 'DLME JSON'
-      add_item: 'Add DLME JSON file'
-  dlme_s3s:
-    form:
-      title: 'DLME S3 Fetch'
-      add_item: 'Fetch'
-      error: 'JSON contained duplicate identifiers'
-  s3_delete:
-    new:
-      add_item: Delete Items
-  s3_harvester:
-    remove:
-      header: Delete Items
-  spotlight:
-    catalog:
-      admin_header:
-        delete_resource: Delete Items
-    curation:
-      sidebar:
-        sources: 'Sources'
-        transform: 'Transform data'
-    main_navigation:
-      statistics: Statistics
-    search:
-      fields:
-        cho_title_ssim: Title
-    resources:
-      fetch:
-          queued: 'Queued for processing.'
   statistics:
     dashboard:
       contributors:
@@ -83,8 +41,3 @@ ar:
         by_type: بحسب النوع
         total_html: المواد&middot; %{total}
     header: إحصائيات
-  transforms:
-    notification:
-      sent: 'Transform request sent.'
-    show:
-      header: 'Transform data'
