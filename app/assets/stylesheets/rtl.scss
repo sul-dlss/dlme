@@ -1,6 +1,8 @@
 $breadcrumb-item-padding-x: 0.5rem !default;
 @import 'bootstrap/rtl';
 
+.facet-label .facet-select,
+.facet-label .selected,
 .filter-value,
 .tooltip-inner,
 .document-metadata dd,
