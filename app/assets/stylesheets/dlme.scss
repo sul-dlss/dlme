@@ -1,3 +1,14 @@
+.topbar {
+  padding-bottom: .25rem;
+  padding-top: .25rem;
+}
+
+.project-logo {
+  color: $color-gray-light;
+  font-size: $h4-font-size;
+  padding-left: 10px;
+}
+
 /* override blacklight to hide the sidebar */
 .blacklight-catalog-show {
   #content {
