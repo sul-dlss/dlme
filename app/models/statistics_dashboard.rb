@@ -12,7 +12,9 @@ class StatisticsDashboard
     'facet.field': [
       'agg_provider_country.ar-Arab_ssim',
       'agg_provider_country.en_ssim',
-      'agg_data_provider_collection_ssim'
+      'agg_data_provider_collection_ssim',
+      'cho_language.en_ssim',
+      'cho_language.ar-Arab_ssim'
     ],
     'facet.pivot': [
       %w[cho_edm_type.en_ssim cho_has_type.en_ssim].join(','),
