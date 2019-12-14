@@ -1,0 +1,43 @@
+ar:
+  statistics:
+    dashboard:
+      contributors:
+        table:
+          country: الدولة
+          institution: المؤسسة
+          items: المواد
+        total_html: المساهمو&middot; %{total}
+      header:
+        total_contributors:
+          zero: صفر
+          one: مساهم واحد
+          two: مساهمَين
+          few: '%{count} مساهِمين'
+          many: '%{count} مساهِمين'
+          other: '%{count} مساهِمين'
+        total_countries:
+          zero: صفر
+          one: دولة واحدة
+          two: دولتين
+          few: '%{count} دول'
+          many: '%{count} دول'
+          other: '%{count} دول'
+        total_items:
+          zero: صفر
+          one: مادة
+          two: مادتين
+          few: '%{count} مواد'
+          many: '%{count} مواد'
+          other: '%{count} مواد'
+        total_types:
+          zero: صفر
+          one: نوع واحد من المادة
+          two: نوع اثنان من المادة
+          few: '%{count} أنواع من المادة'
+          many: '%{count} أنواع من المادة'
+          other: '%{count} أنواع من المادة'
+      items:
+        by_language: بحسب اللغة
+        by_type: بحسب النوع
+        total_html: المواد&middot; %{total}
+    header: إحصائيات

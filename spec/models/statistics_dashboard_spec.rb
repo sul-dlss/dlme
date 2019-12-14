@@ -4,12 +4,11 @@ require 'rails_helper'
 
 RSpec.describe StatisticsDashboard do
   subject(:dashboard) do
-    described_class.new(
-      search_service: instance_double(
-        'SearchService',
-        search_results: [stub_response]
-      )
-    )
+    described_class.new(search_service: instance_double(
+      'SearchService',
+      repository: instance_double(Blacklight::Solr::Repository, search: stub_response),
+      search_builder: {}
+    ))
   end
 
   let(:stub_response) do
@@ -18,6 +17,20 @@ RSpec.describe StatisticsDashboard do
 
   it 'has items' do
     expect(dashboard.items).to be_a StatisticsDashboard::Items
+  end
+
+  describe 'Collections' do
+    let(:stub_response) do
+      { 'facet_counts' => { 'facet_fields' => {
+        'agg_data_provider_collection_ssim' => ['Value 1', '500', 'Value 2', '300']
+      } } }
+    end
+
+    describe '#total' do
+      it 'is the number of collections' do
+        expect(dashboard.collections.total).to eq 2
+      end
+    end
   end
 
   describe 'Items' do

@@ -78,3 +78,5 @@ Spotlight::Engine.config.ga_email = Settings.analytics.email
 Spotlight::Engine.config.routes.solr_documents = {
   constraints: { id: %r{.+} }
 }
+
+Spotlight::Engine.config.exports[:resources] = false

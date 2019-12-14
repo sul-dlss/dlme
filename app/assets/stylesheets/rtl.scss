@@ -1,16 +1,13 @@
 $breadcrumb-item-padding-x: 0.5rem !default;
 @import 'bootstrap/rtl';
 
-.facet-label {
-  unicode-bidi: plaintext;
-}
-
+.facet-label .facet-select,
+.facet-label .selected,
+.filter-value,
+.tooltip-inner,
+.document-metadata dd,
 .index_title a {
   unicode-bidi: plaintext;
-}
-
-.document-metadata {
-  dd { unicode-bidi: plaintext; }
 }
 
 .rtl,
@@ -66,6 +63,10 @@ $breadcrumb-item-padding-x: 0.5rem !default;
 
   .facet-values .facet-count {
     text-align: left;
+  }
+
+  .facet-values .remove {
+    padding-right: 0.5rem;
   }
 
   .documents-list .document .document-thumbnail,

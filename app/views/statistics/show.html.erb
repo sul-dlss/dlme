@@ -1,7 +1,17 @@
 <h1 class="page-title"><%= t('statistics.header') %></h1>
 
-<div class="row d-none d-md-flex justify-content-around text-center">
-  <div class="jumbotron">
+<div class="d-none d-md-flex justify-content-around text-center">
+  <div class="jumbotron col-3">
+    <h2 class="display-6">
+      <%= t('statistics.dashboard.header.total_collections', count: @statistics_dashboard.collections.total) %>
+    </h2>
+    <hr class="my-4">
+    <p>
+      <%= t('statistics.dashboard.header.total_contributors', count: @statistics_dashboard.contributors.total) %>
+    </p>
+  </div>
+
+  <div class="jumbotron col-3">
     <h2 class="display-6">
       <%= t('statistics.dashboard.header.total_items', count: @statistics_dashboard.items.total) %>
     </h2>
@@ -11,7 +21,7 @@
     </p>
   </div>
 
-  <div class="jumbotron">
+  <div class="jumbotron col-3">
     <h2 class="display-6">
       <%= t('statistics.dashboard.header.total_contributors', count: @statistics_dashboard.contributors.total) %>
     </h2>

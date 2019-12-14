@@ -100,3 +100,5 @@ gem 'bootstrap', '~> 4.0'
 gem 'font-awesome-rails'
 
 gem 'webpacker', '~> 4.x'
+
+gem 'cache_with_locale'
