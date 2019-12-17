@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     devise_for :users
     mount Blacklight::Oembed::Engine, at: 'oembed'
     mount Riiif::Engine => '/images', as: 'riiif'
+    resource :session_display, only: :update
 
     resources :suggest, only: :index, defaults: { format: 'json' }
 
