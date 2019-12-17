@@ -10,8 +10,6 @@ en:
   catalog:
     show_with_viewer:
       view_on_contributor_website: View on contributor website
-  data:
-    section: "Manage data"
   date_field: "%{gregorian_dates} / %{hijri_dates}"
   date_field_gregorian: "%{dates} (Gregorian)"
   date_field_hijri: "%{dates} (Hijri)"
@@ -33,9 +31,6 @@ en:
   s3_delete:
     new:
       add_item: Delete Items
-  s3_harvester:
-    remove:
-      header: Delete Items
   spotlight:
     catalog:
       admin_header:
@@ -46,9 +41,6 @@ en:
         transform: 'Transform data'
     main_navigation:
       statistics: Statistics
-    search:
-      fields:
-        cho_title_ssim: Title
     resources:
       fetch:
           queued: 'Queued for processing.'
