@@ -102,3 +102,5 @@ gem 'font-awesome-rails'
 gem 'webpacker', '~> 4.x'
 
 gem 'cache_with_locale'
+
+gem 'i18n-tasks'
