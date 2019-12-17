@@ -1,57 +1,50 @@
+---
 en:
-  contextual_result_info:
-    body_html: "You might see more results for your query by <a href='%{link}'>entering your search terms in another language<a>."
-    dismiss: Dismiss
-    disable_session: Don't show again
-  footer:
-    partnership_heading: In partnership with
-    project_support_heading: Project supported by
-    project_support_text: The Andrew W. Mellon Foundation
   catalog:
     show_with_viewer:
       view_on_contributor_website: View on contributor website
-  data:
-    section: "Manage data"
+  contextual_result_info:
+    body_html: You might see more results for your query by <a href='%{link}'>entering your search terms in another language<a>.
+    disable_session: Don't show again
+    dismiss: Dismiss
   date_field: "%{gregorian_dates} / %{hijri_dates}"
   date_field_gregorian: "%{dates} (Gregorian)"
   date_field_hijri: "%{dates} (Hijri)"
   date_range: "%{min} - %{max}"
   dlme_jsons:
     edit:
-      add_item: "Save"
-    update:
-      success: 'DLME JSON was saved.'
-      error:   'There was a problem saving the JSON.'
+      add_item: Save
     form:
-      title: 'DLME JSON'
-      add_item: 'Add DLME JSON file'
+      add_item: Add DLME JSON file
+      title: DLME JSON
+    update:
+      error: There was a problem saving the JSON.
+      success: DLME JSON was saved.
   dlme_s3s:
     form:
-      title: 'DLME S3 Fetch'
-      add_item: 'Fetch'
-      error: 'JSON contained duplicate identifiers'
+      add_item: Fetch
+      error: JSON contained duplicate identifiers
+      title: DLME S3 Fetch
+  footer:
+    partnership_heading: In partnership with
+    project_support_heading: Project supported by
+    project_support_text: The Andrew W. Mellon Foundation
   s3_delete:
     new:
       add_item: Delete Items
-  s3_harvester:
-    remove:
-      header: Delete Items
   spotlight:
     catalog:
       admin_header:
         delete_resource: Delete Items
     curation:
       sidebar:
-        sources: 'Sources'
-        transform: 'Transform data'
+        sources: Sources
+        transform: Transform data
     main_navigation:
       statistics: Statistics
-    search:
-      fields:
-        cho_title_ssim: Title
     resources:
       fetch:
-          queued: 'Queued for processing.'
+        queued: Queued for processing.
   statistics:
     dashboard:
       contributors:
@@ -64,19 +57,19 @@ en:
       header:
         total_collections:
           one: 1 collection
-          other: '%{count} collections'
+          other: "%{count} collections"
         total_contributors:
           one: 1 contributor
-          other: '%{count} contributors'
+          other: "%{count} contributors"
         total_countries:
           one: 1 country
-          other: '%{count} countries'
+          other: "%{count} countries"
         total_items:
           one: 1 item
-          other: '%{count} items'
+          other: "%{count} items"
         total_types:
           one: 1 item type
-          other: '%{count} item types'
+          other: "%{count} item types"
       items:
         by_language: By language
         by_type: By type
@@ -84,6 +77,6 @@ en:
     header: Statistics
   transforms:
     notification:
-      sent: 'Transform request sent.'
+      sent: Transform request sent.
     show:
-      header: 'Transform data'
+      header: Transform data
