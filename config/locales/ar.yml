@@ -1,3 +1,4 @@
+---
 ar:
   statistics:
     dashboard:
@@ -9,33 +10,33 @@ ar:
         total_html: المساهمو&middot; %{total}
       header:
         total_contributors:
-          zero: صفر
+          few: "%{count} مساهِمين"
+          many: "%{count} مساهِمين"
           one: مساهم واحد
+          other: "%{count} مساهِمين"
           two: مساهمَين
-          few: '%{count} مساهِمين'
-          many: '%{count} مساهِمين'
-          other: '%{count} مساهِمين'
+          zero: صفر
         total_countries:
-          zero: صفر
+          few: "%{count} دول"
+          many: "%{count} دول"
           one: دولة واحدة
+          other: "%{count} دول"
           two: دولتين
-          few: '%{count} دول'
-          many: '%{count} دول'
-          other: '%{count} دول'
+          zero: صفر
         total_items:
-          zero: صفر
+          few: "%{count} مواد"
+          many: "%{count} مواد"
           one: مادة
+          other: "%{count} مواد"
           two: مادتين
-          few: '%{count} مواد'
-          many: '%{count} مواد'
-          other: '%{count} مواد'
-        total_types:
           zero: صفر
+        total_types:
+          few: "%{count} أنواع من المادة"
+          many: "%{count} أنواع من المادة"
           one: نوع واحد من المادة
+          other: "%{count} أنواع من المادة"
           two: نوع اثنان من المادة
-          few: '%{count} أنواع من المادة'
-          many: '%{count} أنواع من المادة'
-          other: '%{count} أنواع من المادة'
+          zero: صفر
       items:
         by_language: بحسب اللغة
         by_type: بحسب النوع
