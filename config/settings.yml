@@ -30,6 +30,8 @@ allow_robots: false
 feature_flags:
   allow_json_upload: false
 
+searching_site_slug: 'searching-this-site'
+
 acceptable_bcp47_codes:
   - ar-Arab
   - ar-Latn

@@ -1,6 +1,9 @@
 <div class="alert alert-info alert-dismissible fade show" role="alert">
   <p>
-    <%= t('contextual_result_info.body') %>
+    <%= t(
+      'contextual_result_info.body_html',
+      link: exhibit_about_page_path(current_exhibit, Settings.searching_site_slug)
+    ) %>
   </p>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>

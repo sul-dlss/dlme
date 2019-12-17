@@ -19,6 +19,12 @@ RSpec.describe 'Contextual message on search results', type: :feature do
     click_button 'Search'
   end
 
+  it 'contains a link to contextual page' do
+    within '#content .alert-info' do
+      expect(page).to have_css 'a', text: 'entering your search terms in another language'
+    end
+  end
+
   it 'renders info alert, that is dismissable', js: true do
     within '#content' do
       expect(page).to have_css '.alert.alert-info', text: 'You might see more results for your query'

@@ -1,6 +1,6 @@
 en:
   contextual_result_info:
-    body: You might see more results for your query by entering your search terms in another language.
+    body_html: "You might see more results for your query by <a href='%{link}'>entering your search terms in another language<a>."
     dismiss: Dismiss
     disable_session: Don't show again
   footer:
