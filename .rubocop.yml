@@ -21,6 +21,9 @@ AllCops:
 Rails:
   Enabled: true
 
+Layout/LineLength:
+  Max: 130
+
 Metrics/AbcSize:
   Exclude:
     - 'app/controllers/concerns/multilingual_locale_aware_field.rb'
@@ -28,9 +31,6 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Exclude:
     - 'app/controllers/catalog_controller.rb'
-
-Metrics/LineLength:
-  Max: 130
 
 Metrics/BlockLength:
   Exclude:
