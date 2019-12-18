@@ -93,6 +93,7 @@ search:
 
 ## Do not consider these keys missing:
 ignore_missing:
+  - '{dlme_jsons,dlme_s3s,s3_delete,transforms}.*' # These are admin facing strings that do not need translations
   - '{spotlight}.*'
   - toggle_nav
   - 'shared.site_sidebar.{documentation,header}' # Spotlight provides these but not namespaced
