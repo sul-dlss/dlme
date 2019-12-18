@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projectblacklight/spotlight.git
-  revision: f4abbd29d4aa2dda86f5098f09b87fafdbb9d5ef
+  revision: f6141bdcaf36f55f31ca3a3f213ef06e84988c53
   specs:
     blacklight-spotlight (3.0.0.alpha)
       acts-as-taggable-on (>= 5.0, < 7)
@@ -94,7 +94,7 @@ GEM
     autoprefixer-rails (9.7.3)
       execjs
     aws-eventstream (1.0.3)
-    aws-partitions (1.255.0)
+    aws-partitions (1.257.0)
     aws-sdk-core (3.86.0)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -103,7 +103,7 @@ GEM
     aws-sdk-kms (1.27.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.59.0)
+    aws-sdk-s3 (1.60.0)
       aws-sdk-core (~> 3, >= 3.83.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
@@ -287,7 +287,7 @@ GEM
       json
     iiif_manifest (1.0.1)
       activesupport (>= 4)
-    image_processing (1.9.3)
+    image_processing (1.10.0)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.13, < 3)
     jaro_winkler (1.5.4)
@@ -366,7 +366,7 @@ GEM
     public_suffix (4.0.1)
     puma (3.12.2)
     rack (2.0.8)
-    rack-attack (6.2.1)
+    rack-attack (6.2.2)
       rack (>= 1.0, < 3)
     rack-protection (2.0.7)
       rack
@@ -461,7 +461,7 @@ GEM
     rspec-support (3.9.0)
     rspec_junit_formatter (0.4.1)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (0.77.0)
+    rubocop (0.78.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.6)
@@ -473,7 +473,7 @@ GEM
     rubocop-rails (2.4.0)
       rack (>= 1.1)
       rubocop (>= 0.72.0)
-    rubocop-rspec (1.37.0)
+    rubocop-rspec (1.37.1)
       rubocop (>= 0.68.1)
     ruby-oembed (0.12.0)
     ruby-progressbar (1.10.1)
@@ -549,7 +549,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.1)
+    sqlite3 (1.4.2)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
     test_xml (0.1.8)
