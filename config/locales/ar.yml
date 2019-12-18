@@ -4,11 +4,19 @@ ar:
     dashboard:
       contributors:
         table:
+          collections: المجموعات
           country: الدولة
           institution: المؤسسة
           items: المواد
         total_html: المساهمو&middot; %{total}
       header:
+        total_collections:
+          few: "%{count} المجموعات"
+          many: "%{count} المجموعات"
+          one: مجموعة واحد
+          other: "%{count} المجموعات"
+          two: مجموعتين
+          zero: صفر
         total_contributors:
           few: "%{count} مساهِمين"
           many: "%{count} مساهِمين"
