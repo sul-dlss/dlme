@@ -40,6 +40,18 @@ body {
   }
 }
 
+/* Statistics page styling */
+.blacklight-statistics-show {
+  .jumbotron {
+    border: 1px solid $color-gray-medium;
+    margin-top: $padding-large-vertical;
+
+    @media (min-width: 576px) {
+      padding: 2rem;
+    }
+  }
+}
+
 /* overrides for visual design changes */
 .btn-primary {
   @include button-variant($color-black-light, $color-black-light);
