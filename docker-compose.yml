@@ -33,7 +33,7 @@ services:
     # For running in dev
     volumes:
       - ".:/opt/"
-    command: rails server
+    command: bundle exec rails server
   postgres:
     image: postgres
     ports:
@@ -71,7 +71,7 @@ services:
       args:
         # For development, installs test and development
         - BUNDLE_WITHOUT=nothing
-    command: sidekiq -C config/sidekiq.yml.erb
+    command: bundle exec sidekiq -C config/sidekiq.yml.erb
     volumes:
       - '.:/app'
     env_file:

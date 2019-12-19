@@ -49,4 +49,4 @@ RUN apk --no-cache add --virtual build-dependencies \
 
 RUN NO_DATABASE=true bundle exec rake assets:precompile
 # Start the server by default, listening for all connections
-CMD puma -C config/puma.rb
+CMD bundle exec puma -C config/puma.rb
