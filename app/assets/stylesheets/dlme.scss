@@ -9,6 +9,18 @@
   padding-left: 10px;
 }
 
+/* Curation > Analytics user activity table */
+.table.analytics {
+  background-color: $color-gray-light;
+
+  .value {
+    color: $color-black-medium;
+    font-size: $h2-font-size;
+    font-weight: 700;
+    padding-bottom: 0;
+  }
+}
+
 /* override blacklight to hide the sidebar */
 .blacklight-catalog-show {
   #content {
