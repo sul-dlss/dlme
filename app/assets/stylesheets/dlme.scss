@@ -106,6 +106,23 @@ body {
   white-space: normal;
 }
 
+.image-masthead .navbar .navbar-nav .nav-link {
+  letter-spacing: 0.5px;
+  padding-left: 12px;
+  padding-right: 12px;
+  text-transform: uppercase;
+}
+
+.image-masthead .navbar .navbar-nav .nav-link,
+.topbar .navbar-nav .nav-link {
+  color: $color-gray-medium;
+
+  &:hover,
+  &:focus {
+    color: $color-gray-light;
+  }
+}
+
 .facet-limit-active {
   border-color: $color-gray-medium !important;
 
