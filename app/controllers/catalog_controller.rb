@@ -179,8 +179,9 @@ class CatalogController < ApplicationController
     config.add_show_field 'same_as', **multilingual_locale_aware_field('cho_same_as'), autolink: true
     config.add_show_field 'subject', **multilingual_locale_aware_field('cho_subject')
     config.add_show_field 'type', **multilingual_locale_aware_field('cho_type')
-    config.add_show_field 'type_en', field: 'cho_type_facet.en_ssim', helper_method: :link_type_hierarchy, if: en_locale
-    config.add_show_field 'type_ar', field: 'cho_type_facet.ar-Arab_ssim', helper_method: :link_type_hierarchy, if: arabic_locale
+    config.add_show_field 'type_hierarchy',
+                          **multilingual_locale_aware_field('cho_type_facet'),
+                          helper_method: :link_type_hierarchy
 
     config.add_show_field '__source', field: '__source_ssim'
     config.add_show_field 'agg_dc_rights', **multilingual_locale_aware_field('agg_dc_rights')

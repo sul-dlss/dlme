@@ -16,17 +16,22 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
 
     it 'links a single value' do
-      expect(
-        helper.link_type_hierarchy(values: ['Sound'], field: 'cho_type_facet')
-      ).to have_link('Sound', href: /\?f%5Bcho_type_facet%5D%5B%5D=Sound&/)
+      link = helper.link_type_hierarchy(
+        values: ['Sound'],
+        config: instance_double('Blacklight::FieldConfig', pattern: 'cho_type_facet.%<lang>s_ssim')
+      )
+      expect(link).to have_link('Sound', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound&/)
     end
 
     it 'links multiple values (with each value including all preceeding values)' do
-      links = helper.link_type_hierarchy(values: ['Sound:Interview'], field: 'cho_type_facet')
+      links = helper.link_type_hierarchy(
+        values: ['Sound:Interview'],
+        config: instance_double('Blacklight::FieldConfig', pattern: 'cho_type_facet.%<lang>s_ssim')
+      )
 
       expect(links).to have_content('Sound › Interview')
-      expect(links).to have_link('Sound', href: /\?f%5Bcho_type_facet%5D%5B%5D=Sound&/)
-      expect(links).to have_link('Interview', href: /\?f%5Bcho_type_facet%5D%5B%5D=Sound%3AInterview&/)
+      expect(links).to have_link('Sound', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound&/)
+      expect(links).to have_link('Interview', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound%3AInterview&/)
     end
   end
 
