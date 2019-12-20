@@ -80,8 +80,14 @@ class CatalogController < ApplicationController
     config.add_index_field 'spatial', **multilingual_locale_aware_field('cho_spatial')
     config.add_index_field 'temporal', **multilingual_locale_aware_field('cho_temporal')
 
-    arabic_locale = ->(*_) { I18n.locale == :ar }
-    en_locale = ->(*_) { I18n.locale == :en }
+    arabic_locale = lambda do |context, *_|
+      context.is_a?(Spotlight::SearchConfigurationsController) ||
+        I18n.locale == :ar
+    end
+    en_locale = lambda do |context, *_|
+      context.is_a?(Spotlight::SearchConfigurationsController) ||
+        I18n.locale == :en
+    end
 
     config.add_facet_field 'language_ar',    field: 'cho_language.ar-Arab_ssim', limit: true, if: arabic_locale
     config.add_facet_field 'language_en',    field: 'cho_language.en_ssim', limit: true, if: en_locale
