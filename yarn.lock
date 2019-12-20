@@ -4749,10 +4749,10 @@ minipass@^3.0.0, minipass@^3.1.1:
   dependencies:
     yallist "^4.0.0"
 
-mirador@^3.0.0-beta.2:
-  version "3.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/mirador/-/mirador-3.0.0-beta.2.tgz#8f417b2cf16bca8762c3f128ba91ffca68bdc7e5"
-  integrity sha512-EG8EEEVG0RPHS/e3OwarmLWUI9GXBhwL1UdEei9d1ShIUZbg3KtO83vnmmPH7wS9Sk5k6Adce+dqLVSyu0pX9Q==
+mirador@^3.0.0-beta.3:
+  version "3.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/mirador/-/mirador-3.0.0-beta.3.tgz#261a1ab80758ce02ed5c670d88d0a993e11976b7"
+  integrity sha512-hGATEua3aq9Hkw7pY1igA8h3Z06BWAN0t/mVtRCF/0+jpLXleBzMKKgOhISouVUvHqAZoacjZP6+8RHo9TM3xw==
   dependencies:
     "@material-ui/core" "^4.7.2"
     "@material-ui/icons" "^4.5.1"
