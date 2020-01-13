@@ -7,7 +7,7 @@
 
 This diagram represents how data gets loaded into the application:
 
-![overview diagram](https://docs.google.com/drawings/d/e/2PACX-1vTBFJJgiPqs58fNWC-lTBdw5wKNN0-OgLBu7EUoJcfyDXFu6VTKkhxNUKcNSX4f1Mf_mHHI2zH_ezZj/pub?w=960&h=720)
+![overview diagram](https://github.com/sul-dlss/dlme/blob/master/README.md)
 [Link to diagram in Google Drawings](https://docs.google.com/drawings/d/1jEspB9tO6-_LyiN-q0jQwfEPtiaztgHzL6CgRKXiyBk/edit)
 
 You can read more about our data and related documentation in our [data documentation](docs/README.md).
