@@ -56,7 +56,7 @@ body {
 .blacklight-statistics-show {
   .jumbotron {
     border: 1px solid $color-gray-medium;
-    margin-top: $padding-large-vertical;
+    margin-top: $spacer;
 
     @media (min-width: 576px) {
       padding: 2rem;
