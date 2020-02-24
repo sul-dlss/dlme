@@ -38,7 +38,6 @@ RSpec.describe NdjsonNormalizer do
     end
   end
 
-  # rubocop:disable Style/BracesAroundHashParameters
   describe '#normalize' do
     context 'when on the happy path' do
       it 'returns an array of hashes' do
@@ -90,5 +89,4 @@ RSpec.describe NdjsonNormalizer do
       end
     end
   end
-  # rubocop:enable Style/BracesAroundHashParameters
 end
