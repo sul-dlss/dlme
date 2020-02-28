@@ -40,7 +40,7 @@ The DLME Prototype Application Profile a subset of the [Europeana Data Model](ht
 @prefix svcs: <http://rdfs.org/sioc/services#> .
 ```
 
-### `DLME lnnternal Fields`
+### `DLME lnternal Fields`
 | Solr field name  | Property          | Expectation | Cardinality | Value type  | Definition | Notes                      |
 | ---------------- | ----------------- | ----------- | ----------- | ----------- | ---------- | -------------------------- |
 | dlme_source_file  |  |             | 1...1       | literal     | Path to the file in dlme metadata repository. | |
