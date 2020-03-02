@@ -6,7 +6,7 @@ For data providers, start by reading our [Information for Data Providers](provid
 
 At present, this diagram represents how data travels from being queued up for inclusion to internal representation in the DLME application's database and metadata included the discovery index:
 
-![overview diagram](https://camo.githubusercontent.com/77365e9eaddd2ff7918be8c1fa8cfe0e465c2594/68747470733a2f2f646f63732e676f6f676c652e636f6d2f64726177696e67732f642f652f32504143582d31765442464a4a67695071733538664e57432d6c5442647735774b4e4e302d4f674c42753745556f4a636679445846753656544b6b68784e554b634e53583466314d665f6d484849327a485f657a5a6a2f7075623f773d39363026683d373230)
+![overview diagram](https://docs.google.com/drawings/d/1jEspB9tO6-_LyiN-q0jQwfEPtiaztgHzL6CgRKXiyBk/edit)
 
 ## Adding Data Process
 
