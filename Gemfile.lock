@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/projectblacklight/spotlight.git
-  revision: 48223e79bd6b4e72294cc28719180fb90a331558
+  revision: 22884da863b9b05364c035506ed3fdb49023da65
   specs:
-    blacklight-spotlight (3.0.0.alpha.6)
+    blacklight-spotlight (3.0.0.alpha.8)
       acts-as-taggable-on (>= 5.0, < 7)
       almond-rails (~> 0.1)
       autoprefixer-rails
@@ -94,7 +94,7 @@ GEM
     autoprefixer-rails (9.7.4)
       execjs
     aws-eventstream (1.0.3)
-    aws-partitions (1.278.0)
+    aws-partitions (1.281.0)
     aws-sdk-core (3.90.1)
       aws-eventstream (~> 1.0, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
@@ -118,14 +118,14 @@ GEM
       execjs (~> 2.0)
     bcrypt (3.1.13)
     bindex (0.8.1)
-    blacklight (7.6.0)
+    blacklight (7.7.0)
       deprecation
       globalid
       jbuilder (~> 2.7)
       kaminari (>= 0.15)
       rails (>= 5.1, < 7)
-    blacklight-gallery (1.7.0)
-      blacklight (~> 7.0)
+    blacklight-gallery (2.0.0)
+      blacklight (~> 7.7)
       bootstrap (~> 4.0)
       openseadragon (>= 0.2.0)
       rails (~> 5.1)
@@ -137,7 +137,7 @@ GEM
       blacklight (~> 7.0)
       rails
       ruby-oembed
-    blacklight_range_limit (7.4.0)
+    blacklight_range_limit (7.5.0)
       blacklight (>= 7.0)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
@@ -145,7 +145,7 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
-    bootstrap_form (4.3.0)
+    bootstrap_form (4.4.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
     breadcrumbs_on_rails (3.0.1)
@@ -312,7 +312,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.0)
     kaminari-core (1.2.0)
-    leaflet-rails (1.5.1)
+    leaflet-rails (1.6.0)
       rails (>= 4.2.0)
     legato (0.7.0)
       multi_json
@@ -359,7 +359,7 @@ GEM
       activerecord (>= 4.2)
       request_store (~> 1.1)
     parallel (1.19.1)
-    parser (2.7.0.3)
+    parser (2.7.0.4)
       ast (~> 2.4.0)
     pg (1.2.2)
     popper_js (1.16.0)
