@@ -11,7 +11,7 @@ services:
       dockerfile: docker/Dockerfile
     environment:
       - RAILS_LOG_TO_STDOUT=true
-      - RDS_DB_NAME=dlme
+      - RDS_DB_NAME=postgres
       - RDS_USERNAME=postgres
       - RDS_PASSWORD=sekret
       - RDS_HOSTNAME=postgres
@@ -71,6 +71,7 @@ services:
       args:
         # For development, installs test and development
         - BUNDLE_WITHOUT=nothing
+        - RAILS_ENV=development
     command: bundle exec sidekiq -C config/sidekiq.yml.erb
     volumes:
       - '.:/app'
