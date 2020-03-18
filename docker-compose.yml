@@ -11,7 +11,7 @@ services:
       dockerfile: docker/Dockerfile
     environment:
       - RAILS_LOG_TO_STDOUT=true
-      - RDS_DB_NAME=postgres
+      - RDS_DB_NAME=dlme
       - RDS_USERNAME=postgres
       - RDS_PASSWORD=sekret
       - RDS_HOSTNAME=postgres
@@ -40,6 +40,7 @@ services:
       - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=sekret
+      - POSTGRES_DB=dlme
     volumes:
       - postgres-data:/var/lib/postgresql/data
   solr:
