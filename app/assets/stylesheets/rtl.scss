@@ -10,6 +10,13 @@ $breadcrumb-item-padding-x: 0.5rem !default;
   unicode-bidi: plaintext;
 }
 
+.tooltip-inner {
+  .from, .to {
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
+}
+
 .document-counter {
   unicode-bidi: isolate;
 }
