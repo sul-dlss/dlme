@@ -137,7 +137,7 @@ GEM
       blacklight (~> 7.0)
       rails
       ruby-oembed
-    blacklight_range_limit (7.5.0)
+    blacklight_range_limit (7.6.0)
       blacklight (>= 7.0)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
@@ -667,4 +667,4 @@ DEPENDENCIES
   webpacker (~> 4.x)
 
 BUNDLED WITH
-   2.1.0
+   2.1.2
