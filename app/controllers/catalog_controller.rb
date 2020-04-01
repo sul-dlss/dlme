@@ -80,22 +80,14 @@ class CatalogController < ApplicationController
     config.add_index_field 'spatial', **multilingual_locale_aware_field('cho_spatial')
     config.add_index_field 'temporal', **multilingual_locale_aware_field('cho_temporal')
 
-    arabic_locale = ->(*_) { I18n.locale == :ar }
-    en_locale = ->(*_) { I18n.locale == :en }
-
-    config.add_facet_field 'type_pivot_en', pivot: %w[cho_edm_type.en_ssim cho_has_type.en_ssim], if: false
-    config.add_facet_field 'type_pivot_ar', pivot: %w[cho_edm_type.ar-Arab_ssim cho_has_type.ar-Arab_ssim], if: false
-
-    config.add_facet_field 'contributor_pivot_en',
-                           pivot: %w[agg_provider.en_ssim agg_provider_country.en_ssim agg_data_provider_collection_ssim],
-                           if: false
-    config.add_facet_field 'contributor_pivot_ar',
-                           pivot: %w[
-                             agg_provider.ar-Arab_ssim
-                             agg_provider_country.ar-Arab_ssim
-                             agg_data_provider_collection_ssim
-                           ],
-                           if: false
+    arabic_locale = lambda do |context, *_|
+      context.is_a?(Spotlight::SearchConfigurationsController) ||
+        I18n.locale == :ar
+    end
+    en_locale = lambda do |context, *_|
+      context.is_a?(Spotlight::SearchConfigurationsController) ||
+        I18n.locale == :en
+    end
 
     config.add_facet_field 'language_ar',    field: 'cho_language.ar-Arab_ssim', limit: true, if: arabic_locale
     config.add_facet_field 'language_en',    field: 'cho_language.en_ssim', limit: true, if: en_locale
@@ -122,8 +114,6 @@ class CatalogController < ApplicationController
     config.add_facet_field 'agg_data_provider_en',    field: 'agg_data_provider.en_ssim', limit: true, if: en_locale
     config.add_facet_field 'agg_provider_ar',    field: 'agg_provider.ar-Arab_ssim', limit: true, if: arabic_locale
     config.add_facet_field 'agg_provider_en',    field: 'agg_provider.en_ssim', limit: true, if: en_locale
-    config.add_facet_field 'agg_provider_country_ar', field: 'agg_provider_country.ar-Arab_ssim', if: false
-    config.add_facet_field 'agg_provider_country_en', field: 'agg_provider_country.en_ssim', if: false
     config.add_facet_field 'cho_type_facet.en_ssim',
                            partial: 'blacklight/hierarchy/facet_hierarchy',
                            label: 'Type en',

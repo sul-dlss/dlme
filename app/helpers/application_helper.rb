@@ -27,6 +27,10 @@ module ApplicationHelper
     safe_join(values, '<br />'.html_safe) if values.any?
   end
 
+  def display_search_context?
+    !session[:disable_search_context]
+  end
+
   private
 
   def display_date_range(gregorian_dates:, hijri_dates:)

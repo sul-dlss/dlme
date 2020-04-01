@@ -1,7 +1,8 @@
 $breadcrumb-item-padding-x: 0.5rem !default;
 @import 'bootstrap/rtl';
 
-.facet-label,
+.facet-label .facet-select,
+.facet-label .selected,
 .filter-value,
 .tooltip-inner,
 .document-metadata dd,
@@ -14,6 +15,10 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     direction: ltr;
     unicode-bidi: isolate;
   }
+}
+
+.document-counter {
+  unicode-bidi: isolate;
 }
 
 .rtl,
@@ -71,6 +76,10 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     text-align: left;
   }
 
+  .facet-values .remove {
+    padding-right: 0.5rem;
+  }
+
   .documents-list .document .document-thumbnail,
   #documents.documents-list .document-thumbnail {
     float: right;
@@ -101,30 +110,21 @@ $breadcrumb-item-padding-x: 0.5rem !default;
   // blacklight-hierarchy overrides
   ul.facet-hierarchy {
     // Fix spacing on facet icons/counts
-    .facet-count {
-      float: left;
-      text-align: left;
-    }
-
-    .twiddle:before {
-      margin-left: 0;
-      margin-right: -15px;
-    }
-
-    .h-node {
-      padding-left: 0;
-      padding-right: 15px;
-    }
-
-    .h-leaf {
-      margin-left: 0;
-      margin-right: 15px;
-    }
-
     padding-right: 0;
 
     ul {
-      padding-right: 0;
+      padding-left: 0;
+      padding-right: 1.3em;
+    }
+
+    .h-leaf {
+      padding-left: 0;
+      padding-right: 1.3em;
+    }
+
+    .facet-count {
+      float: left;
+      text-align: left;
     }
   }
 

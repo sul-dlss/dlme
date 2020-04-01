@@ -9,6 +9,18 @@
   padding-left: 10px;
 }
 
+/* Curation > Analytics user activity table */
+.table.analytics {
+  background-color: $color-gray-light;
+
+  .value {
+    color: $color-black-medium;
+    font-size: $h2-font-size;
+    font-weight: 700;
+    padding-bottom: 0;
+  }
+}
+
 /* override blacklight to hide the sidebar */
 .blacklight-catalog-show {
   #content {
@@ -37,6 +49,18 @@ body {
 
   @media (max-width: 991px) {
     margin-bottom: $footer-height + $footer-top-margin + $footer-mobile-adjustment;
+  }
+}
+
+/* Statistics page styling */
+.blacklight-statistics-show {
+  .jumbotron {
+    border: 1px solid $color-gray-medium;
+    margin-top: $spacer;
+
+    @media (min-width: 576px) {
+      padding: 2rem;
+    }
   }
 }
 
@@ -92,6 +116,23 @@ body {
 
 .masthead .site-title {
   white-space: normal;
+}
+
+.image-masthead .navbar .navbar-nav .nav-link {
+  letter-spacing: 0.5px;
+  padding-left: 12px;
+  padding-right: 12px;
+  text-transform: uppercase;
+}
+
+.image-masthead .navbar .navbar-nav .nav-link,
+.topbar .navbar-nav .nav-link {
+  color: $color-gray-medium;
+
+  &:hover,
+  &:focus {
+    color: $color-gray-light;
+  }
 }
 
 .facet-limit-active {

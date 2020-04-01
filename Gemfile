@@ -40,7 +40,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'
   gem 'selenium-webdriver'
-  gem 'simplecov'
+  # Codeclimate is not compatible with 0.18+. See https://github.com/codeclimate/test-reporter/issues/413
+  gem 'simplecov', '~> 0.17.1'
 
   gem 'factory_bot_rails', '~> 5.0'
   gem 'rails-controller-testing'
@@ -102,3 +103,5 @@ gem 'font-awesome-rails'
 gem 'webpacker', '~> 4.x'
 
 gem 'cache_with_locale'
+
+gem 'i18n-tasks'
