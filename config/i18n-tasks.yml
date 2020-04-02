@@ -104,6 +104,7 @@ ignore_missing:
 ignore_unused:
   - '{spotlight}.*'
   - '{dlme_jsons,dlme_s3s}.form.title'
+  - '{date}.*'
 # - 'activerecord.attributes.*'
 # - '{devise,kaminari,will_paginate}.*'
 # - 'simple_form.{yes,no}'
