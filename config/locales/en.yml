@@ -50,7 +50,7 @@ en:
       contributors:
         table:
           collections: Collections
-          country: Country
+          country: Countries
           institution: Institution
           items: Items
         total_html: Contributors &middot; %{total}
