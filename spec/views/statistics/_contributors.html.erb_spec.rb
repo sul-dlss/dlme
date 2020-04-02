@@ -21,7 +21,8 @@ RSpec.describe 'statistics/_contributors.html.erb', type: :view do
             { 'value' => 'Country 1', 'count' => '500', 'pivot' => %w[Does Not Matter] }
           ] },
           { 'value' => 'Institution 2', 'count' => '300', 'pivot' => [
-            { 'value' => 'Country 2', 'count' => '300', 'pivot' => ['thing'] }
+            { 'value' => 'Country 2', 'count' => '200', 'pivot' => ['thing'] },
+            { 'value' => 'Country 3', 'count' => '100', 'pivot' => ['thing'] }
           ] }
         ]
       }
@@ -44,6 +45,10 @@ RSpec.describe 'statistics/_contributors.html.erb', type: :view do
     expect(rendered).to have_css('table tbody tr:nth-child(2) td', text: 'Institution 2')
     expect(rendered).to have_css('table tbody tr:nth-child(2) td', text: 'Country 2')
     expect(rendered).to have_css('table tbody tr:nth-child(2) td', text: '300')
+  end
+
+  it 'comma separates multiple countries' do
+    expect(rendered).to have_css('table tbody tr:nth-child(2) td', text: 'Country 2, Country 3')
   end
 
   it 'includes the collection count' do
