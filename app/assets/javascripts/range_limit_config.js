@@ -9,11 +9,13 @@ Blacklight.onLoad(function() {
         if (number === 0) {
           return number;
         }
+        var label = [number, ''];
         if (number < 0) {
-          number *= -1;
-          number += 'B';
+          label[0] *= -1;
+          label[1] += 'B'
         }
-        return number+= 'H';
+        label[1] += 'H';
+        return label.join(' ');
       }
     }
   });
@@ -24,11 +26,13 @@ Blacklight.onLoad(function() {
         if (number === 0) {
           return number;
         }
+        var label = [number, ''];
         if (number < 0) {
-          number *= -1;
-          number += 'B';
+          label[0] *= -1;
+          label[1] += 'B'
         }
-        return number+= 'CE';
+        label[1] += 'CE';
+        return label.join(' ');
       }
     }
   })
