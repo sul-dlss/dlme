@@ -18,8 +18,8 @@ module ApplicationHelper
   # Generate a display value for multi-calendar date ranges
   def display_date_ranges(values: [], **_args)
     values = Array(values).map do |value|
-      gregorian_dates = roll_up_date_range_values(value[:gregorian] || [])
-      hijri_dates = roll_up_date_range_values(value[:hijri] || [])
+      gregorian_dates = roll_up_date_range_values(value[:gregorian] || [], :'date.bce')
+      hijri_dates = roll_up_date_range_values(value[:hijri] || [], :'date.bh')
 
       display_date_range(gregorian_dates: gregorian_dates, hijri_dates: hijri_dates)
     end.compact
@@ -46,14 +46,22 @@ module ApplicationHelper
     end
   end
 
-  def roll_up_date_range_values(values)
+  def roll_up_date_range_values(values, suffix_key = nil)
     values.sort.chunk_while { |i, j| i + 1 == j }.map do |arr|
       if arr.length == 1
-        arr.first
+        add_suffix_for_negative_dates(arr.first, suffix_key)
       else
         min, max = arr.minmax
-        I18n.t(:date_range, min: min, max: max)
+        I18n.t(:date_range,
+               min: add_suffix_for_negative_dates(min, suffix_key),
+               max: add_suffix_for_negative_dates(max, suffix_key))
       end
     end
+  end
+
+  def add_suffix_for_negative_dates(year, suffix_key)
+    return year unless year.negative?
+
+    I18n.t(suffix_key, year: year.abs)
   end
 end
