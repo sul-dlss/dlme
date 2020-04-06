@@ -50,7 +50,7 @@ class CatalogController < ApplicationController
 
     config.add_index_field 'title', **multilingual_locale_aware_field('cho_title')
 
-    config.add_index_field 'date range', helper_method: :display_date_ranges, values: (lambda do |_field_config, document|
+    config.add_index_field 'date_range', helper_method: :display_date_ranges, values: (lambda do |_field_config, document|
       if document.has?('cho_date_range_norm_isim') || document.has?('cho_date_range_hijri_isim')
         {
           gregorian: document.fetch('cho_date_range_norm_isim', []),
@@ -60,8 +60,8 @@ class CatalogController < ApplicationController
     end)
 
     config.add_index_field 'date', **multilingual_locale_aware_field('cho_date')
-    config.add_index_field 'holding institution', **multilingual_locale_aware_field('agg_data_provider')
-    config.add_index_field 'source institution', **multilingual_locale_aware_field('agg_provider')
+    config.add_index_field 'holding_institution', **multilingual_locale_aware_field('agg_data_provider')
+    config.add_index_field 'source_institution', **multilingual_locale_aware_field('agg_provider')
 
     config.add_index_field 'extent', **multilingual_locale_aware_field('cho_extent')
     config.add_index_field 'creator', **multilingual_locale_aware_field('cho_creator')
@@ -93,7 +93,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'language_en',    field: 'cho_language.en_ssim', limit: true, if: en_locale
     config.add_facet_field 'type_ar',    field: 'cho_edm_type.ar-Arab_ssim', limit: true, if: arabic_locale
     config.add_facet_field 'type_en',    field: 'cho_edm_type.en_ssim', limit: true, if: en_locale
-    config.add_facet_field 'other type', field: 'cho_type_ssim', limit: true
+    config.add_facet_field 'other_type', field: 'cho_type_ssim', limit: true
     config.add_facet_field 'spatial',    field: 'cho_spatial_ssim', limit: true
     config.add_facet_field 'temporal',   field: 'cho_temporal_ssim', limit: true
     config.add_facet_field 'source_date', field: 'cho_date_ssim', limit: true
@@ -135,15 +135,15 @@ class CatalogController < ApplicationController
       yes: { label: 'Yes', fq: 'agg_preview.wr_id_ssim:[* TO *]' },
       no: { label: 'No', fq: '-agg_preview.wr_id_ssim:[* TO *]' }
     }
-    config.add_facet_field 'shown at', query: {
+    config.add_facet_field 'shown_at', query: {
       yes: { label: 'Yes', fq: 'agg_is_shown_at.wr_id_ssim:[* TO *]' },
       no: { label: 'No', fq: '-agg_is_shown_at.wr_id_ssim:[* TO *]' }
     }
-    config.add_facet_field 'shown by', query: {
+    config.add_facet_field 'shown_by', query: {
       yes: { label: 'Yes', fq: 'agg_is_shown_by.wr_id_ssim:[* TO *]' },
       no: { label: 'No', fq: '-agg_is_shown_by.wr_id_ssim:[* TO *]' }
     }
-    config.add_facet_field 'empty fields', query: {
+    config.add_facet_field 'empty_fields', query: {
       no_cho_title: { label: 'No CHO Title', fq: '-cho_title_ssim:[* TO *]' },
       no_cho_edm_type: { label: 'No CHO Type', fq: '-cho_edm_type_ssim:[* TO *]' },
       no_cho_dc_rights: { label: 'No CHO DC Rights', fq: '-cho_dc_rights_ssim:[* TO *]' },
@@ -151,12 +151,12 @@ class CatalogController < ApplicationController
       no_agg_provider: { label: 'No Source Institution', fq: '-agg_provider_ssim:[* TO *]' },
       no_agg_data_provider: { label: 'No Holding Institution', fq: '-agg_data_provider_ssim:[* TO *]' }
     }
-    config.add_facet_field 'indexed at', query: {
+    config.add_facet_field 'indexed_at', query: {
       day: { label: 'within 1 day', fq: "timestamp:[#{(Time.zone.now - 1.day).iso8601} TO *]" },
       week: { label: 'within 7 days', fq: "timestamp:[#{(Time.zone.now - 7.days).iso8601} TO *]" },
       month: { label: 'within 31 days', fq: "timestamp:[#{(Time.zone.now - 31.days).iso8601} TO *]" }
     }
-    config.add_facet_field 'traject config', field: 'traject_context_source_ssim', limit: true
+    config.add_facet_field 'traject_config', field: 'traject_context_source_ssim', limit: true
     config.add_facet_field 'harvest', field: 'traject_context_harvest_id_ssim', limit: true
 
     # Have BL send all facet field names to Solr, which has been the default
@@ -179,8 +179,9 @@ class CatalogController < ApplicationController
     config.add_show_field 'same_as', **multilingual_locale_aware_field('cho_same_as'), autolink: true
     config.add_show_field 'subject', **multilingual_locale_aware_field('cho_subject')
     config.add_show_field 'type', **multilingual_locale_aware_field('cho_type')
-    config.add_show_field 'type_en', field: 'cho_type_facet.en_ssim', helper_method: :link_type_hierarchy, if: en_locale
-    config.add_show_field 'type_ar', field: 'cho_type_facet.ar-Arab_ssim', helper_method: :link_type_hierarchy, if: arabic_locale
+    config.add_show_field 'type_hierarchy',
+                          **multilingual_locale_aware_field('cho_type_facet'),
+                          helper_method: :link_type_hierarchy
 
     config.add_show_field '__source', field: '__source_ssim'
     config.add_show_field 'agg_dc_rights', **multilingual_locale_aware_field('agg_dc_rights')

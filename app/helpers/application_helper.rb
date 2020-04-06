@@ -9,7 +9,7 @@ module ApplicationHelper
     safe_join(
       values.each_with_index.collect do |value, index|
         facet_value = values[0, index + 1].join(':')
-        link_to(value, path_for_facet(args[:field], facet_value))
+        link_to(value, path_for_facet(link_to_config_pattern(args[:config]), facet_value))
       end,
       ' › '
     )
@@ -32,6 +32,16 @@ module ApplicationHelper
   end
 
   private
+
+  def link_to_config_pattern(config)
+    format(config.pattern, lang: hierarchy_locale_map[I18n.locale])
+  end
+
+  # The hierarchy field is based on a facet so it
+  # will only have en and ar-Arab field varations
+  def hierarchy_locale_map
+    { ar: 'ar-Arab', en: 'en' }
+  end
 
   def display_date_range(gregorian_dates:, hijri_dates:)
     gregorian_dates_str = I18n.t(:date_field_gregorian, dates: gregorian_dates.to_sentence) if gregorian_dates.any?
