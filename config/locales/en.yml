@@ -7,6 +7,9 @@ en:
     body_html: You might see more results for your query by <a href='%{link}'>entering your search terms in another language<a>.
     disable_session: Don't show again
     dismiss: Dismiss
+  date:
+    bce: "%{year} BCE"
+    bh: "%{year} BH"
   date_field: "%{gregorian_dates} / %{hijri_dates}"
   date_field_gregorian: "%{dates} (Gregorian)"
   date_field_hijri: "%{dates} (Hijri)"
@@ -50,7 +53,7 @@ en:
       contributors:
         table:
           collections: Collections
-          country: Country
+          country: Countries
           institution: Institution
           items: Items
         total_html: Contributors &middot; %{total}

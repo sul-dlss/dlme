@@ -6,8 +6,17 @@ $breadcrumb-item-padding-x: 0.5rem !default;
 .filter-value,
 .tooltip-inner,
 .document-metadata dd,
+.browse-category-title,
+.blacklight-browse-show h1 .title,
 .index_title a {
   unicode-bidi: plaintext;
+}
+
+.tooltip-inner {
+  .from, .to {
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
 }
 
 .document-counter {

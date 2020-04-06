@@ -59,5 +59,20 @@ RSpec.describe ApplicationHelper, type: :helper do
       actual = helper.display_date_ranges(values: [{ gregorian: [1995] }])
       expect(actual).to eq '1995 (Gregorian)'
     end
+
+    it 'adds BCE for negative gregorian data' do
+      actual = helper.display_date_ranges(values: [{ gregorian: [-87] }])
+      expect(actual).to eq '87 BCE (Gregorian)'
+    end
+
+    it 'adds BCE for negative hijri data' do
+      actual = helper.display_date_ranges(values: [{ hijri: [-87] }])
+      expect(actual).to eq '87 BH (Hijri)'
+    end
+
+    it 'adds BCE for ranges' do
+      actual = helper.display_date_ranges(values: [{ gregorian: [-87, -86, 10], hijri: [-5, -4] }])
+      expect(actual).to eq '87 BCE - 86 BCE and 10 (Gregorian) / 5 BH - 4 BH (Hijri)'
+    end
   end
 end

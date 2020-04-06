@@ -163,7 +163,7 @@ class StatisticsDashboard
     end
 
     def total_countries
-      institutions.collect(&:country).uniq.count
+      institutions.collect(&:countries).flatten.uniq.count
     end
 
     def institutions
@@ -192,8 +192,8 @@ class StatisticsDashboard
         facet['value']
       end
 
-      def country
-        country_facet&.[]('value')
+      def countries
+        facet&.[]('pivot')&.map { |country| country['value'] }
       end
 
       def collection_count
