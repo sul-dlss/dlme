@@ -52,7 +52,12 @@ Spotlight::Engine.config.default_autocomplete_params = {
 #   OpenStruct.new(field_name: :spotlight_upload_attribution_tesim, label: 'Attribution'),
 #   OpenStruct.new(field_name: :spotlight_upload_date_tesim, label: 'Date')
 # ]
-# Spotlight::Engine.config.upload_title_field = nil # OpenStruct.new(...)
+Spotlight::Engine.config.upload_title_field = Spotlight::UploadFieldConfig.new(
+  solr_fields: %w(cho_title_tsim sortable_cho_title_ssi spotlight_upload_title_tesim),
+  field_name: :title,
+  label: -> { I18n.t(:'spotlight.search.fields.title') }
+)
+
 # Spotlight::Engine.config.uploader_storage = :file
 # Spotlight::Engine.config.allowed_upload_extensions = %w(jpg jpeg png)
 
