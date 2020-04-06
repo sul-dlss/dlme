@@ -1,0 +1,69 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+ar:
+  devise:
+    confirmations:
+      confirmed: "test"
+      send_instructions: "test"
+      send_paranoid_instructions: "test"
+    failure:
+      already_authenticated: ""
+      inactive: "test"
+      invalid: "test"
+      locked: "test"
+      last_attempt: "test"
+      not_found_in_database: ""
+      timeout: ""
+      unauthenticated: ""
+      unconfirmed: ""
+    mailer:
+      confirmation_instructions:
+        subject: ""
+      reset_password_instructions:
+        subject: ""
+      unlock_instructions:
+        subject: ""
+      email_changed:
+        subject: "تم تغيير البريد الإلكتروني"
+      password_change:
+        subject: ""
+    omniauth_callbacks:
+      failure: ""
+      success: ""
+    passwords:
+      no_token: ""
+      send_instructions: ""
+      send_paranoid_instructions: ""
+      updated: ""
+      updated_not_active: ""
+    registrations:
+      destroyed: ""
+      signed_up: ""
+      signed_up_but_inactive: ""
+      signed_up_but_locked: ""
+      signed_up_but_unconfirmed: ""
+      update_needs_confirmation: ""
+      updated: ""
+    sessions:
+      signed_in: ""
+      signed_out: ""
+      already_signed_out: ""
+    unlocks:
+      send_instructions: ""
+      send_paranoid_instructions: ""
+      unlocked: ""
+  errors:
+    messages:
+      already_confirmed: ""
+      confirmation_period_expired: ""
+      expired: ""
+      not_found: ""
+      not_locked: ""
+      not_saved:
+        zero: ""
+        one: ""
+        two: ""
+        few: ""
+        many: ""
+        other: ""
+
