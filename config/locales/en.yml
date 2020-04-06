@@ -48,6 +48,9 @@ en:
     resources:
       fetch:
         queued: Queued for processing.
+    sites:
+      edit:
+        exhibit_home: Exhibit home
   statistics:
     dashboard:
       contributors:
