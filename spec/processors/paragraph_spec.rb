@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ::Paragraph do
   include Capybara::RSpecMatchers
   let(:document) { instance_double(SolrDocument) }
-  let(:context) { double }
+  let(:context) { double(request: double(format: double(html?: true))) }
   let(:options) { double }
   let(:terminator) { class_double Blacklight::Rendering::Terminator, new: term_instance }
   let(:term_instance) { instance_double Blacklight::Rendering::Terminator, render: '' }
@@ -36,6 +36,21 @@ RSpec.describe ::Paragraph do
       it 'makes paragraphs' do
         render
         expect(terminator).to have_received(:new).with(['<p>a</p>', '<p>b</p>'],
+                                                       field_config,
+                                                       document,
+                                                       context,
+                                                       options,
+                                                       [])
+      end
+    end
+
+    context 'with a non-html request' do
+      let(:field_config) { Blacklight::Configuration::NullField.new(paragraph: true) }
+      let(:context) { double(request: double(format: double(html?: false))) }
+
+      it 'does nothing' do
+        render
+        expect(terminator).to have_received(:new).with(values,
                                                        field_config,
                                                        document,
                                                        context,

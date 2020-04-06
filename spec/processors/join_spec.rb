@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ::Join do
   include Capybara::RSpecMatchers
   let(:document) { instance_double(SolrDocument) }
-  let(:context) { double }
+  let(:context) { double(request: double(format: double(html?: true))) }
   let(:options) { {} }
   let(:terminator) { class_double Blacklight::Rendering::Terminator, new: term_instance }
   let(:term_instance) { instance_double Blacklight::Rendering::Terminator, render: '' }
@@ -17,6 +17,21 @@ RSpec.describe ::Join do
 
     let(:values) { %w[a b] }
     let(:field_config) { Blacklight::Configuration::NullField.new }
+
+    context 'with a non-html request' do
+      let(:field_config) { Blacklight::Configuration::NullField.new(autolink: true) }
+      let(:context) { double(request: double(format: double(html?: false))) }
+
+      it 'does nothing' do
+        render
+        expect(terminator).to have_received(:new).with(%w[a b],
+                                                       field_config,
+                                                       document,
+                                                       context,
+                                                       options,
+                                                       [])
+      end
+    end
 
     context 'when join_with is not set' do
       it 'joins with <br>' do
