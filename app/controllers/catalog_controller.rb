@@ -7,6 +7,12 @@ class CatalogController < ApplicationController
   include BlacklightRangeLimit::ControllerOverride
   extend MultilingualLocaleAwareField
 
+  before_action do
+    next unless request.format.json?
+
+    blacklight_config.add_show_field :__raw_resource_json_ss, helper_method: :ir_for_output
+  end
+
   configure_blacklight do |config|
     # Disable bookmarks
     config.index.document_actions[:bookmark].if = false

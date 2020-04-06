@@ -74,4 +74,8 @@ module ApplicationHelper
 
     I18n.t(suffix_key, year: year.abs)
   end
+
+  def ir_for_output(value: [], **)
+    JSON.parse(value.first)
+  end
 end
