@@ -1,52 +1,110 @@
 ---
 ar:
+  catalog:
+    show_with_viewer:
+      view_on_contributor_website: ""
+  contextual_result_info:
+    body_html: ""
+    disable_session: ""
+    dismiss: ""
+  date:
+    bce: ""
+    bh: ""
+  date_field: ""
+  date_field_gregorian: ""
+  date_field_hijri: ""
+  date_range: ""
+  dlme_jsons:
+    edit:
+      add_item: ""
+    form:
+      add_item: ""
+      title: ""
+    update:
+      error: ""
+      success: ""
+  dlme_s3s:
+    form:
+      add_item: ""
+      error: ""
+      title: ""
+  footer:
+    partnership_heading: ""
+    project_support_heading: ""
+    project_support_text: ""
+  s3_delete:
+    new:
+      add_item: ""
+  spotlight:
+    catalog:
+      admin_header:
+        delete_resource: ""
+    curation:
+      sidebar:
+        sources: ""
+        transform: ""
+    main_navigation:
+      statistics: ""
+    resources:
+      fetch:
+        queued: ""
   statistics:
     dashboard:
       contributors:
         table:
           collections: المجموعات
-          country: الدولة
+          country: ""
           institution: المؤسسة
           items: المواد
-        total_html: المساهمو&middot; %{total}
+        total_html: "المساهمو&middot; %{total}"
       header:
         total_collections:
+          zero: "صفر"
+          one: مجموعة واحد
+          two: "مجموعتين"
           few: "%{count} المجموعات"
           many: "%{count} المجموعات"
-          one: مجموعة واحد
           other: "%{count} المجموعات"
-          two: مجموعتين
-          zero: صفر
+
         total_contributors:
+          zero: "صفر"
+          one: مساهم واحد
+          two: "مساهمَين"
           few: "%{count} مساهِمين"
           many: "%{count} مساهِمين"
-          one: مساهم واحد
           other: "%{count} مساهِمين"
-          two: مساهمَين
-          zero: صفر
+
         total_countries:
+          zero: "صفر"
+          one: دولة واحدة
+          two: "دولتين"
           few: "%{count} دول"
           many: "%{count} دول"
-          one: دولة واحدة
           other: "%{count} دول"
-          two: دولتين
-          zero: صفر
+
         total_items:
+          zero: "صفر"
+          one: مادة
+          two: "مادتين"
           few: "%{count} مواد"
           many: "%{count} مواد"
-          one: مادة
           other: "%{count} مواد"
-          two: مادتين
-          zero: صفر
+
         total_types:
+          zero: "صفر"
+          one: نوع واحد من المادة
+          two: "نوع اثنان من المادة"
           few: "%{count} أنواع من المادة"
           many: "%{count} أنواع من المادة"
-          one: نوع واحد من المادة
           other: "%{count} أنواع من المادة"
-          two: نوع اثنان من المادة
-          zero: صفر
+
       items:
         by_language: بحسب اللغة
         by_type: بحسب النوع
-        total_html: المواد&middot; %{total}
+        total_html: "المواد&middot; %{total}"
     header: إحصائيات
+  transforms:
+    notification:
+      sent: ""
+    show:
+      header: ""
