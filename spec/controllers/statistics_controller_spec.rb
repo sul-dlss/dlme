@@ -14,7 +14,8 @@ RSpec.describe StatisticsController do
 
       # and we remove any injected query parameter data
       query = dashboard.send(:search_builder).to_h
-      expect(query.keys).not_to include(/^f\./)
+      expect(query.keys).not_to include(/^f\..*\.sort$/)
+      expect(query.keys).not_to include(/^stats\./)
     end
   end
 end
