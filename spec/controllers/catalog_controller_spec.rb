@@ -38,5 +38,14 @@ RSpec.describe CatalogController do
         expect(obj.dig(:data, :attributes, :__raw_resource_json_ss, :attributes, :value)).to include(a: 1)
       end
     end
+
+    context 'with the raw query param' do
+      it 'returns the raw solr document' do
+        get :show, params: { id: 'xyz', raw: true }
+
+        expect(response).to be_successful
+        expect(JSON.parse(response.body).with_indifferent_access).to include(id: 'xyz')
+      end
+    end
   end
 end

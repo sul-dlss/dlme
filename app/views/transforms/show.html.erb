@@ -1,116 +1,119 @@
-<div id="content" class="col-md-9">
-  <h1 class="page-header"><%= t('.header') %></h1>
-  <ul class="nav nav-tabs" role="tablist">
-    <li class="nav-item" role="presentation">
-      <a href="#transform-results" role="tab" data-toggle="tab" class="nav-link active">Transform results</a>
-    </li>
-    <li class="nav-item" role="presentation">
-      <a href="#new-transform" role="tab" data-toggle="tab" class="nav-link">Transform data</a>
-    </li>
-  </ul>
-  <div class="tab-content">
-    <div id="transform-results" class="tab-pane active" role="tabpanel">
-      <template id="transform-result-spinner">
+<h1 class="page-header"><%= t('.header') %></h1>
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item" role="presentation">
+    <a href="#transform-results" role="tab" data-toggle="tab" class="nav-link active">Transform results</a>
+  </li>
+  <li class="nav-item" role="presentation">
+    <a href="#new-transform" role="tab" data-toggle="tab" class="nav-link">Transform data</a>
+  </li>
+</ul>
+<div class="tab-content">
+  <div id="transform-results" class="tab-pane active" role="tabpanel">
+    <template id="transform-result-spinner">
 
-      </template>
-      <template id="transform-result-table">
-        <style>
-          .table {
-              width: 100%;
-              margin-bottom: 1rem;
-              margin-top: 1rem;
-              color: #212529;
-          }
+    </template>
+    <template id="transform-result-table">
+      <style>
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            margin-top: 1rem;
+            color: #212529;
+        }
 
-          .table td, .table th {
-            	padding: .75rem;
-            	vertical-align: top;
-            	border-top: 1px solid #dee2e6;
-          }
+        .table td, .table th {
+          	padding: .75rem;
+          	vertical-align: top;
+          	border-top: 1px solid #dee2e6;
+        }
 
-          .btn {
-          	display: inline-block;
-          	font-weight: 400;
-          	color: #fff;
-          	text-align: center;
-          	vertical-align: middle;
-          	-webkit-user-select: none;
-          	-moz-user-select: none;
-          	-ms-user-select: none;
-          	user-select: none;
-          	background-color: #007bff;
-          	border: 1px solid #007bff;
-          	padding: .375rem .75rem;
-          	font-size: 16px;
-          	line-height: 1.5;
-          	border-radius: .25rem;
-          	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-          }
+        .btn {
+        	display: inline-block;
+        	font-weight: 400;
+        	color: #fff;
+        	text-align: center;
+        	vertical-align: middle;
+        	-webkit-user-select: none;
+        	-moz-user-select: none;
+        	-ms-user-select: none;
+        	user-select: none;
+        	background-color: #007bff;
+        	border: 1px solid #007bff;
+        	padding: .375rem .75rem;
+        	font-size: 16px;
+        	line-height: 1.5;
+        	border-radius: .25rem;
+        	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
 
-          button:not(:disabled) {
-            cursor: pointer;
-          }
+        button:not(:disabled) {
+          cursor: pointer;
+        }
 
-          .btn:disabled {
-            color: #fff;
-            background-color: #6c757d;
-            border-color: #6c757d;
-          }
-          </style>
-          <% # Has to have a single root element %>
-          <div>
-            <button id='prev' class="btn">Previous</button>
-            <button id='next' class="btn">Next</button>
-
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Url</th>
-                  <th scope="col">Data path</th>
-                  <th scope="col">Result</th>
-                  <th scope="col">Records</th>
-                  <th scope="col">Timestamp</th>
-                  <th scope="col">Duration (secs)</th>
-                  <th scope="col">Errors</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </div>
-      </template>
-      <transform-status table="transform-result-table" url="/transform_result">
-        <style>
-          @keyframes spinner-border {
-            to { transform: rotate(360deg); }
-          }
-
-          .spinner-border {
-            display: inline-block;
-            width: 2rem;
-            height: 2rem;
-            vertical-align: text-bottom;
-            border: .25em solid currentColor;
-            border-right-color: transparent;
-            border-radius: 50%;
-            -webkit-animation: spinner-border .75s linear infinite;
-            animation: spinner-border .75s linear infinite;
-          }
+        .btn:disabled {
+          color: #fff;
+          background-color: #6c757d;
+          border-color: #6c757d;
+        }
         </style>
-        <div class="spinner-border"></div>
-      </transform-status>
-    </div>
-    <div id="new-transform" class="tab-pane" role="tabpanel">
-      <div class="row col-md-12">
-        <%= bootstrap_form_tag url: transform_path do %>
-          <div class="form-group">
-            <%= text_field_tag :data_dir, '', class: 'form-control' %>
-            <small class="text-muted">
-              For example, <code>stanford/maps</code> or <code>stanford/maps/data/kj751hs0595.mods</code>. Leave blank to transform all.
-            </small>
-          </div>
-          <button class="btn btn-primary">Begin transform</button>
-        <% end %>
-      </div>
+        <% # Has to have a single root element %>
+        <div>
+          <button id='prev' class="btn">Previous</button>
+          <button id='next' class="btn">Next</button>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Url</th>
+                <th scope="col">Data path</th>
+                <th scope="col">Result</th>
+                <th scope="col">Records</th>
+                <th scope="col">Timestamp</th>
+                <th scope="col">Duration (secs)</th>
+                <th scope="col">Errors</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+    </template>
+    <transform-status table="transform-result-table" url="/transform_result">
+      <style>
+        @keyframes spinner-border {
+          to { transform: rotate(360deg); }
+        }
+
+        .spinner-border {
+          display: inline-block;
+          width: 2rem;
+          height: 2rem;
+          vertical-align: text-bottom;
+          border: .25em solid currentColor;
+          border-right-color: transparent;
+          border-radius: 50%;
+          -webkit-animation: spinner-border .75s linear infinite;
+          animation: spinner-border .75s linear infinite;
+        }
+      </style>
+      <div class="spinner-border"></div>
+    </transform-status>
+  </div>
+  <div id="new-transform" class="tab-pane" role="tabpanel">
+    <div class="row col-md-12">
+      <%= bootstrap_form_tag url: transform_path do %>
+        <div class="form-group">
+          <%= text_field_tag :data_dir, '', class: 'form-control' %>
+          <small class="text-muted">
+            For example, <code>stanford/maps</code> or <code>stanford/maps/data/kj751hs0595.mods</code>. Leave blank to transform all.
+          </small>
+        </div>
+        <button class="btn btn-primary">Begin transform</button>
+      <% end %>
     </div>
   </div>
 </div>
+
+<% content_for(:sidebar_position) { 'order-last' } %>
+<% content_for(:sidebar) do %>
+  <%= render 'shared/site_sidebar' %>
+<% end %>

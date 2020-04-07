@@ -197,13 +197,13 @@ class CatalogController < ApplicationController
 
     config.add_search_field 'all_fields', label: 'Everything'
     config.add_search_field 'title', label: 'Title' do |field|
-      field.solr_local_parameters = {
-        qf: '$qf_title'
+      field.solr_parameters = {
+        qf: '${title_qf}'
       }
     end
     config.add_search_field 'author', label: 'Creator / Contributor' do |field|
-      field.solr_local_parameters = {
-        qf: '$author_qf'
+      field.solr_parameters = {
+        qf: '${author_qf}'
       }
     end
 
@@ -212,5 +212,13 @@ class CatalogController < ApplicationController
     config.add_sort_field 'creator', sort: 'sortable_cho_creator_ssi asc, sortable_cho_creator_ssi asc', label: 'Creator'
 
     config.add_field_configuration_to_solr_request!
+  end
+
+  def show
+    if params[:raw]
+      raw
+    else
+      super
+    end
   end
 end

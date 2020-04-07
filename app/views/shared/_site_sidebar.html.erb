@@ -1,6 +1,10 @@
 <% if can?(:manage, Spotlight::Site.instance) || can?(:create, Spotlight::Exhibit) %>
 <h4 class="nav-heading"><%=t(:'.header') %></h4>
 <ul class="nav sidenav flex-column">
+  <% if can? :read, Spotlight::Exhibit.first %>
+    <li class="nav-item"><%= link_to t(:'spotlight.sites.edit.exhibit_home'), spotlight.url_for(Spotlight::Exhibit.first), class: 'nav-link' %></li>
+  <% end %>
+
   <li class="nav-item"><%= link_to t('.documentation'), 'https://github.com/projectblacklight/spotlight/wiki/Configuration-settings', class: 'nav-link' %></li>
 
   <% if can? :manage, Spotlight::Site.instance %>
