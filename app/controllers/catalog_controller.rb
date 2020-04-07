@@ -191,13 +191,13 @@ class CatalogController < ApplicationController
 
     config.add_search_field 'all_fields', label: 'Everything'
     config.add_search_field 'title', label: 'Title' do |field|
-      field.solr_local_parameters = {
-        qf: '$title_qf'
+      field.solr_parameters = {
+        qf: '${title_qf}'
       }
     end
     config.add_search_field 'author', label: 'Creator / Contributor' do |field|
-      field.solr_local_parameters = {
-        qf: '$author_qf'
+      field.solr_parameters = {
+        qf: '${author_qf}'
       }
     end
 
