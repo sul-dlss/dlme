@@ -1,5 +1,11 @@
 ---
 ar:
+  date:
+    suffix:
+      bce: قبل م
+      bh: قبل ه
+      ce: م
+      h: ه
   statistics:
     dashboard:
       contributors:
