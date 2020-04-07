@@ -5,6 +5,8 @@ class Join < Blacklight::Rendering::AbstractStep
   include ActionView::Helpers::TextHelper
 
   def render
+    return next_step(values) unless html_context?
+
     next_step(safe_join(values, joiner))
   end
 
@@ -16,5 +18,9 @@ class Join < Blacklight::Rendering::AbstractStep
 
   def default_joiner
     options[:no_html] ? '; ' : '<br>'.html_safe
+  end
+
+  def html_context?
+    context.try(:request)&.format&.html?
   end
 end

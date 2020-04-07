@@ -41,6 +41,15 @@ RSpec/ExpectChange:
   Exclude:
     - 'spec/controllers/dlme_jsons_controller_spec.rb'
 
+# Offense count: 24
+# Configuration parameters: IgnoreNameless, IgnoreSymbolicNames.
+RSpec/VerifiedDoubles:
+  Exclude:
+    - 'spec/processors/autolink_spec.rb'
+    - 'spec/processors/bidi_wrap_spec.rb'
+    - 'spec/processors/join_spec.rb'
+    - 'spec/processors/paragraph_spec.rb'
+
 # Offense count: 8
 Style/Documentation:
   Exclude:

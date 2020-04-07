@@ -5,8 +5,14 @@ class Paragraph < Blacklight::Rendering::AbstractStep
   include ActionView::Helpers::TextHelper
 
   def render
-    return next_step(values) unless config.paragraph
+    return next_step(values) unless config.paragraph && html_context?
 
     next_step(values.map { |x| content_tag(:p, x) })
+  end
+
+  private
+
+  def html_context?
+    context.try(:request)&.format&.html?
   end
 end
