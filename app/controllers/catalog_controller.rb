@@ -207,4 +207,12 @@ class CatalogController < ApplicationController
 
     config.add_field_configuration_to_solr_request!
   end
+
+  def show
+    if params[:raw]
+      raw
+    else
+      super
+    end
+  end
 end
