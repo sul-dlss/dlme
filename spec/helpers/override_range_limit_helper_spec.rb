@@ -21,11 +21,24 @@ RSpec.describe OverrideRangeLimitHelper, type: :helper do
     end
 
     it 'modifies a configured hijiri field' do
-      expect(helper.range_display('cho_date_range_hijri_isim', params)).to eq '<span class="from">8746 BH</span> to <span class="to">597 H</span>'
+      range_display = helper.range_display('cho_date_range_hijri_isim', params)
+      expect(range_display).to have_css '.from', text: '8746 BH'
+      expect(range_display).to have_css '.to', text: '597 H'
+    end
+
+    context 'when in in Arabic' do
+      it 'displays Arabic suffix' do
+        I18n.with_locale(:ar) do
+          range_display = helper.range_display('cho_date_range_hijri_isim', params)
+          expect(range_display).to have_css '.from', text: '8746 قبل ه'
+        end
+      end
     end
 
     it 'modifies a configured gregorian field' do
-      expect(helper.range_display('cho_date_range_norm_isim', params)).to eq '<span class="from">5513 BCE</span> to <span class="to">1782 CE</span>'
+      range_display = helper.range_display('cho_date_range_norm_isim', params)
+      expect(range_display).to have_css '.from', text: '5513 BCE'
+      expect(range_display).to have_css '.to', text: '1782 CE'
     end
   end
 end

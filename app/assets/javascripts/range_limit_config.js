@@ -2,38 +2,29 @@ Blacklight.onLoad(function() {
   var config = {
     selection: { displaySelectionDecorations: false },
   };
+
+  function genericTickFormatter(keys) {
+    return function(number) {
+      var label = [number, ''];
+      if (number < 0) {
+        label[0] *= -1;
+        label[1] = I18n.t('date.suffix.' + keys[0]);
+      } else {
+        label[1] = I18n.t('date.suffix.' + keys[1]);
+      }
+      return label.join(' ');
+    }
+  }
   
   var hijriConfig = $.extend({}, config, {
     xaxis: {
-      tickFormatter: function(number) {
-        if (number === 0) {
-          return number;
-        }
-        var label = [number, ''];
-        if (number < 0) {
-          label[0] *= -1;
-          label[1] += 'B'
-        }
-        label[1] += 'H';
-        return label.join(' ');
-      }
+      tickFormatter: genericTickFormatter(['bh', 'h'])
     }
   });
   
   var gregorianConfig = $.extend({}, config, {
     xaxis: {
-      tickFormatter: function(number) {
-        if (number === 0) {
-          return number;
-        }
-        var label = [number, ''];
-        if (number < 0) {
-          label[0] *= -1;
-          label[1] += 'B'
-        }
-        label[1] += 'CE';
-        return label.join(' ');
-      }
+      tickFormatter: genericTickFormatter(['bce', 'ce'])
     }
   })
 
