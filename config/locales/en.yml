@@ -48,6 +48,9 @@ en:
     resources:
       fetch:
         queued: Queued for processing.
+    sites:
+      edit:
+        exhibit_home: Exhibit home
   statistics:
     dashboard:
       contributors:
@@ -60,19 +63,19 @@ en:
       header:
         total_collections:
           one: 1 collection
-          other: "%{count} collections"
+          other: "%{formatted_count} collections"
         total_contributors:
           one: 1 contributor
-          other: "%{count} contributors"
+          other: "%{formatted_count} contributors"
         total_countries:
           one: 1 country
-          other: "%{count} countries"
+          other: "%{formatted_count} countries"
         total_items:
           one: 1 item
-          other: "%{count} items"
+          other: "%{formatted_count} items"
         total_types:
           one: 1 item type
-          other: "%{count} item types"
+          other: "%{formatted_count} item types"
       items:
         by_language: By language
         by_type: By type

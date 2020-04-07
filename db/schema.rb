@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_30_150808) do
+ActiveRecord::Schema.define(version: 2020_04_07_144323) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -288,6 +288,7 @@ ActiveRecord::Schema.define(version: 2019_10_30_150808) do
     t.integer "thumbnail_id"
     t.string "default_index_view_type"
     t.boolean "search_box", default: false
+    t.string "subtitle"
     t.index ["exhibit_id"], name: "index_spotlight_searches_on_exhibit_id"
     t.index ["slug", "scope"], name: "index_spotlight_searches_on_slug_and_scope", unique: true
   end
@@ -310,6 +311,7 @@ ActiveRecord::Schema.define(version: 2019_10_30_150808) do
     t.string "resource_type"
     t.binary "index_status", limit: 10485760
     t.index ["document_type", "document_id"], name: "spotlight_solr_document_sidecars_solr_document"
+    t.index ["exhibit_id", "document_type", "document_id"], name: "by_exhibit_and_doc", unique: true
     t.index ["exhibit_id", "document_type", "document_id"], name: "spotlight_solr_document_sidecars_exhibit_document"
     t.index ["exhibit_id"], name: "index_spotlight_solr_document_sidecars_on_exhibit_id"
     t.index ["resource_type", "resource_id"], name: "spotlight_solr_document_sidecars_resource"
