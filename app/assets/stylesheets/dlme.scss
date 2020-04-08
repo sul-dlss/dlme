@@ -97,6 +97,10 @@ body {
   background-color: $color-gray-lightest;
 }
 
+.indent-with-caret::before {
+  content: "\00BB";
+}
+
 .dl-invert dt {
   color: $color-black-medium;
 }

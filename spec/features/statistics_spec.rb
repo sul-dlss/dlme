@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'Statistics page', type: :feature do
   let(:stub_response) do
     {
-      'response' => { 'numFound' => 100 },
+      'response' => { 'numFound' => 100_000 },
       'facet_counts' => {
         'facet_fields' => {
           'agg_data_provider_collection_ssim' => ['Value 1', '500', 'Value 2', '300']
@@ -53,8 +53,8 @@ RSpec.describe 'Statistics page', type: :feature do
   end
 
   it 'has an items section' do
-    expect(page).to have_css('.jumbotron h2', text: '100 items')
-    expect(page).to have_css('h2', text: 'Items · 100')
+    expect(page).to have_css('.jumbotron h2', text: '100,000 items')
+    expect(page).to have_css('h2', text: 'Items · 100,000')
   end
 
   it 'has a Contributors section' do

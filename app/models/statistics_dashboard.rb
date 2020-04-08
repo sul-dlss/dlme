@@ -16,6 +16,11 @@ class StatisticsDashboard
       'cho_language.en_ssim',
       'cho_language.ar-Arab_ssim'
     ],
+    'f.agg_provider_country.ar-Arab_ssim.facet.limit' => -1,
+    'f.agg_provider_country.en_ssim.facet.limit' => -1,
+    'f.agg_data_provider_collection_ssim.facet.limit' => -1,
+    'f.cho_language.en_ssim.facet.limit' => -1,
+    'f.cho_language.ar-Arab_ssim.facet.limit' => -1,
     'facet.pivot': [
       %w[cho_edm_type.en_ssim cho_has_type.en_ssim].join(','),
       %w[cho_edm_type.ar-Arab_ssim cho_has_type.ar-Arab_ssim].join(','),
@@ -163,7 +168,7 @@ class StatisticsDashboard
     end
 
     def total_countries
-      institutions.collect(&:country).uniq.count
+      institutions.collect(&:countries).flatten.uniq.count
     end
 
     def institutions
@@ -192,8 +197,8 @@ class StatisticsDashboard
         facet['value']
       end
 
-      def country
-        country_facet&.[]('value')
+      def countries
+        facet&.[]('pivot')&.map { |country| country['value'] }
       end
 
       def collection_count

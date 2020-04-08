@@ -44,8 +44,8 @@ RSpec.describe 'statistics/_items.html.erb', type: :view do
     end
 
     it 'includes a first level of pivot facets (indented)' do
-      expect(rendered).to have_css('table.by-type tr td.pl-5 a', text: 'Value A')
-      expect(rendered).to have_css('table.by-type tr td.pl-5 a', text: 'Value B')
+      expect(rendered).to have_css('table.by-type tr td.pl-4 a', text: 'Value A')
+      expect(rendered).to have_css('table.by-type tr td.pl-4 a', text: 'Value B')
       expect(rendered).to have_css('table.by-type tr td', text: '200')
       expect(rendered).to have_css('table.by-type tr td', text: '100')
     end

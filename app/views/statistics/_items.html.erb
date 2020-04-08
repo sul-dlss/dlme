@@ -1,4 +1,4 @@
-<h2 class="h3"><%= t('statistics.dashboard.items.total_html', total: items.total) %></h2>
+<h2 class="h3"><%= t('statistics.dashboard.items.total_html', total: number_with_delimiter(items.total)) %></h2>
 <div class="row">
   <div class="col-6">
     <table class="table table-striped by-type">
@@ -16,16 +16,16 @@
                 <%= facet_display_value(items.type_facet, field['value']) %>
               <% end %>
             </td>
-            <td class="text-right"><%= field['count'] %></td>
+            <td class="text-right"><%= number_with_delimiter(field['count']) %></td>
           </tr>
           <% field['pivot'].each do |pivot| %>
             <tr>
-              <td class="pl-5">
+              <td class="pl-4 indent-with-caret">
                 <%= link_to path_for_facet(items.type_facet, [field['value'], pivot['value']].join(':')) do %>
                   <%= facet_display_value(items.type_facet, pivot['value']) %>
                 <% end %>
               </td>
-              <td class="text-right"><%= pivot['count'] %></td>
+              <td class="text-right"><%= number_with_delimiter(pivot['count']) %></td>
             </tr>
           <% end if field['pivot'] %>
         <% end %>
@@ -48,7 +48,7 @@
                 <%= facet_display_value(items.language_field, field['value']) %>
               <% end %>
             </td>
-            <td class="text-right"><%= field['count'] %></td>
+            <td class="text-right"><%= number_with_delimiter(field['count']) %></td>
           </tr>
         <% end %>
       </tbody>

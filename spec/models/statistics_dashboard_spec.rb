@@ -146,17 +146,30 @@ RSpec.describe StatisticsDashboard do
 
       it 'has a name, an item count, and the country' do
         expect(institutions.first.name).to eq 'Institution 1'
-        expect(institutions.first.country).to eq 'Country 1'
+        expect(institutions.first.countries).to eq ['Country 1']
         expect(institutions.first.item_count).to eq '500'
 
         expect(institutions.last.name).to eq 'Institution 2'
-        expect(institutions.last.country).to eq 'Country 2'
+        expect(institutions.last.countries).to eq ['Country 2']
         expect(institutions.last.item_count).to eq '300'
       end
 
       it 'has a collection count that adds all the collection numbers' do
         expect(institutions.first.collection_count).to eq 3
         expect(institutions.last.collection_count).to eq 1
+      end
+
+      context 'when an institution is in multiple countries' do
+        let(:country4) { { 'value' => 'Country 4', 'count' => '17', 'pivot' => [{ value: 'coll/4', 'count' => '17' }] } }
+
+        before do
+          pivot_field = 'agg_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_ssim'
+          stub_response['facet_counts']['facet_pivot'][pivot_field][0]['pivot'] << country4
+        end
+
+        it 'returns them in the countries accessor' do
+          expect(institutions.first.countries).to eq ['Country 1', 'Country 4']
+        end
       end
     end
   end
