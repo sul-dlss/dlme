@@ -20,7 +20,7 @@
           </tr>
           <% field['pivot'].each do |pivot| %>
             <tr>
-              <td class="pl-5">
+              <td class="pl-4 indent-with-caret">
                 <%= link_to path_for_facet(items.type_facet, [field['value'], pivot['value']].join(':')) do %>
                   <%= facet_display_value(items.type_facet, pivot['value']) %>
                 <% end %>
