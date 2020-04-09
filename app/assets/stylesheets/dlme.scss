@@ -175,9 +175,11 @@ body {
 .masthead .topbar .navbar-nav .nav-link {
   color: $white;
 
+  &:active,
   &:hover,
   &:focus {
-    color: $color-gray-light;
+    color: $white;
+    text-decoration: underline;
   }
 }
 
