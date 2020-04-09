@@ -6,22 +6,20 @@ module OverrideRangeLimitHelper
 
   ##
   # Overriden helper to add the BH/H and BCE/CE to labels
-  def range_display(solr_field, myparams = params)
-    display = super
+  def format_range_display_value(value, solr_field)
+    value_int = value.to_i
 
-    # rubocop:disable Rails/OutputSafety
     case solr_field
     # Hijiri date
     when 'cho_date_range_hijri_isim'
-      display.gsub(/>(-)(\d+)</, ">\\2 #{I18n.t('date.suffix.bh')}<")
-             .gsub(/>(\d+)</, ">\\1 #{I18n.t('date.suffix.h')}<").html_safe
+      return t('date.bh', year: value_int * -1) if value_int.negative?
+      return t('date.h', year: value_int) if value_int.positive?
     # Gregorian date
     when 'cho_date_range_norm_isim'
-      display.gsub(/>(-)(\d+)</, ">\\2 #{I18n.t('date.suffix.bce')}<")
-             .gsub(/>(\d+)</, ">\\1 #{I18n.t('date.suffix.ce')}<").html_safe
-    # rubocop:enable Rails/OutputSafety
+      return t('date.bce', year: value_int * -1) if value_int.negative?
+      return t('date.ce', year: value_int) if value_int.positive?
     else
-      display
+      value
     end
   end
 end

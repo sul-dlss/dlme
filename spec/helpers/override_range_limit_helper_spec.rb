@@ -3,42 +3,27 @@
 require 'rails_helper'
 
 RSpec.describe OverrideRangeLimitHelper, type: :helper do
-  describe '#range_display' do
-    params = {
-      range: {
-        'cho_date_range_hijri_isim' => {
-          'begin' => '-8746',
-          'end' => '597'
-        },
-        'cho_date_range_norm_isim' => {
-          'begin' => '-5513',
-          'end' => '1782'
-        }
-      }
-    }
-    it 'does not do anything unless a configured facet field' do
-      expect(helper.range_display('language_en', params)).to eq ''
+  describe '#format_range_display_value' do
+    it 'does not do anything unless a specified facet field' do
+      expect(helper.format_range_display_value('1234', 'language_en')).to eq '1234'
     end
 
     it 'modifies a configured hijiri field' do
-      range_display = helper.range_display('cho_date_range_hijri_isim', params)
-      expect(range_display).to have_css '.from', text: '8746 BH'
-      expect(range_display).to have_css '.to', text: '597 H'
+      expect(helper.format_range_display_value('-8746', 'cho_date_range_hijri_isim')).to eq '8746 BH'
+      expect(helper.format_range_display_value('597', 'cho_date_range_hijri_isim')).to eq '597 H'
     end
 
     context 'when in in Arabic' do
       it 'displays Arabic suffix' do
         I18n.with_locale(:ar) do
-          range_display = helper.range_display('cho_date_range_hijri_isim', params)
-          expect(range_display).to have_css '.from', text: '8746 قبل ه'
+          expect(helper.format_range_display_value('-8746', 'cho_date_range_hijri_isim')).to eq '8746 قبل ه'
         end
       end
     end
 
     it 'modifies a configured gregorian field' do
-      range_display = helper.range_display('cho_date_range_norm_isim', params)
-      expect(range_display).to have_css '.from', text: '5513 BCE'
-      expect(range_display).to have_css '.to', text: '1782 CE'
+      expect(helper.format_range_display_value('-5513', 'cho_date_range_norm_isim')).to eq '5513 BCE'
+      expect(helper.format_range_display_value('1782', 'cho_date_range_norm_isim')).to eq '1782 CE'
     end
   end
 end
