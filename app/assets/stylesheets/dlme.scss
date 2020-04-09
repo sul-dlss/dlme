@@ -150,6 +150,22 @@ body {
   white-space: normal;
 }
 
+.exhibit-navbar {
+  .active .nav-link {
+    background-color: $navbar-active-bg;
+  }
+
+  @include media-breakpoint-up('md') {
+    padding-bottom: 0;
+    padding-top: 0;
+
+    .nav-link {
+      padding-bottom: 1rem;
+      padding-top: 1rem;
+    }
+  }
+}
+
 .image-masthead .exhibit-navbar .navbar-nav .nav-link {
   letter-spacing: 0.5px;
   padding-left: 12px;
