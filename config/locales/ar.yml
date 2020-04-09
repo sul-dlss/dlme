@@ -1,11 +1,10 @@
 ---
 ar:
   date:
-    suffix:
-      bce: قبل م
-      bh: قبل ه
-      ce: م
-      h: ه
+    bce: "%{year} قبل م"
+    bh: "%{year} قبل ه"
+    ce: "%{year} م"
+    h: "%{year}  ه"
   statistics:
     dashboard:
       contributors:

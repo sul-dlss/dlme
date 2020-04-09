@@ -5,14 +5,12 @@ Blacklight.onLoad(function() {
 
   function genericTickFormatter(keys) {
     return function(number) {
-      var label = [number, ''];
       if (number < 0) {
-        label[0] *= -1;
-        label[1] = I18n.t('date.suffix.' + keys[0]);
+        return I18n.t('date.' + keys[0], { year: number * -1 });
       } else {
-        label[1] = I18n.t('date.suffix.' + keys[1]);
+        return I18n.t('date.' + keys[1], { year: number });
       }
-      return label.join(' ');
+      return number;
     }
   }
   
