@@ -15,16 +15,6 @@
     a:hover {
       text-decoration: none;
     }
-
-    .clir-logo .blacklight-icons {
-      height: 40px;
-      width: 100px;
-      svg {
-        height: 100%;
-        fill: $color-gray-light;
-        width: 100%;
-      }
-    }
   }
 
   .partner-heading {
@@ -38,6 +28,10 @@
   .partner-logo {
     display: inline-block;
     margin-top: 10px;
+
+    .sul-logo {
+      height: 40px;
+    }
 
     .mellon-logo {
       height: 50px;
