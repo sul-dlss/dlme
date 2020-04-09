@@ -3,12 +3,6 @@
   padding-top: .25rem;
 }
 
-.project-logo {
-  color: $color-gray-light;
-  font-size: $h4-font-size;
-  padding-left: 10px;
-}
-
 /* Curation > Analytics user activity table */
 .table.analytics {
   background-color: $color-gray-light;
@@ -18,6 +12,40 @@
     font-size: $h2-font-size;
     font-weight: 700;
     padding-bottom: 0;
+  }
+}
+
+.dlme-logo {
+  flex: 0 0 80px;
+  height: 50px;
+  margin-top: 8px;
+  margin-bottom:  8px;
+  object-fit: contain;
+
+  @include media-breakpoint-down('xs') {
+    display: none;
+  }
+
+  @include media-breakpoint-down('sm') {
+    flex: 0 0 60px;
+    margin-top: 8px;
+    margin-bottom:  8px;
+  }
+}
+
+.navbar-brand {
+  font-size: 1.25rem;
+
+  @include media-breakpoint-up('md') {
+    font-size: 1.5rem;
+  }
+
+  @include media-breakpoint-up('md') {
+    font-size: 1.75rem;
+  }
+
+  @include media-breakpoint-up('lg') {
+    font-size: 2rem;
   }
 }
 
@@ -122,20 +150,52 @@ body {
   white-space: normal;
 }
 
-.image-masthead .navbar .navbar-nav .nav-link {
+.exhibit-navbar {
+  .active .nav-link {
+    background-color: $navbar-active-bg;
+  }
+
+  @include media-breakpoint-up('md') {
+    padding-bottom: 0;
+    padding-top: 0;
+
+    .nav-link {
+      padding-bottom: 1rem;
+      padding-top: 1rem;
+    }
+  }
+}
+
+.image-masthead .exhibit-navbar .navbar-nav .nav-link {
   letter-spacing: 0.5px;
   padding-left: 12px;
   padding-right: 12px;
   text-transform: uppercase;
-}
-
-.image-masthead .navbar .navbar-nav .nav-link,
-.topbar .navbar-nav .nav-link {
   color: $color-gray-medium;
 
   &:hover,
   &:focus {
     color: $color-gray-light;
+  }
+}
+
+.topbar {
+  background-color: $topnav-background-color !important;
+  margin-bottom: 3rem;
+}
+
+.masthead .topbar  .navbar-nav {
+  text-transform: none;
+}
+
+.masthead .topbar .navbar-nav .nav-link {
+  color: $white;
+
+  &:active,
+  &:hover,
+  &:focus {
+    color: $white;
+    text-decoration: underline;
   }
 }
 
