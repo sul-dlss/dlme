@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projectblacklight/spotlight.git
-  revision: 1cbb7bbd4ff2628dc4aefad0a050d779a32ca010
+  revision: c31921015eeab4dbb1122333ce51fb298e491f9d
   specs:
     blacklight-spotlight (3.0.0.alpha.9)
       acts-as-taggable-on (>= 5.0, < 7)
@@ -93,10 +93,10 @@ GEM
     ast (2.4.0)
     autoprefixer-rails (9.7.6)
       execjs
-    aws-eventstream (1.0.3)
-    aws-partitions (1.295.0)
-    aws-sdk-core (3.93.0)
-      aws-eventstream (~> 1.0, >= 1.0.2)
+    aws-eventstream (1.1.0)
+    aws-partitions (1.296.0)
+    aws-sdk-core (3.94.0)
+      aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
@@ -472,7 +472,7 @@ GEM
       unicode-display_width (>= 1.4.0, < 2.0)
     rubocop-performance (1.5.2)
       rubocop (>= 0.71.0)
-    rubocop-rails (2.5.1)
+    rubocop-rails (2.5.2)
       activesupport
       rack (>= 1.1)
       rubocop (>= 0.72.0)
