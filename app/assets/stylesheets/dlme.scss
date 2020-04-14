@@ -73,6 +73,7 @@
 }
 
 body {
+  background-color: $body-background-color;
   margin-bottom: $footer-height + $footer-top-margin;
 
   @media (max-width: 991px) {
