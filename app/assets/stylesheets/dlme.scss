@@ -84,7 +84,8 @@ body {
 /* Statistics page styling */
 .blacklight-statistics-show {
   .jumbotron {
-    border: 1px solid $color-gray-medium;
+    background-color: #ffffff;
+    border: 1px solid #328fc7;
     margin-top: $spacer;
 
     @media (min-width: 576px) {
@@ -94,13 +95,15 @@ body {
 }
 
 /* overrides for visual design changes */
-.btn-primary {
-  @include button-variant($color-black-light, $color-black-light);
+.btn-outline-secondary {
+  border-color: $color-blackish;
+  color: $color-blackish;
 }
 
 .nav > li > a:hover,
 .nav > li > a:focus {
-  background-color: $color-gray-medium;
+  background-color: $color-gray-light;
+  text-decoration: underline;
 }
 
 .nav-tabs > li.active > a,
@@ -119,11 +122,11 @@ body {
 }
 
 .table-striped > tbody > tr:nth-of-type(even) {
-  background-color: $color-gray-light;
+  background-color: $color-gray-lightest;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: $color-gray-lightest;
+  background-color: #ffffff;
 }
 
 .indent-with-caret::before {
@@ -172,11 +175,11 @@ body {
   padding-left: 12px;
   padding-right: 12px;
   text-transform: uppercase;
-  color: $color-gray-medium;
+  color: $color-gray-light;
 
   &:hover,
   &:focus {
-    color: $color-gray-light;
+    color: $color-gray-lightest;
   }
 }
 
