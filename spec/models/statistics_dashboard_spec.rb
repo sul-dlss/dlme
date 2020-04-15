@@ -84,8 +84,8 @@ RSpec.describe StatisticsDashboard do
     end
   end
 
-  describe 'Contributors' do
-    let(:contributors) { dashboard.contributors }
+  describe 'Data Contributors' do
+    let(:contributors) { dashboard.data_contributors }
 
     let(:country1) do
       {
@@ -171,6 +171,18 @@ RSpec.describe StatisticsDashboard do
           expect(institutions.first.countries).to eq ['Country 1', 'Country 4']
         end
       end
+    end
+  end
+
+  describe 'Item Contributors' do
+    let(:contributors) { dashboard.item_contributors }
+
+    it 'has a locale aware provider_field accessor' do
+      expect(contributors.provider_field).to eq 'agg_data_provider.en_ssim'
+
+      allow(I18n).to receive(:locale).and_return('ar')
+
+      expect(contributors.provider_field).to eq 'agg_data_provider.ar-Arab_ssim'
     end
   end
 end

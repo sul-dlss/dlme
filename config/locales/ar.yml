@@ -1,14 +1,17 @@
 ---
 ar:
   statistics:
-    dashboard:
-      contributors:
-        table:
-          collections: المجموعات
-          country: الدولة
-          institution: المؤسسة
-          items: المواد
+    contributors:
+      agg_data_provider:
         total_html: المساهمو&middot; %{total}
+      agg_provider:
+        total_html: المساهمو&middot; %{total}
+      table:
+        collections: المجموعات
+        country: الدولة
+        institution: المؤسسة
+        items: المواد
+    dashboard:
       header:
         total_collections:
           few: "%{count} المجموعات"
@@ -17,19 +20,26 @@ ar:
           other: "%{count} المجموعات"
           two: مجموعتين
           zero: صفر
-        total_contributors:
-          few: "%{count} مساهِمين"
-          many: "%{count} مساهِمين"
-          one: مساهم واحد
-          other: "%{count} مساهِمين"
-          two: مساهمَين
-          zero: صفر
         total_countries:
           few: "%{count} دول"
           many: "%{count} دول"
           one: دولة واحدة
           other: "%{count} دول"
           two: دولتين
+          zero: صفر
+        total_data_contributors:
+          few: "%{count} مساهِمين"
+          many: "%{count} مساهِمين"
+          one: مساهم واحد
+          other: "%{count} مساهِمين"
+          two: مساهمَين
+          zero: صفر
+        total_item_contributors:
+          few: "%{count} مساهِمين"
+          many: "%{count} مساهِمين"
+          one: مساهم واحد
+          other: "%{count} مساهِمين"
+          two: مساهمَين
           zero: صفر
         total_items:
           few: "%{count} مواد"
