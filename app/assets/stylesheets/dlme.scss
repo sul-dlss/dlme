@@ -203,6 +203,21 @@ body {
   }
 }
 
+.facets-heading {
+  border-bottom: 1px solid $color-gray-medium;
+  width: 100%;
+}
+
+.facet-limit {
+  border: 1px solid $color-gray-medium;
+  margin-bottom: 0.5rem;
+
+  .card-header {
+    background-color: $color-gray-light;
+    border-bottom: 0;
+  }
+}
+
 .facet-limit-active {
   border-color: $color-gray-medium !important;
 
@@ -214,6 +229,18 @@ body {
 
   & > .card-header + .panel-collapse > .card-body {
     border-top-color: $color-gray-medium;
+  }
+}
+
+.constraints-container {
+  @extend .mb-4;
+}
+
+.applied-filter  {
+  background-color: $white;
+
+  .filter-name:after {
+    color: $color-black-medium;
   }
 }
 
