@@ -42,6 +42,16 @@ RSpec.describe 'Statistics page', type: :feature do
     end
   end
 
+  # just to make sure we didn't break normal searches
+  it 'has the usual search box in the navbar' do
+    expect(page).to have_css('#search_field')
+    select('Title', from: 'Search in')
+    fill_in 'q', with: 'Book'
+    click_button 'Search'
+
+    expect(page).to have_content 'Search Results'
+  end
+
   it 'has a page available to users via a menu item in the exhibit navbar' do
     expect(page).to have_css('.exhibit-navbar li.nav-item.active', text: 'Statistics')
     expect(page).to have_css('h1', text: 'Statistics')
