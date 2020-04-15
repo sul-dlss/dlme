@@ -1,3 +1,13 @@
+$theme-colors: (
+  "primary": #0f2450,
+  "secondary": #777,
+  "info": #328fc7,
+);
+
+$color-primary: #0f2450;
+
+$link-color: lighten($color-primary, 10%);
+
 $color-blackish: #2e2d29;
 $color-black-medium: #585754;
 $color-black-light: #777;
@@ -5,22 +15,22 @@ $color-gray-medium: #ccc;
 $color-gray-light: #ededed;
 $color-gray-lightest: #f8f8f8;
 
-$clir-burgundy: #560319;
+$body-background-color: #f7f7f7;
 
-$footer-background-color: #434343;
+$footer-background-color: $color-primary;
 $footer-height: 120px;
 $footer-top-margin: 20px;
 $footer-mobile-adjustment: 50px;
 
 $text-muted: $color-black-medium; // with gray body bg, need darker muted color
 
-$pagination-active-color: $color-blackish;
-$pagination-active-bg: $color-gray-medium;
+$pagination-active-color: $color-gray-lightest;
+$pagination-active-bg: $color-primary;
 $pagination-active-border: $color-gray-medium;
 
 $breadcrumb-bg: transparent;
 $breadcrumb-active-color: $color-black-medium;
 $breadcrumb-divider-color: $color-black-light;
 
-$topnav-background-color: rgba(#0f2450, 0.75);
-$navbar-active-bg: rgba(#0F2450, 0.75);
+$topnav-background-color: rgba($color-primary, 0.85);
+$navbar-active-bg: rgba(255, 255, 255, 0.33);
