@@ -12,7 +12,6 @@ class StatisticsController < Spotlight::ApplicationController
     blacklight_config.facet_fields.clear
     blacklight_config.index_fields.clear
     blacklight_config.show_fields.clear
-    blacklight_config.search_fields.clear
     blacklight_config.sort_fields.clear
   end
 
