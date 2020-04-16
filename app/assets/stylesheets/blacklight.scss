@@ -2,12 +2,13 @@
 
 #documents {
   .index_title {
-    font-size: $font-size-lg;
+    font-size: 1.45rem;
     margin-top: 0;
   }
 
   &.documents-list {
     .document {
+      border-color: $color-gray-dark;
       box-sizing: content-box;
       min-height: 100px;
       padding-bottom: spacer(3);
