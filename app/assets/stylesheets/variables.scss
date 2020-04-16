@@ -1,20 +1,22 @@
-$theme-colors: (
-  "primary": #0f2450,
-  "secondary": #777,
-  "info": #328fc7,
-);
+$font-size-base: 1.25rem;
+$line-height-base: 1.33;
 
 $color-primary: #0f2450;
-
-$link-color: lighten($color-primary, 10%);
-
 $color-blackish: #2e2d29;
 $color-black-medium: #585754;
 $color-black-light: #777;
+$color-gray-dark: #adb5bd;
 $color-gray-medium: #ccc;
 $color-gray-light: #ededed;
 $color-gray-lightest: #f8f8f8;
 
+$theme-colors: (
+  "primary": $color-primary,
+  "secondary": #6c757d,
+  "info": #328fc7,
+);
+
+$link-color: lighten($color-primary, 10%);
 $body-background-color: #f7f7f7;
 
 $footer-background-color: $color-primary;
