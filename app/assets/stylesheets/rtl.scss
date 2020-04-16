@@ -134,5 +134,9 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     .profile, form.range_limit {
       direction: ltr;
     }
+
+    .flot-svg svg text {
+      unicode-bidi: plaintext;
+    }
   }
 }

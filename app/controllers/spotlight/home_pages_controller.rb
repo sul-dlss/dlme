@@ -20,5 +20,11 @@ module Spotlight
       authorize! :read, @page
     end
     # rubocop:enable Rails/LexicallyScopedActionFilter
+    # Add the "homepage" group to the facets so we can get a different title key
+    before_action only: %i[show] do
+      blacklight_config.facet_fields.values.each do |config|
+        config.group = 'homepage'
+      end
+    end
   end
 end

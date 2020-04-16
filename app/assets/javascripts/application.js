@@ -23,7 +23,7 @@
 //= require blacklight/blacklight
 
 //= require transform_result
-
+//= require i18n/translations
 //= require_tree .
 
 

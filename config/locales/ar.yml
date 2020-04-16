@@ -1,5 +1,10 @@
 ---
 ar:
+  date:
+    bce: "%{year} قبل م"
+    bh: "%{year} قبل ه"
+    ce: "%{year} م"
+    h: "%{year}  ه"
   statistics:
     contributors:
       agg_data_provider:

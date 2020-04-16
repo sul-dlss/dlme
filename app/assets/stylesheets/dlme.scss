@@ -1,8 +1,3 @@
-.topbar {
-  padding-bottom: .25rem;
-  padding-top: .25rem;
-}
-
 /* Curation > Analytics user activity table */
 .table.analytics {
   background-color: $color-gray-light;
@@ -12,40 +7,6 @@
     font-size: $h2-font-size;
     font-weight: 700;
     padding-bottom: 0;
-  }
-}
-
-.dlme-logo {
-  flex: 0 0 80px;
-  height: 50px;
-  margin-top: 8px;
-  margin-bottom:  8px;
-  object-fit: contain;
-
-  @include media-breakpoint-down('xs') {
-    display: none;
-  }
-
-  @include media-breakpoint-down('sm') {
-    flex: 0 0 60px;
-    margin-top: 8px;
-    margin-bottom:  8px;
-  }
-}
-
-.navbar-brand {
-  font-size: 1.25rem;
-
-  @include media-breakpoint-up('md') {
-    font-size: 1.5rem;
-  }
-
-  @include media-breakpoint-up('md') {
-    font-size: 1.75rem;
-  }
-
-  @include media-breakpoint-up('lg') {
-    font-size: 2rem;
   }
 }
 
@@ -73,6 +34,7 @@
 }
 
 body {
+  background-color: $body-background-color;
   margin-bottom: $footer-height + $footer-top-margin;
 
   @media (max-width: 991px) {
@@ -83,7 +45,8 @@ body {
 /* Statistics page styling */
 .blacklight-statistics-show {
   .jumbotron {
-    border: 1px solid $color-gray-medium;
+    background-color: $white;
+    border: 1px solid #328fc7;
     margin-top: $spacer;
 
     @media (min-width: 576px) {
@@ -93,13 +56,16 @@ body {
 }
 
 /* overrides for visual design changes */
-.btn-primary {
-  @include button-variant($color-black-light, $color-black-light);
+.btn-outline-secondary {
+  background-color: $white;
+  border-color: $color-blackish;
+  color: $color-blackish;
 }
 
 .nav > li > a:hover,
 .nav > li > a:focus {
-  background-color: $color-gray-medium;
+  background-color: $color-gray-light;
+  text-decoration: underline;
 }
 
 .nav-tabs > li.active > a,
@@ -118,11 +84,11 @@ body {
 }
 
 .table-striped > tbody > tr:nth-of-type(even) {
-  background-color: $color-gray-light;
+  background-color: $color-gray-lightest;
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: $color-gray-lightest;
+  background-color: $white;
 }
 
 .indent-with-caret::before {
@@ -142,8 +108,6 @@ body {
   border-bottom: 1px solid $color-gray-medium;
   padding-left: 0;
   padding-right: 0;
-  margin-left: $breadcrumb-padding-x;
-  margin-right: $breadcrumb-padding-x;
 }
 
 .masthead .site-title {
@@ -171,17 +135,64 @@ body {
   padding-left: 12px;
   padding-right: 12px;
   text-transform: uppercase;
-  color: $color-gray-medium;
+  color: $color-gray-light;
 
   &:hover,
   &:focus {
-    color: $color-gray-light;
+    background-color: rgba(255,255,255,0.2);
+    color: $color-gray-lightest;
+  }
+}
+
+.image-masthead .background-container-gradient {
+  background: linear-gradient(rgba(0, 0, 0, 0.15), 75%, rgba(0, 0, 0, 0.6));
+}
+
+.dlme-logo {
+  flex: 0 0 80px;
+  height: 50px;
+  margin-right: 0.75rem;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  object-fit: contain;
+
+  @include media-breakpoint-down('xs') {
+    display: none;
+  }
+
+  @include media-breakpoint-down('sm') {
+    height: 45px;
+    margin-top: 8px;
+    margin-bottom:  8px;
+  }
+}
+
+.navbar-brand {
+  font-size: 1.25rem;
+  padding: 0;
+
+  @include media-breakpoint-up('md') {
+    font-size: 1.5rem;
+  }
+
+  @include media-breakpoint-up('md') {
+    font-size: 1.75rem;
+  }
+
+  @include media-breakpoint-up('lg') {
+    font-size: 2rem;
   }
 }
 
 .topbar {
   background-color: $topnav-background-color !important;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
+  padding-bottom: .25rem;
+  padding-top: .5rem;
+
+  @include media-breakpoint-down('sm') {
+    margin-bottom: 0;
+  }
 }
 
 .masthead .topbar  .navbar-nav {
@@ -199,6 +210,21 @@ body {
   }
 }
 
+.facets-heading {
+  border-bottom: 1px solid $color-gray-medium;
+  width: 100%;
+}
+
+.facet-limit {
+  border: 1px solid $color-gray-medium;
+  margin-bottom: 0.5rem;
+
+  .card-header {
+    background-color: $color-gray-light;
+    border-bottom: 0;
+  }
+}
+
 .facet-limit-active {
   border-color: $color-gray-medium !important;
 
@@ -210,6 +236,18 @@ body {
 
   & > .card-header + .panel-collapse > .card-body {
     border-top-color: $color-gray-medium;
+  }
+}
+
+.constraints-container {
+  @extend .mb-4;
+}
+
+.applied-filter  {
+  background-color: $white;
+
+  .filter-name:after {
+    color: $color-black-medium;
   }
 }
 

@@ -11,6 +11,8 @@ en:
   date:
     bce: "%{year} BCE"
     bh: "%{year} BH"
+    ce: "%{year} CE"
+    h: "%{year} H"
   date_field: "%{gregorian_dates} / %{hijri_dates}"
   date_field_gregorian: "%{dates} (Gregorian)"
   date_field_hijri: "%{dates} (Hijri)"
