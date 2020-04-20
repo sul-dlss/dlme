@@ -25,6 +25,11 @@ h2, .h2 {
   color: $color-black-light;
 }
 
+.blacklight-about_pages-show iframe {
+  border: 0;
+  width: 100%;
+}
+
 /* Curation > Analytics user activity table */
 .table.analytics {
   background-color: $color-gray-light;
