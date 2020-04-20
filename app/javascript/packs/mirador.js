@@ -25,6 +25,16 @@ const manifestUrl = document.querySelector('#m3').dataset.iiifManifest;
 
 Mirador.viewer({
   id: 'm3',
+  theme: {
+    palette: {
+      primary: {
+        main: '#17377b'
+      },
+      shades: {
+        dark: '#dadada'
+      }
+    }
+  },
   window: {
     allowClose: false,
     allowFullscreen: true,
