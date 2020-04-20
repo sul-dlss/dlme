@@ -11,11 +11,22 @@ RSpec.describe 'Statistics page', type: :feature do
           'agg_data_provider_collection_ssim' => ['Value 1', '500', 'Value 2', '300']
         },
         'facet_pivot' => {
+          'agg_data_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_ssim' => [
+            { 'value' => 'Institution 1', 'count' => '500', 'pivot' => [
+              { 'value' => 'Country 1', 'count' => '500' }
+            ] },
+            { 'value' => 'Institution 2', 'count' => '300', 'pivot' => [
+              { 'value' => 'Country 2', 'count' => '300' }
+            ] }
+          ],
           'agg_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_ssim' => [
             { 'value' => 'Institution 1', 'count' => '500', 'pivot' => [
               { 'value' => 'Country 1', 'count' => '500' }
             ] },
             { 'value' => 'Institution 2', 'count' => '300', 'pivot' => [
+              { 'value' => 'Country 2', 'count' => '300' }
+            ] },
+            { 'value' => 'Institution 3', 'count' => '300', 'pivot' => [
               { 'value' => 'Country 2', 'count' => '300' }
             ] }
           ]
@@ -59,7 +70,7 @@ RSpec.describe 'Statistics page', type: :feature do
 
   it 'has a collections jumbotron section' do
     expect(page).to have_css('.jumbotron h2', text: '2 collections')
-    expect(page).to have_css('.jumbotron p', text: '2 contributors')
+    expect(page).to have_css('.jumbotron p', text: '2 item contributors')
   end
 
   it 'has an items section' do
@@ -67,9 +78,15 @@ RSpec.describe 'Statistics page', type: :feature do
     expect(page).to have_css('h2', text: 'Items · 100,000')
   end
 
-  it 'has a Contributors section' do
-    expect(page).to have_css('.jumbotron h2', text: '2 contributors')
+  it 'has a Item Contributors section' do
+    expect(page).to have_css('.jumbotron h2', text: '2 item contributors')
     expect(page).to have_css('.jumbotron p', text: '2 countries')
-    expect(page).to have_css('h2', text: 'Contributors · 2')
+    expect(page).to have_css('h2', text: 'Item Contributors · 2')
+  end
+
+  it 'has a Data Contributors section' do
+    expect(page).to have_css('.jumbotron h2', text: '3 data contributors')
+    expect(page).to have_css('.jumbotron p', text: '2 countries')
+    expect(page).to have_css('h2', text: 'Data Contributors · 3')
   end
 end
