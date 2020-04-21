@@ -30,11 +30,11 @@ RSpec.describe 'statistics/_contributors.html.erb', type: :view do
   end
 
   let(:contributors) do
-    StatisticsDashboard::Contributors.new(stub_response)
+    StatisticsDashboard::Contributors.new(stub_response, provider_field: 'agg_provider')
   end
 
   it 'has the total number of contributors in the heading' do
-    expect(rendered).to have_css('h2', text: 'Contributors · 2')
+    expect(rendered).to have_css('h2', text: 'Data Contributors · 2')
   end
 
   it 'has a table with each institution, the country, and number of items' do
