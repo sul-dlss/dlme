@@ -1,12 +1,12 @@
-<h2 class="h3"><%= t('statistics.dashboard.contributors.total_html', total: number_with_delimiter(contributors.total)) %></h2>
+<h2 class="h3"><%= t(".#{contributors.provider_field_key}.total_html", total: number_with_delimiter(contributors.total)) %></h2>
 
 <table class="table table-striped contributors">
   <thead>
     <tr>
-      <th><%= t('statistics.dashboard.contributors.table.institution') %></th>
-      <th><%= t('statistics.dashboard.contributors.table.country') %></th>
-      <th class="text-right"><%= t('statistics.dashboard.contributors.table.collections') %></th>
-      <th class="text-right"><%= t('statistics.dashboard.contributors.table.items') %></th>
+      <th><%= t('.table.institution') %></th>
+      <th><%= t('.table.country') %></th>
+      <th class="text-right"><%= t('.table.collections') %></th>
+      <th class="text-right"><%= t('.table.items') %></th>
     </tr>
   </thead>
   <tbody>

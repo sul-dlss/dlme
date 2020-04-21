@@ -55,24 +55,30 @@ en:
       edit:
         exhibit_home: Exhibit home
   statistics:
+    contributors:
+      agg_data_provider:
+        total_html: Item Contributors &middot; %{total}
+      agg_provider:
+        total_html: Data Contributors &middot; %{total}
+      table:
+        collections: Collections
+        country: Countries
+        institution: Institution
+        items: Items
     dashboard:
-      contributors:
-        table:
-          collections: Collections
-          country: Countries
-          institution: Institution
-          items: Items
-        total_html: Contributors &middot; %{total}
       header:
         total_collections:
           one: 1 collection
           other: "%{formatted_count} collections"
-        total_contributors:
-          one: 1 contributor
-          other: "%{formatted_count} contributors"
         total_countries:
           one: 1 country
           other: "%{formatted_count} countries"
+        total_data_contributors:
+          one: 1 data contributor
+          other: "%{formatted_count} data contributors"
+        total_item_contributors:
+          one: 1 item contributor
+          other: "%{formatted_count} item contributors"
         total_items:
           one: 1 item
           other: "%{formatted_count} items"

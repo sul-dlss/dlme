@@ -25,7 +25,9 @@ class StatisticsDashboard
       %w[cho_edm_type.en_ssim cho_has_type.en_ssim].join(','),
       %w[cho_edm_type.ar-Arab_ssim cho_has_type.ar-Arab_ssim].join(','),
       %w[agg_provider.en_ssim agg_provider_country.en_ssim agg_data_provider_collection_ssim].join(','),
-      %w[agg_provider.ar-Arab_ssim agg_provider_country.ar-Arab_ssim agg_data_provider_collection_ssim].join(',')
+      %w[agg_provider.ar-Arab_ssim agg_provider_country.ar-Arab_ssim agg_data_provider_collection_ssim].join(','),
+      %w[agg_data_provider.en_ssim agg_provider_country.en_ssim agg_data_provider_collection_ssim].join(','),
+      %w[agg_data_provider.ar-Arab_ssim agg_provider_country.ar-Arab_ssim agg_data_provider_collection_ssim].join(',')
     ]
   }.freeze
 
@@ -38,8 +40,12 @@ class StatisticsDashboard
     @items ||= Items.new(response)
   end
 
-  def contributors
-    @contributors ||= Contributors.new(response)
+  def item_contributors
+    @item_contributors ||= Contributors.new(response, provider_field: 'agg_data_provider')
+  end
+
+  def data_contributors
+    @data_contributors ||= Contributors.new(response, provider_field: 'agg_provider')
   end
 
   def collections
@@ -158,9 +164,11 @@ class StatisticsDashboard
 
   # Represents data in the Contributors section of the dashboard
   class Contributors
-    attr_reader :response
-    def initialize(response)
+    attr_reader :response, :provider_field_key
+
+    def initialize(response, provider_field: nil)
       @response = response
+      @provider_field_key = provider_field
     end
 
     def total
@@ -183,7 +191,7 @@ class StatisticsDashboard
     end
 
     def provider_field
-      StatisticsDashboard.locale_aware_field('agg_provider')
+      StatisticsDashboard.locale_aware_field(provider_field_key)
     end
 
     # Represents each row in the Contributors table
