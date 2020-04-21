@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Things can be indexed' do
-  let(:exhibit) { create(:exhibit) }
+  let(:exhibit) { create(:exhibit, published: true) }
   let(:curator) { create(:exhibit_curator, exhibit: exhibit) }
   let(:resource) { DlmeJson.new(json: json, metadata: metadata, exhibit: exhibit) }
   let(:fixture_file_path) { File.join(fixture_path, 'json/iiif-single-image.json') }
@@ -17,14 +17,32 @@ RSpec.describe 'Things can be indexed' do
     ActiveJob::Base.queue_adapter = :inline # block until indexing has committed
 
     resource.save_and_index
-    login_as curator
   end
 
-  it 'basic search results are available' do
-    visit root_path
-    click_button 'Search'
-    within '#documents' do
-      expect(page).to have_css '.document', count: 1
+  context 'with a curator' do
+    before do
+      login_as curator
+    end
+
+    it 'basic search results are available' do
+      visit root_path
+      click_button 'Search'
+      within '#documents' do
+        expect(page).to have_css '.document', count: 1
+      end
+      expect(page).to have_content 'Creator'
+      expect(page).to have_content 'Shown At'
+      expect(page).to have_content 'Indexed At'
+    end
+  end
+
+  context 'with an ordinary user' do
+    it 'hides some facets' do
+      visit root_path
+      click_button 'Search'
+      expect(page).to have_content 'Creator'
+      expect(page).not_to have_content 'Shown At'
+      expect(page).not_to have_content 'Indexed At'
     end
   end
 end
