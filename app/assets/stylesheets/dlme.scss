@@ -78,7 +78,7 @@ body {
 /* Statistics page styling */
 .blacklight-statistics-show {
   .jumbotron {
-    background-color: $white;
+    background: linear-gradient(0.35turn, $color-gray-light, 65%, $white);
     border: 1px solid $color-primary;
     margin-top: $spacer;
 
