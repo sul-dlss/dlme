@@ -30,6 +30,16 @@ h2, .h2 {
   width: 100%;
 }
 
+.facet-hierarchy {
+  .facet_select {
+    max-width: calc(100% - 3em);
+  }
+
+  .h-leaf {
+    padding-left: 0;
+  }
+}
+
 /* Curation > Analytics user activity table */
 .table.analytics {
   background-color: $color-gray-light;
