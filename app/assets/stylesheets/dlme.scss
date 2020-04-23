@@ -80,8 +80,12 @@ body {
   color: $gray-dark;
   margin-bottom: $footer-height + $footer-top-margin;
 
-  @media (max-width: 991px) {
+  @include media-breakpoint-down('md') {
     margin-bottom: $footer-height + $footer-top-margin + $footer-mobile-adjustment;
+  }
+
+  @include media-breakpoint-down('xs') {
+    margin-bottom: $footer-height + $footer-top-margin + $footer-mobile-adjustment + 100px;
   }
 }
 
