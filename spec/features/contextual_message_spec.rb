@@ -11,17 +11,31 @@ RSpec.describe 'Contextual message on search results', type: :feature do
     { 'traject_context_command_line.filename' => fixture_file_path,
       'traject_context_source' => 'dlme_json_resource_spec' }
   end
+  let(:query) { 'Kitāb' }
 
   before do
     ActiveJob::Base.queue_adapter = :inline # block until indexing has committed
     resource.save_and_index
     visit root_path
+    fill_in 'Search...', with: query
     click_button 'Search'
   end
 
+  context 'without a search term' do
+    let(:query) { '' }
+
+    it 'does not show the contextual pane' do
+      within '#content' do
+        expect(page).not_to have_css '.alert.alert-info'
+      end
+    end
+  end
+
   it 'contains a link to contextual page' do
-    within '#content .alert-info' do
-      expect(page).to have_css 'a', text: 'entering your search terms in another language'
+    within '#content' do
+      expect(page).to have_css '.alert.alert-info', text: 'You might see more results for your query'
+      click_button 'Don\'t show again'
+      expect(page).not_to have_css '.alert.alert-info'
     end
   end
 

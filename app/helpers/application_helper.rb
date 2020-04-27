@@ -28,7 +28,7 @@ module ApplicationHelper
   end
 
   def display_search_context?
-    !session[:disable_search_context]
+    !session[:disable_search_context] && params[:q].present?
   end
 
   private
