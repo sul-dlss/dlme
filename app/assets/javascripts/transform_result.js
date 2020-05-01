@@ -64,8 +64,7 @@ class TransformStatus extends HTMLElement {
   rows(rows) {
     const htmlNodes = rows.map((item) => {
       return `<tr>
-                <th scope="row"><a href="${item['url']}">${item['url']}</a></th>
-                <td>${item['data_path']}</td>
+                <th scope="row"><a href="${item['url']}">${item['data_path']}</a></th>
                 <td>${item['success'] ? 'Success' : 'Failed'}</td>
                 <td>${item['records']}</td>
                 <td>${this.formattedDate(item['timestamp'])}</td>
