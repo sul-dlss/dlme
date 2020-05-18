@@ -1,67 +1,127 @@
 ---
 ar:
+  application_name: مكتبة الشرق الأوسط الرقمية
+  catalog:
+    show_with_viewer:
+      view_on_contributor_website: اعرض على موقع المساهمين
+  contextual_result_info:
+    body_html: "قد ترى المزيد من النتائج للاستعلام الخاص بك <a href='%{link}'> عن طريق إدخال مصطلحات البحث بلغة أخرى <a>."
+    disable_session: لا تعرض مجددًا
+    dismiss: ارفض
   date:
-    bce: "%{year} قبل م"
-    bh: "%{year} قبل ه"
-    ce: "%{year} م"
-    h: "%{year}  ه"
+    bce: "%{year}قبل الحقبة العامة"
+    bh: "%{year} قبل الهجري"
+    ce: "%{year}الحقبة العامة"
+    h: "%{year}هجري"
+  date_field: "%{gregorian_dates} / %{hijri_dates}"
+  date_field_gregorian: "%{dates} (ميلادي)"
+  date_field_hijri: "%{dates}(هجري)"
+  date_range: "%{min} - %{max}"
+  dlme_jsons:
+    edit:
+      add_item: احفظ
+    form:
+      add_item: "قم بإضافة ملف مكتبة الشرق الاوسط الرقمية JSON "
+      title: مكتبة الشرق الاوسط الرقمية JSON
+    update:
+      error: JSON هناك مشكلة في حفظ  .
+      success: "تم حفظ مكتبة الشرق الاوسط الرقمية JSON "
+  dlme_s3s:
+    form:
+      add_item: اجلب
+      error: يحتوي تنسيق جسون على معرّفات مكررة
+      title: "جلب DLME S3 "
+  footer:
+    partnership_heading: بالشراكة مع
+    project_support_heading: المشروع مدعوم من قبل
+    project_support_text: مؤسسة أندرو و. ميلون
+  s3_delete:
+    new:
+      add_item: احذف العناصر
+  spotlight:
+    catalog:
+      admin_header:
+        delete_resource: احذف العناصر
+    curation:
+      sidebar:
+        sources: مصادر
+        transform: حوّل البيانات
+    main_navigation:
+      statistics: إحصائيات
+    resources:
+      fetch:
+        queued: في قائمة الانتظار للمعالجة.
+    sites:
+      edit:
+        exhibit_home: معرض الصفحة الرئيسية
   statistics:
     contributors:
       agg_data_provider:
-        total_html: المساهمو&middot; %{total}
+        total_html: " مساهمين العناصر و middot; %{total}"
       agg_provider:
-        total_html: المساهمو&middot; %{total}
+        total_html: "مساهمين البيانات و middot; %{total}"
       table:
-        collections: المجموعات
-        country: الدولة
-        institution: المؤسسة
-        items: المواد
+        collections: مجموعات
+        country: دول
+        institution: مؤسسة
+        items: عناصر
     dashboard:
       header:
         total_collections:
-          few: "%{count} المجموعات"
-          many: "%{count} المجموعات"
-          one: مجموعة واحد
-          other: "%{count} المجموعات"
-          two: مجموعتين
-          zero: صفر
+          zero: "لا يوجد"
+          one: مجموعة 1
+          two: "مجموعتان"
+          few: "%{formatted_count} مجاميع"
+          many: "%{formatted_count} مجموعة"
+          other: "%{formatted_count} مجموعة"
+
         total_countries:
-          few: "%{count} دول"
-          many: "%{count} دول"
-          one: دولة واحدة
-          other: "%{count} دول"
-          two: دولتين
-          zero: صفر
+          zero: "لا يوجد"
+          one: بلد
+          two: "بلدان"
+          few: "%{formatted_count} بلدان"
+          many: "%{formatted_count} بلد"
+          other: "%{formatted_count} بلد"
+
         total_data_contributors:
-          few: "%{count} مساهِمين"
-          many: "%{count} مساهِمين"
-          one: مساهم واحد
-          other: "%{count} مساهِمين"
-          two: مساهمَين
-          zero: صفر
+          zero: "لا يوجد"
+          one: مساهم بيانات 1
+          two: "مساهمين للبيانات"
+          few: "%{formatted_count} مساهمين للبيانات"
+          many: "%{formatted_count} مساهمين للبيانات"
+          other: "%{formatted_count} مساهمين للبيانات"
+
         total_item_contributors:
-          few: "%{count} مساهِمين"
-          many: "%{count} مساهِمين"
-          one: مساهم واحد
-          other: "%{count} مساهِمين"
-          two: مساهمَين
-          zero: صفر
+          zero: "لا يوجد"
+          one: مساهم 1 للعناصر
+          two: "مساهمين للعناصر"
+          few: "%{formatted_count} مساهمين للعناصر"
+          many: "%{formatted_count} مساهمين للعناصر"
+          other: "%{formatted_count} مساهمين للعناصر"
+
         total_items:
-          few: "%{count} مواد"
-          many: "%{count} مواد"
-          one: مادة
-          other: "%{count} مواد"
-          two: مادتين
-          zero: صفر
+          zero: "لا يوجد"
+          one: عنصر 1
+          two: "عنصرين"
+          few: "%{formatted_count} عناصر"
+          many: "%{formatted_count} عنصر"
+          other: "%{formatted_count} عنصر"
+
         total_types:
-          few: "%{count} أنواع من المادة"
-          many: "%{count} أنواع من المادة"
-          one: نوع واحد من المادة
-          other: "%{count} أنواع من المادة"
-          two: نوع اثنان من المادة
-          zero: صفر
+          zero: "لا يوجد"
+          one: 'نوع 1 من العنصر '
+          two: "نوعين من العنصر"
+          few: "%{formatted_count} انواع من العنصر"
+          many: "%{formatted_count} نوع من العنصر"
+          other: "%{formatted_count} نوع من العنصر"
+
       items:
         by_language: بحسب اللغة
         by_type: بحسب النوع
-        total_html: المواد&middot; %{total}
+        total_html: "المواد&middot; %{total}"
     header: إحصائيات
+  transforms:
+    notification:
+      sent: تم إرسال طلب التحويل.
+    show:
+      header: حوّل البيانات
