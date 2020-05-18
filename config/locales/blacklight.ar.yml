@@ -1,0 +1,8 @@
+ar:
+  blacklight:
+    application_name: 'مكتبة الشرق الأوسط الرقمية'
+    search:
+      facets:
+        title: تصفية النتائج
+      facets-homepage:
+        title: اعثر على العناصر بحسب
