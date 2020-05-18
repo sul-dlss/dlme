@@ -1,0 +1,31 @@
+ar:
+  devise:
+    failure:
+      invited: "لديك دعوة معلّقة، اقبلها لإنهاء إنشاء حسابك."
+    invitations:
+      send_instructions: "تم إرسال دعوة عن طريق البريد الإلكتروني إلى %{email}"
+      invitation_token_invalid: "الرمز المميز للدعوة المُدخل غير صالح!"
+      updated: "تم تعيين كلمة المرور بنجاح. لقد سجّلت دخولك الآن."
+      updated_not_active: "تم تعيين كلمة المرور بنجاح."
+      no_invitations_remaining: "لا توجد دعوات متبقية"
+      invitation_removed: "تمت إزالة دعوتك."
+      new:
+        header: "إرسال دعوة"
+        submit_button: "أرسل دعوة"
+      edit:
+        header: "حدد كلمة المرور الخاصة بك"
+        submit_button: "حدد كلمة المرور الخاصة بي"
+    mailer:
+      invitation_instructions:
+        subject: "إرشادات الدعوة"
+        hello: "مرحبا %{email}"
+        someone_invited_you: "قام شخص ما بدعوتك إلى %{url}، يمكنك قبول الدعوة من خلال الرابط أدناه."
+        accept: "اقبل الدعوة"
+        accept_until: "سيحين موعد انتهاء هذه الدعوة في %{due_date}"
+        ignore: "إذا لم تكن تريد قبول الدعوة، فيرجى تجاهل هذا البريد الإلكتروني.\nلن يتم إنشاء حسابك حتى تتمكن من الدخول إلى الرابط أعلاه وتعيين كلمة المرور الخاصة بك."
+  time:
+    formats:
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: ""
