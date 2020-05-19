@@ -8,9 +8,9 @@ ar:
   statistics:
     contributors:
       agg_data_provider:
-        total_html: المساهمو&middot; %{total}
+        total_html: المساهمو &middot; %{total}
       agg_provider:
-        total_html: المساهمو&middot; %{total}
+        total_html: المساهمو &middot; %{total}
       table:
         collections: المجموعات
         country: الدولة
@@ -63,5 +63,5 @@ ar:
       items:
         by_language: بحسب اللغة
         by_type: بحسب النوع
-        total_html: المواد&middot; %{total}
+        total_html: المواد &middot; %{total}
     header: إحصائيات
