@@ -57,9 +57,9 @@ ar:
   statistics:
     contributors:
       agg_data_provider:
-        total_html: " مساهمين العناصر و middot; %{total}"
+        total_html: مساهمين العناصر و &middot; %{total}
       agg_provider:
-        total_html: مساهمين البيانات و middot; %{total}
+        total_html: مساهمين البيانات و &middot; %{total}
       table:
         collections: مجموعات
         country: دول
@@ -112,7 +112,7 @@ ar:
       items:
         by_language: بحسب اللغة
         by_type: بحسب النوع
-        total_html: المواد&middot; %{total}
+        total_html: المواد &middot; %{total}
     header: إحصائيات
   transforms:
     notification:
