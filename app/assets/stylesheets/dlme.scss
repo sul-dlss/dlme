@@ -318,6 +318,10 @@ body {
   }
 }
 
+.page-sidebar .contacts-header {
+  padding-bottom: 0.5rem;
+}
+
 // Overrides for mobile viewports
 @media (max-width: 767px) {
   .navbar-default .navbar-form {
