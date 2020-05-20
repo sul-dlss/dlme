@@ -16,7 +16,7 @@ RSpec.describe OverrideRangeLimitHelper, type: :helper do
     context 'when in in Arabic' do
       it 'displays Arabic suffix' do
         I18n.with_locale(:ar) do
-          expect(helper.format_range_display_value('-8746', 'cho_date_range_hijri_isim')).to eq '8746 قبل ه'
+          expect(helper.format_range_display_value('-8746', 'cho_date_range_hijri_isim')).to eq '8746 قبل الهجري'
         end
       end
     end
