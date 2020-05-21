@@ -12,12 +12,16 @@ class StatisticsDashboard
     'facet.field': [
       'agg_provider_country.ar-Arab_ssim',
       'agg_provider_country.en_ssim',
+      'agg_provider_data_country.ar-Arab_ssim',
+      'agg_provider_data_country.en_ssim',
       'agg_data_provider_collection_ssim',
       'cho_language.en_ssim',
       'cho_language.ar-Arab_ssim'
     ],
     'f.agg_provider_country.ar-Arab_ssim.facet.limit' => -1,
     'f.agg_provider_country.en_ssim.facet.limit' => -1,
+    'f.agg_data_provider_country.ar-Arab_ssim.facet.limit' => -1,
+    'f.agg_data_provider_country.en_ssim.facet.limit' => -1,
     'f.agg_data_provider_collection_ssim.facet.limit' => -1,
     'f.cho_language.en_ssim.facet.limit' => -1,
     'f.cho_language.ar-Arab_ssim.facet.limit' => -1,
@@ -26,8 +30,8 @@ class StatisticsDashboard
       %w[cho_edm_type.ar-Arab_ssim cho_has_type.ar-Arab_ssim].join(','),
       %w[agg_provider.en_ssim agg_provider_country.en_ssim agg_data_provider_collection_ssim].join(','),
       %w[agg_provider.ar-Arab_ssim agg_provider_country.ar-Arab_ssim agg_data_provider_collection_ssim].join(','),
-      %w[agg_data_provider.en_ssim agg_provider_country.en_ssim agg_data_provider_collection_ssim].join(','),
-      %w[agg_data_provider.ar-Arab_ssim agg_provider_country.ar-Arab_ssim agg_data_provider_collection_ssim].join(',')
+      %w[agg_data_provider.en_ssim agg_data_provider_country.en_ssim agg_data_provider_collection_ssim].join(','),
+      %w[agg_data_provider.ar-Arab_ssim agg_data_provider_country.ar-Arab_ssim agg_data_provider_collection_ssim].join(',')
     ]
   }.freeze
 
@@ -227,7 +231,7 @@ class StatisticsDashboard
     private
 
     def countries_field
-      StatisticsDashboard.locale_aware_field('agg_provider_country')
+      StatisticsDashboard.locale_aware_field("#{provider_field_key}_country")
     end
 
     def collections_field
