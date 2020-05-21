@@ -1,40 +1,42 @@
 <footer class="footer" role="contentinfo">
   <div class="container">
-    <div class="row justify-content-around">
-      <div class="col-5 col-sm-4 d-flex justify-content-center logos">
-        <a href="https://www.clir.org/">
-          <span class="clir-logo">
-            <%= blacklight_icon('clir-logo') %>      
-          </span>
-        </a>
-      </div>
-      <div class="col-7 col-sm-4 d-flex justify-content-center">
-        <div class="partner-heading">
-          <%= t('footer.partnership_heading') %>
-          <br>
-          <span class="partner-logo">
-            <a href="https://library.stanford.edu/">
-              <%= image_tag("StanfordLibraries-logo-whitetext.svg", height: "25", alt: "logo for Stanford Libraries") %>
-            </a>
-          </span>
-        </div>
-      </div>
-      <div class="col-sm-4 d-flex justify-content-center">
-        <div class="partner-heading mellon">
-          <%= t('footer.project_support_heading') %>
-          <br>
-          <span class="partner-logo">
-            <a href="https://mellon.org/">
-              <span class="sr-only">
-                <%= t('footer.project_support_text') %>
-              </span>
-              <%= image_tag("mellon-logo-home-white.png", class: "mellon-logo", alt: "logo for The Andrew W. Mellon Foundation") %>
-            </a>
-          </span>
-        </div>
-      </div>
+    <div class="logo clir">
+      <a href="https://www.clir.org/">
+        <%= image_tag("CLIR_white_w_wordmark_outline.svg", height: "60", alt: "logo for Council on Library and Information Resources") %>
+      </a>
     </div>
+
+    <div class="logo qnl">
+      <a href="https://www.qnl.qa/">
+        <%= image_tag("qnl-logo.svg", height: "60", alt: "logo for Qatar National Library") %>
+      </a>
+    </div>
+
+    <div class="logo partner-heading">
+      <%= t('footer.partnership_heading') %>
+      <br>
+      <span class="partner-logo">
+        <a href="https://library.stanford.edu/">
+          <%= image_tag("SUL-footer-stacked_whitetext.png", class: "sul-logo", alt: "logo for Stanford Libraries") %>
+        </a>
+      </span>
+    </div>
+
+    <div class="logo partner-heading mellon">
+      <%= t('footer.project_support_heading') %>
+      <br>
+      <span class="partner-logo">
+        <a href="https://mellon.org/">
+          <span class="sr-only">
+            <%= t('footer.project_support_text') %>
+          </span>
+          <%= image_tag("mellon-logo-home-white.png", class: "mellon-logo", alt: "logo for The Andrew W. Mellon Foundation") %>
+        </a>
+      </span>
+    </div>
+
   </div>
 </footer>
 
 <%= render 'shared/analytics' %>
+<%= render 'shared/i18n_js' %>

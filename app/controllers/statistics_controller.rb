@@ -8,6 +8,11 @@ class StatisticsController < Spotlight::ApplicationController
   before_action :attach_breadcrumbs
   before_action do
     authorize!(:read, current_exhibit)
+
+    blacklight_config.facet_fields.clear
+    blacklight_config.index_fields.clear
+    blacklight_config.show_fields.clear
+    blacklight_config.sort_fields.clear
   end
 
   def show

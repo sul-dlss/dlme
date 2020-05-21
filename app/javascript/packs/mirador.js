@@ -22,9 +22,22 @@ import 'unfetch/polyfill';
 
 import Mirador from 'mirador/dist/es/src/index.js';
 const manifestUrl = document.querySelector('#m3').dataset.iiifManifest;
+const htmlAttributes = document.querySelector('html').attributes;
 
 Mirador.viewer({
   id: 'm3',
+  language: htmlAttributes.lang.nodeValue,
+  theme: {
+    direction: htmlAttributes.dir && htmlAttributes.dir.nodeValue || 'ltr',
+    palette: {
+      primary: {
+        main: '#17377b'
+      },
+      shades: {
+        dark: '#dadada'
+      }
+    }
+  },
   window: {
     allowClose: false,
     allowFullscreen: true,

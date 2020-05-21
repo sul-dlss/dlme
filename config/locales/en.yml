@@ -1,5 +1,6 @@
 ---
 en:
+  application_name: Digital Library of the Middle East
   catalog:
     show_with_viewer:
       view_on_contributor_website: View on contributor website
@@ -7,6 +8,11 @@ en:
     body_html: You might see more results for your query by <a href='%{link}'>entering your search terms in another language<a>.
     disable_session: Don't show again
     dismiss: Dismiss
+  date:
+    bce: "%{year} BCE"
+    bh: "%{year} BH"
+    ce: "%{year} CE"
+    h: "%{year} H"
   date_field: "%{gregorian_dates} / %{hijri_dates}"
   date_field_gregorian: "%{dates} (Gregorian)"
   date_field_hijri: "%{dates} (Hijri)"
@@ -45,31 +51,40 @@ en:
     resources:
       fetch:
         queued: Queued for processing.
+    sites:
+      edit:
+        exhibit_home: Exhibit home
   statistics:
+    contributors:
+      agg_data_provider:
+        total_html: Item Contributors &middot; %{total}
+      agg_provider:
+        total_html: Data Contributors &middot; %{total}
+      table:
+        collections: Collections
+        country: Countries
+        institution: Institution
+        items: Items
     dashboard:
-      contributors:
-        table:
-          collections: Collections
-          country: Country
-          institution: Institution
-          items: Items
-        total_html: Contributors &middot; %{total}
       header:
         total_collections:
           one: 1 collection
-          other: "%{count} collections"
-        total_contributors:
-          one: 1 contributor
-          other: "%{count} contributors"
+          other: "%{formatted_count} collections"
         total_countries:
           one: 1 country
-          other: "%{count} countries"
+          other: "%{formatted_count} countries"
+        total_data_contributors:
+          one: 1 data contributor
+          other: "%{formatted_count} data contributors"
+        total_item_contributors:
+          one: 1 item contributor
+          other: "%{formatted_count} item contributors"
         total_items:
           one: 1 item
-          other: "%{count} items"
+          other: "%{formatted_count} items"
         total_types:
           one: 1 item type
-          other: "%{count} item types"
+          other: "%{formatted_count} item types"
       items:
         by_language: By language
         by_type: By type

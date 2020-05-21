@@ -1,4 +1,4 @@
-<h2 class="h3"><%= t('statistics.dashboard.items.total_html', total: items.total) %></h2>
+<h2 class="h3"><%= t('statistics.dashboard.items.total_html', total: number_with_delimiter(items.total)) %></h2>
 <div class="row">
   <div class="col-6">
     <table class="table table-striped by-type">
@@ -12,20 +12,20 @@
         <% items.by_type.each do |field| %>
           <tr>
             <td>
-              <%= link_to path_for_facet(items.type_facet, field['value']) do %>
+              <%= link_to path_for_facet(items.type_facet, field['value']), class: 'value' do %>
                 <%= facet_display_value(items.type_facet, field['value']) %>
               <% end %>
             </td>
-            <td class="text-right"><%= field['count'] %></td>
+            <td class="text-right"><%= number_with_delimiter(field['count']) %></td>
           </tr>
           <% field['pivot'].each do |pivot| %>
             <tr>
-              <td class="pl-5">
-                <%= link_to path_for_facet(items.type_facet, [field['value'], pivot['value']].join(':')) do %>
+              <td class="pl-4 indent-with-caret">
+                <%= link_to path_for_facet(items.type_facet, [field['value'], pivot['value']].join(':')), class: 'value' do %>
                   <%= facet_display_value(items.type_facet, pivot['value']) %>
                 <% end %>
               </td>
-              <td class="text-right"><%= pivot['count'] %></td>
+              <td class="text-right"><%= number_with_delimiter(pivot['count']) %></td>
             </tr>
           <% end if field['pivot'] %>
         <% end %>
@@ -44,11 +44,11 @@
         <% items.by_language.each do |field| %>
           <tr>
             <td>
-              <%= link_to path_for_facet(items.language_field, field['value']) do %>
+              <%= link_to path_for_facet(items.language_field, field['value']), class: 'value' do %>
                 <%= facet_display_value(items.language_field, field['value']) %>
               <% end %>
             </td>
-            <td class="text-right"><%= field['count'] %></td>
+            <td class="text-right"><%= number_with_delimiter(field['count']) %></td>
           </tr>
         <% end %>
       </tbody>

@@ -6,74 +6,55 @@
   margin-top: $footer-top-margin;
   padding: 20px 10px 12px;
   position: absolute;
+  text-align: center;
   width: 100%;
 
-  .logos {
-    font-size: 22px;
-    letter-spacing: 1px;
+  @include media-breakpoint-down('md') {
+    height: $footer-height + 100px;
+  }
 
-    a:hover {
-      text-decoration: none;
-    }
+  @include media-breakpoint-down('xs') {
+    height: $footer-height + 200px;
+  }
 
-    .clir-logo .blacklight-icons {
-      height: 40px;
-      width: 100px;
-      svg {
-        height: 100%;
-        fill: $color-gray-light;
-        width: 100%;
-      }
+  .container {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .logo {
+    align-self: center;
+    flex-grow: 1;
+
+    @include media-breakpoint-down('md') {
+      height: 100px;
     }
+  }
+
+  .logo + .logo {
+    margin-left: 4%;
   }
 
   .partner-heading {
     color: $color-gray-light;
-    font-size: 16px;
-    font-weight: 300;
+    font-size: $font-size-sm;
+    letter-spacing: 0.5px;
     margin-right: 12px;
-    text-align: left;
   }
 
   .partner-logo {
     display: inline-block;
     margin-top: 10px;
 
+    .sul-logo {
+      height: 40px;
+    }
+
     .mellon-logo {
       height: 50px;
-    }
-  }
-}
-
-@media (max-width: 991px) {
-  .footer {
-    padding-top: 15px;
-    text-align: center;
-
-    .logos {
-      font-size: 20px;
-    }
-  }
-}
-
-@media (max-width: 575px) {
-  .footer {
-    height: $footer-height + $footer-mobile-adjustment;
-
-    .logos {
-      font-size: 16px;
-    }
-
-    .partner-logo {
-      margin-top: 6px;
-
-      .mellon-logo {
-        height: 40px;
-      }
-    }
-
-    .mellon {
-      margin-top: $spacer * 1.5;
     }
   }
 }

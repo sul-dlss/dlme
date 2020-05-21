@@ -6,8 +6,18 @@ $breadcrumb-item-padding-x: 0.5rem !default;
 .filter-value,
 .tooltip-inner,
 .document-metadata dd,
+.browse-category-title,
+.blacklight-browse-show h1 .title,
+.blacklight-statistics-show .value,
 .index_title a {
   unicode-bidi: plaintext;
+}
+
+.tooltip-inner {
+  .from, .to {
+    direction: ltr;
+    unicode-bidi: isolate;
+  }
 }
 
 .document-counter {
@@ -33,10 +43,6 @@ $breadcrumb-item-padding-x: 0.5rem !default;
 
   .dl-invert dt {
     text-align: left;
-  }
-
-  .breadcrumb-item + .breadcrumb-item::before {
-    content: "\\";
   }
 
   /** Fix margins for the inline list (used in the footer) */
@@ -112,7 +118,7 @@ $breadcrumb-item-padding-x: 0.5rem !default;
 
     .h-leaf {
       padding-left: 0;
-      padding-right: 1.3em;
+      padding-right: 0;
     }
 
     .facet-count {
@@ -124,6 +130,35 @@ $breadcrumb-item-padding-x: 0.5rem !default;
   .limit_content.range_limit{
     .profile, form.range_limit {
       direction: ltr;
+    }
+
+    .flot-svg svg text {
+      unicode-bidi: plaintext;
+    }
+  }
+
+  #sidebar .contact-properties {
+    padding-left: 0;
+    padding-right: 1rem;
+  }
+
+  .edit-button {
+    margin-left: 1rem;
+  }
+
+  .dlme-logo {
+    margin-left: 0.75rem;
+    margin-right: 0;
+  }
+
+  .image-masthead {
+    .navbar-nav  {
+      padding-right: 0;
+    }
+
+    .nav-item + .nav-item,
+    .navbar-brand {
+      margin-right: 0;
     }
   }
 }

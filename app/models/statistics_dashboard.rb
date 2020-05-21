@@ -16,11 +16,18 @@ class StatisticsDashboard
       'cho_language.en_ssim',
       'cho_language.ar-Arab_ssim'
     ],
+    'f.agg_provider_country.ar-Arab_ssim.facet.limit' => -1,
+    'f.agg_provider_country.en_ssim.facet.limit' => -1,
+    'f.agg_data_provider_collection_ssim.facet.limit' => -1,
+    'f.cho_language.en_ssim.facet.limit' => -1,
+    'f.cho_language.ar-Arab_ssim.facet.limit' => -1,
     'facet.pivot': [
       %w[cho_edm_type.en_ssim cho_has_type.en_ssim].join(','),
       %w[cho_edm_type.ar-Arab_ssim cho_has_type.ar-Arab_ssim].join(','),
       %w[agg_provider.en_ssim agg_provider_country.en_ssim agg_data_provider_collection_ssim].join(','),
-      %w[agg_provider.ar-Arab_ssim agg_provider_country.ar-Arab_ssim agg_data_provider_collection_ssim].join(',')
+      %w[agg_provider.ar-Arab_ssim agg_provider_country.ar-Arab_ssim agg_data_provider_collection_ssim].join(','),
+      %w[agg_data_provider.en_ssim agg_provider_country.en_ssim agg_data_provider_collection_ssim].join(','),
+      %w[agg_data_provider.ar-Arab_ssim agg_provider_country.ar-Arab_ssim agg_data_provider_collection_ssim].join(',')
     ]
   }.freeze
 
@@ -33,8 +40,12 @@ class StatisticsDashboard
     @items ||= Items.new(response)
   end
 
-  def contributors
-    @contributors ||= Contributors.new(response)
+  def item_contributors
+    @item_contributors ||= Contributors.new(response, provider_field: 'agg_data_provider')
+  end
+
+  def data_contributors
+    @data_contributors ||= Contributors.new(response, provider_field: 'agg_provider')
   end
 
   def collections
@@ -153,9 +164,11 @@ class StatisticsDashboard
 
   # Represents data in the Contributors section of the dashboard
   class Contributors
-    attr_reader :response
-    def initialize(response)
+    attr_reader :response, :provider_field_key
+
+    def initialize(response, provider_field: nil)
       @response = response
+      @provider_field_key = provider_field
     end
 
     def total
@@ -163,7 +176,7 @@ class StatisticsDashboard
     end
 
     def total_countries
-      institutions.collect(&:country).uniq.count
+      institutions.collect(&:countries).flatten.uniq.count
     end
 
     def institutions
@@ -178,7 +191,7 @@ class StatisticsDashboard
     end
 
     def provider_field
-      StatisticsDashboard.locale_aware_field('agg_provider')
+      StatisticsDashboard.locale_aware_field(provider_field_key)
     end
 
     # Represents each row in the Contributors table
@@ -192,8 +205,8 @@ class StatisticsDashboard
         facet['value']
       end
 
-      def country
-        country_facet&.[]('value')
+      def countries
+        facet&.[]('pivot')&.map { |country| country['value'] }
       end
 
       def collection_count

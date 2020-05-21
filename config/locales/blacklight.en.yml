@@ -1,3 +1,8 @@
 en:
   blacklight:
     application_name: 'Digital Library of the Middle East'
+    search:
+      facets:
+        title: Refine your results
+      facets-homepage:
+        title: Find items by ...
