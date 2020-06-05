@@ -1,0 +1,7 @@
+<% if document.first('agg_is_shown_at.wr_id_ssim').present? %>
+  <div class="view-on-contributor-website">
+    <%= link_to document.first('agg_is_shown_at.wr_id_ssim') do %>
+      <%= t('catalog.show_with_viewer.view_on_contributor_website') %>
+    <% end %>
+  </div>
+<% end %>
