@@ -1,11 +1,14 @@
 <% if document.iiifable? %>
   <%= render_document_partial(document, 'mirador') %>
+  <%= render 'contributor_link', document: document %>
   <%= render 'show', document: document %>
 <% elsif document.embeddable? %>
   <%= render_document_partial(document, 'oembed') %>
+  <%= render 'contributor_link', document: document %>
   <%= render 'show', document: document %>
 <% elsif document.openseadragonable? %>
   <%= render_document_partial(document, 'openseadragon') %>
+  <%= render 'contributor_link', document: document %>
   <%= render 'show', document: document %>
 <% elsif has_thumbnail?(document) %>
   <div class="row">
