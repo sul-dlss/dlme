@@ -36,6 +36,7 @@ class StatisticsDashboard
   }.freeze
 
   attr_reader :search_service
+
   def initialize(search_service:)
     @search_service = search_service
   end
@@ -81,6 +82,7 @@ class StatisticsDashboard
   # Represents data in the Itms section of the dashboard
   class Items
     attr_reader :response
+
     def initialize(response)
       @response = response
     end
@@ -137,6 +139,7 @@ class StatisticsDashboard
   # Represents data in the Collections section of the dashboard
   class Collections
     attr_reader :response
+
     def initialize(response)
       @response = response
     end
@@ -201,6 +204,7 @@ class StatisticsDashboard
     # Represents each row in the Contributors table
     class Institution
       attr_reader :facet
+
       def initialize(facet)
         @facet = facet
       end
