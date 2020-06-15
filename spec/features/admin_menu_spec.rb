@@ -14,9 +14,9 @@ RSpec.describe 'Admin menu', type: :feature, js: true do
     visit root_path
 
     within '#user-util-collapse' do
-      expect(page).not_to have_css('li a', text: 'Transform data', visible: true)
+      expect(page).not_to have_css('li a', text: 'Transform data', visible: :visible)
       click_link curator.email
-      expect(page).to have_css('li a', text: 'Transform data', visible: true)
+      expect(page).to have_css('li a', text: 'Transform data', visible: :visible)
     end
   end
 end
