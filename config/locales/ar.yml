@@ -1,6 +1,9 @@
 ---
 ar:
   application_name: مكتبة الشرق الأوسط الرقمية
+  blacklight:
+    range_limit:
+      missing: التاريخ غير معروف
   catalog:
     show_with_viewer:
       view_on_contributor_website: اعرض على موقع المساهمين
@@ -57,9 +60,9 @@ ar:
   statistics:
     contributors:
       agg_data_provider:
-        total_html: مساهمين العناصر و &middot; %{total}
+        total_html: " مساهمين العناصر  &middot; %{total}"
       agg_provider:
-        total_html: مساهمين البيانات و &middot; %{total}
+        total_html: مساهمين البيانات  &middot; %{total}
       table:
         collections: مجموعات
         country: دول
