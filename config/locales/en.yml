@@ -1,6 +1,9 @@
 ---
 en:
   application_name: Digital Library of the Middle East
+  blacklight:
+    range_limit:
+      missing: Date unknown
   catalog:
     show_with_viewer:
       view_on_contributor_website: View on contributor website

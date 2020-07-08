@@ -105,6 +105,7 @@ ignore_unused:
   - '{spotlight}.*'
   - '{dlme_jsons,dlme_s3s}.form.title'
   - '{date}.*'
+  - 'blacklight.range_limit.*'
 # - 'activerecord.attributes.*'
 # - '{devise,kaminari,will_paginate}.*'
 # - 'simple_form.{yes,no}'
