@@ -40,6 +40,7 @@ services:
       - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=sekret
+      - POSTGRES_DB=dlme
     volumes:
       - postgres-data:/var/lib/postgresql/data
   solr:

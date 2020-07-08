@@ -79,14 +79,27 @@ code will be shared into the container so that the webapp will be dynamically re
 [FIRST RUN]
 $ docker-compose up -d postgres
 $ docker-compose build app
-$ docker-compose run app rake db:setup
-$ docker-compose run app rake spotlight:initialize
+$ docker-compose build sidekiq
+$ docker-compose run app bundle exec rake db:setup
+$ docker-compose run app bundle exec rake spotlight:initialize
 [THEN]
 $ docker-compose up -d
 ```
 
 Once the DLME Rails app is running you can create an exhibit. The title will need to be 'dlme' and the URL slug will
 need to be 'library'.
+
+#### Resetting Docker
+
+It's possible that if you previously started the above docker-compose stack without the proper database name you will need to remove
+the existing database volume in order to reset.
+
+```console
+docker container prune
+docker volume prune
+```
+
+Then rerun the commands above for starting docker.
 
 ### Local transforms
 
