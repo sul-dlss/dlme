@@ -37,8 +37,8 @@ group :development, :test do
   gem 'byebug'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 3.0'
-  gem 'rspec-rails'
   gem 'rspec_junit_formatter'
+  gem 'rspec-rails'
   gem 'selenium-webdriver'
   # Codeclimate is not compatible with 0.18+. See https://github.com/codeclimate/test-reporter/issues/413
   gem 'simplecov', '~> 0.17.1'
