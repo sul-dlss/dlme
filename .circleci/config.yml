@@ -21,6 +21,15 @@ jobs:
       command: bin/solr -cloud -noprompt -f -p 8983
     steps:
     - checkout
+    - run:
+          name: "Update Node.js and npm"
+          command: |
+            curl -sSL "https://nodejs.org/dist/v10.18.1/node-v10.18.1-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v10.18.1-linux-x64/bin/node
+            curl https://www.npmjs.com/install.sh | sudo bash
+
+    - run:
+          name: Check current version of node
+          command: node -v
 
     # Upgrade bundler
     - run:
