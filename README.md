@@ -122,7 +122,7 @@ AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws s3api \
 
 AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws sns \
     --endpoint-url=http://localhost:4575 subscribe \
-    --topic-arn arn:aws:sns:us-east-1:123456789012:dlme-transform \
+    --topic-arn arn:aws:sns:us-east-1:000000000000:dlme-transform \
     --protocol http \
     --region us-east-1 \
     --notification-endpoint http://app:3000/transform_result
@@ -139,7 +139,7 @@ docker run --rm -e S3_BUCKET=dlme-transform \
                 -e AWS_ACCESS_KEY_ID=999999 \
                 -e AWS_SECRET_ACCESS_KEY=1231 \
                 -e AWS_DEFAULT_REGION=us-east-1 \
-                -e SNS_TOPIC_ARN=arn:aws:sns:us-east-1:123456789012:dlme-transform \
+                -e SNS_TOPIC_ARN=arn:aws:sns:us-east-1:000000000000:dlme-transform \
                 -e SNS_ENDPOINT_URL=http://localhost:4575 \
                 -e S3_ENDPOINT_URL=http://localhost:4572 \
                 -e S3_BASE_URL=http://localstack:4572 \
