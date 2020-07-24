@@ -101,7 +101,7 @@ docker volume prune
 
 Then rerun the commands above for starting docker.
 
-In some cases Docker containers may get stale and more thourough steps may be required. To completely clear all docker containers, pull new ones, and install packages:
+In some cases Docker containers may get stale and more thorough steps may be required. To completely clear all docker containers, pull new ones, and install packages:
 
 ```console
 docker system prune -a -f --volumes
@@ -110,7 +110,7 @@ docker-compose pull
 bin/yarn install
 ```
 
-The `docker ps -aq` command should return no containers. If container ids are returned, restart docker and run `docker system prune -a -f --volumes` again. Once these are completer rerun the commands above for starting docker. Note: for local transforms you will need to rebuild the dlme-transform container again as well. 
+The `docker ps -aq` command should return no containers. If container ids are returned, restart docker and run `docker system prune -a -f --volumes` again. Once these are complete rerun the commands above for starting docker. Note: for local transforms you will need to rebuild the dlme-transform container again as well. 
 
 ### Local transforms
 
