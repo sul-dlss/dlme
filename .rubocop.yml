@@ -50,6 +50,9 @@ RSpec/MultipleExpectations:
 RSpec/NestedGroups:
   Max: 4
 
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
 Layout/EmptyLinesAroundAttributeAccessor:
   Enabled: true
 Layout/SpaceAroundMethodCallOperator:
