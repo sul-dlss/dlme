@@ -472,7 +472,7 @@ GEM
       parser (>= 2.7.1.4)
     rubocop-performance (1.8.0)
       rubocop (>= 0.87.0)
-    rubocop-rails (2.8.0)
+    rubocop-rails (2.7.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 0.87.0)
@@ -649,7 +649,7 @@ DEPENDENCIES
   rspec_junit_formatter
   rubocop (~> 0.65)
   rubocop-performance
-  rubocop-rails
+  rubocop-rails (> 2.7, != 2.8.0)
   rubocop-rspec
   sass-rails (~> 5.0)
   selenium-webdriver
