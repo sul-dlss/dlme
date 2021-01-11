@@ -8,7 +8,7 @@ en:
     show_with_viewer:
       view_on_contributor_website: View on contributor website
   contextual_result_info:
-    body_html: You might see more results for your query by <a href='%{link}'>entering your search terms in another language<a>.
+    body_html: You might see more results for your query by <a href='%{link}'>entering your search terms in another language</a>.
     disable_session: Don't show again
     dismiss: Dismiss
   date:
