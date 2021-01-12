@@ -32,10 +32,12 @@ feature_flags:
 
 searching_site_slug: 'searching-this-site'
 
+# en is placed first in this list so that when the codes are sorted en will be the
+# first to come after the codes sorted to the beginning (e.g. *-Arab or *-Latn)
 acceptable_bcp47_codes:
+  - en
   - ar-Arab
   - ar-Latn
-  - en
   - fa-Arab
   - fa-Latn
   - fr

@@ -4,8 +4,8 @@
 module MultilingualLocaleAwareField
   def lang_config
     @lang_config ||= {
-      'ar' => [%w[ar-Arab ar-Latn], default: (%w[en none] + Settings.acceptable_bcp47_codes).uniq],
-      'en' => ['en', default: (%w[ar-Arab ar-Latn none] + Settings.acceptable_bcp47_codes).uniq]
+      'ar' => ['ar-Arab', default: (sorted_locales(Settings.acceptable_bcp47_codes, '-Arab') + %w[none]).uniq],
+      'en' => ['en', default: (sorted_locales(Settings.acceptable_bcp47_codes, '-Latn') + %w[none]).uniq]
     }.with_indifferent_access
   end
 
@@ -39,5 +39,17 @@ module MultilingualLocaleAwareField
         end
       end
     }
+  end
+
+  private
+
+  def sorted_locales(locales, sort_by)
+    locales.sort_by.with_index do |locale, index|
+      if locale.include?(sort_by)
+        index - locales.length
+      else
+        index
+      end
+    end
   end
 end
