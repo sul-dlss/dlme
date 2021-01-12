@@ -56,6 +56,9 @@ class CatalogController < ApplicationController
       **multilingual_locale_aware_field('cho_title')
     )
 
+    config.index.document_presenter_class = DlmeIndexPresenter
+    config.show.document_presenter_class = DlmeShowPresenter
+
     config.index.thumbnail_field = 'agg_preview.wr_id_ssim'
     config.index.default_thumbnail = 'default.png'
 
