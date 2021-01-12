@@ -87,6 +87,32 @@ RSpec.describe SolrDocument do
     end
   end
 
+  describe '#iiifable?' do
+    context 'known IIIF provider' do
+      let(:source) do
+        {
+          'agg_is_shown_at.wr_is_referenced_by_ssi' => ['https://iiif.bodleian.ox.ac.uk/iiif/manifest/22974622-d838-4496-8835-33ecda85f21f.json']
+        }
+      end
+
+      it do
+        expect(document.iiifable?).to be true
+      end
+    end
+
+    context 'http:// IIIF provider' do
+      let(:source) do
+        {
+          'agg_is_shown_at.wr_is_referenced_by_ssi' => ['http://iiif.bodleian.ox.ac.uk/iiif/manifest/22974622-d838-4496-8835-33ecda85f21f.json']
+        }
+      end
+
+      it do
+        expect(document.iiifable?).to be false
+      end
+    end
+  end
+
   describe '#iiif_manifest_url' do
     context 'known IIIF provider' do
       let(:source) do
