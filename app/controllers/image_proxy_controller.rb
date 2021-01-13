@@ -3,7 +3,7 @@
 ##
 # Controller for proxying HTTP images
 class ImageProxyController < ApplicationController
-  before_action :validate_token
+  before_action :validate_referer
 
   CacheableResponse = Struct.new(:body, :type)
 
@@ -15,8 +15,8 @@ class ImageProxyController < ApplicationController
 
   ##
   # To prevent outside applications from using this proxy
-  def validate_token
-    render plain: 'invalid token', status: :forbidden unless valid_authenticity_token?(session, image_token)
+  def validate_referer
+    render plain: 'invalid referrer', status: :forbidden unless request.referer.to_s.starts_with?(root_url)
   end
 
   def proxied_response
@@ -32,9 +32,5 @@ class ImageProxyController < ApplicationController
 
   def image_url
     params.require(:url)
-  end
-
-  def image_token
-    params.require(:token)
   end
 end
