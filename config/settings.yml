@@ -16,6 +16,8 @@ analytics:
   pkcs12_key_path: ~
   email: ~
 
+cache_period: <%= 12.hours %>
+
 contact:
   email: ~
 
