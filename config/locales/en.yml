@@ -19,7 +19,10 @@ en:
   date_field: "%{gregorian_dates} / %{hijri_dates}"
   date_field_gregorian: "%{dates} (Gregorian)"
   date_field_hijri: "%{dates} (Hijri)"
+  date_field_label_gregorian: Gregorian
+  date_field_label_hijri: Hijri
   date_range: "%{min} - %{max}"
+  date_range_calendar: 'Calendar:'
   dlme_jsons:
     edit:
       add_item: Save
