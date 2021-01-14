@@ -36,7 +36,7 @@ class SolrDocument
   end
 
   def iiifable?
-    iiif_manifest_url.present?
+    iiif_manifest_url.present? && iiif_manifest_url.starts_with?('https://')
   end
 
   def iiif_manifest_url

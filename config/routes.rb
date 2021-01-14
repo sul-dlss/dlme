@@ -61,6 +61,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'image_proxy' => 'image_proxy#access', as: 'image_proxy'
+
   Blacklight::Engine.routes.default_scope = { path: "(:locale)", locale: Regexp.union(Spotlight::Engine.config.i18n_locales.keys.map(&:to_s)), module: 'blacklight' }
   mount Blacklight::Engine => '/'
 
