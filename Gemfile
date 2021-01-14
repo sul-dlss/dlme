@@ -94,6 +94,7 @@ gem 'devise-guests', '~> 0.6'
 gem 'dry-validation'
 
 gem 'honeybadger'
+gem 'http'
 gem 'lograge'
 gem 'okcomputer'
 gem 'rack-attack'
