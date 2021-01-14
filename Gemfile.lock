@@ -1,3 +1,47 @@
+GIT
+  remote: https://github.com/projectblacklight/spotlight.git
+  revision: 7d7820fcc6d98ffd63cb13595fad783fad6f987a
+  branch: master
+  specs:
+    blacklight-spotlight (3.0.0.rc2)
+      acts-as-taggable-on (>= 5.0, < 7)
+      almond-rails (>= 0.3.0)
+      autoprefixer-rails
+      blacklight (~> 7.0)
+      bootstrap_form (~> 4.1)
+      breadcrumbs_on_rails (~> 3.0)
+      cancancan
+      carrierwave
+      clipboard-rails (~> 1.5)
+      devise (~> 4.1)
+      devise_invitable
+      faraday
+      faraday_middleware
+      friendly_id (~> 5.2, < 5.4)
+      github-markup
+      i18n
+      i18n-active_record
+      iiif-presentation
+      iiif_manifest
+      leaflet-rails
+      legato
+      mini_magick
+      nokogiri
+      oauth2
+      openseadragon
+      paper_trail (~> 10.0)
+      rails (< 6.1)
+      riiif (~> 2.0)
+      roar (~> 1.1)
+      roar-rails
+      signet
+      sir_trevor_rails (>= 0.6.1)
+      sprockets (< 4)
+      sprockets-es6
+      thor
+      tophat
+      underscore-rails (~> 1.6)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -97,44 +141,6 @@ GEM
       blacklight (~> 7.0)
       rails
       ruby-oembed
-    blacklight-spotlight (3.0.0.rc2)
-      acts-as-taggable-on (>= 5.0, < 7)
-      almond-rails (>= 0.3.0)
-      autoprefixer-rails
-      blacklight (~> 7.0)
-      bootstrap_form (~> 4.1)
-      breadcrumbs_on_rails (~> 3.0)
-      cancancan
-      carrierwave
-      clipboard-rails (~> 1.5)
-      devise (~> 4.1)
-      devise_invitable
-      faraday
-      faraday_middleware
-      friendly_id (~> 5.2, < 5.4)
-      github-markup
-      i18n
-      i18n-active_record
-      iiif-presentation
-      iiif_manifest
-      leaflet-rails
-      legato
-      mini_magick
-      nokogiri
-      oauth2
-      openseadragon
-      paper_trail (~> 10.0)
-      rails (< 6.1)
-      riiif (~> 2.0)
-      roar (~> 1.1)
-      roar-rails
-      signet
-      sir_trevor_rails (>= 0.6.1)
-      sprockets (< 4)
-      sprockets-es6
-      thor
-      tophat
-      underscore-rails (~> 1.6)
     blacklight_range_limit (7.9.1)
       blacklight (~> 7.0)
     bootsnap (1.5.1)
@@ -301,7 +307,7 @@ GEM
       activesupport (>= 3.2.18)
       faraday (>= 0.9)
       json
-    iiif_manifest (1.0.1)
+    iiif_manifest (1.1.0)
       activesupport (>= 4)
     image_processing (1.12.1)
       mini_magick (>= 4.9.5, < 5)
@@ -637,7 +643,7 @@ DEPENDENCIES
   blacklight-gallery (>= 0.3.0)
   blacklight-hierarchy
   blacklight-oembed (>= 0.1.0)
-  blacklight-spotlight (~> 3.0.alpha)
+  blacklight-spotlight!
   blacklight_range_limit (~> 7.4)
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.0)
