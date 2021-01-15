@@ -36,41 +36,149 @@
        <float name="tie">0.01</float>
        <!-- this qf and pf are used by default, if not otherwise specified by
             client. The default blacklight_config will use these for the
-            "keywords" search. See the author_qf/author_pf, title_qf, etc 
+            "keywords" search. See the author_qf/author_pf, title_qf, etc
             below, which the default blacklight_config will specify for
             those searches. You may also be interested in:
             http://wiki.apache.org/solr/LocalParams
        -->
         <str name="qf">
-          id
-          cho_title_exact_tsim^5000
-          cho_alternative_exact_tsim^2500
-          cho_title_tsim^1000
-          cho_alternative_tsim^500
+          id^10000
+          cho_identifier_ssim^5000
+          cho_identifier_ssim^5
 
-          cho_title_tarsim^50
-          cho_title_tesim^50
-          cho_title_tfasim^50
-          cho_title_ttrsim^50
+          cho_title_exact_tsim^1000
+          cho_alternative_exact_tsim^500
+          cho_title_tsim^700
+          cho_alternative_tsim^300
+
+          cho_title_tarsim^150
+          cho_title_tesim^150
+          cho_title_tfasim^150
+          cho_title_ttrsim^150
           cho_alternative_tarsim^10
           cho_alternative_tesim^10
           cho_alternative_tfasim^10
           cho_alternative_ttrsim^10
-          cho_creator_tarsim^100
-          cho_creator_tesim^100
-          cho_creator_tfasim^100
-          cho_creator_ttrsim^100
+          cho_creator_tarsim^120
+          cho_creator_tesim^120
+          cho_creator_tfasim^120
+          cho_creator_ttrsim^120
           cho_contributor_tarsim^100
           cho_contributor_tesim^100
           cho_contributor_tfasim^100
           cho_contributor_ttrsim^100
 
+          cho_title_creator_tsim^50
           cho_creator_fuzzy_tsim
           cho_contributor_fuzzy_tsim
-          all_text_timv
+          all_text_timv^15
+          all_text.en_timv^5
+          all_text.ar_timv^5
         </str>
+
         <str name="pf">
-          all_text_timv^10
+          cho_title_exact_tsim^5000
+          cho_alternative_exact_tsim^2500
+          cho_title_tsim^1000
+          cho_alternative_tsim^500
+
+          cho_title_tarsim^250
+          cho_title_tesim^250
+          cho_title_tfasim^250
+          cho_title_ttrsim^250
+          cho_alternative_tarsim^50
+          cho_alternative_tesim^50
+          cho_alternative_tfasim^50
+          cho_alternative_ttrsim^50
+          cho_creator_tarsim^220
+          cho_creator_tesim^220
+          cho_creator_tfasim^220
+          cho_creator_ttrsim^220
+          cho_contributor_tarsim^200
+          cho_contributor_tesim^200
+          cho_contributor_tfasim^200
+          cho_contributor_ttrsim^200
+          cho_creator_fuzzy_tsim^50
+          cho_contributor_fuzzy_tsim^50
+          cho_title_creator_tsim^50
+
+          cho_coverage_tsim^25
+          cho_spatial_tsim^25
+          cho_temporal_tsim^25
+
+          all_text_timv^15
+          all_text.en_timv^5
+          all_text.ar_timv^5
+        </str>
+
+        <str name="pf2">
+          cho_title_exact_tsim^3000
+          cho_alternative_exact_tsim^700
+          cho_title_tsim^300
+          cho_alternative_tsim^100
+
+          cho_title_tarsim^50
+          cho_title_tesim^50
+          cho_title_tfasim^50
+          cho_title_ttrsim^50
+          cho_alternative_tarsim^50
+          cho_alternative_tesim^50
+          cho_alternative_tfasim^50
+          cho_alternative_ttrsim^50
+          cho_creator_tarsim^20
+          cho_creator_tesim^20
+          cho_creator_tfasim^20
+          cho_creator_ttrsim^20
+          cho_contributor_tarsim^00
+          cho_contributor_tesim^00
+          cho_contributor_tfasim^00
+          cho_contributor_ttrsim^00
+          cho_creator_fuzzy_tsim^50
+          cho_contributor_fuzzy_tsim^50
+          cho_title_creator_tsim^50
+
+          cho_coverage_tsim^5
+          cho_spatial_tsim^5
+          cho_temporal_tsim^5
+
+          all_text_timv^15
+          all_text.en_timv^5
+          all_text.ar_timv^5
+        </str>
+
+        <str name="pf3">
+          cho_title_exact_tsim^4000
+          cho_alternative_exact_tsim^1500
+          cho_title_tsim^700
+          cho_alternative_tsim^300
+
+          cho_title_tarsim^150
+          cho_title_tesim^150
+          cho_title_tfasim^150
+          cho_title_ttrsim^150
+          cho_alternative_tarsim^50
+          cho_alternative_tesim^50
+          cho_alternative_tfasim^50
+          cho_alternative_ttrsim^50
+          cho_creator_tarsim^120
+          cho_creator_tesim^120
+          cho_creator_tfasim^120
+          cho_creator_ttrsim^120
+          cho_contributor_tarsim^100
+          cho_contributor_tesim^100
+          cho_contributor_tfasim^100
+          cho_contributor_ttrsim^100
+          cho_creator_fuzzy_tsim^30
+          cho_contributor_fuzzy_tsim^30
+          cho_title_creator_tsim^80
+
+          cho_coverage_tsim^25
+          cho_spatial_tsim^25
+          cho_temporal_tsim^25
+
+          all_text_timv^15
+          all_text.en_timv^5
+          all_text.ar_timv^5
         </str>
 
        <str name="author_qf">
