@@ -17,7 +17,7 @@ jobs:
         RAILS_ENV: test
         NOKOGIRI_USE_SYSTEM_LIBRARIES: true
         CC_TEST_REPORTER_ID: 0603d31c367f7e726e4db6e249d4b62025c768000d43b02259a65e8486812362
-    - image: solr:8
+    - image: solr:7
       command: bin/solr -cloud -noprompt -f -p 8983
     steps:
     - checkout
