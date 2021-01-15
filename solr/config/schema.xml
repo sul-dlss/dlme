@@ -73,6 +73,9 @@
 
     <!-- you must define copyField source and dest fields explicity or schemaBrowser doesn't work -->
     <field name="all_text_timv" type="text" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+    <field name="all_text.ar_timv" type="text_en" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+    <field name="all_text.en_timv" type="text_ar" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+
   </fields>
 
 
@@ -106,6 +109,9 @@
   <copyField source="cho_contributor_tsim" dest="cho_contributor_ttrsim" />
   <copyField source="*_tsim" dest="all_text_timv" maxChars="3000"/>
   <copyField source="*_tesim" dest="all_text_timv" maxChars="3000"/>
+
+  <copyField source="*.en_ssim" dest="all_text.en_timv" maxChars="3000"/>
+  <copyField source="*.ar-Arab_ssim" dest="all_text.ar_timv" maxChars="3000"/>
 
   <types>
     <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
