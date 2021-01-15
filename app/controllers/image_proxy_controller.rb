@@ -23,7 +23,7 @@ class ImageProxyController < ApplicationController
     @proxied_response ||= begin
       Rails.cache.fetch([image_url], expires_in: Settings.cache_period) do
         benchmark "Fetch #{image_url}" do
-          response = HTTP.get(image_url)
+          response = HTTP.follow.get(image_url)
           CacheableResponse.new(response.body.to_s, response.content_type.to_s)
         end
       end
