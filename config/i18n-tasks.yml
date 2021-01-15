@@ -106,6 +106,8 @@ ignore_unused:
   - '{dlme_jsons,dlme_s3s}.form.title'
   - '{date}.*'
   - 'blacklight.range_limit.*'
+  - 'date_field_label_gregorian'
+  - 'date_field_label_hijri'
 # - 'activerecord.attributes.*'
 # - '{devise,kaminari,will_paginate}.*'
 # - 'simple_form.{yes,no}'
