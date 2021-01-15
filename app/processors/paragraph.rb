@@ -13,6 +13,6 @@ class Paragraph < Blacklight::Rendering::AbstractStep
   private
 
   def html_context?
-    context.try(:request)&.format&.html?
+    context&.request&.format&.html?
   end
 end
