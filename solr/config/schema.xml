@@ -107,9 +107,8 @@
   <copyField source="cho_contributor_tsim" dest="cho_contributor_tesim" />
   <copyField source="cho_contributor_tsim" dest="cho_contributor_tfasim" />
   <copyField source="cho_contributor_tsim" dest="cho_contributor_ttrsim" />
-  <copyField source="*_tsim" dest="all_text_timv" maxChars="3000"/>
-  <copyField source="*_tesim" dest="all_text_timv" maxChars="3000"/>
 
+  <copyField source="*_ssim" dest="all_text_timv" maxChars="3000"/>
   <copyField source="*.en_ssim" dest="all_text.en_timv" maxChars="3000"/>
   <copyField source="*.ar-Arab_ssim" dest="all_text.ar_timv" maxChars="3000"/>
 
