@@ -120,7 +120,7 @@ class CatalogController < ApplicationController
                              { field: 'cho_date_range_norm_isim', type: 'gregorian' },
                              { field: 'cho_date_range_hijri_isim', type: 'hijri' }
                            ],
-                           show: proc { |context, field_config, _response| !context&.has_range_limit_parameters? || context.params.dig('range', field_config.field).present? } # rubocop:disable Layout/LineLength
+                           show: proc { |context, field_config, _response| !(context.respond_to?(:has_range_limit_parameters?) && context.has_range_limit_parameters?) || context.params.dig('range', field_config.field).present? } # rubocop:disable Layout/LineLength
     config.add_facet_field 'cho_date_range_hijri_isim',
                            field: 'cho_date_range_hijri_isim',
                            range: true,
