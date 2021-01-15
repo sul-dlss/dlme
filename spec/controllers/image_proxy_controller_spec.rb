@@ -5,6 +5,7 @@ require 'rails_helper'
 RSpec.describe ImageProxyController do
   describe 'GET access' do
     let(:image_response) { instance_double('HTTP::Response', body: '', content_type: 'image/jpeg') }
+    let(:http_client) { instance_double('HTTP::Client') }
 
     # rubocop:disable RSpec/BeforeAfterAll
     before(:all) do
@@ -15,7 +16,8 @@ RSpec.describe ImageProxyController do
     it 'proxies an image request' do
       allow(controller).to receive(:valid_authenticity_token?).and_return true
       # rubocop:disable RSpec/MessageSpies
-      expect(HTTP).to receive(:get).with('http://example.com/image1.jpg').and_return(image_response)
+      expect(HTTP).to receive(:follow).and_return http_client
+      expect(http_client).to receive(:get).with('http://example.com/image1.jpg').and_return(image_response)
       # rubocop:enable RSpec/MessageSpies
       request.headers['Referer'] = controller.search_catalog_url
       get :access, params: { url: 'http://example.com/image1.jpg' }
