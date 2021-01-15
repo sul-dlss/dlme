@@ -32,7 +32,7 @@
        <str name="q.alt">*:*</str>
        <str name="mm">2&lt;-1 5&lt;-2 6&lt;90%</str>
        <int name="qs">1</int>
-       <int name="ps">2</int>
+       <int name="ps">1</int>
        <float name="tie">0.01</float>
        <!-- this qf and pf are used by default, if not otherwise specified by
             client. The default blacklight_config will use these for the
