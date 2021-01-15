@@ -21,6 +21,7 @@
 //= require bootstrap
 //= require bootstrap/util
 //= require blacklight/blacklight
+//= require blacklight_gallery
 
 //= require transform_result
 //= require i18n/translations

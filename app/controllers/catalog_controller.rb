@@ -14,6 +14,12 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
+    config.view.gallery.document_component = Blacklight::Gallery::DocumentComponent
+    # config.view.gallery.classes = 'row-cols-2 row-cols-md-3'
+    config.view.masonry.document_component = Blacklight::Gallery::DocumentComponent
+    config.view.slideshow.document_component = Blacklight::Gallery::SlideshowComponent
+    config.show.tile_source_field = :content_metadata_image_iiif_info_ssm
+    config.show.partials.insert(1, :openseadragon)
     # Disable bookmarks
     config.index.document_actions[:bookmark].if = false
     config.show.document_actions[:bookmark].if = false
@@ -25,8 +31,6 @@ class CatalogController < ApplicationController
     config.show.partials = %i[show_header show_with_viewer ir_view]
 
     config.view.list.partials = %i[thumbnail index_header index]
-    config.view.gallery.partials = %i[index_header index]
-    config.view.slideshow.partials = [:index]
 
     config.add_results_collection_tool(:sort_widget)
     config.add_results_collection_tool(:per_page_widget)
