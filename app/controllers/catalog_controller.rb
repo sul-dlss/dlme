@@ -218,6 +218,12 @@ class CatalogController < ApplicationController
         pf: '${author_pf}'
       }
     end
+    config.add_search_field 'identifier', label: 'Identifier' do |field|
+      field.solr_parameters = {
+        qf: '${identifier_qf}',
+        pf: '${identifier_pf}',
+        pf2: '${identifier_pf2}',
+        pf3: '${identifier_pf3}'
       }
     end
 

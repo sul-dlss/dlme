@@ -137,14 +137,22 @@
          cho_identifier_ssim^5000
          cho_identifier_tsim^1000
        </str>
-       <str name="subject_qf">
-          cho_coverage_tsim
-          cho_spatial_tsim
-          cho_temporal_tsim
+       <str name="identifier_pf">
+         id^10000
+         cho_identifier_ssim^5000
+         cho_identifier_tsim^1000
        </str>
-       <str name="subject_pf">
+       <str name="identifier_pf2">
+         id^10000
+         cho_identifier_ssim^5000
+         cho_identifier_tsim^300
        </str>
-       
+       <str name="identifier_pf3">
+         id^10000
+         cho_identifier_ssim^5000
+         cho_identifier_tsim^700
+       </str>
+
        <str name="fl">
          *,
          score
