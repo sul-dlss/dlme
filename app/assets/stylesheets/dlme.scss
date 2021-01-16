@@ -77,7 +77,7 @@ h2, .h2 {
 
 body {
   background-color: $body-background-color;
-  color: $gray-dark;
+  color: $color-gray-dark;
   margin-bottom: $footer-height + $footer-top-margin;
 
   @include media-breakpoint-down('md') {
