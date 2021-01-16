@@ -90,4 +90,17 @@ module ApplicationHelper
   def ir_for_output(value: [], **)
     JSON.parse(value.first)
   end
+
+  ##
+  # Displays Arabic numerals
+  def numberz to_convert, locale = I18n.locale
+    # byebug
+    to_convert = to_convert.to_i.to_s
+    case locale.to_s
+    when 'ar'
+      to_convert.unpack('U*').map{ |e| e + 1584 }.pack('U*')
+    else
+      to_convert
+    end
+  end
 end
