@@ -25,8 +25,9 @@ class CatalogController < ApplicationController
     config.show.partials = %i[show_header show_with_viewer ir_view record_feedback]
 
     config.view.list.partials = %i[thumbnail index_header index]
-    config.view.gallery.partials = %i[index_header index]
-    config.view.slideshow.partials = [:index]
+    config.view.gallery.document_component = Blacklight::Gallery::DocumentComponent
+    config.view.masonry.document_component = Blacklight::Gallery::DocumentComponent
+    config.view.slideshow.document_component = Blacklight::Gallery::SlideshowComponent
 
     config.add_results_collection_tool(:sort_widget)
     config.add_results_collection_tool(:per_page_widget)
