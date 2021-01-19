@@ -80,7 +80,7 @@ gem 'iiif-presentation', '~> 0.2.0'
 gem 'riiif', '~> 2.0'
 gem 'sitemap_generator'
 
-gem 'blacklight-gallery', '>= 0.3.0'
+gem 'blacklight-gallery', '~> 2.1.0'
 gem 'blacklight-hierarchy'
 gem 'blacklight-oembed', '>= 0.1.0'
 gem 'blacklight_range_limit', github: 'projectblacklight/blacklight_range_limit', branch: 'master'
