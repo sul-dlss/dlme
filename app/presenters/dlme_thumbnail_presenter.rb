@@ -6,7 +6,7 @@ class DlmeThumbnailPresenter < Blacklight::ThumbnailPresenter
   ##
   # Overridden to support lazy options
   def thumbnail_tag(image_options = {}, url_options = {})
-    super(image_options.merge(loading: 'lazy'), url_options)
+    super(image_options.merge(loading: 'lazy', class: 'img-thumbnail'), url_options)
   end
 
   private
