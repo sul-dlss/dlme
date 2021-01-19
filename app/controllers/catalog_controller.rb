@@ -129,7 +129,7 @@ class CatalogController < ApplicationController
                              { field: 'cho_date_range_norm_isim', type: 'gregorian' },
                              { field: 'cho_date_range_hijri_isim', type: 'hijri' }
                            ],
-                           show: proc { |context, field_config, _response| context.params.dig('range', field_config.field).present? } # rubocop:disable Layout/LineLength
+                           show: proc { |context, field_config, _response| context.is_a?(Spotlight::SearchConfigurationsController) || context.params.dig('range', field_config.field).present? } # rubocop:disable Layout/LineLength
     config.add_facet_field 'creator',     field: 'cho_creator_ssim', limit: true
     config.add_facet_field 'contributor', field: 'cho_contributor_ssim', limit: true
     config.add_facet_field 'medium',      field: 'cho_medium_ssim', limit: true
