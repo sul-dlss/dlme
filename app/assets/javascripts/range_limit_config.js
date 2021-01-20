@@ -40,7 +40,7 @@ Blacklight.onLoad(function() {
     var newField = $(e.currentTarget).find('.form-check-input').val();
     $customDateRange.find('.custom-range-limit-container').hide();
     $.ajax({
-      url: $customDateRange.data().dateRangeSelectorPath
+      url: $customDateRange.data().dateRangeSelectorPaths[newField]
     }).done(function(html) {
       // Configure facet field appropriately
       configs.forEach(function(conf) {
