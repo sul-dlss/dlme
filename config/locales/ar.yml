@@ -22,7 +22,7 @@ ar:
   date_field_label_gregorian: ميلادي
   date_field_label_hijri: هجري
   date_range: "%{min} - %{max}"
-  date_range_calendar: Calendar
+  date_range_calendar: التقويم
   dlme_jsons:
     edit:
       add_item: احفظ
