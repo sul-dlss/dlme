@@ -3,7 +3,7 @@
 <div
   data-date-range-selector
   data-date-range-selector-original-field="<%= field_name %>"
-  data-date-range-selector-path="<%= range_limit_panel_url(id: facet_configuration[:configured_range_fields].find { |f| f[:field] != field_name }[:field], range: nil) %>"
+  data-date-range-selector-paths="<%= date_range_switcher_query_paths(field_name).to_json %>"
 >
   <form autocomplete="off">
     <div class="form-group">

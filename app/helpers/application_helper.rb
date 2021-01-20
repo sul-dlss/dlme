@@ -27,6 +27,18 @@ module ApplicationHelper
     safe_join(values, '<br />'.html_safe) if values.any?
   end
 
+  ##
+  # Builds out our data attributes used in the custom date range switcher
+  # NOTE: In adding tests, we get the ActionController::UrlGenerationError: No route matches
+  def date_range_switcher_query_paths(field_name)
+    facet_configuration = blacklight_config.facet_fields[field_name]
+    other_field_name = facet_configuration[:configured_range_fields].find { |f| f[:field] != field_name }[:field]
+    {
+      other_field_name => range_limit_panel_url(id: other_field_name, range: nil, locale: :en),
+      field_name => range_limit_panel_url(id: field_name)
+    }
+  end
+
   def display_search_context?
     !session[:disable_search_context] && params[:q].present?
   end
