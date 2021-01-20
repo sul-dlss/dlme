@@ -1,0 +1,27 @@
+<% facet_configuration = blacklight_config.facet_fields[field_name] %>
+
+<div
+  data-date-range-selector
+  data-date-range-selector-original-field="<%= field_name %>"
+  data-date-range-selector-paths="<%= date_range_switcher_query_paths(field_name).to_json %>"
+>
+  <form autocomplete="off">
+    <div class="form-group">
+      <div class="row">
+        <legend class="col-form-label col-sm-4 pt-0 pr-0"><%= t('date_range_calendar') %></legend>
+        <div class="col-sm-8">
+          <% facet_configuration[:configured_range_fields].each do |field| %>
+            <div class="form-check">
+              <%= radio_button_tag :selected_range_field, field[:field], (field[:field] == field_name), class: 'form-check-input' %>
+              <%= label_tag "selected_range_field_#{field[:field]}", t("date_field_label_#{field[:type]}"), class: 'form-check-label' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class='custom-range-limit-container'>
+    <%= render 'blacklight_range_limit/range_limit_panel', field_name: field_name %>
+  </div>
+</div>

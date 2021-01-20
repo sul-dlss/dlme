@@ -21,6 +21,6 @@ class Join < Blacklight::Rendering::AbstractStep
   end
 
   def html_context?
-    context.try(:request)&.format&.html?
+    context&.request&.format&.html?
   end
 end

@@ -15,17 +15,47 @@ Blacklight.onLoad(function() {
   }
   
   var hijriConfig = $.extend({}, config, {
+    field: 'cho_date_range_hijri_isim',
     xaxis: {
       tickFormatter: genericTickFormatter(['bh', 'h'])
     }
   });
   
   var gregorianConfig = $.extend({}, config, {
+    field: 'cho_date_range_norm_isim',
     xaxis: {
       tickFormatter: genericTickFormatter(['bce', 'ce'])
     }
-  })
+  });
 
-  $('.blacklight-cho_date_range_norm_isim').data('plot-config', gregorianConfig);
-  $('.blacklight-cho_date_range_hijri_isim').data('plot-config', hijriConfig);
+  var configs = [gregorianConfig, hijriConfig];
+
+  configs.forEach(function(conf) {
+    $('.blacklight-' + conf.field).data('plot-config', conf);
+  });
+
+  var $customDateRange = $('[data-date-range-selector]');
+
+  $('[data-date-range-selector] .form-check').change(function(e) {
+    var newField = $(e.currentTarget).find('.form-check-input').val();
+    $customDateRange.find('.custom-range-limit-container').hide();
+    $.ajax({
+      url: $customDateRange.data().dateRangeSelectorPaths[newField]
+    }).done(function(html) {
+      // Configure facet field appropriately
+      configs.forEach(function(conf) {
+        if (conf.field === newField) {
+          $('.blacklight-' + $customDateRange.data().dateRangeSelectorOriginalField).data('plot-config', conf);
+        }
+      });
+      // Select content and insert it
+      var $content = $(html).find('.limit_content.range_limit');
+      $customDateRange.find('.custom-range-limit-container').html($content).show();
+      // Rerun Range Limit Setup stuff
+      BlacklightRangeLimit.checkForNeededFacetsToFetch();
+      $(".range_limit .profile .range.slider_js").each(function() {
+        BlacklightRangeLimit.buildSlider(this);
+      });
+    });
+  });
 });

@@ -1,11 +1,18 @@
 GIT
+  remote: https://github.com/projectblacklight/blacklight_range_limit.git
+  revision: 909ef3f8a10a7c583f9d632f79d363cb8865b37e
+  branch: master
+  specs:
+    blacklight_range_limit (7.9.1)
+      blacklight (~> 7.0)
+
+GIT
   remote: https://github.com/projectblacklight/spotlight.git
-  revision: 7d7820fcc6d98ffd63cb13595fad783fad6f987a
+  revision: 2259f18348ec79065582bd644d0705998b29aea0
   branch: master
   specs:
     blacklight-spotlight (3.0.0.rc2)
-      acts-as-taggable-on (>= 5.0, < 7)
-      almond-rails (>= 0.3.0)
+      acts-as-taggable-on (>= 5.0, < 8)
       autoprefixer-rails
       blacklight (~> 7.0)
       bootstrap_form (~> 4.1)
@@ -17,8 +24,9 @@ GIT
       devise_invitable
       faraday
       faraday_middleware
-      friendly_id (~> 5.2, < 5.4)
+      friendly_id (~> 5.2, != 5.4.1, != 5.4.0)
       github-markup
+      handlebars_assets
       i18n
       i18n-active_record
       iiif-presentation
@@ -29,14 +37,15 @@ GIT
       nokogiri
       oauth2
       openseadragon
-      paper_trail (~> 10.0)
-      rails (< 6.1)
+      ostruct (!= 0.3.2, != 0.3.1, != 0.3.0)
+      paper_trail (~> 11.0)
+      rails (< 6.2)
       riiif (~> 2.0)
       roar (~> 1.1)
       roar-rails
       signet
       sir_trevor_rails (>= 0.6.1)
-      sprockets (< 4)
+      sprockets (>= 3)
       sprockets-es6
       thor
       tophat
@@ -86,31 +95,29 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts-as-taggable-on (6.5.0)
-      activerecord (>= 5.0, < 6.1)
+    acts-as-taggable-on (7.0.0)
+      activerecord (>= 5.0, < 6.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    almond-rails (0.3.0)
-      rails (>= 4.2)
     arel (9.0.0)
     ast (2.4.1)
     autoprefixer-rails (10.2.0.0)
       execjs
     aws-eventstream (1.1.0)
-    aws-partitions (1.415.0)
-    aws-sdk-core (3.110.0)
+    aws-partitions (1.416.0)
+    aws-sdk-core (3.111.1)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
-    aws-sdk-kms (1.40.0)
+    aws-sdk-kms (1.41.0)
       aws-sdk-core (~> 3, >= 3.109.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-s3 (1.87.0)
       aws-sdk-core (~> 3, >= 3.109.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
-    aws-sdk-sns (1.36.0)
+    aws-sdk-sns (1.37.0)
       aws-sdk-core (~> 3, >= 3.109.0)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.2)
@@ -121,13 +128,15 @@ GEM
       execjs (~> 2.0)
     bcrypt (3.1.16)
     bindex (0.8.1)
-    blacklight (7.13.2)
+    blacklight (7.14.1)
       deprecation
       globalid
+      i18n (>= 1.7.0)
       jbuilder (~> 2.7)
       kaminari (>= 0.15)
+      ostruct (>= 0.3.2)
       rails (>= 5.1, < 7)
-      view_component
+      view_component (>= 2.23.0)
     blacklight-gallery (2.1.0)
       blacklight (~> 7.7)
       bootstrap (~> 4.0)
@@ -141,8 +150,6 @@ GEM
       blacklight (~> 7.0)
       rails
       ruby-oembed
-    blacklight_range_limit (7.9.1)
-      blacklight (~> 7.0)
     bootsnap (1.5.1)
       msgpack (~> 1.0)
     bootstrap (4.5.3)
@@ -209,7 +216,7 @@ GEM
       devise (>= 4.6)
     diff-lcs (1.4.4)
     diffy (3.4.0)
-    docile (1.3.4)
+    docile (1.3.5)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     dry-configurable (0.12.0)
@@ -259,7 +266,7 @@ GEM
       faraday-net_http (~> 1.0)
       multipart-post (>= 1.2, < 3)
       ruby2_keywords
-    faraday-net_http (1.0.0)
+    faraday-net_http (1.0.1)
     faraday_middleware (1.0.0)
       faraday (~> 1.0)
     ffi (1.14.2)
@@ -268,11 +275,15 @@ GEM
       rake
     font-awesome-rails (4.7.0.6)
       railties (>= 3.2, < 6.2)
-    friendly_id (5.3.0)
+    friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     github-markup (3.0.5)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    handlebars_assets (0.23.8)
+      execjs (~> 2.0)
+      sprockets (>= 2.0.0)
+      tilt (>= 1.2)
     highline (2.0.3)
     honeybadger (4.7.2)
     http (4.4.1)
@@ -346,7 +357,7 @@ GEM
       activesupport (>= 4)
       railties (>= 4)
       request_store (~> 1.0)
-    loofah (2.8.0)
+    loofah (2.9.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.1)
@@ -376,11 +387,12 @@ GEM
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
     okcomputer (1.18.2)
-    openseadragon (0.5.0)
+    openseadragon (0.6.0)
       rails (> 3.2.0)
     orm_adapter (0.5.0)
-    paper_trail (10.3.1)
-      activerecord (>= 4.2)
+    ostruct (0.3.3)
+    paper_trail (11.1.0)
+      activerecord (>= 5.2)
       request_store (~> 1.1)
     parallel (1.20.1)
     parser (3.0.0.0)
@@ -510,7 +522,7 @@ GEM
     ruby-progressbar (1.11.0)
     ruby-vips (2.0.17)
       ffi (~> 1.9)
-    ruby2_keywords (0.0.2)
+    ruby2_keywords (0.0.4)
     ruby_dep (1.5.0)
     rubyzip (2.3.0)
     sass (3.7.4)
@@ -639,12 +651,12 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk-sns
-  blacklight (~> 7.13.2)
-  blacklight-gallery (>= 0.3.0)
+  blacklight (~> 7.14)
+  blacklight-gallery (~> 2.1.0)
   blacklight-hierarchy
   blacklight-oembed (>= 0.1.0)
   blacklight-spotlight!
-  blacklight_range_limit (~> 7.4)
+  blacklight_range_limit!
   bootsnap (>= 1.1.0)
   bootstrap (~> 4.0)
   byebug
@@ -701,4 +713,4 @@ DEPENDENCIES
   webpacker (~> 4.x)
 
 BUNDLED WITH
-   2.2.4
+   2.2.6

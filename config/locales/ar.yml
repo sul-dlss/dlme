@@ -19,7 +19,10 @@ ar:
   date_field: "%{gregorian_dates} / %{hijri_dates}"
   date_field_gregorian: "%{dates} (ميلادي)"
   date_field_hijri: "%{dates}(هجري)"
+  date_field_label_gregorian: ميلادي
+  date_field_label_hijri: هجري
   date_range: "%{min} - %{max}"
+  date_range_calendar: التقويم
   dlme_jsons:
     edit:
       add_item: احفظ

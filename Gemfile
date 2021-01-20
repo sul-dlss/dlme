@@ -71,7 +71,7 @@ end
 
 gem 'aws-sdk-sns'
 
-gem 'blacklight', '~> 7.13.2'
+gem 'blacklight', '~> 7.14'
 gem 'blacklight-spotlight', github: 'projectblacklight/spotlight', branch: 'master'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 
@@ -80,10 +80,10 @@ gem 'iiif-presentation', '~> 0.2.0'
 gem 'riiif', '~> 2.0'
 gem 'sitemap_generator'
 
-gem 'blacklight-gallery', '>= 0.3.0'
+gem 'blacklight-gallery', '~> 2.1.0'
 gem 'blacklight-hierarchy'
 gem 'blacklight-oembed', '>= 0.1.0'
-gem 'blacklight_range_limit', '~> 7.4'
+gem 'blacklight_range_limit', github: 'projectblacklight/blacklight_range_limit', branch: 'master'
 gem 'jquery-rails'
 gem 'rails_autolink'
 gem 'rsolr', '>= 1.0'
