@@ -73,6 +73,9 @@
 
     <!-- you must define copyField source and dest fields explicity or schemaBrowser doesn't work -->
     <field name="all_text_timv" type="text" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+    <field name="all_text.ar_timv" type="text_en" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+    <field name="all_text.en_timv" type="text_ar" stored="false" indexed="true" multiValued="true" termVectors="true" termPositions="true" termOffsets="true"/>
+
   </fields>
 
 
@@ -82,6 +85,7 @@
       copyField also supports a maxChars to copy setting.  -->
 
   <copyField source="id" dest="id_ng" maxChars="3000"/>
+  <copyField source="cho_identifier_ssim" dest="cho_identifier_tsim" />
   <copyField source="cho_title_tsim" dest="cho_title_ng" maxChars="3000"/>
   <copyField source="cho_title_tsim" dest="cho_title_exact_tsim" />
   <copyField source="cho_title_tsim" dest="cho_title_tarsim" />
@@ -103,8 +107,10 @@
   <copyField source="cho_contributor_tsim" dest="cho_contributor_tesim" />
   <copyField source="cho_contributor_tsim" dest="cho_contributor_tfasim" />
   <copyField source="cho_contributor_tsim" dest="cho_contributor_ttrsim" />
-  <copyField source="*_tsim" dest="all_text_timv" maxChars="3000"/>
-  <copyField source="*_tesim" dest="all_text_timv" maxChars="3000"/>
+
+  <copyField source="*_ssim" dest="all_text_timv" maxChars="3000"/>
+  <copyField source="*.en_ssim" dest="all_text.en_timv" maxChars="3000"/>
+  <copyField source="*.ar-Arab_ssim" dest="all_text.ar_timv" maxChars="3000"/>
 
   <types>
     <fieldType name="string" class="solr.StrField" sortMissingLast="true" />

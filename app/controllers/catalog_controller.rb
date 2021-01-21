@@ -218,12 +218,22 @@ class CatalogController < ApplicationController
     config.add_search_field 'all_fields', label: 'Everything'
     config.add_search_field 'title', label: 'Title' do |field|
       field.solr_parameters = {
-        qf: '${title_qf}'
+        qf: '${title_qf}',
+        pf: '${title_pf}'
       }
     end
     config.add_search_field 'author', label: 'Creator / Contributor' do |field|
       field.solr_parameters = {
-        qf: '${author_qf}'
+        qf: '${author_qf}',
+        pf: '${author_pf}'
+      }
+    end
+    config.add_search_field 'identifier', label: 'Identifier' do |field|
+      field.solr_parameters = {
+        qf: '${identifier_qf}',
+        pf: '${identifier_pf}',
+        pf2: '${identifier_pf2}',
+        pf3: '${identifier_pf3}'
       }
     end
 
