@@ -52,11 +52,16 @@ en:
       sidebar:
         sources: Sources
         transform: Transform data
+    header_links:
+      contact: Contact us
     main_navigation:
       statistics: Statistics
     resources:
       fetch:
         queued: Queued for processing.
+    shared:
+      report_a_problem:
+        reporting_from: To contact us about any matter related to DLME, please use the form below.
     sites:
       edit:
         exhibit_home: Exhibit home
