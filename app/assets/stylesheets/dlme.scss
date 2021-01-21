@@ -326,6 +326,14 @@ body {
   margin-bottom: 2rem;
 }
 
+.record-feedback {
+  position: fixed;
+  right: 0;
+  top: 49%;
+  transform: rotate(-90deg);
+  transform-origin: right bottom;
+}
+
 // Overrides for mobile viewports
 @media (max-width: 767px) {
   .navbar-default .navbar-form {

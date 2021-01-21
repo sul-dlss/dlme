@@ -41,6 +41,8 @@ ar:
     partnership_heading: بالشراكة مع
     project_support_heading: المشروع مدعوم من قبل
     project_support_text: مؤسسة أندرو و. ميلون
+  record_feedback:
+    header: ملاحظات واقتراحات
   s3_delete:
     new:
       add_item: احذف العناصر

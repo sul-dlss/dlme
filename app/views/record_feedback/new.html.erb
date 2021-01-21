@@ -1,0 +1,24 @@
+<%= render Blacklight::System::ModalComponent.new do |component| %>
+  <% component.with(:title, t('record_feedback.header')) %>
+
+  <% component.with(:body) do %>
+    <%= bootstrap_form_for(@contact_form || Spotlight::ContactForm.new(current_url: request.original_url), url: exhibit_record_feedback_path(current_exhibit), as: 'contact_form') do |f| %>
+      <%= render '/spotlight/shared/honeypot_field', f: f %>
+      <%= f.hidden_field :current_url %>
+
+      <div class="modal-body">
+        <div class="mb-3">
+          <%= t('.form_help') %>
+        </div>
+
+        <%= f.text_area :message, rows: 4, label: t('.message') %>
+        <%= f.email_field :email, label: t('.email') %>
+      </div>
+
+      <div class="modal-footer">
+        <%= button_tag(t('.close'), class: 'btn btn-outline-dark', data: { 'dismiss': 'modal' }) if request.xhr? %>
+        <%= submit_tag t('.submit'), class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
