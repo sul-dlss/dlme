@@ -41,6 +41,19 @@ en:
     partnership_heading: In partnership with
     project_support_heading: Project supported by
     project_support_text: The Andrew W. Mellon Foundation
+  helpers:
+    submit:
+      record_feedback:
+        created: Your feedback has been submitted. Thank you. We will take care of it as soon as possible.
+  record_feedback:
+    email_subject: DLME item feedback
+    header: Feedback
+    new:
+      close: Close
+      email: Email address (optional)
+      form_help: If you have any questions or comments regarding this item, please let us know using the form below.
+      message: Question or comment
+      submit: Submit
   s3_delete:
     new:
       add_item: Delete Items

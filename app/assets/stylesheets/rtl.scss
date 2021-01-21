@@ -161,4 +161,11 @@ $breadcrumb-item-padding-x: 0.5rem !default;
       margin-right: 0;
     }
   }
+
+  .record-feedback {
+    left: 0;
+    right: auto;
+    transform: rotate(90deg);
+    transform-origin: left bottom;
+  }
 }
