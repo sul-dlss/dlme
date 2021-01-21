@@ -1,2 +1,8 @@
 feature_flags:
   allow_json_upload: true
+
+action_mailer:
+  default_options:
+    from: tcramer1@example.com
+  default_url_options:
+    host: example.com
