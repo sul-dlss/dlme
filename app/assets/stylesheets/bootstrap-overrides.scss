@@ -2,6 +2,14 @@
 
 $font-family-base: 'Markazi Text', $font-family-sans-serif;
 
+$zindex-dropdown: $zindex-dropdown + 1000;
+$zindex-sticky: $zindex-sticky + 1000;
+$zindex-fixed: $zindex-fixed + 1000;
+$zindex-modal-backdrop: $zindex-modal-backdrop + 1000;
+$zindex-modal: $zindex-modal + 1000;
+$zindex-popover: $zindex-popover + 1000;
+$zindex-tooltip: $zindex-tooltip + 1000;
+
 a .figure-caption {
   color: inherit;
 }
