@@ -1,3 +1,10 @@
-.custom-range-limit-container .load_distribution {
-  display: none;
+.custom-range-limit-container {
+  .load_distribution {
+    display: none;
+  }
+
+  .facet-values .facet-label {
+    padding-left: 0;
+    text-indent: 0;
+  }
 }
