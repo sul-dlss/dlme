@@ -4,10 +4,6 @@ require 'rails_helper'
 
 RSpec.describe 'statistics/_contributors.html.erb', type: :view do
   before do
-    controller.singleton_class.class_eval do
-      include Blacklight::Controller
-    end
-
     render partial: 'statistics/contributors', locals: {
       contributors: contributors
     }
@@ -57,7 +53,7 @@ RSpec.describe 'statistics/_contributors.html.erb', type: :view do
   end
 
   it 'links to the institution' do
-    expect(rendered).to have_link('Institution 1', href: /\?f%5Bagg_provider_en%5D%5B%5D=Institution\+1&/)
-    expect(rendered).to have_link('Institution 2', href: /\?f%5Bagg_provider_en%5D%5B%5D=Institution\+2&/)
+    expect(rendered).to have_link('Institution 1', href: /\?f%5Bagg_provider_en%5D%5B%5D=Institution\+1&?/)
+    expect(rendered).to have_link('Institution 2', href: /\?f%5Bagg_provider_en%5D%5B%5D=Institution\+2&?/)
   end
 end

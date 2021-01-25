@@ -2,7 +2,8 @@
 
 ##
 # Send message to the transformer
-class TransformsController < Spotlight::ApplicationController
+class TransformsController < ApplicationController
+  include Spotlight::Concerns::ApplicationController
   before_action :authenticate_user!
 
   def show

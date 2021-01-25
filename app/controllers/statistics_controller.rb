@@ -2,7 +2,8 @@
 
 ##
 # A controller for the public facing statistics page for the DLME Exhibit
-class StatisticsController < Spotlight::ApplicationController
+class StatisticsController < ApplicationController
+  include Spotlight::Concerns::ApplicationController
   include Blacklight::Searchable
 
   before_action :attach_breadcrumbs

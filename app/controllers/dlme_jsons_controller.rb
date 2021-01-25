@@ -2,7 +2,8 @@
 
 ##
 # Creating new DLME JSON items
-class DlmeJsonsController < Spotlight::ApplicationController
+class DlmeJsonsController < ApplicationController
+  include Spotlight::Concerns::ApplicationController
   helper :all
 
   before_action :authenticate_user!

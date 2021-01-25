@@ -4,10 +4,6 @@ require 'rails_helper'
 
 RSpec.describe 'statistics/_items.html.erb', type: :view do
   before do
-    controller.singleton_class.class_eval do
-      include Blacklight::Controller
-    end
-
     render partial: 'statistics/items', locals: {
       items: items
     }

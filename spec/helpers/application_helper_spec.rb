@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe ApplicationHelper, type: :helper do
   before do
-    controller.singleton_class.class_eval do
+    helper.controller.singleton_class.class_eval do
       include Blacklight::Controller
     end
   end
@@ -20,7 +20,7 @@ RSpec.describe ApplicationHelper, type: :helper do
         values: ['Sound'],
         config: instance_double('Blacklight::FieldConfig', pattern: 'cho_type_facet.%<lang>s_ssim')
       )
-      expect(link).to have_link('Sound', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound&/)
+      expect(link).to have_link('Sound', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound&?/)
     end
 
     it 'links multiple values (with each value including all preceeding values)' do
@@ -30,8 +30,8 @@ RSpec.describe ApplicationHelper, type: :helper do
       )
 
       expect(links).to have_content('Sound › Interview')
-      expect(links).to have_link('Sound', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound&/)
-      expect(links).to have_link('Interview', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound%3AInterview&/)
+      expect(links).to have_link('Sound', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound&?/)
+      expect(links).to have_link('Interview', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound%3AInterview&?/)
     end
   end
 
