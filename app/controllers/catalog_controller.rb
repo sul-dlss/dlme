@@ -139,12 +139,12 @@ class CatalogController < ApplicationController
     config.add_facet_field 'agg_provider_ar',    field: 'agg_provider.ar-Arab_ssim', limit: true, if: arabic_locale
     config.add_facet_field 'agg_provider_en',    field: 'agg_provider.en_ssim', limit: true, if: en_locale
     config.add_facet_field 'cho_type_facet.en_ssim',
-                           partial: 'blacklight/hierarchy/facet_hierarchy',
+                           component: Blacklight::Hierarchy::FacetFieldListComponent,
                            label: 'Type en',
                            if: en_locale,
                            limit: -1 # unlimited
     config.add_facet_field 'cho_type_facet.ar-Arab_ssim',
-                           partial: 'blacklight/hierarchy/facet_hierarchy',
+                           component: Blacklight::Hierarchy::FacetFieldListComponent,
                            label: 'Type ar',
                            if: arabic_locale,
                            limit: -1 # unlimited
