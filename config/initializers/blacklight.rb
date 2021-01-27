@@ -5,4 +5,5 @@ Blacklight::Rendering::Pipeline.operations = [Blacklight::Rendering::HelperMetho
                                               Autolink,
                                               BidiWrap,
                                               Paragraph,
-                                              Join]
+                                              Join,
+                                              Collapse]

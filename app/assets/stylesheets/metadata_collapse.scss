@@ -1,0 +1,21 @@
+.line-collapse {
+  overflow: hidden;
+}
+
+.line-collapse-button {
+  .arrow-up {
+    display: inline;
+  }
+  .arrow-down {
+    display: none;
+  }
+
+  &.collapsed {
+    .arrow-up {
+      display: none;
+    }
+    .arrow-down {
+      display: inline;
+    }
+  }
+}

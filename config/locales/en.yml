@@ -45,6 +45,10 @@ en:
     submit:
       record_feedback:
         created: Your feedback has been submitted. Thank you. We will take care of it as soon as possible.
+  metadata_collapse:
+    button:
+      less: less
+      more: more
   record_feedback:
     email_subject: DLME item feedback
     header: Feedback
