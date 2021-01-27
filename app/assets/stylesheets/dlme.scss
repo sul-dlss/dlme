@@ -283,11 +283,11 @@ body {
 }
 
 .facet-limit {
-  border: 1px solid $color-gray-medium;
+  border: 1px solid darken($color-gray-lighter, 6%);
   margin-bottom: 0.5rem;
 
   .card-header {
-    background-color: $color-gray-light;
+    background-color: $color-gray-lighter;
     border-bottom: 0;
   }
 }
