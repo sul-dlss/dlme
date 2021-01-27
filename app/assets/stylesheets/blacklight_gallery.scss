@@ -32,6 +32,7 @@
     }
 
     dd {
+      @extend .col-md-12;
       flex-basis: 100%;
       line-height: 1.2;
     }
