@@ -53,6 +53,8 @@ ar:
       more: أكثر
   record_feedback:
     header: ملاحظات واقتراحات
+    new:
+      close: إغلاق
   s3_delete:
     new:
       add_item: احذف العناصر
