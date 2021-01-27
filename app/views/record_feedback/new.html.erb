@@ -17,7 +17,7 @@
 
       <div class="modal-footer">
         <%= button_tag(t('.close'), class: 'btn btn-outline-dark', data: { 'dismiss': 'modal' }) if request.xhr? %>
-        <%= submit_tag t('.submit'), class: 'btn btn-primary' %>
+        <%= f.submit class: 'btn btn-primary' %>
       </div>
     <% end %>
   <% end %>
