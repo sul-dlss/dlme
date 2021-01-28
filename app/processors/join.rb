@@ -5,7 +5,7 @@ class Join < Blacklight::Rendering::AbstractStep
   include ActionView::Helpers::TextHelper
 
   def render
-    return next_step(values) unless html_context?
+    return next_step(values) if json_api_context?
 
     next_step(safe_join(values, joiner))
   end
@@ -20,7 +20,9 @@ class Join < Blacklight::Rendering::AbstractStep
     options[:no_html] ? '; ' : '<br>'.html_safe
   end
 
-  def html_context?
-    context&.request&.format&.html?
+  def json_api_context?
+    return false unless context
+
+    context.request&.format&.json? && context.controller.is_a?(CatalogController)
   end
 end

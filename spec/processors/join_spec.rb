@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe ::Join do
   include Capybara::RSpecMatchers
   let(:document) { instance_double(SolrDocument) }
-  let(:context) { double(request: double(format: double(html?: true))) }
+  let(:context) { double(request: double(format: double(json?: false))) }
   let(:options) { {} }
   let(:terminator) { class_double Blacklight::Rendering::Terminator, new: term_instance }
   let(:term_instance) { instance_double Blacklight::Rendering::Terminator, render: '' }
@@ -18,13 +18,28 @@ RSpec.describe ::Join do
     let(:values) { %w[a b] }
     let(:field_config) { Blacklight::Configuration::NullField.new }
 
-    context 'with a non-html request' do
+    context 'with a JSON API request' do
       let(:field_config) { Blacklight::Configuration::NullField.new(autolink: true) }
-      let(:context) { double(request: double(format: double(html?: false))) }
+      let(:context) { double(controller: CatalogController.new, request: double(format: double(json?: true))) }
 
-      it 'does nothing' do
+      it 'leaves the values as an array' do
         render
         expect(terminator).to have_received(:new).with(%w[a b],
+                                                       field_config,
+                                                       document,
+                                                       context,
+                                                       options,
+                                                       [])
+      end
+    end
+
+    context 'with a JSON API require that is not the JSON API' do
+      let(:field_config) { Blacklight::Configuration::NullField.new(autolink: true) }
+      let(:context) { double(controller: ApplicationController.new, request: double(format: double(json?: true))) }
+
+      it 'joins the values like normal' do
+        render
+        expect(terminator).to have_received(:new).with('a<br>b',
                                                        field_config,
                                                        document,
                                                        context,
