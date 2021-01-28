@@ -83,7 +83,8 @@ class CatalogController < ApplicationController
                            **multilingual_locale_aware_field('cho_description'),
                            autolink: true,
                            paragraph: true,
-                           join_with: ''
+                           join_with: '',
+                           collapse: true
     config.add_index_field 'language', **multilingual_locale_aware_field('cho_language')
     config.add_index_field 'medium', **multilingual_locale_aware_field('cho_medium')
     config.add_index_field 'provenance',
@@ -91,7 +92,7 @@ class CatalogController < ApplicationController
                            paragraph: true,
                            join_with: ''
     config.add_index_field 'source', **multilingual_locale_aware_field('cho_source')
-    config.add_index_field 'spatial', **multilingual_locale_aware_field('cho_spatial')
+    config.add_index_field 'spatial', **multilingual_locale_aware_field('cho_spatial'), collapse: true
     config.add_index_field 'temporal', **multilingual_locale_aware_field('cho_temporal')
 
     arabic_locale = lambda do |context, *_|
@@ -203,7 +204,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'publisher', **multilingual_locale_aware_field('cho_publisher')
     config.add_show_field 'relation', **multilingual_locale_aware_field('cho_relation')
     config.add_show_field 'same_as', **multilingual_locale_aware_field('cho_same_as'), autolink: true
-    config.add_show_field 'subject', **multilingual_locale_aware_field('cho_subject')
+    config.add_show_field 'subject', **multilingual_locale_aware_field('cho_subject'), collapse: true
     config.add_show_field 'type', **multilingual_locale_aware_field('cho_type')
     config.add_show_field 'type_hierarchy',
                           **multilingual_locale_aware_field('cho_type_facet'),

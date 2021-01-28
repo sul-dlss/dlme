@@ -1,4 +1,5 @@
 # Added Autolink and Paragraph and replaced Join.
+
 ActiveSupport::Reloader.to_prepare do
   Blacklight::Rendering::Pipeline.operations = [Blacklight::Rendering::HelperMethod,
                                                 Blacklight::Rendering::LinkToFacet,
@@ -6,5 +7,6 @@ ActiveSupport::Reloader.to_prepare do
                                                 Autolink,
                                                 BidiWrap,
                                                 Paragraph,
-                                                Join]
+                                                Join,
+                                                Collapse]
 end

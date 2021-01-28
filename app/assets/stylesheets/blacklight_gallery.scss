@@ -1,1 +1,44 @@
-@import 'blacklight_gallery/default'
+@import 'blacklight_gallery/default';
+
+.gallery {
+  .document {
+    margin-bottom: 0.75rem;
+
+    .thumbnail {
+      background-color: $color-gray-lighter;
+      border: 1px solid darken($color-gray-lighter, 6%);
+      border-radius: 5px;
+      height: 100%;
+      padding: 1rem;
+    }
+
+    .img-thumbnail {
+      background-color: $color-gray-lighter;
+      border-radius: 0;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .caption {
+      margin-top: 1rem !important;
+    }
+
+    .document-metadata {
+      margin-bottom: 0;
+    }
+
+    dt {
+      @include sr-only;
+    }
+
+    dd {
+      @extend .col-md-12;
+      flex-basis: 100%;
+      line-height: 1.2;
+    }
+
+    dd ~ dd {
+      margin-top: 0.5rem;
+    }
+  }
+}

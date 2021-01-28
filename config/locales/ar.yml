@@ -41,8 +41,20 @@ ar:
     partnership_heading: بالشراكة مع
     project_support_heading: المشروع مدعوم من قبل
     project_support_text: مؤسسة أندرو و. ميلون
+  helpers:
+    label:
+      contact_form:
+        email: البريد الالكتروني
+        message: الرسالة
+        name: الاسم
+  metadata_collapse:
+    button:
+      less: أقل
+      more: أكثر
   record_feedback:
     header: ملاحظات واقتراحات
+    new:
+      close: إغلاق
   s3_delete:
     new:
       add_item: احذف العناصر
@@ -54,11 +66,16 @@ ar:
       sidebar:
         sources: مصادر
         transform: حوّل البيانات
+    header_links:
+      contact: تواصل معنا
     main_navigation:
       statistics: إحصائيات
     resources:
       fetch:
         queued: في قائمة الانتظار للمعالجة.
+    shared:
+      report_a_problem:
+        reporting_from: للاستفسار عن أي مسألة متعلقة بمكتبة الشرق الاوسط الرقمية, الرجاء التواصل معنا من خلال تعبئة النموذج التالي.
     sites:
       edit:
         exhibit_home: معرض الصفحة الرئيسية

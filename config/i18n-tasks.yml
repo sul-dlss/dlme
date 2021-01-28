@@ -108,6 +108,9 @@ ignore_unused:
   - 'blacklight.range_limit.*'
   - 'date_field_label_gregorian'
   - 'date_field_label_hijri'
+  - helpers.label.contact_form.email # Defined in Spotlight
+  - helpers.label.contact_form.message # Defined in Spotlight
+  - helpers.label.contact_form.name # Defined in Spotlight
 # - 'activerecord.attributes.*'
 # - '{devise,kaminari,will_paginate}.*'
 # - 'simple_form.{yes,no}'
