@@ -30,7 +30,18 @@ $breadcrumb-item-padding-x: 0.5rem !default;
   & body {
     text-align: right;
     direction: rtl;
+    // Custom font for using Eastern Arabic numerals in Arabic / RTL UI
+    font-family: 'easternarabicnumeralregular', $font-family-base;
   }
+
+  // Use Western Arabic numerals for inputs and facet labels
+  input,
+  textarea,
+  .metadata-value,
+  .facet-label  {
+    font-family: $font-family-base;
+  }
+
 
   /** Upstream is a little too eager reseting styles.. */
   .list-unstyled {
