@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/projectblacklight/spotlight.git
-  revision: 37e469c309b246991f4fa663302927ee695a864e
+  revision: 188288ca51460b79b5e096dd43503651afdb37bb
   branch: master
   specs:
     blacklight-spotlight (3.0.0.rc2)
@@ -549,7 +549,7 @@ GEM
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
-    signet (0.14.0)
+    signet (0.14.1)
       addressable (~> 2.3)
       faraday (>= 0.17.3, < 2.0)
       jwt (>= 1.5, < 3.0)
