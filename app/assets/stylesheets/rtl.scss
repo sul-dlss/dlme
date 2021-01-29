@@ -42,6 +42,10 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     font-family: $font-family-base;
   }
 
+  .form-check {
+    padding-right: 1.25rem;
+    padding-left: inherit;
+  }
 
   /** Upstream is a little too eager reseting styles.. */
   .list-unstyled {
