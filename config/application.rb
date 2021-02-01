@@ -16,5 +16,9 @@ module Dlme
     # -- all .rb files in that directory are automatically loaded.
 
     config.middleware.use Rack::Attack
+
+    unless Rails.env.production?
+      config.slowpoke.timeout = 60
+    end
   end
 end
