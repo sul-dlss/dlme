@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/projectblacklight/spotlight.git
-  revision: a549b0a92bbb88b3be36b6ba001ece3bda0d91da
+  revision: 9497f31da86656fddb63f9d08a15e52aea55fc8e
   branch: master
   specs:
     blacklight-spotlight (3.0.0.rc2)
@@ -101,7 +101,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     arel (9.0.0)
     ast (2.4.2)
-    autoprefixer-rails (10.2.0.0)
+    autoprefixer-rails (10.2.4.0)
       execjs
     aws-eventstream (1.1.0)
     aws-partitions (1.422.0)
@@ -620,7 +620,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.7)
     unicode-display_width (1.7.0)
-    view_component (2.25.0)
+    view_component (2.25.1)
       activesupport (>= 5.0.0, < 7.0)
     warden (1.2.9)
       rack (>= 2.0.9)
