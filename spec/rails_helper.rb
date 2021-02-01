@@ -56,6 +56,12 @@ RSpec.configure do |config|
   config.include ::Rails.application.routes.mounted_helpers, type: :controller
   config.include OptionalLocaleRouteParamInjection
 
+  config.include(ControllerLevelHelpers, type: :helper)
+  config.before(:each, type: :helper) { initialize_controller_helpers(helper) }
+
+  config.include(ControllerLevelHelpers, type: :view)
+  config.before(:each, type: :view) { initialize_controller_helpers(view) }
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -89,9 +95,6 @@ RSpec.configure do |config|
     visit '/assets/application.css'
     visit '/assets/application.js'
   end
-
-  config.include(ControllerLevelHelpers, type: :helper)
-  config.before(:each, type: :helper) { initialize_controller_helpers(helper) }
 
   config.after(:each, type: :job) do
     clear_enqueued_jobs

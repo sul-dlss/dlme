@@ -8,21 +8,15 @@ RSpec.describe 'catalog/_show_with_viewer.html.erb', type: :view do
   let(:blacklight_config) { CatalogController.blacklight_config }
 
   before do
-    controller.singleton_class.class_eval do
-      protected
-
-      def blacklight_config; end
-
-      def blacklight_configuration_context
-        @blacklight_configuration_context ||= Blacklight::Configuration::Context.new(self)
-      end
-      helper_method :blacklight_config, :blacklight_configuration_context
-    end
-
     stub_template 'catalog/_oembed_default.html.erb' => 'oembed'
     stub_template 'catalog/_openseadragon_default.html.erb' => 'openseadragon'
 
-    allow(controller).to receive_messages(blacklight_config: blacklight_config)
+    without_partial_double_verification do
+      allow(view).to receive_messages(
+        blacklight_config: blacklight_config,
+        blacklight_configuration_context: Blacklight::Configuration::Context.new(self)
+      )
+    end
     render partial: 'catalog/show_with_viewer', locals: { document: document, blacklight_config: blacklight_config }
   end
 

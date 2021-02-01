@@ -18,9 +18,9 @@ RSpec.describe 'Meatadata Collapse', type: :feature do
   end
 
   it 'has a toggle link to show more/less for long fields', js: true do
-    # rubocop:disable Metrics/LineLength
+    # rubocop:disable Layout/LineLength
     id = 'themaghribpodcast.podbean.com/educational-transitions-in-post-revolutionary-spaces-islam-security-and-social-movements-in-tunisia-361d846242ba817e19c59aeda9439d1f'
-    # rubocop:enable Metrics/LineLength
+    # rubocop:enable Layout/LineLength
 
     title = 'Posted by Hayet Lansari, Librarian, Outreach Coordinator, Content Curator (CEMA).'
 
