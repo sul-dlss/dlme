@@ -177,6 +177,11 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     }
   }
 
+  #new_contact_form .col-form-label {
+    text-align: left;
+  }
+
+
   .record-feedback {
     left: 0;
     right: auto;
