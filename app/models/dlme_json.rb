@@ -2,11 +2,18 @@
 
 # Model to represent the intermediate representation (in JSON) of a DLME object
 class DlmeJson < Spotlight::Resource
-  self.document_builder_class = DlmeJsonResourceBuilder
   validate :valid_json_syntax?
   validates :url, uniqueness: { scope: :exhibit_id }
 
   store :data, accessors: %i[json metadata]
+
+  def self.indexing_pipeline
+    @indexing_pipeline ||= super.dup.tap do |pipeline|
+      pipeline.transforms = [
+        ->(data, p) { data.merge(DlmeJsonResourceBuilder.new(p.source).to_solr) }
+      ] + pipeline.transforms
+    end
+  end
 
   # @return [Hash]
   # @raise [JSON::ParserError] if the json is not parsable

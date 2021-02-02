@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_25_204339) do
+ActiveRecord::Schema.define(version: 2021_02_02_002638) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -158,6 +158,20 @@ ActiveRecord::Schema.define(version: 2021_01_25_204339) do
     t.index ["exhibit_id"], name: "index_spotlight_custom_search_fields_on_exhibit_id"
   end
 
+  create_table "spotlight_events", force: :cascade do |t|
+    t.string "exhibit_type", null: false
+    t.integer "exhibit_id", null: false
+    t.string "resource_type", null: false
+    t.integer "resource_id", null: false
+    t.string "type"
+    t.string "collation_key"
+    t.text "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exhibit_type", "exhibit_id"], name: "index_spotlight_events_on_exhibit"
+    t.index ["resource_type", "resource_id"], name: "index_spotlight_events_on_resource"
+  end
+
   create_table "spotlight_exhibits", force: :cascade do |t|
     t.string "title", null: false
     t.string "subtitle"
@@ -223,6 +237,27 @@ ActiveRecord::Schema.define(version: 2021_01_25_204339) do
     t.integer "member_id"
     t.index ["group_id"], name: "index_spotlight_groups_members_on_group_id"
     t.index ["member_type", "member_id"], name: "index_spotlight_groups_members_on_member_type_and_member_id"
+  end
+
+  create_table "spotlight_job_trackers", force: :cascade do |t|
+    t.string "on_type", null: false
+    t.integer "on_id", null: false
+    t.string "resource_type", null: false
+    t.integer "resource_id", null: false
+    t.string "job_id"
+    t.string "job_class"
+    t.string "parent_job_id"
+    t.string "parent_job_class"
+    t.string "status"
+    t.integer "user_id"
+    t.text "log"
+    t.text "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_spotlight_job_trackers_on_job_id"
+    t.index ["on_type", "on_id"], name: "index_spotlight_job_trackers_on_on"
+    t.index ["resource_type", "resource_id"], name: "index_spotlight_job_trackers_on_resource"
+    t.index ["user_id"], name: "index_spotlight_job_trackers_on_user_id"
   end
 
   create_table "spotlight_languages", force: :cascade do |t|

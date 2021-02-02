@@ -8,10 +8,10 @@ GIT
 
 GIT
   remote: https://github.com/projectblacklight/spotlight.git
-  revision: 9497f31da86656fddb63f9d08a15e52aea55fc8e
-  branch: master
+  revision: bf17a82563d9ce98909b3ce5364cdccd65c1cb03
   specs:
-    blacklight-spotlight (3.0.0.rc2)
+    blacklight-spotlight (3.0.0.rc3)
+      activejob-status
       acts-as-taggable-on (>= 5.0, < 8)
       autoprefixer-rails
       blacklight (~> 7.0)
@@ -39,7 +39,7 @@ GIT
       openseadragon
       ostruct (!= 0.3.2, != 0.3.1, != 0.3.0)
       paper_trail (~> 11.0)
-      rails (< 6.2)
+      rails (>= 5.2, < 6.2)
       riiif (~> 2.0)
       roar (~> 1.1)
       roar-rails
@@ -95,6 +95,9 @@ GEM
     activejob (6.1.1)
       activesupport (= 6.1.1)
       globalid (>= 0.3.6)
+    activejob-status (0.1.6)
+      activejob (>= 4.2)
+      activesupport (>= 4.2)
     activemodel (6.1.1)
       activesupport (= 6.1.1)
     activerecord (6.1.1)
@@ -122,20 +125,20 @@ GEM
       execjs
     aws-eventstream (1.1.0)
     aws-partitions (1.422.0)
-    aws-sdk-core (3.111.2)
+    aws-sdk-core (3.112.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.239.0)
       aws-sigv4 (~> 1.1)
       jmespath (~> 1.0)
-    aws-sdk-kms (1.41.0)
-      aws-sdk-core (~> 3, >= 3.109.0)
+    aws-sdk-kms (1.42.0)
+      aws-sdk-core (~> 3, >= 3.112.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.87.0)
-      aws-sdk-core (~> 3, >= 3.109.0)
+    aws-sdk-s3 (1.88.0)
+      aws-sdk-core (~> 3, >= 3.112.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
-    aws-sdk-sns (1.37.0)
-      aws-sdk-core (~> 3, >= 3.109.0)
+    aws-sdk-sns (1.38.0)
+      aws-sdk-core (~> 3, >= 3.112.0)
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.2.2)
       aws-eventstream (~> 1, >= 1.0.2)
@@ -242,7 +245,7 @@ GEM
     dry-logic (1.1.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.5, >= 0.5)
-    dry-schema (1.6.0)
+    dry-schema (1.6.1)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 0.8, >= 0.8.3)
       dry-core (~> 0.5, >= 0.5)
@@ -303,7 +306,7 @@ GEM
     http-form_data (2.3.0)
     http-parser (1.2.3)
       ffi-compiler (>= 1.0, < 2.0)
-    i18n (1.8.7)
+    i18n (1.8.8)
       concurrent-ruby (~> 1.0)
     i18n-active_record (0.4.0)
       i18n (>= 0.5.0)
