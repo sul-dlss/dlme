@@ -14,8 +14,9 @@ RSpec.describe 'Contextual message on search results', type: :feature do
   let(:query) { 'Kitāb' }
 
   before do
-    ActiveJob::Base.queue_adapter = :inline # block until indexing has committed
-    resource.save_and_index
+    perform_enqueued_jobs do
+      resource.save_and_index
+    end
     visit root_path
     fill_in 'Search...', with: query
     click_button 'Search'
