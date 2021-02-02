@@ -14,9 +14,9 @@ RSpec.describe 'Things can be indexed' do
   end
 
   before do
-    ActiveJob::Base.queue_adapter = :inline # block until indexing has committed
-
-    resource.save_and_index
+    perform_enqueued_jobs do
+      resource.save_and_index
+    end
   end
 
   context 'with a curator' do

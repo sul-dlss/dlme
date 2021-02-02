@@ -13,8 +13,9 @@ RSpec.describe 'Meatadata Collapse', type: :feature do
   end
 
   before do
-    ActiveJob::Base.queue_adapter = :inline # block until indexing has committed
-    resource.save_and_index
+    perform_enqueued_jobs do
+      resource.save_and_index
+    end
   end
 
   it 'has a toggle link to show more/less for long fields', js: true do

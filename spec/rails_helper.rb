@@ -50,6 +50,7 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::Test::IntegrationHelpers, type: :request
 
+  config.include ActiveJob::TestHelper, type: :feature
   config.include ActiveJob::TestHelper, type: :job
 
   config.include ::Rails.application.routes.url_helpers, type: :controller

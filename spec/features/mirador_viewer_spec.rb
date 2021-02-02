@@ -14,8 +14,9 @@ RSpec.describe 'Mirador viewer', type: :feature do
   end
 
   before do
-    ActiveJob::Base.queue_adapter = :inline # block until indexing has committed
-    resource.save_and_index
+    perform_enqueued_jobs do
+      resource.save_and_index
+    end
   end
 
   it 'renders a Mirador viewer for IIIF items', js: true do
