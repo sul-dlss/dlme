@@ -1,10 +1,10 @@
 @import 'blacklight_gallery/default';
 
-.gallery {
+.documents-gallery {
   .document {
     margin-bottom: 0.75rem;
 
-    .thumbnail {
+    .thumbnail-container {
       background-color: $color-gray-lighter;
       border: 1px solid darken($color-gray-lighter, 6%);
       border-radius: 5px;

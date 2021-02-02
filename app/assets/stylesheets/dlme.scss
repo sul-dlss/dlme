@@ -4,7 +4,7 @@ h6, .h1, .h2, .h3, .h4,
 .facets-heading, .h5,
 .page-sidebar .nav-heading,
 .h6, .facet-field-heading,
-.gallery .index_title {
+.documents-gallery .index_title {
   font-weight: 400;
   line-height: 1;
 }
@@ -145,7 +145,7 @@ body {
   color: $color-black-medium;
 }
 
-.thumbnail {
+.thumbnail-container {
   background-color: transparent;
   border: 0;
 }
