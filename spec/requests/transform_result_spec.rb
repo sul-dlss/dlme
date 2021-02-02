@@ -20,6 +20,12 @@ RSpec.describe 'transform results', type: :request do
       get '/transform_result'
       expect(body[:links]).not_to be_nil
     end
+
+    it 'with paginated results' do
+      create_list(:transform_result, 26)
+      get '/transform_result'
+      expect(response).to have_http_status(:ok)
+    end
   end
 
   context 'when POSTing to create' do
