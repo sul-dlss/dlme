@@ -15,7 +15,10 @@ RSpec.describe DlmeThumbnailPresenter do
   describe '#thumbnail_tag' do
     it 'merges in lazy attribute' do
       # rubocop:disable RSpec/MessageSpies
-      expect(view_context).to receive(:image_tag).with('https://www.example.com/image.png', { loading: 'lazy' })
+      expect(view_context).to receive(:image_tag).with(
+        'https://www.example.com/image.png',
+        { class: 'img-thumbnail', loading: 'lazy' }
+      )
       # rubocop:enable RSpec/MessageSpies
       presenter.thumbnail_tag
     end
