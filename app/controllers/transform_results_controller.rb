@@ -5,7 +5,8 @@ require 'date'
 
 ##
 # Handle notifications of transform
-class TransformResultsController < Spotlight::ApplicationController
+class TransformResultsController < ApplicationController
+  include Spotlight::Concerns::ApplicationController
   protect_from_forgery except: :create
   before_action :authenticate_user!, except: :create
 
