@@ -154,10 +154,9 @@ GEM
       ostruct (>= 0.3.2)
       rails (>= 5.1, < 7)
       view_component (>= 2.23.0)
-    blacklight-gallery (2.1.0)
-      blacklight (~> 7.7)
+    blacklight-gallery (3.0.1)
+      blacklight (~> 7.12)
       bootstrap (~> 4.0)
-      openseadragon (>= 0.2.0)
       rails (>= 5.1, < 7)
     blacklight-hierarchy (5.0.0)
       blacklight (~> 7.13)
@@ -652,7 +651,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk-sns
   blacklight (~> 7.14)
-  blacklight-gallery (~> 2.1.0)
+  blacklight-gallery (~> 3.0)
   blacklight-hierarchy
   blacklight-oembed (>= 0.1.0)
   blacklight-spotlight!
