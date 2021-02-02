@@ -3,5 +3,7 @@
 .byebug_history
 log/*
 tmp/*
+!tmp/pids
+tmp/pids/*
 postgres-data/*
 solr-data/*
