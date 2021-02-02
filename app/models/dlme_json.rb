@@ -4,7 +4,7 @@
 class DlmeJson < Spotlight::Resource
   self.document_builder_class = DlmeJsonResourceBuilder
   validate :valid_json_syntax?
-  validates :url, uniqueness: { scope: :exhibit_id }
+  validates :url, uniqueness: { scope: :exhibit_id }, allow_nil: true
 
   store :data, accessors: %i[json metadata]
 
