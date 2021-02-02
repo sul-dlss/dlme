@@ -2,7 +2,8 @@
 
 ##
 # Delete DLME JSON items by fetching a list from s3
-class S3DeleteController < Spotlight::ApplicationController
+class S3DeleteController < ApplicationController
+  include Spotlight::Concerns::ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource :exhibit, class: Spotlight::Exhibit
 
