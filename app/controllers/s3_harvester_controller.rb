@@ -2,7 +2,8 @@
 
 ##
 # Creating new DLME JSON items by fetching from url
-class S3HarvesterController < Spotlight::ApplicationController
+class S3HarvesterController < ApplicationController
+  include Spotlight::Concerns::ApplicationController
   before_action :authenticate_user!
 
   load_and_authorize_resource :exhibit, class: Spotlight::Exhibit
