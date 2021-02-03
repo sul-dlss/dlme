@@ -683,6 +683,7 @@ DEPENDENCIES
   rails (~> 6.1.0)
   rails-controller-testing
   rails_autolink
+  redis (~> 4.0)
   riiif (~> 2.0)
   rsolr (>= 1.0)
   rspec-rails
