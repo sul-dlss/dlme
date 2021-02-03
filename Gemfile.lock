@@ -1,14 +1,6 @@
 GIT
-  remote: https://github.com/projectblacklight/blacklight_range_limit.git
-  revision: 909ef3f8a10a7c583f9d632f79d363cb8865b37e
-  branch: master
-  specs:
-    blacklight_range_limit (7.9.1)
-      blacklight (~> 7.0)
-
-GIT
   remote: https://github.com/projectblacklight/spotlight.git
-  revision: bf17a82563d9ce98909b3ce5364cdccd65c1cb03
+  revision: a3f7f449cd5ebebf15650b69056f9d342c181da6
   specs:
     blacklight-spotlight (3.0.0.rc3)
       activejob-status
@@ -169,6 +161,8 @@ GEM
       blacklight (~> 7.0)
       rails
       ruby-oembed
+    blacklight_range_limit (8.0.0)
+      blacklight (~> 7.0)
     bootsnap (1.7.0)
       msgpack (~> 1.0)
     bootstrap (4.6.0)
@@ -658,7 +652,7 @@ DEPENDENCIES
   blacklight-hierarchy
   blacklight-oembed (>= 0.1.0)
   blacklight-spotlight!
-  blacklight_range_limit!
+  blacklight_range_limit (~> 8.0)
   bootsnap (>= 1.4.4)
   bootstrap (~> 4.0)
   byebug
