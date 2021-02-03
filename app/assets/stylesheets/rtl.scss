@@ -57,7 +57,12 @@ $breadcrumb-item-padding-x: 0.5rem !default;
   }
 
   .dl-invert dt {
-    text-align: left;
+    @media (max-width: breakpoint-max(sm)) {
+      text-align: right;
+    }
+    @media (min-width: breakpoint-max(sm)) {
+      text-align: left;
+    }
   }
 
   /** Fix margins for the inline list (used in the footer) */
