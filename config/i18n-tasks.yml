@@ -111,6 +111,7 @@ ignore_unused:
   - helpers.label.contact_form.email # Defined in Spotlight
   - helpers.label.contact_form.message # Defined in Spotlight
   - helpers.label.contact_form.name # Defined in Spotlight
+  - helpers.submit.contact_form.created # Defined in Spotlight
 # - 'activerecord.attributes.*'
 # - '{devise,kaminari,will_paginate}.*'
 # - 'simple_form.{yes,no}'

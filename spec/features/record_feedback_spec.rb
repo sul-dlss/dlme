@@ -46,7 +46,7 @@ RSpec.describe 'Record Feedback', type: :feature do
 
     expect(page).to have_css(
       '.flash_messages .alert-info',
-      text: 'Your feedback has been submitted. Thank you. We will take care of it as soon as possible.'
+      text: 'Thank you. Your feedback has been submitted.'
     )
   end
   # rubocop:enable RSpec/ExampleLength
