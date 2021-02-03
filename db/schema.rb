@@ -236,7 +236,7 @@ ActiveRecord::Schema.define(version: 2021_02_02_002638) do
     t.string "member_type"
     t.integer "member_id"
     t.index ["group_id"], name: "index_spotlight_groups_members_on_group_id"
-    t.index ["member_type", "member_id"], name: "index_spotlight_groups_members_on_member_type_and_member_id"
+    t.index ["member_type", "member_id"], name: "index_spotlight_groups_members_on_member"
   end
 
   create_table "spotlight_job_trackers", force: :cascade do |t|
@@ -406,7 +406,7 @@ ActiveRecord::Schema.define(version: 2021_02_02_002638) do
     t.string "context", limit: 128
     t.datetime "created_at"
     t.string "taggable_type"
-    t.integer "taggable_id"
+    t.bigint "taggable_id"
     t.index ["context"], name: "index_taggings_on_context"
     t.index ["tag_id", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
     t.index ["tag_id"], name: "index_taggings_on_tag_id"
