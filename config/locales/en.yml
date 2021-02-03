@@ -43,8 +43,10 @@ en:
     project_support_text: The Andrew W. Mellon Foundation
   helpers:
     submit:
+      contact_form:
+        created: Thank you. Your feedback has been submitted.
       record_feedback:
-        created: Your feedback has been submitted. Thank you. We will take care of it as soon as possible.
+        created: Thank you. Your feedback has been submitted.
   metadata_collapse:
     button:
       less: less
