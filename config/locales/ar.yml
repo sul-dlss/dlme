@@ -47,6 +47,9 @@ ar:
         email: البريد الالكتروني
         message: الرسالة
         name: الاسم
+    submit:
+      record_feedback:
+        created: شكراً. لقد تم إرسال ملاحظاتك واقتراحاتك.
   metadata_collapse:
     button:
       less: أقل

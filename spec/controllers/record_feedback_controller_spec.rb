@@ -54,7 +54,7 @@ RSpec.describe RecordFeedbackController, type: :controller do
           contact_form: { name: 'Joe Doe', email: 'jdoe@example.com', message: 'Great record!', honeypot_field_name => '' }
         }
       )
-      expect(flash[:notice]).to eq 'Your feedback has been submitted. Thank you. We will take care of it as soon as possible.'
+      expect(flash[:notice]).to eq 'Thank you. Your feedback has been submitted.'
     end
   end
 end
