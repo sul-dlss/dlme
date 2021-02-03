@@ -6,7 +6,12 @@ class DlmeThumbnailPresenter < Blacklight::ThumbnailPresenter
   ##
   # Overridden to support lazy options
   def thumbnail_tag(image_options = {}, url_options = {})
-    super(image_options.merge(loading: 'lazy', class: 'img-thumbnail'), url_options)
+    injected_options = {
+      loading: 'lazy'
+    }
+
+    injected_options[:class] = 'img-thumbnail' unless view_context.controller.action_name == 'show'
+    super(image_options.merge(injected_options), url_options)
   end
 
   private
