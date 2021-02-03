@@ -7,8 +7,9 @@ RSpec.describe DlmeThumbnailPresenter do
     Blacklight::OpenStructWithHashAccess.new(thumbnail_field: :xyz)
   end
   let(:document) { SolrDocument.new('xyz' => 'https://www.example.com/image.png') }
+  let(:controller) { instance_double('Spotlight::CatalogController', action_name: 'index') }
   let(:view_context) do
-    instance_double('ActionView::ViewContext')
+    instance_double('ActionView::ViewContext', controller: controller)
   end
   let(:presenter) { described_class.new(document, view_context, config) }
 
@@ -21,6 +22,20 @@ RSpec.describe DlmeThumbnailPresenter do
       )
       # rubocop:enable RSpec/MessageSpies
       presenter.thumbnail_tag
+    end
+
+    context 'when show action' do
+      let(:controller) { instance_double('Spotlight::CatalogController', action_name: 'show') }
+
+      it 'does not overwrite class' do
+        # rubocop:disable RSpec/MessageSpies
+        expect(view_context).to receive(:image_tag).with(
+          'https://www.example.com/image.png',
+          { loading: 'lazy' }
+        )
+        # rubocop:enable RSpec/MessageSpies
+        presenter.thumbnail_tag
+      end
     end
   end
 
