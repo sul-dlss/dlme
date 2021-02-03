@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/projectblacklight/spotlight.git
-  revision: 21fb829b53b77266da521a98b2a3d066228834c6
+  revision: dc906c614aef94aad78bb8b772a981e31aa3217b
   specs:
     blacklight-spotlight (3.0.0.rc3)
       activejob-status
