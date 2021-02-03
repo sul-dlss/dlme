@@ -3,7 +3,7 @@
 # Model to represent the intermediate representation (in JSON) of a DLME object
 class DlmeJson < Spotlight::Resource
   validate :valid_json_syntax?
-  validates :url, uniqueness: { scope: :exhibit_id }
+  validates :url, uniqueness: { scope: :exhibit_id }, allow_nil: true
 
   store :data, accessors: %i[json metadata]
 
