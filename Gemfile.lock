@@ -1,48 +1,3 @@
-GIT
-  remote: https://github.com/projectblacklight/spotlight.git
-  revision: 43f3506102740ddca4495e7caaa3167fb692f272
-  specs:
-    blacklight-spotlight (3.0.0.rc3)
-      activejob-status
-      acts-as-taggable-on (>= 5.0, < 8)
-      autoprefixer-rails
-      blacklight (~> 7.0)
-      bootstrap_form (~> 4.1)
-      breadcrumbs_on_rails (~> 3.0)
-      cancancan
-      carrierwave
-      clipboard-rails (~> 1.5)
-      devise (~> 4.1)
-      devise_invitable
-      faraday
-      faraday_middleware
-      friendly_id (~> 5.2, != 5.4.1, != 5.4.0)
-      github-markup
-      handlebars_assets
-      i18n
-      i18n-active_record
-      iiif-presentation
-      iiif_manifest
-      leaflet-rails
-      legato
-      mini_magick
-      nokogiri
-      oauth2
-      openseadragon
-      ostruct (!= 0.3.2, != 0.3.1, != 0.3.0)
-      paper_trail (~> 11.0)
-      rails (>= 5.2, < 6.2)
-      riiif (~> 2.0)
-      roar (~> 1.1)
-      roar-rails
-      signet
-      sir_trevor_rails (>= 0.6.1)
-      sprockets (>= 3)
-      sprockets-es6
-      thor
-      tophat
-      underscore-rails (~> 1.6)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -161,9 +116,49 @@ GEM
       blacklight (~> 7.0)
       rails
       ruby-oembed
+    blacklight-spotlight (3.0.0.rc4)
+      activejob-status
+      acts-as-taggable-on (>= 5.0, < 8)
+      autoprefixer-rails
+      blacklight (~> 7.0)
+      bootstrap_form (~> 4.1)
+      breadcrumbs_on_rails (~> 3.0)
+      cancancan
+      carrierwave
+      clipboard-rails (~> 1.5)
+      devise (~> 4.1)
+      devise_invitable
+      faraday
+      faraday_middleware
+      friendly_id (~> 5.2, != 5.4.1, != 5.4.0)
+      github-markup
+      handlebars_assets
+      i18n
+      i18n-active_record
+      iiif-presentation
+      iiif_manifest
+      leaflet-rails
+      legato
+      mini_magick
+      nokogiri
+      oauth2
+      openseadragon
+      ostruct (!= 0.3.2, != 0.3.1, != 0.3.0)
+      paper_trail (~> 11.0)
+      rails (>= 5.2, < 6.2)
+      riiif (~> 2.0)
+      roar (~> 1.1)
+      roar-rails
+      signet
+      sir_trevor_rails (>= 0.6.1)
+      sprockets (>= 3)
+      sprockets-es6
+      thor
+      tophat
+      underscore-rails (~> 1.6)
     blacklight_range_limit (8.0.0)
       blacklight (~> 7.0)
-    bootsnap (1.7.0)
+    bootsnap (1.7.1)
       msgpack (~> 1.0)
     bootstrap (4.6.0)
       autoprefixer-rails (>= 9.1.0)
@@ -389,7 +384,7 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
-    okcomputer (1.18.2)
+    okcomputer (1.18.3)
     openseadragon (0.6.0)
       rails (> 3.2.0)
     orm_adapter (0.5.0)
@@ -571,7 +566,7 @@ GEM
       actionpack
       rack-timeout (>= 0.4.0)
       railties (>= 5)
-    solr_wrapper (3.0.1)
+    solr_wrapper (3.0.2)
       http
       retriable
       ruby-progressbar
@@ -651,7 +646,7 @@ DEPENDENCIES
   blacklight-gallery (~> 3.0)
   blacklight-hierarchy
   blacklight-oembed (>= 0.1.0)
-  blacklight-spotlight!
+  blacklight-spotlight (>= 3.0.0.rc4, < 4)
   blacklight_range_limit (~> 8.0)
   bootsnap (>= 1.4.4)
   bootstrap (~> 4.0)

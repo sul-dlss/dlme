@@ -73,7 +73,7 @@ end
 gem 'aws-sdk-sns'
 
 gem 'blacklight', '~> 7.14'
-gem 'blacklight-spotlight', github: 'projectblacklight/spotlight'
+gem 'blacklight-spotlight', '>= 3.0.0.rc4', '< 4'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 
 gem 'friendly_id'
