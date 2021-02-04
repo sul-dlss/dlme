@@ -85,3 +85,9 @@ Spotlight::Engine.config.routes.solr_documents = {
 }
 
 Spotlight::Engine.config.exports[:resources] = false
+
+ActiveSupport::Reloader.to_prepare do
+  Spotlight::Etl::Context.error_reporter = lambda do |pipeline, exception, data|
+    Honeybadger.notify(exception, context: data, tags: ['etl'])
+  end
+end
