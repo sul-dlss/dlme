@@ -334,6 +334,18 @@ body {
   transform-origin: right bottom;
 }
 
+// Override styling of data provider HTML
+// within results and show page metadata fields
+.document-metadata {
+  h1, h2, h3, h4, h5, h6 {
+    font-size: $font-size-base;
+  }
+
+  strong {
+    font-weight: normal;
+  }
+}
+
 // Overrides for mobile viewports
 @media (max-width: 767px) {
   .navbar-default .navbar-form {
