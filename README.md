@@ -80,6 +80,7 @@ code will be shared into the container so that the webapp will be dynamically re
 $ docker-compose up -d postgres
 $ docker-compose build app
 $ docker-compose build sidekiq
+$ docker-compose build web
 $ docker-compose run app bundle exec rake db:setup
 $ docker-compose run app bundle exec rake spotlight:initialize
 [THEN]

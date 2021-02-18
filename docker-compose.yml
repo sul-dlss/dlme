@@ -90,6 +90,14 @@ services:
       - SERVICES=sns,s3
       - DOCKER_HOST=unix:///var/run/docker.sock
       - DEBUG=1
+  web:
+    links:
+      - 'app'
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile.web
+    ports:
+      - "80:80"
 volumes:
   redis:
   postgres-data:
