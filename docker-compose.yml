@@ -33,7 +33,7 @@ services:
     # For running in dev
     volumes:
       - ".:/opt/"
-    command: bundle exec rails server
+    command: bundle exec rails server -b 0.0.0.0
   postgres:
     image: postgres
     ports:
