@@ -40,6 +40,8 @@ RUN apk --no-cache add --virtual build-dependencies \
 
 COPY . .
 
+EXPOSE 3000
+
 # Run this again while we're point at spotlight master, otherwise bundler complains:
 # > The git source https://github.com/projectblacklight/spotlight.git is not yet checked out.
 RUN apk --no-cache add --virtual build-dependencies \
