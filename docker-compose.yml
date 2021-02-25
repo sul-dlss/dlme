@@ -96,8 +96,11 @@ services:
     build:
       context: ./
       dockerfile: docker/Dockerfile.web
+    image: suldlss/dlme-web:latest
     ports:
       - "80:80"
+    environment:
+      - RAILS_SERVER=app:3000
 volumes:
   redis:
   postgres-data:
