@@ -65,7 +65,7 @@ class CatalogController < ApplicationController
 
     config.add_index_field 'title', **multilingual_locale_aware_field('cho_title')
 
-    config.add_index_field 'date_range', helper_method: :display_date_ranges, values: (lambda do |_field_config, document|
+    config.add_index_field 'date_range', helper_method: :display_date_ranges, values: (lambda do |_field_config, document, _|
       if document.has?('cho_date_range_norm_isim') || document.has?('cho_date_range_hijri_isim')
         {
           gregorian: document.fetch('cho_date_range_norm_isim', []),

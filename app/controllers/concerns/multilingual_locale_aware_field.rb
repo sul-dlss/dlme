@@ -12,24 +12,24 @@ module MultilingualLocaleAwareField
   def multilingual_locale_aware_field(field_prefix, suffix = 'ssim')
     {
       pattern: "#{field_prefix}.%<lang>s_#{suffix}",
-      values: lambda do |field_config, document|
+      values: lambda do |field_config, document, view_context|
         pref_langs, options = lang_config[I18n.locale]
 
         values = Array.wrap(pref_langs).flatten.map do |lang|
           subfield_config = field_config.merge(field: format(field_config.pattern, lang: lang), values: nil)
-          Blacklight::FieldRetriever.new(document, subfield_config).fetch
+          Blacklight::FieldRetriever.new(document, subfield_config, view_context).fetch
         end
 
         if values.none?(&:any?)
           values = Array.wrap(options[:default]).flatten.map do |lang|
             subfield_config = field_config.merge(field: format(field_config.pattern, lang: lang), values: nil)
-            Blacklight::FieldRetriever.new(document, subfield_config).fetch
+            Blacklight::FieldRetriever.new(document, subfield_config, view_context).fetch
           end
         end
 
         if values.none?(&:any?)
           subfield_config = field_config.merge(field: "#{field_prefix}_#{suffix}", values: nil)
-          values = [Blacklight::FieldRetriever.new(document, subfield_config).fetch]
+          values = [Blacklight::FieldRetriever.new(document, subfield_config, view_context).fetch]
         end
 
         if field_config.first
