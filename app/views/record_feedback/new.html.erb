@@ -1,7 +1,7 @@
 <%= render Blacklight::System::ModalComponent.new do |component| %>
-  <% component.with(:title, t('record_feedback.header')) %>
+  <% component.title { t('record_feedback.header') } %>
 
-  <% component.with(:body) do %>
+  <% component.body do %>
     <%= bootstrap_form_for(@contact_form || Spotlight::ContactForm.new(current_url: request.original_url), url: main_app.exhibit_record_feedback_path(current_exhibit), as: 'contact_form') do |f| %>
       <%= render '/spotlight/shared/honeypot_field', f: f %>
       <%= f.hidden_field :current_url %>
