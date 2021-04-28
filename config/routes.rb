@@ -52,7 +52,6 @@ Rails.application.routes.draw do
       authenticate :user, lambda { |u| Ability.new(u).can? :manage, :sidekiq } do
         require 'sidekiq/web'
         mount Sidekiq::Web => '/sidekiq'
-        Sidekiq::Web.set :session_secret, Rails.application.secrets[:secret_key_base]
       end
     rescue LoadError => e
       # If we get here, the sidekiq gem wasn't available (probably because you
