@@ -25,9 +25,9 @@ class CatalogController < ApplicationController
     config.show.partials = %i[show_header show_with_viewer ir_view record_feedback]
 
     config.view.list.partials = %i[thumbnail index_header index]
-    config.view.gallery.document_component = Blacklight::Gallery::DocumentComponent
-    config.view.masonry.document_component = Blacklight::Gallery::DocumentComponent
-    config.view.slideshow.document_component = Blacklight::Gallery::SlideshowComponent
+    config.view.gallery document_component: Blacklight::Gallery::DocumentComponent
+    config.view.masonry document_component: Blacklight::Gallery::DocumentComponent
+    config.view.slideshow document_component: Blacklight::Gallery::SlideshowComponent
 
     config.add_results_collection_tool(:sort_widget)
     config.add_results_collection_tool(:per_page_widget)
@@ -65,7 +65,7 @@ class CatalogController < ApplicationController
 
     config.add_index_field 'title', **multilingual_locale_aware_field('cho_title')
 
-    config.add_index_field 'date_range', helper_method: :display_date_ranges, values: (lambda do |_field_config, document|
+    config.add_index_field 'date_range', helper_method: :display_date_ranges, values: (lambda do |_field_config, document, _|
       if document.has?('cho_date_range_norm_isim') || document.has?('cho_date_range_hijri_isim')
         {
           gregorian: document.fetch('cho_date_range_norm_isim', []),
