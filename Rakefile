@@ -32,4 +32,3 @@ task ci: [:rubocop] do
     end
   end
 end
-require 'solr_wrapper/rake_task' unless Rails.env.production?
