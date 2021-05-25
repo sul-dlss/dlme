@@ -680,7 +680,7 @@ DEPENDENCIES
   lograge
   okcomputer
   pg
-  puma (~> 5.0)
+  puma (= 5.3.1)
   rack-attack
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.0)
