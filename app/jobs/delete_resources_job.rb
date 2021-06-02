@@ -5,6 +5,8 @@ class DeleteResourcesJob < ApplicationJob
   queue_as :default
 
   def perform(url, exhibit)
+    logger.info("Begin delete resources job from #{url}.")
+
     resp = Faraday.get(url)
 
     resources = NdjsonNormalizer.normalize(resp.body, url)
