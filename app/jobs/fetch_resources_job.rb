@@ -13,6 +13,8 @@ class FetchResourcesJob < ApplicationJob
       create_or_update_resource(item, exhibit, index, url)
     end
 
+    exhibit.touch # rubocop:disable Rails/SkipsModelValidations
+
     logger.info("#{resources.count} records were created from #{url}.")
   end
 
@@ -25,6 +27,6 @@ class FetchResourcesJob < ApplicationJob
     raise "Resource #{index + 1} in #{url} is not valid: #{resource.errors.full_messages.to_sentence}" unless resource.valid?
 
     resource.save
-    resource.reindex
+    resource.reindex(touch: false)
   end
 end

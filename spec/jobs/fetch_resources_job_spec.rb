@@ -31,8 +31,10 @@ RSpec.describe FetchResourcesJob, type: :job do
 
   context 'when the record is unique' do
     it 'adds the record' do
+      allow(exhibit).to receive(:touch)
       expect { described_class.perform_now(url, exhibit) }.to change(DlmeJson, :count).by(1)
       expect(Faraday).to have_received(:get).with(url)
+      expect(exhibit).to have_received(:touch).once
     end
   end
 
