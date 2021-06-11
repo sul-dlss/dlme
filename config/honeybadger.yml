@@ -1,3 +1,4 @@
 exceptions:
   ignore:
     - 'Blacklight::Exceptions::RecordNotFound'
+    - 'BlacklightRangeLimit::InvalidRange'
