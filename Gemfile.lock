@@ -116,7 +116,7 @@ GEM
       blacklight (~> 7.0)
       rails
       ruby-oembed
-    blacklight-spotlight (3.0.3)
+    blacklight-spotlight (3.1.0)
       activejob-status
       acts-as-taggable-on (>= 5.0, < 8)
       autoprefixer-rails
@@ -624,7 +624,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.7)
     unicode-display_width (1.7.0)
-    view_component (2.33.0)
+    view_component (2.34.0)
       activesupport (>= 5.0.0, < 7.0)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -658,7 +658,7 @@ DEPENDENCIES
   blacklight-gallery (~> 3.0)
   blacklight-hierarchy
   blacklight-oembed (>= 0.1.0)
-  blacklight-spotlight (>= 3.0.0.rc4, < 4)
+  blacklight-spotlight (~> 3.1)
   blacklight_range_limit (~> 8.0)
   bootsnap (>= 1.4.4)
   bootstrap (~> 4.0)
@@ -716,4 +716,4 @@ DEPENDENCIES
   webpacker (~> 4.x)
 
 BUNDLED WITH
-   2.2.15
+   2.2.19
