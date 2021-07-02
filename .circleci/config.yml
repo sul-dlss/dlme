@@ -214,25 +214,25 @@ workflows:
     - test:
         filters:
           branches:
-            ignore: master
+            ignore: main
   build:
     jobs:
     - build-image:
         filters:
           branches:
-            only: master
+            only: main
     - publish-latest:
         requires:
         - build-image
         filters:
           branches:
-            only: master
+            only: main
     - update_ecs:
         requires:
         - publish-latest
         filters:
           branches:
-            only: master
+            only: main
   build-tags:
     jobs:
     - build-image:
