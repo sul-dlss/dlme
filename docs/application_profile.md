@@ -54,6 +54,7 @@ The DLME Prototype Application Profile a subset of the [Europeana Data Model](ht
 
 | Solr field name  | Property          | Expectation | Cardinality | Value type  | Definition | Notes                      |
 | ---------------- | ----------------- | ----------- | ----------- | ----------- | ---------- | -------------------------- |
+| cho_aat_material | `http://vocab.getty.edu/page/aat/300010357` | R | 0...n | literal | Getty Art & Architecture material facet. | |
 | cho_alternative  | `dct:alternative` |             | 0...n       | literal     | Alternative title for the resource. | |
 | cho_contributor  | `dc:contributor`  | R           | 0...n       | literal     | Contributor to the existance of the resource.  | |
 | cho_coverage     | `dc:coverage`     | R           | 0...n       | literal     | The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant. | |
@@ -61,7 +62,7 @@ The DLME Prototype Application Profile a subset of the [Europeana Data Model](ht
 | cho_date         | `dc:date`         | R           | 0...n       | literal     | A point or period of time associated with an event in the lifecycle of the resource. | |
 | cho_dc_rights    | `dc:rights`       |             | 0...n       | literal/ref | Information about rights held in and over the CHO resource (the work itself). | Use to give the name of the rights holder of the CHO if possible or for more general rights information; prefer `edm:rights` if more applicable |
 | cho_description  | `dc:description`  | R           | 0...n       | literal     | An account of the resource. Includes all notes and abstracts at present. | |
-| cho_edm_type     | `edm:type`        | R           | 0...n       | literal     | Extends the Europeana material type of the resource (TEXT, IMAGE, SOUND, VIDEO, and 3D) by adding DATASET, and INTERACTIVE RESOURCE | constrained list for facets, one of "Text", "Image", "Sound", "Video", "3D", "Dataset", "Interactive Resource" |
+| cho_edm_type     | `edm:type`        | R           | 0...n       | literal     | Extends the Europeana material type of the resource (TEXT, IMAGE, SOUND, VIDEO, and 3D) by adding DATASET, and INTERACTIVE RESOURCE | constrained list for facets, one of "Text", "Image", "Object", "Sound", "Video", "3D", "Dataset", "Interactive Resource" |
 | cho_extent       | `dct:extent`      |             | 0...n       | literal     | The size or duration of the CHO resource (the work itself, not the digital representation). | |
 | cho_format       | `dc:format`       |             | 0...n       | literal     | The file format, physical medium, or dimensions of the CHO resource (the work itself). | |
 | cho_has_part     | `dct:hasPart`     |             | 0...n       | literal/ref | A related resource that is included either physically or logically in the described resource. | |
@@ -70,6 +71,7 @@ The DLME Prototype Application Profile a subset of the [Europeana Data Model](ht
 | cho_is_part_of   | `dct:isPartOf`    |             | 0...n       | literal/ref | A related resource in which the described resource is physically or logically included. | |
 | cho_language     | `dc:language`     | M+          | 0...n       | literal     | Language for the resource. | Mandatory for text in Europeana; determine if BCP47 language tags are feasible |
 | cho_medium       | `dct:medium`      |             | 0...n       | literal     | The material or physical carrier of the resource. | |
+| cho_periodo_period | | R | 0...n | literal/ref | URI for the periodo period matching the cho_temporal string value | |
 | cho_provenance   | `dct:provenance`  | R+          | 0...n       | literal     | A statement of any changes in ownership and custody of the CHO resource (the work itself) since its creation that are significant for its authenticity, integrity, and interpretation. | Recommended if available   |
 | cho_publisher    | `dc:publisher`    |             | 0...n       | literal     | An entity responsible for making the CHO resource (the work itself, not the digital representation) available. | |
 | cho_relation     | `dc:relation`     |             | 0...n       | literal/ref | Related resources in which you can't determine if it is a part or has a part of or other. | |
