@@ -11,7 +11,7 @@ class DlmeThumbnailPresenter < Blacklight::ThumbnailPresenter
     }
 
     injected_options[:class] = 'img-thumbnail' unless view_context.controller.action_name == 'show'
-    super(image_options.merge(injected_options), url_options)
+    super(image_options.merge(injected_options), url_options.reverse_merge(skip_pipeline: true))
   end
 
   private
