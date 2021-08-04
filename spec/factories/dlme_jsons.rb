@@ -8,4 +8,19 @@ FactoryBot.define do
     end
     exhibit
   end
+
+  sequence(:json_data_id)
+  factory :dlme_json_unique_id, class: 'DlmeJson' do
+    data do
+      {
+        json: {
+          id: "test_id_#{generate(:json_data_id)}",
+          agg_provider: 'factorybot',
+          agg_data_provider: 'factorybot',
+          cho_title: ['test object']
+        }.to_json
+      }
+    end
+    exhibit
+  end
 end
