@@ -6,8 +6,8 @@ RSpec.describe ResourceRemover do
   describe '.remove_all_resources' do
     before do
       # create resources in a couple different exhibits, and reindex
-      create_list(:dlme_json_unique_id, 3, exhibit: create(:exhibit)).each(&:reindex)
-      create_list(:dlme_json_unique_id, 2, exhibit: create(:exhibit)).each(&:reindex)
+      create_list(:dlme_json, 3, exhibit: create(:exhibit)).each(&:reindex)
+      create_list(:dlme_json, 2, exhibit: create(:exhibit)).each(&:reindex)
     end
 
     let(:blacklight_solr) do
