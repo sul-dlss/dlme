@@ -83,9 +83,7 @@ services:
   localstack:
     image: localstack/localstack
     ports:
-      - "4575:4575"
-      - "4572:4572"
-      - "8080:8080"
+      - "4566:4566"
     environment:
       - SERVICES=sns,s3
       - DOCKER_HOST=unix:///var/run/docker.sock

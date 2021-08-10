@@ -122,18 +122,18 @@ Configure AWS CLI to use localstack-run endpoints:
 
 ```
 AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws sns \
-    --endpoint-url=http://localhost:4575 create-topic \
+    --endpoint-url=http://localhost:4566 create-topic \
     --region us-east-1 \
     --name dlme-transform
 
 AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws s3api \
-    --endpoint-url=http://localhost:4572 create-bucket \
+    --endpoint-url=http://localhost:4566 create-bucket \
     --region us-east-1 \
     --bucket dlme-transform
 
 AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws sns \
-    --endpoint-url=http://localhost:4575 subscribe \
-    --topic-arn arn:aws:sns:us-east-1:123456789012:dlme-transform \
+    --endpoint-url=http://localhost:4566 subscribe \
+    --topic-arn arn:aws:sns:us-east-1:000000000000:dlme-transform \
     --protocol http \
     --region us-east-1 \
     --notification-endpoint http://app:3000/transform_result
