@@ -150,10 +150,10 @@ docker run --rm -e S3_BUCKET=dlme-transform \
                 -e AWS_ACCESS_KEY_ID=999999 \
                 -e AWS_SECRET_ACCESS_KEY=1231 \
                 -e AWS_DEFAULT_REGION=us-east-1 \
-                -e SNS_TOPIC_ARN=arn:aws:sns:us-east-1:123456789012:dlme-transform \
-                -e SNS_ENDPOINT_URL=http://localhost:4575 \
-                -e S3_ENDPOINT_URL=http://localhost:4572 \
-                -e S3_BASE_URL=http://localstack:4572 \
+                -e SNS_TOPIC_ARN=arn:aws:sns:us-east-1:000000000000:dlme-transform \
+                -e SNS_ENDPOINT_URL=http://localhost:4566 \
+                -e S3_ENDPOINT_URL=http://localhost:4566 \
+                -e S3_BASE_URL=http://localstack:4566 \
                 -e SKIP_FETCH_DATA=true \
                 -v $(pwd)/../dlme-transform:/opt/traject \
                 -v $(pwd)/../dlme-metadata:/opt/traject/data \
