@@ -41,23 +41,16 @@ RSpec.describe 'transform results', type: :request do
     let(:headers) { { 'Content-Type' => 'text/plain' } }
 
     before do
-      allow(TransformResult).to receive(:create)
+      allow(TransformResult).to receive(:find_or_create_by)
     end
 
-    # rubocop:disable RSpec/ExampleLength
     it 'creates the TransformResult' do
       post '/transform_result', params: msg, headers: headers
-      expect(TransformResult).to have_received(:create).with(
+      expect(TransformResult).to have_received(:find_or_create_by).with(
         url: 'http://localstack:4572/dlme-transform/output-20190222190423.ndjson',
-        data_path: 'stanford/maps/data/kj751hs0595.mods',
-        success: true,
-        records: 1,
-        timestamp: DateTime.iso8601('2019-02-22T19:04:24+00:00'),
-        duration: 0,
-        error: nil
+        data_path: 'stanford/maps/data/kj751hs0595.mods'
       )
       expect(response).to have_http_status(:created)
     end
-    # rubocop:enable RSpec/ExampleLength
   end
 end
