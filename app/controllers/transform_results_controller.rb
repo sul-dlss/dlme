@@ -11,18 +11,11 @@ class TransformResultsController < ApplicationController
   before_action :authenticate_user!, except: :create
 
   # This is invoked by SNS HTTP subscription
-  # rubocop:disable Metrics/AbcSize
   def create
-    TransformResult.find_or_create_by(notification_params) do |transform_result|
-      transform_result.success = notification_msg['success']
-      transform_result.records = notification_msg['records']
-      transform_result.timestamp = DateTime.iso8601(notification_msg['timestamp'])
-      transform_result.duration = notification_msg['duration']
-      transform_result.error = notification_msg['error']
-    end
+    transform_result = TransformResult.find_or_create_by(notification_params)
+    transform_result.update(build_notification)
     head :created
   end
-  # rubocop:enable Metrics/AbcSize
 
   # This is invoked by transform_result.js
   def show
@@ -50,6 +43,16 @@ class TransformResultsController < ApplicationController
     {
       url: notification_msg['url'],
       data_path: notification_msg['data_path']
+    }
+  end
+
+  def build_notification
+    {
+      success: notification_msg['success'],
+      records: notification_msg['records'],
+      timestamp: DateTime.iso8601(notification_msg['timestamp']),
+      duration: notification_msg['duration'],
+      error: notification_msg['error']
     }
   end
 
