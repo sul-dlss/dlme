@@ -23,7 +23,6 @@ services:
       # For development
       - RAILS_SERVE_STATIC_FILES=true
       - RAILS_ENV=development
-      - HOST=0.0.0.0
       - SETTINGS__FEATURE_FLAGS__ALLOW_JSON_UPLOAD=true
     image: 'suldlss/dlme:latest'
     ports:
@@ -33,7 +32,7 @@ services:
     # For running in dev
     volumes:
       - ".:/opt/"
-    command: bundle exec rails server
+    command: bundle exec rails server -b 0.0.0.0
   postgres:
     image: postgres
     ports:
