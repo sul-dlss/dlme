@@ -8,6 +8,8 @@ class CatalogController < ApplicationController
   extend MultilingualLocaleAwareField
 
   before_action do
+    blacklight_config.bulk_actions&.delete_resources!
+
     next unless request.format.json?
 
     blacklight_config.add_show_field :__raw_resource_json_ss, helper_method: :ir_for_output
