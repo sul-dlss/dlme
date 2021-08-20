@@ -13,9 +13,7 @@ class TransformResultsController < ApplicationController
   # This is invoked by SNS HTTP subscription
   def create
     transform_result = TransformResult.find_or_create_by(notification_params)
-    transaction do
-      transform_result.update(build_notification)
-    end
+    transform_result.update(build_notification)
     head :created
   end
 
