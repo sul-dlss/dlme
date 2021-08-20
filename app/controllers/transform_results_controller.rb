@@ -12,7 +12,8 @@ class TransformResultsController < ApplicationController
 
   # This is invoked by SNS HTTP subscription
   def create
-    TransformResult.create(build_notification)
+    transform_result = TransformResult.find_or_create_by(notification_params)
+    transform_result.update(build_notification)
     head :created
   end
 
@@ -38,10 +39,15 @@ class TransformResultsController < ApplicationController
     raise
   end
 
-  def build_notification
+  def notification_params
     {
       url: notification_msg['url'],
-      data_path: notification_msg['data_path'],
+      data_path: notification_msg['data_path']
+    }
+  end
+
+  def build_notification
+    {
       success: notification_msg['success'],
       records: notification_msg['records'],
       timestamp: DateTime.iso8601(notification_msg['timestamp']),

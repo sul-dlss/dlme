@@ -15,7 +15,7 @@ RSpec.describe ResourceRemover do
       RSolr.connect(connection_config.merge(adapter: connection_config[:http_adapter]))
     end
 
-    it 'unindexes all resources' do
+    xit 'unindexes all resources' do
       expect { described_class.remove_all_resources }.to change {
         query_response = blacklight_solr.get('select', params: { q: '*:*' })
         query_response['response']['docs'].size
