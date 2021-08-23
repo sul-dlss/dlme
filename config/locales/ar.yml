@@ -65,6 +65,9 @@ ar:
     new:
       add_item: احذف العناصر
   spotlight:
+    bulk_actions:
+      delete_resources:
+        heading: حذف الموارد
     catalog:
       admin_header:
         delete_resource: احذف العناصر
