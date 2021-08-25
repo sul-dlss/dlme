@@ -231,13 +231,13 @@ jobs:
             aws configure set region us-west-2
             aws configure set output json
             aws configure list # Show confirmation of config
-            task_arn=$(aws ecs list-task-definitions --family-prefix spotlight --region us-west-2 --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
+            task_arn=$(aws ecs list-task-definitions --family-prefix spotlight-uat --region us-west-2 --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
             cluster_arn=$(aws ecs list-clusters --region us-west-2 | jq --raw-output --exit-status '.clusterArns[] | select(contains(":cluster/dlme-uat"))')
             # echo -n "task_arn=$task_arn\ncluster_arn=$cluster_arn\n"
-            aws ecs update-service --service spotlight --region us-west-2 --cluster $cluster_arn --task-definition $task_arn --force-new-deployment
+            aws ecs update-service --service spotlight-uat --region us-west-2 --cluster $cluster_arn --task-definition $task_arn --force-new-deployment
 
-            worker_task_arn=$(aws ecs list-task-definitions --family-prefix dlme-worker --region us-west-2 --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-            aws ecs update-service --service dlme-worker --region us-west-2 --cluster $cluster_arn --task-definition $worker_task_arn --force-new-deployment
+            worker_task_arn=$(aws ecs list-task-definitions --family-prefix dlme-uat-worker --region us-west-2 --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
+            aws ecs update-service --service dlme-uat-worker --region us-west-2 --cluster $cluster_arn --task-definition $worker_task_arn --force-new-deployment
 
   update_ecs_stage:
     docker: # NOT the default
