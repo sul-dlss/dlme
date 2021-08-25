@@ -35,6 +35,12 @@ Rails.application.routes.draw do
       resource :s3_delete, controller: :s3_delete, only: [:new, :create]
       resource :statistics, only: :show
 
+      resource :dlme_bulk_actions, only: [] do
+        member do
+          post :delete_resources
+        end
+      end
+
       get "catalog/range_limit" => "spotlight/catalog#range_limit"
       get "home/range_limit" => "spotlight/home_pages#range_limit"
       get "catalog/range_limit_panel/:id" => "spotlight/catalog#range_limit_panel"
