@@ -261,7 +261,7 @@ jobs:
             aws configure set output json
             aws configure list # Show confirmation of config
             task_arn=$(aws ecs list-task-definitions --family-prefix spotlight --region us-west-2 --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-            cluster_arn=$(aws ecs list-clusters --region us-west-2 | jq --raw-output --exit-status '.clusterArns[] | select(contains(":cluster/dlme"))')
+            cluster_arn=$(aws ecs list-clusters --region us-west-2 | jq --raw-output --exit-status '.clusterArns[] | select(test("arn:aws:ecs:us-west-2:[0-9]+:cluster/dlme$"))')
             # echo -n "task_arn=$task_arn\ncluster_arn=$cluster_arn\n"
             aws ecs update-service --service spotlight --region us-west-2 --cluster $cluster_arn --task-definition $task_arn --force-new-deployment
 
