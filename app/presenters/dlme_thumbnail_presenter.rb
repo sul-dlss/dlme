@@ -20,6 +20,9 @@ class DlmeThumbnailPresenter < Blacklight::ThumbnailPresenter
   # Overridden to support http proxy
   def thumbnail_value_from_document
     url = super
+    return if url.blank?
+    return unless url.match? URI::DEFAULT_PARSER.make_regexp # do not try to resolve invalid URLs
+
     return view_context.image_proxy_path(url: url) if url.to_s.start_with?('http://')
 
     url
