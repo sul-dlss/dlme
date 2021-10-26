@@ -42,14 +42,14 @@ RSpec.describe 'transform results', type: :request do
     let(:transform_result) { class_double('TransformResult') }
 
     before do
-      allow(TransformResult).to receive(:find_or_create_by).and_return(transform_result)
+      allow(TransformResult).to receive(:find_or_initialize_by).and_return(transform_result)
       allow(transform_result).to receive(:update)
     end
 
     it 'creates the TransformResult' do
       post '/transform_result', params: msg, headers: headers
-      expect(TransformResult).to have_received(:find_or_create_by).with(url: 'http://localstack:4572/dlme-transform/output-20190222190423.ndjson',
-                                                                        data_path: 'stanford/maps/data/kj751hs0595.mods')
+      expect(TransformResult).to have_received(:find_or_initialize_by).with(url: 'http://localstack:4572/dlme-transform/output-20190222190423.ndjson',
+                                                                            data_path: 'stanford/maps/data/kj751hs0595.mods')
       expect(transform_result).to have_received(:update).with(success: true,
                                                               records: 1,
                                                               timestamp: DateTime.iso8601('2019-02-22T19:04:24+00:00'),
