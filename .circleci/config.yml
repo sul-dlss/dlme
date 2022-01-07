@@ -5,11 +5,11 @@ executors:
       WEBAPP_IMAGE_NAME: suldlss/dlme
       WORKER_IMAGE_NAME: suldlss/dlme-worker
     docker:
-    - image: circleci/buildpack-deps:stretch
+    - image: cimg/base
 jobs:
   test:
     docker:
-    - image: circleci/ruby:2.7.2-node-browsers
+    - image: cimg/ruby:2.7-node
       environment:
         BUNDLE_JOBS: 3
         BUNDLE_RETRY: 3
@@ -183,7 +183,7 @@ jobs:
 
   update_ecs_dev:
     docker: # NOT the default
-      - image: circleci/python:3.7-stretch-node-browsers
+      - image: cimg/python:3.7-browsers
     steps:
       - run: sudo pip install awscli
       - run:
@@ -212,7 +212,7 @@ jobs:
 
   update_ecs_uat:
     docker: # NOT the default
-      - image: circleci/python:3.7-stretch-node-browsers
+      - image: cimg/python:3.7-browsers
     steps:
       - run: sudo pip install awscli
       - run:
@@ -241,7 +241,7 @@ jobs:
 
   update_ecs_stage:
     docker: # NOT the default
-      - image: circleci/python:3.7-stretch-node-browsers
+      - image: cimg/python:3.7-browsers
     steps:
       - run: sudo pip install awscli
       - run:
@@ -270,7 +270,7 @@ jobs:
 
   update_ecs_prod:
     docker: # NOT the default
-      - image: circleci/python:3.7-stretch-node-browsers
+      - image: cimg/python:3.7-browsers
     steps:
       - run: sudo pip install awscli
       - run:
