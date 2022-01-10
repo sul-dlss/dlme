@@ -5,7 +5,7 @@ executors:
       WEBAPP_IMAGE_NAME: suldlss/dlme
       WORKER_IMAGE_NAME: suldlss/dlme-worker
     docker:
-    - image: cimg/base
+    - image: cimg/base:stable
 jobs:
   test:
     docker:
