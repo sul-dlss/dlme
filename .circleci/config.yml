@@ -35,8 +35,8 @@ jobs:
     # Restore bundle cache
     - restore_cache:
         keys:
-        - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
-        - rails-demo-bundle-v2-
+        - rails-demo-bundle-v3-{{ checksum "Gemfile.lock" }}
+        - rails-demo-bundle-v3-
 
     - run:
         name: Bundle Install
@@ -44,7 +44,7 @@ jobs:
 
     # Store bundle cache
     - save_cache:
-        key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+        key: rails-demo-bundle-v3-{{ checksum "Gemfile.lock" }}
         paths:
         - vendor/bundle
 
