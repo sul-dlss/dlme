@@ -49,6 +49,7 @@ The DLME Prototype Application Profile a subset of the [Europeana Data Model](ht
 | agg_provider_country           | edm:country       | M           | 1...1       | literal     | The country of the organization who delivers data directly to an aggregation service. | |
 | agg_provider_country_ar        | edm:country       | M           | 1...1       | literal     | The country of the organization who delivers data directly to an aggregation service specified in the Arabic language. | |
 | dlme_collection                | dcterms:title     | M           | 1...1       | literal     | Title of the collection in DLME, copied from data provider, when available, or added. | |
+| dlme_collection_id              | n/a              | M           | 1...1       | literal     | Identifier for the collection in DLME, used to create a stable url to the collection. | |
 | dlme_source_file               |                   |             | 1...1       | literal     | Path to the file in dlme metadata repository, used for linking resources in the web applicaiton to files in the dlme-metadata repo. | |
 
 ### `edm:ProvidedCHO`
