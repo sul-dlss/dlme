@@ -77,13 +77,13 @@ code will be shared into the container so that the webapp will be dynamically re
 
 ```console
 [FIRST RUN]
-$ docker-compose up -d postgres
-$ docker-compose build app
-$ docker-compose build sidekiq
-$ docker-compose run app bundle exec rake db:setup
-$ docker-compose run app bundle exec rake spotlight:initialize
+$ docker compose up -d postgres
+$ docker compose build app
+$ docker compose build sidekiq
+$ docker compose run app bundle exec rake db:setup
+$ docker compose run app bundle exec rake spotlight:initialize
 [THEN]
-$ docker-compose up -d
+$ docker compose up -d
 ```
 
 Once the DLME Rails app is running you can create an exhibit. The title will need to be 'dlme' and the URL slug will
@@ -106,7 +106,7 @@ In some cases Docker containers may get stale and more thorough steps may be req
 ```console
 docker system prune -a -f --volumes
 docker ps -aq
-docker-compose pull
+docker compose pull
 bin/yarn install
 ```
 
