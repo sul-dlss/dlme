@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Contact form override', type: :feature do
-  let!(:exhibit) { FactoryBot.create(:exhibit) }
+  let!(:exhibit) { create(:exhibit) }
 
   describe 'when emails are setup' do
     before do
