@@ -100,7 +100,7 @@ gem 'http'
 gem 'lograge'
 gem 'okcomputer'
 gem 'rack-attack'
-gem 'slowpoke', '~> 0.3.0'
+gem 'slowpoke', '~> 0.4'
 
 gem 'bootstrap', '~> 4.0'
 gem 'font-awesome-rails'
