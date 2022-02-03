@@ -6,6 +6,10 @@ executors:
       WORKER_IMAGE_NAME: suldlss/dlme-worker
     docker:
     - image: cimg/base:stable
+
+orbs:
+  browser-tools: circleci/browser-tools@1.1
+
 jobs:
   test:
     docker:
@@ -20,8 +24,10 @@ jobs:
     - image: solr:7
       command: bin/solr -cloud -noprompt -f -p 8983
     steps:
+    - browser-tools/install-browser-tools
     - checkout
-
+    - run: |
+        google-chrome --version
     # Upgrade bundler
     - run:
         name: Install Bundler
