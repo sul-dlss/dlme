@@ -35,16 +35,19 @@ jobs:
     # Restore bundle cache
     - restore_cache:
         keys:
-        - dlme-bundle-v3-{{ checksum "Gemfile.lock" }}
+        - dlme-bundle-v3-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+        - dlme-bundle-v3-{{ arch }}-{{ .Branch }}
         - dlme-bundle-v3-
 
     - run:
         name: Bundle Install
         command: bundle check || bundle install
 
+    - run: bundle clean --force
+
     # Store bundle cache
     - save_cache:
-        key: dlme-bundle-v3-{{ checksum "Gemfile.lock" }}
+        key: dlme-bundle-v3-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
         paths:
         - vendor/bundle
 
