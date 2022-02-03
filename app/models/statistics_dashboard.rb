@@ -201,6 +201,10 @@ class StatisticsDashboard
       StatisticsDashboard.locale_aware_field(provider_field_key)
     end
 
+    def provider_facet_field
+      "#{provider_field_key}_#{I18n.locale}"
+    end
+
     # Represents each row in the Contributors table
     class Institution
       attr_reader :facet

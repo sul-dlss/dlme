@@ -13,10 +13,10 @@ RSpec.describe 'Bulk delete can be run on search results' do # rubocop:disable R
   let(:fixture_file_path_2) { File.join(fixture_path, 'json/embeddable.json') }
   let(:fixture_file_path_3) { File.join(fixture_path, 'json/iiif-single-image.json') }
   let(:fixture_file_path_4) { File.join(fixture_path, 'json/long-description.json') }
-  let(:json_1) { File.open(fixture_file_path_1).read }
-  let(:json_2) { File.open(fixture_file_path_2).read }
-  let(:json_3) { File.open(fixture_file_path_3).read }
-  let(:json_4) { File.open(fixture_file_path_4).read }
+  let(:json_1) { File.read(fixture_file_path_1) }
+  let(:json_2) { File.read(fixture_file_path_2) }
+  let(:json_3) { File.read(fixture_file_path_3) }
+  let(:json_4) { File.read(fixture_file_path_4) }
   let(:metadata_1) do
     { 'traject_context_command_line.filename' => fixture_file_path_1,
       'traject_context_source' => 'matching_resource' }

@@ -43,7 +43,7 @@ group :development, :test do
 
   gem 'factory_bot_rails', '~> 6.0'
   gem 'rails-controller-testing'
-  gem 'rubocop', '~> 0.65'
+  gem 'rubocop', '~> 1.0'
   gem 'rubocop-performance'
   # Don't use rubocop-rails 2.8.0 (it has a bug that fails our builds)
   gem 'rubocop-rails', '> 2.7', '!= 2.8.0'
