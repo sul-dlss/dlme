@@ -35,8 +35,8 @@ jobs:
     # Restore bundle cache
     - restore_cache:
         keys:
-        - rails-demo-bundle-v3-{{ checksum "Gemfile.lock" }}
-        - rails-demo-bundle-v3-
+        - dlme-bundle-v3-{{ checksum "Gemfile.lock" }}
+        - dlme-bundle-v3-
 
     - run:
         name: Bundle Install
@@ -44,15 +44,15 @@ jobs:
 
     # Store bundle cache
     - save_cache:
-        key: rails-demo-bundle-v3-{{ checksum "Gemfile.lock" }}
+        key: dlme-bundle-v3-{{ checksum "Gemfile.lock" }}
         paths:
         - vendor/bundle
 
     # Only necessary if app uses webpacker or yarn in some other way
     - restore_cache:
         keys:
-          - rails-demo-yarn-{{ checksum "yarn.lock" }}
-          - rails-demo-yarn-
+          - dlme-yarn-{{ checksum "yarn.lock" }}
+          - dlme-yarn-
 
     - run:
           name: Yarn Install
@@ -60,7 +60,7 @@ jobs:
 
     # Store yarn / webpacker cache
     - save_cache:
-        key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+        key: dlme-yarn-{{ checksum "yarn.lock" }}
         paths:
           - ~/.cache/yarn
 
