@@ -24,6 +24,15 @@ jobs:
     steps:
     - checkout
 
+    # Install Chrome and ChromeDriver for selenium tests
+    - browser-tools/install-chrome
+    - browser-tools/install-chromedriver
+    - run:
+        name: Which chrome?
+        command: |
+          google-chrome --version
+          chromedriver --version
+
     # Upgrade bundler
     - run:
         name: Install Bundler
