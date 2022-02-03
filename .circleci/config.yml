@@ -22,8 +22,21 @@ jobs:
         RAILS_ENV: test
         NOKOGIRI_USE_SYSTEM_LIBRARIES: true
         CC_TEST_REPORTER_ID: 0603d31c367f7e726e4db6e249d4b62025c768000d43b02259a65e8486812362
-    - image: solr:7
-      command: bin/solr -cloud -noprompt -f -p 8983
+    - image: bitnami/solr:8
+      environment:
+        SOLR_PORT_NUMBER: 8983
+        SOLR_CLOUD_BOOTSTRAP: "yes"
+        SOLR_ENABLE_CLOUD_MODE: "yes"
+        SOLR_ENABLE_AUTHENTICATION: "yes"
+        SOLR_ADMIN_USERNAME: admin
+        SOLR_ADMIN_PASSWORD: admin
+        SOLR_ZK_HOSTS: localhost
+    - image: bitnami/zookeeper
+      environment:
+        ALLOW_ANONYMOUS_LOGIN: "yes"
+        JVMFLAGS: -Dzookeeper.4lw.commands.whitelist=ruok -Dzookeeper.admin.enableServer=false
+        ZOO_SERVERS: zoo1:2888:3888
+        ZOO_ADMIN_SERVER_PORT_NUMBER: 8020
     steps:
     - browser-tools/install-browser-tools
     - checkout
@@ -84,8 +97,8 @@ jobs:
         command: |
           cd solr/config
           zip -1 -r solr_config.zip ./*
-          curl -H "Content-type:application/octet-stream" --data-binary @solr_config.zip "http://localhost:8983/solr/admin/configs?action=UPLOAD&name=dlme"
-          curl -H 'Content-type: application/json' http://localhost:8983/api/collections/ -d '{create: {name: dlme, config: dlme, numShards: 1}}'
+          curl -H "Content-type:application/octet-stream" --data-binary @solr_config.zip "http://admin:admin@localhost:8983/solr/admin/configs?action=UPLOAD&name=dlme"
+          curl -H 'Content-type: application/json' http://admin:admin@localhost:8983/api/collections/ -d '{create: {name: dlme, config: dlme, numShards: 1}}'
 
     - run:
         name: Check styles using rubocop
@@ -101,6 +114,8 @@ jobs:
     # Run rspec in parallel
     - run:
         name: Run rspec in parallel
+        environment:
+          SOLR_URL: http://admin:admin@localhost:8983/solr/dlme
         command: |
           ./tmp/cc-test-reporter before-build
           bundle exec rspec --profile 10 \
