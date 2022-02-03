@@ -6,6 +6,8 @@ executors:
       WORKER_IMAGE_NAME: suldlss/dlme-worker
     docker:
     - image: cimg/base:stable
+orbs:
+  node: circleci/node@4.7.0
 jobs:
   test:
     docker:
@@ -21,6 +23,10 @@ jobs:
       command: bin/solr -cloud -noprompt -f -p 8983
     steps:
     - checkout
+    - node/install:
+        install-yarn: true
+        install-npm: false
+        node-version: "14.19.0"
 
     # Upgrade bundler
     - run:
