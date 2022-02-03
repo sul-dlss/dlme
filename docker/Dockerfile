@@ -1,4 +1,4 @@
-FROM ruby:2.7.2-alpine
+FROM ruby:2.7.5-alpine
 
 RUN apk add --update --no-cache \
       nodejs \
