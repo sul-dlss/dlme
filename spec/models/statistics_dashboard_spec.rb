@@ -138,6 +138,14 @@ RSpec.describe StatisticsDashboard do
       expect(contributors.provider_field).to eq 'agg_provider.ar-Arab_ssim'
     end
 
+    it 'has a locale aware provider_facet_field accessor' do
+      expect(contributors.provider_facet_field).to eq 'agg_provider_en'
+
+      allow(I18n).to receive(:locale).and_return('ar')
+
+      expect(contributors.provider_facet_field).to eq 'agg_provider_ar'
+    end
+
     describe '#institutions' do
       let(:institutions) { contributors.institutions }
 
