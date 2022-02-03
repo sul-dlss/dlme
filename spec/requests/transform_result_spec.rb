@@ -31,9 +31,9 @@ RSpec.describe 'transform results', type: :request do
   context 'when POSTing to create' do
     let(:msg) do
       '{"Message": "{\n  \"success\": true,\n  \"records\": 1,\n  \"data_path\": \"stanford/maps/data/' \
-      'kj751hs0595.mods\",\n  \"timestamp\": \"2019-02-22T19:04:24+00:00\",\n  \"duration\": 0,\n  \"url\": ' \
-      '\"http://localstack:4572/dlme-transform/output-20190222190423.ndjson\"\n}\n", "Type": "Notification", ' \
-      '"TopicArn": "arn:aws:sns:us-east-1:123456789012:dlme-transform", "MessageId": "8456e5c9-2fcf-4866-9c4f-b5bf3b898938"}'
+        'kj751hs0595.mods\",\n  \"timestamp\": \"2019-02-22T19:04:24+00:00\",\n  \"duration\": 0,\n  \"url\": ' \
+        '\"http://localstack:4572/dlme-transform/output-20190222190423.ndjson\"\n}\n", "Type": "Notification", ' \
+        '"TopicArn": "arn:aws:sns:us-east-1:123456789012:dlme-transform", "MessageId": "8456e5c9-2fcf-4866-9c4f-b5bf3b898938"}'
     end
 
     # The SNS https endpoint is setting Content-Type to 'text/plain' even though it's pushing JSON.

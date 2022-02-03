@@ -2,6 +2,7 @@
 
 # Stubs the expected methods provided by CatalogController
 module ControllerLevelHelpers
+  # Provide some expected methods
   module ControllerViewHelpers
     include Blacklight::Facet
 

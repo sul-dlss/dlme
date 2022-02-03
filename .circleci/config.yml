@@ -5,7 +5,7 @@ executors:
       WEBAPP_IMAGE_NAME: suldlss/dlme
       WORKER_IMAGE_NAME: suldlss/dlme-worker
     docker:
-    - image: circleci/buildpack-deps:stretch
+    - image: cimg/base:stable
 jobs:
   test:
     docker:
@@ -35,8 +35,8 @@ jobs:
     # Restore bundle cache
     - restore_cache:
         keys:
-        - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
-        - rails-demo-bundle-v2-
+        - rails-demo-bundle-v3-{{ checksum "Gemfile.lock" }}
+        - rails-demo-bundle-v3-
 
     - run:
         name: Bundle Install
@@ -44,7 +44,7 @@ jobs:
 
     # Store bundle cache
     - save_cache:
-        key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+        key: rails-demo-bundle-v3-{{ checksum "Gemfile.lock" }}
         paths:
         - vendor/bundle
 
@@ -183,7 +183,7 @@ jobs:
 
   update_ecs_dev:
     docker: # NOT the default
-      - image: circleci/python:3.7-stretch-node-browsers
+      - image: cimg/python:3.7-browsers
     steps:
       - run: sudo pip install awscli
       - run:
@@ -212,7 +212,7 @@ jobs:
 
   update_ecs_uat:
     docker: # NOT the default
-      - image: circleci/python:3.7-stretch-node-browsers
+      - image: cimg/python:3.7-browsers
     steps:
       - run: sudo pip install awscli
       - run:
@@ -241,7 +241,7 @@ jobs:
 
   update_ecs_stage:
     docker: # NOT the default
-      - image: circleci/python:3.7-stretch-node-browsers
+      - image: cimg/python:3.7-browsers
     steps:
       - run: sudo pip install awscli
       - run:
@@ -270,7 +270,7 @@ jobs:
 
   update_ecs_prod:
     docker: # NOT the default
-      - image: circleci/python:3.7-stretch-node-browsers
+      - image: cimg/python:3.7-browsers
     steps:
       - run: sudo pip install awscli
       - run:
