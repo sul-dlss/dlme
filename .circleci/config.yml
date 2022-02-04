@@ -258,9 +258,7 @@ jobs:
           ecs_cluster_name: ":cluster/dlme"
 
   debug:
-    executor:
-      name: aws-cli/default
-      python-version: '3.9-browsers'
+    executor: aws-cli/default
     environment:
       DLME_DEPLOY_REGION: us-west-2
     steps:
