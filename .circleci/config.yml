@@ -9,6 +9,7 @@ executors:
 
 orbs:
   browser-tools: circleci/browser-tools@1.1
+  aws-cli: circleci/aws-cli@2.0.6
 
 jobs:
   test:
@@ -192,88 +193,111 @@ jobs:
           docker push $WORKER_IMAGE_NAME:release
 
   update_ecs_dev:
-    docker: # NOT the default
-      - image: cimg/python:3.7-browsers
+    executor: aws-cli/default
+    environment:
+      DLME_DEPLOY_REGION: us-west-2
     steps:
+      - aws-cli/setup:
+          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+          aws-secret-access-key: CIRCLE_SECRET_KEY
+          aws-region: DLME_DEPLOY_REGION
+          profile-name: dlme
       - update_ecs:
-          role_arn: $DEV_ROLE_ARN
+          role_arn: DEV_ROLE_ARN
           ecs_cluster_name: ":cluster/dlme-dev"
 
   update_ecs_uat:
-    docker: # NOT the default
-      - image: cimg/python:3.7-browsers
+    executor: aws-cli/default
+    environment:
+      DLME_DEPLOY_REGION: us-west-2
     steps:
+      - aws-cli/setup:
+          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+          aws-secret-access-key: CIRCLE_SECRET_KEY
+          aws-region: DLME_DEPLOY_REGION
+          profile-name: dlme
       - update_ecs:
-          role_arn: $STAGE_ROLE_ARN
+          role_arn: STAGE_ROLE_ARN
           ecs_cluster_name: ":cluster/dlme-uat"
 
   update_ecs_stage:
-    docker: # NOT the default
-      - image: cimg/python:3.7-browsers
+    executor: aws-cli/default
+    environment:
+      DLME_DEPLOY_REGION: us-west-2
     steps:
+      - aws-cli/setup:
+          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+          aws-secret-access-key: CIRCLE_SECRET_KEY
+          aws-region: DLME_DEPLOY_REGION
+          profile-name: dlme
       - update_ecs:
-          role_arn: $STAGE_ROLE_ARN
+          role_arn: STAGE_ROLE_ARN
           ecs_cluster_name: ":cluster/dlme"
 
 
   update_ecs_prod:
-    docker: # NOT the default
-      - image: cimg/python:3.7-browsers
+    executor: aws-cli/default
+    environment:
+      DLME_DEPLOY_REGION: us-west-2
     steps:
+      - aws-cli/setup:
+          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+          aws-secret-access-key: CIRCLE_SECRET_KEY
+          aws-region: DLME_DEPLOY_REGION
+          profile-name: dlme
       - update_ecs:
-          role_arn: $PROD_ROLE_ARN
+          role_arn: PROD_ROLE_ARN
           ecs_cluster_name: ":cluster/dlme"
 
 commands:
   update_ecs:
     description: "Trigger an ECS service update"
     parameters:
-      role_arn:
-        type: string
       ecs_cluster_name:
         type: string
-      region:
-        type: string
-        default: us-west-2
-      profile:
-        type: string
-        default: dlme
       webapp_service:
         type: string
         default: spotlight
       worker_service:
         type: string
         default: dlme-worker
+      source-profile:
+        type: string
+        default: dlme
+      role_arn:
+        type: env_var_name
+
     steps:
-      - run: pip install awscli
-      - run: |
-          # Do a bunch of work to get set up with AWS credentials and assume the appropriate deployment role
-          mkdir ~/.aws
-          echo -e "[<< parameters.profile >>]\naws_access_key_id=$CIRCLE_ACCESS_KEY_ID\naws_secret_access_key=$CIRCLE_SECRET_KEY\n" > ~/.aws/credentials
-          unset  AWS_SESSION_TOKEN
-          temp_role=$(aws sts assume-role \
-                --role-session-name "DevelopersRole" \
-                --role-arn << parameters.role_arn >> \
-                --profile << parameters.profile >>)
-          export AWS_ACCESS_KEY_ID=$(echo $temp_role | jq .Credentials.AccessKeyId | xargs)
-          export AWS_SECRET_ACCESS_KEY=$(echo $temp_role | jq .Credentials.SecretAccessKey | xargs)
-          export AWS_SESSION_TOKEN=$(echo $temp_role | jq .Credentials.SessionToken | xargs)
-          aws configure set region << parameters.region >>
-          aws configure set output json
-          aws configure list # Show confirmation of config
+      - run:
+          name: Assume the given role
+          environment:
+            PARAM_AWS_ROLE_ARN: << parameters.role_arn >>
+            PARAM_AWS_SOURCE_PROFILE: << parameters.source-profile >>
+          command: |
+            PARAM_AWS_ROLE_ARN=$(eval echo "\$$PARAM_AWS_ROLE_ARN")
+            aws configure set role_arn "$PARAM_AWS_ROLE_ARN" --profile default
+            aws configure set source_profile "$PARAM_AWS_SOURCE_PROFILE" --profile default
 
-          # identify the cluster we want to update
-          cluster_arn=$(aws ecs list-clusters --region << parameters.region >> | jq --raw-output --exit-status '.clusterArns[] | select(contains("<< parameters.ecs_cluster_name >>"))')
+            aws configure set output json
+            aws configure list # Show confirmation of config
+      - run:
+          name: Update the webapp
+          command: |
+            # identify the cluster we want to update
+            cluster_arn=$(aws ecs list-clusters | jq --raw-output --exit-status '.clusterArns[] | select(contains("<< parameters.ecs_cluster_name >>"))')
 
-          # update the webapp
-          task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.webapp_service >> --region << parameters.region >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-          aws ecs update-service --service << parameters.webapp_service >> --region << parameters.region >> --cluster $cluster_arn --task-definition $task_arn --force-new-deployment
+            # update the webapp
+            task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.webapp_service >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
+            aws ecs update-service --service << parameters.webapp_service >> --cluster $cluster_arn --task-definition $task_arn --force-new-deployment
+      - run:
+          name: Update the worker
+          command: |
+            # identify the cluster we want to update
+            cluster_arn=$(aws ecs list-clusters | jq --raw-output --exit-status '.clusterArns[] | select(contains("<< parameters.ecs_cluster_name >>"))')
 
-          # update the workers
-          worker_task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.worker_service >> --region << parameters.region >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-          aws ecs update-service --service << parameters.worker_service >> --region << parameters.region >> --cluster $cluster_arn --task-definition $worker_task_arn --force-new-deployment
-
-
+            # update the workers
+            worker_task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.worker_service >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
+            aws ecs update-service --service << parameters.worker_service >> --cluster $cluster_arn --task-definition $worker_task_arn --force-new-deployment
 
 workflows:
   version: 2
