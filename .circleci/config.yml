@@ -194,7 +194,7 @@ jobs:
     docker: # NOT the default
       - image: cimg/python:3.7-browsers
     steps:
-      - run: sudo pip install awscli
+      - run: pip install awscli
       - run:
           name: Update AWS ECS
           command: |
@@ -223,7 +223,7 @@ jobs:
     docker: # NOT the default
       - image: cimg/python:3.7-browsers
     steps:
-      - run: sudo pip install awscli
+      - run: pip install awscli
       - run:
           name: Update AWS ECS
           command: |
@@ -252,7 +252,7 @@ jobs:
     docker: # NOT the default
       - image: cimg/python:3.7-browsers
     steps:
-      - run: sudo pip install awscli
+      - run: pip install awscli
       - run:
           name: Update AWS ECS
           command: |
@@ -281,7 +281,7 @@ jobs:
     docker: # NOT the default
       - image: cimg/python:3.7-browsers
     steps:
-      - run: sudo pip install awscli
+      - run: pip install awscli
       - run:
           name: Update AWS ECS
           command: |
