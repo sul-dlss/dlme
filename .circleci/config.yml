@@ -264,13 +264,13 @@ jobs:
     environment:
       DLME_DEPLOY_REGION: us-west-2
     steps:
-      - aws-cli/install
       - aws-cli/setup:
           aws-access-key-id: CIRCLE_ACCESS_KEY_ID
           aws-secret-access-key: CIRCLE_SECRET_KEY
           aws-region: DLME_DEPLOY_REGION
-          role-arn: DEV_ROLE_ARN
-      - run: aws configure list
+          profile-name: dlme
+      - update_ecs:
+          ecs_cluster_name: ":cluster/dlme-dev"
 commands:
   update_ecs:
     description: "Trigger an ECS service update"
@@ -285,6 +285,9 @@ commands:
         default: dlme-worker
     steps:
       - run: |
+          aws configure set role_arn "$DEV_ROLE_ARN" --profile default
+          aws configure set source_profile "dlme" --profile default
+
           aws configure set output json
           aws configure list # Show confirmation of config
 
