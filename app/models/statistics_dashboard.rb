@@ -99,6 +99,10 @@ class StatisticsDashboard
       StatisticsDashboard.locale_aware_field('cho_language')
     end
 
+    def language_facet_field
+      "language_#{I18n.locale}"
+    end
+
     def by_language
       (facet_fields[language_field] || []).each_slice(2).collect do |(value, count)|
         { 'value' => value, 'count' => count }

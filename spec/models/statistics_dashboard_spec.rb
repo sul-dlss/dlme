@@ -72,13 +72,15 @@ RSpec.describe StatisticsDashboard do
     end
 
     describe 'locale aware field names' do
-      it 'are available fo language and type fields (and maps to locale codes to bcp47 codes)' do
+      it 'are available for language and type fields (and maps to locale codes to bcp47 codes)' do
         expect(items.language_field).to eq 'cho_language.en_ssim'
+        expect(items.language_facet_field).to eq 'language_en'
         expect(items.type_facet).to eq 'cho_type_facet.en_ssim'
 
         allow(I18n).to receive(:locale).and_return('ar')
 
         expect(items.language_field).to eq 'cho_language.ar-Arab_ssim'
+        expect(items.language_facet_field).to eq 'language_ar'
         expect(items.type_facet).to eq 'cho_type_facet.ar-Arab_ssim'
       end
     end
