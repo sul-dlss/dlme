@@ -126,7 +126,7 @@ jobs:
     steps:
     - checkout
     - setup_remote_docker:
-        version: 20.10.12
+        version: 20.10.11
     - run:
         name: Build Docker image
         command: |
@@ -150,7 +150,7 @@ jobs:
     - attach_workspace:
         at: /tmp/workspace
     - setup_remote_docker:
-        version: 20.10.12
+        version: 20.10.11
     - run:
         name: Load archived Docker image
         command: |
@@ -170,7 +170,7 @@ jobs:
     - attach_workspace:
         at: /tmp/workspace
     - setup_remote_docker:
-        version: 20.10.12
+        version: 20.10.11
     - run:
         name: Load archived Docker image
         command: |
