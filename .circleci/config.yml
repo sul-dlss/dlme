@@ -303,66 +303,6 @@ commands:
 
 workflows:
   version: 2
-
-  test:
+  debug:
     jobs:
-    - test:
-        filters:
-          branches:
-            ignore: main
-  build:
-    jobs:
-    - build-image:
-        filters:
-          branches:
-            only: main
-    - publish-latest:
-        requires:
-        - build-image
-        filters:
-          branches:
-            only: main
-    - update_ecs_dev:
-        requires:
-        - publish-latest
-        filters:
-          branches:
-            only: main
-    - update_ecs_uat:
-        requires:
-        - publish-latest
-        filters:
-          branches:
-            only: main
-  build-tags:
-    jobs:
-    - build-image:
-        filters:
-          tags:
-            only: /^[0-9]+\.[0-9]+\.[0-9]+/
-          branches:
-            ignore: /.*/
-    - publish-tag:
-        requires:
-        - build-image
-        filters:
-          tags:
-            only: /^[0-9]+\.[0-9]+\.[0-9]+/
-          branches:
-            ignore: /.*/
-    - update_ecs_stage:
-        requires:
-        - publish-tag
-        filters:
-          tags:
-            only: /^[0-9]+\.[0-9]+\.[0-9]+/
-          branches:
-            ignore: /.*/
-    - update_ecs_prod:
-        requires:
-        - publish-tag
-        filters:
-          tags:
-            only: /^[0-9]+\.[0-9]+\.[0-9]+/
-          branches:
-            ignore: /.*/
+    - debug
