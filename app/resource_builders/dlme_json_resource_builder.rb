@@ -77,7 +77,7 @@ class DlmeJsonResourceBuilder
         transform_to_untokenized_solr_fields(value, sink: sink, prefix: "#{key}.")
         sink[solr_field] = value.values.flatten
       when Array
-        sink[solr_field] = if value.any? { |x| x.is_a? Hash }
+        sink[solr_field] = if value.any?(Hash)
                              value.map(&:to_json)
                            else
                              value

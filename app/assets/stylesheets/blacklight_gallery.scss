@@ -45,3 +45,11 @@
     }
   }
 }
+
+// Override default 1rem sizing since Markazi is small
+.slideshow-presenter {
+  .caption,
+  .counter {
+    font-size: $font-size-base;
+  }
+}

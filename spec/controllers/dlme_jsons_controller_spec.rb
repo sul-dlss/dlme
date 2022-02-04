@@ -51,7 +51,7 @@ RSpec.describe DlmeJsonsController do
     context 'when save is successful' do
       let(:json) do
         '{"id":"test_id", "agg_provider":"controller_test", ' \
-        '"agg_data_provider":"controller_test", "cho_title":["Ancient artifact"]}'
+          '"agg_data_provider":"controller_test", "cho_title":["Ancient artifact"]}'
       end
 
       it 'redirects to the list page' do
@@ -83,7 +83,7 @@ RSpec.describe DlmeJsonsController do
     context 'when save is successful' do
       let(:json) do
         '{"id":"test_id", "agg_provider":"controller_test", ' \
-        '"agg_data_provider":"controller_test", "cho_title":["Ancient artifact"]}'
+          '"agg_data_provider":"controller_test", "cho_title":["Ancient artifact"]}'
       end
 
       it 'redirects to the list page' do
