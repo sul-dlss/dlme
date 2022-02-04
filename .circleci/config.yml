@@ -219,6 +219,8 @@ jobs:
       - update_ecs:
           role_arn: STAGE_ROLE_ARN
           ecs_cluster_name: ":cluster/dlme-uat"
+          webapp_service: spotlight-uat
+          worker_service: dlme-uat-worker
 
   update_ecs_stage:
     executor: aws-cli/default
