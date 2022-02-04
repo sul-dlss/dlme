@@ -270,7 +270,9 @@ jobs:
           aws-region: DLME_DEPLOY_REGION
           profile-name: dlme
       - update_ecs:
+          role_arn: DEV_ROLE_ARN
           ecs_cluster_name: ":cluster/dlme-dev"
+
 commands:
   update_ecs:
     description: "Trigger an ECS service update"
@@ -283,26 +285,43 @@ commands:
       worker_service:
         type: string
         default: dlme-worker
+      source-profile:
+        type: string
+        default: dlme
+      role_arn:
+        type: env_var_name
+
     steps:
-      - run: |
-          aws configure set role_arn "$DEV_ROLE_ARN" --profile default
-          aws configure set source_profile "dlme" --profile default
+      - run:
+          name: Assume the given role
+          environment:
+            PARAM_AWS_ROLE_ARN: << parameters.role_arn >>
+            PARAM_AWS_SOURCE_PROFILE: << parameters.source-profile >>
+          command: |
+            PARAM_AWS_ROLE_ARN=$(eval echo "\$$PARAM_AWS_ROLE_ARN")
+            aws configure set role_arn "$PARAM_AWS_ROLE_ARN" --profile default
+            aws configure set source_profile "$PARAM_AWS_SOURCE_PROFILE" --profile default
 
-          aws configure set output json
-          aws configure list # Show confirmation of config
+            aws configure set output json
+            aws configure list # Show confirmation of config
+      - run:
+          name: Update the webapp
+          command: |
+            # identify the cluster we want to update
+            cluster_arn=$(aws ecs list-clusters | jq --raw-output --exit-status '.clusterArns[] | select(contains("<< parameters.ecs_cluster_name >>"))')
 
-          # identify the cluster we want to update
-          cluster_arn=$(aws ecs list-clusters | jq --raw-output --exit-status '.clusterArns[] | select(contains("<< parameters.ecs_cluster_name >>"))')
+            # update the webapp
+            task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.webapp_service >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
+            aws ecs update-service --service << parameters.webapp_service >> --cluster $cluster_arn --task-definition $task_arn --force-new-deployment
+      - run:
+          name: Update the worker
+          command: |
+            # identify the cluster we want to update
+            cluster_arn=$(aws ecs list-clusters | jq --raw-output --exit-status '.clusterArns[] | select(contains("<< parameters.ecs_cluster_name >>"))')
 
-          # update the webapp
-          task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.webapp_service >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-          aws ecs update-service --service << parameters.webapp_service >> --cluster $cluster_arn --task-definition $task_arn --force-new-deployment
-
-          # update the workers
-          worker_task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.worker_service >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-          aws ecs update-service --service << parameters.worker_service >> --cluster $cluster_arn --task-definition $worker_task_arn --force-new-deployment
-
-
+            # update the workers
+            worker_task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.worker_service >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
+            aws ecs update-service --service << parameters.worker_service >> --cluster $cluster_arn --task-definition $worker_task_arn --force-new-deployment
 
 workflows:
   version: 2
