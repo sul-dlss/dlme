@@ -234,7 +234,7 @@ jobs:
           profile-name: dlme
       - update_ecs:
           role_arn: STAGE_ROLE_ARN
-          ecs_cluster_name: ":cluster/dlme"
+          ecs_cluster_name: "arn:aws:ecs:us-west-2:[0-9]+:cluster/dlme$"
 
 
   update_ecs_prod:
