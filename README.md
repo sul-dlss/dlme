@@ -77,13 +77,13 @@ code will be shared into the container so that the webapp will be dynamically re
 
 ```console
 [FIRST RUN]
-$ docker-compose up -d postgres
-$ docker-compose build app
-$ docker-compose build sidekiq
-$ docker-compose run app bundle exec rake db:setup
-$ docker-compose run app bundle exec rake spotlight:initialize
+$ docker compose up -d postgres
+$ docker compose build app
+$ docker compose build sidekiq
+$ docker compose run app bundle exec rake db:setup
+$ docker compose run app bundle exec rake spotlight:initialize
 [THEN]
-$ docker-compose up -d
+$ docker compose up -d
 ```
 
 Once the DLME Rails app is running you can create an exhibit. The title will need to be 'dlme' and the URL slug will
@@ -106,7 +106,7 @@ In some cases Docker containers may get stale and more thorough steps may be req
 ```console
 docker system prune -a -f --volumes
 docker ps -aq
-docker-compose pull
+docker compose pull
 bin/yarn install
 ```
 
@@ -122,18 +122,18 @@ Configure AWS CLI to use localstack-run endpoints:
 
 ```
 AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws sns \
-    --endpoint-url=http://localhost:4575 create-topic \
+    --endpoint-url=http://localhost:4566 create-topic \
     --region us-east-1 \
     --name dlme-transform
 
 AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws s3api \
-    --endpoint-url=http://localhost:4572 create-bucket \
+    --endpoint-url=http://localhost:4566 create-bucket \
     --region us-east-1 \
     --bucket dlme-transform
 
 AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws sns \
-    --endpoint-url=http://localhost:4575 subscribe \
-    --topic-arn arn:aws:sns:us-east-1:123456789012:dlme-transform \
+    --endpoint-url=http://localhost:4566 subscribe \
+    --topic-arn arn:aws:sns:us-east-1:000000000000:dlme-transform \
     --protocol http \
     --region us-east-1 \
     --notification-endpoint http://app:3000/transform_result
@@ -150,10 +150,10 @@ docker run --rm -e S3_BUCKET=dlme-transform \
                 -e AWS_ACCESS_KEY_ID=999999 \
                 -e AWS_SECRET_ACCESS_KEY=1231 \
                 -e AWS_DEFAULT_REGION=us-east-1 \
-                -e SNS_TOPIC_ARN=arn:aws:sns:us-east-1:123456789012:dlme-transform \
-                -e SNS_ENDPOINT_URL=http://localhost:4575 \
-                -e S3_ENDPOINT_URL=http://localhost:4572 \
-                -e S3_BASE_URL=http://localstack:4572 \
+                -e SNS_TOPIC_ARN=arn:aws:sns:us-east-1:000000000000:dlme-transform \
+                -e SNS_ENDPOINT_URL=http://localhost:4566 \
+                -e S3_ENDPOINT_URL=http://localhost:4566 \
+                -e S3_BASE_URL=http://localstack:4566 \
                 -e SKIP_FETCH_DATA=true \
                 -v $(pwd)/../dlme-transform:/opt/traject \
                 -v $(pwd)/../dlme-metadata:/opt/traject/data \

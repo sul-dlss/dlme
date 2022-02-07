@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
     concern :exportable, Blacklight::Routes::Exportable.new
 
-    resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog', id: %r{.+} do
+    resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog', id: %r{.+}, format: false do
       concerns :exportable
     end
 
@@ -34,6 +34,12 @@ Rails.application.routes.draw do
       resource :s3_harvester, controller: :"s3_harvester", only: [:create]
       resource :s3_delete, controller: :s3_delete, only: [:new, :create]
       resource :statistics, only: :show
+
+      resource :dlme_bulk_actions, only: [] do
+        member do
+          post :delete_resources
+        end
+      end
 
       get "catalog/range_limit" => "spotlight/catalog#range_limit"
       get "home/range_limit" => "spotlight/home_pages#range_limit"

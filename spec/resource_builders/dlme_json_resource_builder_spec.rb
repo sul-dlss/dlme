@@ -7,7 +7,7 @@ RSpec.describe DlmeJsonResourceBuilder do
   let(:exhibit) { create(:exhibit) }
   let(:resource) { DlmeJson.new(json: json, metadata: metadata, exhibit: exhibit) }
   let(:fixture_file_path) { File.join(fixture_path, 'json/iiif-single-image.json') }
-  let(:json) { File.open(fixture_file_path).read }
+  let(:json) { File.read(fixture_file_path) }
   let(:metadata) do
     { 'traject_context_command_line.filename' => fixture_file_path,
       'traject_context_source' => 'dlme_json_resource_spec' }
@@ -40,7 +40,6 @@ RSpec.describe DlmeJsonResourceBuilder do
         'cho_type_ssim' => 'Posters',
         :id => 'princeton_rj4305881',
         'agg_is_shown_at.wr_id_ssim' => 'http://arks.princeton.edu/ark:/88435/rj4305881',
-        'agg_preview.wr_id_ssim' => 'http://libimages.princeton.edu/loris2/pudl0100%2Fposters%2Feg1_0095%2F00000001.jp2/full/200,/0/default.jpg',
         'agg_is_shown_by.wr_id_ssim' => 'https://libimages.princeton.edu/loris2/pudl0100%2Fposters%2Feg1_0095%2F00000001.jp2/full/634,/0/default.jpg',
         'agg_is_shown_by.wr_format_ssim' => 'image/jpeg' }
     end

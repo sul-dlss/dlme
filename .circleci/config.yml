@@ -5,11 +5,16 @@ executors:
       WEBAPP_IMAGE_NAME: suldlss/dlme
       WORKER_IMAGE_NAME: suldlss/dlme-worker
     docker:
-    - image: circleci/buildpack-deps:stretch
+    - image: cimg/base:stable
+
+orbs:
+  browser-tools: circleci/browser-tools@1.1
+  aws-cli: circleci/aws-cli@2.0.6
+
 jobs:
   test:
     docker:
-    - image: circleci/ruby:2.7.2-node-browsers
+    - image: cimg/ruby:2.7.5-browsers
       environment:
         BUNDLE_JOBS: 3
         BUNDLE_RETRY: 3
@@ -20,8 +25,10 @@ jobs:
     - image: solr:7
       command: bin/solr -cloud -noprompt -f -p 8983
     steps:
+    - browser-tools/install-browser-tools
     - checkout
-
+    - run: |
+        google-chrome --version
     # Upgrade bundler
     - run:
         name: Install Bundler
@@ -35,24 +42,27 @@ jobs:
     # Restore bundle cache
     - restore_cache:
         keys:
-        - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
-        - rails-demo-bundle-v2-
+        - dlme-bundle-v3-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+        - dlme-bundle-v3-{{ arch }}-{{ .Branch }}
+        - dlme-bundle-v3-
 
     - run:
         name: Bundle Install
         command: bundle check || bundle install
 
+    - run: bundle clean --force
+
     # Store bundle cache
     - save_cache:
-        key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
+        key: dlme-bundle-v3-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
         paths:
         - vendor/bundle
 
     # Only necessary if app uses webpacker or yarn in some other way
     - restore_cache:
         keys:
-          - rails-demo-yarn-{{ checksum "yarn.lock" }}
-          - rails-demo-yarn-
+          - dlme-yarn-{{ checksum "yarn.lock" }}
+          - dlme-yarn-
 
     - run:
           name: Yarn Install
@@ -60,7 +70,7 @@ jobs:
 
     # Store yarn / webpacker cache
     - save_cache:
-        key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+        key: dlme-yarn-{{ checksum "yarn.lock" }}
         paths:
           - ~/.cache/yarn
 
@@ -117,7 +127,8 @@ jobs:
     steps:
     - checkout
     - setup_remote_docker:
-        version: 19.03.13
+        docker_layer_caching: true
+        version: 20.10.11
     - run:
         name: Build Docker image
         command: |
@@ -141,7 +152,7 @@ jobs:
     - attach_workspace:
         at: /tmp/workspace
     - setup_remote_docker:
-        version: 19.03.13
+        version: 20.10.11
     - run:
         name: Load archived Docker image
         command: |
@@ -161,7 +172,7 @@ jobs:
     - attach_workspace:
         at: /tmp/workspace
     - setup_remote_docker:
-        version: 19.03.13
+        version: 20.10.11
     - run:
         name: Load archived Docker image
         command: |
@@ -173,38 +184,122 @@ jobs:
         command: |
           echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
           docker tag $WEBAPP_IMAGE_NAME:latest $WEBAPP_IMAGE_NAME:$CIRCLE_TAG
+          docker tag $WEBAPP_IMAGE_NAME:latest $WEBAPP_IMAGE_NAME:release
           docker tag $WORKER_IMAGE_NAME:latest $WORKER_IMAGE_NAME:$CIRCLE_TAG
+          docker tag $WORKER_IMAGE_NAME:latest $WORKER_IMAGE_NAME:release
           docker push $WEBAPP_IMAGE_NAME:$CIRCLE_TAG
+          docker push $WEBAPP_IMAGE_NAME:release
           docker push $WORKER_IMAGE_NAME:$CIRCLE_TAG
+          docker push $WORKER_IMAGE_NAME:release
 
-  update_ecs:
-    docker: # NOT the default
-      - image: circleci/python:3.7-stretch-node-browsers
+  update_ecs_dev:
+    executor: aws-cli/default
+    environment:
+      DLME_DEPLOY_REGION: us-west-2
     steps:
-      - run: sudo pip install awscli
+      - aws-cli/setup:
+          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+          aws-secret-access-key: CIRCLE_SECRET_KEY
+          aws-region: DLME_DEPLOY_REGION
+          profile-name: dlme
+      - update_ecs:
+          role_arn: DEV_ROLE_ARN
+          ecs_cluster_name: ":cluster/dlme-dev"
+
+  update_ecs_uat:
+    executor: aws-cli/default
+    environment:
+      DLME_DEPLOY_REGION: us-west-2
+    steps:
+      - aws-cli/setup:
+          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+          aws-secret-access-key: CIRCLE_SECRET_KEY
+          aws-region: DLME_DEPLOY_REGION
+          profile-name: dlme
+      - update_ecs:
+          role_arn: STAGE_ROLE_ARN
+          ecs_cluster_name: ":cluster/dlme-uat"
+          webapp_service: spotlight-uat
+          worker_service: dlme-uat-worker
+
+  update_ecs_stage:
+    executor: aws-cli/default
+    environment:
+      DLME_DEPLOY_REGION: us-west-2
+    steps:
+      - aws-cli/setup:
+          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+          aws-secret-access-key: CIRCLE_SECRET_KEY
+          aws-region: DLME_DEPLOY_REGION
+          profile-name: dlme
+      - update_ecs:
+          role_arn: STAGE_ROLE_ARN
+          ecs_cluster_name: ":cluster/dlme"
+
+
+  update_ecs_prod:
+    executor: aws-cli/default
+    environment:
+      DLME_DEPLOY_REGION: us-west-2
+    steps:
+      - aws-cli/setup:
+          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+          aws-secret-access-key: CIRCLE_SECRET_KEY
+          aws-region: DLME_DEPLOY_REGION
+          profile-name: dlme
+      - update_ecs:
+          role_arn: PROD_ROLE_ARN
+          ecs_cluster_name: ":cluster/dlme"
+
+commands:
+  update_ecs:
+    description: "Trigger an ECS service update"
+    parameters:
+      ecs_cluster_name:
+        type: string
+      webapp_service:
+        type: string
+        default: spotlight
+      worker_service:
+        type: string
+        default: dlme-worker
+      source-profile:
+        type: string
+        default: dlme
+      role_arn:
+        type: env_var_name
+
+    steps:
       - run:
-          name: Update AWS ECS
+          name: Assume the given role
+          environment:
+            PARAM_AWS_ROLE_ARN: << parameters.role_arn >>
+            PARAM_AWS_SOURCE_PROFILE: << parameters.source-profile >>
           command: |
-            mkdir ~/.aws
-            echo -e "[dlme]\naws_access_key_id=$CIRCLE_ACCESS_KEY_ID\naws_secret_access_key=$CIRCLE_SECRET_KEY\n" > ~/.aws/credentials
-            unset  AWS_SESSION_TOKEN
-            temp_role=$(aws sts assume-role \
-                  --role-session-name "DevelopersRole" \
-                  --role-arn $DEV_ROLE_ARN \
-                  --profile dlme)
-            export AWS_ACCESS_KEY_ID=$(echo $temp_role | jq .Credentials.AccessKeyId | xargs)
-            export AWS_SECRET_ACCESS_KEY=$(echo $temp_role | jq .Credentials.SecretAccessKey | xargs)
-            export AWS_SESSION_TOKEN=$(echo $temp_role | jq .Credentials.SessionToken | xargs)
-            aws configure set region us-west-2
+            PARAM_AWS_ROLE_ARN=$(eval echo "\$$PARAM_AWS_ROLE_ARN")
+            aws configure set role_arn "$PARAM_AWS_ROLE_ARN" --profile default
+            aws configure set source_profile "$PARAM_AWS_SOURCE_PROFILE" --profile default
+
             aws configure set output json
             aws configure list # Show confirmation of config
-            task_arn=$(aws ecs list-task-definitions --family-prefix spotlight --region us-west-2 --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-            cluster_arn=$(aws ecs list-clusters --region us-west-2 | jq --raw-output --exit-status '.clusterArns[] | select(contains(":cluster/dlme-dev"))')
-            # echo -n "task_arn=$task_arn\ncluster_arn=$cluster_arn\n"
-            aws ecs update-service --service spotlight --region us-west-2 --cluster $cluster_arn --task-definition $task_arn --force-new-deployment
+      - run:
+          name: Update the webapp
+          command: |
+            # identify the cluster we want to update
+            cluster_arn=$(aws ecs list-clusters | jq --raw-output --exit-status '.clusterArns[] | select(contains("<< parameters.ecs_cluster_name >>"))')
 
-            worker_task_arn=$(aws ecs list-task-definitions --family-prefix dlme-worker --region us-west-2 --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-            aws ecs update-service --service dlme-worker --region us-west-2 --cluster $cluster_arn --task-definition $worker_task_arn --force-new-deployment
+            # update the webapp
+            task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.webapp_service >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
+            aws ecs update-service --service << parameters.webapp_service >> --cluster $cluster_arn --task-definition $task_arn --force-new-deployment
+      - run:
+          name: Update the worker
+          command: |
+            # identify the cluster we want to update
+            cluster_arn=$(aws ecs list-clusters | jq --raw-output --exit-status '.clusterArns[] | select(contains("<< parameters.ecs_cluster_name >>"))')
+
+            # update the workers
+            worker_task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.worker_service >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
+            aws ecs update-service --service << parameters.worker_service >> --cluster $cluster_arn --task-definition $worker_task_arn --force-new-deployment
 
 workflows:
   version: 2
@@ -214,25 +309,31 @@ workflows:
     - test:
         filters:
           branches:
-            ignore: master
+            ignore: main
   build:
     jobs:
     - build-image:
         filters:
           branches:
-            only: master
+            only: main
     - publish-latest:
         requires:
         - build-image
         filters:
           branches:
-            only: master
-    - update_ecs:
+            only: main
+    - update_ecs_dev:
         requires:
         - publish-latest
         filters:
           branches:
-            only: master
+            only: main
+    - update_ecs_uat:
+        requires:
+        - publish-latest
+        filters:
+          branches:
+            only: main
   build-tags:
     jobs:
     - build-image:
@@ -244,6 +345,22 @@ workflows:
     - publish-tag:
         requires:
         - build-image
+        filters:
+          tags:
+            only: /^[0-9]+\.[0-9]+\.[0-9]+/
+          branches:
+            ignore: /.*/
+    - update_ecs_stage:
+        requires:
+        - publish-tag
+        filters:
+          tags:
+            only: /^[0-9]+\.[0-9]+\.[0-9]+/
+          branches:
+            ignore: /.*/
+    - update_ecs_prod:
+        requires:
+        - publish-tag
         filters:
           tags:
             only: /^[0-9]+\.[0-9]+\.[0-9]+/

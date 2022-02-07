@@ -44,7 +44,7 @@
         <% items.by_language.each do |field| %>
           <tr>
             <td>
-              <%= link_to path_for_facet(items.language_field, field['value']), class: 'value' do %>
+              <%= link_to path_for_facet(items.language_facet_field, field['value']), class: 'value' do %>
                 <%= facet_display_value(items.language_field, field['value']) %>
               <% end %>
             </td>
