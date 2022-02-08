@@ -40,5 +40,10 @@ COPY . .
 RUN bundle config build.nokogiri --use-system-libraries \
     && bundle install --without ${BUNDLE_WITHOUT}
 
+# Pass in git info so that okcomputer can show what version is running
+ARG GIT_INFO
+ENV GIT_INFO=$GIT_INFO
+LABEL git_info=$GIT_INFO
+
 # Start the server by default, listening for all connections
 CMD sidekiq -C config/sidekiq.yml.erb
