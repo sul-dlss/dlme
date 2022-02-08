@@ -89,6 +89,27 @@ $ docker compose up -d
 Once the DLME Rails app is running you can create an exhibit. The title will need to be 'dlme' and the URL slug will
 need to be 'library'.
 
+#### Local Gem Development with Docker
+
+1. Mount a volume connecting the local directory to (an arbitrarily named) directory accessible to the container. For example, for developing in the `blacklight-hierarchy` gem, add this to the DLME `docker-compose.yml`.
+```
+ volumes:
+      - "/<your-local-path>/blacklight-hierarchy:/opt/local-gems/blacklight-hierarchy"
+```
+
+2. Restart the `dlme-app-1` container.
+
+3. In the DLME `Gemfile` use the `path` option, for example:
+`gem 'blacklight-hierarchy', path: '/opt/local-gems/blacklight-hierarchy'`
+
+4. Enter the app container with `docker exec -it dlme-app-1 /bin/sh` and run `bundle install`. You should see output like the following:
+   ```
+   Using blacklight-hierarchy 5.4.0 from source at `/opt/local-gems/blacklight-hierarchy`
+
+   ```
+
+5. To see code changes in your gem reflected in your local environment, enter the app container with `docker exec -it dlme-app-1 /bin/sh` and run `rails restart`. 
+
 #### Resetting Docker
 
 It's possible that if you previously started the above docker-compose stack without the proper database name you will need to remove
