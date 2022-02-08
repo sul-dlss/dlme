@@ -244,7 +244,7 @@ jobs:
           role_arn: STAGE_ROLE_ARN
           source-profile: dlme
       - update_ecs:
-          ecs_cluster_name: ":cluster/dlme"
+          ecs_cluster_name: "arn:aws:ecs:us-west-2:[0-9]+:cluster/dlme$"
 
   update_ecs_prod:
     executor: aws-cli/default
