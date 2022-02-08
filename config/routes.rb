@@ -54,6 +54,10 @@ Rails.application.routes.draw do
 
     resource :transform_result, only: [:create, :show]
 
+    authenticate :user do
+      post '/utils/cache/clear', to: ->(env) { [200, {}, [Rails.cache.clear.to_s]] }
+    end
+
     begin
       authenticate :user, lambda { |u| Ability.new(u).can? :manage, :sidekiq } do
         require 'sidekiq/web'
