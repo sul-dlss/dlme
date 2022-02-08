@@ -158,6 +158,21 @@ class CatalogController < ApplicationController
         'cho_type_facet.ar-Arab' => [['ssim'], ':']
       }
     }
+    config.add_facet_field 'cho_coverage', field: 'cho_coverage_ssim', limit: true
+    config.add_facet_field 'agg_data_provider_collection', field: 'agg_data_provider_collection_ssim', limit: true
+    config.add_facet_field 'agg_data_provider_collection_id', field: 'agg_data_provider_collection_id_ssim', limit: true
+    config.add_facet_field 'cho_subject_ar', field: 'cho_subject.ar-Arab_ssim', limit: true, if: arabic_locale
+    config.add_facet_field 'cho_subject_en', field: 'cho_subject.en_ssim', limit: true, if: en_locale
+    config.add_facet_field 'cho_subject', field: 'cho_type_ssim', limit: true
+    config.add_facet_field 'agg_is_shown_at_agg_edm_rights', field: 'agg_is_shown_at.agg_edm_rights_ssim', limit: true
+    config.add_facet_field 'agg_preview_agg_edm_rights', field: 'agg_preview.agg_edm_rights_ssim', limit: true
+    config.add_facet_field 'agg_edm_rights', field: 'agg_edm_rights_ssim', limit: true
+    config.add_facet_field 'agg_dc_rights', field: 'agg_dc_rights_ssim', limit: true
+    config.add_facet_field 'agg_is_shown_at_wr_dc_rights', field: 'agg_is_shown_at.wr_dc_rights_ssim', limit: true
+    config.add_facet_field 'agg_preview_wr_dc_rights', field: 'agg_preview.wr_dc_rights_ssim', limit: true
+    config.add_facet_field 'agg_is_shown_at_wr_edm_rights', field: 'agg_is_shown_at.wr_edm_rights_ssim', limit: true
+    config.add_facet_field 'agg_is_shown_by_wr_edm_rights', field: 'agg_is_shown_by.wr_edm_rights_ssim', limit: true
+    config.add_facet_field 'agg_preview_wr_edm_rights', field: 'agg_preview.wr_edm_rights_ssim', limit: true
 
     logged_in = ->(context, *) { context.current_exhibit && context.can?(:curate, context.current_exhibit) }
 
