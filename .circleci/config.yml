@@ -148,7 +148,7 @@ jobs:
         name: Build Docker image
         command: |
           docker build . -f docker/Dockerfile -t $WEBAPP_IMAGE_NAME:latest --build-arg SECRET_KEY_BASE=$MASTER_KEY --build-arg GIT_INFO=$(git describe --tags)
-          docker build . -f docker/Dockerfile.worker -t $WORKER_IMAGE_NAME:latest
+          docker build . -f docker/Dockerfile.worker -t $WORKER_IMAGE_NAME:latest --build-arg GIT_INFO=$(git describe --tags)
 
     - run:
         name: Archive Docker image
