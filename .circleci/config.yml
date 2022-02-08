@@ -322,7 +322,7 @@ commands:
           name: Update the webapp
           command: |
             # identify the cluster we want to update
-            cluster_arn=$(aws ecs list-clusters | jq --raw-output --exit-status '.clusterArns[] | select(contains("<< parameters.ecs_cluster_name >>"))')
+            cluster_arn=$(aws ecs list-clusters | jq --raw-output --exit-status '.clusterArns[] | select(test("<< parameters.ecs_cluster_name >>"))')
 
             # update the webapp
             task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.webapp_service >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
@@ -331,7 +331,7 @@ commands:
           name: Update the worker
           command: |
             # identify the cluster we want to update
-            cluster_arn=$(aws ecs list-clusters | jq --raw-output --exit-status '.clusterArns[] | select(contains("<< parameters.ecs_cluster_name >>"))')
+            cluster_arn=$(aws ecs list-clusters | jq --raw-output --exit-status '.clusterArns[] | select(test("<< parameters.ecs_cluster_name >>"))')
 
             # update the workers
             worker_task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.worker_service >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
