@@ -2,8 +2,6 @@
 
 set -e
 
-echo "Starting app version: $GIT_INFO"
-
 # prevent bundle errors on missing gems
 bundle check || bundle install --jobs 20 --retry 5
 
