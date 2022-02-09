@@ -41,7 +41,7 @@ COPY Gemfile.lock /opt
 
 RUN apk --no-cache add --virtual build-dependencies \
   build-base \
-  && bundle install --without ${BUNDLE_WITHOUT} \
+  && bundle install \
   && apk del build-dependencies
 
 COPY . .
@@ -50,7 +50,7 @@ COPY . .
 # > The git source https://github.com/projectblacklight/spotlight.git is not yet checked out.
 RUN apk --no-cache add --virtual build-dependencies \
   build-base \
-  && bundle install --without ${BUNDLE_WITHOUT} \
+  && bundle install \
   && apk del build-dependencies
 
 RUN NO_DATABASE=true bundle exec rake assets:precompile
