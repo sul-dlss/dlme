@@ -56,18 +56,21 @@ RSpec.describe StatisticsDashboard do
 
     describe '#by_type' do
       let(:stub_response) do
-        { 'facet_counts' => { 'facet_pivot' => {
-          'cho_edm_type.en_ssim,cho_has_type.en_ssim' => [
-            { 'value' => 'Value 1', 'count' => '500', 'pivot' => {} },
-            { 'value' => 'Value 2', 'count' => '300', 'pivot' => {} }
-          ]
+        { 'facet_counts' => { 'facet_fields' => {
+          'cho_type_facet.en_ssim' => ['Value 1', '500', 'Value 1:Value 2', '300']
         } } }
       end
 
-      it 'pulls the type/sub type pivot facet from the response' do
+      it 'pulls the type/sub type facet from the response' do
         expect(items.by_type.length).to eq 2
-        expect(items.by_type).to include('value' => 'Value 1', 'count' => '500', 'pivot' => {})
-        expect(items.by_type).to include('value' => 'Value 2', 'count' => '300', 'pivot' => {})
+        expect(items.by_type).to include('value' => 'Value 1',
+                                         'display_value' => 'Value 1',
+                                         'count' => '500',
+                                         'level' => 0)
+        expect(items.by_type).to include('value' => 'Value 1:Value 2',
+                                         'display_value' => 'Value 2',
+                                         'count' => '300',
+                                         'level' => 1)
       end
     end
 
