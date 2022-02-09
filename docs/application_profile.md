@@ -44,12 +44,11 @@ The DLME Prototype Application Profile a subset of the [Europeana Data Model](ht
 | Solr field name                | Property          | Expectation | Cardinality | Value type  | Definition | Notes                      |
 | -------------------------------| ----------------- | ----------- | ----------- | ----------- | ---------- | -------------------------- |
 | agg_data_provider_collection   | edm:datasetName   | M           | 1...1       | literal     | The collection of which the resource is a part. | |
+| agg_data_provider_collection_id   | n/a   | M           | 1...1       | literal     | The id to the collection of which the resource is a part. | |
 | agg_data_provider_country      | edm:country       | M           | 1...n       | literal     | The country of the organization or entity that supplies data through a provider. | |
 | agg_data_provider_country_ar   | edm:country       | M           | 1...n       | literal     | The country of the organization or entity that supplies data through a provider specified in the Arabic language.      | |
 | agg_provider_country           | edm:country       | M           | 1...1       | literal     | The country of the organization who delivers data directly to an aggregation service. | |
 | agg_provider_country_ar        | edm:country       | M           | 1...1       | literal     | The country of the organization who delivers data directly to an aggregation service specified in the Arabic language. | |
-| dlme_collection                | dcterms:title     | M           | 1...1       | literal     | Title of the collection in DLME, copied from data provider, when available, or added. | |
-| dlme_collection_id              | n/a              | M           | 1...1       | literal     | Identifier for the collection in DLME, used to create a stable url to the collection. | |
 | dlme_source_file               |                   |             | 1...1       | literal     | Path to the file in dlme metadata repository, used for linking resources in the web applicaiton to files in the dlme-metadata repo. | |
 
 ### `edm:ProvidedCHO`
