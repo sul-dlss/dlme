@@ -75,20 +75,39 @@ $ bundle exec rake spotlight:initialize
 For the local development described below, the webapp will be running in a docker container in development mode. Local
 code will be shared into the container so that the webapp will be dynamically reloaded.
 
-```console
-[FIRST RUN]
-$ docker compose up -d postgres
-$ docker compose build app
-$ docker compose build sidekiq
-$ docker compose run app bundle exec rake db:setup
-$ docker compose run app bundle exec rake spotlight:initialize
-[THEN]
-$ docker compose up -d
+#### Initial setup
+To get the development environment set up for the first time, you'll need to build the container images and prepare the database. You only need to do this once.
+```sh
+$ docker compose up --build
+$ docker compose run --rm app rake db:setup
+$ docker compose run --rm app rake spotlight:initialize
 ```
+Once the DLME Rails app is running you can create an exhibit. To match production, the title will need to be `dlme` and the URL slug will need to be `library`. Once your new exhibit is created, you can index some test data by navigating to the exhibit dashboard, choosing "Items" under the "Curation" menu on the left, and clicking "Add Items". In the "From external resource" tab, select the "DLME S3 fetch" option and provide a URL to the test data (here's [one example](https://gist.githubusercontent.com/cbeer/581b10cafca66206de9e403e7be5d1e0/raw/a77dbd67fe8a73c585af9b3827537d7a7b2bcab9/dlme-sample-data-2022-02-01.ndjson)).
 
-Once the DLME Rails app is running you can create an exhibit. The title will need to be 'dlme' and the URL slug will
-need to be 'library'.
-
+#### Stopping and starting
+You can stop the entire stack with:
+```sh
+$ docker compose down
+```
+This process will gracefully stop and remove all running containers. Data is persisted in the form of volumes, and won't be removed. To start the stack back up again:
+```sh
+$ docker compose up     # add -d to run in the background and silence logs
+```
+You can stop and start individual containers by referring to them by name:
+```sh
+$ docker compose stop dlme-app-1    # use `docker ps` to see the container names
+```
+For more, see the [`docker compose` CLI reference](https://docs.docker.com/compose/reference/#command-options-overview-and-help).
+#### Managing data
+Data for the solr, redis, and postgres services are persisted using docker named volumes. You can see what volumes are currently present with:
+```sh
+$ docker volume ls
+```
+If you want to remove a volume (e.g. to start with a fresh database or solr core), you can do:
+```sh
+$ docker volume rm dlme_solr-data   # to remove the solr data
+```
+Note that you will need to re-run the `db_setup` and `spotlight:initialize` rake tasks if you destroy the database. For solr, the core config will be persisted, but the index data will be removed.
 #### Local Gem Development with Docker
 
 1. Mount a volume connecting the local directory to (an arbitrarily named) directory accessible to the container. For example, for developing in the `blacklight-hierarchy` gem, add this to the DLME `docker-compose.yml`.
@@ -111,24 +130,19 @@ need to be 'library'.
 5. To see code changes in your gem reflected in your local environment, enter the app container with `docker exec -it dlme-app-1 /bin/sh` and run `rails restart`. 
 
 #### Resetting Docker
-
-It's possible that if you previously started the above docker-compose stack without the proper database name you will need to remove
-the existing database volume in order to reset.
-
-```console
-docker container prune
-docker volume prune
+You may wish to completely recreate the docker stack, removing all containers and volumes. This can be done with:
+```sh
+$ docker container prune
+$ docker volume prune
 ```
+Then rerun the commands above under "initial setup".
 
-Then rerun the commands above for starting docker.
-
-In some cases Docker containers may get stale and more thorough steps may be required. To completely clear all docker containers, pull new ones, and install packages:
-
-```console
-docker system prune -a -f --volumes
-docker ps -aq
-docker compose pull
-bin/yarn install
+In some cases Docker container versions may get stale and more thorough steps may be required. To completely clear all docker containers, pull new ones, and install packages:
+```sh
+$ docker system prune -a -f --volumes
+$ docker ps -aq
+$ docker compose pull
+$ bin/yarn install
 ```
 
 The `docker ps -aq` command should return no containers. If container ids are returned, restart docker and run `docker system prune -a -f --volumes` again. Once these are complete rerun the commands above for starting docker. Note: for local transforms you will need to rebuild the dlme-transform container again as well. 
@@ -184,7 +198,7 @@ docker run --rm -e S3_BUCKET=dlme-transform \
                 stanford/maps/data/kj751hs0595.mods
 ```
 
-## Docker
+## Deployment
 ### Building
 You can build a local version of the application container using docker:
 ```sh
