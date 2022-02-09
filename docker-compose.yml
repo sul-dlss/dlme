@@ -34,7 +34,7 @@ services:
       - ".:/opt/"
     command: bundle exec rails server -b 0.0.0.0
   postgres:
-    image: postgres
+    image: postgres:10.17
     ports:
       - "5432:5432"
     environment:
@@ -43,7 +43,7 @@ services:
     volumes:
       - postgres-data:/var/lib/postgresql/data
   solr:
-    image: solr
+    image: solr:8.11.1
     ports:
       - "8983:8983"
     volumes:
