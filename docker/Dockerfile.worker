@@ -46,4 +46,4 @@ ENV GIT_INFO=$GIT_INFO
 LABEL git_info=$GIT_INFO
 
 # Start the server by default, listening for all connections
-CMD sidekiq -C config/sidekiq.yml.erb
+CMD ["sidekiq", "-C", "config/sidekiq.yml.erb"]
