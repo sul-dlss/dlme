@@ -2,15 +2,14 @@ FROM ruby:2.7.5-alpine
 
 LABEL maintainer="Justin Coyne <jcoyne85@stanford.edu>"
 
-# Set default RAILS environment
+# Set up Ruby/Rails environment
+ARG SECRET_KEY_BASE
+ARG BUNDLE_WITHOUT="development:test"
 ENV RAILS_ENV=production
 ENV BUNDLER_VERSION=2.0.2
-ARG SECRET_KEY_BASE
-ARG BUNDLE_WITHOUT="development test"
+ENV BUNDLE_WITHOUT=$BUNDLE_WITHOUT
 
-# Create and set the working directory as /opt
-WORKDIR /opt
-
+# Add system dependencies
 RUN apk add --no-cache build-base \
                        libxml2-dev \
                        libxslt-dev \
@@ -22,7 +21,8 @@ RUN apk add --no-cache build-base \
                        git \
     && gem install bundler
 
-RUN apk add --no-cache git
+# Create and set the working directory as /opt
+WORKDIR /opt
 
 # Copy the Gemfile and Gemfile.lock, and run bundle install prior to copying all source files
 # This is an optimization that will prevent the need to re-run bundle install when only source

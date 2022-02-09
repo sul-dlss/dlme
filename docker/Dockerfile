@@ -1,5 +1,16 @@
 FROM ruby:2.7.5-alpine
 
+LABEL maintainer="Aaron Collier <aaron.collier@stanford.edu>"
+
+# Set up Ruby/Rails environment
+ARG SECRET_KEY_BASE
+ARG BUNDLE_WITHOUT="development:test"
+ENV RAILS_ENV=production
+ENV RAILS_SERVE_STATIC_FILES=true
+ENV BUNDLER_VERSION=2.0.2
+ENV BUNDLE_WITHOUT=$BUNDLE_WITHOUT
+
+# Add system dependencies
 RUN apk add --update --no-cache \
       nodejs \
       tzdata \
@@ -10,15 +21,6 @@ RUN apk add --update --no-cache \
       yarn \
       git \
       imagemagick
-
-LABEL maintainer="Aaron Collier <aaron.collier@stanford.edu>"
-
-# Set default RAILS environment
-ENV RAILS_ENV=production
-ENV RAILS_SERVE_STATIC_FILES=true
-ENV BUNDLER_VERSION=2.0.2
-ARG SECRET_KEY_BASE
-ARG BUNDLE_WITHOUT="development test"
 
 # Create and set the working directory as /opt
 WORKDIR /opt
