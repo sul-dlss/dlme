@@ -9,6 +9,7 @@ executors:
 
 orbs:
   browser-tools: circleci/browser-tools@1.1
+  aws-cli: circleci/aws-cli@2.0.6
 
 jobs:
   test:
@@ -21,8 +22,21 @@ jobs:
         RAILS_ENV: test
         NOKOGIRI_USE_SYSTEM_LIBRARIES: true
         CC_TEST_REPORTER_ID: 0603d31c367f7e726e4db6e249d4b62025c768000d43b02259a65e8486812362
-    - image: solr:7
-      command: bin/solr -cloud -noprompt -f -p 8983
+    - image: bitnami/solr:8
+      environment:
+        SOLR_PORT_NUMBER: 8983
+        SOLR_CLOUD_BOOTSTRAP: "yes"
+        SOLR_ENABLE_CLOUD_MODE: "yes"
+        SOLR_ENABLE_AUTHENTICATION: "yes"
+        SOLR_ADMIN_USERNAME: admin
+        SOLR_ADMIN_PASSWORD: admin
+        SOLR_ZK_HOSTS: localhost
+    - image: bitnami/zookeeper
+      environment:
+        ALLOW_ANONYMOUS_LOGIN: "yes"
+        JVMFLAGS: -Dzookeeper.4lw.commands.whitelist=ruok -Dzookeeper.admin.enableServer=false
+        ZOO_SERVERS: zoo1:2888:3888
+        ZOO_ADMIN_SERVER_PORT_NUMBER: 8020
     steps:
     - browser-tools/install-browser-tools
     - checkout
@@ -83,8 +97,8 @@ jobs:
         command: |
           cd solr/config
           zip -1 -r solr_config.zip ./*
-          curl -H "Content-type:application/octet-stream" --data-binary @solr_config.zip "http://localhost:8983/solr/admin/configs?action=UPLOAD&name=dlme"
-          curl -H 'Content-type: application/json' http://localhost:8983/api/collections/ -d '{create: {name: dlme, config: dlme, numShards: 1}}'
+          curl -H "Content-type:application/octet-stream" --data-binary @solr_config.zip "http://admin:admin@localhost:8983/solr/admin/configs?action=UPLOAD&name=dlme"
+          curl -H 'Content-type: application/json' http://admin:admin@localhost:8983/api/collections/ -d '{create: {name: dlme, config: dlme, numShards: 1}}'
 
     - run:
         name: Check styles using rubocop
@@ -100,6 +114,8 @@ jobs:
     # Run rspec in parallel
     - run:
         name: Run rspec in parallel
+        environment:
+          SOLR_URL: http://admin:admin@localhost:8983/solr/dlme
         command: |
           ./tmp/cc-test-reporter before-build
           bundle exec rspec --profile 10 \
@@ -131,7 +147,7 @@ jobs:
     - run:
         name: Build Docker image
         command: |
-          docker build . -f docker/Dockerfile -t $WEBAPP_IMAGE_NAME:latest --build-arg SECRET_KEY_BASE=$MASTER_KEY
+          docker build . -f docker/Dockerfile -t $WEBAPP_IMAGE_NAME:latest --build-arg SECRET_KEY_BASE=$MASTER_KEY --build-arg GIT_INFO=$(git describe --tags)
           docker build . -f docker/Dockerfile.worker -t $WORKER_IMAGE_NAME:latest
 
     - run:
@@ -162,8 +178,12 @@ jobs:
         name: Publish Docker Image to Docker Hub
         command: |
           echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+          docker tag $WEBAPP_IMAGE_NAME:latest $WEBAPP_IMAGE_NAME:$CIRCLE_SHA1
+          docker tag $WORKER_IMAGE_NAME:latest $WORKER_IMAGE_NAME:$CIRCLE_SHA1
           docker push $WEBAPP_IMAGE_NAME:latest
           docker push $WORKER_IMAGE_NAME:latest
+          docker push $WEBAPP_IMAGE_NAME:$CIRCLE_SHA1
+          docker push $WORKER_IMAGE_NAME:$CIRCLE_SHA1
 
   publish-tag:
     executor: docker-publisher
@@ -192,120 +212,130 @@ jobs:
           docker push $WORKER_IMAGE_NAME:release
 
   update_ecs_dev:
-    docker: # NOT the default
-      - image: cimg/python:3.7-browsers
+    executor: aws-cli/default
+    environment:
+      DLME_DEPLOY_REGION: us-west-2
     steps:
-      - run: pip install awscli
-      - run:
-          name: Update AWS ECS
-          command: |
-            mkdir ~/.aws
-            echo -e "[dlme]\naws_access_key_id=$CIRCLE_ACCESS_KEY_ID\naws_secret_access_key=$CIRCLE_SECRET_KEY\n" > ~/.aws/credentials
-            unset  AWS_SESSION_TOKEN
-            temp_role=$(aws sts assume-role \
-                  --role-session-name "DevelopersRole" \
-                  --role-arn $DEV_ROLE_ARN \
-                  --profile dlme)
-            export AWS_ACCESS_KEY_ID=$(echo $temp_role | jq .Credentials.AccessKeyId | xargs)
-            export AWS_SECRET_ACCESS_KEY=$(echo $temp_role | jq .Credentials.SecretAccessKey | xargs)
-            export AWS_SESSION_TOKEN=$(echo $temp_role | jq .Credentials.SessionToken | xargs)
-            aws configure set region us-west-2
-            aws configure set output json
-            aws configure list # Show confirmation of config
-            task_arn=$(aws ecs list-task-definitions --family-prefix spotlight --region us-west-2 --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-            cluster_arn=$(aws ecs list-clusters --region us-west-2 | jq --raw-output --exit-status '.clusterArns[] | select(contains(":cluster/dlme-dev"))')
-            # echo -n "task_arn=$task_arn\ncluster_arn=$cluster_arn\n"
-            aws ecs update-service --service spotlight --region us-west-2 --cluster $cluster_arn --task-definition $task_arn --force-new-deployment
-
-            worker_task_arn=$(aws ecs list-task-definitions --family-prefix dlme-worker --region us-west-2 --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-            aws ecs update-service --service dlme-worker --region us-west-2 --cluster $cluster_arn --task-definition $worker_task_arn --force-new-deployment
+      - aws-cli/setup:
+          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+          aws-secret-access-key: CIRCLE_SECRET_KEY
+          aws-region: DLME_DEPLOY_REGION
+          profile-name: dlme
+      - assume_role:
+          role_arn: DEV_ROLE_ARN
+          source-profile: dlme
+      - update_ecs:
+          ecs_cluster_name: ":cluster/dlme-dev"
 
   update_ecs_uat:
-    docker: # NOT the default
-      - image: cimg/python:3.7-browsers
+    executor: aws-cli/default
+    environment:
+      DLME_DEPLOY_REGION: us-west-2
     steps:
-      - run: pip install awscli
-      - run:
-          name: Update AWS ECS
-          command: |
-            mkdir ~/.aws
-            echo -e "[dlme]\naws_access_key_id=$CIRCLE_ACCESS_KEY_ID\naws_secret_access_key=$CIRCLE_SECRET_KEY\n" > ~/.aws/credentials
-            unset  AWS_SESSION_TOKEN
-            temp_role=$(aws sts assume-role \
-                  --role-session-name "DevelopersRole" \
-                  --role-arn $STAGE_ROLE_ARN \
-                  --profile dlme)
-            export AWS_ACCESS_KEY_ID=$(echo $temp_role | jq .Credentials.AccessKeyId | xargs)
-            export AWS_SECRET_ACCESS_KEY=$(echo $temp_role | jq .Credentials.SecretAccessKey | xargs)
-            export AWS_SESSION_TOKEN=$(echo $temp_role | jq .Credentials.SessionToken | xargs)
-            aws configure set region us-west-2
-            aws configure set output json
-            aws configure list # Show confirmation of config
-            task_arn=$(aws ecs list-task-definitions --family-prefix spotlight-uat --region us-west-2 --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-            cluster_arn=$(aws ecs list-clusters --region us-west-2 | jq --raw-output --exit-status '.clusterArns[] | select(contains(":cluster/dlme-uat"))')
-            # echo -n "task_arn=$task_arn\ncluster_arn=$cluster_arn\n"
-            aws ecs update-service --service spotlight-uat --region us-west-2 --cluster $cluster_arn --task-definition $task_arn --force-new-deployment
-
-            worker_task_arn=$(aws ecs list-task-definitions --family-prefix dlme-uat-worker --region us-west-2 --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-            aws ecs update-service --service dlme-uat-worker --region us-west-2 --cluster $cluster_arn --task-definition $worker_task_arn --force-new-deployment
+      - aws-cli/setup:
+          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+          aws-secret-access-key: CIRCLE_SECRET_KEY
+          aws-region: DLME_DEPLOY_REGION
+          profile-name: dlme
+      - assume_role:
+          role_arn: STAGE_ROLE_ARN
+          source-profile: dlme
+      - update_ecs:
+          ecs_cluster_name: ":cluster/dlme-uat"
+          webapp_service: spotlight-uat
+          worker_service: dlme-uat-worker
 
   update_ecs_stage:
-    docker: # NOT the default
-      - image: cimg/python:3.7-browsers
+    executor: aws-cli/default
+    environment:
+      DLME_DEPLOY_REGION: us-west-2
     steps:
-      - run: pip install awscli
-      - run:
-          name: Update AWS ECS
-          command: |
-            mkdir ~/.aws
-            echo -e "[dlme]\naws_access_key_id=$CIRCLE_ACCESS_KEY_ID\naws_secret_access_key=$CIRCLE_SECRET_KEY\n" > ~/.aws/credentials
-            unset  AWS_SESSION_TOKEN
-            temp_role=$(aws sts assume-role \
-                  --role-session-name "DevelopersRole" \
-                  --role-arn $STAGE_ROLE_ARN \
-                  --profile dlme)
-            export AWS_ACCESS_KEY_ID=$(echo $temp_role | jq .Credentials.AccessKeyId | xargs)
-            export AWS_SECRET_ACCESS_KEY=$(echo $temp_role | jq .Credentials.SecretAccessKey | xargs)
-            export AWS_SESSION_TOKEN=$(echo $temp_role | jq .Credentials.SessionToken | xargs)
-            aws configure set region us-west-2
-            aws configure set output json
-            aws configure list # Show confirmation of config
-            task_arn=$(aws ecs list-task-definitions --family-prefix spotlight --region us-west-2 --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-            cluster_arn=$(aws ecs list-clusters --region us-west-2 | jq --raw-output --exit-status '.clusterArns[] | select(test("arn:aws:ecs:us-west-2:[0-9]+:cluster/dlme$"))')
-            # echo -n "task_arn=$task_arn\ncluster_arn=$cluster_arn\n"
-            aws ecs update-service --service spotlight --region us-west-2 --cluster $cluster_arn --task-definition $task_arn --force-new-deployment
-
-            worker_task_arn=$(aws ecs list-task-definitions --family-prefix dlme-worker --region us-west-2 --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-            aws ecs update-service --service dlme-worker --region us-west-2 --cluster $cluster_arn --task-definition $worker_task_arn --force-new-deployment
+      - aws-cli/setup:
+          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+          aws-secret-access-key: CIRCLE_SECRET_KEY
+          aws-region: DLME_DEPLOY_REGION
+          profile-name: dlme
+      - assume_role:
+          role_arn: STAGE_ROLE_ARN
+          source-profile: dlme
+      - update_ecs:
+          ecs_cluster_name: "arn:aws:ecs:us-west-2:[0-9]+:cluster/dlme$"
 
   update_ecs_prod:
-    docker: # NOT the default
-      - image: cimg/python:3.7-browsers
+    executor: aws-cli/default
+    environment:
+      DLME_DEPLOY_REGION: us-west-2
     steps:
-      - run: pip install awscli
+      - aws-cli/setup:
+          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+          aws-secret-access-key: CIRCLE_SECRET_KEY
+          aws-region: DLME_DEPLOY_REGION
+          profile-name: dlme
+      - assume_role:
+          role_arn: PROD_ROLE_ARN
+          source-profile: dlme
+      - update_ecs:
+          ecs_cluster_name: ":cluster/dlme"
+
+commands:
+  # Use our own assume_role implementation because the upstream support in aws-cli
+  # does not let you configure the source_profile
+  assume_role:
+    description: "Assume an AWS Role"
+    parameters:
+      source-profile:
+        type: string
+        default: dlme
+      profile:
+        type: string
+        default: default
+      role_arn:
+        type: env_var_name
+    steps:
       - run:
-          name: Update AWS ECS
+          name: Assume the given role
+          environment:
+            PARAM_AWS_PROFILE: << parameters.profile >>
+            PARAM_AWS_ROLE_ARN: << parameters.role_arn >>
+            PARAM_AWS_SOURCE_PROFILE: << parameters.source-profile >>
           command: |
-            mkdir ~/.aws
-            echo -e "[dlme]\naws_access_key_id=$CIRCLE_ACCESS_KEY_ID\naws_secret_access_key=$CIRCLE_SECRET_KEY\n" > ~/.aws/credentials
-            unset  AWS_SESSION_TOKEN
-            temp_role=$(aws sts assume-role \
-                  --role-session-name "DevelopersRole" \
-                  --role-arn $PROD_ROLE_ARN \
-                  --profile dlme)
-            export AWS_ACCESS_KEY_ID=$(echo $temp_role | jq .Credentials.AccessKeyId | xargs)
-            export AWS_SECRET_ACCESS_KEY=$(echo $temp_role | jq .Credentials.SecretAccessKey | xargs)
-            export AWS_SESSION_TOKEN=$(echo $temp_role | jq .Credentials.SessionToken | xargs)
-            aws configure set region us-west-2
+            PARAM_AWS_ROLE_ARN=$(eval echo "\$$PARAM_AWS_ROLE_ARN")
+            aws configure set role_arn "$PARAM_AWS_ROLE_ARN" --profile $PARAM_AWS_PROFILE
+            aws configure set source_profile "$PARAM_AWS_SOURCE_PROFILE" --profile $PARAM_AWS_PROFILE
+
             aws configure set output json
             aws configure list # Show confirmation of config
-            task_arn=$(aws ecs list-task-definitions --family-prefix spotlight --region us-west-2 --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-            cluster_arn=$(aws ecs list-clusters --region us-west-2 | jq --raw-output --exit-status '.clusterArns[] | select(contains(":cluster/dlme"))')
-            # echo -n "task_arn=$task_arn\ncluster_arn=$cluster_arn\n"
-            aws ecs update-service --service spotlight --region us-west-2 --cluster $cluster_arn --task-definition $task_arn --force-new-deployment
 
-            worker_task_arn=$(aws ecs list-task-definitions --family-prefix dlme-worker --region us-west-2 --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
-            aws ecs update-service --service dlme-worker --region us-west-2 --cluster $cluster_arn --task-definition $worker_task_arn --force-new-deployment
+  update_ecs:
+    description: "Trigger an ECS service update"
+    parameters:
+      ecs_cluster_name:
+        type: string
+      webapp_service:
+        type: string
+        default: spotlight
+      worker_service:
+        type: string
+        default: dlme-worker
+    steps:
+      - run:
+          name: Update the webapp
+          command: |
+            # identify the cluster we want to update
+            cluster_arn=$(aws ecs list-clusters | jq --raw-output --exit-status '.clusterArns[] | select(test("<< parameters.ecs_cluster_name >>"))')
+
+            # update the webapp
+            task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.webapp_service >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
+            aws ecs update-service --service << parameters.webapp_service >> --cluster $cluster_arn --task-definition $task_arn --force-new-deployment
+      - run:
+          name: Update the worker
+          command: |
+            # identify the cluster we want to update
+            cluster_arn=$(aws ecs list-clusters | jq --raw-output --exit-status '.clusterArns[] | select(test("<< parameters.ecs_cluster_name >>"))')
+
+            # update the workers
+            worker_task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.worker_service >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
+            aws ecs update-service --service << parameters.worker_service >> --cluster $cluster_arn --task-definition $worker_task_arn --force-new-deployment
 
 workflows:
   version: 2
