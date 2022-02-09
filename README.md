@@ -185,29 +185,52 @@ docker run --rm -e S3_BUCKET=dlme-transform \
 ```
 
 ## Docker
-### Build image
-```
+### Building
+You can build a local version of the application container using docker:
+```sh
 docker build . -f docker/Dockerfile -t suldlss/dlme:latest --build-arg SECRET_KEY_BASE=<your secret key base>
 ```
+This can be useful to inspect the actual contents of the image to see what CircleCI will build as part of the continuous deployment process (see below). To spin up a copy of the image for inspection:
+```sh
+docker run -it --rm suldlss/dlme:latest /bin/sh
+```
+The `--rm` switch will remove the container after it exits, so that you can use it to inspect the filesystem and then clean it up automatically.
+### Deploying
+The app's four deployment environments are hosted on AWS through the [Elastic Container Service](https://aws.amazon.com/ecs/features/?pg=ln&sec=gs) and managed through [Terraform](https://www.terraform.io/) configs ([Development](https://github.com/sul-dlss/terraform-aws/blob/master/organizations/development/dlme/README.md) / [Staging](https://github.com/sul-dlss/terraform-aws/blob/master/organizations/staging/dlme/README.md) / [UAT](https://github.com/sul-dlss/terraform-aws/tree/master/organizations/staging/dlme-uat) / [Production](https://github.com/sul-dlss/terraform-aws/blob/master/organizations/production/dlme/README.md)).
 
-### Deploy
-```
-docker push suldlss/dlme:latest
-```
+There are two continuous deployment workflows in place:
 
-If you want to deploy a tagged version (recommended), then all you have to do is make a release on github. First create a tag
-```
-git tag 1.1.3
+- When code is merged to `main`, the CircleCI `build` workflow will build a new docker image, tag it as `suldlss/dlme:latest`, and deploy it to the **development** and **UAT** environments.
+- When a new release is published on GitHub, the CircleCI `build-tags` workflow will build a new docker image, tag it as `suldlss/dlme:<version>`, and deploy it to the **staging** and **production** environments.
+
+To publish a new release, first create a tag:
+```sh
+git tag 1.1.3   # for v1.1.3
 git push origin --tags
 ```
+Then go to https://github.com/sul-dlss/dlme/releases/new?tag=1.1.3 and click "Publish Release". This will trigger the CircleCI `build-tags` workflow.
 
-Then go to https://github.com/sul-dlss/dlme/releases/new?tag=1.1.3
-and "Publish Release"
+### Debugging
+#### Setup
+The app containers run in a managed serverless environment called [AWS Fargate](https://aws.amazon.com/fargate/). In this context, there is no access to the Docker VM hosting the containers. To get access to the running containers themselves, you can use the [ECS Exec feature](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html).
 
-This will trigger circle to create a tagged image on docker hub.
+ECS Exec requires several tools be installed and permissions be correctly set. To ensure that your local machine is ready to use it, you can use the [ECS Exec Checker](https://github.com/aws-containers/amazon-ecs-exec-checker) utility provided by Amazon. Before using the checker, ensure you have correctly configured your AWS CLI with sul-dlss profiles according to [the documentation provided by Ops](https://github.com/sul-dlss/terraform-aws/wiki/AWS-DLSS-Dev-Env-Setup). You also need the command-line tool `jq`, which can be installed via homebrew.
 
+To use the checker, you need to supply both the name of the ECS cluster you wish to connect to (e.g. `dlme-dev`) and the task ID of the container you wish to connect to (e.g. `339b3bdc1a92400985bf6f033545169e`). Both of these can be found in the [AWS ECS Console](https://us-west-2.console.aws.amazon.com/ecs/v2/) under the "Clusters" tab. Task IDs are visible once you select a service (the main app is called `spotlight`) and visit the "Configuration and Tasks" tab. Select a task and its ID will be at the top of the page. Note that you need to be using the correct profile in the AWS console to see the cluster you want to debug (see below).
 
-Deploy Updated containers to AWS ([Development](https://github.com/sul-dlss/terraform-aws/blob/master/organizations/development/dlme/README.md) / [Staging](https://github.com/sul-dlss/terraform-aws/blob/master/organizations/staging/dlme/README.md) / [UAT](https://github.com/sul-dlss/terraform-aws/tree/master/organizations/staging/dlme-uat) / [Production](https://github.com/sul-dlss/terraform-aws/blob/master/organizations/production/dlme/README.md)).
+Before using the checker, specify which profile should be used to connect to the environment you want to debug. For development, this is the `development` profile. For UAT and Staging, it's `staging`. Production currently doesn't support the usage of ECS Exec by developers using the `ReadOnlyRole`. Set the profile as an environment variable in your shell, then run the checker:
+```sh
+export AWS_PROFILE=development  # or staging
+./check-ecs-exec dlme-dev 339b3bdc1a92400985bf6f033545169e
+```
+
+The checker should run and not report any errors (red text). If it does, see the [documentation on checks and what they mean](https://github.com/aws-containers/amazon-ecs-exec-checker#checks) for how to proceed.
+#### Execution
+Once ECS Exec is working on your local machine, you can get an interactive shell on the container, similar to using `docker exec`:
+```sh
+aws ecs execute-command --cluster dlme-dev --task 339b3bdc1a92400985bf6f033545169e --command /bin/sh --profile development --interactive
+```
+Use caution when altering the environment of a running container. Remember that **your changes are ephemeral and will be overwritten** anytime a newer version of the container is deployed!
 
 ## Converting files
 
