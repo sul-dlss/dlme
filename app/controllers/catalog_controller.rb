@@ -163,7 +163,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'agg_data_provider_collection_id', field: 'agg_data_provider_collection_id_ssim', limit: true
     config.add_facet_field 'cho_subject_ar', field: 'cho_subject.ar-Arab_ssim', limit: true, if: arabic_locale
     config.add_facet_field 'cho_subject_en', field: 'cho_subject.en_ssim', limit: true, if: en_locale
-    config.add_facet_field 'cho_subject', field: 'cho_type_ssim', limit: true
+    config.add_facet_field 'cho_subject', field: 'cho_subject_ssim', limit: true
     config.add_facet_field 'agg_is_shown_at_agg_edm_rights', field: 'agg_is_shown_at.agg_edm_rights_ssim', limit: true
     config.add_facet_field 'agg_preview_agg_edm_rights', field: 'agg_preview.agg_edm_rights_ssim', limit: true
     config.add_facet_field 'agg_edm_rights', field: 'agg_edm_rights_ssim', limit: true
