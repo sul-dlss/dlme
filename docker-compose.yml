@@ -25,7 +25,6 @@ services:
       - RAILS_SERVE_STATIC_FILES=true
       - RAILS_ENV=development
       - SETTINGS__FEATURE_FLAGS__ALLOW_JSON_UPLOAD=true
-    image: 'suldlss/dlme:latest'
     ports:
       - "3000:3000"
     depends_on:
@@ -33,6 +32,8 @@ services:
     # For running in dev
     volumes:
       - ".:/opt/"
+    entrypoint: dev-entrypoint.sh
+    command: rails server -b 0.0.0.0
 
   sidekiq:
     depends_on:

@@ -23,6 +23,10 @@ ARG BUNDLE_WITHOUT="development test"
 # Create and set the working directory as /opt
 WORKDIR /opt
 
+# Add the entrypoint script used in development
+COPY docker/dev-entrypoint.sh /usr/local/bin/dev-entrypoint.sh
+RUN chmod +x /usr/local/bin/dev-entrypoint.sh
+
 RUN gem update --system && \
   gem install bundler && \
   bundle config build.nokogiri --use-system-libraries
@@ -55,4 +59,5 @@ ENV GIT_INFO=$GIT_INFO
 LABEL git_info=$GIT_INFO
 
 # Start the server by default, listening for all connections
-CMD bundle exec puma -C config/puma.rb
+ENTRYPOINT ["bundle", "exec"]
+CMD ["puma", "-C", "config/puma.rb"]
