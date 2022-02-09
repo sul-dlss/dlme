@@ -68,7 +68,7 @@ services:
     ports:
       - "8983:8983"
     volumes:
-      - ./solr-data:/opt/solr/server/solr/mycores
+      - solr-data:/var/solr
       - ./solr/config:/solr-setup/conf
     entrypoint:
       - docker-entrypoint.sh
@@ -96,3 +96,4 @@ services:
 volumes:
   redis:
   postgres-data:
+  solr-data:
