@@ -11,23 +11,13 @@
       <tbody>
         <% items.by_type.each do |field| %>
           <tr>
-            <td>
+            <td class="<%= class_names('pl-4 indent-with-caret' => field['level'].positive?) %>">
               <%= link_to path_for_facet(items.type_facet, field['value']), class: 'value' do %>
-                <%= facet_display_value(items.type_facet, field['value']) %>
+                <%= facet_display_value(items.type_facet, field['display_value'] ) %>
               <% end %>
             </td>
             <td class="text-right"><%= number_with_delimiter(field['count']) %></td>
           </tr>
-          <% field['pivot'].each do |pivot| %>
-            <tr>
-              <td class="pl-4 indent-with-caret">
-                <%= link_to path_for_facet(items.type_facet, [field['value'], pivot['value']].join(':')), class: 'value' do %>
-                  <%= facet_display_value(items.type_facet, pivot['value']) %>
-                <% end %>
-              </td>
-              <td class="text-right"><%= number_with_delimiter(pivot['count']) %></td>
-            </tr>
-          <% end if field['pivot'] %>
         <% end %>
       </tbody>
     </table>

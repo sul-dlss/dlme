@@ -12,16 +12,11 @@ RSpec.describe 'statistics/_items.html.erb', type: :view do
   let(:stub_response) do
     { 'facet_counts' => {
       'facet_fields' => {
-        'cho_language.en_ssim' => ['Value 1', '500', 'Value 2', '300']
-      },
-      'facet_pivot' => {
-        'cho_edm_type.en_ssim,cho_has_type.en_ssim' => [
-          { 'value' => 'Value 1', 'count' => '500' },
-          { 'value' => 'Value 2', 'count' => '300', 'pivot' => [
-            { 'value' => 'Value A', 'count' => '200' },
-            { 'value' => 'Value B', 'count' => '100' }
-          ] }
-        ]
+        'cho_language.en_ssim' => ['Value 1', '500', 'Value 2', '300'],
+        'cho_type_facet.en_ssim' => ['Value 1', '500',
+                                     'Value 2', '300',
+                                     'Value 2:Value A', '200',
+                                     'Value 2:Value B', '100']
       }
     } }
   end
@@ -31,7 +26,7 @@ RSpec.describe 'statistics/_items.html.erb', type: :view do
   end
 
   describe 'By type section' do
-    it 'has a table with linked langage values and their counts' do
+    it 'has a table with linked type values and their counts' do
       expect(rendered).to have_css('table.by-type')
       expect(rendered).to have_css('table.by-type tr a', text: 'Value 1')
       expect(rendered).to have_css('table.by-type tr a', text: 'Value 2')
@@ -39,7 +34,7 @@ RSpec.describe 'statistics/_items.html.erb', type: :view do
       expect(rendered).to have_css('table.by-type tr td', text: '300')
     end
 
-    it 'includes a first level of pivot facets (indented)' do
+    it 'includes a first level of type facets (indented)' do
       expect(rendered).to have_css('table.by-type tr td.pl-4 a', text: 'Value A')
       expect(rendered).to have_css('table.by-type tr td.pl-4 a', text: 'Value B')
       expect(rendered).to have_css('table.by-type tr td', text: '200')

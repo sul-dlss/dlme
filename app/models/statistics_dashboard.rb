@@ -15,6 +15,8 @@ class StatisticsDashboard
       'agg_provider_data_country.ar-Arab_ssim',
       'agg_provider_data_country.en_ssim',
       'agg_data_provider_collection_ssim',
+      'cho_type_facet.en_ssim',
+      'cho_type_facet.ar-Arab_ssim',
       'cho_language.en_ssim',
       'cho_language.ar-Arab_ssim'
     ],
@@ -26,8 +28,6 @@ class StatisticsDashboard
     'f.cho_language.en_ssim.facet.limit' => -1,
     'f.cho_language.ar-Arab_ssim.facet.limit' => -1,
     'facet.pivot': [
-      %w[cho_edm_type.en_ssim cho_has_type.en_ssim].join(','),
-      %w[cho_edm_type.ar-Arab_ssim cho_has_type.ar-Arab_ssim].join(','),
       %w[agg_provider.en_ssim agg_provider_country.en_ssim agg_data_provider_collection_ssim].join(','),
       %w[agg_provider.ar-Arab_ssim agg_provider_country.ar-Arab_ssim agg_data_provider_collection_ssim].join(','),
       %w[agg_data_provider.en_ssim agg_data_provider_country.en_ssim agg_data_provider_collection_ssim].join(','),
@@ -114,25 +114,18 @@ class StatisticsDashboard
     end
 
     def by_type
-      pivot_facets["#{type_field},#{sub_type_field}"] || []
+      (facet_fields[type_facet] || []).each_slice(2).collect do |(value, count)|
+        { 'value' => value,
+          'display_value' => value.split(':').last,
+          'count' => count,
+          'level' => value.count(':') }
+      end
     end
 
     private
 
-    def type_field
-      StatisticsDashboard.locale_aware_field('cho_edm_type')
-    end
-
-    def sub_type_field
-      StatisticsDashboard.locale_aware_field('cho_has_type')
-    end
-
     def facet_fields
       facets['facet_fields'] || {}
-    end
-
-    def pivot_facets
-      facets['facet_pivot'] || {}
     end
 
     def facets
