@@ -1,7 +1,8 @@
-version: '3.6'
+version: "3.6"
 
 services:
   app:
+    image: "suldlss/dlme:latest"
     build:
       context: ./
       args:
@@ -32,7 +33,26 @@ services:
     # For running in dev
     volumes:
       - ".:/opt/"
-    command: bundle exec rails server -b 0.0.0.0
+
+  sidekiq:
+    depends_on:
+      - "postgres"
+      - "redis"
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile.worker
+      args:
+        # For development, installs test and development
+        - BUNDLE_WITHOUT=nothing
+    command: sidekiq -C config/sidekiq.yml.erb
+    volumes:
+      - ".:/app"
+    env_file:
+      - ".env"
+    environment:
+      - SOLR_URL=http://solr:8983/solr/dlme
+      - RAILS_ENV=development
+
   postgres:
     image: postgres:10.17
     ports:
@@ -42,6 +62,7 @@ services:
       - POSTGRES_DB=dlme
     volumes:
       - postgres-data:/var/lib/postgresql/data
+
   solr:
     image: solr:8.11.1
     ports:
@@ -54,31 +75,15 @@ services:
       - solr-precreate
       - dlme
       - /solr-setup/conf
+
   redis:
-    image: 'redis:4.0-alpine'
+    image: "redis:4.0-alpine"
     ports:
       - "6379:6379"
     command: redis-server
     volumes:
-      - 'redis:/data'
-  sidekiq:
-    depends_on:
-      - 'postgres'
-      - 'redis'
-    build:
-      context: ./
-      dockerfile: docker/Dockerfile.worker
-      args:
-        # For development, installs test and development
-        - BUNDLE_WITHOUT=nothing
-    command: bundle exec sidekiq -C config/sidekiq.yml.erb
-    volumes:
-      - '.:/app'
-    env_file:
-      - '.env'
-    environment:
-      - SOLR_URL=http://solr:8983/solr/dlme
-      - RAILS_ENV=development
+      - "redis:/data"
+
   localstack:
     image: localstack/localstack
     ports:
@@ -87,6 +92,7 @@ services:
       - SERVICES=sns,s3
       - DOCKER_HOST=unix:///var/run/docker.sock
       - DEBUG=1
+
 volumes:
   redis:
   postgres-data:
