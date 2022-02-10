@@ -1,10 +1,10 @@
 <%= bootstrap_form_for([current_exhibit, @resource.becomes(DlmeJson)],
-                       layout: :horizontal,
+                       layout: :vertical,
                        label_col: 'col-md-2',
                        control_col: 'col-sm-6 col-md-6 col-lg-8',
                        html: { class: 'item-upload-form', multipart: true } ) do |f| %>
   <%= f.fields_for :data do |d| %>
-    <%= d.text_area :json, style: 'height: 50vh' %>
+    <%= d.text_area :json, hide_label: true, style: 'height: 50vh' %>
   <% end %>
   <div class="form-actions">
     <div class="primary-actions">
@@ -12,4 +12,4 @@
       <%= f.submit t('.add_item'), class: 'btn btn-primary' %>
     </div>
   </div>
-<% end %>
+<% end if Settings.feature_flags.allow_json_upload %>

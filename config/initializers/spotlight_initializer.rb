@@ -17,10 +17,7 @@ Spotlight::Engine.config.exhibit_main_navigation = [:curated_features, :browse, 
 #   'spotlight/resources/csv_upload/form',
 #   'spotlight/resources/json_upload/form'
 # ]
-Spotlight::Engine.config.external_resources_partials +=
-  Settings.feature_flags.allow_json_upload ?
-    ['dlme_jsons/form', 'dlme_s3s/form'] :
-    ['dlme_s3s/form']
+Spotlight::Engine.config.external_resources_partials += ['dlme_jsons/irform']
 # Spotlight::Engine.config.default_browse_index_view_type = :gallery
 Spotlight::Engine.config.default_contact_email = Settings.contact.email
 

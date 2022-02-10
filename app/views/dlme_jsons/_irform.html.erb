@@ -1,0 +1,41 @@
+<div role="tabpanel">
+  <ul class="nav nav-pills" role="tablist">
+    <li role="presentation" class="nav-item">
+      <%= link_to(
+            t("dlme_s3s.form.title"),
+            "#dlme_resource_tab_s3",
+            class: "nav-link active",
+            role: 'tab',
+            'data-toggle' => 'tab',
+            'aria-controls' => "dlme_resource_tab_s3"
+          )
+      %>
+    </li>
+    <li role="presentation" class="nav-item">
+      <%= link_to(
+            t("dlme_jsons.form.title"),
+            "#dlme_resource_tab_json",
+            class: "nav-link #{'disabled' if !Settings.feature_flags.allow_json_upload}",
+            disabled: !Settings.feature_flags.allow_json_upload,
+            role: 'tab',
+            'data-toggle' => 'tab',
+            'aria-controls' => "dlme_resource_tab_json"
+          )
+      %>
+    </li>
+  </ul>
+  <div class="tab-content">
+    <%= content_tag :div,
+        id: "dlme_resource_tab_s3",
+        role: 'tabpanel',
+        class: "tab-pane active" do %>
+      <%= render 'dlme_s3s/form' %>
+    <% end %>
+    <%= content_tag :div,
+        id: "dlme_resource_tab_json",
+        role: 'tabpanel',
+        class: "tab-pane" do %>
+      <%= render 'dlme_jsons/form' %>
+    <% end %>
+  </div>
+</div>
