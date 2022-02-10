@@ -36,7 +36,7 @@ ar:
     form:
       add_item: اجلب
       error: يحتوي تنسيق جسون على معرّفات مكررة
-      title: 'جلب DLME S3 '
+      title: 'جلب DLME '
   footer:
     partnership_heading: بالشراكة مع
     project_support_heading: المشروع مدعوم من قبل
