@@ -35,8 +35,8 @@ services:
   sidekiq:
     image: suldlss/dlme-worker
     depends_on:
-      - "postgres"
-      - "redis"
+      - postgres
+      - redis
     build:
       context: ./
       dockerfile: docker/Dockerfile
