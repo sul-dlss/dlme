@@ -79,9 +79,11 @@ code will be shared into the container so that the webapp will be dynamically re
 To get the development environment set up for the first time, you'll need to build the container images and prepare the database. You only need to do this once.
 ```sh
 $ docker compose up --build
-$ docker compose run --rm app rake db:setup
 $ docker compose run --rm app rake spotlight:initialize
 ```
+
+The first run will take some time to build the containers and to install dependencies. Check the logs for the app container to see when the rails server is ready to accept connections.
+
 Once the DLME Rails app is running you can create an exhibit. To match production, the title will need to be `dlme` and the URL slug will need to be `library`. Once your new exhibit is created, you can index some test data by navigating to the exhibit dashboard, choosing "Items" under the "Curation" menu on the left, and clicking "Add Items". In the "From external resource" tab, select the "DLME S3 fetch" option and provide a URL to the test data (here's [one example](https://gist.githubusercontent.com/cbeer/581b10cafca66206de9e403e7be5d1e0/raw/a77dbd67fe8a73c585af9b3827537d7a7b2bcab9/dlme-sample-data-2022-02-01.ndjson)).
 
 #### Stopping and starting
@@ -93,9 +95,9 @@ This process will gracefully stop and remove all running containers. Data is per
 ```sh
 $ docker compose up     # add -d to run in the background and silence logs
 ```
-You can stop and start individual containers by referring to them by name:
+You can stop and start individual containers by referring to them by their service name from `docker-compose.yml`:
 ```sh
-$ docker compose stop dlme-app-1    # use `docker ps` to see the container names
+$ docker compose stop app
 ```
 For more, see the [`docker compose` CLI reference](https://docs.docker.com/compose/reference/#command-options-overview-and-help).
 #### Managing data
@@ -107,7 +109,7 @@ If you want to remove a volume (e.g. to start with a fresh database or solr core
 ```sh
 $ docker volume rm dlme_solr-data   # to remove the solr data
 ```
-Note that you will need to re-run the `db_setup` and `spotlight:initialize` rake tasks if you destroy the database. For solr, the core config will be persisted, but the index data will be removed.
+Note that you will need to re-run the `spotlight:initialize` rake task if you destroy the database (see above under "initial setup"). For solr, removing the volume will preserve the core config, but the index data will be cleared.
 #### Local Gem Development with Docker
 
 1. Mount a volume connecting the local directory to (an arbitrarily named) directory accessible to the container. For example, for developing in the `blacklight-hierarchy` gem, add this to the DLME `docker-compose.yml`.
@@ -200,11 +202,12 @@ docker run --rm -e S3_BUCKET=dlme-transform \
 
 ## Deployment
 ### Building
-You can build a local version of the application container using docker:
+You can build local versions of the application and worker containers using docker:
 ```sh
-docker build . -f docker/Dockerfile -t suldlss/dlme:latest --build-arg SECRET_KEY_BASE=<your secret key base>
+docker build . -f docker/Dockerfile -t suldlss/dlme --target webapp_prod # webapp_dev for development
+docker build . -f docker/Dockerfile -t suldlss/dlme-worker --target worker # for the worker container 
 ```
-This can be useful to inspect the actual contents of the image to see what CircleCI will build as part of the continuous deployment process (see below). To spin up a copy of the image for inspection:
+This can be useful to inspect the actual contents of the image to see what CircleCI will build as part of the continuous deployment process (see below). To spin up a copy of an image for inspection:
 ```sh
 docker run -it --rm suldlss/dlme:latest /bin/sh
 ```
