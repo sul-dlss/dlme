@@ -2,11 +2,12 @@
 
 set -e
 
-# prevent bundle errors on missing gems
-bundle check || bundle install --jobs 20 --retry 5
-
-# prevent "server is already running" errors after restart
+# prevent "server is already running" errors
 rm -f /opt/tmp/pids/server.pid
 
-# run passed commands
+# run the rails setup script to make sure no dependencies are missing and
+# the server has been restarted
+bin/setup
+
+# run passed commands using `bundle exec`
 bundle exec ${@}
