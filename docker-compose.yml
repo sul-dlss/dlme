@@ -8,20 +8,16 @@ services:
       dockerfile: docker/Dockerfile
       target: webapp-dev
     environment:
-      - RAILS_LOG_TO_STDOUT=true
-      - RDS_DB_NAME=dlme
-      - RDS_USERNAME=postgres
-      - RDS_PASSWORD=sekret
-      - RDS_HOSTNAME=postgres
-      - RDS_PORT=5432
-      - SOLR_URL=http://solr:8983/solr/dlme
-      - SECRET_KEY_BASE
-      - REDIS_HOST
-      - REDIS_PORT
-      # For development
-      - RAILS_SERVE_STATIC_FILES=true
-      - RAILS_ENV=development
-      - SETTINGS__FEATURE_FLAGS__ALLOW_JSON_UPLOAD=true
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RDS_DB_NAME: dlme
+      RDS_USERNAME: postgres
+      RDS_PASSWORD: sekret
+      RDS_HOSTNAME: postgres
+      RDS_PORT: 5432
+      SOLR_URL: http://solr:8983/solr/dlme
+      SECRET_KEY_BASE:
+      SETTINGS__FEATURE_FLAGS__ALLOW_JSON_UPLOAD: true
     ports:
       - "3000:3000"
     depends_on:
@@ -43,16 +39,16 @@ services:
     env_file:
       - ".env"
     environment:
-      - SOLR_URL=http://solr:8983/solr/dlme
-      - RAILS_ENV=development
+      SOLR_URL: http://solr:8983/solr/dlme
+      RAILS_ENV: development
 
   postgres:
     image: postgres:10.17
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_PASSWORD=sekret
-      - POSTGRES_DB=dlme
+      POSTGRES_PASSWORD: sekret
+      POSTGRES_DB: dlme
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
@@ -82,9 +78,9 @@ services:
     ports:
       - "4566:4566"
     environment:
-      - SERVICES=sns,s3
-      - DOCKER_HOST=unix:///var/run/docker.sock
-      - DEBUG=1
+      SERVICES: sns,s3
+      DOCKER_HOST: unix:///var/run/docker.sock
+      DEBUG: 1
 
 volumes:
   redis:
