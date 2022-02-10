@@ -26,11 +26,8 @@ services:
       - "3000:3000"
     depends_on:
       - postgres
-    # For running in dev
     volumes:
       - ".:/opt/"
-    entrypoint: dev-entrypoint.sh
-    command: rails server -b 0.0.0.0
 
   sidekiq:
     image: suldlss/dlme-worker
