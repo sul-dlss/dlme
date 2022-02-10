@@ -5,11 +5,8 @@ services:
     image: "suldlss/dlme:latest"
     build:
       context: ./
-      args:
-      - SECRET_KEY_BASE
-      # For development, installs test and development
-      - BUNDLE_WITHOUT=nothing
       dockerfile: docker/Dockerfile
+      target: webapp-dev
     environment:
       - RAILS_LOG_TO_STDOUT=true
       - RDS_DB_NAME=dlme
@@ -41,11 +38,8 @@ services:
       - "redis"
     build:
       context: ./
-      dockerfile: docker/Dockerfile.worker
-      args:
-        # For development, installs test and development
-        - BUNDLE_WITHOUT=nothing
-    command: sidekiq -C config/sidekiq.yml.erb
+      dockerfile: docker/Dockerfile
+      target: worker-dev
     volumes:
       - ".:/app"
     env_file:
