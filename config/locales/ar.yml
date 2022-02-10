@@ -29,6 +29,8 @@ ar:
     form:
       add_item: 'قم بإضافة ملف مكتبة الشرق الاوسط الرقمية JSON '
       title: مكتبة الشرق الاوسط الرقمية JSON
+    irform:
+      title: DLME IR
     update:
       error: JSON هناك مشكلة في حفظ  .
       success: 'تم حفظ مكتبة الشرق الاوسط الرقمية JSON '

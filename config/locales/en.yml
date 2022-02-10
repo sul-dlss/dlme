@@ -27,8 +27,10 @@ en:
     edit:
       add_item: Save
     form:
-      add_item: Add DLME JSON file
-      title: DLME JSON
+      add_item: Import items
+      title: Paste JSON
+    irform:
+      title: DLME IR
     update:
       error: There was a problem saving the JSON.
       success: DLME JSON was saved.
@@ -36,7 +38,7 @@ en:
     form:
       add_item: Fetch
       error: JSON contained duplicate identifiers
-      title: DLME Fetch
+      title: Fetch by URL
   footer:
     partnership_heading: In partnership with
     project_support_heading: Project supported by

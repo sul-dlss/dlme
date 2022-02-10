@@ -14,11 +14,11 @@ RSpec.describe 'adding DLME JSON', type: :feature do
 
   it 'has form to add DLME JSON' do
     click_link 'Add items'
-    expect(page).to have_link('DLME JSON') # tab name
+    expect(page).to have_link('Paste JSON') # tab name
 
     fill_in 'Json', with: json
 
-    click_button 'Add DLME JSON file'
+    click_button 'Import items'
 
     expect(Spotlight::Resource.last.data[:json]).to eq json
   end
