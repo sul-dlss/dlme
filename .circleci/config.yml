@@ -1,4 +1,5 @@
 version: 2.1
+
 executors:
   docker-publisher:
     environment:
@@ -46,51 +47,41 @@ jobs:
     - run:
         name: Install Bundler
         command: gem install bundler
-
     # Which version of bundler?
     - run:
         name: Which bundler?
         command: bundle -v
-
     # Restore bundle cache
     - restore_cache:
         keys:
         - dlme-bundle-v3-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
         - dlme-bundle-v3-{{ arch }}-{{ .Branch }}
         - dlme-bundle-v3-
-
     - run:
         name: Bundle Install
         command: bundle check || bundle install
-
     - run: bundle clean --force
-
     # Store bundle cache
     - save_cache:
         key: dlme-bundle-v3-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
         paths:
         - vendor/bundle
-
     # Only necessary if app uses webpacker or yarn in some other way
     - restore_cache:
         keys:
           - dlme-yarn-{{ checksum "yarn.lock" }}
           - dlme-yarn-
-
     - run:
           name: Yarn Install
           command: yarn install --cache-folder ~/.cache/yarn
-
     # Store yarn / webpacker cache
     - save_cache:
         key: dlme-yarn-{{ checksum "yarn.lock" }}
         paths:
           - ~/.cache/yarn
-
     - run:
         name: Test prepare
         command: bin/rails db:test:prepare
-
     # Create a Solr collection
     - run:
         name: Load config into SolrCloud
@@ -99,18 +90,15 @@ jobs:
           zip -1 -r solr_config.zip ./*
           curl -H "Content-type:application/octet-stream" --data-binary @solr_config.zip "http://admin:admin@localhost:8983/solr/admin/configs?action=UPLOAD&name=dlme"
           curl -H 'Content-type: application/json' http://admin:admin@localhost:8983/api/collections/ -d '{create: {name: dlme, config: dlme, numShards: 1}}'
-
     - run:
         name: Check styles using rubocop
         command: bundle exec rubocop
-
     - run:
         name: Setup Code Climate test-reporter
         command: |
           # download test reporter as a static binary
           curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./tmp/cc-test-reporter
           chmod +x ./tmp/cc-test-reporter
-
     # Run rspec in parallel
     - run:
         name: Run rspec in parallel
@@ -132,7 +120,6 @@ jobs:
         command: |
           ./tmp/cc-test-reporter sum-coverage coverage/codeclimate.*.json -p 1 -o coverage/codeclimate.total.json
           ./tmp/cc-test-reporter upload-coverage -i coverage/codeclimate.total.json
-
     # Save test results for timing analysis
     - store_test_results:
         path: test_results
@@ -149,18 +136,37 @@ jobs:
         command: |
           docker build . -f docker/Dockerfile -t $WEBAPP_IMAGE_NAME:latest --build-arg GIT_INFO=$(git describe --tags) --target webapp-prod
           docker build . -f docker/Dockerfile -t $WORKER_IMAGE_NAME:latest --build-arg GIT_INFO=$(git describe --tags) --target worker-prod
-
     - run:
         name: Archive Docker image
         command: |
           docker save -o webapp_image.tar $WEBAPP_IMAGE_NAME
           docker save -o worker_image.tar $WORKER_IMAGE_NAME
-
     - persist_to_workspace:
         root: .
         paths:
         - ./webapp_image.tar
         - ./worker_image.tar
+
+  test-image:
+    executor: docker-publisher
+    steps:
+    - checkout
+    - attach_workspace:
+        at: /tmp/workspace
+    - setup_remote_docker:
+        version: 20.10.11
+    - run:
+        name: Load archived Docker images
+        command: |
+          docker load -i /tmp/workspace/webapp_image.tar
+          docker load -i /tmp/workspace/worker_image.tar
+    - run:
+        name: Start local Docker stack
+        command: docker compose -f .circleci/docker-compose.yml up
+    - run:
+        name: Run integration tests against Docker stack
+        command: CAPYBARA_USE_DOCKER=1 bundle exec rspec --pattern spec/features/**/*_spec.rb
+
   publish-latest:
     executor: docker-publisher
     steps:
@@ -173,7 +179,6 @@ jobs:
         command: |
           docker load -i /tmp/workspace/webapp_image.tar
           docker load -i /tmp/workspace/worker_image.tar
-
     - run:
         name: Publish Docker Image to Docker Hub
         command: |
@@ -197,7 +202,6 @@ jobs:
         command: |
           docker load -i /tmp/workspace/webapp_image.tar
           docker load -i /tmp/workspace/worker_image.tar
-
     - run:
         name: Publish Docker Image to Docker Hub
         command: |
@@ -323,7 +327,6 @@ commands:
           command: |
             # identify the cluster we want to update
             cluster_arn=$(aws ecs list-clusters | jq --raw-output --exit-status '.clusterArns[] | select(test("<< parameters.ecs_cluster_name >>"))')
-
             # update the webapp
             task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.webapp_service >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
             aws ecs update-service --service << parameters.webapp_service >> --cluster $cluster_arn --task-definition $task_arn --force-new-deployment
@@ -332,7 +335,6 @@ commands:
           command: |
             # identify the cluster we want to update
             cluster_arn=$(aws ecs list-clusters | jq --raw-output --exit-status '.clusterArns[] | select(test("<< parameters.ecs_cluster_name >>"))')
-
             # update the workers
             worker_task_arn=$(aws ecs list-task-definitions --family-prefix << parameters.worker_service >> --sort DESC --max-items 1 | jq --raw-output --exit-status '.taskDefinitionArns[]')
             aws ecs update-service --service << parameters.worker_service >> --cluster $cluster_arn --task-definition $worker_task_arn --force-new-deployment
@@ -346,6 +348,17 @@ workflows:
         filters:
           branches:
             ignore: main
+    - build-image:
+        filters:
+          branches:
+            ignore: main
+    - test-image:
+        requires:
+        - build-image
+        filters:
+          branches:
+            ignore: main 
+
   build:
     jobs:
     - build-image:
@@ -370,6 +383,7 @@ workflows:
         filters:
           branches:
             only: main
+
   build-tags:
     jobs:
     - build-image:
