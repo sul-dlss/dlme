@@ -1,0 +1,53 @@
+version: "3.6"
+
+services:
+  app:
+    image: suldlss/dlme
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      RDS_DB_NAME: dlme
+      RDS_USERNAME: postgres
+      RDS_PASSWORD: sekret
+      RDS_HOSTNAME: postgres
+      RDS_PORT: 5432
+      SOLR_URL: http://solr:8983/solr/dlme
+
+  sidekiq:
+    image: suldlss/dlme-worker
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      SOLR_URL: http://solr:8983/solr/dlme
+      REDIS_HOST: redis
+
+  postgres:
+    image: postgres:10.17
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: sekret
+      POSTGRES_DB: dlme
+
+  solr:
+    image: solr:8.11.1
+    ports:
+      - "8983:8983"
+    volumes:
+      - ../solr/config:/solr-setup/conf
+    entrypoint:
+      - docker-entrypoint.sh
+      - solr-precreate
+      - dlme
+      - /solr-setup/conf
+
+  redis:
+    image: "redis:5.0-alpine"
+    ports:
+      - "6379:6379"
+    command: redis-server
