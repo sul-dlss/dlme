@@ -23,6 +23,13 @@ Capybara.register_driver :headless_chrome do |app|
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
 end
 
+if ENV['CAPYBARA_USE_DOCKER']
+  # tell capybara not to start the server since docker is already running, and
+  # point it at the local server instead
+  Capybara.run_server = false
+  Capybara.app_host = 'http://localhost:3000'
+end
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
