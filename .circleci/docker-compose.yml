@@ -2,30 +2,29 @@ version: "3.6"
 
 services:
   app:
-    image: suldlss/dlme
+    image: suldlss/dlme:latest
     depends_on:
       - postgres
     ports:
       - "3000:3000"
     environment:
       REDIS_HOST: redis
-      REDIS_PORT: 6379
+      RDS_HOSTNAME: postgres
       RDS_DB_NAME: dlme
       RDS_USERNAME: postgres
       RDS_PASSWORD: dlme
-      RDS_HOSTNAME: postgres
-      RDS_PORT: 5432
       SOLR_URL: http://solr:8983/solr/dlme
       SECRET_KEY_BASE: dlme
 
   sidekiq:
-    image: suldlss/dlme-worker
+    image: suldlss/dlme-worker:latest
     depends_on:
       - postgres
       - redis
     environment:
       REDIS_HOST: redis
       RDS_HOSTNAME: postgres
+      RDS_DB_NAME: dlme
       RDS_USERNAME: postgres
       RDS_PASSWORD: dlme
       SOLR_URL: http://solr:8983/solr/dlme
