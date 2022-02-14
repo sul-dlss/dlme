@@ -23,8 +23,11 @@ services:
       - postgres
       - redis
     environment:
-      SOLR_URL: http://solr:8983/solr/dlme
       REDIS_HOST: redis
+      RDS_HOSTNAME: postgres
+      RDS_USERNAME: postgres
+      RDS_PASSWORD: sekret
+      SOLR_URL: http://solr:8983/solr/dlme
 
   postgres:
     image: postgres:10.17
