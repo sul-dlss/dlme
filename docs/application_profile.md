@@ -70,7 +70,7 @@ The DLME Prototype Application Profile a subset of the [Europeana Data Model](ht
 | cho_identifier   | `dc:identifier`   |             | 0...n       | literal/ref | An unambiguous reference to the resource within a given context. | |
 | cho_is_part_of   | `dct:isPartOf`    |             | 0...n       | literal/ref | A related resource in which the described resource is physically or logically included. | |
 | cho_language     | `dc:language`     | M+          | 0...n       | literal     | Language for the resource. | Mandatory for text in Europeana; determine if BCP47 language tags are feasible |
-| cho_medium       | `dct:medium`      |             | 0...n       | literal     | The material or physical carrier of the resource. | |
+| cho_medium       | `dct:medium`      |             | 0...n       | literal     | The material or physical carrier of the resource; uses Getty Art & Architechture thesaurus terms. | |
 | cho_provenance   | `dct:provenance`  | R+          | 0...n       | literal     | A statement of any changes in ownership and custody of the CHO resource (the work itself) since its creation that are significant for its authenticity, integrity, and interpretation. | Recommended if available   |
 | cho_publisher    | `dc:publisher`    |             | 0...n       | literal     | An entity responsible for making the CHO resource (the work itself, not the digital representation) available. | |
 | cho_relation     | `dc:relation`     |             | 0...n       | literal/ref | Related resources in which you can't determine if it is a part or has a part of or other. | |
