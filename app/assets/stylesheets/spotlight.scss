@@ -11,3 +11,9 @@ form.button_to {
 body {
   margin-bottom: 0;
 }
+
+/* hide external resource chooser when there's only one option
+   so that we don't have too many nested tablists */
+#external_resources_form .nav-item:only-child {
+  display: none;
+}
