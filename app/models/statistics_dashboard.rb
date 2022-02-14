@@ -99,6 +99,10 @@ class StatisticsDashboard
       StatisticsDashboard.locale_aware_field('cho_language')
     end
 
+    def language_facet_field
+      "language_#{I18n.locale}"
+    end
+
     def by_language
       (facet_fields[language_field] || []).each_slice(2).collect do |(value, count)|
         { 'value' => value, 'count' => count }
@@ -199,6 +203,10 @@ class StatisticsDashboard
 
     def provider_field
       StatisticsDashboard.locale_aware_field(provider_field_key)
+    end
+
+    def provider_facet_field
+      "#{provider_field_key}_#{I18n.locale}"
     end
 
     # Represents each row in the Contributors table

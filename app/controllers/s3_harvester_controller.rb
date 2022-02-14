@@ -29,7 +29,7 @@ class S3HarvesterController < ApplicationController
     ids = NdjsonNormalizer
           .normalize(body, params['url'])
           .pluck('id')
-          .reject(&:blank?)
+          .compact_blank
     ids.size != ids.uniq.size
   end
 

@@ -1,4 +1,4 @@
-FROM ruby:2.7.2-alpine
+FROM ruby:2.7.5-alpine
 
 LABEL maintainer="Justin Coyne <jcoyne85@stanford.edu>"
 
@@ -39,6 +39,11 @@ COPY . .
 # > The git source https://github.com/projectblacklight/spotlight.git is not yet checked out.
 RUN bundle config build.nokogiri --use-system-libraries \
     && bundle install --without ${BUNDLE_WITHOUT}
+
+# Pass in git info so that okcomputer can show what version is running
+ARG GIT_INFO
+ENV GIT_INFO=$GIT_INFO
+LABEL git_info=$GIT_INFO
 
 # Start the server by default, listening for all connections
 CMD sidekiq -C config/sidekiq.yml.erb

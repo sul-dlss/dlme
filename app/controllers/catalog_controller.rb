@@ -8,6 +8,8 @@ class CatalogController < ApplicationController
   extend MultilingualLocaleAwareField
 
   before_action do
+    blacklight_config.bulk_actions&.delete_resources!
+
     next unless request.format.json?
 
     blacklight_config.add_show_field :__raw_resource_json_ss, helper_method: :ir_for_output
@@ -21,7 +23,7 @@ class CatalogController < ApplicationController
     # Remove bookmark/saved searches/history from the navbar
     config.navbar.partials = {}
 
-    config.show.oembed_field = :"agg_is_shown_at.wr_id_ssim"
+    config.show.oembed_field = :'agg_is_shown_at.wr_id_ssim'
     config.show.partials = %i[show_header show_with_viewer ir_view record_feedback]
 
     config.view.list.partials = %i[thumbnail index_header index]
@@ -156,6 +158,21 @@ class CatalogController < ApplicationController
         'cho_type_facet.ar-Arab' => [['ssim'], ':']
       }
     }
+    config.add_facet_field 'cho_coverage', field: 'cho_coverage_ssim', limit: true
+    config.add_facet_field 'agg_data_provider_collection', field: 'agg_data_provider_collection_ssim', limit: true
+    config.add_facet_field 'agg_data_provider_collection_id', field: 'agg_data_provider_collection_id_ssim', limit: true
+    config.add_facet_field 'cho_subject_ar', field: 'cho_subject.ar-Arab_ssim', limit: true, if: arabic_locale
+    config.add_facet_field 'cho_subject_en', field: 'cho_subject.en_ssim', limit: true, if: en_locale
+    config.add_facet_field 'cho_subject', field: 'cho_subject_ssim', limit: true
+    config.add_facet_field 'agg_is_shown_at_agg_edm_rights', field: 'agg_is_shown_at.agg_edm_rights_ssim', limit: true
+    config.add_facet_field 'agg_preview_agg_edm_rights', field: 'agg_preview.agg_edm_rights_ssim', limit: true
+    config.add_facet_field 'agg_edm_rights', field: 'agg_edm_rights_ssim', limit: true
+    config.add_facet_field 'agg_dc_rights', field: 'agg_dc_rights_ssim', limit: true
+    config.add_facet_field 'agg_is_shown_at_wr_dc_rights', field: 'agg_is_shown_at.wr_dc_rights_ssim', limit: true
+    config.add_facet_field 'agg_preview_wr_dc_rights', field: 'agg_preview.wr_dc_rights_ssim', limit: true
+    config.add_facet_field 'agg_is_shown_at_wr_edm_rights', field: 'agg_is_shown_at.wr_edm_rights_ssim', limit: true
+    config.add_facet_field 'agg_is_shown_by_wr_edm_rights', field: 'agg_is_shown_by.wr_edm_rights_ssim', limit: true
+    config.add_facet_field 'agg_preview_wr_edm_rights', field: 'agg_preview.wr_edm_rights_ssim', limit: true
 
     logged_in = ->(context, *) { context.current_exhibit && context.can?(:curate, context.current_exhibit) }
 
@@ -180,9 +197,9 @@ class CatalogController < ApplicationController
       no_agg_data_provider: { label: 'No Holding Institution', fq: '-agg_data_provider_ssim:[* TO *]' }
     }, if: logged_in
     config.add_facet_field 'indexed_at', query: {
-      day: { label: 'within 1 day', fq: "timestamp:[#{(Time.zone.now - 1.day).iso8601} TO *]" },
-      week: { label: 'within 7 days', fq: "timestamp:[#{(Time.zone.now - 7.days).iso8601} TO *]" },
-      month: { label: 'within 31 days', fq: "timestamp:[#{(Time.zone.now - 31.days).iso8601} TO *]" }
+      day: { label: 'within 1 day', fq: "timestamp:[#{1.day.ago.iso8601} TO *]" },
+      week: { label: 'within 7 days', fq: "timestamp:[#{7.days.ago.iso8601} TO *]" },
+      month: { label: 'within 31 days', fq: "timestamp:[#{31.days.ago.iso8601} TO *]" }
     }, if: logged_in
     config.add_facet_field 'traject_config', field: 'traject_context_source_ssim', limit: true, if: logged_in
     config.add_facet_field 'harvest', field: 'traject_context_harvest_id_ssim', limit: true, if: logged_in

@@ -16,9 +16,6 @@
       "service_implements": "http://iiif.io/api/image/2/level2.json"
     }]
   },
-  "agg_preview": {
-    "wr_id": "http://libimages.princeton.edu/loris2/pudl0100%2Fposters%2Feg1_0095%2F00000001.jp2/full/200,/0/default.jpg"
-  },
   "agg_provider": "Princeton University",
   "agg_provider_country": "United States of America",
   "cho_contributor": ["فاتن حمامة", "محمود ياسين", "فريد شوقي", "بركات"],

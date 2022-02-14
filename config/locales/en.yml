@@ -63,6 +63,14 @@ en:
     new:
       add_item: Delete Items
   spotlight:
+    bulk_actions:
+      delete: Delete
+      delete_resources:
+        changed: Deleting %{count} items
+        confirm: All items in the result set will be deleted. Are you sure?
+        confirmation_warning: This action cannot be undone. All %{count} items will be permanently deleted.
+        description: There are %{count} items in the current search result set.
+        heading: Delete items
     catalog:
       admin_header:
         delete_resource: Delete Items

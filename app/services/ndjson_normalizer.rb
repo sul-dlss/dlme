@@ -22,7 +22,7 @@ class NdjsonNormalizer
 
   # @return [Array<Hash>]
   def normalize
-    ndjson.split(DELIMITER).reject(&:blank?).map.with_index do |json_string, index|
+    ndjson.split(DELIMITER).compact_blank.map.with_index do |json_string, index|
       JSON.parse(json_string)
     rescue JSON::ParserError
       raise "Resource #{index + 1} in #{url} is invalid JSON: #{json_string}"

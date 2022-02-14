@@ -1,4 +1,4 @@
-FROM ruby:2.7.2-alpine
+FROM ruby:2.7.5-alpine
 
 RUN apk add --update --no-cache \
       nodejs \
@@ -48,5 +48,11 @@ RUN apk --no-cache add --virtual build-dependencies \
   && apk del build-dependencies
 
 RUN NO_DATABASE=true bundle exec rake assets:precompile
+
+# Pass in git info so that okcomputer can show what version is running
+ARG GIT_INFO
+ENV GIT_INFO=$GIT_INFO
+LABEL git_info=$GIT_INFO
+
 # Start the server by default, listening for all connections
 CMD bundle exec puma -C config/puma.rb

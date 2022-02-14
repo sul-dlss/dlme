@@ -5,16 +5,20 @@
     "@babel/core": "^7.7.5",
     "@babel/preset-env": "^7.7.6",
     "@babel/preset-react": "^7.7.4",
-    "@rails/webpacker": "^4.2.0",
+    "@rails/webpacker": "^5.4.3",
     "core-js": "^3.4.8",
     "mirador": "^3.0.0-beta.10",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "unfetch": "^4.1.0",
-    "url-polyfill": "^1.1.7"
+    "url-polyfill": "^1.1.7",
+    "webpack-cli": "^4.9.2"
   },
   "devDependencies": {
-    "webpack-dev-server": "^3.9.0"
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@webpack-cli/serve": "^1.6.1",
+    "babel-loader": "^8.2.3",
+    "webpack-dev-server": "^4.7.4"
   }
 }
