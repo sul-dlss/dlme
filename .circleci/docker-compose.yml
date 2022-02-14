@@ -39,7 +39,7 @@ services:
     ports:
       - "8983:8983"
     volumes:
-      - ../solr/config:/solr-setup/conf
+      - "$CIRCLE_WORKING_DIRECTORY/solr/config:/solr-setup/conf"
     entrypoint:
       - docker-entrypoint.sh
       - solr-precreate
