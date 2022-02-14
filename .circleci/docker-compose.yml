@@ -12,10 +12,11 @@ services:
       REDIS_PORT: 6379
       RDS_DB_NAME: dlme
       RDS_USERNAME: postgres
-      RDS_PASSWORD: sekret
+      RDS_PASSWORD: dlme
       RDS_HOSTNAME: postgres
       RDS_PORT: 5432
       SOLR_URL: http://solr:8983/solr/dlme
+      SECRET_KEY_BASE: dlme
 
   sidekiq:
     image: suldlss/dlme-worker
@@ -26,15 +27,16 @@ services:
       REDIS_HOST: redis
       RDS_HOSTNAME: postgres
       RDS_USERNAME: postgres
-      RDS_PASSWORD: sekret
+      RDS_PASSWORD: dlme
       SOLR_URL: http://solr:8983/solr/dlme
+      SECRET_KEY_BASE: dlme
 
   postgres:
     image: postgres:10.17
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: sekret
+      POSTGRES_PASSWORD: dlme
       POSTGRES_DB: dlme
 
   solr:
