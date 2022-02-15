@@ -161,6 +161,12 @@ jobs:
           docker load -i /tmp/workspace/webapp_image.tar
           docker load -i /tmp/workspace/worker_image.tar
     - run:
+        name: Create local Docker stack
+        command: docker compose -f .circleci/docker-compose.yml up --quiet-pull --no-start
+    - run:
+        name: Prepare postgres database
+        command: docker compose -f .circleci/docker-compose.yml run --rm app bin/rails db:prepare
+    - run:
         name: Start local Docker stack
         command: docker compose -f .circleci/docker-compose.yml up
     - run:
