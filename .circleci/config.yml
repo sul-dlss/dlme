@@ -148,15 +148,7 @@ jobs:
         - ./worker_image.tar
 
   test-image:
-    docker:
-    - image: cimg/ruby:2.7.5-browsers
-      environment:
-        BUNDLE_JOBS: 3
-        BUNDLE_RETRY: 3
-        BUNDLE_PATH: vendor/bundle
-        RAILS_ENV: test
-        NOKOGIRI_USE_SYSTEM_LIBRARIES: true
-        CAPYBARA_USE_DOCKER: true
+    executor: docker-publisher
     steps:
     - checkout
     - attach_workspace:
@@ -169,6 +161,9 @@ jobs:
           docker load -i /tmp/workspace/webapp_image.tar
           docker load -i /tmp/workspace/worker_image.tar
     - run:
+        name: Build a container for running e2e tests
+        command: docker build . -f docker/Dockerfile -t e2e --target webapp-dev
+    - run:
         name: Create local Docker stack
         command: docker compose -f .circleci/docker-compose.yml up --quiet-pull --no-start
     - run:
@@ -178,12 +173,9 @@ jobs:
         name: Start local Docker stack
         command: docker compose -f .circleci/docker-compose.yml up --detach
     - run:
-        name: Install test dependencies
-        command: bundle install
-    - run:
         name: Run integration tests against Docker stack
-        command: bundle exec rspec --pattern spec/features/**/*_spec.rb
-        
+        command: docker run --rm --env CAPYBARA_USE_DOCKER=1 --entrypoint="bundle exec" e2e "rspec --pattern spec/features/**/*_spec.rb"
+
   publish-latest:
     executor: docker-publisher
     steps:
