@@ -33,16 +33,12 @@ services:
 
   postgres:
     image: postgres:10.17
-    ports:
-      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: dlme
       POSTGRES_DB: dlme
 
   solr:
     image: solr:8.11.1
-    ports:
-      - "8983:8983"
     volumes:
       - "$CIRCLE_WORKING_DIRECTORY/solr/config:/solr-setup/conf"
     entrypoint:
@@ -53,6 +49,4 @@ services:
 
   redis:
     image: "redis:5.0-alpine"
-    ports:
-      - "6379:6379"
     command: redis-server
