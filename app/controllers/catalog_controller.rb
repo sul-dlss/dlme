@@ -16,6 +16,9 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
+    # Use POST requests for solr to avoid limits on query length
+    config.http_method = :post
+
     # Disable bookmarks
     config.index.document_actions[:bookmark].if = false
     config.show.document_actions[:bookmark].if = false
