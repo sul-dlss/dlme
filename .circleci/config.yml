@@ -148,7 +148,15 @@ jobs:
         - ./worker_image.tar
 
   test-image:
-    executor: docker-publisher
+    docker:
+    - image: cimg/ruby:2.7.5-browsers
+      environment:
+        BUNDLE_JOBS: 3
+        BUNDLE_RETRY: 3
+        BUNDLE_PATH: vendor/bundle
+        RAILS_ENV: test
+        NOKOGIRI_USE_SYSTEM_LIBRARIES: true
+        CAPYBARA_USE_DOCKER: true
     steps:
     - checkout
     - attach_workspace:
@@ -170,9 +178,12 @@ jobs:
         name: Start local Docker stack
         command: docker compose -f .circleci/docker-compose.yml up --detach
     - run:
+        name: Install test dependencies
+        command: bundle install
+    - run:
         name: Run integration tests against Docker stack
-        command: docker compose -f .circleci/docker-compose.yml run --rm app rspec --pattern spec/features/**/*_spec.rb
-
+        command: bundle exec rspec --pattern spec/features/**/*_spec.rb
+        
   publish-latest:
     executor: docker-publisher
     steps:
