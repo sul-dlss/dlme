@@ -15,6 +15,7 @@ services:
       RDS_PASSWORD: dlme
       SOLR_URL: http://solr:8983/solr/dlme
       SECRET_KEY_BASE: dlme
+      CAPYBARA_USE_DOCKER: 1
 
   sidekiq:
     image: suldlss/dlme-worker:latest

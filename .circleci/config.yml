@@ -171,7 +171,7 @@ jobs:
         command: docker compose -f .circleci/docker-compose.yml up --detach
     - run:
         name: Run integration tests against Docker stack
-        command: CAPYBARA_USE_DOCKER=1 bundle exec rspec --pattern spec/features/**/*_spec.rb
+        command: docker compose -f .circleci/docker-compose.yml run --rm app rspec --pattern spec/features/**/*_spec.rb
 
   publish-latest:
     executor: docker-publisher
