@@ -168,7 +168,7 @@ jobs:
         command: docker compose -f .circleci/docker-compose.yml run --rm app bin/rails db:prepare
     - run:
         name: Start local Docker stack
-        command: docker compose -f .circleci/docker-compose.yml up
+        command: docker compose -f .circleci/docker-compose.yml up --detach
     - run:
         name: Run integration tests against Docker stack
         command: CAPYBARA_USE_DOCKER=1 bundle exec rspec --pattern spec/features/**/*_spec.rb
