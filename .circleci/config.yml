@@ -174,7 +174,7 @@ jobs:
         command: docker compose -f .circleci/docker-compose.yml up --detach
     - run:
         name: Run integration tests against Docker stack
-        command: docker run --rm --env CAPYBARA_APP_HOST=app --env CAPYBARA_APP_PORT=3000 --entrypoint "" e2e bundle exec rspec --pattern spec/docker/**/*_spec.rb
+        command: docker run --rm --env CAPYBARA_APP_HOST=app --env CAPYBARA_APP_PORT=3000 e2e bundle exec rspec --pattern spec/docker/**/*_spec.rb
 
   publish-latest:
     executor: docker-publisher
