@@ -350,28 +350,26 @@ body {
 }
 
 // Title truncation for different views
-@mixin truncate_title {
+@mixin truncate_title($lines) {
   display: -webkit-box;
-  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: #{$lines};
 }
 
 // Search result views
 #documents.documents-gallery .document-title-heading,
 #documents.documents-list .document-title-heading {
-  @include truncate_title;
-  -webkit-line-clamp: 4;
+  @include truncate_title(4);
 }
 
 // Slideshow modal view
 #slideshow .item .caption > * {
-  @include truncate_title;
-  -webkit-line-clamp: 2;
+  @include truncate_title(2);
 }
 
 // Individudal item page view
 #document h1[itemprop="name"] {
-  @include truncate_title;
-  -webkit-line-clamp: 2;
+  @include truncate_title(2);
 }
