@@ -162,7 +162,7 @@ jobs:
           docker load -i /tmp/workspace/worker_image.tar
     - run:
         name: Build a container for running e2e tests
-        command: docker build . -f docker/Dockerfile -t e2e --target webapp-dev
+        command: docker build . -f docker/Dockerfile -t e2e --build-arg GIT_INFO=$(git describe --tags) --target webapp-dev
     - run:
         name: Create local Docker stack
         command: docker compose -f .circleci/docker-compose.yml up --quiet-pull --no-start
@@ -174,7 +174,7 @@ jobs:
         command: docker compose -f .circleci/docker-compose.yml up --detach
     - run:
         name: Run integration tests against Docker stack
-        command: docker run --rm --env CAPYBARA_USE_DOCKER=1 --entrypoint="bundle exec" e2e "rspec --pattern spec/features/**/*_spec.rb"
+        command: docker run --rm --env CAPYBARA_APP_HOST=app --env CAPYBARA_APP_PORT=3000 --entrypoint "" e2e bundle exec rspec --pattern spec/docker/**/*_spec.rb
 
   publish-latest:
     executor: docker-publisher
