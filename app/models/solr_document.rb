@@ -9,10 +9,16 @@ class SolrDocument
   def initialize(*args)
     super
     will_export_as(:ir)
+    will_export_as(:ndjson)
   end
 
   def export_as_ir
     fetch('__raw_resource_json_ss', '')
+  end
+
+  # Reparse the IR and reformat it to a single line
+  def export_as_ndjson
+    JSON.fast_generate(JSON.parse(export_as_ir))
   end
 
   # overriding the upstream method with our own that knows
