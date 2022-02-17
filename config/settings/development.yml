@@ -1,1 +1,2 @@
-
+feature_flags:
+  allow_json_upload: true
