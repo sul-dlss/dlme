@@ -4,3 +4,4 @@
 # Mime::Type.register "text/richtext", :rtf
 
 Mime::Type.register "application/ir+json", :ir
+Mime::Type.register "application/x-ndjson", :ndjson
