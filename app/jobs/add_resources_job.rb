@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-# Load JSON resources from an arbitrary location and index them
+# Load JSON resources from a local or remote location and index them
 class AddResourcesJob < ApplicationJob
   queue_as :default
 
-  def perform(location, exhibit)
+  def perform(location, exhibit:, local: false)
     logger.info("Begin loading records from #{location}.")
 
-    resources = get_resources(location)
+    resources = get_resources(location, local)
     resources.each_with_index do |item, index|
       create_or_update_resource(item, exhibit, index, location)
     end
@@ -19,8 +19,9 @@ class AddResourcesJob < ApplicationJob
 
   private
 
-  def get_resources(location)
-    raise NotImplementedError
+  def get_resources(location, local)
+    resources = local ? File.read(location) : Faraday.get(location).body
+    NdjsonNormalizer.normalize(resources, location)
   end
 
   def create_or_update_resource(item, exhibit, index, location)
