@@ -45,12 +45,12 @@ class StatisticsDashboard
     @items ||= Items.new(response)
   end
 
-  def item_contributors
-    @item_contributors ||= Contributors.new(response, provider_field: 'agg_data_provider')
+  def holding_institutions
+    @holding_institutions ||= Contributors.new(response, provider_field: 'agg_data_provider')
   end
 
-  def data_contributors
-    @data_contributors ||= Contributors.new(response, provider_field: 'agg_provider')
+  def data_providers
+    @data_providers ||= Contributors.new(response, provider_field: 'agg_provider')
   end
 
   def collections

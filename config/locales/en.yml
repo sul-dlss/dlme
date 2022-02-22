@@ -112,10 +112,10 @@ en:
         total_countries:
           one: 1 country
           other: "%{formatted_count} countries"
-        total_data_contributors:
+        total_data_providers:
           one: 1 data provider
           other: "%{formatted_count} data providers"
-        total_item_contributors:
+        total_holding_institutions:
           one: 1 holding institution
           other: "%{formatted_count} holding institutions"
         total_items:

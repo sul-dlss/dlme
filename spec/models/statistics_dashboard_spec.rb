@@ -90,7 +90,7 @@ RSpec.describe StatisticsDashboard do
   end
 
   describe 'Data Providers' do
-    let(:contributors) { dashboard.data_contributors }
+    let(:contributors) { dashboard.data_providers }
 
     let(:country1) do
       {
@@ -188,7 +188,7 @@ RSpec.describe StatisticsDashboard do
   end
 
   describe 'Item Contributors' do
-    let(:contributors) { dashboard.item_contributors }
+    let(:contributors) { dashboard.holding_institutions }
 
     it 'has a locale aware provider_field accessor' do
       expect(contributors.provider_field).to eq 'agg_data_provider.en_ssim'
