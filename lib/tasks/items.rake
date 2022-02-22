@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-namespace :items do
-  desc 'Fetch items in DLME IR from a remote URL and index them'
+namespace :resources do
+  desc 'Fetch resources in DLME IR from a remote URL and index them'
   task :fetch, [:url] => [:environment] do |_t, args|
     dlme_exhibit = Spotlight::Exhibit.first
-    FetchResourcesJob.perform_now args[:url], dlme_exhibit
+    AddResourcesJob.perform_now args[:url], exhibit: dlme_exhibit, local: false
   end
 
-  desc 'Import items in DLME IR from a local file and index them'
+  desc 'Import resources in DLME IR from a local file and index them'
   task :import, [:file] => [:environment] do |_t, args|
     dlme_exhibit = Spotlight::Exhibit.first
-    ImportResourcesJob.perform_now args[:file], dlme_exhibit
+    AddResourcesJob.perform_now args[:file], exhibit: dlme_exhibit, local: true
   end
 end
