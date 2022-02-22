@@ -16,12 +16,12 @@ RSpec.describe S3HarvesterController do
 
     before do
       allow(controller).to receive(:body).and_return(body)
-      allow(FetchResourcesJob).to receive(:perform_later)
+      allow(AddResourcesJob).to receive(:perform_later)
     end
 
     it 'submits a job' do
       post :create, params: { exhibit_id: exhibit.slug, url: url }
-      expect(FetchResourcesJob).to have_received(:perform_later).with(url, exhibit)
+      expect(AddResourcesJob).to have_received(:perform_later).with(url, exhibit: exhibit)
       expect(flash[:notice]).to eq('Queued for processing.')
       expect(response).to redirect_to(spotlight.admin_exhibit_catalog_path(exhibit))
     end
@@ -31,7 +31,7 @@ RSpec.describe S3HarvesterController do
 
       it 'redirects with an error flash message' do
         post :create, params: { exhibit_id: exhibit.slug, url: url }
-        expect(FetchResourcesJob).not_to have_received(:perform_later)
+        expect(AddResourcesJob).not_to have_received(:perform_later)
         expect(flash[:error]).to eq('JSON contained duplicate identifiers')
         expect(response).to redirect_to(spotlight.new_exhibit_resource_path(exhibit))
       end
