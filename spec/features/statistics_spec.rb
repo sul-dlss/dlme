@@ -71,7 +71,7 @@ RSpec.describe 'Statistics page', type: :feature do
 
   it 'has a collections jumbotron section' do
     expect(page).to have_css('.jumbotron h2', text: '2 collections')
-    expect(page).to have_css('.jumbotron p', text: '2 item contributors')
+    expect(page).to have_css('.jumbotron p', text: '2 holding institutions')
   end
 
   it 'has an items section' do
@@ -79,15 +79,15 @@ RSpec.describe 'Statistics page', type: :feature do
     expect(page).to have_css('h2', text: 'Items · 100,000')
   end
 
-  it 'has a Item Contributors section' do
-    expect(page).to have_css('.jumbotron h2', text: '2 item contributors')
+  it 'has a Holding Institutions section' do
+    expect(page).to have_css('.jumbotron h2', text: '2 holding institutions')
     expect(page).to have_css('.jumbotron p', text: '3 countries')
-    expect(page).to have_css('h2', text: 'Item Contributors · 2')
+    expect(page).to have_css('h2', text: 'Holding Institutions · 2')
   end
 
-  it 'has a Data Contributors section' do
-    expect(page).to have_css('.jumbotron h2', text: '3 data contributors')
+  it 'has a Data Providers section' do
+    expect(page).to have_css('.jumbotron h2', text: '3 data providers')
     expect(page).to have_css('.jumbotron p', text: '2 countries')
-    expect(page).to have_css('h2', text: 'Data Contributors · 3')
+    expect(page).to have_css('h2', text: 'Data Providers · 3')
   end
 end

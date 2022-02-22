@@ -89,7 +89,7 @@ RSpec.describe StatisticsDashboard do
     end
   end
 
-  describe 'Data Contributors' do
+  describe 'Data Providers' do
     let(:contributors) { dashboard.data_contributors }
 
     let(:country1) do
