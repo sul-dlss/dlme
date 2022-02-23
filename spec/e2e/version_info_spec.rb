@@ -8,4 +8,3 @@ RSpec.describe 'git version info', type: :feature do
     expect(page).to have_content("Version: #{ENV['GIT_INFO']}")
   end
 end
- 
