@@ -173,6 +173,9 @@ jobs:
         name: Start local Docker stack
         command: docker compose -f .circleci/docker-compose.yml up --detach
     - run:
+        name: Load sample data fixture
+        command: docker compose run --rm app "rake resources:import[spec/fixtures/ndjson/sample.ndjson]"
+    - run:
         name: Run integration tests against Docker stack
         command: docker run --rm --env CAPYBARA_APP_HOST=app --env CAPYBARA_APP_PORT=3000 e2e bundle exec rspec --pattern spec/docker/**/*_spec.rb
 
