@@ -85,5 +85,19 @@ RSpec.describe DlmeJsonResourceBuilder do
       expect(solr_doc).to include('traject_context_command_line.filename_ssim' => fixture_file_path,
                                   'traject_context_source_ssim' => 'dlme_json_resource_spec')
     end
+
+    context 'with a title with some digits' do
+      let(:json) do
+        <<-JSON
+        {
+            "cho_title": { "en": "Ahangar (14)" }
+        }
+        JSON
+      end
+
+      it 'pads the digits for the sortable form of the title' do
+        expect(solr_doc).to include('sortable_cho_title_ssi' => 'Ahangar (0000000014)')
+      end
+    end
   end
 end

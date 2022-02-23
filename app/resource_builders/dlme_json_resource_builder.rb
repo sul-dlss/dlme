@@ -46,7 +46,11 @@ class DlmeJsonResourceBuilder
 
         source[key].each do |language_code, values|
           sink["#{key}.#{language_code}_tsim"] = values
-          sink["sortable_#{key}.#{language_code}_ssi"] = values.first
+
+          value = values.first
+          value = apply_natural_sort_munging(value) if key.starts_with?('cho_title')
+
+          sink["sortable_#{key}.#{language_code}_ssi"] = value
         end
       else
         sink["#{key}_tsim"] = source[key]
@@ -56,7 +60,7 @@ class DlmeJsonResourceBuilder
     sink['cho_date_norm_min_isi'] = Array(sink['cho_date_range_norm_isim']).min
     sink['cho_date_norm_max_isi'] = Array(sink['cho_date_range_norm_isim']).max
 
-    sink['sortable_cho_title_ssi'] = Array(sink['cho_title_ssim']).first if sink['cho_title_ssim']
+    sink['sortable_cho_title_ssi'] = apply_natural_sort_munging(Array(sink['cho_title_ssim']).first) if sink['cho_title_ssim']
     sink['sortable_cho_creator_ssi'] = Array(sink['cho_creator_ssim']).first if sink['cho_creator_ssim']
     if sink['agg_is_shown_at.wr_is_referenced_by_ssim']
       sink['agg_is_shown_at.wr_is_referenced_by_ssi'] = Array(sink['agg_is_shown_at.wr_is_referenced_by_ssim']).first
@@ -96,5 +100,12 @@ class DlmeJsonResourceBuilder
 
   def field_suffix_for(field_name)
     FIELD_SUFFIXES.fetch(field_name, DEFAULT_FIELD_SUFFIX)
+  end
+
+  def apply_natural_sort_munging(string)
+    return unless string
+
+    # pad any digits we run into so they'll sort "naturally" (1, 2, ... 8, 9, 10)
+    string.gsub(/\d+/) { |digits| digits.rjust(10, '0') }
   end
 end
