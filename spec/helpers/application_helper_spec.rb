@@ -10,28 +10,39 @@ RSpec.describe ApplicationHelper, type: :helper do
   end
 
   describe '#link_type_hierarchy' do
+    let(:document) { SolrDocument.new('cho_type_facet.en_ssim': field_data) }
+    let(:config) { CatalogController.blacklight_config.show_fields['type_hierarchy'] }
+    let(:field_data) { [] }
+
     it 'is nil when the data needed to build the hierarchy is not present' do
-      expect(helper.link_type_hierarchy({})).to be_nil
-      expect(helper.link_type_hierarchy(values: [])).to be_nil
+      expect(helper.link_type_hierarchy(document: document, config: config)).to be_nil
     end
 
-    it 'links a single value' do
-      link = helper.link_type_hierarchy(
-        values: ['Sound'],
-        config: instance_double('Blacklight::FieldConfig', pattern: 'cho_type_facet.%<lang>s_ssim')
-      )
-      expect(link).to have_link('Sound', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound&?/)
+    context 'with a single value' do
+      let(:field_data) { ['Sound'] }
+
+      it 'links a single value' do
+        link = helper.link_type_hierarchy(
+          document: document,
+          config: config
+        )
+        expect(link).to have_link('Sound', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound&?/)
+      end
     end
 
-    it 'links multiple values (with each value including all preceeding values)' do
-      links = helper.link_type_hierarchy(
-        values: ['Sound:Interview'],
-        config: instance_double('Blacklight::FieldConfig', pattern: 'cho_type_facet.%<lang>s_ssim')
-      )
+    context 'with multiple values' do
+      let(:field_data) { ['Sound', 'Sound:Interview'] }
 
-      expect(links).to have_content('Sound › Interview')
-      expect(links).to have_link('Sound', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound&?/)
-      expect(links).to have_link('Interview', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound%3AInterview&?/)
+      it 'links multiple values (with each value including all preceeding values)' do
+        links = helper.link_type_hierarchy(
+          document: document,
+          config: config
+        )
+
+        expect(links).to have_content('Sound › Interview')
+        expect(links).to have_link('Sound', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound&?/)
+        expect(links).to have_link('Interview', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound%3AInterview&?/)
+      end
     end
   end
 
