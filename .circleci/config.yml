@@ -177,7 +177,7 @@ jobs:
         command: docker compose run --rm app "rake resources:import[spec/fixtures/ndjson/sample.ndjson]"
     - run:
         name: Run integration tests against Docker stack
-        command: docker run --rm --env CAPYBARA_APP_HOST=app --env CAPYBARA_APP_PORT=3000 e2e bundle exec rspec --pattern spec/docker/**/*_spec.rb
+        command: docker run --rm --env CAPYBARA_APP_HOST=app --env CAPYBARA_APP_PORT=3000 e2e bundle exec rspec --pattern spec/e2e/**/*_spec.rb
 
   publish-latest:
     executor: docker-publisher
