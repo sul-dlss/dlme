@@ -57,6 +57,9 @@ class DlmeJsonResourceBuilder
       end
     end
 
+    sink['cho_date_norm_min_isi'] = Array(sink['cho_date_range_norm_isim']).min
+    sink['cho_date_norm_max_isi'] = Array(sink['cho_date_range_norm_isim']).max
+
     sink['sortable_cho_title_ssi'] = apply_natural_sort_munging(Array(sink['cho_title_ssim']).first) if sink['cho_title_ssim']
     sink['sortable_cho_creator_ssi'] = Array(sink['cho_creator_ssim']).first if sink['cho_creator_ssim']
     if sink['agg_is_shown_at.wr_is_referenced_by_ssim']

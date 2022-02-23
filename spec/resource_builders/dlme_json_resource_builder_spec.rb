@@ -27,6 +27,8 @@ RSpec.describe DlmeJsonResourceBuilder do
         'cho_coverage_ssim' => ['Egypt'],
         'cho_date_ssim' => '1977',
         'cho_date_range_norm_isim' => [1977, 1978, 1979],
+        'cho_date_norm_min_isi' => 1977,
+        'cho_date_norm_max_isi' => 1979,
         'cho_date_range_hijri_isim' => [1384, 1385, 1386, 1387],
         'cho_edm_type_ssim' => 'Image',
         'cho_extent_ssim' => '1 piece',
