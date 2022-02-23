@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe FetchResourcesJob, type: :job do
+RSpec.describe AddResourcesJob, type: :job do
   let(:exhibit) { create(:exhibit) }
   let(:url) { 'http://s3/mybucket/myfile.json' }
   let(:mock_response) do
@@ -24,7 +24,7 @@ RSpec.describe FetchResourcesJob, type: :job do
 
     it 'raises a RuntimeError' do
       expect do
-        described_class.perform_now(url, exhibit)
+        described_class.perform_now(url, exhibit: exhibit)
       end.to raise_error(RuntimeError, "Resource 1 in #{url} is invalid JSON: #{json}")
     end
   end
@@ -32,7 +32,7 @@ RSpec.describe FetchResourcesJob, type: :job do
   context 'when the record is unique' do
     it 'adds the record' do
       allow(exhibit).to receive(:touch)
-      expect { described_class.perform_now(url, exhibit) }.to change(DlmeJson, :count).by(1)
+      expect { described_class.perform_now(url, exhibit: exhibit) }.to change(DlmeJson, :count).by(1)
       expect(Faraday).to have_received(:get).with(url)
       expect(exhibit).to have_received(:touch).once
     end
@@ -44,8 +44,15 @@ RSpec.describe FetchResourcesJob, type: :job do
     end
 
     it 'updates the existing record' do
-      expect { described_class.perform_now(url, exhibit) }.not_to change(DlmeJson, :count)
+      expect { described_class.perform_now(url, exhibit: exhibit) }.not_to change(DlmeJson, :count)
       expect(Faraday).to have_received(:get).with(url)
+    end
+  end
+
+  context 'when the record is a local file' do
+    it 'adds the record' do
+      allow(File).to receive(:read).and_return(json)
+      expect { described_class.perform_now(url, exhibit: exhibit, local: true) }.to change(DlmeJson, :count).by(1)
     end
   end
 end

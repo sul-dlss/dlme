@@ -17,7 +17,7 @@ class S3HarvesterController < ApplicationController
                          flash: { error: t('dlme_s3s.form.error') }
     end
 
-    FetchResourcesJob.perform_later params['url'], current_exhibit
+    AddResourcesJob.perform_later params['url'], exhibit: current_exhibit
     redirect_to spotlight.admin_exhibit_catalog_path(current_exhibit),
                 notice: t('spotlight.resources.fetch.queued')
   end
