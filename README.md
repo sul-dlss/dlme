@@ -84,8 +84,13 @@ $ docker compose run --rm app rake spotlight:initialize
 
 The first run will take some time to build the containers and to install dependencies. Check the logs for the app container to see when the rails server is ready to accept connections.
 
-Once the DLME Rails app is running you can create an exhibit. To match production, the title will need to be `dlme` and the URL slug will need to be `library`. Once your new exhibit is created, you can index some test data by navigating to the exhibit dashboard, choosing "Items" under the "Curation" menu on the left, and clicking "Add Items". In the "From external resource" tab, select the "Fetch by URL" option and provide a URL to the test data (here's [one example](https://gist.githubusercontent.com/cbeer/581b10cafca66206de9e403e7be5d1e0/raw/a77dbd67fe8a73c585af9b3827537d7a7b2bcab9/dlme-sample-data-2022-02-01.ndjson)).
+Once the DLME Rails app is running you can create an exhibit. To match production, the title will need to be `dlme` and the URL slug will need to be `library`. 
 
+Once your new exhibit is created, you can index some test data:
+```sh
+$ docker compose run --rm app "rake resources:import[spec/fixtures/ndjson/sample.ndjson]"
+```
+Alternatively, you can do this interactively by navigating to the exhibit dashboard, choosing "Items" under the "Curation" menu on the left, and clicking "Add Items".
 #### Stopping and starting
 You can stop the entire stack with:
 ```sh
