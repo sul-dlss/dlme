@@ -8,7 +8,7 @@
       </h2>
       <hr class="my-4">
       <p>
-        <%= t('statistics.dashboard.header.total_item_contributors', count: @statistics_dashboard.item_contributors.total, formatted_count: number_with_delimiter(@statistics_dashboard.item_contributors.total)) %>
+        <%= t('statistics.dashboard.header.total_holding_institutions', count: @statistics_dashboard.holding_institutions.total, formatted_count: number_with_delimiter(@statistics_dashboard.holding_institutions.total)) %>
       </p>
     </div>
 
@@ -24,32 +24,32 @@
 
     <div class="jumbotron card">
       <h2 class="h4">
-        <%= t('statistics.dashboard.header.total_item_contributors', count: @statistics_dashboard.item_contributors.total, formatted_count: number_with_delimiter(@statistics_dashboard.item_contributors.total)) %>
+        <%= t('statistics.dashboard.header.total_holding_institutions', count: @statistics_dashboard.holding_institutions.total, formatted_count: number_with_delimiter(@statistics_dashboard.holding_institutions.total)) %>
       </h2>
       <hr class="my-4">
       <p>
-        <%= t('statistics.dashboard.header.total_countries', count: @statistics_dashboard.item_contributors.total_countries, formatted_count: number_with_delimiter(@statistics_dashboard.item_contributors.total_countries)) %>
+        <%= t('statistics.dashboard.header.total_countries', count: @statistics_dashboard.holding_institutions.total_countries, formatted_count: number_with_delimiter(@statistics_dashboard.holding_institutions.total_countries)) %>
       </p>
     </div>
 
     <div class="jumbotron card">
       <h2 class="h4">
-        <%= t('statistics.dashboard.header.total_data_contributors', count: @statistics_dashboard.data_contributors.total, formatted_count: number_with_delimiter(@statistics_dashboard.data_contributors.total)) %>
+        <%= t('statistics.dashboard.header.total_data_providers', count: @statistics_dashboard.data_providers.total, formatted_count: number_with_delimiter(@statistics_dashboard.data_providers.total)) %>
       </h2>
       <hr class="my-4">
       <p>
-        <%= t('statistics.dashboard.header.total_countries', count: @statistics_dashboard.data_contributors.total_countries, formatted_count: number_with_delimiter(@statistics_dashboard.data_contributors.total_countries)) %>
+        <%= t('statistics.dashboard.header.total_countries', count: @statistics_dashboard.data_providers.total_countries, formatted_count: number_with_delimiter(@statistics_dashboard.data_providers.total_countries)) %>
       </p>
     </div>
   </div>
 
   <hr />
 
-  <%= render @statistics_dashboard.data_contributors %>
+  <%= render @statistics_dashboard.data_providers %>
 
   <hr />
 
-  <%= render @statistics_dashboard.item_contributors %>
+  <%= render @statistics_dashboard.holding_institutions %>
 
   <hr />
 

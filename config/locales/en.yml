@@ -96,9 +96,9 @@ en:
   statistics:
     contributors:
       agg_data_provider:
-        total_html: Item Contributors &middot; %{total}
+        total_html: Holding Institutions &middot; %{total}
       agg_provider:
-        total_html: Data Contributors &middot; %{total}
+        total_html: Data Providers &middot; %{total}
       table:
         collections: Collections
         country: Countries
@@ -112,12 +112,12 @@ en:
         total_countries:
           one: 1 country
           other: "%{formatted_count} countries"
-        total_data_contributors:
-          one: 1 data contributor
-          other: "%{formatted_count} data contributors"
-        total_item_contributors:
-          one: 1 item contributor
-          other: "%{formatted_count} item contributors"
+        total_data_providers:
+          one: 1 data provider
+          other: "%{formatted_count} data providers"
+        total_holding_institutions:
+          one: 1 holding institution
+          other: "%{formatted_count} holding institutions"
         total_items:
           one: 1 item
           other: "%{formatted_count} items"

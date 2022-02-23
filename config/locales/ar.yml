@@ -117,14 +117,14 @@ ar:
           other: "%{formatted_count} بلد"
           two: بلدان
           zero: لا يوجد
-        total_data_contributors:
+        total_data_providers:
           few: "%{formatted_count} مساهمين للبيانات"
           many: "%{formatted_count} مساهمين للبيانات"
           one: مساهم بيانات 1
           other: "%{formatted_count} مساهمين للبيانات"
           two: مساهمين للبيانات
           zero: لا يوجد
-        total_item_contributors:
+        total_holding_institutions:
           few: "%{formatted_count} مساهمين للعناصر"
           many: "%{formatted_count} مساهمين للعناصر"
           one: مساهم 1 للعناصر
