@@ -12,7 +12,7 @@
   <tbody>
     <% contributors.institutions.each do |institution| %>
       <tr>
-        <td><%= link_to institution.name, path_for_facet(contributors.provider_facet_field, institution.name), class: 'value' %></td>
+        <td><%= link_to institution.name, search_action_path(search_state.add_facet_params_and_redirect(contributors.provider_facet_field, institution.name)), class: 'value' %></td>
         <td class="value"><%= institution.countries.join(', ') %></td>
         <td class="text-right"><%= number_with_delimiter(institution.collection_count) %></td>
         <td class="text-right"><%= number_with_delimiter(institution.item_count) %></td>
