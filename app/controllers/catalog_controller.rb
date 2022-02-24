@@ -162,9 +162,9 @@ class CatalogController < ApplicationController
       }
     }
     config.add_facet_field 'cho_coverage', field: 'cho_coverage_ssim', limit: true
-    config.add_facet_field 'agg_data_provider_collection_ar', field: 'agg_data_provider_collection_ssim.ar-Arab_ssim',
+    config.add_facet_field 'agg_data_provider_collection_ar', field: 'agg_data_provider_collection.ar-Arab_ssim',
                                                               limit: true, if: arabic_locale
-    config.add_facet_field 'agg_data_provider_collection_en', field: 'agg_data_provider_collection_ssim.en_ssim', limit: true,
+    config.add_facet_field 'agg_data_provider_collection_en', field: 'agg_data_provider_collection.en_ssim', limit: true,
                                                               if: en_locale
     config.add_facet_field 'agg_data_provider_collection_id', field: 'agg_data_provider_collection_id_ssim', limit: true
     config.add_facet_field 'cho_subject_ar', field: 'cho_subject.ar-Arab_ssim', limit: true, if: arabic_locale
