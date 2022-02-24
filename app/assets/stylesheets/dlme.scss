@@ -373,3 +373,8 @@ body {
 #document h1[itemprop="name"] {
   @include truncate_title(2);
 }
+
+// Don't show multiple title lines in breadcrumb
+.breadcrumb-item > span > :not(:first-child) {
+  display: none;
+}
