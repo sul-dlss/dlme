@@ -1,5 +1,8 @@
+<% content_for(:sidebar) do %>
+  <%= render 'spotlight/shared/exhibit_sidebar' %>
+<% end %>
+
 <%= bootstrap_form_for([current_exhibit, @resource],
-                       layout: :horizontal,
                        label_col: 'col-md-2',
                        control_col: 'col-sm-6 col-md-6 col-lg-8',
                        html: { class: 'item-upload-form', multipart: true } ) do |f| %>
