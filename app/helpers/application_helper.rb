@@ -46,6 +46,11 @@ module ApplicationHelper
     !session[:disable_search_context] && params[:q].present?
   end
 
+  def display_date_sort_context?
+    !session[:disable_date_sort_context] &&
+      %w[date_old_to_new date_new_to_old].include?(search_state.sort_field.field)
+  end
+
   private
 
   def link_to_config_pattern(config)

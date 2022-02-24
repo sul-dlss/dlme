@@ -15,8 +15,14 @@ RSpec.describe SessionDisplaysController do
 
     it 'sets the disable_search_context to true' do
       expect(session[:disable_search_context]).to be_falsey
-      patch :update, params: {}
+      patch :update, params: { context: 'result_info' }
       expect(session[:disable_search_context]).to eq true
+    end
+
+    it 'sets the disable_date_sort_context to true' do
+      expect(session[:disable_date_sort_context]).to be_falsey
+      patch :update, params: { context: 'date_sort_info' }
+      expect(session[:disable_date_sort_context]).to eq true
     end
   end
 end
