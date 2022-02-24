@@ -24,18 +24,14 @@ RSpec.describe DlmeThumbnailPresenter do
       presenter.thumbnail_tag
     end
 
-    context 'when show action' do
-      let(:controller) { instance_double('Spotlight::CatalogController', action_name: 'show') }
-
-      it 'does not overwrite class' do
-        # rubocop:disable RSpec/MessageSpies
-        expect(view_context).to receive(:image_tag).with(
-          'https://www.example.com/image.png',
-          { loading: 'lazy' }
-        )
-        # rubocop:enable RSpec/MessageSpies
-        presenter.thumbnail_tag
-      end
+    it 'does not overwrite class' do
+      # rubocop:disable RSpec/MessageSpies
+      expect(view_context).to receive(:image_tag).with(
+        'https://www.example.com/image.png',
+        { class: 'my-class', loading: 'lazy' }
+      )
+      # rubocop:enable RSpec/MessageSpies
+      presenter.thumbnail_tag(class: 'my-class')
     end
   end
 

@@ -10,12 +10,12 @@
   <%= render_document_partial(document, 'openseadragon') %>
   <%= render 'contributor_link', document: document %>
   <%= render 'show', document: document %>
-<% elsif has_thumbnail?(document) %>
+<% elsif (thumbnail = document_presenter(document).thumbnail) && thumbnail.exists? %>
   <div class="row">
     <div class="thumbnail-viewer col-12 col-md-4">
       <%= link_to document.first('agg_is_shown_at.wr_id_ssim').presence || '#' do %>
         <figure class="figure">
-          <%= render_thumbnail_tag(document, { class: 'figure-img img-fluid' }, suppress_link: true) %>
+          <%= thumbnail.render(class: 'figure-img img-fluid') %>
           <figcaption class="figure-caption text-center"><%= t('.view_on_contributor_website') %></figcaption>
         </figure>
       <% end %>

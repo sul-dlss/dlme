@@ -4,17 +4,18 @@
 # Custom DLME Thumbnail Presenter
 class DlmeThumbnailPresenter < Blacklight::ThumbnailPresenter
   ##
-  # Overridden to support lazy options
+  # Overridden to inject custom options
   def thumbnail_tag(image_options = {}, url_options = {})
-    injected_options = {
-      loading: 'lazy'
-    }
-
-    injected_options[:class] = 'img-thumbnail' unless view_context.controller.action_name == 'show'
-    super(image_options.merge(injected_options), url_options.reverse_merge(skip_pipeline: true))
+    super(image_options.reverse_merge(class: 'img-thumbnail'), url_options.reverse_merge(skip_pipeline: true))
   end
 
   private
+
+  ##
+  # Overridden to support lazy options
+  def thumbnail_value(image_options)
+    super image_options.reverse_merge(loading: 'lazy')
+  end
 
   ##
   # Overridden to support http proxy
