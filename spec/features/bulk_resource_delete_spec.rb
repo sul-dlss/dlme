@@ -109,7 +109,6 @@ RSpec.describe 'Bulk delete can be run on search results' do # rubocop:disable R
         end
 
         job_tracker = Spotlight::JobTracker.recent.take # grab the most recent job tracker from the DB
-        puts "JM_LOG job_tracker.status=#{job_tracker.status}"
         expect(job_tracker).to be_failed
       end
     end
