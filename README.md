@@ -262,3 +262,8 @@ There is also a mechanism for allowing users to copy and paste JSON directly int
 
 Metadata coded as JSON IR should be loaded as `DlmeJson` resources in the database.
 At this point they can be indexed into Solr for discovery.
+
+## Writing tests
+### Adding fixture data
+
+Fixture data for tests can be found in `spec/fixtures/json`. These json objects represent Solr records. Each `.json` file within this directory must contain *a single record object* only. Multiple objects in an array will not work (`[{...}, {...}]`). 
