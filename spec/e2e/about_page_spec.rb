@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe 'about page', type: :feature do
+RSpec.describe 'about page', type: :feature, js: true do
   before do
     visit '/about/'
   end

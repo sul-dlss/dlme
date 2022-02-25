@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe 'item page', type: :feature do
+RSpec.describe 'item page', type: :feature, js: true do
   describe 'metadata' do
     before do
       visit '/catalog/harvard_scw-3288'

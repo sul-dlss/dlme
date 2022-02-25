@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe 'search page', type: :feature do
+RSpec.describe 'search page', type: :feature, js: true do
   before do
     visit '/catalog/'
   end

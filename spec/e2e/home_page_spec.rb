@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe 'home page', type: :feature do
+RSpec.describe 'home page', type: :feature, js: true do
   let(:facets) do
     ['Type', 'Language', 'Date range', 'Item contributor', 'Data contributor', 'Time period', 'Geographic region']
   end

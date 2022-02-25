@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe 'browse page', type: :feature do
+RSpec.describe 'browse page', type: :feature, js: true do
   let(:browse_groups) do
     ['All', 'Recently Added', 'Manuscripts', 'Art & Architecture', 'Serials', 'Photography']
   end
