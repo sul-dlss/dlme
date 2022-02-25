@@ -162,7 +162,7 @@ jobs:
           docker load -i /tmp/workspace/worker_image.tar
     - run:
         name: Build a container for running e2e tests
-        command: docker build . -f docker/Dockerfile -t e2e --build-arg GIT_INFO=$(git describe --tags) --target webapp-dev
+        command: docker build . -f docker/Dockerfile -t e2e --build-arg GIT_INFO=$(git describe --tags) --target webapp-test
     - run:
         name: Create local Docker stack
         command: docker compose -f .circleci/docker-compose.yml up --quiet-pull --no-start

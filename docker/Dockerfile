@@ -57,6 +57,24 @@ FROM webapp as webapp-prod
 ENV RAILS_SERVE_STATIC_FILES=true
 RUN NO_DATABASE=true SECRET_KEY_BASE=sekret bundle exec rake assets:precompile
 
+FROM webapp as webapp-test
+
+# Set rails env to test and install test dependencies. Manually install chrome
+# and chromedriver and disable webdrivers gem on alpine linux; see:
+# https://stackoverflow.com/questions/57531771/rspec-with-headless-chrome-chromium-on-alpine-linux
+ENV RAILS_ENV=test
+ENV NO_WEBDRIVERS=1
+RUN bundle config --local set without "development"
+RUN apk --no-cache add --virtual build-dependencies \
+  build-base \
+  && bundle install \
+  && apk del build-dependencies \
+  && apk add --no-cache chromium-chromedriver
+
+# Prepare the database so that tests can run, and run rspec by default
+RUN bin/rails db:prepare
+CMD ["rspec"]
+
 FROM webapp as webapp-dev
 
 # Set rails env to development and install dev dependencies
