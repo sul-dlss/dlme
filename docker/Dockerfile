@@ -25,8 +25,8 @@ WORKDIR /opt
 # Update rubygems, install bundler and use system nokogiri
 RUN gem update --system && \
   gem install bundler && \
-  bundle config set without "development test" \
-  bundle config build.nokogiri --use-system-libraries
+  bundle config --local set without "development test" \
+  bundle config --local build.nokogiri --use-system-libraries
 
 # Copy the Gemfile and Gemfile.lock, and run bundle install prior to copying all
 # source files. This is an optimization that will prevent the need to re-run 
@@ -59,9 +59,9 @@ RUN NO_DATABASE=true SECRET_KEY_BASE=sekret bundle exec rake assets:precompile
 
 FROM webapp as webapp-dev
 
-# Set rails env to development and install dev/test dependencies
+# Set rails env to development and install dev dependencies
 ENV RAILS_ENV=development
-RUN bundle config unset without
+RUN bundle config --local unset without
 RUN apk --no-cache add --virtual build-dependencies \
   build-base \
   && bundle install \
@@ -83,7 +83,7 @@ FROM worker-prod as worker-dev
 
 # Install dev dependencies
 ENV RAILS_ENV=development
-RUN bundle config unset without
+RUN bundle config --local unset without
 RUN apk --no-cache add --virtual build-dependencies \
   build-base \
   && bundle install \
