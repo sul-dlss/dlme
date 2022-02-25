@@ -239,6 +239,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'agg_edm_rights', **multilingual_locale_aware_field('agg_edm_rights'), autolink: true
     config.add_show_field 'agg_provider institution', **multilingual_locale_aware_field('agg_provider')
     config.add_show_field 'agg_is_shown_at', field: 'agg_is_shown_at.wr_id_ssim', autolink: true
+    config.add_show_field 'agg_data_provider_collection', **multilingual_locale_aware_field('agg_data_provider_collection')
 
     config.add_search_field 'all_fields', label: 'Everything'
     config.add_search_field 'title', label: 'Title' do |field|
