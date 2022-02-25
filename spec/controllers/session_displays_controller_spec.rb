@@ -13,10 +13,16 @@ RSpec.describe SessionDisplaysController do
       expect(response).to redirect_to('/')
     end
 
-    it 'sets the disable_search_context to true' do
-      expect(session[:disable_search_context]).to be_falsey
-      patch :update, params: {}
-      expect(session[:disable_search_context]).to eq true
+    it 'sets the disable_result_info_context to true' do
+      expect(session[:disable_result_info_context]).to be_falsey
+      patch :update, params: { context: 'result_info' }
+      expect(session[:disable_result_info_context]).to eq true
+    end
+
+    it 'sets the disable_date_sort_context to true' do
+      expect(session[:disable_date_sort_context]).to be_falsey
+      patch :update, params: { context: 'date_sort_info' }
+      expect(session[:disable_date_sort_context]).to eq true
     end
   end
 end

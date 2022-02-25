@@ -86,4 +86,56 @@ RSpec.describe ApplicationHelper, type: :helper do
       expect(actual).to eq '87 BCE - 86 BCE and 10 (Gregorian) / 5 BH - 4 BH (Hijri)'
     end
   end
+
+  describe '#display_date_sort_context?' do
+    let(:blacklight_config) do
+      Blacklight::Configuration.new do |config|
+        config.add_sort_field 'relevance'
+        config.add_sort_field 'date_old_to_new'
+        config.add_sort_field 'date_new_to_old'
+      end
+    end
+    let(:search_state) do
+      Blacklight::SearchState.new(user_params, blacklight_config, nil)
+    end
+    let(:session) { {} }
+
+    before do
+      allow(helper).to receive(:session).and_return(session)
+      allow(helper).to receive(:search_state).and_return(search_state)
+    end
+
+    context 'when date_new_to_old sort is applied' do
+      let(:user_params) { { sort: 'date_new_to_old' } }
+
+      it 'is true' do
+        expect(helper.display_date_sort_context?).to be true
+      end
+    end
+
+    context 'when date_old_to_new sort is applied' do
+      let(:user_params) { { sort: 'date_old_to_new' } }
+
+      it 'is true' do
+        expect(helper.display_date_sort_context?).to be true
+      end
+    end
+
+    context 'without date sort applied' do
+      let(:user_params) { { sort: 'relevance' } }
+
+      it 'is false' do
+        expect(helper.display_date_sort_context?).to be false
+      end
+    end
+
+    context 'when context message is turned off via session' do
+      let(:session) { { disable_date_sort_context: true } }
+      let(:user_params) { { sort: 'date_new_to_old' } }
+
+      it 'is false when date_new_to_old sort is applied' do
+        expect(helper.display_date_sort_context?).to be false
+      end
+    end
+  end
 end

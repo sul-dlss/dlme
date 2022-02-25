@@ -1,20 +1,17 @@
-<div class="result-info-message alert alert-info alert-dismissible fade show" role="alert">
+<div class="date-sort-message alert alert-info alert-dismissible fade show" role="alert">
   <p>
-    <%= t(
-      'contextual_result_info.body_html',
-      link: exhibit_about_page_path(current_exhibit, Settings.searching_site_slug)
-    ) %>
+    <%= t('contextual_date_sort_info.body') %>
   </p>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
   <div class="text-right">
     <button type="button" class="btn btn-outline-secondary" data-dismiss="alert">
-      <%= t('contextual_result_info.dismiss') %>
+      <%= t('contextual_date_sort_info.dismiss') %>
     </button>
     <%= button_to(
-      t('contextual_result_info.disable_session'),
-      session_display_path(context: 'result_info'),
+      t('contextual_date_sort_info.disable_session'),
+      session_display_path(context: 'date_sort_info'),
       method: :patch,
       class: 'btn btn-outline-primary',
       remote: true)
