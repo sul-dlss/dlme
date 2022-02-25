@@ -19,7 +19,7 @@ module BlacklightHelper
     safe_join(
       [
         *(render('shared/contextual_date_sort_info') if display_date_sort_context?),
-        *(render('shared/contextual_result_info') if display_search_context?),
+        *(render('shared/contextual_result_info') if display_result_info_context?),
         super(documents, locals)
       ]
     )

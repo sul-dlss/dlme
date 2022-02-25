@@ -265,8 +265,10 @@ class CatalogController < ApplicationController
     config.add_sort_field 'relevance', sort: 'score desc, sortable_cho_title_ssi asc', label: 'Relevance'
     config.add_sort_field 'title', sort: 'sortable_cho_title_ssi asc, sortable_cho_creator_ssi asc', label: 'Title'
     config.add_sort_field 'creator', sort: 'sortable_cho_creator_ssi asc', label: 'Creator'
-    config.add_sort_field 'date_old_to_new', sort: 'cho_date_norm_min_isi asc', label: 'Date (old to new)'
-    config.add_sort_field 'date_new_to_old', sort: 'cho_date_norm_max_isi desc', label: 'Date (new to old)'
+    config.add_sort_field 'date_old_to_new', sort: 'cho_date_norm_min_isi asc, sortable_cho_title_ssi asc',
+                                             label: 'Date (old to new)'
+    config.add_sort_field 'date_new_to_old', sort: 'cho_date_norm_max_isi desc, sortable_cho_title_ssi asc',
+                                             label: 'Date (new to old)'
 
     config.add_field_configuration_to_solr_request!
   end

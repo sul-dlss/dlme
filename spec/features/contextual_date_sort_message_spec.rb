@@ -27,7 +27,7 @@ RSpec.describe 'Contextual date sort message on search results', type: :feature 
         click_link('Title')
       end
       within '#content' do
-        expect(page).not_to have_css '.date_sort_message'
+        expect(page).not_to have_css '.date-sort-message'
       end
     end
   end
@@ -38,7 +38,7 @@ RSpec.describe 'Contextual date sort message on search results', type: :feature 
       click_link('Date (old to new)')
     end
     within '#content' do
-      expect(page).to have_css '.date_sort_message'
+      expect(page).to have_css '.date-sort-message'
     end
   end
 
@@ -48,7 +48,7 @@ RSpec.describe 'Contextual date sort message on search results', type: :feature 
       click_link('Date (new to old)')
     end
     within '#content' do
-      expect(page).to have_css '.date_sort_message'
+      expect(page).to have_css '.date-sort-message'
     end
   end
 
@@ -59,15 +59,15 @@ RSpec.describe 'Contextual date sort message on search results', type: :feature 
       click_link('Date (old to new)')
     end
     within '#content' do
-      expect(page).to have_css '.date_sort_message'
-      within '.date_sort_message' do
+      expect(page).to have_css '.date-sort-message'
+      within '.date-sort-message' do
         click_button 'Dismiss'
       end
-      expect(page).not_to have_css '.date_sort_message'
+      expect(page).not_to have_css '.date-sort-message'
     end
     click_button 'Search'
     within '#content' do
-      expect(page).to have_css '.date_sort_message'
+      expect(page).to have_css '.date-sort-message'
     end
   end
   # rubocop:enable RSpec/ExampleLength
@@ -79,15 +79,15 @@ RSpec.describe 'Contextual date sort message on search results', type: :feature 
       click_link('Date (old to new)')
     end
     within '#content' do
-      expect(page).to have_css '.date_sort_message'
-      within '.date_sort_message' do
+      expect(page).to have_css '.date-sort-message'
+      within '.date-sort-message' do
         click_button "Don't show again"
       end
-      expect(page).not_to have_css '.date_sort_message'
+      expect(page).not_to have_css '.date-sort-message'
     end
     click_button 'Search'
     within '#content' do
-      expect(page).not_to have_css '.date_sort_message'
+      expect(page).not_to have_css '.date-sort-message'
     end
   end
   # rubocop:enable RSpec/ExampleLength

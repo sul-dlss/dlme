@@ -42,8 +42,8 @@ module ApplicationHelper
     }
   end
 
-  def display_search_context?
-    !session[:disable_search_context] && params[:q].present?
+  def display_result_info_context?
+    !session[:disable_result_info_context] && params[:q].present?
   end
 
   def display_date_sort_context?
