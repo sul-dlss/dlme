@@ -21,10 +21,12 @@ import 'url-polyfill/url-polyfill';
 import 'unfetch/polyfill';
 
 import Mirador from 'mirador/dist/es/src/index.js';
+import miradorImageToolsPlugin from 'mirador-image-tools/es/plugins/miradorImageToolsPlugin.js';
+
 const manifestUrl = document.querySelector('#m3').dataset.iiifManifest;
 const htmlAttributes = document.querySelector('html').attributes;
 
-Mirador.viewer({
+const config = {
   id: 'm3',
   language: htmlAttributes.lang.nodeValue,
   theme: {
@@ -52,7 +54,14 @@ Mirador.viewer({
   workspaceControlPanel: {
     enabled: false,
   },
-  windows: [
-    {loadedManifest: manifestUrl}
-  ]
-})
+  windows: [{
+    imageToolsEnabled: true,
+    loadedManifest: manifestUrl
+  }]
+}
+
+const plugins = [
+  ...miradorImageToolsPlugin
+];
+
+Mirador.viewer(config, plugins)
