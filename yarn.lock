@@ -4972,6 +4972,11 @@ minizlib@^2.1.1:
     minipass "^3.0.0"
     yallist "^4.0.0"
 
+mirador-image-tools@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/mirador-image-tools/-/mirador-image-tools-0.11.0.tgz#d036367faa5416ab73f0117a04382a1afe604ae9"
+  integrity sha512-DdFi/MS9X05Qc30vR5jJv12JZe8/3hKiWlXG2oJlOm5reF7ZS9cPxuK9hxw6F6DzENROTJlJU1dS5preB5RsGQ==
+
 mirador@^3.0.0-beta.10:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/mirador/-/mirador-3.3.0.tgz#7a957a1db1a5388b2b8cafab00db4eb9f97557b9"
