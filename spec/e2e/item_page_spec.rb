@@ -5,7 +5,7 @@ require 'spec_helper'
 RSpec.describe 'item page', type: :feature, js: true do
   describe 'metadata' do
     before do
-      visit '/catalog/harvard_scw-3288'
+      visit '/library/catalog/harvard_scw-3288'
     end
 
     it 'shows the main title in the page title' do

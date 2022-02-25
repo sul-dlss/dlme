@@ -8,7 +8,7 @@ RSpec.describe 'browse page', type: :feature, js: true do
   end
 
   before do
-    visit '/browse/'
+    visit '/library/browse/'
   end
 
   it 'has the correct category groups' do

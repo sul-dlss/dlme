@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe 'search page', type: :feature, js: true do
   before do
-    visit '/catalog/'
+    visit '/library/catalog/'
   end
 
   it 'can search in arabic' do

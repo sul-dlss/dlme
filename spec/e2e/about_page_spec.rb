@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe 'about page', type: :feature, js: true do
   before do
-    visit '/about/'
+    visit '/library/about/about/'
   end
 
   it 'shows the page title' do
