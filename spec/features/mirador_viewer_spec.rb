@@ -24,4 +24,9 @@ RSpec.describe 'Mirador viewer', type: :feature do
     expect(page).to have_css('#m3')
     expect(page).to have_css('.mirador-viewer')
   end
+
+  it 'enables Mirador Image Tools plugin', js: true do
+    visit spotlight.exhibit_solr_document_path(exhibit_id: exhibit.slug, id: '36ebabd9-4d62-4d8e-8e7b-1afd048e872e')
+    expect(page).to have_css('div[class*=MiradorImageTools]')
+  end
 end
