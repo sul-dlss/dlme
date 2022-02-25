@@ -14,7 +14,7 @@ class StatisticsDashboard
       'agg_provider_country.en_ssim',
       'agg_provider_data_country.ar-Arab_ssim',
       'agg_provider_data_country.en_ssim',
-      'agg_data_provider_collection_ssim',
+      'agg_data_provider_collection_id_ssim',
       'cho_type_facet.en_ssim',
       'cho_type_facet.ar-Arab_ssim',
       'cho_language.en_ssim',
@@ -24,14 +24,14 @@ class StatisticsDashboard
     'f.agg_provider_country.en_ssim.facet.limit' => -1,
     'f.agg_data_provider_country.ar-Arab_ssim.facet.limit' => -1,
     'f.agg_data_provider_country.en_ssim.facet.limit' => -1,
-    'f.agg_data_provider_collection_ssim.facet.limit' => -1,
+    'f.agg_data_provider_collection_id_ssim.facet.limit' => -1,
     'f.cho_language.en_ssim.facet.limit' => -1,
     'f.cho_language.ar-Arab_ssim.facet.limit' => -1,
     'facet.pivot': [
-      %w[agg_provider.en_ssim agg_provider_country.en_ssim agg_data_provider_collection_ssim].join(','),
-      %w[agg_provider.ar-Arab_ssim agg_provider_country.ar-Arab_ssim agg_data_provider_collection_ssim].join(','),
-      %w[agg_data_provider.en_ssim agg_data_provider_country.en_ssim agg_data_provider_collection_ssim].join(','),
-      %w[agg_data_provider.ar-Arab_ssim agg_data_provider_country.ar-Arab_ssim agg_data_provider_collection_ssim].join(',')
+      %w[agg_provider.en_ssim agg_provider_country.en_ssim agg_data_provider_collection_id_ssim].join(','),
+      %w[agg_provider.ar-Arab_ssim agg_provider_country.ar-Arab_ssim agg_data_provider_collection_id_ssim].join(','),
+      %w[agg_data_provider.en_ssim agg_data_provider_country.en_ssim agg_data_provider_collection_id_ssim].join(','),
+      %w[agg_data_provider.ar-Arab_ssim agg_data_provider_country.ar-Arab_ssim agg_data_provider_collection_id_ssim].join(',')
     ]
   }.freeze
 
@@ -154,7 +154,7 @@ class StatisticsDashboard
     private
 
     def collections_field
-      'agg_data_provider_collection_ssim'
+      'agg_data_provider_collection_id_ssim'
     end
 
     def facet_fields
@@ -240,7 +240,7 @@ class StatisticsDashboard
     end
 
     def collections_field
-      'agg_data_provider_collection_ssim'
+      'agg_data_provider_collection_id_ssim'
     end
 
     def pivot_facets

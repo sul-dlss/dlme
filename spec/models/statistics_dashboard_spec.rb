@@ -22,7 +22,7 @@ RSpec.describe StatisticsDashboard do
   describe 'Collections' do
     let(:stub_response) do
       { 'facet_counts' => { 'facet_fields' => {
-        'agg_data_provider_collection_ssim' => ['Value 1', '500', 'Value 2', '300']
+        'agg_data_provider_collection_id_ssim' => ['Value 1', '500', 'Value 2', '300']
       } } }
     end
 
@@ -107,7 +107,7 @@ RSpec.describe StatisticsDashboard do
 
     let(:stub_response) do
       { 'facet_counts' => { 'facet_pivot' => {
-        'agg_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_ssim' => [
+        'agg_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_id_ssim' => [
           { 'value' => 'Institution 1', 'count' => '500', 'pivot' => [country1] },
           { 'value' => 'Institution 2', 'count' => '300', 'pivot' => [country2] }
         ]
@@ -122,7 +122,7 @@ RSpec.describe StatisticsDashboard do
 
     describe '#total_countries' do
       before do
-        pivot_field = 'agg_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_ssim'
+        pivot_field = 'agg_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_id_ssim'
         stub_response['facet_counts']['facet_pivot'][pivot_field] << {
           'value' => 'Institution 3', 'count' => '100', 'pivot' => [country1]
         }
@@ -176,7 +176,7 @@ RSpec.describe StatisticsDashboard do
         let(:country4) { { 'value' => 'Country 4', 'count' => '17', 'pivot' => [{ value: 'coll/4', 'count' => '17' }] } }
 
         before do
-          pivot_field = 'agg_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_ssim'
+          pivot_field = 'agg_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_id_ssim'
           stub_response['facet_counts']['facet_pivot'][pivot_field][0]['pivot'] << country4
         end
 

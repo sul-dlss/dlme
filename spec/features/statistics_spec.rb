@@ -8,10 +8,10 @@ RSpec.describe 'Statistics page', type: :feature do
       'response' => { 'numFound' => 100_000 },
       'facet_counts' => {
         'facet_fields' => {
-          'agg_data_provider_collection_ssim' => ['Value 1', '500', 'Value 2', '300']
+          'agg_data_provider_collection_id_ssim' => ['Value 1', '500', 'Value 2', '300']
         },
         'facet_pivot' => {
-          'agg_data_provider.en_ssim,agg_data_provider_country.en_ssim,agg_data_provider_collection_ssim' => [
+          'agg_data_provider.en_ssim,agg_data_provider_country.en_ssim,agg_data_provider_collection_id_ssim' => [
             { 'value' => 'Institution 1', 'count' => '500', 'pivot' => [
               { 'value' => 'Country 1', 'count' => '500' }
             ] },
@@ -20,7 +20,7 @@ RSpec.describe 'Statistics page', type: :feature do
               { 'value' => 'Country 3', 'count' => '100' }
             ] }
           ],
-          'agg_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_ssim' => [
+          'agg_provider.en_ssim,agg_provider_country.en_ssim,agg_data_provider_collection_id_ssim' => [
             { 'value' => 'Institution 1', 'count' => '500', 'pivot' => [
               { 'value' => 'Country 1', 'count' => '500' }
             ] },
