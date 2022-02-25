@@ -168,16 +168,19 @@ jobs:
         command: docker compose -f .circleci/docker-compose.yml up --quiet-pull --no-start
     - run:
         name: Prepare postgres database
-        command: docker compose -f .circleci/docker-compose.yml run --rm app bin/rails db:prepare
+        command: docker compose -f .circleci/docker-compose.yml exec app bin/rails db:prepare
     - run:
         name: Start local Docker stack
         command: docker compose -f .circleci/docker-compose.yml up --detach
     - run:
-        name: Load sample data fixture
-        command: docker compose run --rm app "rake resources:import[spec/fixtures/ndjson/sample.ndjson]"
+        name: Create test spotlight exhibit from fixture
+        command: docker compose exec --env FILE=spec/fixtures/json/library-export.json app rake spotlight:import\[library\]
+    - run:
+        name: Load sample data from fixture
+        command: docker compose exec app rake resources:import\[spec/fixtures/ndjson/sample.ndjson\]
     - run:
         name: Run integration tests against Docker stack
-        command: docker run --rm --env CAPYBARA_APP_HOST=app --env CAPYBARA_APP_PORT=3000 e2e bundle exec rspec --pattern spec/e2e/**/*_spec.rb
+        command: docker run --rm --env CAPYBARA_APP_HOST=app --env CAPYBARA_APP_PORT=3000 --network dlme_default e2e rspec --pattern spec/e2e/**/*_spec.rb
 
   publish-latest:
     executor: docker-publisher
