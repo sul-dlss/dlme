@@ -1,1 +1,2 @@
 --require spec_helper
+--exclude-pattern spec/e2e/**/*_spec.rb
