@@ -49,7 +49,9 @@ group :development, :test do
   gem 'rubocop-rails', '> 2.7', '!= 2.8.0'
   gem 'rubocop-rspec'
   gem 'solr_wrapper'
-  gem 'webdrivers'
+  # Support not using webdrivers in Alpine Linux (docker) environments; see
+  # the Dockerfile for more info
+  gem 'webdrivers', require: !ENV['NO_WEBDRIVERS']
 end
 
 group :development do
