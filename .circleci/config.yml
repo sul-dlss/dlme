@@ -167,13 +167,19 @@ jobs:
           docker load -i /tmp/workspace/e2e_image.tar
     - run:
         name: Create local Docker stack
-        command: docker compose -f .circleci/docker-compose.yml up --quiet-pull --detach
+        command: docker compose -f .circleci/docker-compose.yml up --quiet-pull --no-start
+    - run:
+        name: Prepare postgres database
+        command: docker compose -f .circleci/docker-compose.yml run app bin/rails db:prepare
+    - run:
+        name: Start local Docker stack
+        command: docker compose -f .circleci/docker-compose.yml up --detach
     - run:
         name: Create test spotlight exhibit from fixture
-        command: docker compose exec --env FILE=spec/fixtures/json/library-export.json app rake spotlight:import\[library\]
+        command: docker compose -f .circleci/docker-compose.yml exec --env FILE=spec/fixtures/json/library-export.json app rake spotlight:import\[library\]
     - run:
         name: Load sample data from fixture
-        command: docker compose exec app rake resources:import\[spec/fixtures/ndjson/sample.ndjson\]
+        command: docker compose -f .circleci/docker-compose.yml exec app rake resources:import\[spec/fixtures/ndjson/sample.ndjson\]
     - run:
         name: Run integration tests against Docker stack
         command: docker run --rm --env CAPYBARA_APP_HOST=app --env CAPYBARA_APP_PORT=3000 --network dlme_default e2e rspec --pattern e2e/**/*_spec.rb
