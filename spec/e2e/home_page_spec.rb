@@ -26,10 +26,9 @@ RSpec.describe 'home page', type: :feature, js: true do
   describe 'browse categories' do
     it 'have thumbnail images' do
       page.all('.browse-category').each do |category|
-        image_iiif_url = category['style'].match(%r{url\("/(.+)"\)})
-
-        URI.open("https://dlmenetwork.org#{image_iiif_url}") do |f|
-          expect(f.status).to eq(%w[200 OK])
+        if category['style']
+          image_iiif_url = category['style'].match(%r{url\("/(.+)"\)})[1]
+          visit "/#{image_iiif_url}"
         end
       end
     end
