@@ -13,10 +13,12 @@ RSpec.describe 'item page', type: :feature, js: true do
                                text: 'Main Title: Tarjama-i Sirr al-maktum (a Mughal talismanic manuscript, Raza Library Rampur)')
     end
 
+    # rubocop:disable Layout/LineLength
     it 'shows the image title in the page title' do
       expect(page).to have_css('h1 .metadata-value',
                                text: 'Image Title: Detail view; f.6a Talismans associated with Saratan (Cancer): A man opening the Quran 20329867')
     end
+    # rubocop:enable Layout/LineLength
 
     it 'shows the dates' do
       expect(page).to have_css('.blacklight-date .metadata-value', text: '1580')
