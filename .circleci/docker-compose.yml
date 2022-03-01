@@ -11,7 +11,7 @@ services:
       RDS_DB_NAME: dlme
       RDS_USERNAME: postgres
       RDS_PASSWORD: dlme
-      SOLR_URL: http://solr:8983/solr/dlme
+      SOLR_URL: http://admin:admin@solr:8983/solr/dlme
       SECRET_KEY_BASE: dlme
 
   sidekiq:
@@ -25,7 +25,7 @@ services:
       RDS_DB_NAME: dlme
       RDS_USERNAME: postgres
       RDS_PASSWORD: dlme
-      SOLR_URL: http://solr:8983/solr/dlme
+      SOLR_URL: http://admin:admin@solr:8983/solr/dlme
       SECRET_KEY_BASE: dlme
 
   postgres:
@@ -35,14 +35,16 @@ services:
       POSTGRES_DB: dlme
 
   solr:
-    image: solr:8.11.1
-    volumes:
-      - "$CIRCLE_WORKING_DIRECTORY/solr/config:/solr-setup/conf"
-    entrypoint:
-      - docker-entrypoint.sh
-      - solr-precreate
-      - dlme
-      - /solr-setup/conf
+    image: bitnami/solr:8.11.1
+    ports:
+      - "8983:8983"
+    environment:
+      SOLR_CLOUD_BOOTSTRAP: "yes"
+      SOLR_ENABLE_CLOUD_MODE: "yes"
+      SOLR_ENABLE_AUTHENTICATION: "yes"
+      SOLR_ADMIN_USERNAME: admin
+      SOLR_ADMIN_PASSWORD: admin
+      SOLR_ZK_HOSTS: localhost
 
   redis:
     image: "redis:5.0-alpine"
