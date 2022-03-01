@@ -61,6 +61,7 @@ FROM webapp as webapp-dev
 
 # Set rails env to development and install dev/test dependencies
 ENV RAILS_ENV=development
+ENV SETTINGS__FEATURE_FLAGS__ALLOW_JSON_UPLOAD=1
 RUN bundle config unset without
 RUN apk --no-cache add --virtual build-dependencies \
   build-base \
