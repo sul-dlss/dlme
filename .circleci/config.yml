@@ -85,11 +85,7 @@ jobs:
     # Create a Solr collection
     - run:
         name: Load config into SolrCloud
-        command: |
-          cd solr/config
-          zip -1 -r solr_config.zip ./*
-          curl -H "Content-type:application/octet-stream" --data-binary @solr_config.zip "http://admin:admin@localhost:8983/solr/admin/configs?action=UPLOAD&name=dlme"
-          curl -H 'Content-type: application/json' http://admin:admin@localhost:8983/api/collections/ -d '{create: {name: dlme, config: dlme, numShards: 1}}'
+        command: docker/configure_solrcloud.sh
     - run:
         name: Check styles using rubocop
         command: bundle exec rubocop
@@ -170,17 +166,13 @@ jobs:
         command: docker compose -f .circleci/docker-compose.yml up --quiet-pull --no-start
     - run:
         name: Prepare postgres database
-        command: docker compose -f .circleci/docker-compose.yml run app bin/rails db:prepare
+        command: docker compose -f .circleci/docker-compose.yml run --rm app bin/rails db:prepare
+    - run:
+        name: Prepare SolrCloud collection
+        command: docker compose -f .circleci/docker-compose.yml run --rm app docker/configure_solrcloud.sh solr dlme
     - run:
         name: Start local Docker stack
         command: docker compose -f .circleci/docker-compose.yml up --detach
-    - run:
-        name: Configure SolrCloud
-        command: |
-          cd solr/config
-          zip -1 -r solr_config.zip ./*
-          curl -H "Content-type:application/octet-stream" --data-binary @solr_config.zip "http://admin:admin@localhost:8983/solr/admin/configs?action=UPLOAD&name=dlme"
-          curl -H 'Content-type: application/json' http://admin:admin@localhost:8983/api/collections/ -d '{create: {name: dlme, config: dlme, numShards: 1}}'
     - run:
         name: Create test spotlight exhibit from fixture
         command: docker compose -f .circleci/docker-compose.yml exec --env FILE=spec/fixtures/json/library-export.json app rake spotlight:import\[library\]

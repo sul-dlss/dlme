@@ -8,6 +8,7 @@ ENV RAILS_LOG_TO_STDOUT=true
 
 # Add system dependencies
 RUN apk add --update --no-cache \
+  curl \
   imagemagick \
   git \
   gmp-dev \
@@ -17,7 +18,8 @@ RUN apk add --update --no-cache \
   postgresql-dev \
   sqlite-dev \
   tzdata \
-  yarn
+  yarn \
+  zip
 
 # Create and set the working directory as /opt
 WORKDIR /opt
