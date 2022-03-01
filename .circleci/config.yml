@@ -189,7 +189,7 @@ jobs:
         command: docker compose -f .circleci/docker-compose.yml exec app rake resources:import\[spec/fixtures/ndjson/sample.ndjson\]
     - run:
         name: Run integration tests against Docker stack
-        command: docker run --rm --env CAPYBARA_APP_HOST=app --env CAPYBARA_APP_PORT=3000 --network dlme_default e2e rspec --pattern e2e/**/*_spec.rb
+        command: docker run --rm --env CAPYBARA_APP_HOST=app --env CAPYBARA_APP_PORT=3000 --network circleci_default e2e rspec --pattern e2e/**/*_spec.rb
 
   publish-latest:
     executor: docker-publisher
