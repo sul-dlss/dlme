@@ -71,7 +71,7 @@ GEM
     autoprefixer-rails (10.4.2.0)
       execjs (~> 2)
     aws-eventstream (1.2.0)
-    aws-partitions (1.560.0)
+    aws-partitions (1.561.0)
     aws-sdk-core (3.127.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.525.0)
@@ -104,9 +104,9 @@ GEM
       ostruct (>= 0.3.2)
       rails (>= 5.1, < 7.1)
       view_component (~> 2.43)
-    blacklight-gallery (3.5.0)
+    blacklight-gallery (4.0.0)
       blacklight (~> 7.17)
-      rails (>= 5.1, < 7)
+      rails (>= 5.1, < 8)
     blacklight-hierarchy (6.0.0)
       blacklight (~> 7.18)
       deprecation
@@ -352,7 +352,7 @@ GEM
       json
     iiif_manifest (1.1.0)
       activesupport (>= 4)
-    image_processing (1.12.1)
+    image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
     jbuilder (2.11.5)
@@ -481,7 +481,7 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.4.2)
       loofah (~> 2.3)
-    rails-i18n (7.0.2)
+    rails-i18n (7.0.3)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 8)
     rails_autolink (1.1.6)
@@ -700,7 +700,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk-sns
   blacklight (~> 7.14)
-  blacklight-gallery (~> 3.0)
+  blacklight-gallery (~> 4.0)
   blacklight-hierarchy
   blacklight-oembed (>= 0.1.0)
   blacklight-spotlight (~> 3.1)
