@@ -2,45 +2,45 @@ version: "3.6"
 
 services:
   app:
-    image: suldlss/dlme
+    image: suldlss/dlme:latest
     build:
       context: ./
       dockerfile: docker/Dockerfile
       target: webapp-dev
+    depends_on:
+      - postgres
     environment:
       REDIS_HOST: redis
-      REDIS_PORT: 6379
+      RDS_HOSTNAME: postgres
       RDS_DB_NAME: dlme
       RDS_USERNAME: postgres
       RDS_PASSWORD: sekret
-      RDS_HOSTNAME: postgres
-      RDS_PORT: 5432
       SOLR_URL: http://solr:8983/solr/dlme
-      SECRET_KEY_BASE:
-      SETTINGS__FEATURE_FLAGS__ALLOW_JSON_UPLOAD: true
+      SECRET_KEY_BASE: dlme
     ports:
       - "3000:3000"
-    depends_on:
-      - postgres
     volumes:
       - ".:/opt/"
 
   sidekiq:
-    image: suldlss/dlme-worker
-    depends_on:
-      - postgres
-      - redis
+    image: suldlss/dlme-worker:latest
     build:
       context: ./
       dockerfile: docker/Dockerfile
       target: worker-dev
+    depends_on:
+      - postgres
+      - redis
+    environment:
+      REDIS_HOST: redis
+      RDS_HOSTNAME: postgres
+      RDS_DB_NAME: dlme
+      RDS_USERNAME: postgres
+      RDS_PASSWORD: sekret
+      SOLR_URL: http://solr:8983/solr/dlme
+      SECRET_KEY_BASE: dlme
     volumes:
       - ".:/app"
-    env_file:
-      - ".env"
-    environment:
-      SOLR_URL: http://solr:8983/solr/dlme
-      RAILS_ENV: development
 
   postgres:
     image: postgres:10.17
