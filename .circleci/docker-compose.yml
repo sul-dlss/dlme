@@ -38,13 +38,24 @@ services:
     image: bitnami/solr:8.11.1
     ports:
       - "8983:8983"
+    depends_on:
+      - zookeeper
     environment:
       SOLR_CLOUD_BOOTSTRAP: "yes"
       SOLR_ENABLE_CLOUD_MODE: "yes"
       SOLR_ENABLE_AUTHENTICATION: "yes"
       SOLR_ADMIN_USERNAME: admin
       SOLR_ADMIN_PASSWORD: admin
-      SOLR_ZK_HOSTS: localhost
+      SOLR_ZK_HOSTS: zookeeper
+
+  zookeeper:
+    image: bitnami/zookeeper:latest
+    ports:
+      - "8080:8080"
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: "yes"
+      JVMFLAGS: -Dzookeeper.4lw.commands.whitelist=mntr,conf,ruok -Dzookeeper.admin.enableServer=false
+      ZOO_SERVERS: zoo1:2888:3888
 
   redis:
     image: "redis:5.0-alpine"
