@@ -36,8 +36,6 @@ services:
 
   solr:
     image: bitnami/solr:8.11.1
-    ports:
-      - "8983:8983"
     depends_on:
       - zookeeper
     environment:
@@ -50,11 +48,9 @@ services:
 
   zookeeper:
     image: bitnami/zookeeper:latest
-    ports:
-      - "8080:8080"
     environment:
       ALLOW_ANONYMOUS_LOGIN: "yes"
-      JVMFLAGS: -Dzookeeper.4lw.commands.whitelist=mntr,conf,ruok -Dzookeeper.admin.enableServer=false
+      JVMFLAGS: -Dzookeeper.4lw.commands.whitelist=mntr,conf,ruok
       ZOO_SERVERS: zoo1:2888:3888
 
   redis:

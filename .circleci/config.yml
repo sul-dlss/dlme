@@ -168,14 +168,14 @@ jobs:
         name: Prepare postgres database
         command: docker compose -f .circleci/docker-compose.yml run --rm app bin/rails db:prepare
     - run:
-        name: Prepare SolrCloud collection
-        command: docker compose -f .circleci/docker-compose.yml run --rm app docker/configure_solrcloud.sh solr dlme
-    - run:
         name: Start local Docker stack
         command: docker compose -f .circleci/docker-compose.yml up --detach
     - run:
         name: Create test spotlight exhibit from fixture
         command: docker compose -f .circleci/docker-compose.yml exec --env FILE=spec/fixtures/json/library-export.json app rake spotlight:import\[library\]
+    - run:
+        name: Prepare SolrCloud collection
+        command: docker compose -f .circleci/docker-compose.yml run --rm app docker/configure_solrcloud.sh solr dlme
     - run:
         name: Load sample data from fixture
         command: docker compose -f .circleci/docker-compose.yml exec app rake resources:import\[spec/fixtures/ndjson/sample.ndjson\]
