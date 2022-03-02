@@ -24,11 +24,11 @@ echo "Created solr_config.zip"
 wait_for_ok $SOLR_URL
 
 # upload the config via the config api
-curl -H "Content-type: application/octet-stream" --data-binary @solr_config.zip "$SOLR_URL/solr/admin/configs?action=UPLOAD&name=$SOLR_COLLECTION"
+curl --fail-with-body --header "Content-type: application/octet-stream" --data-binary @solr_config.zip "$SOLR_URL/solr/admin/configs?action=UPLOAD&name=$SOLR_COLLECTION"
 echo "Uploaded solr config"
 wait_for_ok $SOLR_URL
 
 # create a new collection using the config
-curl -H "Content-type: application/json" "$SOLR_URL/api/collections/" -d "{create: {name: $SOLR_COLLECTION, config: $SOLR_COLLECTION, numShards: 1}}"
+curl --fail-with-body --header "Content-type: application/json" --data "{create: {name: $SOLR_COLLECTION, config: $SOLR_COLLECTION, numShards: 1}}" "$SOLR_URL/api/collections/"
 echo "Created solr collection"
 wait_for_ok $SOLR_URL
