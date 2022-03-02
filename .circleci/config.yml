@@ -41,7 +41,7 @@ jobs:
     steps:
     - browser-tools/install-browser-tools
     # get latest curl so we can use --fail-with-body flag
-    - run: apt-get upgrade curl
+    - run: sudo apt-get upgrade curl
     - checkout
     - run: |
         google-chrome --version
