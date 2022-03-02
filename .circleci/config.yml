@@ -174,7 +174,7 @@ jobs:
         command: docker compose -f .circleci/docker-compose.yml up --detach
     - run:
         name: Prepare SolrCloud collection
-        command: docker compose -f .circleci/docker-compose.yml run --rm app docker/configure_solrcloud.sh solr dlme
+        command: docker compose -f .circleci/docker-compose.yml exec app docker/configure_solrcloud.sh solr
     - run:
         name: Create test spotlight exhibit from fixture
         command: docker compose -f .circleci/docker-compose.yml exec --env FILE=spec/fixtures/json/library-export.json app rake spotlight:import\[library\]
