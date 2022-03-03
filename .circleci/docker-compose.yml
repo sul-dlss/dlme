@@ -35,23 +35,8 @@ services:
       POSTGRES_DB: dlme
 
   solr:
-    image: bitnami/solr:8.11.1
-    depends_on:
-      - zookeeper
-    environment:
-      SOLR_CLOUD_BOOTSTRAP: "yes"
-      SOLR_ENABLE_CLOUD_MODE: "yes"
-      SOLR_ENABLE_AUTHENTICATION: "yes"
-      SOLR_ADMIN_USERNAME: admin
-      SOLR_ADMIN_PASSWORD: admin
-      SOLR_ZK_HOSTS: zookeeper
-
-  zookeeper:
-    image: bitnami/zookeeper:latest
-    environment:
-      ALLOW_ANONYMOUS_LOGIN: "yes"
-      JVMFLAGS: -Dzookeeper.4lw.commands.whitelist=mntr,conf,ruok
-      ZOO_SERVERS: zoo1:2888:3888
+    image: solr:8.11.1
+    command: bin/solr start -cloud -noprompt -f
 
   redis:
     image: "redis:5.0-alpine"
