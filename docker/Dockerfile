@@ -1,4 +1,4 @@
-FROM ruby:2.7.5-alpine AS base
+FROM ruby:3.0-alpine AS base
 
 LABEL maintainer="Aaron Collier <aaron.collier@stanford.edu>"
 

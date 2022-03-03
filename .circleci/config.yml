@@ -14,7 +14,7 @@ orbs:
 jobs:
   test:
     docker:
-    - image: cimg/ruby:2.7.5-browsers
+    - image: cimg/ruby:3.0.3-browsers
       environment:
         BUNDLE_JOBS: 3
         BUNDLE_RETRY: 3
