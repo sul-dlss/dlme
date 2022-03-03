@@ -64,7 +64,8 @@ Spotlight::Engine.config.upload_title_field = Spotlight::UploadFieldConfig.new(
 # ==> Google Analytics integration
 if Settings.analytics.pkcs12_key && Settings.analytics.pkcs12_key_path
   File.open(Settings.analytics.pkcs12_key_path, "wb") do |file|
-    open(Settings.analytics.pkcs12_key, "rb") do |read_file|
+    handler = Settings.analytics.pkcs12_key.match?(URI.regexp) ? URI : File
+    handler.open(Settings.analytics.pkcs12_key, "rb") do |read_file|
       file.write(read_file.read)
     end
   end
