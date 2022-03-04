@@ -7,7 +7,7 @@ RSpec.describe 'Robots.txt', type: :request do
     it 'prevents robots' do
       get '/robots.txt'
       expect(response).to have_http_status(:ok)
-      expect(response.body).to eq "User-agent: *\nDisallow: /"
+      expect(response.body.split("\n")).to include 'User-agent: *', 'Crawl-delay: 3', 'Disallow: /'
     end
   end
 
@@ -19,7 +19,7 @@ RSpec.describe 'Robots.txt', type: :request do
     it 'allows robots' do
       get '/robots.txt'
       expect(response).to have_http_status(:ok)
-      expect(response.body).to eq "User-agent: *\nDisallow:"
+      expect(response.body.split("\n")).not_to include 'Disallow: /'
     end
   end
 end
