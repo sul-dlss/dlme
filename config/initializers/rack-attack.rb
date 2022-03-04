@@ -7,7 +7,7 @@ Rack::Attack.throttle("searches/ip", limit: 15, period: 15.minutes) do |req|
   next if req.params['q'].present?
 
   # only throttle search queries
-  next unless req.post? && req.path.ends_with?("/catalog")
+  next unless req.path.ends_with?("/catalog")
 
   # don't throttle the first couple pages of a search result
   next if req.params['page'].present? && req.params['page'].to_i < 10
