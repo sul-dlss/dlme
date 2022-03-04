@@ -203,9 +203,9 @@ class CatalogController < ApplicationController
       no_agg_data_provider: { label: 'No Holding Institution', fq: '-agg_data_provider_ssim:[* TO *]' }
     }, if: logged_in
     config.add_facet_field 'indexed_at', query: {
-      day: { label: 'within 1 day', fq: "timestamp:[#{1.day.ago.iso8601} TO *]" },
-      week: { label: 'within 7 days', fq: "timestamp:[#{7.days.ago.iso8601} TO *]" },
-      month: { label: 'within 31 days', fq: "timestamp:[#{31.days.ago.iso8601} TO *]" }
+      day: { label: 'within 1 day', fq: "timestamp:[#{1.day.ago.beginning_of_day.iso8601} TO *]" },
+      week: { label: 'within 7 days', fq: "timestamp:[#{7.days.ago.beginning_of_day.iso8601} TO *]" },
+      month: { label: 'within 31 days', fq: "timestamp:[#{31.days.ago.beginning_of_day.iso8601} TO *]" }
     }, if: logged_in
     config.add_facet_field 'traject_config', field: 'traject_context_source_ssim', limit: true, if: logged_in
     config.add_facet_field 'harvest', field: 'traject_context_harvest_id_ssim', limit: true, if: logged_in
