@@ -174,7 +174,7 @@ jobs:
         command: docker compose -f .circleci/docker-compose.yml up --detach
     - run:
         name: Enable basic auth for SolrCloud
-        command: docker compose -f .circleci/docker-compose.yml exec --user root solr bin/solr auth enable -credentials admin:admin
+        command: docker compose -f .circleci/docker-compose.yml exec solr bin/solr auth enable -credentials admin:admin
     - run:
         name: Prepare SolrCloud collection
         command: docker compose -f .circleci/docker-compose.yml exec app docker/configure_solrcloud.sh solr
