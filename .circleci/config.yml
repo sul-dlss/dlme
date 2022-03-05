@@ -173,6 +173,9 @@ jobs:
         name: Start local Docker stack
         command: docker compose -f .circleci/docker-compose.yml up --detach
     - run:
+        name: Wait for Solr to be ready
+        command: sleep 10
+    - run:
         name: Enable basic auth for SolrCloud
         command: docker compose -f .circleci/docker-compose.yml exec solr bin/solr auth enable -credentials admin:admin -z zookeeper:2181
     - run:
