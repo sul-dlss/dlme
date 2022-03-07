@@ -50,6 +50,7 @@ class CatalogController < ApplicationController
     config.max_per_page = 96
     # Options for the user for number of results to show per page
     config.per_page = [12, 24, 48, 96]
+    config.crawler_detector = ->(req) { req.env['HTTP_USER_AGENT'] && req.env['HTTP_USER_AGENT'] =~ /bot/i }
 
     config.document_solr_path = 'get'
     config.document_unique_id_param = 'ids'
