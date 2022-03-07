@@ -3,7 +3,7 @@
 ##
 # Produced robots.txt based on values from config
 class RobotsController < ApplicationController
-  ALLOW_ALL = "User-agent: *\nDisallow:"
+  ALLOW_ALL = "User-agent: *\nCrawl-delay: 3\nDisallow:"
   ALLOW_NONE = ALLOW_ALL + ' /'
 
   def show
