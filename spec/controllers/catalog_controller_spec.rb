@@ -11,6 +11,18 @@ RSpec.describe CatalogController do
     allow(controller).to receive(:search_service).and_return(search_service)
   end
 
+  describe 'GET index' do
+    context 'with a bot' do
+      it 'prevents deep paging' do
+        request.headers['HTTP_USER_AGENT'] = 'I am a bot'
+
+        get :index, params: { page: 500 }
+
+        expect(response.status).to eq 429
+      end
+    end
+  end
+
   describe 'GET show' do
     let(:search_service) { instance_double(Blacklight::SearchService, fetch: [double, doc]) }
     let(:doc) do
