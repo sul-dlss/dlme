@@ -15,6 +15,8 @@ class CatalogController < ApplicationController
     blacklight_config.add_show_field :__raw_resource_json_ss, helper_method: :ir_for_output
   end
 
+  before_action :enforce_max_page_limit
+
   configure_blacklight do |config|
     # Use POST requests for solr to avoid limits on query length
     config.http_method = :post
@@ -51,6 +53,7 @@ class CatalogController < ApplicationController
     # Options for the user for number of results to show per page
     config.per_page = [12, 24, 48, 96]
     config.crawler_detector = ->(req) { req.env['HTTP_USER_AGENT'] && req.env['HTTP_USER_AGENT'] =~ /bot/i }
+    config.max_page = 100
 
     config.document_solr_path = 'get'
     config.document_unique_id_param = 'ids'
@@ -281,5 +284,13 @@ class CatalogController < ApplicationController
     else
       super
     end
+  end
+
+  private
+
+  def enforce_max_page_limit
+    return unless agent_is_crawler? && params[:page] && params[:page].to_i > blacklight_config.max_page
+
+    render plain: 'You have paginated too deep into the result set.', status: :too_many_requests
   end
 end
