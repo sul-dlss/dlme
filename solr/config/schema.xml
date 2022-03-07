@@ -113,18 +113,18 @@
   <copyField source="*.ar-Arab_ssim" dest="all_text.ar_timv" maxChars="3000"/>
 
   <types>
-    <fieldType name="string" class="solr.StrField" sortMissingLast="true" />
-    <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true"/>
+    <fieldType name="string" class="solr.StrField" sortMissingLast="true" docValues="true"/>
+    <fieldType name="boolean" class="solr.BoolField" sortMissingLast="true" docValues="true"/>
     <fieldType name="rand" class="solr.RandomSortField" omitNorms="true"/>
 
     <!-- Default numeric field types.  -->
-    <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0" sortMissingLast="true" />
-    <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0" sortMissingLast="true" />
+    <fieldType name="int" class="solr.TrieIntField" precisionStep="0" positionIncrementGap="0" sortMissingLast="true" docValues="true"/>
+    <fieldType name="long" class="solr.TrieLongField" precisionStep="0" positionIncrementGap="0" sortMissingLast="true" docValues="true"/>
 
     <!-- The format for this date field is of the form 1995-12-31T23:59:59Z
          Optional fractional seconds are allowed: 1995-12-31T23:59:59.999Z
       -->
-    <fieldType name="date" class="solr.TrieDateField" precisionStep="0" positionIncrementGap="0" sortMissingLast="true" />
+    <fieldType name="date" class="solr.TrieDateField" precisionStep="0" positionIncrementGap="0" sortMissingLast="true" docValues="true"/>
 
     <fieldType name="text" class="solr.TextField" omitNorms="false">
       <analyzer>
