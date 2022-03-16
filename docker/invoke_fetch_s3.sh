@@ -5,4 +5,4 @@
 echo "Fetching resources from: ${S3_FETCH_URL}"
 
 # Add additional logging output on rake for debugging
-bundle exec honeybadger exec rake resources:fetch[$S3_FETCH_URL] --trace
+bundle exec honeybadger exec rake resources:fetch[$S3_FETCH_URL]
