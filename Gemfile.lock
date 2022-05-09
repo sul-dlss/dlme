@@ -103,7 +103,7 @@ GEM
       parser (>= 2.4)
       smart_properties
     bindex (0.8.1)
-    blacklight (7.25.1)
+    blacklight (7.24.0)
       deprecation
       globalid
       i18n (>= 1.7.0)
@@ -710,7 +710,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk-sns
-  blacklight (~> 7.14)
+  blacklight (~> 7.14, < 7.25)
   blacklight-gallery (~> 4.0)
   blacklight-hierarchy
   blacklight-oembed (>= 0.1.0)
