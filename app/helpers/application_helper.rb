@@ -20,12 +20,12 @@ module ApplicationHelper
 
   # Generate a display value for multi-calendar date ranges
   def display_date_ranges(values: [], **_args)
-    values = Array(values).map do |value|
+    values = Array(values).filter_map do |value|
       gregorian_dates = roll_up_date_range_values(value[:gregorian] || [], :'date.bce')
       hijri_dates = roll_up_date_range_values(value[:hijri] || [], :'date.bh')
 
       display_date_range(gregorian_dates: gregorian_dates, hijri_dates: hijri_dates)
-    end.compact
+    end
 
     safe_join(values, '<br />'.html_safe) if values.any?
   end
