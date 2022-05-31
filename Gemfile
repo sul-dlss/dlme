@@ -73,7 +73,7 @@ end
 
 gem 'aws-sdk-sns'
 
-gem 'blacklight', '~> 7.14', '< 7.25'
+gem 'blacklight', '~> 7.14'
 gem 'blacklight-spotlight', '~> 3.1'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 
