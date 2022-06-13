@@ -13,14 +13,14 @@ Blacklight.onLoad(function() {
       return number;
     }
   }
-  
+
   var hijriConfig = $.extend({}, config, {
     field: 'cho_date_range_hijri_isim',
     xaxis: {
       tickFormatter: genericTickFormatter(['bh', 'h'])
     }
   });
-  
+
   var gregorianConfig = $.extend({}, config, {
     field: 'cho_date_range_norm_isim',
     xaxis: {
@@ -49,9 +49,12 @@ Blacklight.onLoad(function() {
         }
       });
       // Select content and insert it
-      var $content = $(html).find('.limit_content.range_limit');
+      var $content = $(html).find('.custom-range-limit-container').children();
       $customDateRange.find('.custom-range-limit-container').html($content).show();
       // Rerun Range Limit Setup stuff
+      $(".range_limit .profile .distribution.chart_js ul").each(function () {
+        BlacklightRangeLimit.turnIntoPlot($(this).parent());
+      });
       BlacklightRangeLimit.checkForNeededFacetsToFetch();
       $(".range_limit .profile .range.slider_js").each(function() {
         BlacklightRangeLimit.buildSlider(this);

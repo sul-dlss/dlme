@@ -43,10 +43,8 @@ Rails.application.routes.draw do
 
       get "catalog/range_limit" => "spotlight/catalog#range_limit"
       get "home/range_limit" => "spotlight/home_pages#range_limit"
-      get "catalog/range_limit_panel/:id" => "spotlight/catalog#range_limit_panel"
       get "catalog/:id/record_feedback" => "record_feedback#new", as: 'record_feedback', id: %r{.+}
       post "catalog/:id/record_feedback" => "record_feedback#create", id: %r{.+}
-      get "home/range_limit_panel/:id" => "spotlight/home_pages#range_limit_panel"
     end
 
     resource :transform, only: [:show, :create]

@@ -126,21 +126,21 @@ class CatalogController < ApplicationController
     config.add_facet_field 'cho_date_range_norm_isim',
                            field: 'cho_date_range_norm_isim',
                            range: true,
-                           partial: 'blacklight_range_limit/custom_range_limit_panel',
+                           component: MultilingualDateRangeComponent,
                            configured_range_fields: [
                              { field: 'cho_date_range_norm_isim', type: 'gregorian' },
                              { field: 'cho_date_range_hijri_isim', type: 'hijri' }
                            ],
-                           if: proc { |context, field_config, _response| !(context.respond_to?(:has_range_limit_parameters?) && context.has_range_limit_parameters?) || context.params.dig('range', field_config.field).present? } # rubocop:disable Layout/LineLength
+                           if: proc { |context, field_config, _response| context.is_a?(Spotlight::SearchConfigurationsController) || context.params[:range].blank? || context.params.dig('range', field_config.field).present? || context.params[:id] == field_config.key } # rubocop:disable Layout/LineLength
     config.add_facet_field 'cho_date_range_hijri_isim',
                            field: 'cho_date_range_hijri_isim',
                            range: true,
-                           partial: 'blacklight_range_limit/custom_range_limit_panel',
+                           component: MultilingualDateRangeComponent,
                            configured_range_fields: [
                              { field: 'cho_date_range_norm_isim', type: 'gregorian' },
                              { field: 'cho_date_range_hijri_isim', type: 'hijri' }
                            ],
-                           if: proc { |context, field_config, _response| context.is_a?(Spotlight::SearchConfigurationsController) || context.params.dig('range', field_config.field).present? } # rubocop:disable Layout/LineLength
+                           if: proc { |context, field_config, _response| context.is_a?(Spotlight::SearchConfigurationsController) || context.params.dig('range', field_config.field).present? || context.params[:id] == field_config.key } # rubocop:disable Layout/LineLength
     config.add_facet_field 'creator',     field: 'cho_creator_ssim', limit: true
     config.add_facet_field 'contributor', field: 'cho_contributor_ssim', limit: true
     config.add_facet_field 'medium',      field: 'cho_medium_ssim', limit: true

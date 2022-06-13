@@ -1,0 +1,42 @@
+<%= render(@layout.new(facet_field: @facet_field)) do |component| %>
+  <% component.label do %>
+    <%= @facet_field.label %>
+  <% end %>
+  <% component.body do %>
+    <div
+      data-date-range-selector
+      data-date-range-selector-original-field="<%= field_name %>"
+      data-date-range-selector-paths="<%= date_range_switcher_query_paths.to_json %>"
+    >
+      <% unless @facet_field.in_modal? %>
+        <form autocomplete="off">
+          <div class="form-group">
+            <div class="row">
+              <legend class="col-form-label col-sm-2 col-lg-5 pt-0 text-nowrap"><%= t('date_range_calendar') %></legend>
+              <div class="col-sm-10 col-lg-7">
+                <% facet_configuration[:configured_range_fields].each do |field| %>
+                  <div class="form-check">
+                    <%= radio_button_tag :selected_range_field, field[:field], (field[:field] == field_name), class: 'form-check-input' %>
+                    <%= label_tag "selected_range_field_#{field[:field]}", t("date_field_label_#{field[:type]}"), class: 'form-check-label' %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </form>
+      <% end %>
+
+      <div class='custom-range-limit-container'>
+        <%= render range_limit_component %>
+
+        <% unless @facet_field.in_modal? && !request.xhr? %>
+          <%= tag.div class: 'more_facets' do
+            link_to t('blacklight.range_limit.view_larger', field_name: @facet_field.label),
+              @view_context.search_facet_path(id: @facet_field.key),
+              data: { blacklight_modal: 'trigger' }
+          end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
