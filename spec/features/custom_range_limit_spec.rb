@@ -34,8 +34,8 @@ RSpec.describe 'Custom range limit functionality', type: :feature, js: true do
     visit spotlight.search_exhibit_catalog_path(exhibit, q: '*')
     expect(page).not_to have_css '.facet-limit.blacklight-cho_date_range_hijri_isim'
     find('.facet-limit.blacklight-cho_date_range_norm_isim').click
-    expect(page).to have_css '[data-date-range-selector-paths*="/catalog/range_limit_panel/cho_date_range_hijri_isim?q=%2A"]'
-    expect(page).to have_css '[data-date-range-selector-paths*="/catalog/range_limit_panel/cho_date_range_norm_isim?q=%2A"]'
+    expect(page).to have_css '[data-date-range-selector-paths*="/catalog/facet/cho_date_range_hijri_isim?q=%2A"]'
+    expect(page).to have_css '[data-date-range-selector-paths*="/catalog/facet/cho_date_range_norm_isim?q=%2A"]'
   end
 
   it 'range limit panel attribute is set removing current range field' do
@@ -43,7 +43,7 @@ RSpec.describe 'Custom range limit functionality', type: :feature, js: true do
       exhibit,
       q: '*', range: { cho_date_range_norm_isim: { begin: 0, end: 2020 } }
     )
-    expect(page).to have_css '[data-date-range-selector-paths*="/catalog/range_limit_panel/cho_date_range_hijri_isim?q=%2A"]'
+    expect(page).to have_css '[data-date-range-selector-paths*="/catalog/facet/cho_date_range_hijri_isim?q=%2A"]'
   end
 
   it 'Hijri is displayed when that range exists' do
@@ -51,6 +51,7 @@ RSpec.describe 'Custom range limit functionality', type: :feature, js: true do
       exhibit,
       q: '*', range: { cho_date_range_hijri_isim: { begin: 1384, end: 1387 } }
     )
+
     expect(page).not_to have_css '.facet-limit.blacklight-cho_date_range_norm_isim'
     find('.facet-limit.blacklight-cho_date_range_hijri_isim').click
 
