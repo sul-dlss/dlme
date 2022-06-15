@@ -18,7 +18,7 @@ RSpec.describe DlmeThumbnailPresenter do
       # rubocop:disable RSpec/MessageSpies
       expect(view_context).to receive(:image_tag).with(
         'https://www.example.com/image.png',
-        { class: 'img-thumbnail', loading: 'lazy' }
+        { class: 'img-thumbnail', loading: 'lazy', skip_pipeline: true }
       )
       # rubocop:enable RSpec/MessageSpies
       presenter.thumbnail_tag
@@ -28,7 +28,7 @@ RSpec.describe DlmeThumbnailPresenter do
       # rubocop:disable RSpec/MessageSpies
       expect(view_context).to receive(:image_tag).with(
         'https://www.example.com/image.png',
-        { class: 'my-class', loading: 'lazy' }
+        { class: 'my-class', loading: 'lazy', skip_pipeline: true }
       )
       # rubocop:enable RSpec/MessageSpies
       presenter.thumbnail_tag(class: 'my-class')

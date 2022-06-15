@@ -6,7 +6,7 @@ class DlmeThumbnailPresenter < Blacklight::ThumbnailPresenter
   ##
   # Overridden to inject custom options
   def thumbnail_tag(image_options = {}, url_options = {})
-    super(image_options.reverse_merge(class: 'img-thumbnail'), url_options.reverse_merge(skip_pipeline: true))
+    super(image_options.to_h.reverse_merge(class: 'img-thumbnail', skip_pipeline: true), url_options)
   end
 
   private
@@ -15,6 +15,10 @@ class DlmeThumbnailPresenter < Blacklight::ThumbnailPresenter
   # Overridden to support lazy options
   def thumbnail_value(image_options)
     super image_options.reverse_merge(loading: 'lazy')
+  end
+
+  def default_thumbnail_value(image_options)
+    super(image_options.except(:skip_pipeline))
   end
 
   ##
