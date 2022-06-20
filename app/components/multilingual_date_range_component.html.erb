@@ -32,7 +32,7 @@
         <% unless @facet_field.in_modal? && !request.xhr? %>
           <%= tag.div class: 'more_facets' do
             link_to t('blacklight.range_limit.view_larger', field_name: @facet_field.label),
-              @view_context.search_facet_path(id: @facet_field.key),
+              helpers.search_facet_path(id: @facet_field.key),
               data: { blacklight_modal: 'trigger' }
           end %>
         <% end %>
