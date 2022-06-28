@@ -103,7 +103,7 @@ GEM
       parser (>= 2.4)
       smart_properties
     bindex (0.8.1)
-    blacklight (7.26.0)
+    blacklight (7.26.1)
       deprecation
       globalid
       hashdiff
@@ -442,7 +442,7 @@ GEM
     notiffany (0.1.3)
       nenv (~> 0.1)
       shellany (~> 0.0)
-    oauth2 (2.0.2)
+    oauth2 (2.0.3)
       faraday (>= 0.17.3, < 3.0)
       jwt (>= 1.0, < 3.0)
       multi_xml (~> 0.5)
@@ -476,7 +476,7 @@ GEM
       rack (>= 1.2.0)
     rack-proxy (0.7.2)
       rack
-    rack-test (2.0.0)
+    rack-test (2.0.1)
       rack (>= 1.3)
     rack-timeout (0.6.3)
     rails (6.1.6)
@@ -645,7 +645,7 @@ GEM
       retriable
       ruby-progressbar
     spring (4.0.0)
-    sprockets (4.1.0)
+    sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-es6 (0.9.2)
