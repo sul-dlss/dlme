@@ -1,4 +1,4 @@
-FROM ruby:3.0-alpine AS base
+FROM ruby:3.1-alpine AS base
 
 LABEL maintainer="Aaron Collier <aaron.collier@stanford.edu>"
 
@@ -31,7 +31,7 @@ RUN gem update --system && \
   bundle config build.nokogiri --use-system-libraries
 
 # Copy the Gemfile and Gemfile.lock, and run bundle install prior to copying all
-# source files. This is an optimization that will prevent the need to re-run 
+# source files. This is an optimization that will prevent the need to re-run
 # bundle install when only source code is changed and not dependencies.
 COPY Gemfile /opt
 COPY Gemfile.lock /opt
