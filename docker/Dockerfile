@@ -57,6 +57,7 @@ FROM webapp as webapp-prod
 
 # Tell rails to serve static files & precompile them
 ENV RAILS_SERVE_STATIC_FILES=true
+RUN bin/yarn
 RUN NO_DATABASE=true SECRET_KEY_BASE=sekret bundle exec rake assets:precompile
 
 FROM webapp as webapp-dev
