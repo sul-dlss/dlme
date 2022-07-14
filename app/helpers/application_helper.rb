@@ -36,7 +36,7 @@ module ApplicationHelper
 
   def display_date_sort_context?
     !session[:disable_date_sort_context] &&
-      %w[date_old_to_new date_new_to_old].include?(search_state.sort_field.field)
+      %w[date_old_to_new date_new_to_old].include?(search_state.sort_field&.field)
   end
 
   private
