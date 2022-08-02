@@ -316,7 +316,6 @@ GEM
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     github-markup (4.0.1)
-    glob (0.2.2)
     globalid (1.0.0)
       activesupport (>= 5.0)
     guard (2.18.0)
@@ -764,7 +763,7 @@ DEPENDENCIES
   guard-rspec
   honeybadger
   http
-  i18n-js
+  i18n-js (< 4)
   i18n-tasks
   iiif-presentation (~> 1.0)
   jbuilder (~> 2.7)
