@@ -128,8 +128,7 @@ RSpec.describe SolrDocument do
 
     context '' do
       let(:source) do
-        {
-        }
+        {}
       end
 
       it 'is false' do
