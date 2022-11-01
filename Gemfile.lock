@@ -536,8 +536,6 @@ GEM
       ffi (~> 1.0)
     redcarpet (3.5.1)
     redis (4.5.1)
-    redis-client (0.10.0)
-      connection_pool
     regexp_parser (2.6.0)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -633,11 +631,10 @@ GEM
       websocket (~> 1.0)
     semantic_range (3.0.0)
     shellany (0.0.1)
-    sidekiq (7.0.0)
-      concurrent-ruby (< 2)
-      connection_pool (>= 2.3.0)
-      rack (>= 2.2.4)
-      redis-client (>= 0.9.0)
+    sidekiq (6.5.7)
+      connection_pool (>= 2.2.5)
+      rack (~> 2.0)
+      redis (>= 4.5.0, < 5)
     signet (0.17.0)
       addressable (~> 2.8)
       faraday (>= 0.17.5, < 3.a)
@@ -792,7 +789,7 @@ DEPENDENCIES
   rubocop-rspec
   sassc-rails
   selenium-webdriver
-  sidekiq
+  sidekiq (< 7)
   simplecov (~> 0.21)
   sitemap_generator
   slowpoke (~> 0.4)
@@ -807,4 +804,4 @@ DEPENDENCIES
   webpacker (~> 5.0)
 
 BUNDLED WITH
-   2.3.19
+   2.3.20
