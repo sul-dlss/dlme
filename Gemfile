@@ -71,7 +71,8 @@ end
 group :production do
   gem 'carrierwave-aws'
   gem 'pg'
-  gem 'sidekiq'
+  # Set sidekiq to < 7 until we move DLME on premise and update redis to >= 6
+  gem 'sidekiq', '< 7'
 end
 
 gem 'aws-sdk-sns'
