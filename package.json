@@ -1,25 +1,36 @@
 {
-  "name": "dlme",
+  "name": "app",
   "private": true,
   "dependencies": {
-    "@babel/core": "^7.7.5",
-    "@babel/preset-env": "^7.7.6",
-    "@babel/preset-react": "^7.7.4",
-    "@rails/webpacker": "^5.4.3",
-    "core-js": "^3.4.8",
-    "mirador": "^3.0.0-beta.10",
+    "@babel/core": "7",
+    "@babel/plugin-transform-runtime": "7",
+    "@babel/preset-env": "7",
+    "@babel/runtime": "7",
+    "@blueprintjs/core": "^4.13.0",
+    "@blueprintjs/icons": "^4.11.0",
+    "babel-loader": "8",
+    "browser": "^0.2.6",
+    "compression-webpack-plugin": "9",
+    "mirador": "^3.3.0",
     "mirador-image-tools": "^0.11.0",
-    "prop-types": "^15.7.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "unfetch": "^4.1.0",
-    "url-polyfill": "^1.1.7",
-    "webpack-cli": "^4.9.2"
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "shakapacker": "6.5.4",
+    "terser-webpack-plugin": "5",
+    "url": "^0.11.0",
+    "webpack": "5",
+    "webpack-assets-manifest": "5",
+    "webpack-cli": "4",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "5"
   },
-  "devDependencies": {
-    "@babel/plugin-transform-runtime": "^7.17.0",
-    "@webpack-cli/serve": "^1.6.1",
-    "babel-loader": "^8.2.3",
-    "webpack-dev-server": "^4.7.4"
-  }
+  "version": "0.1.0",
+  "babel": {
+    "presets": [
+      "./node_modules/shakapacker/package/babel/preset.js"
+    ]
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }
