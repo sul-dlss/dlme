@@ -15,11 +15,6 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-// Polyfills needed for IE and Edge
-import 'core-js/stable';
-import 'url-polyfill/url-polyfill';
-import 'unfetch/polyfill';
-
 import Mirador from 'mirador/dist/es/src/index.js';
 import miradorImageToolsPlugin from 'mirador-image-tools/es/plugins/miradorImageToolsPlugin.js';
 

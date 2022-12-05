@@ -109,7 +109,7 @@ gem 'slowpoke', '~> 0.4'
 gem 'bootstrap', '~> 4.0'
 gem 'font-awesome-rails'
 
-gem 'webpacker', '~> 5.0'
+gem 'shakapacker', '~> 6.4'
 
 gem 'cache_with_locale'
 
