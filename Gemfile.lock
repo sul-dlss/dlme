@@ -779,7 +779,7 @@ DEPENDENCIES
   rspec_junit_formatter
   rubocop (~> 1.0)
   rubocop-performance
-  rubocop-rails (> 2.7, != 2.8.0)
+  rubocop-rails
   rubocop-rspec
   sassc-rails
   selenium-webdriver
