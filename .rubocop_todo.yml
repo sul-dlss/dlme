@@ -88,15 +88,6 @@ Style/CommentAnnotation:
   Exclude:
     - 'Guardfile'
 
-# Offense count: 4
-# Configuration parameters: AllowedConstants.
-Style/Documentation:
-  Exclude:
-    - 'app/helpers/application_helper.rb'
-    - 'app/models/application_record.rb'
-    - 'app/models/solr_document.rb'
-    - 'app/models/user.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
