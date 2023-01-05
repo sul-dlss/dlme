@@ -762,7 +762,6 @@ DEPENDENCIES
   iiif-presentation (~> 1.0)
   jbuilder (~> 2.7)
   jquery-rails
-  listen (~> 3.3)
   lograge
   okcomputer
   pg
