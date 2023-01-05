@@ -50,8 +50,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rubocop', '~> 1.0'
   gem 'rubocop-performance'
-  # Don't use rubocop-rails 2.8.0 (it has a bug that fails our builds)
-  gem 'rubocop-rails', '> 2.7', '!= 2.8.0'
+  gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'solr_wrapper'
   gem 'webdrivers'
