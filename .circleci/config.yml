@@ -74,8 +74,8 @@ jobs:
     # Only necessary if app uses webpacker or yarn in some other way
     - restore_cache:
         keys:
-          - dlme-yarn-{{ checksum "yarn.lock" }}
-          - dlme-yarn-
+          - dlme-yarn-v3-{{ checksum "yarn.lock" }}
+          - dlme-yarn-v3
 
     - run:
           name: Yarn Install
@@ -83,7 +83,7 @@ jobs:
 
     # Store yarn / webpacker cache
     - save_cache:
-        key: dlme-yarn-{{ checksum "yarn.lock" }}
+        key: dlme-yarn-v3-{{ checksum "yarn.lock" }}
         paths:
           - ~/.cache/yarn
 
