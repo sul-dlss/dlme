@@ -38,8 +38,8 @@ jobs:
         ZOO_SERVERS: zoo1:2888:3888
         ZOO_ADMIN_SERVER_PORT_NUMBER: 8020
     steps:
-    - browser-tools/install-browser-tools
     - checkout
+    - browser-tools/install-browser-tools
     - run: |
         google-chrome --version
     # Upgrade bundler
