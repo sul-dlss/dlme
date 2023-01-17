@@ -52,13 +52,6 @@ jobs:
         name: Which bundler?
         command: bundle -v
 
-    # Restore bundle cache
-    - restore_cache:
-        keys:
-        - dlme-bundle-v3-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-        - dlme-bundle-v3-{{ arch }}-{{ .Branch }}
-        - dlme-bundle-v3-
-
     - run:
         name: Bundle Install
         command: bundle check || bundle install
@@ -70,12 +63,6 @@ jobs:
         key: dlme-bundle-v3-{{ arch }}-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
         paths:
         - vendor/bundle
-
-    # Only necessary if app uses webpacker or yarn in some other way
-    - restore_cache:
-        keys:
-          - dlme-yarn-v3-{{ checksum "yarn.lock" }}
-          - dlme-yarn-v3
 
     - run:
           name: Yarn Install
