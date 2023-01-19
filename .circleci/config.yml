@@ -39,7 +39,7 @@ jobs:
         ZOO_ADMIN_SERVER_PORT_NUMBER: 8020
     steps:
     - checkout
-    - browser-tools/install-browser-tools
+    - browser-tools/install-chrome
     - run: |
         google-chrome --version
     # Upgrade bundler
