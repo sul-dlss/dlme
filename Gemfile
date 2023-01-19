@@ -22,7 +22,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 4.5.1' # 4.6.0 spews deprecation warnings out of sidekiq
+gem 'redis', '~> 5.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -68,8 +68,7 @@ end
 group :production do
   gem 'carrierwave-aws'
   gem 'pg'
-  # Set sidekiq to < 7 until we move DLME on premise and update redis to >= 6
-  gem 'sidekiq', '< 7'
+  gem 'sidekiq', '~> 7.0'
 end
 
 gem 'aws-sdk-sns'
