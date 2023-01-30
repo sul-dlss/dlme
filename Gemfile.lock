@@ -531,10 +531,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redcarpet (3.6.0)
-    redis (5.0.6)
-      redis-client (>= 0.9.0)
-    redis-client (0.12.1)
-      connection_pool
+    redis (4.5.1)
     regexp_parser (2.6.2)
     reline (0.3.2)
       io-console (~> 0.5)
@@ -637,11 +634,10 @@ GEM
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
     shellany (0.0.1)
-    sidekiq (7.0.3)
-      concurrent-ruby (< 2)
-      connection_pool (>= 2.3.0)
-      rack (>= 2.2.4)
-      redis-client (>= 0.11.0)
+    sidekiq (6.5.8)
+      connection_pool (>= 2.2.5, < 3)
+      rack (~> 2.0)
+      redis (>= 4.5.0, < 5)
     signet (0.17.0)
       addressable (~> 2.8)
       faraday (>= 0.17.5, < 3.a)
@@ -778,7 +774,7 @@ DEPENDENCIES
   rails (~> 7.0)
   rails-controller-testing
   rails_autolink
-  redis (~> 5.0)
+  redis (~> 4.5.1)
   riiif (~> 2.0)
   rsolr (>= 1.0)
   rspec-rails
@@ -790,7 +786,7 @@ DEPENDENCIES
   sassc-rails
   selenium-webdriver
   shakapacker (~> 6.4)
-  sidekiq (~> 7.0)
+  sidekiq (< 7)
   simplecov (~> 0.21)
   sitemap_generator
   slowpoke (~> 0.4)
