@@ -211,71 +211,71 @@ jobs:
           docker push $WORKER_IMAGE_NAME:$CIRCLE_TAG
           docker push $WORKER_IMAGE_NAME:release
 
-  update_ecs_dev:
-    executor: aws-cli/default
-    environment:
-      DLME_DEPLOY_REGION: us-west-2
-    steps:
-      - aws-cli/setup:
-          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
-          aws-secret-access-key: CIRCLE_SECRET_KEY
-          aws-region: DLME_DEPLOY_REGION
-          profile-name: dlme
-      - assume_role:
-          role_arn: DEV_ROLE_ARN
-          source-profile: dlme
-      - update_ecs:
-          ecs_cluster_name: ":cluster/dlme-dev"
+  # update_ecs_dev:
+  #   executor: aws-cli/default
+  #   environment:
+  #     DLME_DEPLOY_REGION: us-west-2
+  #   steps:
+  #     - aws-cli/setup:
+  #         aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+  #         aws-secret-access-key: CIRCLE_SECRET_KEY
+  #         aws-region: DLME_DEPLOY_REGION
+  #         profile-name: dlme
+  #     - assume_role:
+  #         role_arn: DEV_ROLE_ARN
+  #         source-profile: dlme
+  #     - update_ecs:
+  #         ecs_cluster_name: ":cluster/dlme-dev"
 
-  update_ecs_uat:
-    executor: aws-cli/default
-    environment:
-      DLME_DEPLOY_REGION: us-west-2
-    steps:
-      - aws-cli/setup:
-          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
-          aws-secret-access-key: CIRCLE_SECRET_KEY
-          aws-region: DLME_DEPLOY_REGION
-          profile-name: dlme
-      - assume_role:
-          role_arn: STAGE_ROLE_ARN
-          source-profile: dlme
-      - update_ecs:
-          ecs_cluster_name: ":cluster/dlme-uat"
-          webapp_service: spotlight-uat
-          worker_service: dlme-uat-worker
+  # update_ecs_uat:
+  #   executor: aws-cli/default
+  #   environment:
+  #     DLME_DEPLOY_REGION: us-west-2
+  #   steps:
+  #     - aws-cli/setup:
+  #         aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+  #         aws-secret-access-key: CIRCLE_SECRET_KEY
+  #         aws-region: DLME_DEPLOY_REGION
+  #         profile-name: dlme
+  #     - assume_role:
+  #         role_arn: STAGE_ROLE_ARN
+  #         source-profile: dlme
+  #     - update_ecs:
+  #         ecs_cluster_name: ":cluster/dlme-uat"
+  #         webapp_service: spotlight-uat
+  #         worker_service: dlme-uat-worker
 
-  update_ecs_stage:
-    executor: aws-cli/default
-    environment:
-      DLME_DEPLOY_REGION: us-west-2
-    steps:
-      - aws-cli/setup:
-          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
-          aws-secret-access-key: CIRCLE_SECRET_KEY
-          aws-region: DLME_DEPLOY_REGION
-          profile-name: dlme
-      - assume_role:
-          role_arn: STAGE_ROLE_ARN
-          source-profile: dlme
-      - update_ecs:
-          ecs_cluster_name: "arn:aws:ecs:us-west-2:[0-9]+:cluster/dlme$"
+  # update_ecs_stage:
+  #   executor: aws-cli/default
+  #   environment:
+  #     DLME_DEPLOY_REGION: us-west-2
+  #   steps:
+  #     - aws-cli/setup:
+  #         aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+  #         aws-secret-access-key: CIRCLE_SECRET_KEY
+  #         aws-region: DLME_DEPLOY_REGION
+  #         profile-name: dlme
+  #     - assume_role:
+  #         role_arn: STAGE_ROLE_ARN
+  #         source-profile: dlme
+  #     - update_ecs:
+  #         ecs_cluster_name: "arn:aws:ecs:us-west-2:[0-9]+:cluster/dlme$"
 
-  update_ecs_prod:
-    executor: aws-cli/default
-    environment:
-      DLME_DEPLOY_REGION: us-west-2
-    steps:
-      - aws-cli/setup:
-          aws-access-key-id: CIRCLE_ACCESS_KEY_ID
-          aws-secret-access-key: CIRCLE_SECRET_KEY
-          aws-region: DLME_DEPLOY_REGION
-          profile-name: dlme
-      - assume_role:
-          role_arn: PROD_ROLE_ARN
-          source-profile: dlme
-      - update_ecs:
-          ecs_cluster_name: ":cluster/dlme"
+  # update_ecs_prod:
+  #   executor: aws-cli/default
+  #   environment:
+  #     DLME_DEPLOY_REGION: us-west-2
+  #   steps:
+  #     - aws-cli/setup:
+  #         aws-access-key-id: CIRCLE_ACCESS_KEY_ID
+  #         aws-secret-access-key: CIRCLE_SECRET_KEY
+  #         aws-region: DLME_DEPLOY_REGION
+  #         profile-name: dlme
+  #     - assume_role:
+  #         role_arn: PROD_ROLE_ARN
+  #         source-profile: dlme
+  #     - update_ecs:
+  #         ecs_cluster_name: ":cluster/dlme"
 
 commands:
   # Use our own assume_role implementation because the upstream support in aws-cli
@@ -358,18 +358,18 @@ workflows:
         filters:
           branches:
             only: main
-    - update_ecs_dev:
-        requires:
-        - publish-latest
-        filters:
-          branches:
-            only: main
-    - update_ecs_uat:
-        requires:
-        - publish-latest
-        filters:
-          branches:
-            only: main
+    # - update_ecs_dev:
+    #     requires:
+    #     - publish-latest
+    #     filters:
+    #       branches:
+    #         only: main
+    # - update_ecs_uat:
+    #     requires:
+    #     - publish-latest
+    #     filters:
+    #       branches:
+    #         only: main
   build-tags:
     jobs:
     - build-image:
@@ -386,19 +386,19 @@ workflows:
             only: /^[0-9]+\.[0-9]+\.[0-9]+/
           branches:
             ignore: /.*/
-    - update_ecs_stage:
-        requires:
-        - publish-tag
-        filters:
-          tags:
-            only: /^[0-9]+\.[0-9]+\.[0-9]+/
-          branches:
-            ignore: /.*/
-    - update_ecs_prod:
-        requires:
-        - publish-tag
-        filters:
-          tags:
-            only: /^[0-9]+\.[0-9]+\.[0-9]+/
-          branches:
-            ignore: /.*/
+    # - update_ecs_stage:
+    #     requires:
+    #     - publish-tag
+    #     filters:
+    #       tags:
+    #         only: /^[0-9]+\.[0-9]+\.[0-9]+/
+    #       branches:
+    #         ignore: /.*/
+    # - update_ecs_prod:
+    #     requires:
+    #     - publish-tag
+    #     filters:
+    #       tags:
+    #         only: /^[0-9]+\.[0-9]+\.[0-9]+/
+    #       branches:
+    #         ignore: /.*/
