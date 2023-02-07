@@ -78,7 +78,7 @@ services:
     ports:
       - "4566:4566"
     environment:
-      SERVICES: sns,s3
+      SERVICES: s3
       DOCKER_HOST: unix:///var/run/docker.sock
       DEBUG: 1
 

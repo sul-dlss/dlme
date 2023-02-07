@@ -151,7 +151,5 @@ ar:
         total_html: المواد &middot; %{total}
     header: إحصائيات
   transforms:
-    notification:
-      sent: تم إرسال طلب التحويل.
     show:
       header: حوّل البيانات

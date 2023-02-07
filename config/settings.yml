@@ -24,9 +24,6 @@ contact:
 s3:
   upload_bucket: ~
 
-sns:
-  topic_arn: ~
-
 allow_robots: false
 
 feature_flags:
