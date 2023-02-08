@@ -90,9 +90,6 @@ GEM
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.4)
-    aws-sdk-sns (1.59.0)
-      aws-sdk-core (~> 3, >= 3.165.0)
-      aws-sigv4 (~> 1.1)
     aws-sigv4 (1.5.2)
       aws-eventstream (~> 1, >= 1.0.2)
     babel-source (5.8.35)
@@ -737,7 +734,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  aws-sdk-sns
   blacklight (~> 7.14)
   blacklight-gallery (~> 4.0)
   blacklight-hierarchy

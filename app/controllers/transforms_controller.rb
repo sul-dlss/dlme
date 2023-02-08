@@ -9,10 +9,4 @@ class TransformsController < ApplicationController
   def show
     authorize! :create, :transform
   end
-
-  def create
-    authorize! :create, :transform
-    TransformNotification.publish(params['data_dir'])
-    redirect_to transform_path, notice: t('transforms.notification.sent')
-  end
 end

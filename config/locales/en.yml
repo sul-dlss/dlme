@@ -134,7 +134,5 @@ en:
         total_html: Items &middot; %{total}
     header: Statistics
   transforms:
-    notification:
-      sent: Transform request sent.
     show:
       header: Transform data

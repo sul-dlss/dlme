@@ -47,7 +47,7 @@ Rails.application.routes.draw do
       post "catalog/:id/record_feedback" => "record_feedback#create", id: %r{.+}
     end
 
-    resource :transform, only: [:show, :create]
+    resource :transform, only: :show
     resource :robots, only: [:show], format: 'txt'
 
     resource :transform_result, only: [:create, :show]

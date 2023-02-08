@@ -15,25 +15,15 @@ You can read more about our data and related documentation in our [data document
 
 ## Configuration
 
-The AWS deployment needs to provide the follow environment configuration:
+The deployment needs to provide the follow environment configuration:
 
 ```
 AWS_ACCESS_KEY_ID
 AWS_REGION
 AWS_SECRET_ACCESS_KEY
 SECRET_KEY_BASE
-SETTINGS__SNS__TOPIC_ARN
 SETTINGS__ALLOW_ROBOTS
 SOLR_URL
-```
-
-And these database configuration settings:
-```
-  database: "<%= ENV['RDS_DB_NAME'] %>"
-  username: "<%= ENV['RDS_USERNAME'] %>"
-  password: "<%= ENV['RDS_PASSWORD'] %>"
-  host: "<%= ENV['RDS_HOSTNAME'] %>"
-  port: "<%= ENV['RDS_PORT'] %>"
 ```
 
 ## Local Development
@@ -154,57 +144,6 @@ $ bin/yarn install
 ```
 
 The `docker ps -aq` command should return no containers. If container ids are returned, restart docker and run `docker system prune -a -f --volumes` again. Once these are complete rerun the commands above for starting docker. Note: for local transforms you will need to rebuild the dlme-transform container again as well. 
-
-### Local transforms
-
-Requires docker. If you are doing work on the DLME application you may not need to do local transforms and instead may be able to pull transform results from an S3 bucket.
-
-First, install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html).
-
-Configure AWS CLI to use localstack-run endpoints:
-
-```
-AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws sns \
-    --endpoint-url=http://localhost:4566 create-topic \
-    --region us-east-1 \
-    --name dlme-transform
-
-AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws s3api \
-    --endpoint-url=http://localhost:4566 create-bucket \
-    --region us-east-1 \
-    --bucket dlme-transform
-
-AWS_ACCESS_KEY_ID=999999 AWS_SECRET_ACCESS_KEY=1231 aws sns \
-    --endpoint-url=http://localhost:4566 subscribe \
-    --topic-arn arn:aws:sns:us-east-1:000000000000:dlme-transform \
-    --protocol http \
-    --region us-east-1 \
-    --notification-endpoint http://app:3000/transform_result
-```
-
-Note that this will need to be repeated every time localstack is started.
-
-Make sure you have cloned the [dlme-metadata](https://github.com/sul-dlss/dlme-metadata) and [dlme-transform](https://github.com/sul-dlss/dlme-transform) repositories in sibling directories to the `dlme` directory.
-
-To perform a local transform that will write to localstack S3 and send a notification to localstack SNS:
-
-```
-docker run --rm -e S3_BUCKET=dlme-transform \
-                -e AWS_ACCESS_KEY_ID=999999 \
-                -e AWS_SECRET_ACCESS_KEY=1231 \
-                -e AWS_DEFAULT_REGION=us-east-1 \
-                -e SNS_TOPIC_ARN=arn:aws:sns:us-east-1:000000000000:dlme-transform \
-                -e SNS_ENDPOINT_URL=http://localhost:4566 \
-                -e S3_ENDPOINT_URL=http://localhost:4566 \
-                -e S3_BASE_URL=http://localstack:4566 \
-                -e SKIP_FETCH_DATA=true \
-                -v $(pwd)/../dlme-transform:/opt/traject \
-                -v $(pwd)/../dlme-metadata:/opt/traject/data \
-                -v $(pwd)/tmp/output:/opt/traject/output \
-                --network="host" \
-                suldlss/dlme-transform:latest \
-                stanford/maps/data/kj751hs0595.mods
-```
 
 ## Deployment
 ### Building

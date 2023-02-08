@@ -16,19 +16,4 @@ RSpec.describe TransformsController do
       expect(response).to be_successful
     end
   end
-
-  describe 'POST create' do
-    let(:data_dir) { 'stanford/maps' }
-
-    before do
-      allow(TransformNotification).to receive(:publish)
-    end
-
-    it 'redirects to the list page' do
-      post :create, params: { data_dir: data_dir }
-      expect(TransformNotification).to have_received(:publish).with(data_dir)
-      expect(flash[:notice]).to be_present
-      expect(response).to redirect_to transform_path
-    end
-  end
 end
