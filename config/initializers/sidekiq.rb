@@ -1,9 +1,9 @@
-if defined? Sidekiq
+if defined?(Sidekiq) && ENV['SIDEKIQ_REDIS_URL']
   Sidekiq.configure_server do |config|
-    config.redis = { url: "redis://#{ENV['REDIS_HOST']}:#{ENV['REDIS_PORT']}/1" }
+    config.redis = { url: ENV.fetch('SIDEKIQ_REDIS_URL') }
   end
 
   Sidekiq.configure_client do |config|
-    config.redis = { url: "redis://#{ENV['REDIS_HOST']}:#{ENV['REDIS_PORT']}/1" }
+    config.redis = { url: ENV.fetch('SIDEKIQ_REDIS_URL') }
   end
 end
