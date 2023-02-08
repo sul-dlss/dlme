@@ -62,25 +62,8 @@ $ bundle exec rake spotlight:initialize
 
 
 ### With Docker
-For the local development described below, the webapp will be running in a docker container in development mode. Local
-code will be shared into the container so that the webapp will be dynamically reloaded.
+You may choose to run the dependencies using docker compose.
 
-#### Initial setup
-To get the development environment set up for the first time, you'll need to build the container images and prepare the database. You only need to do this once.
-```sh
-$ docker compose up --build
-$ docker compose run --rm app rake spotlight:initialize
-```
-
-The first run will take some time to build the containers and to install dependencies. Check the logs for the app container to see when the rails server is ready to accept connections.
-
-Once the DLME Rails app is running you can create an exhibit. To match production, the title will need to be `dlme` and the URL slug will need to be `library`. 
-
-Once your new exhibit is created, you can index some test data:
-```sh
-$ docker compose run --rm app "rake resources:import[spec/fixtures/ndjson/sample.ndjson]"
-```
-Alternatively, you can do this interactively by navigating to the exhibit dashboard, choosing "Items" under the "Curation" menu on the left, and clicking "Add Items".
 #### Stopping and starting
 You can stop the entire stack with:
 ```sh
@@ -92,11 +75,12 @@ $ docker compose up     # add -d to run in the background and silence logs
 ```
 You can stop and start individual containers by referring to them by their service name from `docker-compose.yml`:
 ```sh
-$ docker compose stop app
+$ docker compose stop solr
 ```
 For more, see the [`docker compose` CLI reference](https://docs.docker.com/compose/reference/#command-options-overview-and-help).
+
 #### Managing data
-Data for the solr, redis, and postgres services are persisted using docker named volumes. You can see what volumes are currently present with:
+Data for the solr and redis services are persisted using docker named volumes. You can see what volumes are currently present with:
 ```sh
 $ docker volume ls
 ```
@@ -104,94 +88,6 @@ If you want to remove a volume (e.g. to start with a fresh database or solr core
 ```sh
 $ docker volume rm dlme_solr-data   # to remove the solr data
 ```
-Note that you will need to re-run the `spotlight:initialize` rake task if you destroy the database (see above under "initial setup"). For solr, removing the volume will preserve the core config, but the index data will be cleared.
-#### Local Gem Development with Docker
-
-1. Mount a volume connecting the local directory to (an arbitrarily named) directory accessible to the container. For example, for developing in the `blacklight-hierarchy` gem, add this to the DLME `docker-compose.yml`.
-```
- volumes:
-      - "/<your-local-path>/blacklight-hierarchy:/opt/local-gems/blacklight-hierarchy"
-```
-
-2. Restart the `dlme-app-1` container.
-
-3. In the DLME `Gemfile` use the `path` option, for example:
-`gem 'blacklight-hierarchy', path: '/opt/local-gems/blacklight-hierarchy'`
-
-4. Enter the app container with `docker exec -it dlme-app-1 /bin/sh` and run `bundle install`. You should see output like the following:
-   ```
-   Using blacklight-hierarchy 5.4.0 from source at `/opt/local-gems/blacklight-hierarchy`
-
-   ```
-
-5. To see code changes in your gem reflected in your local environment, enter the app container with `docker exec -it dlme-app-1 /bin/sh` and run `rails restart`. 
-
-#### Resetting Docker
-You may wish to completely recreate the docker stack, removing all containers and volumes. This can be done with:
-```sh
-$ docker container prune
-$ docker volume prune
-```
-Then rerun the commands above under "initial setup".
-
-In some cases Docker container versions may get stale and more thorough steps may be required. To completely clear all docker containers, pull new ones, and install packages:
-```sh
-$ docker system prune -a -f --volumes
-$ docker ps -aq
-$ docker compose pull
-$ bin/yarn install
-```
-
-The `docker ps -aq` command should return no containers. If container ids are returned, restart docker and run `docker system prune -a -f --volumes` again. Once these are complete rerun the commands above for starting docker. Note: for local transforms you will need to rebuild the dlme-transform container again as well. 
-
-## Deployment
-### Building
-You can build local versions of the application and worker containers using docker:
-```sh
-docker build . -f docker/Dockerfile -t suldlss/dlme --target webapp_prod # webapp_dev for development
-docker build . -f docker/Dockerfile -t suldlss/dlme-worker --target worker # for the worker container 
-```
-This can be useful to inspect the actual contents of the image to see what CircleCI will build as part of the continuous deployment process (see below). To spin up a copy of an image for inspection:
-```sh
-docker run -it --rm suldlss/dlme:latest /bin/sh
-```
-The `--rm` switch will remove the container after it exits, so that you can use it to inspect the filesystem and then clean it up automatically.
-### Deploying
-The app's four deployment environments are hosted on AWS through the [Elastic Container Service](https://aws.amazon.com/ecs/features/?pg=ln&sec=gs) and managed through [Terraform](https://www.terraform.io/) configs ([Development](https://github.com/sul-dlss/terraform-aws/blob/master/organizations/development/dlme/README.md) / [Staging](https://github.com/sul-dlss/terraform-aws/blob/master/organizations/staging/dlme/README.md) / [UAT](https://github.com/sul-dlss/terraform-aws/tree/master/organizations/staging/dlme-uat) / [Production](https://github.com/sul-dlss/terraform-aws/blob/master/organizations/production/dlme/README.md)).
-
-There are two continuous deployment workflows in place:
-
-- When code is merged to `main`, the CircleCI `build` workflow will build a new docker image, tag it as `suldlss/dlme:latest`, and deploy it to the **development** and **UAT** environments.
-- When a new release is published on GitHub, the CircleCI `build-tags` workflow will build a new docker image, tag it as `suldlss/dlme:<version>`, and deploy it to the **staging** and **production** environments.
-
-To publish a new release, first create a tag:
-```sh
-git tag 1.1.3   # for v1.1.3
-git push origin --tags
-```
-Then go to https://github.com/sul-dlss/dlme/releases/new?tag=1.1.3 and click "Publish Release". This will trigger the CircleCI `build-tags` workflow.
-
-### Debugging
-#### Setup
-The app containers run in a managed serverless environment called [AWS Fargate](https://aws.amazon.com/fargate/). In this context, there is no access to the Docker VM hosting the containers. To get access to the running containers themselves, you can use the [ECS Exec feature](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-exec.html).
-
-ECS Exec requires several tools be installed and permissions be correctly set. To ensure that your local machine is ready to use it, you can use the [ECS Exec Checker](https://github.com/aws-containers/amazon-ecs-exec-checker) utility provided by Amazon. Before using the checker, ensure you have correctly configured your AWS CLI with sul-dlss profiles according to [the documentation provided by Ops](https://github.com/sul-dlss/terraform-aws/wiki/AWS-DLSS-Dev-Env-Setup). You also need the command-line tool `jq`, which can be installed via homebrew.
-
-To use the checker, you need to supply both the name of the ECS cluster you wish to connect to (e.g. `dlme-dev`) and the task ID of the container you wish to connect to (e.g. `339b3bdc1a92400985bf6f033545169e`). Both of these can be found in the [AWS ECS Console](https://us-west-2.console.aws.amazon.com/ecs/v2/) under the "Clusters" tab. Task IDs are visible once you select a service (the main app is called `spotlight`) and visit the "Configuration and Tasks" tab. Select a task and its ID will be at the top of the page. Note that you need to be using the correct profile in the AWS console to see the cluster you want to debug (see below).
-
-Before using the checker, specify which profile should be used to connect to the environment you want to debug. For development, this is the `development` profile. For UAT and Staging, it's `staging`. Production currently doesn't support the usage of ECS Exec by developers using the `ReadOnlyRole`. Set the profile as an environment variable in your shell, then run the checker:
-```sh
-export AWS_PROFILE=development  # or staging
-./check-ecs-exec dlme-dev 339b3bdc1a92400985bf6f033545169e
-```
-
-The checker should run and not report any errors (red text). If it does, see the [documentation on checks and what they mean](https://github.com/aws-containers/amazon-ecs-exec-checker#checks) for how to proceed.
-#### Execution
-Once ECS Exec is working on your local machine, you can get an interactive shell on the container, similar to using `docker exec`:
-```sh
-aws ecs execute-command --cluster dlme-dev --task 339b3bdc1a92400985bf6f033545169e --command /bin/sh --profile development --interactive
-```
-Use caution when altering the environment of a running container. Remember that **your changes are ephemeral and will be overwritten** anytime a newer version of the container is deployed!
 
 ## Converting files
 
