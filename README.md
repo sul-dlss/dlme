@@ -1,5 +1,4 @@
-[![CircleCI](https://circleci.com/gh/sul-dlss/dlme.svg?style=svg)](https://circleci.com/gh/sul-dlss/dlme)
-[![Coverage Status](https://coveralls.io/repos/github/sul-dlss/dlme/badge.svg)](https://coveralls.io/github/sul-dlss/dlme)
+[![CI](https://github.com/sul-dlss/dlme/actions/workflows/ruby.yml/badge.svg)](https://github.com/sul-dlss/dlme/actions/workflows/ruby.yml)
 ![Ruby Version](https://img.shields.io/badge/ruby-3.0-red)
 
 # Digital Library of the Middle East
