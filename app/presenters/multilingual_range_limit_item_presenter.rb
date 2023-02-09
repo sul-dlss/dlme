@@ -1,15 +1,11 @@
 # frozen_string_literal: true
 
-# Override range limit provided helpers
-module OverrideRangeLimitHelper
-  include RangeLimitHelper
-
-  ##
-  # Overriden helper to add the BH/H and BCE/CE to labels
-  def format_range_display_value(value, solr_field)
+# The view-model for one item in the range limit facet
+class MultilingualRangeLimitItemPresenter < BlacklightRangeLimit::FacetItemPresenter
+  def format_range_display_value(value)
     value_int = value.to_i
 
-    case solr_field
+    case key
     # Hijiri date
     when 'cho_date_range_hijri_isim'
       return t('date.bh', year: value_int * -1) if value_int.negative?
@@ -22,4 +18,6 @@ module OverrideRangeLimitHelper
       value
     end
   end
+
+  delegate :t, to: :I18n
 end
