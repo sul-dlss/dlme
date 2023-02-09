@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  # Displays the hierarchy of types as a list of links to the various type facets
   def link_type_hierarchy(document:, config: nil, **)
     # this should be the same as the kwarg `values`, but for some reason is currently blank
     values = Blacklight::FieldRetriever.new(document, config).fetch
@@ -10,12 +11,18 @@ module ApplicationHelper
     return unless values
 
     safe_join(
-      values.each_with_index.collect do |value, index|
+      values.each_with_index.collect do |label, index|
         facet_value = values[0, index + 1].join(':')
-        link_to(value, path_for_facet(link_to_config_pattern(config), facet_value))
+        link_to(label, facet_path_for_type(config, facet_value))
       end,
       ' › '
     )
+  end
+
+  def facet_path_for_type(config, facet_value)
+    facet_field = link_to_config_pattern(config)
+    facet_config = facet_configuration_for_field(facet_field)
+    facet_item_presenter(facet_config, facet_value, facet_field).href
   end
 
   # Generate a display value for multi-calendar date ranges
