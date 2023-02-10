@@ -21,8 +21,6 @@ cache_period: <%= 12.hours %>
 contact:
   email: ~
 
-s3:
-  upload_bucket: ~
 
 allow_robots: false
 
