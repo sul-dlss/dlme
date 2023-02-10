@@ -13,18 +13,15 @@ gem 'sprockets-rails'
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
 gem 'sassc-rails'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-# gem 'webpacker', '~> 5.0'
+
 # Use Terser as compressor for JavaScript assets
 gem 'terser', '~> 1.1'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
-# Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 4.5.1' # 4.6.0 spews deprecation warnings out of sidekiq
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# Use Redis adapter for caching in production
+gem 'redis', '~> 5.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -68,8 +65,7 @@ end
 group :production do
   gem 'carrierwave-aws'
   gem 'pg'
-  # Set sidekiq to < 7 until we move DLME on premise and update redis to >= 6
-  gem 'sidekiq', '< 7'
+  gem 'sidekiq', '~> 7.0'
 end
 
 group :deployment do
