@@ -127,6 +127,7 @@ class CatalogController < ApplicationController
                            field: 'cho_date_range_norm_isim',
                            range: true,
                            component: MultilingualDateRangeComponent,
+                           item_presenter: MultilingualRangeLimitItemPresenter,
                            configured_range_fields: [
                              { field: 'cho_date_range_norm_isim', type: 'gregorian' },
                              { field: 'cho_date_range_hijri_isim', type: 'hijri' }
@@ -136,6 +137,7 @@ class CatalogController < ApplicationController
                            field: 'cho_date_range_hijri_isim',
                            range: true,
                            component: MultilingualDateRangeComponent,
+                           item_presenter: MultilingualRangeLimitItemPresenter,
                            configured_range_fields: [
                              { field: 'cho_date_range_norm_isim', type: 'gregorian' },
                              { field: 'cho_date_range_hijri_isim', type: 'hijri' }
