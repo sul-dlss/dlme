@@ -24,6 +24,8 @@ contact:
 s3:
   upload_bucket: ~
 
+data_dir: tmp/data
+
 allow_robots: false
 
 feature_flags:

@@ -32,10 +32,6 @@ RSpec.describe NdjsonNormalizer do
     it 'has an ndjson attribute' do
       expect(normalizer.ndjson).to eq(ndjson)
     end
-
-    it 'has a url attribute' do
-      expect(normalizer.url).to eq(url)
-    end
   end
 
   describe '#normalize' do
