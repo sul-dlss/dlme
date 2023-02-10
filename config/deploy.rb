@@ -42,6 +42,9 @@ set :linked_dirs, %w[log tmp/pids tmp/cache tmp/sockets vendor/bundle public/upl
 # honeybadger_env otherwise defaults to rails_env
 set :honeybadger_env, fetch(:stage)
 
+# Allow dlss-capistrano to manage sidekiq via systemd
+set :sidekiq_systemd_use_hooks, true
+
 before "deploy:assets:precompile", "deploy:yarn_install"
 
 namespace :deploy do
