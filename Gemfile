@@ -106,7 +106,7 @@ gem 'slowpoke', '~> 0.4'
 gem 'bootstrap', '~> 4.0'
 gem 'font-awesome-rails'
 
-gem 'shakapacker', '~> 6.4'
+gem 'shakapacker', '6.5.5' # v6.5.6 will not deploy, cannot find webpack
 
 gem 'cache_with_locale'
 
