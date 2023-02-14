@@ -22,10 +22,12 @@ contact:
   email: ~
 
 
+data_dir: tmp/data
+
 allow_robots: false
 
 feature_flags:
-  allow_json_upload: false
+  allow_json_upload: true
 
 searching_site_slug: 'searching-this-site'
 

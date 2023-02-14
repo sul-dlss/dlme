@@ -3,21 +3,21 @@
 # Splits and normalizes newline-delimited JSON
 class NdjsonNormalizer
   # @param [String] ndjson a string consisting of one or more lines of newline-delimited JSON
-  # @param [String] url URL from which the json was fetched
+  # @param [String] label how we refer to this file (e.g. path)
   # @return [Array<Hash>]
-  def self.normalize(ndjson, url)
-    new(ndjson, url).normalize
+  def self.normalize(ndjson, label)
+    new(ndjson, label).normalize
   end
 
   DELIMITER = "\n"
 
-  attr_reader :ndjson, :url
+  attr_reader :ndjson, :label
 
   # @param [String] ndjson a string consisting of one or more lines of newline-delimited JSON
-  # @param [String] url URL from which the json was fetched
-  def initialize(ndjson, url)
+  # @param [String] label how we refer to this file (e.g. path)
+  def initialize(ndjson, label)
     @ndjson = ndjson
-    @url = url
+    @label = label
   end
 
   # @return [Array<Hash>]
@@ -25,7 +25,7 @@ class NdjsonNormalizer
     ndjson.split(DELIMITER).compact_blank.map.with_index do |json_string, index|
       JSON.parse(json_string)
     rescue JSON::ParserError
-      raise "Resource #{index + 1} in #{url} is invalid JSON: #{json_string}"
+      raise "Resource #{index + 1} in #{label} is invalid JSON: #{json_string}"
     end
   end
 end

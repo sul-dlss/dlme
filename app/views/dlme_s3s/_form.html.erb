@@ -1,4 +1,4 @@
-<%= bootstrap_form_tag(url: exhibit_s3_harvester_path(exhibit_id: current_exhibit),
+<%= bootstrap_form_tag(url: exhibit_harvests_path(exhibit_id: current_exhibit),
                        html: { class: 'form-horizontal' }) do |f| %>
   <div class="form-group">
     <%= label_tag :url, 'URL:', class: 'col-md-2 control-label' %>
