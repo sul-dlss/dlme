@@ -1,0 +1,6 @@
+<%# NOTE: This partial doesn't get called in Blacklight 8 %>
+<%= render(
+  DocumentMetadataComponent.new(
+    fields: document_presenter(document).field_presenters
+  )
+) %>
