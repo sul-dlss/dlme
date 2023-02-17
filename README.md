@@ -57,9 +57,12 @@ $ rails s
 You can create an admin user to login to the application by running Spotlight's `initialize` task.
 
 ```bash
-$ bundle exec rake spotlight:initialize
+$ bin/rails spotlight:initialize
 ```
 
+Index some data:
+  1. get a data file from the server's datadir such as `output-aims.ndjson`
+  1. `bin/rails runner "AddResourcesJob.perform_now('output-aims.ndjson', exhibit: Spotlight::Exhibit.first, local: true)"`
 
 ### With Docker
 You may choose to run the dependencies using docker compose.
