@@ -269,7 +269,7 @@ body {
   }
 }
 
-.topbar  .navbar-nav {
+.topbar .navbar-nav {
   text-transform: none;
   .nav-link {
     color: $color-gray-lightest;
@@ -346,6 +346,7 @@ body {
     border: 0;
   }
 
+  // Hide the masthead title on mobile, because we render it in the navbar
   .masthead .site-title-container {
     display: none;
   }
@@ -397,7 +398,8 @@ body {
   }
 }
 
-// Turn off transparency for the topbar on pages where there's no masthead
+// Turn off transparency for the topbar on pages where there's no masthead, 
+// e.g. pages provided by Devise
 body.blacklight-sessions,
 body.blacklight-registrations,
 body.blacklight-passwords {
