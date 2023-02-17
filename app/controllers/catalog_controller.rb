@@ -84,26 +84,26 @@ class CatalogController < ApplicationController
     end)
 
     config.add_index_field 'date', **multilingual_locale_aware_field('cho_date')
-    config.add_index_field 'holding_institution', **multilingual_locale_aware_field('agg_data_provider')
-    config.add_index_field 'source_institution', **multilingual_locale_aware_field('agg_provider')
+    config.add_index_field 'holding_institution', **multilingual_locale_aware_field('agg_data_provider'), link_to_facet: true
+    config.add_index_field 'source_institution', **multilingual_locale_aware_field('agg_provider'), link_to_facet: true
 
     config.add_index_field 'extent', **multilingual_locale_aware_field('cho_extent')
-    config.add_index_field 'creator', **multilingual_locale_aware_field('cho_creator')
+    config.add_index_field 'creator', **multilingual_locale_aware_field('cho_creator'), link_to_facet: true
     config.add_index_field 'description',
                            **multilingual_locale_aware_field('cho_description'),
                            autolink: true,
                            paragraph: true,
                            join_with: '',
                            collapse: true
-    config.add_index_field 'language', **multilingual_locale_aware_field('cho_language')
+    config.add_index_field 'language', **multilingual_locale_aware_field('cho_language'), link_to_facet: true
     config.add_index_field 'medium', **multilingual_locale_aware_field('cho_medium')
     config.add_index_field 'provenance',
                            **multilingual_locale_aware_field('cho_provenance'),
                            paragraph: true,
                            join_with: ''
     config.add_index_field 'source', **multilingual_locale_aware_field('cho_source')
-    config.add_index_field 'spatial', **multilingual_locale_aware_field('cho_spatial'), collapse: true
-    config.add_index_field 'temporal', **multilingual_locale_aware_field('cho_temporal')
+    config.add_index_field 'spatial', **multilingual_locale_aware_field('cho_spatial'), collapse: true, link_to_facet: true
+    config.add_index_field 'temporal', **multilingual_locale_aware_field('cho_temporal'), link_to_facet: true
 
     arabic_locale = lambda do |context, *_|
       context.is_a?(Spotlight::SearchConfigurationsController) ||
@@ -227,7 +227,7 @@ class CatalogController < ApplicationController
     # handler defaults, or have no facets.
     config.add_facet_fields_to_solr_request!
 
-    config.add_show_field 'contributor', **multilingual_locale_aware_field('cho_contributor')
+    config.add_show_field 'contributor', **multilingual_locale_aware_field('cho_contributor'), link_to_facet: true
     config.add_show_field 'alternative', **multilingual_locale_aware_field('cho_alternative')
     config.add_show_field 'coverage', **multilingual_locale_aware_field('cho_coverage')
     config.add_show_field 'dc_rights', **multilingual_locale_aware_field('cho_dc_rights'), autolink: true
@@ -240,7 +240,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'publisher', **multilingual_locale_aware_field('cho_publisher')
     config.add_show_field 'relation', **multilingual_locale_aware_field('cho_relation')
     config.add_show_field 'same_as', **multilingual_locale_aware_field('cho_same_as'), autolink: true
-    config.add_show_field 'subject', **multilingual_locale_aware_field('cho_subject'), collapse: true
+    config.add_show_field 'subject', **multilingual_locale_aware_field('cho_subject'), collapse: true, link_to_facet: true
     config.add_show_field 'type', **multilingual_locale_aware_field('cho_type')
     config.add_show_field 'type_hierarchy',
                           **multilingual_locale_aware_field('cho_type_facet'),
