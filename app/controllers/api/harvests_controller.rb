@@ -6,42 +6,51 @@ module Api
     delegate :t, to: :I18n
 
     def create
-      if request.headers['Authorization'] != ENV.fetch('API_SECRET', '')
-        return render json: { error: t('api.harvest.unauthorized') }, status: :unauthorized
+      upload = NdjsonUpload.new(params[:url])
+
+      if upload.valid?
+        AddResourcesJob.perform_later upload.filepath, exhibit: current_exhibit, local: true
+
+        render json: { message: t('api.harvest.success') }, status: :accepted
+      else
+        handle_error upload.error
       end
-
-      return render json: { error: t('api.harvest.no_url') }, status: :bad_request if params['url'].blank?
-
-      return render json: { error: t('api.harvest.no_file') }, status: :bad_request unless File.exist?(filepath)
-
-      return render json: { error: t('api.harvest.duplicate_ids') }, status: :unprocessable_entity if any_duplicate_identifiers?
-
-      AddResourcesJob.perform_later filepath, exhibit: current_exhibit, local: true
-
-      render json: { message: t('api.harvest.success') }, status: :accepted
     end
 
     private
 
-    def any_duplicate_identifiers?
-      NdjsonNormalizer.new(body, filename).any_duplicate_identifiers?
+    def handle_error(error)
+      case error
+      when :no_url
+        no_url
+      when :duplicate_ids
+        duplicate_ids
+      when :file_not_found
+        file_not_found
+      else
+        unknown_error
+      end
     end
 
-    def body
-      File.read(filepath)
+    def duplicate_ids
+      render json: { error: t('api.harvest.duplicate_ids') }, status: :unprocessable_entity
     end
 
-    def filepath
-      File.join(Settings.data_dir, filename)
+    def file_not_found
+      render json: { error: t('api.harvest.no_file') }, status: :bad_request
     end
 
-    def filename
-      ActiveStorage::Filename.new(params['url']).sanitized
+    def no_url
+      render json: { error: t('api.harvest.no_url') }, status: :bad_request
+    end
+
+    def unknown_error
+      render json: { error: t('api.harvest.unknown_error') }, status: :internal_server_error
     end
 
     # DLME only has one exhibit
     def current_exhibit
-      @current_exhibit ||= Spotlight::Exhibit.first
+      Spotlight::Exhibit.first
     end
   end
 end

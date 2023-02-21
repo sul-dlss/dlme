@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Api::Harvests', type: :request do
+RSpec.describe 'Api::Harvests' do
   let!(:exhibit) { create(:exhibit) }
   let(:url) { 'myfile.json' }
   let(:secret) { 'secret' }
@@ -24,7 +24,7 @@ RSpec.describe 'Api::Harvests', type: :request do
       post '/api/harvests', params: { url: url }, headers: { Authorization: "Bearer #{secret}", Accept: 'application/json' }
       json = JSON.parse(response.body)
 
-      expect(response.status).to eq(202)
+      expect(response).to have_http_status(:accepted)
       expect(json['message']).to eq('Harvest successfully initiated')
       expect(AddResourcesJob).to have_received(:perform_later).with("tmp/data/#{url}", exhibit: exhibit, local: true)
     end
@@ -33,7 +33,7 @@ RSpec.describe 'Api::Harvests', type: :request do
       it 'returns an error code' do
         post '/api/harvests', params: { url: url }, headers: { Authorization: 'Bearer this_is_wrong', Accept: 'application/json' }
 
-        expect(response.status).to eq(401)
+        expect(response).to have_http_status(:unauthorized)
         expect(AddResourcesJob).not_to have_received(:perform_later)
       end
     end
@@ -43,7 +43,7 @@ RSpec.describe 'Api::Harvests', type: :request do
         post '/api/harvests', headers: { Authorization: "Bearer #{secret}", Accept: 'application/json' }
         json = JSON.parse(response.body)
 
-        expect(response.status).to eq(400)
+        expect(response).to have_http_status(:bad_request)
         expect(json['error']).to eq('Invalid file URL')
         expect(AddResourcesJob).not_to have_received(:perform_later)
       end
@@ -51,14 +51,14 @@ RSpec.describe 'Api::Harvests', type: :request do
 
     context 'when the file does not exist' do
       before do
-        allow(File).to receive(:read).and_call_original
+        allow(File).to receive(:exist?).and_return(false)
       end
 
       it 'returns an error code' do
         post '/api/harvests', params: { url: url }, headers: { Authorization: "Bearer #{secret}", Accept: 'application/json' }
         json = JSON.parse(response.body)
 
-        expect(response.status).to eq(400)
+        expect(response).to have_http_status(:bad_request)
         expect(json['error']).to eq('File not found')
         expect(AddResourcesJob).not_to have_received(:perform_later)
       end
@@ -71,7 +71,7 @@ RSpec.describe 'Api::Harvests', type: :request do
         post '/api/harvests', params: { url: url }, headers: { Authorization: "Bearer #{secret}", Accept: 'application/json' }
         json = JSON.parse(response.body)
 
-        expect(response.status).to eq(422)
+        expect(response).to have_http_status(:unprocessable_entity)
         expect(json['error']).to eq('JSON contained duplicate identifiers')
         expect(AddResourcesJob).not_to have_received(:perform_later)
       end
