@@ -263,17 +263,17 @@ body {
   }
 }
 
-.masthead .topbar  .navbar-nav {
+.masthead .topbar .navbar-nav {
   text-transform: none;
-}
+  .nav-link {
+    color: $color-gray-lightest;
+    white-space: nowrap;
 
-.masthead .topbar .navbar-nav .nav-link {
-  color: $color-gray-lightest;
-
-  &:active,
-  &:hover,
-  &:focus {
-    text-decoration: underline;
+    &:active,
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
   }
 }
 
