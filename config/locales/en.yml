@@ -1,5 +1,11 @@
 ---
 en:
+  api:
+    harvest:
+      duplicate_ids: JSON contained duplicate identifiers
+      no_file: File not found
+      no_url: Invalid file URL
+      success: Harvest successfully initiated
   application_name: Digital Library of the Middle East
   blacklight:
     range_limit:

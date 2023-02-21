@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :api do
+    resources :harvests, only: [:create]
+  end
+  
   scope '(:locale)', locale: Regexp.union(Spotlight::Engine.config.i18n_locales.keys.map(&:to_s)) do
     root to: 'spotlight/exhibits#index'
     devise_for :users

@@ -23,11 +23,7 @@ class HarvestsController < ApplicationController
   private
 
   def any_duplicate_identifiers?
-    ids = NdjsonNormalizer
-          .normalize(body, filename)
-          .pluck('id')
-          .compact_blank
-    ids.size != ids.uniq.size
+    NdjsonNormalizer.new(body, filename).any_duplicate_identifiers?
   end
 
   def body
