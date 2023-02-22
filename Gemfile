@@ -113,3 +113,5 @@ gem 'i18n-tasks'
 gem 'turbo-rails', '~> 1.3'
 
 gem 'importmap-rails', '~> 1.1'
+
+gem 'stimulus-rails', '~> 1.2'

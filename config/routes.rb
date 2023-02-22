@@ -37,7 +37,7 @@ Rails.application.routes.draw do
       resources :dlme_jsons if Settings.feature_flags.allow_json_upload
       resource :harvests, only: [:create]
       resource :s3_delete, controller: :s3_delete, only: [:new, :create]
-      resource :statistics, only: :show
+      resources :statistics, only: [:index, :show]
 
       resource :dlme_bulk_actions, only: [] do
         member do

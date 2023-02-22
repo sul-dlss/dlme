@@ -92,15 +92,12 @@ ar:
         exhibit_home: معرض الصفحة الرئيسية
   statistics:
     contributors:
-      agg_data_provider:
-        total_html: " مساهمين العناصر  &middot; %{total}"
-      agg_provider:
-        total_html: مساهمين البيانات  &middot; %{total}
       table:
         collections: مجموعات
         country: دول
         institution: مؤسسة
         items: عناصر
+      total_html: " مساهمين العناصر  &middot; %{total}"
     dashboard:
       header:
         total_collections:
@@ -149,6 +146,13 @@ ar:
         by_language: بحسب اللغة
         by_type: بحسب النوع
         total_html: المواد &middot; %{total}
+    data_providers:
+      table:
+        collections: مجموعات
+        country: دول
+        institution: مؤسسة
+        items: عناصر
+      total_html: مساهمين البيانات  &middot; %{total}
     header: إحصائيات
   transforms:
     show:

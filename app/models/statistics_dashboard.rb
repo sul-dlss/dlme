@@ -50,7 +50,7 @@ class StatisticsDashboard
   end
 
   def data_providers
-    @data_providers ||= Contributors.new(response, provider_field: 'agg_provider')
+    @data_providers ||= DataProviders.new(response, provider_field: 'agg_provider')
   end
 
   def collections
@@ -61,8 +61,6 @@ class StatisticsDashboard
     def locale_aware_field(field_name, suffix = 'ssim')
       "#{field_name}.#{mapped_locale}_#{suffix}"
     end
-
-    private
 
     def mapped_locale
       StatisticsDashboard::LOCALE_MAP[I18n.locale] || I18n.locale
@@ -249,6 +247,13 @@ class StatisticsDashboard
 
     def facets
       response.dig('facet_counts') || {}
+    end
+  end
+
+  # A class representing a DataProvider
+  class DataProviders < Contributors
+    def to_partial_path
+      'statistics/data_providers'
     end
   end
 end

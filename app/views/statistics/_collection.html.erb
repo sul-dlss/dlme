@@ -1,0 +1,7 @@
+   <% @rows.each do |title, count| %>
+      <tr class="collection-row <%= class_names(shaded: params[:shaded] == 'true' )%>">
+        <td colspan="2"><%=link_to title, search_action_path(search_state.add_facet_params_and_redirect('agg_data_provider_collection_en', title)) %></td>
+        <td class="text-right"><%= count %></td>
+        <td colspan="2"></td>
+      </tr>
+    <% end %>

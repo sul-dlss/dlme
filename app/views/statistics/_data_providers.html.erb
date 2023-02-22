@@ -1,0 +1,30 @@
+<h2 class="h3"><%= t(".total_html", total: number_with_delimiter(data_providers.total)) %></h2>
+
+<table class="table contributors">
+  <thead>
+    <tr>
+      <th><%= t('.table.institution') %></th>
+      <th><%= t('.table.country') %></th>
+      <th class="text-right"><%= t('.table.items') %></th>
+      <th class="text-right"><%= t('.table.collections') %></th>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% data_providers.institutions.each.with_index do |institution, i| %>
+      <% collections_id = Digest::MD5.hexdigest institution.name %>
+      <tr class="<%= class_names(shaded: i.even? )%>">
+        <td><%= link_to institution.name, search_action_path(search_state.add_facet_params_and_redirect(data_providers.provider_facet_field, institution.name)), class: 'value' %></td>
+        <td class="value"><%= institution.countries.join(', ') %></td>
+        <td class="text-right"><%= number_with_delimiter(institution.item_count) %></td>
+        <td class="text-right"><%= number_with_delimiter(institution.collection_count) %></td>
+        <td><button aria-expanded="false" aria-label="Expand" data-controller="load-statistics" data-action="load-statistics#toggleRows"
+                    data-load-statistics-row-value="<%= collections_id %>"
+                    data-load-statistics-src-value="<%= exhibit_statistic_path( 'library', 'collection', shaded: i.even?, data_providers.provider_facet_field => institution.name)%>"
+                    class="toggler collapsed"></button></td>
+      </tr>
+      <tr id="<%= collections_id %>">
+      </tr>
+    <% end %>
+  </tbody>
+</table>

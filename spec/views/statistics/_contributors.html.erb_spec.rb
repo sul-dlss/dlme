@@ -29,10 +29,6 @@ RSpec.describe 'statistics/_contributors.html.erb' do
     StatisticsDashboard::Contributors.new(stub_response, provider_field: 'agg_provider')
   end
 
-  it 'has the total number of data providers in the heading' do
-    expect(rendered).to have_css('h2', text: 'Data Providers · 2')
-  end
-
   it 'has a table with each institution, the country, and number of items' do
     expect(rendered).to have_css('table tbody tr:nth-child(1) td', text: 'Institution 1')
     expect(rendered).to have_css('table tbody tr:nth-child(1) td', text: 'Country 1')
