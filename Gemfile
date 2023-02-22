@@ -75,7 +75,7 @@ group :deployment do
 end
 
 gem 'blacklight', '~> 7.14'
-gem 'blacklight-spotlight', '~> 3.1'
+gem 'blacklight-spotlight', '~> 3.1', github: 'projectblacklight/spotlight', branch: 'declare-var'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 
 gem 'friendly_id'
