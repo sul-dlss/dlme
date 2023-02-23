@@ -59,8 +59,9 @@ class CatalogController < ApplicationController
     config.document_unique_id_param = 'ids'
     config.raw_endpoint.enabled = true
 
-    config.index.title_field = Blacklight::Configuration::Field.new(first: true, **multilingual_locale_aware_field('cho_title'))
-    config.show.html_title_field = Blacklight::Configuration::Field.new(
+    config.index.title_field = Blacklight::Configuration::DisplayField.new(first: true,
+                                                                           **multilingual_locale_aware_field('cho_title'))
+    config.show.html_title_field = Blacklight::Configuration::DisplayField.new(
       first: true,
       no_html: true,
       **multilingual_locale_aware_field('cho_title')

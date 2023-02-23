@@ -71,7 +71,7 @@ group :deployment do
   gem 'dlss-capistrano'
 end
 
-gem 'blacklight', '~> 7.14'
+gem 'blacklight', '~> 8.0.0.beta7'
 gem 'blacklight-spotlight', '~> 3.6.0.beta4'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 
