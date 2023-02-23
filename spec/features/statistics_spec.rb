@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Statistics page', type: :feature do
+RSpec.describe 'Statistics page' do
   let(:stub_response) do
     {
       'response' => { 'numFound' => 100_000 },
@@ -37,7 +37,7 @@ RSpec.describe 'Statistics page', type: :feature do
   end
   let(:stub_dashboard) do
     StatisticsDashboard.new(search_service: instance_double(
-      'SearchService',
+      Blacklight::SearchService,
       repository: instance_double(Blacklight::Solr::Repository, search: stub_response),
       search_builder: {}
     ))

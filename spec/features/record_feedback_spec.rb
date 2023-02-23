@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Record Feedback', type: :feature do
+RSpec.describe 'Record Feedback' do
   let(:exhibit) { create(:exhibit, published: true) }
   let(:resource) { DlmeJson.new(json: json, metadata: metadata, exhibit: exhibit) }
   let(:fixture_file_path) { File.join(fixture_path, 'json/bodleian.json') }

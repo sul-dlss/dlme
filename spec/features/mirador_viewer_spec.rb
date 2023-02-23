@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Mirador viewer', type: :feature do
+RSpec.describe 'Mirador viewer' do
   let(:exhibit) { create(:exhibit, published: true) }
   let(:curator) { create(:exhibit_curator, exhibit: exhibit) }
   let(:resource) { DlmeJson.new(json: json, metadata: metadata, exhibit: exhibit) }

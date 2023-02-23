@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Override the date range component to support multiple calendar systems
-class MultilingualDateRangeComponent < ::ViewComponent::Base
+class MultilingualDateRangeComponent < ViewComponent::Base
   def initialize(facet_field:, layout: nil, classes: BlacklightRangeLimit.classes)
     super
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ::Autolink do
+RSpec.describe Autolink do
   include Capybara::RSpecMatchers
   let(:document) { instance_double(SolrDocument) }
   let(:context) { double(request: double(format: double(html?: true))) }

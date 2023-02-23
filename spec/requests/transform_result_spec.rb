@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'transform results', type: :request do
+RSpec.describe 'transform results' do
   context 'when signed in' do
     let(:curator) { create(:exhibit_curator) }
     let(:body) { JSON.parse(response.body).with_indifferent_access }
@@ -39,7 +39,7 @@ RSpec.describe 'transform results', type: :request do
     # The SNS https endpoint is setting Content-Type to 'text/plain' even though it's pushing JSON.
     # See https://forums.aws.amazon.com/thread.jspa?threadID=69413
     let(:headers) { { 'Content-Type' => 'text/plain' } }
-    let(:transform_result) { class_double('TransformResult') }
+    let(:transform_result) { class_double(TransformResult) }
 
     before do
       allow(TransformResult).to receive(:find_or_initialize_by).and_return(transform_result)

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 # This is primarily a stub spec to validate we are executing javascript
 # until we have more thorough browser integration tests for other needs
-RSpec.describe 'Admin menu', type: :feature, js: true do
+RSpec.describe 'Admin menu', js: true do
   let(:exhibit) { create(:exhibit) }
   let(:curator) { create(:exhibit_curator, exhibit: exhibit) }
 

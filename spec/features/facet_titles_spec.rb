@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Facet titles', type: :feature do
+RSpec.describe 'Facet titles' do
   let(:exhibit) { create(:exhibit) }
   let(:curator) { create(:exhibit_curator, exhibit: exhibit) }
   let(:resource) { DlmeJson.new(json: json, metadata: metadata, exhibit: exhibit) }

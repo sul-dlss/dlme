@@ -7,9 +7,9 @@ RSpec.describe DlmeThumbnailPresenter do
     Blacklight::OpenStructWithHashAccess.new(thumbnail_field: :xyz)
   end
   let(:document) { SolrDocument.new('xyz' => 'https://www.example.com/image.png') }
-  let(:controller) { instance_double('Spotlight::CatalogController', action_name: 'index') }
+  let(:controller) { instance_double(Spotlight::CatalogController, action_name: 'index') }
   let(:view_context) do
-    instance_double('ActionView::ViewContext', controller: controller)
+    double('view context', controller: controller) # rubocop:disable RSpec/VerifiedDoubles
   end
   let(:presenter) { described_class.new(document, view_context, config) }
 

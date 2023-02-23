@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'catalog/_show_with_viewer.html.erb', type: :view do
+RSpec.describe 'catalog/_show_with_viewer.html.erb' do
   let(:document) { SolrDocument.new(source) }
   let(:source) { {} }
   let(:blacklight_config) { CatalogController.blacklight_config }

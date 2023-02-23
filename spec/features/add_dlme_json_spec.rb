@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'adding DLME JSON', type: :feature do
+RSpec.describe 'adding DLME JSON' do
   let(:exhibit) { create(:exhibit) }
   let(:curator) { create(:exhibit_curator, exhibit: exhibit) }
   let(:json) { attributes_for(:dlme_json).dig(:data, :json) }

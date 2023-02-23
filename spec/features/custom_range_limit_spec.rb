@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Custom range limit functionality', type: :feature, js: true do
+RSpec.describe 'Custom range limit functionality', js: true do
   let(:exhibit) { create(:exhibit) }
   let(:curator) { create(:exhibit_curator, exhibit: exhibit) }
   let(:resource) { DlmeJson.new(json: json, metadata: metadata, exhibit: exhibit) }
@@ -26,7 +26,7 @@ RSpec.describe 'Custom range limit functionality', type: :feature, js: true do
     find('.facet-limit.blacklight-cho_date_range_norm_isim').click
     expect(page).to have_css '[data-date-range-selector-original-field="cho_date_range_norm_isim"]'
     expect(page).to have_css '#selected_range_field_cho_date_range_norm_isim[checked="checked"]'
-    find('#selected_range_field_cho_date_range_hijri_isim').click
+    find_by_id('selected_range_field_cho_date_range_hijri_isim').click
     # NOTE: the JS change event isn't being fired in this test for some reason
   end
 
@@ -56,7 +56,7 @@ RSpec.describe 'Custom range limit functionality', type: :feature, js: true do
     find('.facet-limit.blacklight-cho_date_range_hijri_isim').click
 
     expect(page).to have_css '#selected_range_field_cho_date_range_hijri_isim[checked="checked"]'
-    find('#selected_range_field_cho_date_range_norm_isim').click
+    find_by_id('selected_range_field_cho_date_range_norm_isim').click
     # NOTE: the JS change event isn't being fired in this test for some reason
   end
 end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe DeleteResourcesJob, type: :job do
+RSpec.describe DeleteResourcesJob do
   subject(:perform) { described_class.perform_now(url, exhibit) }
 
   let(:exhibit) { create(:exhibit) }

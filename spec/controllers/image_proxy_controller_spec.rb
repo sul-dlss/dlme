@@ -4,8 +4,8 @@ require 'rails_helper'
 
 RSpec.describe ImageProxyController do
   describe 'GET access' do
-    let(:image_response) { instance_double('HTTP::Response', body: '', content_type: 'image/jpeg') }
-    let(:http_client) { instance_double('HTTP::Client') }
+    let(:image_response) { instance_double(HTTP::Response, body: '', content_type: 'image/jpeg') }
+    let(:http_client) { instance_double(HTTP::Client) }
 
     # rubocop:disable RSpec/BeforeAfterAll
     before(:all) do

@@ -10,18 +10,18 @@ class TransformResultsController < ApplicationController
   protect_from_forgery except: :create
   before_action :authenticate_user!, except: :create
 
-  # This is invoked by SNS HTTP subscription
-  def create
-    transform_result = TransformResult.find_or_initialize_by(notification_params)
-    transform_result.update(build_notification)
-    head :created
-  end
-
   # This is invoked by transform_result.js
   def show
     authorize! :show, :transform
     @results = TransformResult.order(timestamp: :desc).page(params[:page])
     render formats: :json
+  end
+
+  # This is invoked by SNS HTTP subscription
+  def create
+    transform_result = TransformResult.find_or_initialize_by(notification_params)
+    transform_result.update(build_notification)
+    head :created
   end
 
   private
