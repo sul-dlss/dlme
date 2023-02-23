@@ -15,6 +15,7 @@ RSpec.describe 'Import resources from a file' do
     let(:body) { "{\"id\":\"one\"}\n{\"id\":\"two\"}" }
 
     before do
+      allow(File).to receive(:exist?).and_return(true)
       allow(File).to receive(:read).and_return(body)
       allow(AddResourcesJob).to receive(:perform_later)
     end

@@ -28,4 +28,10 @@ class NdjsonNormalizer
       raise "Resource #{index + 1} in #{label} is invalid JSON: #{json_string}"
     end
   end
+
+  # @return [Boolean]
+  def any_duplicate_identifiers?
+    ids = normalize.pluck('id').compact_blank
+    ids.size != ids.uniq.size
+  end
 end
