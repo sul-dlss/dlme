@@ -16,8 +16,6 @@ gem 'sassc-rails'
 
 # Use Terser as compressor for JavaScript assets
 gem 'terser', '~> 1.1'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter for caching in production
@@ -111,3 +109,7 @@ gem 'cache_with_locale'
 
 gem 'i18n-js', '< 4' # v4 was a complete rewrite; will take some work to update
 gem 'i18n-tasks'
+
+gem 'turbo-rails', '~> 1.3'
+
+gem 'importmap-rails', '~> 1.1'
