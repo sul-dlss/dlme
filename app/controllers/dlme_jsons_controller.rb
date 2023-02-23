@@ -26,23 +26,6 @@ class DlmeJsonsController < ApplicationController
     # default render
   end
 
-  def destroy
-    Blacklight.default_index.connection.delete_by_id @resource.json['id']
-    @resource.destroy
-    redirect_back(fallback_location: root_path)
-  end
-
-  def update
-    @resource.attributes = resource_params
-    if @resource.save_and_index
-      flash[:notice] = t('dlme_jsons.update.success')
-      redirect_to exhibit_dlme_jsons_path(current_exhibit)
-    else
-      flash[:error] = t('dlme_jsons.update.error')
-      render :edit
-    end
-  end
-
   # Called when submitting the form with JSON on it.
   def create
     @resource.exhibit = current_exhibit
@@ -54,6 +37,23 @@ class DlmeJsonsController < ApplicationController
       redirect_to spotlight.new_exhibit_resource_path(current_exhibit),
                   flash: { error: t('spotlight.resources.upload.error') }
     end
+  end
+
+  def update
+    @resource.attributes = resource_params
+    if @resource.save_and_index
+      flash[:notice] = t('.success')
+      redirect_to exhibit_dlme_jsons_path(current_exhibit)
+    else
+      flash[:error] = t('.error')
+      render :edit
+    end
+  end
+
+  def destroy
+    Blacklight.default_index.connection.delete_by_id @resource.json['id']
+    @resource.destroy
+    redirect_back(fallback_location: root_path)
   end
 
   private

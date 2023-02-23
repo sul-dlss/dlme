@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'statistics/_contributors.html.erb', type: :view do
+RSpec.describe 'statistics/_contributors.html.erb' do
   before do
     render partial: 'statistics/contributors', locals: {
       contributors: contributors

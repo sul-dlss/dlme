@@ -18,7 +18,7 @@ RSpec.describe CatalogController do
 
         get :index, params: { page: 500 }
 
-        expect(response.status).to eq 429
+        expect(response).to have_http_status :too_many_requests
       end
     end
   end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AddResourcesJob, type: :job do
+RSpec.describe AddResourcesJob do
   let(:exhibit) { create(:exhibit) }
   let(:url) { 'http://s3/mybucket/myfile.json' }
   let(:mock_response) do

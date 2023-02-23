@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe StatisticsDashboard do
   subject(:dashboard) do
     described_class.new(search_service: instance_double(
-      'SearchService',
+      Blacklight::SearchService,
       repository: instance_double(Blacklight::Solr::Repository, search: stub_response),
       search_builder: {}
     ))

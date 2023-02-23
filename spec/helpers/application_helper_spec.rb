@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe ApplicationHelper, type: :helper do
+RSpec.describe ApplicationHelper do
   before do
     helper.controller.singleton_class.class_eval do
       include Blacklight::Controller

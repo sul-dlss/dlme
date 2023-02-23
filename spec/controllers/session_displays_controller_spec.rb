@@ -16,13 +16,13 @@ RSpec.describe SessionDisplaysController do
     it 'sets the disable_result_info_context to true' do
       expect(session[:disable_result_info_context]).to be_falsey
       patch :update, params: { context: 'result_info' }
-      expect(session[:disable_result_info_context]).to eq true
+      expect(session[:disable_result_info_context]).to be true
     end
 
     it 'sets the disable_date_sort_context to true' do
       expect(session[:disable_date_sort_context]).to be_falsey
       patch :update, params: { context: 'date_sort_info' }
-      expect(session[:disable_date_sort_context]).to eq true
+      expect(session[:disable_date_sort_context]).to be true
     end
   end
 end

@@ -15,7 +15,7 @@ Capybara.javascript_driver = :headless_chrome
 
 Capybara.register_driver :headless_chrome do |app|
   Capybara::Selenium::Driver.load_selenium
-  browser_options = ::Selenium::WebDriver::Chrome::Options.new.tap do |opts|
+  browser_options = Selenium::WebDriver::Chrome::Options.new.tap do |opts|
     opts.args << '--headless'
     opts.args << '--disable-gpu'
     opts.args << '--no-sandbox'
@@ -54,8 +54,8 @@ RSpec.configure do |config|
   config.include ActiveJob::TestHelper, type: :feature
   config.include ActiveJob::TestHelper, type: :job
 
-  config.include ::Rails.application.routes.url_helpers, type: :controller
-  config.include ::Rails.application.routes.mounted_helpers, type: :controller
+  config.include Rails.application.routes.url_helpers, type: :controller
+  config.include Rails.application.routes.mounted_helpers, type: :controller
   config.include OptionalLocaleRouteParamInjection
 
   config.include(ControllerLevelHelpers, type: :helper)

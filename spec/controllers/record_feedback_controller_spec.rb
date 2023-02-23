@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe RecordFeedbackController, type: :controller do
+RSpec.describe RecordFeedbackController do
   let(:exhibit) { create(:exhibit) }
   let(:honeypot_field_name) { Spotlight::Engine.config.spambot_honeypot_email_field }
 

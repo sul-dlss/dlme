@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Robots.txt', type: :request do
+RSpec.describe 'Robots.txt' do
   context 'when allow_robots is false (default)' do
     it 'prevents robots' do
       get '/robots.txt'

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Bulk delete can be run on search results' do # rubocop:disable RSpec/DescribeClass
+RSpec.describe 'Bulk delete can be run on search results' do
   let(:exhibit) { create(:exhibit, published: true) }
   let(:curator) { create(:exhibit_curator, exhibit: exhibit) }
   let(:resource_1) { DlmeJson.new(json: json_1, metadata: metadata_1, exhibit: exhibit) }

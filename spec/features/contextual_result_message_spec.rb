@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Contextual result message on search results', type: :feature do
+RSpec.describe 'Contextual result message on search results' do
   let(:exhibit) { create(:exhibit, published: true) }
   let(:resource) { DlmeJson.new(json: json, metadata: metadata, exhibit: exhibit) }
   let(:fixture_file_path) { File.join(fixture_path, 'json/bodleian.json') }

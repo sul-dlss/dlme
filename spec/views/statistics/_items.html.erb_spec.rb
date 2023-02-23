@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'statistics/_items.html.erb', type: :view do
+RSpec.describe 'statistics/_items.html.erb' do
   before do
     render partial: 'statistics/items', locals: {
       items: items
@@ -27,7 +27,7 @@ RSpec.describe 'statistics/_items.html.erb', type: :view do
 
   describe 'By type section' do
     it 'has a table with linked type values and their counts' do
-      expect(rendered).to have_css('table.by-type')
+      expect(rendered).to have_table(class: 'by-type')
       expect(rendered).to have_css('table.by-type tr a', text: 'Value 1')
       expect(rendered).to have_css('table.by-type tr a', text: 'Value 2')
       expect(rendered).to have_css('table.by-type tr td', text: '500')
@@ -44,7 +44,7 @@ RSpec.describe 'statistics/_items.html.erb', type: :view do
 
   describe 'By language section' do
     it 'has a table with linked language values and their counts' do
-      expect(rendered).to have_css('table.by-language')
+      expect(rendered).to have_table(class: 'by-language')
       expect(rendered).to have_css('table.by-language tr a', text: 'Value 1')
       expect(rendered).to have_css('table.by-language tr a', text: 'Value 2')
       expect(rendered).to have_css('table.by-language tr td', text: '500')

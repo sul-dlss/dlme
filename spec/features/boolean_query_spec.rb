@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Boolean query functionality', type: :feature, js: true do
+RSpec.describe 'Boolean query functionality', js: true do
   let(:exhibit) { create(:exhibit) }
   let(:curator) { create(:exhibit_curator, exhibit: exhibit) }
 
