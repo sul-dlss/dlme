@@ -8,6 +8,8 @@ RSpec.describe 'catalog/_show_with_viewer.html.erb', type: :view do
   let(:blacklight_config) { CatalogController.blacklight_config }
 
   before do
+    allow(view).to receive(:render).and_call_original
+    allow(view).to receive(:render).with(DocumentMetadataComponent).and_return 'View on contributor website'
     stub_template 'catalog/_oembed_default.html.erb' => 'oembed'
     stub_template 'catalog/_openseadragon_default.html.erb' => 'openseadragon'
 

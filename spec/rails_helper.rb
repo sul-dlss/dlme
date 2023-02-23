@@ -9,6 +9,7 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/rails'
 require_relative 'support/controller_level_helpers'
 require 'selenium-webdriver'
+require 'view_component/test_helpers'
 
 Capybara.javascript_driver = :headless_chrome
 
@@ -62,6 +63,10 @@ RSpec.configure do |config|
 
   config.include(ControllerLevelHelpers, type: :view)
   config.before(:each, type: :view) { initialize_controller_helpers(view) }
+
+  config.include ViewComponent::TestHelpers, type: :component
+  config.include ViewComponent::SystemTestHelpers, type: :component
+  config.include Capybara::RSpecMatchers, type: :component
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = Rails.root.join('spec/fixtures')

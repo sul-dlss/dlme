@@ -84,8 +84,11 @@ class CatalogController < ApplicationController
     end)
 
     config.add_index_field 'date', **multilingual_locale_aware_field('cho_date')
-    config.add_index_field 'holding_institution', **multilingual_locale_aware_field('agg_data_provider'), link_to_facet: true
-    config.add_index_field 'source_institution', **multilingual_locale_aware_field('agg_provider'), link_to_facet: true
+    config.add_index_field 'holding_institution', **multilingual_locale_aware_field('agg_data_provider'),
+    link_to_facet: true,
+    component: OwnerFieldComponent
+    config.add_index_field 'source_institution', **multilingual_locale_aware_field('agg_provider'), link_to_facet: true,
+                                                                                                    component: OwnerFieldComponent
 
     config.add_index_field 'extent', **multilingual_locale_aware_field('cho_extent')
     config.add_index_field 'creator', **multilingual_locale_aware_field('cho_creator'), link_to_facet: true
