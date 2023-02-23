@@ -74,7 +74,7 @@ group :deployment do
 end
 
 gem 'blacklight', '~> 7.14'
-gem 'blacklight-spotlight', '~> 3.1'
+gem 'blacklight-spotlight', '~> 3.1', github: 'projectblacklight/spotlight', branch: 'nestable'
 gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 
 gem 'friendly_id'
@@ -111,3 +111,5 @@ gem 'cache_with_locale'
 
 gem 'i18n-js', '< 4' # v4 was a complete rewrite; will take some work to update
 gem 'i18n-tasks'
+
+gem 'importmap-rails', '~> 1.1'
