@@ -24,7 +24,7 @@ RSpec.describe CatalogController do
   end
 
   describe 'GET show' do
-    let(:search_service) { instance_double(Blacklight::SearchService, fetch: [double, doc]) }
+    let(:search_service) { instance_double(Blacklight::SearchService, fetch: doc) }
     let(:doc) do
       SolrDocument.new(
         id: 'xyz',
