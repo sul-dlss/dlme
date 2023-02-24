@@ -10,10 +10,13 @@
       </thead>
       <tbody>
         <% items.by_type.each do |field| %>
+          <% facet_config = facet_configuration_for_field(items.type_facet) %>
+          <% item_presenter = facet_item_presenter(facet_config, field['display_value'], items.type_facet) %>
+            
           <tr>
             <td class="<%= class_names('pl-4 indent-with-caret' => field['level'].positive?) %>">
               <%= link_to search_action_path(search_state.add_facet_params_and_redirect(items.type_facet, field['value'])), class: 'value' do %>
-                <%= facet_display_value(items.type_facet, field['display_value'] ) %>
+                <%= item_presenter.label %>
               <% end %>
             </td>
             <td class="text-right"><%= number_with_delimiter(field['count']) %></td>
@@ -32,10 +35,13 @@
       </thead>
       <tbody>
         <% items.by_language.each do |field| %>
+          <% facet_config = facet_configuration_for_field(items.language_field) %>
+          <% item_presenter = facet_item_presenter(facet_config, field['value'], items.language_field) %>
+
           <tr>
             <td>
               <%= link_to search_action_path(search_state.add_facet_params_and_redirect(items.language_facet_field, field['value'])), class: 'value' do %>
-                <%= facet_display_value(items.language_field, field['value']) %>
+                <%= item_presenter.label %>
               <% end %>
             </td>
             <td class="text-right"><%= number_with_delimiter(field['count']) %></td>
