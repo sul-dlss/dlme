@@ -1,4 +1,4 @@
-document.addEventListener('turbolinks:load', function(event) {
+document.addEventListener('turbo:load', function(event) {
   if (typeof(dataLayer) == 'undefined') return;
 
   var url = event.data.url;

@@ -2,7 +2,9 @@
   <% component.title { t('record_feedback.header') } %>
 
   <% component.body do %>
-    <%= bootstrap_form_for(@contact_form || Spotlight::ContactForm.new(current_url: request.original_url), url: main_app.exhibit_record_feedback_path(current_exhibit), as: 'contact_form') do |f| %>
+    <%= bootstrap_form_for(@contact_form || Spotlight::ContactForm.new(current_url: request.original_url),
+                           url: main_app.exhibit_record_feedback_path(current_exhibit), as: 'contact_form',
+                           html: { data: { turbo: false } }) do |f| %>
       <%= render '/spotlight/shared/honeypot_field', f: f %>
       <%= f.hidden_field :current_url %>
 

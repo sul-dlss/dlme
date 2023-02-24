@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row justify-content-center">
     <% contact_form ||= Spotlight::ContactForm.new current_url: request.original_url.force_encoding('UTF-8') %>
-    <%= bootstrap_form_for contact_form, url: spotlight.exhibit_contact_form_path(current_exhibit, contact_form), layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9', html: { class: 'col-md-offset-2 col-md-8 my-3 '} do |f| %>
+    <%= bootstrap_form_for contact_form, url: spotlight.exhibit_contact_form_path(current_exhibit, contact_form), layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9', html: { class: 'col-md-offset-2 col-md-8 my-3', data: { turbo: false } } do |f| %>
       <h2><%= t(:'.title') %></h2>
       <div class="mb-5 text-left">
         <%= t('.reporting_from') %>

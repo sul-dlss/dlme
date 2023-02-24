@@ -8,6 +8,7 @@
     "@babel/runtime": "7",
     "@blueprintjs/core": "^4.13.0",
     "@blueprintjs/icons": "^4.11.0",
+    "@hotwired/turbo-rails": "^7.2.5",
     "babel-loader": "8",
     "browser": "^0.2.6",
     "compression-webpack-plugin": "9",

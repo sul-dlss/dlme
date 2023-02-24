@@ -11,15 +11,15 @@
   <li class="nav-item"><%= link_to t(:'spotlight.curation.sidebar.browse'), spotlight.exhibit_searches_path(current_exhibit), class: 'nav-link' %></li>
   <% end %>
   <% if can? :manage, Spotlight::FeaturePage.new(exhibit: current_exhibit) or can? :manage, current_exhibit.home_page %>
-  <li class="nav-item"><%= link_to t(:'spotlight.curation.sidebar.feature_pages'), spotlight.exhibit_feature_pages_path(current_exhibit), class: 'nav-link', 'data-no-turbolink' => true %></li>
+  <li class="nav-item"><%= link_to t(:'spotlight.curation.sidebar.feature_pages'), spotlight.exhibit_feature_pages_path(current_exhibit), class: 'nav-link', data: { turbo: false } %></li>
   <% end %>
   <% if can? :manage, Spotlight::AboutPage.new(exhibit: current_exhibit) %>
-  <li class="nav-item"><%= link_to t(:'spotlight.curation.sidebar.about_pages'), spotlight.exhibit_about_pages_path(current_exhibit), class: 'nav-link', 'data-no-turbolink' => true %></li>
+  <li class="nav-item"><%= link_to t(:'spotlight.curation.sidebar.about_pages'), spotlight.exhibit_about_pages_path(current_exhibit), class: 'nav-link', data: { turbo: false } %></li>
   <% end %>
   <% if (can? :manage, current_exhibit.translations.first_or_initialize) && current_exhibit.languages.any? %>
-    <%= nav_link t(:'spotlight.curation.sidebar.translations'), spotlight.edit_exhibit_translations_path(current_exhibit), 'data-no-turbolink' => true %>
+    <%= nav_link t(:'spotlight.curation.sidebar.translations'), spotlight.edit_exhibit_translations_path(current_exhibit), data: { turbo: false } %>
   <% end %>
   <% if can? :bulk_update, current_exhibit %>
-    <%= nav_link t(:'spotlight.curation.sidebar.bulk_updates'), spotlight.edit_exhibit_bulk_updates_path(current_exhibit), 'data-no-turbolink' => true %>
+    <%= nav_link t(:'spotlight.curation.sidebar.bulk_updates'), spotlight.edit_exhibit_bulk_updates_path(current_exhibit), data: { turbo: false } %>
   <% end %>
 </ul>
