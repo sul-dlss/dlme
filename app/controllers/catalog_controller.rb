@@ -29,7 +29,9 @@ class CatalogController < ApplicationController
     config.navbar.partials = {}
 
     config.show.oembed_field = :'agg_is_shown_at.wr_id_ssim'
-    config.show.partials = %i[show_header show_with_viewer ir_view record_feedback]
+    config.show.partials = %i[ir_view record_feedback]
+    config.show.metadata_component = DocumentMetadataComponent
+    config.show.embed_component = EmbedComponent
 
     config.view.list.partials = %i[thumbnail index_header index]
     config.view.gallery document_component: Blacklight::Gallery::DocumentComponent

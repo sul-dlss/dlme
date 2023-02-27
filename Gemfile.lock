@@ -103,7 +103,7 @@ GEM
       parser (>= 2.4)
       smart_properties
     bindex (0.8.1)
-    blacklight (8.0.0.beta7)
+    blacklight (8.0.0.beta8)
       globalid
       hashdiff
       i18n (>= 1.7.0)
@@ -713,7 +713,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  blacklight (~> 8.0.0.beta7)
+  blacklight (~> 8.0.0.beta8)
   blacklight-gallery (~> 4.2)
   blacklight-hierarchy
   blacklight-oembed (>= 0.1.0)
