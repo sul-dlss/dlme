@@ -6,14 +6,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 7.2.2'
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem 'sprockets-rails'
+gem 'propshaft'
 
 # Use Puma as the app server
 gem 'puma', '~> 7.0'
 
-# Use Terser as compressor for JavaScript assets
-gem 'terser', '~> 1.1'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter for caching in production
