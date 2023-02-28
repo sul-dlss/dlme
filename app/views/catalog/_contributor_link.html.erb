@@ -1,7 +1,7 @@
 <% if document.first('agg_is_shown_at.wr_id_ssim').present? %>
   <div class="text-center">
     <%= link_to document.first('agg_is_shown_at.wr_id_ssim'), class: 'btn btn-primary' do %>
-      <%= t('catalog.show_with_viewer.view_on_contributor_website') %>
+      <%= t('embed.view_on_contributor_website') %>
     <% end %>
   </div>
 <% end %>

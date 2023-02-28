@@ -11,9 +11,6 @@ en:
   blacklight:
     range_limit:
       missing: Date unknown
-  catalog:
-    show_with_viewer:
-      view_on_contributor_website: View on contributor website
   contextual_date_sort_info:
     body: Items are sorted by date; items with missing dates are displayed at the end of the results list.
     disable_session: Don't show again
@@ -49,6 +46,8 @@ en:
     form:
       add_item: Fetch
       title: Fetch by URL
+  embed:
+    view_on_contributor_website: View on contributor website
   footer:
     partnership_heading: In partnership with
     project_support_heading: Project supported by

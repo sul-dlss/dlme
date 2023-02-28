@@ -4,9 +4,6 @@ ar:
   blacklight:
     range_limit:
       missing: التاريخ غير معروف
-  catalog:
-    show_with_viewer:
-      view_on_contributor_website: اعرض على موقع المساهمين
   contextual_result_info:
     body_html: قد ترى المزيد من النتائج للاستعلام الخاص بك <a href='%{link}'> عن طريق إدخال مصطلحات البحث بلغة أخرى <a>.
     disable_session: لا تعرض مجددًا
@@ -38,6 +35,8 @@ ar:
     form:
       add_item: اجلب
       title: 'جلب DLME '
+  embed:
+    view_on_contributor_website: اعرض على موقع المساهمين
   footer:
     partnership_heading: بالشراكة مع
     project_support_heading: المشروع مدعوم من قبل

@@ -9,7 +9,7 @@
     <%= link_to document.first('agg_is_shown_at.wr_id_ssim').presence || '#' do %>
       <figure class="figure">
         <%= thumbnail.render(class: 'figure-img img-fluid') %>
-        <figcaption class="figure-caption text-center"><%= t('.view_on_contributor_website') %></figcaption>
+        <figcaption class="figure-caption text-center"><%= t('embed.view_on_contributor_website') %></figcaption>
       </figure>
     <% end %>
   </div>
