@@ -1,9 +1,9 @@
 <% if document.iiifable? %>
-  <%= render_document_partial(document, 'mirador') %>
+  <%= render 'catalog/mirador_default', document: document %>
 <% elsif document.embeddable? %>
-  <%= render_document_partial(document, 'oembed') %>
+    <%= render 'catalog/oembed_default', document: document %>
 <% elsif document.openseadragonable? %>
-  <%= render_document_partial(document, 'openseadragon') %>
+  <%= render 'catalog/openseadragon_default', document: document %>
 <% elsif thumbnail.exists? %>
   <div class="thumbnail-viewer">
     <%= link_to document.first('agg_is_shown_at.wr_id_ssim').presence || '#' do %>
