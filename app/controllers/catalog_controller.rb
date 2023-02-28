@@ -21,6 +21,8 @@ class CatalogController < ApplicationController
     # Use POST requests for solr to avoid limits on query length
     config.http_method = :post
 
+    config.search_state_fields += [:exhibit_id]
+
     # Disable bookmarks
     config.index.document_actions[:bookmark].if = false
     config.show.document_actions[:bookmark].if = false
