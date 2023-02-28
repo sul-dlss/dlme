@@ -7,7 +7,7 @@
     <%= render partial: 'shared/analytics' %>
     <title><%= h(@page_title || application_name.to_s) %></title>
     <link href="<%= current_exhibit ? spotlight.opensearch_exhibit_catalog_url(current_exhibit, format: 'xml') : main_app.opensearch_catalog_url(format: 'xml') %>" title="<%= h(@page_title || application_name.to_str) %>" type="application/opensearchdescription+xml" rel="search"/>
-    <%= favicon_link_tag 'favicon.ico' %>
+    <%= favicon_link_tag 'dlme/favicon.ico' %>
     <% if current_exhibit %>
       <%= exhibit_stylesheet_link_tag "application" %>
     <% else %>
