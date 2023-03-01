@@ -8,5 +8,6 @@ ActiveSupport::Reloader.to_prepare do
                                                 BidiWrap,
                                                 Paragraph,
                                                 Join,
-                                                Collapse]
+                                                Collapse,
+                                                Blacklight::Rendering::Join]
 end
