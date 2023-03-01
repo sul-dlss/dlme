@@ -27,4 +27,4 @@ jobs:
     - name: Set up the database
       run: bin/rails db:test:prepare
     - name: Run CI rake task
-      run: bin/rake ci
+      run: RAILS_ENV=test NODE_ENV=development bin/rake ci
