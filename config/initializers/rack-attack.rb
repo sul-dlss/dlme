@@ -29,3 +29,6 @@ Rack::Attack.throttled_responder = lambda do |request|
 
   [ 429, headers, ["Throttled\n"]]
 end
+
+# Always allow Stanford traffic
+Rack::Attack.safelist_ip("171.64.0.0/14")
