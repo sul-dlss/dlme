@@ -21,7 +21,7 @@
     <%= javascript_importmap_tags 'entry' %>
     <%= javascript_include_tag "application", defer: true %>
     <%= javascript_tag "window.addEventListener('load', () => Spotlight.sirTrevorIcon = '#{asset_path('spotlight/blocks/sir-trevor-icons.svg')}')" %>
-    <%= javascript_tag '$.fx.off = true;' if Rails.env.test? %>
+    <%= javascript_tag "window.addEventListener('load', () => $.fx.off = true)" if Rails.env.test? %>
   </head>
   <body class="<%= render_body_class %>">
     <%= render partial: 'shared/body_preamble' %>

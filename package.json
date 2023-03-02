@@ -10,13 +10,20 @@
     "@blueprintjs/icons": "^4.11.0",
     "@hotwired/turbo-rails": "^7.2.5",
     "babel-loader": "8",
+    "blacklight-frontend": "^8.0.0-beta.8",
+    "blacklight-gallery": "^4.0.2-beta.1",
+    "blacklight-hierarchy": "^6.1.0",
+    "blacklight-range-limit": "^8.2.4-beta.1",
+    "bootstrap": "^4",
     "browser": "^0.2.6",
     "compression-webpack-plugin": "9",
     "mirador": "^3.3.0",
     "mirador-image-tools": "^0.11.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "sass": "^1.58.3",
     "shakapacker": "^6.5.6",
+    "spotlight-frontend": "^3.6.0-beta.1",
     "terser-webpack-plugin": "5",
     "url": "^0.11.0",
     "webpack": "5",
@@ -33,5 +40,8 @@
   },
   "browserslist": [
     "defaults"
-  ]
+  ],
+  "scripts": {
+    "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+  }
 }
