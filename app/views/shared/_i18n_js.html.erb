@@ -1,4 +1,6 @@
 <%= javascript_tag do %>
-  I18n.defaultLocale = "<%= I18n.default_locale %>";
-  I18n.locale = "<%= I18n.locale %>";
+  window.addEventListener('load', () => {
+    I18n.defaultLocale = "<%= I18n.default_locale %>";
+    I18n.locale = "<%= I18n.locale %>";
+  })
 <% end %>
