@@ -40,6 +40,8 @@ RSpec.describe 'Import resources from a file' do
       end
     end
 
+    # HarvestsController requires that the URL parameter exist for NdjsonUpload
+    # So we do not need to test for the error when the URL is invalid or blank
     context 'when the file does not exist' do
       before do
         allow(File).to receive(:exist?).and_return(false)

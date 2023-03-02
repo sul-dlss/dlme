@@ -48,14 +48,17 @@ en:
   dlme_s3s:
     form:
       add_item: Fetch
-      error_duplicate_ids: JSON contained duplicate identifiers
-      error_file_not_found: File not found
-      error_unknown: An unknown error occurred
       title: Fetch by URL
   footer:
     partnership_heading: In partnership with
     project_support_heading: Project supported by
     project_support_text: The Andrew W. Mellon Foundation
+  harvests:
+    create:
+      error:
+        duplicate_ids: JSON contained duplicate identifiers
+        file_not_found: File not found
+        unknown: An unknown error occurred
   helpers:
     submit:
       contact_form:
