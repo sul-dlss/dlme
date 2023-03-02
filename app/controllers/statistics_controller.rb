@@ -28,7 +28,7 @@ class StatisticsController < ApplicationController
       user_params: { f: { provider_facet_field => params[provider_facet_field] } }
     ).search_results
     @provider_collection_field = "agg_data_provider_collection.#{StatisticsDashboard.mapped_locale}_ssim"
-    @rows = results.first.facet_counts['facet_fields'][@provider_collection_field].each_slice(2)
+    @rows = results.facet_counts['facet_fields'][@provider_collection_field].each_slice(2)
 
     collections_id = Digest::MD5.hexdigest params[provider_facet_field]
 
