@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Meatadata Collapse' do
+RSpec.describe 'Metadata Collapse' do
   let(:exhibit) { create(:exhibit, published: true) }
   let(:resource) { DlmeJson.new(json: json, metadata: metadata, exhibit: exhibit) }
   let(:fixture_file_path) { File.join(fixture_path, 'json/long-description.json') }
