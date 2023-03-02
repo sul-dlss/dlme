@@ -49,7 +49,7 @@ RSpec.describe 'Import resources from a file' do
         post "/#{exhibit.slug}/harvests", params: { url: url }
         expect(AddResourcesJob).not_to have_received(:perform_later)
         expect(flash[:error]).to eq('File not found')
-        expect(response).to redirect_to(spotlight.new_exhibit_resource_path(exhibit)) 
+        expect(response).to redirect_to(spotlight.new_exhibit_resource_path(exhibit))
       end
     end
   end

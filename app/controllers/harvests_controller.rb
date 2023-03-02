@@ -10,7 +10,7 @@ class HarvestsController < ApplicationController
 
   def create
     authorize! :create, DlmeJson
-    
+
     upload = NdjsonUpload.new(params.require(:url))
     return handle_error(upload.error) unless upload.valid?
 
@@ -26,7 +26,7 @@ class HarvestsController < ApplicationController
   end
 
   def error_message(error)
-    # NdjsonUpload can also return a ":no_url" error, but the harvest controller requires the url, 
+    # NdjsonUpload can also return a ":no_url" error, but the harvest controller requires the url,
     # so we do not need to check for that situation
     case error
     when :duplicate_ids
@@ -37,5 +37,4 @@ class HarvestsController < ApplicationController
       t('dlme_s3s.form.error_unknown')
     end
   end
-
 end
