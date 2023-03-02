@@ -26,14 +26,15 @@ class HarvestsController < ApplicationController
   end
 
   def error_message(error)
-    #NdjsonUpload can also return a ":no_url" error, but the harvest controller requires the url, so we do not need to check for that condition
+    # NdjsonUpload can also return a ":no_url" error, but the harvest controller requires the url, 
+    # so we do not need to check for that situation
     case error
     when :duplicate_ids
-      t('dlme_s3s.form.error_duplicate_ids') 
+      t('dlme_s3s.form.error_duplicate_ids')
     when :file_not_found
-      t('dlme_s3s.form.error_file_not_found') 
+      t('dlme_s3s.form.error_file_not_found')
     else
-      t('dlme_s3s.form.error_unknown') 
+      t('dlme_s3s.form.error_unknown')
     end
   end
 
