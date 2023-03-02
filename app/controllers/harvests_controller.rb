@@ -12,8 +12,7 @@ class HarvestsController < ApplicationController
     authorize! :create, DlmeJson
 
     upload = NdjsonUpload.new(params.require(:url))
-
-    return invalid_file unless upload.valid?
+    return handle_error(upload.error) unless upload.valid?
 
     AddResourcesJob.perform_later upload.filepath, exhibit: current_exhibit, local: true
 
@@ -21,7 +20,14 @@ class HarvestsController < ApplicationController
                 notice: t('spotlight.resources.fetch.queued')
   end
 
-  def invalid_file
-    redirect_to spotlight.new_exhibit_resource_path(current_exhibit), flash: { error: t('dlme_s3s.form.error') }
+  def handle_error(error)
+    error_message = error_message(error)
+    redirect_to spotlight.new_exhibit_resource_path(current_exhibit), flash: { error: error_message }
+  end
+
+  def error_message(error)
+    # This looks up the i18n string relative to this class
+    # i.e. looks up the errors under en.harvests.create.error
+    t(".error.#{error}")
   end
 end

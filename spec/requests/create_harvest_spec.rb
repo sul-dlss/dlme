@@ -31,11 +31,26 @@ RSpec.describe 'Import resources from a file' do
     context 'when content at url contains duplicate identifiers' do
       let(:body) { "{\"id\":\"one\"}\n{\"id\":\"one\"}" }
 
-      it 'redirects with an error flash message' do
+      it 'redirects with an error flash message about duplicate identifiers' do
         post "/#{exhibit.slug}/harvests", params: { url: url }
 
         expect(AddResourcesJob).not_to have_received(:perform_later)
         expect(flash[:error]).to eq('JSON contained duplicate identifiers')
+        expect(response).to redirect_to(spotlight.new_exhibit_resource_path(exhibit))
+      end
+    end
+
+    # HarvestsController requires that the URL parameter exist for NdjsonUpload
+    # So we do not need to test for the error when the URL is invalid or blank
+    context 'when the file does not exist' do
+      before do
+        allow(File).to receive(:exist?).and_return(false)
+      end
+
+      it 'redirects with an error flash message about the file not being found' do
+        post "/#{exhibit.slug}/harvests", params: { url: url }
+        expect(AddResourcesJob).not_to have_received(:perform_later)
+        expect(flash[:error]).to eq('File not found')
         expect(response).to redirect_to(spotlight.new_exhibit_resource_path(exhibit))
       end
     end

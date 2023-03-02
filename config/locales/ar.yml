@@ -37,12 +37,17 @@ ar:
   dlme_s3s:
     form:
       add_item: اجلب
-      error: يحتوي تنسيق جسون على معرّفات مكررة
       title: 'جلب DLME '
   footer:
     partnership_heading: بالشراكة مع
     project_support_heading: المشروع مدعوم من قبل
     project_support_text: مؤسسة أندرو و. ميلون
+  harvests:
+    create:
+      error:
+        duplicate_ids: يحتوي تنسيق جسون على معرّفات مكررة
+        file_not_found: لم يتم العثور على الملف
+        unknown: حدث خطأ غير معروف
   helpers:
     label:
       contact_form:
