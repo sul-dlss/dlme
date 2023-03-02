@@ -49,9 +49,8 @@ en:
     form:
       add_item: Fetch
       error_duplicate_ids: JSON contained duplicate identifiers
-      error_no_url: no url
-      error_file_not_found: file not found
-      error_unknown: unknown error
+      error_file_not_found: File not found
+      error_unknown: An unknown error occurred
       title: Fetch by URL
   footer:
     partnership_heading: In partnership with
