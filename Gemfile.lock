@@ -113,7 +113,7 @@ GEM
       ostruct (>= 0.3.2)
       rails (>= 5.1, < 7.1)
       view_component (~> 2.66)
-    blacklight-gallery (4.1.0)
+    blacklight-gallery (4.2.0)
       blacklight (>= 7.17, < 9)
       rails (>= 6.1, < 8)
     blacklight-hierarchy (6.1.0)
@@ -715,7 +715,7 @@ PLATFORMS
 
 DEPENDENCIES
   blacklight (~> 7.14)
-  blacklight-gallery (~> 4.0)
+  blacklight-gallery (~> 4.2)
   blacklight-hierarchy
   blacklight-oembed (>= 0.1.0)
   blacklight-spotlight (~> 3.6.0.beta3)
