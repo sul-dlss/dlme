@@ -205,8 +205,13 @@ body {
   margin-top: 1rem;
 }
 
+// Hide the site title in the masthead, because we render it in the navbar
 .masthead .site-title {
-  white-space: normal;
+  visibility: hidden;
+
+  + small {
+    visibility: hidden;
+  }
 }
 
 .exhibit-navbar {
@@ -290,17 +295,18 @@ body {
 }
 
 .topbar {
+  position: absolute;
+  width: 100vw;
+  z-index: 1;
   background-color: $topnav-background-color !important;
-  margin-bottom: 4rem;
-  padding-bottom: .25rem;
-  padding-top: .5rem;
 
-  @include media-breakpoint-down('sm') {
-    margin-bottom: 0;
+  // extra spacing when there's no masthead in between navbar and content
+  + #main-container {
+    padding-top: 8rem !important;
   }
 }
 
-.masthead .topbar .navbar-nav {
+.topbar .navbar-nav {
   text-transform: none;
   .nav-link {
     color: $color-gray-lightest;
@@ -377,8 +383,13 @@ body {
     border: 0;
   }
 
-  .masthead .site-title {
-    text-align: center;
+  // Hide the masthead title on mobile, because we render it in the navbar
+  .masthead .site-title-container {
+    display: none;
+  }
+
+  .topbar + .masthead {
+    padding-top: 4rem;  // height of navbar on mobile
   }
 }
 
@@ -412,7 +423,6 @@ body {
   display: none;
 }
 
-
 .item-provider {
   background-color: $white;
   border: 1px solid $color-gray-medium;
@@ -422,5 +432,15 @@ body {
   padding: $spacer;
   dd, dl {
     margin-bottom: 0.25rem;
+  }
+}
+
+// Turn off transparency for the topbar on pages where there's no masthead, 
+// e.g. pages provided by Devise
+body.blacklight-sessions,
+body.blacklight-registrations,
+body.blacklight-passwords {
+  .topbar {
+    background-color: $color-primary !important;
   }
 }
