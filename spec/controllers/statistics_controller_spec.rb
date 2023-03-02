@@ -5,9 +5,9 @@ require 'rails_helper'
 RSpec.describe StatisticsController do
   let(:exhibit) { create(:exhibit) }
 
-  describe 'GET show' do
+  describe 'GET index' do
     it 'assigns @statistics_dashboard' do
-      get :show, params: { exhibit_id: exhibit.slug }
+      get :index, params: { exhibit_id: exhibit.slug }
 
       dashboard = assigns(:statistics_dashboard)
       expect(dashboard).to be_a_kind_of StatisticsDashboard

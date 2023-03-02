@@ -16,9 +16,25 @@ class StatisticsController < ApplicationController
     blacklight_config.sort_fields.clear
   end
 
-  def show
+  def index
     @statistics_dashboard = StatisticsDashboard.new(search_service: search_service)
   end
+
+  # rubocop:disable Metrics/AbcSize
+  def show
+    provider_facet_field = "agg_provider_#{I18n.locale}"
+    results = CatalogController.search_service_class.new(
+      config: CatalogController.blacklight_config,
+      user_params: { f: { provider_facet_field => params[provider_facet_field] } }
+    ).search_results
+    @provider_collection_field = "agg_data_provider_collection.#{StatisticsDashboard.mapped_locale}_ssim"
+    @rows = results.first.facet_counts['facet_fields'][@provider_collection_field].each_slice(2)
+
+    collections_id = Digest::MD5.hexdigest params[provider_facet_field]
+
+    render turbo_stream: turbo_stream.replace(collections_id, partial: 'collection')
+  end
+  # rubocop:enable Metrics/AbcSize
 
   private
 

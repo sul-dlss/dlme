@@ -106,15 +106,12 @@ en:
         exhibit_home: Exhibit home
   statistics:
     contributors:
-      agg_data_provider:
-        total_html: Holding Institutions &middot; %{total}
-      agg_provider:
-        total_html: Data Providers &middot; %{total}
       table:
         collections: Collections
         country: Countries
         institution: Institution
         items: Items
+      total_html: Holding Institutions &middot; %{total}
     dashboard:
       header:
         total_collections:
@@ -139,6 +136,13 @@ en:
         by_language: By language
         by_type: By type
         total_html: Items &middot; %{total}
+    data_providers:
+      table:
+        collections: Collections
+        country: Countries
+        institution: Institution
+        items: Items
+      total_html: Data Providers &middot; %{total}
     header: Statistics
   transforms:
     show:
