@@ -37,7 +37,9 @@ ar:
   dlme_s3s:
     form:
       add_item: اجلب
-      error: يحتوي تنسيق جسون على معرّفات مكررة
+      error_duplicate_ids: يحتوي تنسيق جسون على معرّفات مكررة
+      error_file_not_found: لم يتم العثور على الملف
+      error_unknown: حدث خطأ غير معروف
       title: 'جلب DLME '
   footer:
     partnership_heading: بالشراكة مع
