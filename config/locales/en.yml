@@ -48,7 +48,10 @@ en:
   dlme_s3s:
     form:
       add_item: Fetch
-      error: JSON contained duplicate identifiers
+      error_duplicate_ids: JSON contained duplicate identifiers
+      error_no_url: no url
+      error_file_not_found: file not found
+      error_unknown: unknown error
       title: Fetch by URL
   footer:
     partnership_heading: In partnership with

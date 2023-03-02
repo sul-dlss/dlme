@@ -17,7 +17,6 @@ class NdjsonUpload
     elsif NdjsonNormalizer.new(body, filename).any_duplicate_identifiers?
       @error = :duplicate_ids
     end
-
     error.nil?
   end
 
