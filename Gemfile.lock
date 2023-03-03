@@ -160,8 +160,9 @@ GEM
       signet
       tophat
       view_component (~> 2.0)
-    blacklight_range_limit (8.2.3)
+    blacklight_range_limit (8.3.0)
       blacklight (>= 7.25.2, < 9)
+      deprecation
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     bootstrap (4.6.2)
