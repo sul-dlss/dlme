@@ -73,7 +73,6 @@ end
 
 gem 'blacklight', '~> 8.0.0.beta8'
 gem 'blacklight-spotlight', '~> 3.6.0.beta4'
-gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 
 gem 'friendly_id'
 gem 'iiif-presentation', '~> 1.0'
