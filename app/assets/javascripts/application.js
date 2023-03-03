@@ -11,13 +11,6 @@
 // about supported directives.
 //
 
-// Required by Bootstrap 4 and Spotlight
-//= require jquery3
-//= require popper
-//= require bootstrap
-//= require bootstrap/util
-//= require blacklight/blacklight
-
 //= require transform_result
 //= require i18n/translations
 //= require_tree .
