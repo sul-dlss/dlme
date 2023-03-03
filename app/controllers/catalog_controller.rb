@@ -21,6 +21,8 @@ class CatalogController < ApplicationController
     # Use POST requests for solr to avoid limits on query length
     config.http_method = :post
 
+    config.search_state_fields += [:exhibit_id]
+
     # Disable bookmarks
     config.index.document_actions[:bookmark].if = false
     config.show.document_actions[:bookmark].if = false
@@ -29,7 +31,9 @@ class CatalogController < ApplicationController
     config.navbar.partials = {}
 
     config.show.oembed_field = :'agg_is_shown_at.wr_id_ssim'
-    config.show.partials = %i[show_header show_with_viewer ir_view record_feedback]
+    config.show.partials = %i[ir_view record_feedback]
+    config.show.metadata_component = DocumentMetadataComponent
+    config.show.embed_component = EmbedComponent
 
     config.view.list.partials = %i[thumbnail index_header index]
     config.view.gallery document_component: Blacklight::Gallery::DocumentComponent
@@ -59,8 +63,9 @@ class CatalogController < ApplicationController
     config.document_unique_id_param = 'ids'
     config.raw_endpoint.enabled = true
 
-    config.index.title_field = Blacklight::Configuration::Field.new(first: true, **multilingual_locale_aware_field('cho_title'))
-    config.show.html_title_field = Blacklight::Configuration::Field.new(
+    config.index.title_field = Blacklight::Configuration::DisplayField.new(first: true,
+                                                                           **multilingual_locale_aware_field('cho_title'))
+    config.show.html_title_field = Blacklight::Configuration::DisplayField.new(
       first: true,
       no_html: true,
       **multilingual_locale_aware_field('cho_title')

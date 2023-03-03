@@ -21,7 +21,7 @@ task(:default).clear
 
 task default: :ci
 
-task ci: [:rubocop] do
+task ci: [:rubocop, 'assets:precompile'] do
   ENV['environment'] = 'test'
 
   SolrWrapper.wrap(port: '8983') do |solr|

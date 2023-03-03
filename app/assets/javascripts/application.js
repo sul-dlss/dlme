@@ -11,10 +11,9 @@
 // about supported directives.
 //
 
-// Required by Blacklight
+// Required by Bootstrap 4 and Spotlight
 //= require jquery3
 //= require popper
-//= require twitter/typeahead
 //= require bootstrap
 //= require bootstrap/util
 //= require blacklight/blacklight
@@ -23,7 +22,4 @@
 //= require i18n/translations
 //= require_tree .
 
-
-// For blacklight_range_limit built-in JS, if you don't want it you don't need
-// this:
 //= require 'blacklight_range_limit'

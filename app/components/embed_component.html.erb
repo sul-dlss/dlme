@@ -1,0 +1,16 @@
+<% if document.iiifable? %>
+  <%= render 'catalog/mirador_default', document: document %>
+<% elsif document.embeddable? %>
+    <%= render 'catalog/oembed_default', document: document %>
+<% elsif document.openseadragonable? %>
+  <%= render 'catalog/openseadragon_default', document: document %>
+<% elsif thumbnail.exists? %>
+  <div class="thumbnail-viewer">
+    <%= link_to document.first('agg_is_shown_at.wr_id_ssim').presence || '#' do %>
+      <figure class="figure">
+        <%= thumbnail.render(class: 'figure-img img-fluid') %>
+        <figcaption class="figure-caption text-center"><%= t('embed.view_on_contributor_website') %></figcaption>
+      </figure>
+    <% end %>
+  </div>
+<% end %>
