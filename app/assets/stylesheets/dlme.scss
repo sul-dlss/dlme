@@ -297,7 +297,7 @@ body {
 .topbar {
   position: absolute;
   width: 100vw;
-  z-index: 1;
+  z-index: 2; // ensure admin dropdown is on top of the search input field.
   background-color: $topnav-background-color !important;
 
   // extra spacing when there's no masthead in between navbar and content
