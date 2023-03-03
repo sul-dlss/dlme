@@ -209,13 +209,10 @@ body {
   margin-top: 1rem;
 }
 
-// Hide the site title in the masthead, because we render it in the navbar
-.masthead .site-title {
+// Hide the site title text in the masthead, because we render it in the navbar.
+// The element still takes up space so spotlight's header is the right size
+.masthead .site-title-container {
   visibility: hidden;
-
-  + small {
-    visibility: hidden;
-  }
 }
 
 .exhibit-navbar {
@@ -387,13 +384,9 @@ body {
     border: 0;
   }
 
-  // Hide the masthead title on mobile, because we render it in the navbar
+  // Adjust sizing of (hidden) title container on mobile, used as spacer
   .masthead .site-title-container {
-    display: none;
-  }
-
-  .topbar + .masthead {
-    padding-top: 4rem;  // height of navbar on mobile
+    height: 3.5rem;
   }
 }
 
