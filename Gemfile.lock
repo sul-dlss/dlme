@@ -49,9 +49,9 @@ GEM
     activejob (7.0.4.2)
       activesupport (= 7.0.4.2)
       globalid (>= 0.3.6)
-    activejob-status (0.4.1)
-      activejob (>= 4.2)
-      activesupport (>= 4.2)
+    activejob-status (1.0.0)
+      activejob (>= 6.0)
+      activesupport (>= 6.0)
     activemodel (7.0.4.2)
       activesupport (= 7.0.4.2)
     activerecord (7.0.4.2)
@@ -124,7 +124,7 @@ GEM
       blacklight (>= 7.0, < 9)
       rails
       ruby-oembed
-    blacklight-spotlight (3.6.0.beta3)
+    blacklight-spotlight (3.6.0.beta4)
       activejob-status
       acts-as-taggable-on (>= 5.0, < 10)
       autoprefixer-rails
@@ -718,7 +718,7 @@ DEPENDENCIES
   blacklight-gallery (~> 4.2)
   blacklight-hierarchy
   blacklight-oembed (>= 0.1.0)
-  blacklight-spotlight (~> 3.6.0.beta3)
+  blacklight-spotlight (~> 3.6.0.beta4)
   blacklight_range_limit (~> 8.0)
   bootsnap (>= 1.4.4)
   bootstrap (~> 4.0)
