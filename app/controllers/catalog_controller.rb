@@ -36,9 +36,12 @@ class CatalogController < ApplicationController
     config.show.embed_component = EmbedComponent
 
     config.view.list.partials = %i[thumbnail index_header index]
-    config.view.gallery document_component: Blacklight::Gallery::DocumentComponent
-    config.view.masonry document_component: Blacklight::Gallery::DocumentComponent
-    config.view.slideshow document_component: Blacklight::Gallery::SlideshowComponent
+    config.view.gallery document_component: Blacklight::Gallery::DocumentComponent,
+                        icon: Blacklight::Gallery::Icons::GalleryComponent
+    config.view.masonry document_component: Blacklight::Gallery::DocumentComponent,
+                        icon: Blacklight::Gallery::Icons::MasonryComponent
+    config.view.slideshow document_component: Blacklight::Gallery::SlideshowComponent,
+                          icon: Blacklight::Gallery::Icons::SlideshowComponent
 
     config.add_results_collection_tool(:sort_widget)
     config.add_results_collection_tool(:per_page_widget)
