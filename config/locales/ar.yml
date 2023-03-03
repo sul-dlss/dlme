@@ -68,16 +68,10 @@ ar:
       email: "(البريد الالكتروني (اختياري"
       form_help: إذا كان لديك أي سؤال أو تعليق بخصوص هذا العنصر ، يرجى استخدام النموذج أدناه.
       message: سؤال أو تعليق
-  s3_delete:
-    new:
-      add_item: احذف العناصر
   spotlight:
     bulk_actions:
       delete_resources:
         heading: حذف الموارد
-    catalog:
-      admin_header:
-        delete_resource: احذف العناصر
     curation:
       sidebar:
         sources: مصادر

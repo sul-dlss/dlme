@@ -8,7 +8,6 @@
       <% if Spotlight::Engine.config.resource_partials.any? %>
         <%= link_to t('.new_resource'), new_exhibit_resource_path(current_exhibit), class: 'btn btn-primary' %>
       <% end %>
-      <%= link_to t('.delete_resource'), new_exhibit_s3_delete_path(current_exhibit), class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>
