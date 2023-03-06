@@ -71,10 +71,11 @@ if Settings.analytics.pkcs12_key && Settings.analytics.pkcs12_key_path
   end
 end
 
+Spotlight::Engine.config.ga_web_property_id = "G-89R2218T5G"
+Spotlight::Engine.config.ga_debug_mode = ActiveModel::Type::Boolean.new.cast(ENV.fetch('ANALYTICS_DEBUG', true))
 # Spotlight::Engine.config.analytics_provider = nil
-Spotlight::Engine.config.ga_pkcs12_key_path = Settings.analytics.pkcs12_key_path
-Spotlight::Engine.config.ga_web_property_id = Settings.analytics.web_property_id
-Spotlight::Engine.config.ga_email = Settings.analytics.email
+# Spotlight::Engine.config.ga_pkcs12_key_path = Settings.analytics.pkcs12_key_path
+# Spotlight::Engine.config.ga_email = Settings.analytics.email
 # Spotlight::Engine.config.ga_analytics_options = {}
 # Spotlight::Engine.config.ga_page_analytics_options = config.ga_analytics_options.merge(limit: 5)
 
