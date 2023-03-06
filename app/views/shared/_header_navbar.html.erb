@@ -7,7 +7,8 @@
     <% end %>
 
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#user-util-collapse" aria-controls="user-util-collapse" aria-expanded="false" aria-label="<%= t :toggle_nav %>">
-      <span class="navbar-toggler-icon"></span>
+      <span data-show-label><%= t('blacklight.search.facets.group.open') %></span>
+      <span data-hide-label><%= t('blacklight.search.facets.group.close') %></span>
     </button>
 
     <div class="collapse navbar-collapse justify-content-md-end" id="user-util-collapse">
