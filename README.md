@@ -51,7 +51,7 @@ $ solr_wrapper
 Start the Rails app
 
 ```bash
-$ rails s
+$ bin/dev
 ```
 
 You can create an admin user to login to the application by running Spotlight's `initialize` task.

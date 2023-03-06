@@ -11,8 +11,6 @@ gem 'sprockets-rails'
 
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
-# Use SCSS for stylesheets
-gem 'sassc-rails'
 
 # Use Terser as compressor for JavaScript assets
 gem 'terser', '~> 1.1'
@@ -99,7 +97,6 @@ gem 'okcomputer'
 gem 'rack-attack'
 gem 'slowpoke', '~> 0.4'
 
-gem 'bootstrap', '~> 4.0'
 gem 'font-awesome-rails'
 
 gem 'shakapacker', '~> 6.4'
@@ -113,4 +110,5 @@ gem 'turbo-rails', '~> 1.3'
 
 gem 'importmap-rails', '~> 1.1'
 
+gem 'cssbundling-rails', '~> 1.1'
 gem 'stimulus-rails', '~> 1.2'
