@@ -20,8 +20,8 @@ class MultilingualDateRangeComponent < ViewComponent::Base
   def date_range_switcher_query_paths
     other_field_name = facet_configuration[:configured_range_fields].find { |f| f[:field] != field_name }[:field]
     {
-      other_field_name => helpers.range_limit_panel_url(id: other_field_name, range: nil, locale: :en),
-      field_name => helpers.range_limit_panel_url(id: field_name)
+      other_field_name => helpers.search_facet_path(id: other_field_name),
+      field_name => helpers.search_facet_path(id: field_name)
     }
   end
 
