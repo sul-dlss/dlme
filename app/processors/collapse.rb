@@ -31,7 +31,7 @@ class Collapse < Blacklight::Rendering::AbstractStep
       context.safe_join(
         [
           I18n.t('metadata_collapse.button.more'),
-          context.blacklight_icon('angle-down', classes: 'ml-2')
+          Icons::MoreTextComponent.new(classes: 'ml-2').call
         ], ' '
       ),
       class: 'arrow-down'
@@ -43,7 +43,7 @@ class Collapse < Blacklight::Rendering::AbstractStep
       context.safe_join(
         [
           I18n.t('metadata_collapse.button.less'),
-          context.blacklight_icon('angle-up', classes: 'ml-2')
+          Icons::LessTextComponent.new(classes: 'ml-2').call
         ], ' '
       ),
       class: 'arrow-up'
