@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'transform results' do
   context 'when signed in' do
     let(:curator) { create(:exhibit_curator) }
-    let(:body) { JSON.parse(response.body).with_indifferent_access }
+    let(:body) { response.parsed_body.with_indifferent_access }
 
     before do
       sign_in curator
