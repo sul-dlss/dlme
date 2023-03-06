@@ -38,7 +38,7 @@ RSpec.describe CatalogController do
         get :show, params: { id: 'xyz', format: :json }
 
         expect(response).to be_successful
-        obj = JSON.parse(response.body).with_indifferent_access
+        obj = response.parsed_body.with_indifferent_access
         expect(obj.dig(:data, :attributes, :identifier, :attributes, :value)).to eq ['Part 1', 'Part 2']
       end
 
@@ -46,7 +46,7 @@ RSpec.describe CatalogController do
         get :show, params: { id: 'xyz', format: :json }
 
         expect(response).to be_successful
-        obj = JSON.parse(response.body).with_indifferent_access
+        obj = response.parsed_body.with_indifferent_access
         expect(obj.dig(:data, :attributes, :__raw_resource_json_ss, :attributes, :value)).to include(a: 1)
       end
     end
@@ -56,7 +56,7 @@ RSpec.describe CatalogController do
         get :show, params: { id: 'xyz', raw: true }
 
         expect(response).to be_successful
-        expect(JSON.parse(response.body).with_indifferent_access).to include(id: 'xyz')
+        expect(response.parsed_body.with_indifferent_access).to include(id: 'xyz')
       end
     end
   end

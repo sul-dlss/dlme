@@ -22,7 +22,7 @@ RSpec.describe 'Api::Harvests' do
 
     it 'submits a job' do
       post '/api/harvests', params: { url: url }, headers: { Authorization: "Bearer #{secret}", Accept: 'application/json' }
-      json = JSON.parse(response.body)
+      json = response.parsed_body
 
       expect(response).to have_http_status(:accepted)
       expect(json['message']).to eq('Harvest successfully initiated')
@@ -41,7 +41,7 @@ RSpec.describe 'Api::Harvests' do
     context 'when there is no supplied file URL' do
       it 'returns an error code' do
         post '/api/harvests', headers: { Authorization: "Bearer #{secret}", Accept: 'application/json' }
-        json = JSON.parse(response.body)
+        json = response.parsed_body
 
         expect(response).to have_http_status(:bad_request)
         expect(json['error']).to eq('Invalid file URL')
@@ -56,7 +56,7 @@ RSpec.describe 'Api::Harvests' do
 
       it 'returns an error code' do
         post '/api/harvests', params: { url: url }, headers: { Authorization: "Bearer #{secret}", Accept: 'application/json' }
-        json = JSON.parse(response.body)
+        json = response.parsed_body
 
         expect(response).to have_http_status(:bad_request)
         expect(json['error']).to eq('File not found')
@@ -69,7 +69,7 @@ RSpec.describe 'Api::Harvests' do
 
       it 'returns an error code' do
         post '/api/harvests', params: { url: url }, headers: { Authorization: "Bearer #{secret}", Accept: 'application/json' }
-        json = JSON.parse(response.body)
+        json = response.parsed_body
 
         expect(response).to have_http_status(:unprocessable_entity)
         expect(json['error']).to eq('JSON contained duplicate identifiers')
