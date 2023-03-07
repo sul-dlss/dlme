@@ -81,7 +81,6 @@ gem 'blacklight-gallery', '~> 4.2'
 gem 'blacklight-hierarchy'
 gem 'blacklight-oembed', '>= 0.1.0'
 gem 'blacklight_range_limit', '~> 8.0'
-gem 'jquery-rails'
 gem 'rails_autolink'
 gem 'rsolr', '>= 1.0'
 
