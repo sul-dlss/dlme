@@ -68,6 +68,9 @@ RSpec.configure do |config|
   config.include ViewComponent::SystemTestHelpers, type: :component
   config.include Capybara::RSpecMatchers, type: :component
 
+  # Ensure that the locale hasn't been set from an earlier test.
+  config.before { I18n.locale = I18n.default_locale } # rubocop:disable Rails/I18nLocaleAssignment
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = Rails.root.join('spec/fixtures')
 
