@@ -11,7 +11,17 @@
 // about supported directives.
 //
 
-//= require i18n/translations
-//= require_tree .
 
-//= require 'blacklight_range_limit'
+//= require analytics
+//= require i18n/translations
+//= require blacklight_gallery/default
+//= require blacklight/hierarchy/hierarchy
+//= require openseadragon/openseadragon
+//= require openseadragon/rails
+//= require blacklight_range_limit
+//= require blacklight_oembed/jquery.oembed.js
+//= require range_limit_config
+
+Blacklight.onLoad(function() {
+  $('[data-embed-url]').oEmbed();
+});
