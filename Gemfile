@@ -70,7 +70,7 @@ group :deployment do
 end
 
 gem 'blacklight', '~> 8.0.0.beta8'
-gem 'blacklight-spotlight', '~> 3.6.0.beta4'
+gem 'blacklight-spotlight', github: 'projectblacklight/spotlight', branch: 'importmap2'#~> 3.6.0.beta4'
 
 gem 'friendly_id'
 gem 'iiif-presentation', '~> 1.0'

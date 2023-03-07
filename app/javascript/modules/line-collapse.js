@@ -1,3 +1,5 @@
+import jQuery from 'jquery'
+
 (function( $ ){
   $.fn.lineCollapse = function( options ) {
     var button, configuredLines, container, containerHeight, containerLines, lineHeight;

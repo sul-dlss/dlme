@@ -11,3 +11,8 @@ import "controllers"
 import 'bootstrap'
 import Blacklight from 'blacklight'
 window.Blacklight = Blacklight
+
+import 'modules/transform_result'
+import 'modules/line-collapse'
+import Spotlight from 'spotlight'
+window.Spotlight = Spotlight

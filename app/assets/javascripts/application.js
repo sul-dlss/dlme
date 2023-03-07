@@ -11,7 +11,6 @@
 // about supported directives.
 //
 
-//= require transform_result
 //= require i18n/translations
 //= require_tree .
 
