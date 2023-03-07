@@ -11,3 +11,6 @@ import "controllers"
 import 'bootstrap'
 import Blacklight from 'blacklight'
 window.Blacklight = Blacklight
+
+import { I18n } from 'i18n-js'
+export const i18n = new I18n()
