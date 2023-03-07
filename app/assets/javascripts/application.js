@@ -12,7 +12,6 @@
 //
 
 
-//= require analytics
 //= require i18n/translations
 //= require blacklight_gallery/default
 //= require blacklight/hierarchy/hierarchy
