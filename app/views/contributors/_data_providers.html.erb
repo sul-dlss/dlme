@@ -20,7 +20,7 @@
         <td class="text-right"><%= number_with_delimiter(institution.collection_count) %></td>
         <td><button aria-expanded="false" aria-label="Expand" data-controller="load-statistics" data-action="load-statistics#toggleRows"
                     data-load-statistics-row-value="<%= collections_id %>"
-                    data-load-statistics-src-value="<%= exhibit_statistic_path( 'library', 'collection', shaded: i.even?, data_providers.provider_facet_field => institution.name)%>"
+                    data-load-statistics-src-value="<%= exhibit_contributor_path( 'library', 'collection', shaded: i.even?, data_providers.provider_facet_field => institution.name)%>"
                     class="toggler collapsed"></button></td>
       </tr>
       <tr id="<%= collections_id %>">

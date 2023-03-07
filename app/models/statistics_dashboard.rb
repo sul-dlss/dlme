@@ -90,7 +90,7 @@ class StatisticsDashboard
     end
 
     def to_partial_path
-      'statistics/items'
+      'contributors/items'
     end
 
     def language_field
@@ -189,7 +189,7 @@ class StatisticsDashboard
     end
 
     def to_partial_path
-      'statistics/contributors'
+      'contributors/contributors'
     end
 
     def provider_field
@@ -253,7 +253,7 @@ class StatisticsDashboard
   # A class representing a DataProvider
   class DataProviders < Contributors
     def to_partial_path
-      'statistics/data_providers'
+      'contributors/data_providers'
     end
   end
 end

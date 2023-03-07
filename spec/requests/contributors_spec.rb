@@ -17,8 +17,8 @@ RSpec.describe 'display collections for an institution' do
       let(:provider_facet_field) { 'agg_provider_en' }
       let(:institution_name) { 'The Walters Art Museum' }
 
-      it 'submits a job' do
-        get "/#{exhibit.slug}/statistics/collection", params: { provider_facet_field => institution_name }
+      it 'returns the new rows' do
+        get "/#{exhibit.slug}/contributors/collection", params: { provider_facet_field => institution_name }
         expect(response).to have_http_status(:ok)
         expect(response.body).to start_with '<turbo-stream action="replace" target="474ab96f0c955ecd1a24a0603e549448"><template>'
         template = Nokogiri(response.body).css('template').first.inner_html
@@ -31,8 +31,8 @@ RSpec.describe 'display collections for an institution' do
       let(:provider_facet_field) { 'agg_provider_ar' }
       let(:institution_name) { 'متحف والتر للفنون' }
 
-      it 'submits a job' do
-        get "/ar/#{exhibit.slug}/statistics/collection", params: { provider_facet_field => institution_name }
+      it 'returns the new rows' do
+        get "/ar/#{exhibit.slug}/contributors/collection", params: { provider_facet_field => institution_name }
         expect(response).to have_http_status(:ok)
         expect(response.body).to start_with '<turbo-stream action="replace" target="2b34fe53e1a95e06a18406cfa3c99884"><template>'
         template = Nokogiri(response.body).css('template').first.inner_html

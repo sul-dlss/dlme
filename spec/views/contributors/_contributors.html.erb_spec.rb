@@ -2,9 +2,9 @@
 
 require 'rails_helper'
 
-RSpec.describe 'statistics/_contributors.html.erb' do
+RSpec.describe 'contributors/_contributors.html.erb' do
   before do
-    render partial: 'statistics/contributors', locals: {
+    render partial: 'contributors/contributors', locals: {
       contributors: contributors
     }
   end

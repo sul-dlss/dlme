@@ -48,7 +48,6 @@ RSpec.describe 'Statistics page' do
     allow(StatisticsDashboard).to receive(:new).and_return(stub_dashboard)
 
     visit root_path
-
     within '.exhibit-navbar' do
       click_link 'Statistics'
     end
