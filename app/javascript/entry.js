@@ -14,6 +14,7 @@ window.Blacklight = Blacklight
 
 import 'modules/transform_result'
 import 'modules/line-collapse'
+import 'modules/range_limit_config'
 import Spotlight from 'spotlight'
 window.Spotlight = Spotlight
 

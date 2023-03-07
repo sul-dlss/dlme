@@ -19,7 +19,6 @@
 //= require openseadragon/rails
 //= require blacklight_range_limit
 //= require blacklight_oembed/jquery.oembed.js
-//= require range_limit_config
 
 Blacklight.onLoad(function() {
   $('[data-embed-url]').oEmbed();
