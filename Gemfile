@@ -78,7 +78,7 @@ gem 'riiif', '~> 2.0'
 gem 'sitemap_generator'
 
 gem 'blacklight-gallery', '~> 4.2'
-gem 'blacklight-hierarchy'
+gem 'blacklight-hierarchy', '~> 6.1'
 gem 'blacklight-oembed', '>= 0.1.0'
 gem 'blacklight_range_limit', '~> 8.0'
 gem 'rails_autolink'
