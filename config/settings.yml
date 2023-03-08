@@ -25,6 +25,7 @@ contact:
 data_dir: tmp/data
 
 allow_robots: false
+throttle_searches: false
 
 feature_flags:
   allow_json_upload: true
