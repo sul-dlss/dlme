@@ -6,9 +6,9 @@ Blacklight.onLoad(function() {
   function genericTickFormatter(keys) {
     return function(number) {
       if (number < 0) {
-        return I18n.t('date.' + keys[0], { year: number * -1 });
+        return i18n.t('date.' + keys[0], { year: number * -1 });
       } else {
-        return I18n.t('date.' + keys[1], { year: number });
+        return i18n.t('date.' + keys[1], { year: number });
       }
       return number;
     }
