@@ -13,13 +13,13 @@
 
 
 //= require i18n/translations
-//= require blacklight_gallery/default
-//= require blacklight/hierarchy/hierarchy
-//= require openseadragon/openseadragon
-//= require openseadragon/rails
-//= require blacklight_range_limit
-//= require blacklight_oembed/jquery.oembed.js
+// require blacklight_gallery/default
+// require blacklight/hierarchy/hierarchy
+// require openseadragon/openseadragon
+// require openseadragon/rails
+// require blacklight_range_limit
+// require blacklight_oembed/jquery.oembed.js
 
-Blacklight.onLoad(function() {
-  $('[data-embed-url]').oEmbed();
-});
+// Blacklight.onLoad(function() {
+//   $('[data-embed-url]').oEmbed();
+// });

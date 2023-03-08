@@ -1,8 +1,7 @@
 // This is the entrypoint for the importmap build.
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import jQuery from 'jquery'
-window.jQuery = jQuery
-window.$ = jQuery
+import 'modules/jquery'
+import 'modules/spotlight'
 
 import "@hotwired/turbo-rails"
 
@@ -26,4 +25,10 @@ document.addEventListener('turbo:load', function(event) {
   gtag('event', 'page_view', {
     page_location: event.detail.url
   });
+});
+
+
+
+Blacklight.onLoad(function() {
+  $('[data-behavior="line-collapse"]').lineCollapse();
 });

@@ -41,7 +41,3 @@ import jQuery from 'jquery'
     });
   }
 })( jQuery );
-
-Blacklight.onLoad(function() {
-  $('[data-behavior="line-collapse"]').lineCollapse();
-});

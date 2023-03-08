@@ -1,3 +1,6 @@
+import Blacklight from 'blacklight'
+import $ from 'jquery'
+
 Blacklight.onLoad(function() {
   var config = {
     selection: { displaySelectionDecorations: false },
