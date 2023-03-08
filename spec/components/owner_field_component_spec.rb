@@ -3,13 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe OwnerFieldComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:field) { instance_double(Blacklight::FieldPresenter, render_field?: true, key: 'foo', label: 'bar', render: 'baz') }
+  let(:component) do
+    described_class.new(field: field)
+  end
+  let(:rendered) { render_inline(component) }
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+  it 'uses the custom layout' do
+    expect(rendered).to have_selector 'dt.col-md-4', text: 'bar:'
+    expect(rendered).to have_selector 'dd.col-md-8', text: 'baz'
+  end
 end
