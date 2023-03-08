@@ -1716,9 +1716,9 @@ blacklight-frontend@^8.0.0-beta.8:
     bootstrap ">=4.3.1 <6.0.0"
 
 blacklight-gallery@^4.0.2-beta.1:
-  version "4.0.2-beta.1"
-  resolved "https://registry.yarnpkg.com/blacklight-gallery/-/blacklight-gallery-4.0.2-beta.1.tgz#1dc760c19949c1707afdfede3ce8675ed0e57c23"
-  integrity sha512-NWQkHqWoDGDOi2ytpRZaOGnoAWWbe3sXzUU7FTuqTLXOFd7vPeAwRZ0CRj9OgQItG+3p72UzKhglHbjXJW79UA==
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/blacklight-gallery/-/blacklight-gallery-4.2.0.tgz#5e57e6d878f37193182513880014ad49c2d8fc2f"
+  integrity sha512-NwpWScKJmx2efvlS2ImiD+B0+o0Nc98LX8yP4HG4ygF/uS5bUBlQhuWLZCfb8P5pMUR/JLaZz9Xkbp87BZyJSQ==
   dependencies:
     blacklight-frontend ">=7.1.0-alpha"
     jquery ">=3.0"

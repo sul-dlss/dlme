@@ -3,6 +3,7 @@
 import jQuery from 'jquery'
 window.jQuery = jQuery
 window.$ = jQuery
+console.log("Jauery: ", jQuery)
 
 import "@hotwired/turbo-rails"
 
@@ -11,3 +12,8 @@ import "controllers"
 import 'bootstrap'
 import Blacklight from 'blacklight'
 window.Blacklight = Blacklight
+
+import 'imagesloaded.min'
+import 'masonry.min'
+import('blacklight_gallery/slideshow')
+import('blacklight_gallery/masonry')
