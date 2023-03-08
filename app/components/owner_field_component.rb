@@ -2,7 +2,7 @@
 
 # Set our custom layout for the owner field
 class OwnerFieldComponent < Blacklight::MetadataFieldComponent
-  def initialize(layout: OwnerLayoutComponent, **)
-    super
+  def initialize(**args)
+    super(layout: OwnerLayoutComponent, **args)
   end
 end
