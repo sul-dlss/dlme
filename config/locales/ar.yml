@@ -8,6 +8,70 @@ ar:
     body_html: قد ترى المزيد من النتائج للاستعلام الخاص بك <a href='%{link}'> عن طريق إدخال مصطلحات البحث بلغة أخرى <a>.
     disable_session: لا تعرض مجددًا
     dismiss: ارفض
+  contributors:
+    contributors:
+      table:
+        collections: مجموعات
+        country: دول
+        institution: مؤسسة
+        items: عناصر
+      total_html: " مساهمين العناصر  &middot; %{total}"
+    dashboard:
+      header:
+        total_collections:
+          few: "%{formatted_count} مجاميع"
+          many: "%{formatted_count} مجموعة"
+          one: مجموعة 1
+          other: "%{formatted_count} مجموعة"
+          two: مجموعتان
+          zero: لا يوجد
+        total_countries:
+          few: "%{formatted_count} بلدان"
+          many: "%{formatted_count} بلد"
+          one: بلد
+          other: "%{formatted_count} بلد"
+          two: بلدان
+          zero: لا يوجد
+        total_data_providers:
+          few: "%{formatted_count} مساهمين للبيانات"
+          many: "%{formatted_count} مساهمين للبيانات"
+          one: مساهم بيانات 1
+          other: "%{formatted_count} مساهمين للبيانات"
+          two: مساهمين للبيانات
+          zero: لا يوجد
+        total_holding_institutions:
+          few: "%{formatted_count} مساهمين للعناصر"
+          many: "%{formatted_count} مساهمين للعناصر"
+          one: مساهم 1 للعناصر
+          other: "%{formatted_count} مساهمين للعناصر"
+          two: مساهمين للعناصر
+          zero: لا يوجد
+        total_items:
+          few: "%{formatted_count} عناصر"
+          many: "%{formatted_count} عنصر"
+          one: عنصر 1
+          other: "%{formatted_count} عنصر"
+          two: عنصرين
+          zero: لا يوجد
+        total_types:
+          few: "%{formatted_count} انواع من العنصر"
+          many: "%{formatted_count} نوع من العنصر"
+          one: 'نوع 1 من العنصر '
+          other: "%{formatted_count} نوع من العنصر"
+          two: نوعين من العنصر
+          zero: لا يوجد
+      items:
+        by_language: بحسب اللغة
+        by_type: بحسب النوع
+        total_html: المواد &middot; %{total}
+    data_providers:
+      table:
+        collections: مجموعات
+        country: دول
+        institution: مؤسسة
+        items: عناصر
+      total_html: مساهمين البيانات  &middot; %{total}
+    header: إحصائيات
   date:
     bce: "%{year}قبل الحقبة العامة"
     bh: "%{year} قبل الهجري"
@@ -88,70 +152,6 @@ ar:
     sites:
       edit:
         exhibit_home: معرض الصفحة الرئيسية
-  statistics:
-    contributors:
-      table:
-        collections: مجموعات
-        country: دول
-        institution: مؤسسة
-        items: عناصر
-      total_html: " مساهمين العناصر  &middot; %{total}"
-    dashboard:
-      header:
-        total_collections:
-          few: "%{formatted_count} مجاميع"
-          many: "%{formatted_count} مجموعة"
-          one: مجموعة 1
-          other: "%{formatted_count} مجموعة"
-          two: مجموعتان
-          zero: لا يوجد
-        total_countries:
-          few: "%{formatted_count} بلدان"
-          many: "%{formatted_count} بلد"
-          one: بلد
-          other: "%{formatted_count} بلد"
-          two: بلدان
-          zero: لا يوجد
-        total_data_providers:
-          few: "%{formatted_count} مساهمين للبيانات"
-          many: "%{formatted_count} مساهمين للبيانات"
-          one: مساهم بيانات 1
-          other: "%{formatted_count} مساهمين للبيانات"
-          two: مساهمين للبيانات
-          zero: لا يوجد
-        total_holding_institutions:
-          few: "%{formatted_count} مساهمين للعناصر"
-          many: "%{formatted_count} مساهمين للعناصر"
-          one: مساهم 1 للعناصر
-          other: "%{formatted_count} مساهمين للعناصر"
-          two: مساهمين للعناصر
-          zero: لا يوجد
-        total_items:
-          few: "%{formatted_count} عناصر"
-          many: "%{formatted_count} عنصر"
-          one: عنصر 1
-          other: "%{formatted_count} عنصر"
-          two: عنصرين
-          zero: لا يوجد
-        total_types:
-          few: "%{formatted_count} انواع من العنصر"
-          many: "%{formatted_count} نوع من العنصر"
-          one: 'نوع 1 من العنصر '
-          other: "%{formatted_count} نوع من العنصر"
-          two: نوعين من العنصر
-          zero: لا يوجد
-      items:
-        by_language: بحسب اللغة
-        by_type: بحسب النوع
-        total_html: المواد &middot; %{total}
-    data_providers:
-      table:
-        collections: مجموعات
-        country: دول
-        institution: مؤسسة
-        items: عناصر
-      total_html: مساهمين البيانات  &middot; %{total}
-    header: إحصائيات
   transforms:
     show:
       header: حوّل البيانات

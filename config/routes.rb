@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     resources :exhibits, only: [], path: '/' do
       resources :dlme_jsons if Settings.feature_flags.allow_json_upload
       resource :harvests, only: [:create]
-      resources :statistics, only: [:index, :show]
+      resources :contributors, only: [:index, :show]
 
       resource :dlme_bulk_actions, only: [] do
         member do

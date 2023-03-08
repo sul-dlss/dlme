@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe StatisticsController do
+RSpec.describe ContributorsController do
   let(:exhibit) { create(:exhibit) }
 
   describe 'GET index' do

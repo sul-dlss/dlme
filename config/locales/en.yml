@@ -19,6 +19,46 @@ en:
     body_html: You might see more results for your query by <a href='%{link}'>entering your search terms in another language</a>.
     disable_session: Don't show again
     dismiss: Dismiss
+  contributors:
+    contributors:
+      table:
+        collections: Collections
+        country: Countries
+        institution: Institution
+        items: Items
+      total_html: Holding Institutions &middot; %{total}
+    dashboard:
+      header:
+        total_collections:
+          one: 1 collection
+          other: "%{formatted_count} collections"
+        total_countries:
+          one: 1 country
+          other: "%{formatted_count} countries"
+        total_data_providers:
+          one: 1 data provider
+          other: "%{formatted_count} data providers"
+        total_holding_institutions:
+          one: 1 holding institution
+          other: "%{formatted_count} holding institutions"
+        total_items:
+          one: 1 item
+          other: "%{formatted_count} items"
+        total_types:
+          one: 1 item type
+          other: "%{formatted_count} item types"
+      items:
+        by_language: By language
+        by_type: By type
+        total_html: Items &middot; %{total}
+    data_providers:
+      table:
+        collections: Collections
+        country: Countries
+        institution: Institution
+        items: Items
+      total_html: Data Providers &middot; %{total}
+    header: Statistics
   date:
     bce: "%{year} BCE"
     bh: "%{year} BH"
@@ -102,46 +142,6 @@ en:
     sites:
       edit:
         exhibit_home: Exhibit home
-  statistics:
-    contributors:
-      table:
-        collections: Collections
-        country: Countries
-        institution: Institution
-        items: Items
-      total_html: Holding Institutions &middot; %{total}
-    dashboard:
-      header:
-        total_collections:
-          one: 1 collection
-          other: "%{formatted_count} collections"
-        total_countries:
-          one: 1 country
-          other: "%{formatted_count} countries"
-        total_data_providers:
-          one: 1 data provider
-          other: "%{formatted_count} data providers"
-        total_holding_institutions:
-          one: 1 holding institution
-          other: "%{formatted_count} holding institutions"
-        total_items:
-          one: 1 item
-          other: "%{formatted_count} items"
-        total_types:
-          one: 1 item type
-          other: "%{formatted_count} item types"
-      items:
-        by_language: By language
-        by_type: By type
-        total_html: Items &middot; %{total}
-    data_providers:
-      table:
-        collections: Collections
-        country: Countries
-        institution: Institution
-        items: Items
-      total_html: Data Providers &middot; %{total}
-    header: Statistics
   transforms:
     show:
       header: Transform data

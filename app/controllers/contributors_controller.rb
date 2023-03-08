@@ -2,7 +2,7 @@
 
 ##
 # A controller for the public facing statistics page for the DLME Exhibit
-class StatisticsController < ApplicationController
+class ContributorsController < ApplicationController
   include Spotlight::Concerns::ApplicationController
   include Spotlight::SearchHelper
 
@@ -44,6 +44,6 @@ class StatisticsController < ApplicationController
       t(:'spotlight.curation.nav.home', title: current_exhibit.title),
       spotlight.exhibit_home_page_path(current_exhibit)
     )
-    add_breadcrumb(nav.label_or_default, exhibit_statistics_path(current_exhibit))
+    add_breadcrumb(nav.label_or_default, exhibit_contributors_path(current_exhibit))
   end
 end

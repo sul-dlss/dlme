@@ -1,5 +1,5 @@
 <% if navigation.display? %>
-  <li class="nav-item <%= 'active' if controller_name == 'statistics' %>">
-    <%= link_to(navigation.label_or_default, exhibit_statistics_path(current_exhibit), class: 'nav-link') %>
+  <li class="<%= token_list 'nav-item', { active: controller_name == 'contributors' } %>">
+    <%= link_to(navigation.label_or_default, exhibit_contributors_path(current_exhibit), class: 'nav-link') %>
   </li>
 <% end %>
