@@ -12,7 +12,6 @@
 //
 
 //= require transform_result
-//= require i18n/translations
 //= require_tree .
 
 //= require 'blacklight_range_limit'

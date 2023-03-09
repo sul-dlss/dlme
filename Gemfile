@@ -102,7 +102,6 @@ gem 'shakapacker', '~> 6.4'
 
 gem 'cache_with_locale'
 
-gem 'i18n-js', '< 4' # v4 was a complete rewrite; will take some work to update
 gem 'i18n-tasks'
 
 gem 'turbo-rails', '~> 1.3'
