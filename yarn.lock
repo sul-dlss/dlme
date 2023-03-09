@@ -4393,9 +4393,9 @@ spdy@^4.0.2:
     spdy-transport "^3.0.0"
 
 spotlight-frontend@^3.6.0-beta.1:
-  version "3.6.0-beta.4"
-  resolved "https://registry.yarnpkg.com/spotlight-frontend/-/spotlight-frontend-3.6.0-beta.4.tgz#77fe382feb03f2daea903b26a5f5c96eaccfe450"
-  integrity sha512-91OLL94O9T3VVE93r4u/4xyIl30C2K/uebek2BWrSm5NRt9775q3O25jZO6XaShf/uHJR90NK5djgRp6J8JuUQ==
+  version "3.6.0-beta.5"
+  resolved "https://registry.yarnpkg.com/spotlight-frontend/-/spotlight-frontend-3.6.0-beta.5.tgz#2c321df01235ae2f28bd6183ea09f74b6f0e75b5"
+  integrity sha512-ukEuhVlrIIi+8W4OcmtcGyQgebskHJxqElwax36jbMPJxoFPFr0RQAvlgXKctddueMIE/8MfMwTWVc9ZqZSZRg==
 
 statuses@2.0.1:
   version "2.0.1"
