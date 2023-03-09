@@ -122,7 +122,7 @@ GEM
       blacklight (>= 7.0, < 9)
       rails
       ruby-oembed
-    blacklight-spotlight (3.6.0.beta4)
+    blacklight-spotlight (3.6.0.beta5)
       activejob-status
       acts-as-taggable-on (>= 5.0, < 10)
       autoprefixer-rails
@@ -139,7 +139,6 @@ GEM
       faraday-follow_redirects
       friendly_id (~> 5.5)
       github-markup
-      handlebars_assets
       i18n
       i18n-active_record
       iiif-presentation
@@ -312,10 +311,6 @@ GEM
     github-markup (4.0.1)
     globalid (1.1.0)
       activesupport (>= 5.0)
-    handlebars_assets (0.23.9)
-      execjs (~> 2.0)
-      sprockets (>= 2.0.0)
-      tilt (>= 1.2)
     hashie (5.0.0)
     highline (2.1.0)
     honeybadger (5.2.0)
@@ -646,7 +641,6 @@ GEM
       diffy (~> 3.0)
       nokogiri (>= 1.3.2)
     thor (1.2.1)
-    tilt (2.1.0)
     timeout (0.3.2)
     tophat (2.3.1)
       actionpack (>= 3.0.0)
