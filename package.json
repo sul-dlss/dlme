@@ -17,6 +17,7 @@
     "bootstrap": "^4",
     "browser": "^0.2.6",
     "compression-webpack-plugin": "9",
+    "leaflet": "^1.9.3",
     "mirador": "^3.3.0",
     "mirador-image-tools": "^0.11.0",
     "react": "^16.8.3",
