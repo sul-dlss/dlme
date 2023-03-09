@@ -1,7 +1,7 @@
 @import 'bootstrap-tagsinput';
 @import 'sir-trevor/main';
-@import 'leaflet';
-@import 'spotlight/spotlight';
+@import 'leaflet/dist/leaflet';
+@import 'spotlight-frontend/app/assets/stylesheets/spotlight/spotlight';
 
 /* button to forms should not push to the next line */
 form.button_to {
