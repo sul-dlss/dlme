@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'easternarabicnumeralregular';
-    src: font-url('eastern-arabic-numeral-regular-webfont.woff2') format('woff2'),
-       font-url('eastern-arabic-numeral-regular-webfont.woff') format('woff');
+    src: url('eastern-arabic-numeral-regular-webfont.woff2') format('woff2'),
+       url('eastern-arabic-numeral-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     // Only use this font for characters 0 - 9
