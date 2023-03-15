@@ -23,6 +23,6 @@ class Join < Blacklight::Rendering::AbstractStep
   def json_api_context?
     return false unless context
 
-    context.request&.format&.json? && context.controller.is_a?(CatalogController)
+    context.request&.format&.json? && context.controller.is_a?(CatalogController) && context.action_name != 'autocomplete'
   end
 end

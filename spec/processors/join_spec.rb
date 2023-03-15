@@ -20,11 +20,26 @@ RSpec.describe Join do
 
     context 'with a JSON API request' do
       let(:field_config) { Blacklight::Configuration::NullField.new(autolink: true) }
-      let(:context) { double(controller: CatalogController.new, request: double(format: double(json?: true))) }
+      let(:context) { double(controller: CatalogController.new, action_name: 'catalog', request: double(format: double(json?: true))) }
 
       it 'leaves the values as an array' do
         render
         expect(terminator).to have_received(:new).with(%w[a b],
+                                                       field_config,
+                                                       document,
+                                                       context,
+                                                       options,
+                                                       [])
+      end
+    end
+
+    context 'with JSON API for autocomplete' do
+      let(:field_config) { Blacklight::Configuration::NullField.new(autolink: true) }
+      let(:context) { double(controller: CatalogController.new, action_name: 'autocomplete', request: double(format: double(json?: true))) }
+
+      it 'joins the values like normal' do
+        render
+        expect(terminator).to have_received(:new).with('a<br>b',
                                                        field_config,
                                                        document,
                                                        context,
