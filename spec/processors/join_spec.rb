@@ -18,9 +18,10 @@ RSpec.describe Join do
     let(:values) { %w[a b] }
     let(:field_config) { Blacklight::Configuration::NullField.new }
 
-    context 'with a JSON API request' do
+    context 'with a JSON API request from the catalog controller that is not autocomplete' do
       let(:field_config) { Blacklight::Configuration::NullField.new(autolink: true) }
-      let(:context) { double(controller: CatalogController.new, action_name: 'catalog', request: double(format: double(json?: true))) }
+      let(:request) { double(format: double(json?: true)) }
+      let(:context) { double(controller: CatalogController.new, action_name: 'index', request: request) }
 
       it 'leaves the values as an array' do
         render
@@ -33,9 +34,10 @@ RSpec.describe Join do
       end
     end
 
-    context 'with JSON API for autocomplete' do
+    context 'with a JSON API request for autocomplete' do
       let(:field_config) { Blacklight::Configuration::NullField.new(autolink: true) }
-      let(:context) { double(controller: CatalogController.new, action_name: 'autocomplete', request: double(format: double(json?: true))) }
+      let(:request) { double(format: double(json?: true)) }
+      let(:context) { double(controller: CatalogController.new, action_name: 'autocomplete', request: request) }
 
       it 'joins the values like normal' do
         render
@@ -48,7 +50,7 @@ RSpec.describe Join do
       end
     end
 
-    context 'with a JSON API require that is not the JSON API' do
+    context 'with a JSON API request that is not the JSON API' do
       let(:field_config) { Blacklight::Configuration::NullField.new(autolink: true) }
       let(:context) { double(controller: ApplicationController.new, request: double(format: double(json?: true))) }
 
