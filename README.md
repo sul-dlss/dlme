@@ -40,6 +40,8 @@ graph LR
 ```
 
 For a detailed view of the project's infrastructure, including deployed environments, see the [devops documentation](https://github.com/sul-dlss/DevOpsDocs/blob/master/projects/dlme/operations-concerns.md). For a historical overview of DLME architecture and its data format, see the [data documentation](docs/README.md).
+## DLME's use of Spotlight
+In addition to using many out of the box features of Spotlight, such as the creation and management of exhibit pages and support seaching and browsing across exhibit items, the DLME web application also includes extensions to and customizations of Spotlight functionality.  The DLME web application incorporates multi-language support.  For example, the user's choice of English or Arabic as the display language results in the appropriate language fields to be displayed from the same Solr document.   In addition, the DLME web app includes specific connection points with the ETL pipeline (as described above and shown in the diagram). 
 ## Local Development
 In production, the DLME web application depends on several services:
   * A postgres database to store data on users, pages, and collections
