@@ -69,7 +69,7 @@ group :deployment do
   gem 'dlss-capistrano'
 end
 
-gem 'blacklight', '~> 8.0.0.beta8'
+gem 'blacklight', '~> 8.0'
 gem 'blacklight-spotlight', '~> 3.6.0.beta6'
 
 gem 'friendly_id'
