@@ -127,6 +127,7 @@ class CatalogController < ApplicationController
 
     config.add_facet_field 'language_ar',    field: 'cho_language.ar-Arab_ssim', limit: true, if: arabic_locale
     config.add_facet_field 'language_en',    field: 'cho_language.en_ssim', limit: true, if: en_locale
+    config.add_facet_field 'language', field: 'cho_language_ssim', show: false
     config.add_facet_field 'type_ar',    field: 'cho_edm_type.ar-Arab_ssim', limit: true, if: arabic_locale
     config.add_facet_field 'type_en',    field: 'cho_edm_type.en_ssim', limit: true, if: en_locale
     config.add_facet_field 'other_type', field: 'cho_type_ssim', limit: true
@@ -160,8 +161,10 @@ class CatalogController < ApplicationController
     config.add_facet_field 'dc_rights',   field: 'cho_dc_rights_ssim', limit: true
     config.add_facet_field 'agg_data_provider_ar',    field: 'agg_data_provider.ar-Arab_ssim', limit: true, if: arabic_locale
     config.add_facet_field 'agg_data_provider_en',    field: 'agg_data_provider.en_ssim', limit: true, if: en_locale
+    config.add_facet_field 'holding_institution', field: 'agg_data_provider_ssim', show: false
     config.add_facet_field 'agg_provider_ar',    field: 'agg_provider.ar-Arab_ssim', limit: true, if: arabic_locale
     config.add_facet_field 'agg_provider_en',    field: 'agg_provider.en_ssim', limit: true, if: en_locale
+    config.add_facet_field 'source_institution', field: 'agg_provider_ssim', show: false
     config.add_facet_field 'cho_type_facet.en_ssim',
                            component: Blacklight::Hierarchy::FacetFieldListComponent,
                            label: 'Type en',
@@ -187,6 +190,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'cho_subject_ar', field: 'cho_subject.ar-Arab_ssim', limit: true, if: arabic_locale
     config.add_facet_field 'cho_subject_en', field: 'cho_subject.en_ssim', limit: true, if: en_locale
     config.add_facet_field 'cho_subject', field: 'cho_subject_ssim', limit: true
+    config.add_facet_field 'subject', field: 'cho_subject_ssim', show: false
     config.add_facet_field 'agg_is_shown_at_agg_edm_rights', field: 'agg_is_shown_at.agg_edm_rights_ssim', limit: true
     config.add_facet_field 'agg_preview_agg_edm_rights', field: 'agg_preview.agg_edm_rights_ssim', limit: true
     config.add_facet_field 'agg_edm_rights', field: 'agg_edm_rights_ssim', limit: true
