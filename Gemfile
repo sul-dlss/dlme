@@ -72,7 +72,6 @@ gem 'blacklight', '~> 8.0.0.beta8'
 gem 'blacklight-spotlight', '~> 3.6.0.beta6'
 
 gem 'friendly_id'
-gem 'iiif-presentation', '~> 1.0'
 gem 'riiif', '~> 2.0'
 gem 'sitemap_generator'
 
