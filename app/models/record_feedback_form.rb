@@ -6,11 +6,7 @@
 class RecordFeedbackForm < Spotlight::ContactForm
   clear_validators! # Remove upstream validators and define our own.
   validates :message, presence: true
-  # rubocop:disable Style/RedundantRegexpEscape, Style/RedundantRegexpCharacterClass
-  # Disabling these rubocop checks because this regex comes from Blacklight
   validates :email, format: { with: /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i }, allow_blank: true
-  # rubocop:enable Style/RedundantRegexpEscape, Style/RedundantRegexpCharacterClass
-
   # the spambot_honeypot_email_field field is intended to be hidden visually from the user,
   # in hope that a spam bot filling out the form will enter a value, whereas a human with a
   # browser wouldn't, allowing us to differentiate and reject likely spam messages.
