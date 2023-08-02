@@ -46,7 +46,6 @@ group :development, :test do
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'solr_wrapper'
-  gem 'webdrivers'
 end
 
 group :development do

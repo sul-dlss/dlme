@@ -11,10 +11,6 @@ require_relative 'support/controller_level_helpers'
 require 'selenium-webdriver'
 require 'view_component/test_helpers'
 
-# We may be able to remove this line when selenium 4.11 is released
-# See https://github.com/titusfortner/webdrivers/issues/247#issuecomment-1648154088
-Webdrivers::Chromedriver.required_version = '114.0.5735.90'
-
 Capybara.javascript_driver = :headless_chrome
 
 Capybara.register_driver :headless_chrome do |app|
