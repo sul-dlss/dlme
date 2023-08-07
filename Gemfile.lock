@@ -617,7 +617,7 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     ssrf_filter (1.1.1)
-    stimulus-rails (1.2.1)
+    stimulus-rails (1.2.2)
       railties (>= 6.0.0)
     terminal-table (3.0.2)
       unicode-display_width (>= 1.1.1, < 3)
