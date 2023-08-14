@@ -9,11 +9,13 @@ class MultilingualRangeLimitItemPresenter < BlacklightRangeLimit::FacetItemPrese
     # Hijiri date
     when 'cho_date_range_hijri_isim'
       return t('date.bh', year: value_int * -1) if value_int.negative?
-      return t('date.h', year: value_int) if value_int.positive?
+
+      t('date.h', year: value_int) if value_int.positive?
     # Gregorian date
     when 'cho_date_range_norm_isim'
       return t('date.bce', year: value_int * -1) if value_int.negative?
-      return t('date.ce', year: value_int) if value_int.positive?
+
+      t('date.ce', year: value_int) if value_int.positive?
     else
       value
     end
