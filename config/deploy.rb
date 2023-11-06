@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.17.1"
+# lock "~> 3.17.1"
 
 set :application, "dlme"
 set :repo_url, "https://github.com/sul-dlss/dlme.git"
