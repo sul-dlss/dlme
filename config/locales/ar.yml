@@ -102,6 +102,7 @@ ar:
   embed:
     view_on_contributor_website: اعرض على موقع المساهمين
   footer:
+    accessibility_html: إذا لم تتمكن من الوصول إلى المحتوى أو استخدام ميزات هذا الموقع بسبب الإعاقة، يرجى <a href='mailto:%{accessibility_email}'>الإبلاغ عن مشكلة إمكانية الوصول</a>
     partnership_heading: بالشراكة مع
     project_support_heading: المشروع مدعوم من قبل
     project_support_text: مؤسسة أندرو و. ميلون

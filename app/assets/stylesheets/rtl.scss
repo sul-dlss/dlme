@@ -76,6 +76,12 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     }
   }
 
+  /** Adjust accessibility information display (used in the footer) */
+  .accessibility-contact {
+    justify-content: right;
+  }
+
+
   /** Blacklight-specific overrides */
   #skip-link {
     left: inherit;

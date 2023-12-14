@@ -89,6 +89,7 @@ en:
   embed:
     view_on_contributor_website: View on contributor website
   footer:
+    accessibility_html: If you cannot access content or use features on this website due to a disability, please <a href='mailto:%{accessibility_email}'>report your accessibility issue</a>.
     partnership_heading: In partnership with
     project_support_heading: Project supported by
     project_support_text: The Andrew W. Mellon Foundation
