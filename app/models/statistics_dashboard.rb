@@ -213,7 +213,7 @@ class StatisticsDashboard
       end
 
       def countries
-        facet&.[]('pivot')&.map { |country| country['value'] }
+        facet&.[]('pivot')&.pluck('value')
       end
 
       def collection_count
