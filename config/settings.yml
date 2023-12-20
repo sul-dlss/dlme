@@ -21,6 +21,7 @@ cache_period: <%= 12.hours %>
 contact:
   email: ~
 
+accessibility_email: 'library-accessibility-contact@lists.stanford.edu'
 
 data_dir: tmp/data
 

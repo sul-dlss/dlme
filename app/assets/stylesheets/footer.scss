@@ -25,6 +25,16 @@
     justify-content: center;
   }
 
+  .accessibility-contact {
+    justify-content: left;
+    color: $color-gray-light;
+
+    a {
+      color: $color-gray-light;
+      text-decoration: underline;
+    }
+  }
+
   .logo {
     align-self: center;
     flex-grow: 1;
