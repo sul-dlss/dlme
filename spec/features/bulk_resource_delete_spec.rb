@@ -118,8 +118,8 @@ RSpec.describe 'Bulk delete can be run on search results' do
     it 'does not offer bulk delete' do
       visit root_path
       click_button 'Search'
-      expect(page).not_to have_content 'Bulk actions'
-      expect(page).not_to have_content 'Delete items'
+      expect(page).to have_no_content 'Bulk actions'
+      expect(page).to have_no_content 'Delete items'
     end
   end
 end
