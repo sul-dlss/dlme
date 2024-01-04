@@ -41,8 +41,8 @@ RSpec.describe 'Things can be indexed' do
       visit root_path
       click_button 'Search'
       expect(page).to have_content 'Creator'
-      expect(page).not_to have_content 'Shown At'
-      expect(page).not_to have_content 'Indexed At'
+      expect(page).to have_no_content 'Shown At'
+      expect(page).to have_no_content 'Indexed At'
     end
   end
 end

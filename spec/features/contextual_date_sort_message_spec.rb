@@ -27,7 +27,7 @@ RSpec.describe 'Contextual date sort message on search results' do
         click_link('Title')
       end
       within '#content' do
-        expect(page).not_to have_css '.date-sort-message'
+        expect(page).to have_no_css '.date-sort-message'
       end
     end
   end
@@ -63,7 +63,7 @@ RSpec.describe 'Contextual date sort message on search results' do
       within '.date-sort-message' do
         click_button 'Dismiss'
       end
-      expect(page).not_to have_css '.date-sort-message'
+      expect(page).to have_no_css '.date-sort-message'
     end
     click_button 'Search'
     within '#content' do
@@ -83,11 +83,11 @@ RSpec.describe 'Contextual date sort message on search results' do
       within '.date-sort-message' do
         click_button "Don't show again"
       end
-      expect(page).not_to have_css '.date-sort-message'
+      expect(page).to have_no_css '.date-sort-message'
     end
     click_button 'Search'
     within '#content' do
-      expect(page).not_to have_css '.date-sort-message'
+      expect(page).to have_no_css '.date-sort-message'
     end
   end
   # rubocop:enable RSpec/ExampleLength

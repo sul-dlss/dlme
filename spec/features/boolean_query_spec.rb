@@ -40,7 +40,7 @@ RSpec.describe 'Boolean query functionality', js: true do
       q: 'mars AND saturn'
     )
     expect(page).to have_css('.document-title-heading bdi', text: /^Mars Saturn$/)
-    expect(page).not_to have_css('.document-title-heading bdi', text: /^Saturn$/)
+    expect(page).to have_no_css('.document-title-heading bdi', text: /^Saturn$/)
   end
 
   it 'Saturn NOT Mars excludes Mars in titles' do
@@ -49,6 +49,6 @@ RSpec.describe 'Boolean query functionality', js: true do
       q: 'saturn NOT mars'
     )
     expect(page).to have_css('.document-title-heading bdi', text: /^Saturn$/)
-    expect(page).not_to have_css('.document-title-heading bdi', text: /^Mars Saturn$/)
+    expect(page).to have_no_css('.document-title-heading bdi', text: /^Mars Saturn$/)
   end
 end

@@ -27,7 +27,7 @@ RSpec.describe 'Contextual result message on search results' do
 
     it 'does not show the contextual pane' do
       within '#content' do
-        expect(page).not_to have_css '.alert.alert-info'
+        expect(page).to have_no_css '.alert.alert-info'
       end
     end
   end
@@ -36,7 +36,7 @@ RSpec.describe 'Contextual result message on search results' do
     within '#content' do
       expect(page).to have_css '.alert.alert-info', text: 'You might see more results for your query'
       click_button 'Don\'t show again'
-      expect(page).not_to have_css '.alert.alert-info'
+      expect(page).to have_no_css '.alert.alert-info'
     end
   end
 
@@ -44,7 +44,7 @@ RSpec.describe 'Contextual result message on search results' do
     within '#content' do
       expect(page).to have_css '.alert.alert-info', text: 'You might see more results for your query'
       click_button 'Dismiss'
-      expect(page).not_to have_css '.alert.alert-info'
+      expect(page).to have_no_css '.alert.alert-info'
     end
     click_button 'Search'
     within '#content' do
@@ -56,11 +56,11 @@ RSpec.describe 'Contextual result message on search results' do
     within '#content' do
       expect(page).to have_css '.alert.alert-info', text: 'You might see more results for your query'
       click_button 'Don\'t show again'
-      expect(page).not_to have_css '.alert.alert-info'
+      expect(page).to have_no_css '.alert.alert-info'
     end
     click_button 'Search'
     within '#content' do
-      expect(page).not_to have_css '.alert.alert-info', text: 'You might see more results for your query'
+      expect(page).to have_no_css '.alert.alert-info', text: 'You might see more results for your query'
     end
   end
 end

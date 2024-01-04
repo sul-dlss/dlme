@@ -22,7 +22,7 @@ RSpec.describe 'Contact form override' do
       visit spotlight.exhibit_path(exhibit)
       click_on 'Contact us'
       expect(page).to have_content 'To contact us about any matter related to DLME'
-      expect(page).not_to have_css('.alert-primary') # We removed this markup from the spotlight form
+      expect(page).to have_no_css('.alert-primary') # We removed this markup from the spotlight form
       fill_in 'Your name', with: 'Some Body'
       fill_in 'Your email', with: 'test@example.com'
       fill_in 'Message', with: 'This is my problem report'
