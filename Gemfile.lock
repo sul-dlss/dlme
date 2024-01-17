@@ -89,14 +89,14 @@ GEM
       smart_properties
     bigdecimal (3.1.5)
     bindex (0.8.1)
-    blacklight (8.0.1)
+    blacklight (8.1.0)
       globalid
       i18n (>= 1.7.0)
       jbuilder (~> 2.7)
       kaminari (>= 0.15)
       ostruct (>= 0.3.2)
       rails (>= 6.1, < 8)
-      view_component (>= 2.66, < 3.1)
+      view_component (>= 2.66, < 4)
     blacklight-gallery (4.4.0)
       blacklight (>= 7.17, < 9)
       rails (>= 6.1, < 8)
@@ -689,7 +689,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  blacklight (~> 8.0.0.beta8)
+  blacklight (~> 8.1)
   blacklight-gallery (~> 4.2)
   blacklight-hierarchy (~> 6.1)
   blacklight-oembed (>= 0.1.0)
