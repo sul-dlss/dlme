@@ -448,7 +448,7 @@ GEM
     psych (5.1.2)
       stringio
     public_suffix (5.0.4)
-    puma (5.6.8)
+    puma (6.4.2)
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (3.0.9)
@@ -739,7 +739,7 @@ DEPENDENCIES
   lograge
   okcomputer
   pg
-  puma (~> 5.0)
+  puma (~> 6.0)
   rack-attack
   rack-mini-profiler (~> 2.0)
   rails (~> 7.0)
