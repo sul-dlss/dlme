@@ -154,7 +154,7 @@ GEM
       signet
       tophat
       view_component (~> 2.0)
-    blacklight_range_limit (8.4.0)
+    blacklight_range_limit (8.5.0)
       blacklight (>= 7.25.2, < 9)
       deprecation
       view_component (>= 2.54, < 4)
@@ -351,7 +351,7 @@ GEM
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.7.2)
-    irb (1.11.1)
+    irb (1.11.2)
       rdoc
       reline (>= 0.4.2)
     jbuilder (2.11.5)
@@ -399,7 +399,7 @@ GEM
     mini_magick (4.12.0)
     mini_mime (1.1.5)
     minitar (0.9)
-    minitest (5.21.2)
+    minitest (5.22.2)
     msgpack (1.7.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
@@ -511,7 +511,7 @@ GEM
     rdoc (6.6.2)
       psych (>= 4.0.0)
     redcarpet (3.6.0)
-    redis (5.0.8)
+    redis (5.1.0)
       redis-client (>= 0.17.0)
     redis-client (0.19.1)
       connection_pool
@@ -522,7 +522,7 @@ GEM
       declarative (< 0.1.0)
       trailblazer-option (>= 0.1.1, < 0.2.0)
       uber (< 0.2.0)
-    request_store (1.5.1)
+    request_store (1.6.0)
       rack (>= 1.4)
     responders (3.1.1)
       actionpack (>= 5.2)
@@ -699,7 +699,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.12)
+    zeitwerk (2.6.13)
 
 PLATFORMS
   x86_64-darwin-19
