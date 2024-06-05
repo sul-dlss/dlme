@@ -67,8 +67,7 @@ group :deployment do
   gem 'dlss-capistrano'
 end
 
-# Pin Blacklight to 8.1.0 until a fix is in for: https://github.com/projectblacklight/blacklight/commit/d8c0ec4435db34b85f83a2e4799bc15b0469ef27
-gem 'blacklight', '~> 8.1.0'
+gem 'blacklight', '~> 8.2'
 gem 'blacklight-spotlight', '~> 3.6.0.beta6'
 
 gem 'friendly_id'

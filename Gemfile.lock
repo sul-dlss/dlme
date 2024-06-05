@@ -94,7 +94,7 @@ GEM
     bcrypt_pbkdf (1.1.1-x86_64-darwin)
     bigdecimal (3.1.8)
     bindex (0.8.1)
-    blacklight (8.1.0)
+    blacklight (8.2.1)
       globalid
       i18n (>= 1.7.0)
       jbuilder (~> 2.7)
@@ -717,7 +717,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  blacklight (~> 8.1.0)
+  blacklight (~> 8.2)
   blacklight-gallery (~> 4.2)
   blacklight-hierarchy (~> 6.1)
   blacklight-oembed (>= 0.1.0)
