@@ -42,9 +42,12 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.0'
   gem 'rails-controller-testing'
   gem 'rubocop', '~> 1.0'
+  gem 'rubocop-capybara'
+  gem 'rubocop-factory_bot'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  gem 'rubocop-rspec_rails'
   gem 'solr_wrapper'
 end
 
