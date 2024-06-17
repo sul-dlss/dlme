@@ -5,6 +5,8 @@ require:
   - rubocop-performance
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-factory_bot
+  - rubocop-rspec_rails
 
 AllCops:
   TargetRubyVersion: 3.0
@@ -64,123 +66,15 @@ Style/Documentation:
     - 'app/models/application_record.rb'
     - 'app/models/user.rb'
 
-Layout/EmptyLinesAroundAttributeAccessor:
+Gemspec/DeprecatedAttributeAssignment: # new in 1.30
   Enabled: true
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-Lint/DeprecatedOpenSSLConstant:
-  Enabled: true
-Lint/MixedRegexpCaptureTypes:
-  Enabled: true
-Lint/RaiseException:
-  Enabled: true
-Lint/StructNewOverride:
-  Enabled: true
-Style/ExponentialNotation:
-  Enabled: true
-Style/HashEachMethods:
-  Enabled: true
-Style/HashTransformKeys:
-  Enabled: true
-Style/HashTransformValues:
-  Enabled: true
-Style/RedundantRegexpCharacterClass:
-  Enabled: true
-Style/RedundantRegexpEscape:
-  Enabled: true
-Style/SlicingWithRange:
-  Enabled: true
-Lint/BinaryOperatorWithIdenticalOperands:
-  Enabled: true
-Lint/DuplicateElsifCondition:
-  Enabled: true
-Lint/DuplicateRescueException:
-  Enabled: true
-Lint/EmptyConditionalBody:
-  Enabled: true
-Lint/FloatComparison:
-  Enabled: true
-Lint/MissingSuper:
-  Enabled: true
-Lint/OutOfRangeRegexpRef:
-  Enabled: true
-Lint/SelfAssignment:
-  Enabled: true
-Lint/TopLevelReturnWithArgument:
-  Enabled: true
-Lint/UnreachableLoop:
-  Enabled: true
-Style/AccessorGrouping:
-  Enabled: true
-Style/ArrayCoercion:
-  Enabled: true
-Style/BisectedAttrAccessor:
-  Enabled: true
-Style/CaseLikeIf:
-  Enabled: true
-Style/ExplicitBlockArgument:
-  Enabled: true
-Style/GlobalStdStream:
-  Enabled: true
-Style/HashAsLastArrayItem:
-  Enabled: true
-Style/HashLikeCase:
-  Enabled: true
-Style/OptionalBooleanParameter:
-  Enabled: true
-Style/RedundantAssignment:
-  Enabled: true
-Style/RedundantFetchBlock:
-  Enabled: true
-Style/RedundantFileExtensionInRequire:
-  Enabled: true
-Style/SingleArgumentDig:
-  Enabled: true
-Style/StringConcatenation:
-  Enabled: true
-Performance/AncestorsInclude:
-  Enabled: true
-Performance/BigDecimalWithNumericArgument:
-  Enabled: true
-Performance/RedundantSortBlock:
-  Enabled: true
-Performance/RedundantStringChars:
-  Enabled: true
-Performance/ReverseFirst:
-  Enabled: true
-Performance/SortReverse:
-  Enabled: true
-Performance/Squeeze:
-  Enabled: true
-Performance/StringInclude:
-  Enabled: true
-Rails/ActiveRecordCallbacksOrder:
-  Enabled: true
-Rails/FindById:
-  Enabled: true
-Rails/Inquiry:
-  Enabled: true
-Rails/MailerName:
-  Enabled: true
-Rails/MatchRoute:
-  Enabled: true
-Rails/NegateInclude:
-  Enabled: true
-Rails/Pluck:
-  Enabled: true
-Rails/PluckInWhere:
-  Enabled: true
-Rails/RenderInline:
-  Enabled: true
-Rails/RenderPlainText:
-  Enabled: true
-Rails/ShortI18n:
-  Enabled: true
-Rails/WhereExists:
-  Enabled: true
-Gemspec/DeprecatedAttributeAssignment: # (new in 1.10)
+Gemspec/DevelopmentDependencies: # new in 1.44
   Enabled: true
 Gemspec/RequireMFA: # new in 1.23
+  Enabled: true
+Layout/LineContinuationLeadingSpace: # new in 1.31
+  Enabled: true
+Layout/LineContinuationSpacing: # new in 1.31
   Enabled: true
 Layout/LineEndStringConcatenationIndentation: # new in 1.18
   Enabled: true
@@ -192,9 +86,15 @@ Lint/AmbiguousOperatorPrecedence: # new in 1.21
   Enabled: true
 Lint/AmbiguousRange: # new in 1.19
   Enabled: true
+Lint/ConstantOverwrittenInRescue: # new in 1.31
+  Enabled: true
 Lint/DeprecatedConstants: # new in 1.8
   Enabled: true
 Lint/DuplicateBranch: # new in 1.3
+  Enabled: true
+Lint/DuplicateMagicComment: # new in 1.37
+  Enabled: true
+Lint/DuplicateMatchPattern: # new in 1.50
   Enabled: true
 Lint/DuplicateRegexpCharacterClassElement: # new in 1.1
   Enabled: true
@@ -206,15 +106,29 @@ Lint/EmptyInPattern: # new in 1.16
   Enabled: true
 Lint/IncompatibleIoSelectWithFiberScheduler: # new in 1.21
   Enabled: true
+Lint/ItWithoutArgumentsInBlock: # new in 1.59
+  Enabled: true
 Lint/LambdaWithoutLiteralBlock: # new in 1.8
   Enabled: true
+Lint/LiteralAssignmentInCondition: # new in 1.58
+  Enabled: true
+Lint/MixedCaseRange: # new in 1.53
+  Enabled: true
 Lint/NoReturnInBeginEndBlocks: # new in 1.2
+  Enabled: true
+Lint/NonAtomicFileOperation: # new in 1.31
   Enabled: true
 Lint/NumberedParameterAssignment: # new in 1.9
   Enabled: true
 Lint/OrAssignmentToConstant: # new in 1.9
   Enabled: true
 Lint/RedundantDirGlobSort: # new in 1.8
+  Enabled: true
+Lint/RedundantRegexpQuantifiers: # new in 1.53
+  Enabled: true
+Lint/RefinementImportMethods: # new in 1.27
+  Enabled: true
+Lint/RequireRangeParentheses: # new in 1.32
   Enabled: true
 Lint/RequireRelativeSelfPath: # new in 1.22
   Enabled: true
@@ -228,19 +142,45 @@ Lint/UnexpectedBlockArity: # new in 1.5
   Enabled: true
 Lint/UnmodifiedReduceAccumulator: # new in 1.1
   Enabled: true
+Lint/UselessRescue: # new in 1.43
+  Enabled: true
 Lint/UselessRuby2Keywords: # new in 1.23
   Enabled: true
+Metrics/CollectionLiteralLength: # new in 1.47
+  Enabled: true
 Naming/BlockForwarding: # new in 1.24
+  Enabled: true
+Security/CompoundHash: # new in 1.28
   Enabled: true
 Security/IoMethods: # new in 1.22
   Enabled: true
 Style/ArgumentsForwarding: # new in 1.1
   Enabled: true
+Style/ArrayIntersect: # new in 1.40
+  Enabled: true
 Style/CollectionCompact: # new in 1.2
+  Enabled: true
+Style/ComparableClamp: # new in 1.44
+  Enabled: true
+Style/ConcatArrayLiterals: # new in 1.41
+  Enabled: true
+Style/DataInheritance: # new in 1.49
+  Enabled: true
+Style/DirEmpty: # new in 1.48
   Enabled: true
 Style/DocumentDynamicEvalDefinition: # new in 1.1
   Enabled: true
+Style/EmptyHeredoc: # new in 1.32
+  Enabled: true
 Style/EndlessMethod: # new in 1.8
+  Enabled: true
+Style/EnvHome: # new in 1.29
+  Enabled: true
+Style/ExactRegexpMatch: # new in 1.51
+  Enabled: true
+Style/FetchEnvVar: # new in 1.28
+  Enabled: true
+Style/FileEmpty: # new in 1.48
   Enabled: true
 Style/FileRead: # new in 1.24
   Enabled: true
@@ -254,11 +194,23 @@ Style/IfWithBooleanLiteralBranches: # new in 1.9
   Enabled: true
 Style/InPatternThen: # new in 1.16
   Enabled: true
+Style/MagicCommentFormat: # new in 1.35
+  Enabled: true
+Style/MapCompactWithConditionalBlock: # new in 1.30
+  Enabled: true
+Style/MapIntoArray: # new in 1.63
+  Enabled: true
 Style/MapToHash: # new in 1.24
+  Enabled: true
+Style/MapToSet: # new in 1.42
+  Enabled: true
+Style/MinMaxComparison: # new in 1.42
   Enabled: true
 Style/MultilineInPatternThen: # new in 1.16
   Enabled: true
 Style/NegatedIfElseCondition: # new in 1.2
+  Enabled: true
+Style/NestedFileDirname: # new in 1.26
   Enabled: true
 Style/NilLambda: # new in 1.3
   Enabled: true
@@ -266,19 +218,81 @@ Style/NumberedParameters: # new in 1.22
   Enabled: true
 Style/NumberedParametersLimit: # new in 1.22
   Enabled: true
+Style/ObjectThen: # new in 1.28
+  Enabled: true
 Style/OpenStructUse: # new in 1.23
+  Enabled: true
+Style/OperatorMethodCall: # new in 1.37
   Enabled: true
 Style/QuotedSymbols: # new in 1.16
   Enabled: true
 Style/RedundantArgument: # new in 1.4
   Enabled: true
+Style/RedundantArrayConstructor: # new in 1.52
+  Enabled: true
+Style/RedundantConstantBase: # new in 1.40
+  Enabled: true
+Style/RedundantCurrentDirectoryInPath: # new in 1.53
+  Enabled: true
+Style/RedundantDoubleSplatHashBraces: # new in 1.41
+  Enabled: true
+Style/RedundantEach: # new in 1.38
+  Enabled: true
+Style/RedundantFilterChain: # new in 1.52
+  Enabled: true
+Style/RedundantHeredocDelimiterQuotes: # new in 1.45
+  Enabled: true
+Style/RedundantInitialize: # new in 1.27
+  Enabled: true
+Style/RedundantLineContinuation: # new in 1.49
+  Enabled: true
+Style/RedundantRegexpArgument: # new in 1.53
+  Enabled: true
+Style/RedundantRegexpConstructor: # new in 1.52
+  Enabled: true
 Style/RedundantSelfAssignmentBranch: # new in 1.19
+  Enabled: true
+Style/RedundantStringEscape: # new in 1.37
+  Enabled: true
+Style/ReturnNilInPredicateMethodDefinition: # new in 1.53
   Enabled: true
 Style/SelectByRegexp: # new in 1.22
   Enabled: true
+Style/SendWithLiteralMethodName: # new in 1.64
+  Enabled: true
+Style/SingleLineDoEndBlock: # new in 1.57
+  Enabled: true
 Style/StringChars: # new in 1.12
   Enabled: true
+Style/SuperArguments: # new in 1.64
+  Enabled: true
+Style/SuperWithArgsParentheses: # new in 1.58
+  Enabled: true
 Style/SwapValues: # new in 1.1
+  Enabled: true
+Style/YAMLFileRead: # new in 1.53
+  Enabled: true
+Capybara/ClickLinkOrButtonStyle: # new in 2.19
+  Enabled: false
+Capybara/MatchStyle: # new in 2.17
+  Enabled: true
+Capybara/NegationMatcher: # new in 2.14
+  Enabled: true
+Capybara/RedundantWithinFind: # new in 2.20
+  Enabled: true
+Capybara/SpecificActions: # new in 2.14
+  Enabled: true
+Capybara/SpecificFinders: # new in 2.13
+  Enabled: true
+Capybara/SpecificMatcher: # new in 2.12
+  Enabled: true
+Capybara/RSpec/HaveSelector: # new in 2.19
+  Enabled: true
+Capybara/RSpec/PredicateMatcher: # new in 2.19
+  Enabled: true
+Performance/AncestorsInclude: # new in 1.7
+  Enabled: true
+Performance/BigDecimalWithNumericArgument: # new in 1.7
   Enabled: true
 Performance/BlockGivenWithExplicitBlock: # new in 1.9
   Enabled: true
@@ -290,15 +304,39 @@ Performance/ConstantRegexp: # new in 1.9
   Enabled: true
 Performance/MapCompact: # new in 1.11
   Enabled: true
+Performance/MapMethodChain: # new in 1.19
+  Enabled: true
 Performance/MethodObjectAsBlock: # new in 1.9
   Enabled: true
 Performance/RedundantEqualityComparisonBlock: # new in 1.10
   Enabled: true
+Performance/RedundantSortBlock: # new in 1.7
+  Enabled: true
 Performance/RedundantSplitRegexpArgument: # new in 1.10
+  Enabled: true
+Performance/RedundantStringChars: # new in 1.7
+  Enabled: true
+Performance/ReverseFirst: # new in 1.7
+  Enabled: true
+Performance/SortReverse: # new in 1.7
+  Enabled: true
+Performance/Squeeze: # new in 1.7
   Enabled: true
 Performance/StringIdentifierArgument: # new in 1.13
   Enabled: true
+Performance/StringInclude: # new in 1.7
+  Enabled: true
 Performance/Sum: # new in 1.8
+  Enabled: true
+Rails/ActionControllerFlashBeforeRender: # new in 2.16
+  Enabled: true
+Rails/ActionControllerTestCase: # new in 2.14
+  Enabled: true
+Rails/ActionOrder: # new in 2.17
+  Enabled: true
+Rails/ActiveRecordCallbacksOrder: # new in 2.7
+  Enabled: true
+Rails/ActiveSupportOnLoad: # new in 2.16
   Enabled: true
 Rails/AddColumnIndex: # new in 2.11
   Enabled: true
@@ -308,106 +346,7 @@ Rails/AttributeDefaultBlockValue: # new in 2.9
   Enabled: true
 Rails/CompactBlank: # new in 2.13
   Enabled: true
-Rails/DurationArithmetic: # new in 2.13
-  Enabled: true
-Rails/EagerEvaluationLogMessage: # new in 2.11
-  Enabled: true
-Rails/ExpandedDateRange: # new in 2.11
-  Enabled: true
-Rails/I18nLocaleAssignment: # new in 2.11
-  Enabled: true
-Rails/RedundantPresenceValidationOnBelongsTo: # new in 2.13
-  Enabled: true
-Rails/RedundantTravelBack: # new in 2.12
-  Enabled: true
-Rails/RootJoinChain: # new in 2.13
-  Enabled: true
-Rails/SquishedSQLHeredocs: # new in 2.8
-  Enabled: true
-Rails/TimeZoneAssignment: # new in 2.10
-  Enabled: true
-Rails/UnusedIgnoredColumns: # new in 2.11
-  Enabled: true
-Rails/WhereEquals: # new in 2.9
-  Enabled: true
-Rails/WhereNot: # new in 2.8
-  Enabled: true
-RSpec/ExcessiveDocstringSpacing: # new in 2.5
-  Enabled: true
-RSpec/IdenticalEqualityAssertion: # new in 2.4
-  Enabled: true
-RSpec/SubjectDeclaration: # new in 2.5
-  Enabled: true
-RSpec/FactoryBot/SyntaxMethods: # new in 2.7
-  Enabled: true
-RSpec/Rails/AvoidSetupHook: # new in 2.4
-  Enabled: true
-
-Gemspec/DevelopmentDependencies: # new in 1.44
-  Enabled: true
-Layout/LineContinuationLeadingSpace: # new in 1.31
-  Enabled: true
-Layout/LineContinuationSpacing: # new in 1.31
-  Enabled: true
-Lint/ConstantOverwrittenInRescue: # new in 1.31
-  Enabled: true
-Lint/DuplicateMagicComment: # new in 1.37
-  Enabled: true
-Lint/NonAtomicFileOperation: # new in 1.31
-  Enabled: true
-Lint/RefinementImportMethods: # new in 1.27
-  Enabled: true
-Lint/RequireRangeParentheses: # new in 1.32
-  Enabled: true
-Lint/UselessRescue: # new in 1.43
-  Enabled: true
-Security/CompoundHash: # new in 1.28
-  Enabled: true
-Style/ArrayIntersect: # new in 1.40
-  Enabled: true
-Style/ComparableClamp: # new in 1.44
-  Enabled: true
-Style/ConcatArrayLiterals: # new in 1.41
-  Enabled: true
-Style/EmptyHeredoc: # new in 1.32
-  Enabled: true
-Style/EnvHome: # new in 1.29
-  Enabled: true
-Style/FetchEnvVar: # new in 1.28
-  Enabled: true
-Style/MagicCommentFormat: # new in 1.35
-  Enabled: true
-Style/MapCompactWithConditionalBlock: # new in 1.30
-  Enabled: true
-Style/MapToSet: # new in 1.42
-  Enabled: true
-Style/MinMaxComparison: # new in 1.42
-  Enabled: true
-Style/NestedFileDirname: # new in 1.26
-  Enabled: true
-Style/ObjectThen: # new in 1.28
-  Enabled: true
-Style/OperatorMethodCall: # new in 1.37
-  Enabled: true
-Style/RedundantConstantBase: # new in 1.40
-  Enabled: true
-Style/RedundantDoubleSplatHashBraces: # new in 1.41
-  Enabled: true
-Style/RedundantEach: # new in 1.38
-  Enabled: true
-Style/RedundantHeredocDelimiterQuotes: # new in 1.45
-  Enabled: true
-Style/RedundantInitialize: # new in 1.27
-  Enabled: true
-Style/RedundantStringEscape: # new in 1.37
-  Enabled: true
-Rails/ActionControllerFlashBeforeRender: # new in 2.16
-  Enabled: true
-Rails/ActionControllerTestCase: # new in 2.14
-  Enabled: true
-Rails/ActionOrder: # new in 2.17
-  Enabled: true
-Rails/ActiveSupportOnLoad: # new in 2.16
+Rails/DangerousColumnNames: # new in 2.21
   Enabled: true
 Rails/DeprecatedActiveModelErrorsMethods: # new in 2.14
   Enabled: true
@@ -417,21 +356,67 @@ Rails/DuplicateAssociation: # new in 2.14
   Enabled: true
 Rails/DuplicateScope: # new in 2.14
   Enabled: true
+Rails/DurationArithmetic: # new in 2.13
+  Enabled: true
+Rails/EagerEvaluationLogMessage: # new in 2.11
+  Enabled: true
+Rails/EnvLocal: # new in 2.22
+  Enabled: true
+Rails/ExpandedDateRange: # new in 2.11
+  Enabled: true
+Rails/FindById: # new in 2.7
+  Enabled: true
 Rails/FreezeTime: # new in 2.16
   Enabled: true
 Rails/I18nLazyLookup: # new in 2.14
+  Enabled: true
+Rails/I18nLocaleAssignment: # new in 2.11
   Enabled: true
 Rails/I18nLocaleTexts: # new in 2.14
   Enabled: true
 Rails/IgnoredColumnsAssignment: # new in 2.17
   Enabled: true
+Rails/Inquiry: # new in 2.7
+  Enabled: true
+Rails/MailerName: # new in 2.7
+  Enabled: true
+Rails/MatchRoute: # new in 2.7
+  Enabled: true
 Rails/MigrationClassName: # new in 2.14
+  Enabled: true
+Rails/NegateInclude: # new in 2.7
+  Enabled: true
+Rails/Pluck: # new in 2.7
+  Enabled: true
+Rails/PluckInWhere: # new in 2.7
+  Enabled: true
+Rails/RedundantActiveRecordAllMethod: # new in 2.21
+  Enabled: true
+Rails/RedundantPresenceValidationOnBelongsTo: # new in 2.13
+  Enabled: true
+Rails/RedundantTravelBack: # new in 2.12
+  Enabled: true
+Rails/RenderInline: # new in 2.7
+  Enabled: true
+Rails/RenderPlainText: # new in 2.7
+  Enabled: true
+Rails/ResponseParsedBody: # new in 2.18
+  Enabled: true
+Rails/RootJoinChain: # new in 2.13
   Enabled: true
 Rails/RootPathnameMethods: # new in 2.16
   Enabled: true
 Rails/RootPublicPath: # new in 2.15
   Enabled: true
+Rails/ShortI18n: # new in 2.7
+  Enabled: true
+Rails/SquishedSQLHeredocs: # new in 2.8
+  Enabled: true
 Rails/StripHeredoc: # new in 2.15
+  Enabled: true
+Rails/ThreeStateBooleanColumn: # new in 2.19
+  Enabled: true
+Rails/TimeZoneAssignment: # new in 2.10
   Enabled: true
 Rails/ToFormattedS: # new in 2.15
   Enabled: true
@@ -441,51 +426,17 @@ Rails/TopLevelHashWithIndifferentAccess: # new in 2.16
   Enabled: true
 Rails/TransactionExitStatement: # new in 2.14
   Enabled: true
+Rails/UnusedRenderContent: # new in 2.21
+  Enabled: true
+Rails/WhereEquals: # new in 2.9
+  Enabled: true
+Rails/WhereExists: # new in 2.7
+  Enabled: true
 Rails/WhereMissing: # new in 2.16
+  Enabled: true
+Rails/WhereNot: # new in 2.8
   Enabled: true
 Rails/WhereNotWithMultipleConditions: # new in 2.17
   Enabled: true
-Capybara/MatchStyle: # new in 2.17
-  Enabled: true
-Capybara/NegationMatcher: # new in 2.14
-  Enabled: true
-Capybara/SpecificActions: # new in 2.14
-  Enabled: true
-Capybara/SpecificFinders: # new in 2.13
-  Enabled: true
-Capybara/SpecificMatcher: # new in 2.12
-  Enabled: true
-RSpec/BeEq: # new in 2.9.0
-  Enabled: true
-RSpec/BeNil: # new in 2.9.0
-  Enabled: true
-RSpec/ChangeByZero: # new in 2.11
-  Enabled: true
-RSpec/DuplicatedMetadata: # new in 2.16
-  Enabled: true
-RSpec/NoExpectationExample: # new in 2.13
-  Enabled: true
-RSpec/PendingWithoutReason: # new in 2.16
-  Enabled: true
-RSpec/SortMetadata: # new in 2.14
-  Enabled: true
-RSpec/VerifiedDoubleReference: # new in 2.10.0
-  Enabled: true
-RSpec/FactoryBot/ConsistentParenthesesStyle: # new in 2.14
-  Enabled: true
-RSpec/FactoryBot/FactoryNameStyle: # new in 2.16
-  Enabled: true
-RSpec/Rails/HaveHttpStatus: # new in 2.12
-  Enabled: true
-RSpec/Rails/InferredSpecType: # new in 2.14
-  Enabled: true
-RSpec/Rails/MinitestAssertions: # new in 2.17
-  Enabled: true
-Metrics/CollectionLiteralLength: # new in 1.47
-  Enabled: true
-Style/DirEmpty: # new in 1.48
-  Enabled: true
-Style/FileEmpty: # new in 1.48
-  Enabled: true
-Rails/ResponseParsedBody: # new in 2.18
+Rails/WhereRange: # new in 2.25
   Enabled: true
