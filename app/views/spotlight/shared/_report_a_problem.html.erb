@@ -12,7 +12,23 @@
       <%= f.text_field :name %>
       <%= render '/spotlight/shared/honeypot_field', f: f %>
       <%= f.email_field :email %>
+      <div class="row">
+        <div class="form-group col-sm-9 offset-sm-3">
+          <p class="mt-2 mb-0">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+        </div>
+      </div>
       <%= f.hidden_field :current_url %>
+      <%= recaptcha_v3(action: 'feedback') %>
+      <script type="text/javascript">
+        document.forms.new_contact_form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const response = await window.executeRecaptchaForFeedbackAsync();
+          if (response) {
+            setInputWithRecaptchaResponseTokenForFeedback('g-recaptcha-response-data-feedback', response);
+          }
+          this.submit();
+        });
+      </script>
       <div class="form-actions row">
         <div class="col offset-sm-3">
           <%= f.submit nil, class: 'btn btn-primary' %>
