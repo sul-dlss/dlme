@@ -4,7 +4,7 @@ end
 
 # throttle bot-like search queries if configured
 if Settings.throttle_searches
-  Rack::Attack.throttle("searches/ip", limit: 15, period: 15.minutes) do |req|
+  Rack::Attack.throttle("searches/ip", limit: 30, period: 5.minutes) do |req|
     # don't throttle requests with a q, because it's more likely to be a real user
     next if req.params['q'].present?
 
@@ -34,4 +34,7 @@ if Settings.throttle_searches
 end
 
 # always allow Stanford traffic
-Rack::Attack.safelist_ip("171.64.0.0/14")
+Rack::Attack.safelist_ip('171.64.0.0/14')
+Rack::Attack.safelist_ip('10.0.0.0/8')
+Rack::Attack.safelist_ip('172.16.0.0/12')
+Rack::Attack.safelist_ip('192.168.0.0/16')
