@@ -68,7 +68,7 @@ group :deployment do
 end
 
 gem 'blacklight', '~> 8.2'
-gem 'blacklight-spotlight', '~> 3.6.0.beta6'
+gem 'blacklight-spotlight', '~> 3.6.0.beta10'
 
 gem 'friendly_id'
 gem 'iiif-presentation', '~> 1.0'
