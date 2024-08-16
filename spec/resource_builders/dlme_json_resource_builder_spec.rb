@@ -6,10 +6,10 @@ RSpec.describe DlmeJsonResourceBuilder do
   let(:doc_builder) { described_class.new(resource) }
   let(:exhibit) { create(:exhibit) }
   let(:resource) { DlmeJson.new(json: json, metadata: metadata, exhibit: exhibit) }
-  let(:fixture_file_path) { File.join(fixture_path, 'json/iiif-single-image.json') }
-  let(:json) { File.read(fixture_file_path) }
+  let(:iiif_single_image_fixture) { file_fixture('json/iiif-single-image.json') }
+  let(:json) { iiif_single_image_fixture.read }
   let(:metadata) do
-    { 'traject_context_command_line.filename' => fixture_file_path,
+    { 'traject_context_command_line.filename' => iiif_single_image_fixture.to_path,
       'traject_context_source' => 'dlme_json_resource_spec' }
   end
 
@@ -82,7 +82,7 @@ RSpec.describe DlmeJsonResourceBuilder do
     end
 
     it 'includes metadata context fields' do
-      expect(solr_doc).to include('traject_context_command_line.filename_ssim' => fixture_file_path,
+      expect(solr_doc).to include('traject_context_command_line.filename_ssim' => iiif_single_image_fixture.to_path,
                                   'traject_context_source_ssim' => 'dlme_json_resource_spec')
     end
 

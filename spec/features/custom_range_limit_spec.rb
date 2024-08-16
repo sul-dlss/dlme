@@ -5,11 +5,10 @@ require 'rails_helper'
 RSpec.describe 'Custom range limit functionality', js: true do
   let(:exhibit) { create(:exhibit) }
   let(:curator) { create(:exhibit_curator, exhibit: exhibit) }
-  let(:resource) { DlmeJson.new(json: json, metadata: metadata, exhibit: exhibit) }
-  let(:fixture_file_path) { File.join(fixture_path, 'json/iiif-single-image.json') }
-  let(:json) { File.read(fixture_file_path) }
+  let(:resource) { DlmeJson.new(json: iiif_single_image_fixture.read, metadata: metadata, exhibit: exhibit) }
+  let(:iiif_single_image_fixture) { file_fixture('json/iiif-single-image.json') }
   let(:metadata) do
-    { 'traject_context_command_line.filename' => fixture_file_path,
+    { 'traject_context_command_line.filename' => iiif_single_image_fixture.to_path,
       'traject_context_source' => 'dlme_json_resource_spec' }
   end
 

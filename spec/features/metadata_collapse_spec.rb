@@ -4,11 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'Metadata Collapse' do
   let(:exhibit) { create(:exhibit, published: true) }
-  let(:resource) { DlmeJson.new(json: json, metadata: metadata, exhibit: exhibit) }
-  let(:fixture_file_path) { File.join(fixture_path, 'json/long-description.json') }
-  let(:json) { File.read(fixture_file_path) }
+  let(:resource) { DlmeJson.new(json: long_description_fixture.read, metadata: metadata, exhibit: exhibit) }
+  let(:long_description_fixture) { file_fixture('json/long-description.json') }
   let(:metadata) do
-    { 'traject_context_command_line.filename' => fixture_file_path,
+    { 'traject_context_command_line.filename' => long_description_fixture.to_path,
       'traject_context_source' => 'dlme_json_resource_spec' }
   end
 
