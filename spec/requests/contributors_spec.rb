@@ -7,8 +7,7 @@ RSpec.describe 'display collections for an institution' do
   let(:exhibit) { create(:exhibit) }
 
   before do
-    AddResourcesJob.perform_now('spec/fixtures/ndjson/sample.ndjson',
-                                exhibit: exhibit, local: true)
+    AddResourcesJob.perform_now(file_fixture('ndjson/sample.ndjson').to_path, exhibit: exhibit, local: true)
     sign_in curator
   end
 

@@ -8,13 +8,12 @@ RSpec.describe DlmeJson do
                         exhibit: exhibit)
   end
   let(:exhibit) { Spotlight::Exhibit.new }
+  let(:json) { file_fixture('json/embeddable.json').read }
 
   describe 'valid?' do
     subject(:valid?) { instance.valid? }
 
     context 'when the JSON is valid' do
-      let(:json) { File.read('spec/fixtures/json/embeddable.json') }
-
       it 'sets no errors' do
         expect(valid?).to be true
         expect(instance.errors).to be_empty
@@ -22,8 +21,6 @@ RSpec.describe DlmeJson do
     end
 
     context 'with a url' do
-      let(:json) { File.read('spec/fixtures/json/embeddable.json') }
-
       before do
         instance.url = 'http://example.com'
         instance.save
@@ -42,8 +39,6 @@ RSpec.describe DlmeJson do
     end
 
     context 'without a URL' do
-      let(:json) { File.read('spec/fixtures/json/embeddable.json') }
-
       before do
         instance.url = nil # being explicit
         instance.save

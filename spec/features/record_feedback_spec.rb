@@ -4,11 +4,10 @@ require 'rails_helper'
 
 RSpec.describe 'Record Feedback' do
   let(:exhibit) { create(:exhibit, published: true) }
-  let(:resource) { DlmeJson.new(json: json, metadata: metadata, exhibit: exhibit) }
-  let(:fixture_file_path) { File.join(fixture_path, 'json/bodleian.json') }
-  let(:json) { File.read(fixture_file_path) }
+  let(:resource) { DlmeJson.new(json: bodleian_fixture.read, metadata: metadata, exhibit: exhibit) }
+  let(:bodleian_fixture) { file_fixture('json/bodleian.json') }
   let(:metadata) do
-    { 'traject_context_command_line.filename' => fixture_file_path,
+    { 'traject_context_command_line.filename' => bodleian_fixture.to_path,
       'traject_context_source' => 'dlme_json_resource_spec' }
   end
 

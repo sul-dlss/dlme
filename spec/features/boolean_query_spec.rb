@@ -7,12 +7,11 @@ RSpec.describe 'Boolean query functionality', js: true do
   let(:curator) { create(:exhibit_curator, exhibit: exhibit) }
 
   def create_resource(exhibit, file_name)
-    fixture_file_path = File.join(fixture_path, file_name)
-    json = File.read(fixture_file_path)
-    metadata = { 'traject_context_command_line.filename' => fixture_file_path,
+    resource_fixture = file_fixture(file_name)
+    metadata = { 'traject_context_command_line.filename' => resource_fixture.to_path,
                  'traject_context_source' => 'dlme_json_resource_spec' }
 
-    DlmeJson.new(json: json, metadata: metadata, exhibit: exhibit)
+    DlmeJson.new(json: resource_fixture.read, metadata: metadata, exhibit: exhibit)
   end
 
   before do
