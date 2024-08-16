@@ -7,7 +7,7 @@ RSpec.describe RecordFeedbackController do
   let(:honeypot_field_name) { Spotlight::Engine.config.spambot_honeypot_email_field }
 
   before do
-    request.env['HTTP_REFERER'] = 'http://example.com'
+    request.env['HTTP_REFERER'] = 'http://test.host/'
     exhibit.contact_emails_attributes = [{ 'email' => 'test@example.com' }, { 'email' => 'test2@example.com' }]
     exhibit.save!
     exhibit.contact_emails.first.tap do |e|
@@ -42,7 +42,7 @@ RSpec.describe RecordFeedbackController do
           contact_form: { name: 'Joe Doe', email: 'jdoe@example.com', message: 'Great record!', honeypot_field_name => '' }
         }
       )
-      expect(response).to redirect_to 'http://example.com'
+      expect(response).to redirect_to 'http://test.host/'
     end
 
     it 'sets a flash message' do
