@@ -33,7 +33,7 @@ module Api
     end
 
     def duplicate_ids
-      render json: { error: t('api.harvest.duplicate_ids') }, status: :unprocessable_entity
+      render json: { error: t('api.harvest.duplicate_ids') }, status: :unprocessable_content
     end
 
     def file_not_found

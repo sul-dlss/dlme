@@ -71,7 +71,7 @@ RSpec.describe 'Api::Harvests' do
         post '/api/harvests', params: { url: url }, headers: { Authorization: "Bearer #{secret}", Accept: 'application/json' }
         json = response.parsed_body
 
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(json['error']).to eq('JSON contained duplicate identifiers')
         expect(AddResourcesJob).not_to have_received(:perform_later)
       end
