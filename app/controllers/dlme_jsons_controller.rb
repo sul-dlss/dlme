@@ -45,7 +45,7 @@ class DlmeJsonsController < ApplicationController
       flash[:notice] = t('.success')
       redirect_to exhibit_dlme_jsons_path(current_exhibit)
     else
-      flash[:error] = t('.error')
+      flash.now[:error] = t('.error')
       render :edit
     end
   end
