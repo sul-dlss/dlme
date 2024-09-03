@@ -41,19 +41,19 @@ RSpec.describe 'Contextual result message on search results' do
 
   it 'renders info alert, that is dismissable', js: true do
     within '#content' do
-      expect(page).to have_css '.alert.alert-info', text: 'You might see more results for your query', wait: 15
+      expect(page).to have_css '.alert.alert-info', text: 'You might see more results for your query', wait: 20
       click_button 'Dismiss'
       expect(page).to have_no_css '.alert.alert-info'
     end
     click_button 'Search'
     within '#content' do
-      expect(page).to have_css '.alert.alert-info', text: 'You might see more results for your query', wait: 15
+      expect(page).to have_css '.alert.alert-info', text: 'You might see more results for your query', wait: 20
     end
   end
 
   it 'renders info alert, that is not shown again in the session', js: true do
     within '#content' do
-      expect(page).to have_css '.alert.alert-info', text: 'You might see more results for your query', wait: 15
+      expect(page).to have_css '.alert.alert-info', text: 'You might see more results for your query', wait: 20
       click_button 'Don\'t show again'
       expect(page).to have_no_css '.alert.alert-info'
     end

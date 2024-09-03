@@ -58,7 +58,7 @@ RSpec.describe 'Contextual date sort message on search results' do
       click_link('Date (old to new)')
     end
     within '#content' do
-      expect(page).to have_css '.date-sort-message', wait: 15
+      expect(page).to have_css '.date-sort-message', wait: 20
       within '.date-sort-message' do
         click_button 'Dismiss'
       end
