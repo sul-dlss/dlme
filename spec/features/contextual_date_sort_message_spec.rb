@@ -88,6 +88,8 @@ RSpec.describe 'Contextual date sort message on search results' do
     within '#content' do
       expect(page).to have_no_css '.date-sort-message'
     end
+    # Quit the session so that the other tests can show the alert again
+    Capybara.current_session.driver.quit
   end
   # rubocop:enable RSpec/ExampleLength
 end
