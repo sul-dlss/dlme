@@ -61,5 +61,7 @@ RSpec.describe 'Contextual result message on search results' do
     within '#content' do
       expect(page).to have_no_css '.alert.alert-info', text: 'You might see more results for your query'
     end
+    # Quit the session so that the other tests can show the alert again
+    Capybara.current_session.driver.quit
   end
 end
