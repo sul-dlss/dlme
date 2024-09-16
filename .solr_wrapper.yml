@@ -3,3 +3,4 @@
 collection:
   dir: solr/config/
   name: dlme
+version: 9.6.1
