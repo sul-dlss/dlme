@@ -71,7 +71,9 @@ group :deployment do
 end
 
 gem 'blacklight', '~> 8.2'
-gem 'blacklight-spotlight', '~> 3.6.0.beta10'
+gem 'blacklight-spotlight', '~> 4.0'
+
+gem 'bootstrap_form', '~> 4.5' # needs to match Bootstrap version
 
 gem 'friendly_id'
 gem 'iiif-presentation', '~> 1.0'

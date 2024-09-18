@@ -4461,10 +4461,10 @@ spdy@^4.0.2:
     select-hose "^2.0.0"
     spdy-transport "^3.0.0"
 
-spotlight-frontend@^3.6.0-beta.10:
-  version "3.6.0-beta.10"
-  resolved "https://registry.yarnpkg.com/spotlight-frontend/-/spotlight-frontend-3.6.0-beta.10.tgz#ba3f7123539abea79e573dc0d59ff0b086e29e72"
-  integrity sha512-IvnJ9jkZbSjbYRxdkyi39SNGh5QOXe1ZGF5bMvpwV7rRNf+BL7xKcgJBqia4kKNHJnE4/tCKNiD+6UvSn/nwlg==
+spotlight-frontend@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/spotlight-frontend/-/spotlight-frontend-4.0.3.tgz#1f341dfcf01e1cef6e57b71a199ee4eb3a9c24fe"
+  integrity sha512-TORlL7bZvhrWDGeC+sLc90VJ2s0zenvazrH56q2pJw8dALiYA8k+H+otVGa7EhAb7NSEJS24Za9iRerYORpncQ==
 
 statuses@2.0.1:
   version "2.0.1"
