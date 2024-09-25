@@ -28,5 +28,13 @@ RSpec.describe SearchBuilder do
         expect(solr_parameters[:mm]).to be_nil
       end
     end
+
+    context "when the query isn't a string" do
+      let(:query) { { q: { a: 1 } } }
+
+      it 'does not set min match' do
+        expect(solr_parameters[:mm]).to be_nil
+      end
+    end
   end
 end

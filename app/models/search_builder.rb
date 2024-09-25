@@ -25,7 +25,8 @@ class SearchBuilder < Blacklight::SearchBuilder
   # more advanced search queries. Setting `mm=1` means only 1 clause needs to match, but the lucene query parser (in
   # edismax) will precompose the query strings so everything works out.
   def min_match_for_boolean(solr_parameters)
-    return unless search_state.query_param&.match?(/\s(AND|OR|NOT)\s/)
+    return unless search_state.query_param.respond_to?(:match?) &&
+                  search_state.query_param&.match?(/\s(AND|OR|NOT)\s/)
 
     solr_parameters[:mm] = '1'
   end
