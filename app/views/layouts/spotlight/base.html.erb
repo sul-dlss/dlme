@@ -25,13 +25,9 @@
   </head>
   <body class="<%= render_body_class %>">
     <%= render partial: 'shared/body_preamble' %>
-    <div id="skip-link">
-      <% if should_render_spotlight_search_bar? %>
-        <%= link_to t('blacklight.skip_links.search_field'), '#search_field', class: 'element-invisible element-focusable rounded-bottom py-2 px-3', data: { turbo: false } %>
-      <% end %>
-      <%= link_to t('blacklight.skip_links.main_content'), '#main-container', class: 'element-invisible element-focusable rounded-bottom py-2 px-3', data: { turbo: false } %>
+    <%= render blacklight_config.skip_link_component.new do %>
       <%= content_for(:skip_links) %>
-    </div>
+    <% end %>
 
     <%= render partial: 'shared/header_navbar' %>
     <%= render partial: 'shared/masthead' %>
