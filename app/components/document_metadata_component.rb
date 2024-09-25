@@ -3,7 +3,7 @@
 # Displays the metadata for an item.
 class DocumentMetadataComponent < ViewComponent::Base
   FIELDS = %w[holding_institution source_institution].freeze
-  def initialize(fields:)
+  def initialize(fields:, show: false)
     super
     (@local_fields, @fields) = fields.partition { |field| FIELDS.include?(field.key) }
   end
