@@ -83,11 +83,6 @@ $breadcrumb-item-padding-x: 0.5rem !default;
 
 
   /** Blacklight-specific overrides */
-  #skip-link {
-    left: inherit;
-    right: 10px;
-  }
-
   .facet-field-heading button::after {
     float: left;
     transform: rotate(-90deg);
