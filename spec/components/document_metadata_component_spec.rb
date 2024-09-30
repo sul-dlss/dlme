@@ -7,7 +7,7 @@ RSpec.describe DocumentMetadataComponent, type: :component do
     render_inline(described_class.new(fields: fields))
   end
 
-  let(:view_context) { controller.view_context }
+  let(:view_context) { vc_test_controller.view_context }
   let(:document) do
     SolrDocument.new({
                        'agg_is_shown_at.wr_id_ssim' => ['http://example.com/resource/'],
