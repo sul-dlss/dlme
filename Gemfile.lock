@@ -104,40 +104,41 @@ GEM
       rails (>= 6.1, < 8)
       view_component (>= 2.66, < 4)
       zeitwerk
-    blacklight-gallery (4.5.4)
+    blacklight-gallery (4.6.0)
       blacklight (>= 7.17, < 9)
       rails (>= 6.1, < 8)
     blacklight-hierarchy (6.4.0)
       blacklight (>= 7.18, < 9)
       deprecation
       rails (>= 6.1, < 7.3)
-    blacklight-oembed (1.1.1)
-      blacklight (>= 7.0, < 9)
+    blacklight-oembed (1.2.0)
+      blacklight (>= 7.25, < 9)
       rails
       ruby-oembed
-    blacklight-spotlight (4.0.3)
+    blacklight-spotlight (4.1.2)
       activejob-status
       acts-as-taggable-on (>= 5.0, < 12)
       autoprefixer-rails
-      blacklight (>= 7.18, < 9)
+      blacklight (>= 7.19, < 9)
       blacklight-gallery (>= 3.0, < 5)
       bootstrap_form (>= 4.1, < 6)
       breadcrumbs_on_rails (>= 3.0, < 5)
       cancancan
       carrierwave (~> 2.2)
       clipboard-rails (~> 1.5)
+      csv
       devise (~> 4.9)
       devise_invitable
       faraday
       faraday-follow_redirects
       friendly_id (~> 5.5)
       github-markup
+      google-analytics-data
       i18n
       i18n-active_record
       iiif-presentation
       iiif_manifest
       leaflet-rails
-      legato
       mini_magick
       nokogiri
       oauth2
@@ -151,7 +152,7 @@ GEM
       roar-rails
       signet
       tophat
-      view_component (~> 2.0)
+      view_component (>= 2.66, < 4)
     blacklight_range_limit (8.5.0)
       blacklight (>= 7.25.2, < 9)
       deprecation
@@ -210,12 +211,14 @@ GEM
       ssrf_filter (~> 1.0)
     clipboard-rails (1.7.1)
     concurrent-ruby (1.3.4)
-    config (5.5.1)
+    config (5.5.2)
       deep_merge (~> 1.2, >= 1.2.1)
+      ostruct
     connection_pool (2.4.1)
     crass (1.0.6)
     cssbundling-rails (1.4.1)
       railties (>= 6.0.0)
+    csv (3.3.0)
     date (3.3.4)
     debug (1.9.2)
       irb (~> 1.10)
@@ -296,6 +299,8 @@ GEM
       faraday (>= 1, < 3)
     faraday-net_http (3.3.0)
       net-http
+    faraday-retry (2.2.1)
+      faraday (~> 2.0)
     ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86_64-darwin)
     ffi (1.17.0-x86_64-linux-gnu)
@@ -306,10 +311,61 @@ GEM
       railties (>= 3.2, < 8.0)
     friendly_id (5.5.1)
       activerecord (>= 4.0.0)
+    gapic-common (0.22.0)
+      faraday (>= 1.9, < 3.a)
+      faraday-retry (>= 1.0, < 3.a)
+      google-protobuf (>= 3.25, < 5.a)
+      googleapis-common-protos (~> 1.6)
+      googleapis-common-protos-types (~> 1.15)
+      googleauth (~> 1.11)
+      grpc (~> 1.65)
     geo_coord (0.2.0)
     github-markup (5.0.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google-analytics-data (0.6.1)
+      google-analytics-data-v1beta (>= 0.11, < 2.a)
+      google-cloud-core (~> 1.6)
+    google-analytics-data-v1beta (0.13.1)
+      gapic-common (>= 0.21.1, < 2.a)
+      google-cloud-errors (~> 1.0)
+    google-cloud-core (1.7.1)
+      google-cloud-env (>= 1.0, < 3.a)
+      google-cloud-errors (~> 1.0)
+    google-cloud-env (2.2.0)
+      faraday (>= 1.0, < 3.a)
+    google-cloud-errors (1.4.0)
+    google-protobuf (4.28.2-arm64-darwin)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.28.2-x86_64-darwin)
+      bigdecimal
+      rake (>= 13)
+    google-protobuf (4.28.2-x86_64-linux)
+      bigdecimal
+      rake (>= 13)
+    googleapis-common-protos (1.6.0)
+      google-protobuf (>= 3.18, < 5.a)
+      googleapis-common-protos-types (~> 1.7)
+      grpc (~> 1.41)
+    googleapis-common-protos-types (1.16.0)
+      google-protobuf (>= 3.18, < 5.a)
+    googleauth (1.11.0)
+      faraday (>= 1.0, < 3.a)
+      google-cloud-env (~> 2.1)
+      jwt (>= 1.4, < 3.0)
+      multi_json (~> 1.11)
+      os (>= 0.9, < 2.0)
+      signet (>= 0.16, < 2.a)
+    grpc (1.66.0-arm64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.66.0-x86_64-darwin)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
+    grpc (1.66.0-x86_64-linux)
+      google-protobuf (>= 3.25, < 5.0)
+      googleapis-common-protos-types (~> 1.0)
     hashie (5.0.0)
     highline (3.1.1)
       reline
@@ -355,14 +411,14 @@ GEM
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.7.2)
-    irb (1.14.0)
+    irb (1.14.1)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json (2.7.2)
-    jwt (2.9.0)
+    jwt (2.9.1)
       base64
     kaminari (1.2.2)
       activesupport (>= 4.1.0)
@@ -380,8 +436,6 @@ GEM
     leaflet-rails (1.9.5)
       actionpack (>= 4.2.0)
       railties (>= 4.2.0)
-    legato (0.7.0)
-      multi_json
     llhttp-ffi (0.5.0)
       ffi-compiler (~> 1.0)
       rake (~> 13.0)
@@ -445,6 +499,7 @@ GEM
     openseadragon (0.7.0)
       rails (> 6.1.0)
     orm_adapter (0.5.0)
+    os (1.1.4)
     ostruct (0.6.0)
     paper_trail (15.2.0)
       activerecord (>= 6.1)
@@ -537,7 +592,7 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     retriable (3.1.2)
-    rexml (3.3.7)
+    rexml (3.3.8)
     riiif (2.6.0)
       deprecation (>= 1.0.0)
       iiif-image-api (>= 0.1.0)
@@ -646,9 +701,11 @@ GEM
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
-    solr_wrapper (4.0.2)
-      http
+    solr_wrapper (4.1.0)
+      faraday
+      faraday-follow_redirects
       minitar
+      ostruct
       retriable
       ruby-progressbar
     sprockets (4.2.1)
@@ -693,7 +750,7 @@ GEM
     unicode-display_width (2.6.0)
     uri (0.13.1)
     version_gem (1.1.4)
-    view_component (2.83.0)
+    view_component (3.15.0)
       activesupport (>= 5.2.0, < 8.0)
       concurrent-ruby (~> 1.0)
       method_source (~> 1.0)
@@ -704,7 +761,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webrick (1.8.1)
+    webrick (1.8.2)
     websocket (1.2.11)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
