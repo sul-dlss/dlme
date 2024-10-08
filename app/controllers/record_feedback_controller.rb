@@ -6,15 +6,12 @@
 # to redirect to the correct place and set the correct notice
 class RecordFeedbackController < Spotlight::ContactFormsController
   def create
-    if @contact_form.valid?
-      Spotlight::ContactMailer.report_problem(@contact_form).deliver_now
+    return render 'new' unless @contact_form.valid?
 
-      redirect_back(
-        fallback_location: spotlight.exhibit_solr_document_path(current_exhibit),
-        notice: t(:'helpers.submit.record_feedback.created')
-      )
+    if verify_recaptcha(action: 'feedback')
+      send_feedback
     else
-      render 'new'
+      report_failure
     end
   end
 
@@ -25,5 +22,16 @@ class RecordFeedbackController < Spotlight::ContactFormsController
     @contact_form.current_exhibit = current_exhibit
     @contact_form.request = request
     @contact_form
+  end
+
+  def send_feedback
+    Spotlight::ContactMailer.report_problem(@contact_form).deliver_now
+    redirect_back fallback_location: spotlight.exhibit_solr_document_path(current_exhibit),
+                  notice: t(:'helpers.submit.record_feedback.created')
+  end
+
+  def report_failure
+    redirect_back fallback_location: spotlight.new_exhibit_contact_form_path(current_exhibit),
+                  alert: t(:'helpers.submit.record_feedback.error')
   end
 end
