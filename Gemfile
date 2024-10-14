@@ -76,7 +76,6 @@ gem 'blacklight-spotlight', '~> 4.0'
 gem 'bootstrap_form', '~> 4.5' # needs to match Bootstrap version
 
 gem 'friendly_id'
-gem 'iiif-presentation', '~> 1.0'
 gem 'riiif', '~> 2.0'
 gem 'sitemap_generator'
 
