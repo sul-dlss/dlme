@@ -113,3 +113,5 @@ gem 'importmap-rails', '~> 2.0'
 
 gem 'cssbundling-rails', '~> 1.1'
 gem 'stimulus-rails', '~> 1.2'
+
+gem 'recaptcha', '~> 5.16'
