@@ -12,7 +12,30 @@
       <%= f.text_field :name %>
       <%= render '/spotlight/shared/honeypot_field', f: f %>
       <%= f.email_field :email %>
+      <div class="row">
+        <div class="form-group col-sm-9 offset-sm-3">
+          <p class="mt-2 mb-0">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+        </div>
+      </div>
       <%= f.hidden_field :current_url %>
+      <%= recaptcha_v3(action: 'feedback', inline_script: false) %>
+      <script type="text/javascript">
+        document.addEventListener('turbo:before-cache', function() {
+          const recaptchaElement = document.querySelector('.g-recaptcha');
+          if (recaptchaElement) {
+            recaptchaElement.innerHTML = '';
+          }
+        });
+        document.forms.new_contact_form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          if (typeof grecaptcha !== 'undefined' && grecaptcha) {
+            const response = await grecaptcha.execute("<%= Recaptcha.configuration.site_key %>", { action: 'feedback' });
+            const element = document.getElementById('g-recaptcha-response-data-feedback');
+            if (element) element.value = response;
+          }
+          this.submit();
+        });
+      </script>
       <div class="form-actions row">
         <div class="col offset-sm-3">
           <%= f.submit nil, class: 'btn btn-primary' %>

@@ -4,7 +4,7 @@
   <% component.with_body do %>
     <%= bootstrap_form_for(@contact_form || Spotlight::ContactForm.new(current_url: request.original_url),
                            url: main_app.exhibit_record_feedback_path(current_exhibit), as: 'contact_form',
-                           html: { data: { turbo: false } }) do |f| %>
+                           html: { id: 'record_new_contact_form',data: { turbo: false, recaptcha_site_key: Recaptcha.configuration.site_key } }) do |f| %>
       <%= render '/spotlight/shared/honeypot_field', f: f %>
       <%= f.hidden_field :current_url %>
 
@@ -15,8 +15,12 @@
 
         <%= f.text_area :message, rows: 4, label: t('.message') %>
         <%= f.email_field :email, label: t('.email') %>
+        <div>
+          <p>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+        </div>
       </div>
-
+      <%= f.hidden_field :current_url %>
+      <%= recaptcha_v3(action: 'record_feedback', inline_script: false) %>
       <div class="modal-footer">
         <%= button_tag(t('.close'), class: 'btn btn-outline-dark', data: { 'dismiss': 'modal' }) if request.xhr? %>
         <%= f.submit class: 'btn btn-primary' %>

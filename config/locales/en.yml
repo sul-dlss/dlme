@@ -103,8 +103,10 @@ en:
     submit:
       contact_form:
         created: Thank you. Your feedback has been submitted.
+        error: There was a problem submitting feedback.
       record_feedback:
         created: Thank you. Your feedback has been submitted.
+        error: There was a problem submitting feedback.
   metadata_collapse:
     button:
       less: less
