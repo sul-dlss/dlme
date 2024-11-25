@@ -119,7 +119,7 @@ GEM
       blacklight (>= 7.25, < 9)
       rails
       ruby-oembed
-    blacklight-spotlight (4.3.5)
+    blacklight-spotlight (4.3.6)
       activejob-status
       acts-as-taggable-on (>= 5.0, < 12)
       autoprefixer-rails
@@ -371,7 +371,7 @@ GEM
     hashie (5.0.0)
     highline (3.1.1)
       reline
-    honeybadger (5.22.0)
+    honeybadger (5.24.0)
       logger
     http (5.2.0)
       addressable (~> 2.8)
@@ -461,12 +461,12 @@ GEM
     mini_magick (4.13.2)
     mini_mime (1.1.5)
     minitar (1.0.2)
-    minitest (5.25.1)
+    minitest (5.25.2)
     msgpack (1.7.5)
     multi_json (1.15.0)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
-    mutex_m (0.2.0)
+    mutex_m (0.3.0)
     net-http (0.5.0)
       uri
     net-imap (0.5.1)
@@ -514,7 +514,7 @@ GEM
     psych (5.2.0)
       stringio
     public_suffix (6.0.1)
-    puma (6.4.3)
+    puma (6.5.0)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.1.8)
@@ -573,7 +573,7 @@ GEM
       zeitwerk (~> 2.6)
     rainbow (3.1.1)
     rake (13.2.1)
-    rdoc (6.7.0)
+    rdoc (6.8.1)
       psych (>= 4.0.0)
     recaptcha (5.17.0)
     redcarpet (3.6.0)
@@ -678,7 +678,7 @@ GEM
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
       semantic_range (>= 2.3.0)
-    sidekiq (7.3.5)
+    sidekiq (7.3.6)
       connection_pool (>= 2.3.0)
       logger
       rack (>= 2.2.4)
