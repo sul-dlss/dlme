@@ -14,6 +14,7 @@ jobs:
     strategy:
       matrix:
         ruby: ['3.2']
+        node: ['18']
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -22,6 +23,11 @@ jobs:
       with:
         bundler-cache: true
         ruby-version: ${{ matrix.ruby }}
+    - name: Install NodeJS
+      uses: actions/setup-node@v3
+      with:
+        cache: 'yarn'
+        node-version: ${{ matrix.node }}
     - name: Install JS dependencies
       run: yarn install --frozen-lockfile
     - name: Set up the database
