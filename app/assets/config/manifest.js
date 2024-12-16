@@ -1,7 +1,6 @@
 //= link_tree ../images
 //= link_directory ../javascripts .js
 //= link application.css
-//= link openseadragon-assets
 //= link blacklight/manifest.js
 //= link spotlight/manifest.js
 //= link blacklight_gallery/manifest.js
