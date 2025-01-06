@@ -24,3 +24,4 @@ pin "lodash/uniq", to: "https://ga.jspm.io/npm:lodash@4.17.21/uniq.js"
 pin "lodash/zipObject", to: "https://ga.jspm.io/npm:lodash@4.17.21/zipObject.js"
 pin "make-plural", to: "https://ga.jspm.io/npm:make-plural@7.0.0/plurals.mjs"
 pin 'transform_result'
+pin "openseadragon" # @5.0.1
