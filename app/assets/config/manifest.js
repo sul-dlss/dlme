@@ -3,6 +3,8 @@
 //= link application.css
 //= link openseadragon-assets
 //= link openseadragon/jquery.js
+//= link openseadragon/rails.js
+//= link openseadragon/openseadragon.js
 //= link blacklight/manifest.js
 //= link spotlight/manifest.js
 //= link blacklight_gallery/manifest.js
