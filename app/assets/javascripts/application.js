@@ -11,7 +11,6 @@
 // about supported directives.
 //
 
-//= require transform_result
 //= require_tree .
 
 //= require 'blacklight_range_limit'
