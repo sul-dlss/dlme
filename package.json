@@ -21,6 +21,7 @@
     "leaflet": "^1.9.3",
     "mirador": "^3.3.0",
     "mirador-image-tools": "^0.11.0",
+    "openseadragon-rails": "^1.0.14",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "sass": "^1.58.3",
@@ -46,5 +47,9 @@
   ],
   "scripts": {
     "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/sul-dlss/dlme.git",
+  "author": "Justin Coyne <jcoyne@justincoyne.com>",
+  "license": "MIT"
 }

@@ -3537,7 +3537,14 @@ open@^8.0.9:
     is-docker "^2.1.1"
     is-wsl "^2.2.0"
 
-"openseadragon@^2.4.2 || ^3.0.0 || 4.0.x || ^4.1.1 || ^5.0.0":
+openseadragon-rails@^1.0.14:
+  version "1.0.14"
+  resolved "https://registry.yarnpkg.com/openseadragon-rails/-/openseadragon-rails-1.0.14.tgz#b79f4bd544a784e52e0deb87e3e8f621649d4d0a"
+  integrity sha512-haPAaIa3MxfLv0oPebd+R3torQ71kFrQxz6MXp1MPBF+me5FaAYVSxtGPYy+0LdmXYVhwrSMSaZY6TCCrn388Q==
+  dependencies:
+    openseadragon "^5.0.1"
+
+"openseadragon@^2.4.2 || ^3.0.0 || 4.0.x || ^4.1.1 || ^5.0.0", openseadragon@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/openseadragon/-/openseadragon-5.0.1.tgz#ad3aaccc6c0f733c3153131e9af05bc2e17a1952"
   integrity sha512-a/hjouW9i3UfWxRADVYN2MyRhXMGnE7x9VVL7/4jXCcDLFyO4UM5o4RStYtqa5BfaHw/wMNAaD2WbxQF8f1pJg==
