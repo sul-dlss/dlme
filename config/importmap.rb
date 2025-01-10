@@ -26,3 +26,4 @@ pin "make-plural", to: "https://ga.jspm.io/npm:make-plural@7.0.0/plurals.mjs"
 pin 'transform_result'
 pin "openseadragon" # @5.0.1
 pin 'blacklight-frontend', to: 'blacklight/index.js'
+pin "blacklight-hierarchy" # @6.4.0

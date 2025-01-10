@@ -16,3 +16,4 @@
 //= link blacklight-gallery/index.js
 //= link blacklight-gallery/masonry.js
 //= link blacklight-gallery/slideshow.js
+//= link blacklight-hierarchy/app/assets/javascripts/blacklight/hierarchy/hierarchy.js
