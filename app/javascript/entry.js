@@ -19,3 +19,9 @@ export const i18n = new I18n()
 
 import 'transform_result'
 import 'blacklight-hierarchy'
+import 'openseadragon-rails'
+
+import oembed from 'blacklight-oembed/oembed'
+Blacklight.onLoad(function() {
+  oembed(document.querySelectorAll('[data-embed-url]'));
+});
