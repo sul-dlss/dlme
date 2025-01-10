@@ -62,6 +62,7 @@ class CatalogController < ApplicationController
     config.crawler_detector = ->(req) { req.env['HTTP_USER_AGENT'] && req.env['HTTP_USER_AGENT'] =~ /bot/i }
     config.max_page = 100
 
+    config.header_component = HeaderComponent
     config.document_solr_path = 'get'
     config.document_unique_id_param = 'ids'
     config.raw_endpoint.enabled = true
