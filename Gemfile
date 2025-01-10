@@ -82,7 +82,7 @@ gem 'sitemap_generator'
 gem 'blacklight-gallery', '~> 4.2'
 gem 'blacklight-hierarchy', '~> 6.1'
 gem 'blacklight-oembed', '>= 0.1.0'
-gem 'blacklight_range_limit', '~> 8.0'
+gem 'blacklight_range_limit', '~> 9.0'
 gem 'rails_autolink'
 gem 'rsolr', '>= 1.0'
 
