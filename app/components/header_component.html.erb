@@ -1,7 +1,7 @@
 <span class="background-container-gradient"></span>
 <nav class="navbar navbar-expand navbar-dark topbar" role="navigation" aria-label="<%= t('spotlight.topbar.label') %>">
-  <div class="<%= container_classes %>">
-    <%= link_to main_app.root_url, class: 'navbar-brand' do %>
+  <div class="<%= helpers.container_classes %>">
+    <%= link_to helpers.main_app.root_url, class: 'navbar-brand' do %>
       <%= image_tag 'logo.png', class: 'dlme-logo', alt: '', role: 'presentation' %>
       <%= t('application_name') %>
     <% end %>
