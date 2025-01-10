@@ -12,3 +12,7 @@
 //= link_tree ../../../vendor/javascript .js
 //= link_tree ../builds
 //= link_tree ../../../node_modules/openseadragon/build/openseadragon/images
+//= link_tree ../../../node_modules/openseadragon/build/openseadragon
+//= link blacklight-gallery/index.js
+//= link blacklight-gallery/masonry.js
+//= link blacklight-gallery/slideshow.js
