@@ -13,7 +13,7 @@ jobs:
       RAILS_ENV: test
     strategy:
       matrix:
-        ruby: ['3.2']
+        ruby: ['3.2', '3.3']
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
