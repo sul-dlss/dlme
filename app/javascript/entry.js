@@ -11,7 +11,7 @@ import "controllers"
 import 'bootstrap'
 import Blacklight from 'blacklight'
 import 'openseadragon-rails/rails'
-import 'blacklight-gallery'
+import 'blacklight-gallery/blacklight-gallery'
 
 window.Blacklight = Blacklight
 
