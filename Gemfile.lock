@@ -115,7 +115,7 @@ GEM
       blacklight (>= 7.18, < 9)
       deprecation
       rails (>= 6.1, < 7.3)
-    blacklight-oembed (1.4.0)
+    blacklight-oembed (1.4.1)
       blacklight (>= 7.25, < 9)
       rails
       ruby-oembed
