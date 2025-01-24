@@ -1,5 +1,6 @@
-// This import is not part of the downloaded asset. It is needed to make the include in entry.js via importmap work as expected.
+// These imports are not part of the downloaded asset. They are needed to make the include in entry.js via importmap work as expected.
 import Blacklight from 'blacklight-frontend'
+import jQuery from 'jquery'
 
 // blacklight-hierarchy@6.4.0 downloaded from https://ga.jspm.io/npm:blacklight-hierarchy@6.4.0/app/assets/javascripts/blacklight/hierarchy/hierarchy.js
 
