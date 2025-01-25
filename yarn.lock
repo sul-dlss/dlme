@@ -1662,17 +1662,24 @@ binary-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.3.0.tgz#f6e14a97858d327252200242d4ccfe522c445522"
   integrity sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==
 
-"blacklight-frontend@>=7.1 || 8.0", "blacklight-frontend@>=7.1.0 <9", blacklight-frontend@^8.2.1:
+"blacklight-frontend@>=7.1 || 8.0":
   version "8.7.0"
   resolved "https://registry.yarnpkg.com/blacklight-frontend/-/blacklight-frontend-8.7.0.tgz#4ef0d5c984ea41addf42914dd37157f7eee3f3f5"
   integrity sha512-iDPNfD+QQo5+ZoLLl4uRXtgzvPFup4JnzAa1MnxdP+7cxkHm24cidJ+c/9UBZjk9mrOOnFdlMfWZnbX+zG+mkQ==
   dependencies:
     bootstrap ">=4.3.1 <6.0.0"
 
+"blacklight-frontend@>=7.1.0 <9", blacklight-frontend@^8.2.1:
+  version "8.8.0"
+  resolved "https://registry.yarnpkg.com/blacklight-frontend/-/blacklight-frontend-8.8.0.tgz#c3a413b5e4f0b50ae134bc385346ee0f70d5cfea"
+  integrity sha512-K0kN+h2HEnEINE1ewqwTvMNP5lWI52TkMfLTr+tWlFVJUdG+CcJKDW0B5fTfZ8q2pSWy54QUgHzhVMYjk5EOow==
+  dependencies:
+    bootstrap ">=4.3.1 <6.0.0"
+
 blacklight-gallery@^4.0.2-beta.1:
-  version "4.8.3"
-  resolved "https://registry.yarnpkg.com/blacklight-gallery/-/blacklight-gallery-4.8.3.tgz#89348d219283032eb8d5148ca9d3edfb3358da37"
-  integrity sha512-6DH69u654+gKvtjXJvIAeBw3njg2SCGWxPaeKZVMwtHdA2ok2HqMiRLKX2sK5w6bHRDPfhLDFy58q6lggRv0vA==
+  version "4.8.4"
+  resolved "https://registry.yarnpkg.com/blacklight-gallery/-/blacklight-gallery-4.8.4.tgz#7c1377dcd0d7a0c61a09c4268478c9a64da47a08"
+  integrity sha512-5ZDarJ+IXBDqlhWz02EsxArQi/Y2oFyzwKqVEwwLSowwikWFBpWiBQnNWKbDwQOf7np5fv7Zo9z3SZ1vR6PLsQ==
   dependencies:
     blacklight-frontend ">=7.1.0 <9"
     jquery ">=3.0"
