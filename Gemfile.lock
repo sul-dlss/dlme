@@ -814,7 +814,6 @@ DEPENDENCIES
   honeybadger
   http
   i18n-tasks
-  iiif-presentation (~> 1.0)
   importmap-rails (~> 2.0)
   jbuilder (~> 2.7)
   lograge
