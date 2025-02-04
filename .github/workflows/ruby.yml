@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   tests:
@@ -13,18 +13,18 @@ jobs:
       RAILS_ENV: test
     strategy:
       matrix:
-        ruby: ['3.2', '3.3']
+        ruby: ["3.3", "3.4"]
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Install Ruby and dependencies
-      uses: ruby/setup-ruby@v1.215.0
-      with:
-        bundler-cache: true
-        ruby-version: ${{ matrix.ruby }}
-    - name: Install JS dependencies
-      run: yarn install --frozen-lockfile
-    - name: Set up the database
-      run: bin/rails db:test:prepare
-    - name: Run CI rake task
-      run: RAILS_ENV=test NODE_ENV=development bin/rake ci
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Ruby and dependencies
+        uses: ruby/setup-ruby@v1.215.0
+        with:
+          bundler-cache: true
+          ruby-version: ${{ matrix.ruby }}
+      - name: Install JS dependencies
+        run: yarn install --frozen-lockfile
+      - name: Set up the database
+        run: bin/rails db:test:prepare
+      - name: Run CI rake task
+        run: RAILS_ENV=test NODE_ENV=development bin/rake ci
