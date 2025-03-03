@@ -93,7 +93,7 @@ GEM
     benchmark (0.4.0)
     bigdecimal (3.1.9)
     bindex (0.8.1)
-    blacklight (8.8.2)
+    blacklight (8.8.3)
       globalid
       i18n (>= 1.7.0)
       jbuilder (~> 2.7)
@@ -211,7 +211,7 @@ GEM
       ostruct
     connection_pool (2.5.0)
     crass (1.0.6)
-    cssbundling-rails (1.4.1)
+    cssbundling-rails (1.4.2)
       railties (>= 6.0.0)
     csv (3.3.2)
     date (3.4.1)
@@ -259,7 +259,7 @@ GEM
       concurrent-ruby (~> 1.0)
       dry-core (~> 1.1)
       zeitwerk (~> 2.6)
-    dry-schema (1.14.0)
+    dry-schema (1.14.1)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 1.0, >= 1.0.1)
       dry-core (~> 1.1)
@@ -584,7 +584,7 @@ GEM
     rdoc (6.12.0)
       psych (>= 4.0.0)
     recaptcha (5.19.0)
-    redcarpet (3.6.0)
+    redcarpet (3.6.1)
     redis (5.4.0)
       redis-client (>= 0.22.0)
     redis-client (0.23.2)
@@ -638,7 +638,7 @@ GEM
     rspec-support (3.13.2)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.72.2)
+    rubocop (1.73.1)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -649,7 +649,7 @@ GEM
       rubocop-ast (>= 1.38.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.38.0)
+    rubocop-ast (1.38.1)
       parser (>= 3.3.1.0)
     rubocop-capybara (2.21.0)
       rubocop (~> 1.41)
@@ -659,7 +659,7 @@ GEM
       lint_roller (~> 1.1)
       rubocop (>= 1.72.1, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
-    rubocop-rails (2.30.2)
+    rubocop-rails (2.30.3)
       activesupport (>= 4.2.0)
       lint_roller (~> 1.1)
       rack (>= 1.1)
@@ -766,7 +766,7 @@ GEM
     unicode-display_width (3.1.4)
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
-    uri (1.0.2)
+    uri (1.0.3)
     useragent (0.16.11)
     version_gem (1.1.6)
     view_component (3.21.0)
@@ -863,4 +863,4 @@ DEPENDENCIES
   web-console (>= 4.1.0)
 
 BUNDLED WITH
-   2.5.18
+   2.6.5
