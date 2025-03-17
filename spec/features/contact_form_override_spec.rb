@@ -18,6 +18,7 @@ RSpec.describe 'Contact form override' do
       end
     end
 
+    # rubocop:disable RSpec/ExampleLength
     it 'accepts a problem report', js: true do
       visit spotlight.exhibit_path(exhibit)
       click_on 'Contact us'
@@ -29,7 +30,9 @@ RSpec.describe 'Contact form override' do
 
       expect do
         click_on 'Send'
+        expect(page).to have_content 'Your feedback has been submitted'
       end.to change { ActionMailer::Base.deliveries.count }.by(1)
     end
+    # rubocop:enable RSpec/ExampleLength
   end
 end
