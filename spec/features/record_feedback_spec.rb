@@ -36,17 +36,14 @@ RSpec.describe 'Record Feedback' do
 
     expect(page).to have_css '#blacklight-modal', visible: :visible
 
-    within '#blacklight-modal' do
-      fill_in 'Question or comment', with: 'This record is one of the best I have seen all day'
-      expect do
+    expect do
+      within '#blacklight-modal' do
+        fill_in 'Question or comment', with: 'This record is one of the best I have seen all day'
         click_button 'Send'
-      end.to change { ActionMailer::Base.deliveries.count }.by(1)
-    end
+      end
 
-    expect(page).to have_css(
-      '.flash_messages .alert-info',
-      text: 'Thank you. Your feedback has been submitted.'
-    )
+      expect(page).to have_css('.flash_messages .alert-info', text: 'Thank you. Your feedback has been submitted.')
+    end.to change { ActionMailer::Base.deliveries.count }.by(1)
   end
   # rubocop:enable RSpec/ExampleLength
 
