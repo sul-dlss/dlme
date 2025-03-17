@@ -40,6 +40,7 @@ RSpec.describe 'Record Feedback' do
       fill_in 'Question or comment', with: 'This record is one of the best I have seen all day'
       expect do
         click_button 'Send'
+        sleep 2
       end.to change { ActionMailer::Base.deliveries.count }.by(1)
     end
 
