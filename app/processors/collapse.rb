@@ -24,7 +24,7 @@ class Collapse < Blacklight::Rendering::AbstractStep
 
   def button
     context.tag.button(
-      (more_text + less_text),
+      more_text + less_text,
       class: 'btn btn-sm btn-outline-secondary line-collapse-button collapsed mt-1',
       hidden: true,
       data: { line_collapse_target: 'button', action: 'click->line-collapse#toggle' }
