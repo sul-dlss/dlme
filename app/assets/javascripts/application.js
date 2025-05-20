@@ -12,5 +12,3 @@
 //
 
 //= require_tree .
-
-//= require 'blacklight_range_limit'
