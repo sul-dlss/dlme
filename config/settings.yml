@@ -53,3 +53,6 @@ acceptable_bcp47_codes:
   - und-Latn
   - ur-Arab
   - ur-Latn
+
+throttling:
+  redis_url:
