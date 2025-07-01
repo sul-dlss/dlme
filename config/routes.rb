@@ -75,6 +75,9 @@ Rails.application.routes.draw do
 
   get 'image_proxy' => 'image_proxy#access', as: 'image_proxy'
 
+ # Cloudflare turnstile bot challenges via bot_challenge_page gem
+  post "/challenge", to: "bot_challenge_page/bot_challenge_page#verify_challenge", as: :bot_detect_challenge
+
   Blacklight::Engine.routes.default_scope = { path: "(:locale)", locale: Regexp.union(Spotlight::Engine.config.i18n_locales.keys.map(&:to_s)), module: 'blacklight' }
   mount Blacklight::Engine => '/'
 
