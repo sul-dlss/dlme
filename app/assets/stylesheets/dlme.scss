@@ -112,13 +112,13 @@ body {
       border: 1px solid transparent;
 
       &.collapsed::after {
-        background-image: $b-h-closed-icon;
+        background-image: var(--bl-h-closed-icon);
 
       }
 
       &::after {
         flex-shrink: 0;
-        background-image: $b-h-opened-icon;
+        background-image: var(--bl-h-opened-icon);
         background-repeat: no-repeat;
         content: ' ';
         width: 1.2rem;
