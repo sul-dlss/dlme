@@ -4,6 +4,7 @@
 class DeleteSearchResultsJob < ApplicationJob
   include Spotlight::JobTracking
   include Spotlight::GatherDocuments
+
   with_job_tracking(resource: ->(job) { job.arguments.last[:exhibit] })
 
   def perform(solr_params:, exhibit:, **)
