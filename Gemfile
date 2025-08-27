@@ -61,7 +61,7 @@ end
 
 group :production do
   gem 'pg'
-  gem 'sidekiq', '~> 7.0'
+  gem 'sidekiq', '~> 8.0'
 end
 
 group :deployment do
