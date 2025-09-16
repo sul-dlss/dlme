@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Paragraph do
   include Capybara::RSpecMatchers
+
   let(:document) { instance_double(SolrDocument) }
   let(:context) { double(request: double(format: double(html?: true))) }
   let(:options) { double }
