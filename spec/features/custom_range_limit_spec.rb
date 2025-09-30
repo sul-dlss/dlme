@@ -21,6 +21,7 @@ RSpec.describe 'Custom range limit functionality', js: true do
 
   it 'has a customized togglable range limit, defaulting to Gregorian' do
     visit spotlight.search_exhibit_catalog_path(exhibit, q: '*')
+    expect(page).to have_css '.facet-limit.blacklight-cho_date_range_norm_isim'
     expect(page).to have_no_css '.facet-limit.blacklight-cho_date_range_hijri_isim'
     find('.facet-limit.blacklight-cho_date_range_norm_isim').click
     expect(page).to have_css '[data-date-range-selector-original-field="cho_date_range_norm_isim"]'
@@ -31,6 +32,7 @@ RSpec.describe 'Custom range limit functionality', js: true do
 
   it 'custom data attributes needed are available' do
     visit spotlight.search_exhibit_catalog_path(exhibit, q: '*')
+    expect(page).to have_css '.facet-limit.blacklight-cho_date_range_norm_isim'
     expect(page).to have_no_css '.facet-limit.blacklight-cho_date_range_hijri_isim'
     find('.facet-limit.blacklight-cho_date_range_norm_isim').click
     expect(page).to have_css '[data-date-range-selector-paths*="/catalog/facet/cho_date_range_hijri_isim?q=%2A"]'
@@ -50,6 +52,8 @@ RSpec.describe 'Custom range limit functionality', js: true do
       exhibit,
       q: '*', range: { cho_date_range_hijri_isim: { begin: 1384, end: 1387 } }
     )
+
+    expect(page).to have_css '.facet-limit.blacklight-cho_date_range_hijri_isim'
 
     expect(page).to have_no_css '.facet-limit.blacklight-cho_date_range_norm_isim'
     find('.facet-limit.blacklight-cho_date_range_hijri_isim').click
