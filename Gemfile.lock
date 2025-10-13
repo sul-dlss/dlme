@@ -91,7 +91,7 @@ GEM
     bcrypt_pbkdf (1.1.1-arm64-darwin)
     bcrypt_pbkdf (1.1.1-x86_64-darwin)
     benchmark (0.4.1)
-    bigdecimal (3.2.3)
+    bigdecimal (3.3.1)
     bindex (0.8.1)
     blacklight (8.12.2)
       globalid
@@ -285,7 +285,7 @@ GEM
       dry-schema (~> 1.14)
       zeitwerk (~> 2.6)
     ed25519 (1.4.0)
-    erb (5.0.2)
+    erb (5.1.1)
     erubi (1.13.1)
     execjs (2.10.0)
     factory_bot (6.5.5)
@@ -330,7 +330,7 @@ GEM
     google-analytics-data (0.7.2)
       google-analytics-data-v1beta (>= 0.11, < 2.a)
       google-cloud-core (~> 1.6)
-    google-analytics-data-v1beta (0.18.0)
+    google-analytics-data-v1beta (0.19.0)
       gapic-common (~> 1.2)
       google-cloud-errors (~> 1.0)
     google-cloud-core (1.8.0)
@@ -354,7 +354,7 @@ GEM
       google-protobuf (~> 4.26)
       googleapis-common-protos-types (~> 1.21)
       grpc (~> 1.41)
-    googleapis-common-protos-types (1.21.0)
+    googleapis-common-protos-types (1.22.0)
       google-protobuf (~> 4.26)
     googleauth (1.15.0)
       faraday (>= 1.0, < 3.a)
@@ -376,7 +376,7 @@ GEM
     hashie (5.0.0)
     highline (3.1.2)
       reline
-    honeybadger (6.1.0)
+    honeybadger (6.1.1)
       logger
       ostruct
     http (5.3.1)
@@ -426,7 +426,7 @@ GEM
     jbuilder (2.14.1)
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
-    json (2.15.0)
+    json (2.15.1)
     jwt (3.1.2)
       base64
     kaminari (1.2.2)
@@ -470,14 +470,14 @@ GEM
       logger
     mini_mime (1.1.5)
     minitar (1.1.0)
-    minitest (5.25.5)
+    minitest (5.26.0)
     msgpack (1.8.0)
     multi_json (1.17.0)
     multi_xml (0.7.2)
       bigdecimal (~> 3.1)
     net-http (0.6.0)
       uri
-    net-imap (0.5.11)
+    net-imap (0.5.12)
       date
       net-protocol
     net-pop (0.1.2)
@@ -522,10 +522,10 @@ GEM
     pg (1.6.2-arm64-darwin)
     pg (1.6.2-x86_64-darwin)
     pg (1.6.2-x86_64-linux)
-    pp (0.6.2)
+    pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
-    prism (1.5.1)
+    prism (1.5.2)
     psych (5.2.6)
       date
       stringio
@@ -533,7 +533,7 @@ GEM
     puma (6.6.1)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.1.16)
+    rack (3.1.18)
     rack-attack (6.7.0)
       rack (>= 1.0, < 4)
     rack-mini-profiler (2.3.4)
@@ -609,9 +609,9 @@ GEM
       uber (< 0.2.0)
     request_store (1.7.0)
       rack (>= 1.4)
-    responders (3.1.1)
-      actionpack (>= 5.2)
-      railties (>= 5.2)
+    responders (3.2.0)
+      actionpack (>= 7.0)
+      railties (>= 7.0)
     retriable (3.1.2)
     rexml (3.4.4)
     riiif (2.7.0)
@@ -783,7 +783,7 @@ GEM
     unicode-display_width (3.2.0)
       unicode-emoji (~> 4.1)
     unicode-emoji (4.1.0)
-    uri (1.0.3)
+    uri (1.0.4)
     useragent (0.16.11)
     version_gem (1.1.9)
     view_component (3.23.2)
