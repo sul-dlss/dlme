@@ -32,7 +32,7 @@ class SolrDocument
     "#{iiif_services.first['service_id']}/info.json"
   end
 
-  def embeddable?(blacklight_config = CatalogController.blacklight_config)
+  def embeddable?(blacklight_config = CatalogController.blacklight_config) # rubocop:disable Naming/PredicateMethod
     url = first(blacklight_config.show.oembed_field)
 
     return if url.blank?
