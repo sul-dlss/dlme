@@ -21,17 +21,16 @@ cache_period: <%= 12.hours %>
 contact:
   email: ~
 
-accessibility_email: 'library-accessibility-contact@lists.stanford.edu'
+accessibility_email: "library-accessibility-contact@lists.stanford.edu"
 
 data_dir: tmp/data
 
-allow_robots: false
 throttle_searches: false
 
 feature_flags:
   allow_json_upload: true
 
-searching_site_slug: 'searching-this-site'
+searching_site_slug: "searching-this-site"
 
 # en is placed first in this list so that when the codes are sorted en will be the
 # first to come after the codes sorted to the beginning (e.g. *-Arab or *-Latn)
