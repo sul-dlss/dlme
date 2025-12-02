@@ -54,7 +54,7 @@ Locally, the app can run in a standard Ruby/Rails environment using SolrWrapper,
 In order to not have to use Postgres locally (and use sqlite for for development), you'll want to bundle install without the production dependencies.
 
 ```bash
-bundle install --without production
+bundle config set --local without 'production' && bundle install
 ```
 
 You can run the standard Rails setup script which will run your database migrations, etc.
