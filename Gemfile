@@ -10,7 +10,7 @@ gem 'rails', '~> 7.2.2'
 gem 'sprockets-rails'
 
 # Use Puma as the app server
-gem 'puma', '~> 6.0'
+gem 'puma', '~> 7.0'
 
 # Use Terser as compressor for JavaScript assets
 gem 'terser', '~> 1.1'

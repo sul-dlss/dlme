@@ -526,7 +526,7 @@ GEM
       date
       stringio
     public_suffix (7.0.0)
-    puma (6.6.1)
+    puma (7.1.0)
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.2.4)
@@ -847,7 +847,7 @@ DEPENDENCIES
   lograge
   okcomputer
   pg
-  puma (~> 6.0)
+  puma (~> 7.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 7.2.2)
   rails-controller-testing
