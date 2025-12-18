@@ -1,6 +1,8 @@
 # Place any default configuration for solr_wrapper here
 # port: 8983
+env:
+  SOLR_OPTS: '-Dsolr.config.lib.enabled=true'
 collection:
   dir: solr/config/
   name: dlme
-version: 9.6.1
+version: 9.10.0

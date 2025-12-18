@@ -2,7 +2,9 @@ version: "3.6"
 
 services:
   solr:
-    image: solr:8.11.1
+    image: solr:9.10.0
+    environment:
+      - SOLR_OPTS=-Dsolr.config.lib.enabled=true
     ports:
       - "8983:8983"
     volumes:
