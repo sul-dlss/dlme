@@ -35,9 +35,9 @@
   <dataDir>${solr.data.dir:}</dataDir>
 
   <query>
-    <filterCache class="solr.FastLRUCache" size="50000" initialSize="12500" autowarmCount="48" cleanupThread="true"/>
-    <queryResultCache class="solr.LRUCache" size="102400" initialSize="8192" autowarmCount="1024" maxRamMB="1000" />
-    <documentCache class="solr.LRUCache" size="40960" initialSize="8192" autowarmCount="0" />
+    <filterCache class="solr.search.CaffeineCache" size="50000" initialSize="12500" autowarmCount="48" cleanupThread="true"/>
+    <queryResultCache class="solr.search.CaffeineCache" size="102400" initialSize="8192" autowarmCount="1024" maxRamMB="1000" />
+    <documentCache class="solr.search.CaffeineCache" size="40960" initialSize="8192" autowarmCount="0" />
     <queryResultWindowSize>100</queryResultWindowSize>
     <queryResultMaxDocsCached>100</queryResultMaxDocsCached>
     <useColdSearcher>true</useColdSearcher>
