@@ -19,3 +19,5 @@ export const i18n = new I18n()
 
 import 'transform_result'
 import 'blacklight-hierarchy'
+import 'openseadragon-rails'
+import 'blacklight-range-limit'
