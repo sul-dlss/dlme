@@ -1,19 +1,31 @@
-h1, h2, h3, h4, h5,
+h1,
+h2,
+h3,
+h4,
+h5,
 .documents-list .document .document-title-heading,
-h6, .h1, .h2, .h3, .h4,
-.facets-heading, .h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.facets-heading,
+.h5,
 .page-sidebar .nav-heading,
-.h6, .facet-field-heading,
+.h6,
+.facet-field-heading,
 .documents-gallery .index_title {
   font-weight: 400;
   line-height: 1;
 }
 
-h1, .h1 {
+h1,
+.h1 {
   font-size: 3rem;
 }
 
-h2, .h2 {
+h2,
+.h2 {
   font-size: 2.25rem;
 }
 
@@ -77,15 +89,16 @@ h2, .h2 {
 
 body {
   background-color: $body-background-color;
-  color: $gray-dark;
   margin-bottom: $footer-height + $footer-top-margin;
 
-  @include media-breakpoint-down('md') {
-    margin-bottom: $footer-height + $footer-top-margin + $footer-mobile-adjustment;
+  @include media-breakpoint-down("md") {
+    margin-bottom: $footer-height + $footer-top-margin +
+      $footer-mobile-adjustment;
   }
 
-  @include media-breakpoint-down('xs') {
-    margin-bottom: $footer-height + $footer-top-margin + $footer-mobile-adjustment + 100px;
+  @include media-breakpoint-down("xs") {
+    margin-bottom: $footer-height + $footer-top-margin +
+      $footer-mobile-adjustment + 100px;
   }
 }
 
@@ -93,7 +106,7 @@ body {
 .blacklight-contributors-index {
   .jumbotron {
     background: linear-gradient(0.35turn, $color-gray-light, 65%, $white);
-    border: 1px solid $color-primary;
+    border: 1px solid $primary;
     margin-top: $spacer;
 
     @media (min-width: 576px) {
@@ -103,7 +116,7 @@ body {
 
   .contributors {
     .shaded {
-      background-color: $table-accent-bg; // $table-striped-bg in bootstrap 5
+      background-color: $table-striped-bg;
     }
 
     .toggler {
@@ -113,18 +126,16 @@ body {
 
       &.collapsed::after {
         background-image: var(--bl-h-closed-icon);
-
       }
 
       &::after {
         flex-shrink: 0;
         background-image: var(--bl-h-opened-icon);
         background-repeat: no-repeat;
-        content: ' ';
+        content: " ";
         width: 1.2rem;
         height: 1.2rem;
       }
-
     }
 
     .collection-row td {
@@ -133,7 +144,7 @@ body {
         padding-left: 1rem;
       }
       &:first-of-type::before {
-        content: '• ';
+        content: "• ";
       }
     }
   }
@@ -220,7 +231,7 @@ body {
     background-color: $navbar-active-bg;
   }
 
-  @include media-breakpoint-up('md') {
+  @include media-breakpoint-up("md") {
     padding-bottom: 0;
     padding-top: 0;
 
@@ -240,7 +251,7 @@ body {
 
   &:hover,
   &:focus {
-    background-color: rgba(255,255,255,0.2);
+    background-color: rgba(255, 255, 255, 0.2);
     color: $color-gray-lightest;
   }
 }
@@ -255,21 +266,21 @@ body {
   margin-bottom: 8px;
   object-fit: contain;
 
-  @include media-breakpoint-down('xs') {
+  @include media-breakpoint-down("xs") {
     display: none;
   }
 
-  @include media-breakpoint-down('sm') {
+  @include media-breakpoint-down("sm") {
     height: 45px;
     margin-top: 8px;
     margin-bottom: 8px;
   }
 
-  @include media-breakpoint-up('md') {
+  @include media-breakpoint-up("md") {
     height: 40px;
   }
 
-  @include media-breakpoint-up('lg') {
+  @include media-breakpoint-up("lg") {
     height: 50px;
   }
 }
@@ -282,15 +293,15 @@ body {
   font-size: 1.25rem;
   padding: 0;
 
-  @include media-breakpoint-up('sm') {
+  @include media-breakpoint-up("sm") {
     font-size: 1.75rem;
   }
 
-  @include media-breakpoint-up('md') {
+  @include media-breakpoint-up("md") {
     margin-top: 5px;
   }
 
-  @include media-breakpoint-up('lg') {
+  @include media-breakpoint-up("lg") {
     font-size: 2.5rem;
   }
 }
@@ -354,7 +365,7 @@ body {
   @extend .mb-4;
 }
 
-.applied-filter  {
+.applied-filter {
   background-color: $white;
 
   .filter-name:after {
@@ -427,17 +438,18 @@ body {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   margin-bottom: 1.5 * $spacer;
   padding: $spacer;
-  dd, dl {
+  dd,
+  dl {
     margin-bottom: 0.25rem;
   }
 }
 
-// Turn off transparency for the topbar on pages where there's no masthead, 
+// Turn off transparency for the topbar on pages where there's no masthead,
 // e.g. pages provided by Devise
 body.blacklight-sessions,
 body.blacklight-registrations,
 body.blacklight-passwords {
   .topbar {
-    background-color: $color-primary !important;
+    background-color: $primary !important;
   }
 }
