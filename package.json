@@ -12,8 +12,6 @@
     "bootstrap": "^5",
     "browser": "^0.2.6",
     "leaflet": "^1.9.3",
-    "mirador": "^3.3.0",
-    "mirador-image-tools": "^0.11.0",
     "openseadragon-rails": "^1.0.14",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
