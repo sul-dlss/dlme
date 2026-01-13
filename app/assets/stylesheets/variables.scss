@@ -1,10 +1,27 @@
-@import url('https://fonts.googleapis.com/css?family=Markazi+Text:400,500,700&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Markazi+Text:400,500,700&display=swap");
 
-$font-family-base: 'Markazi Text', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+$font-family-base:
+  "Markazi Text",
+  system-ui,
+  -apple-system,
+  "Segoe UI",
+  Roboto,
+  "Helvetica Neue",
+  "Noto Sans",
+  "Liberation Sans",
+  Arial,
+  sans-serif,
+  "Apple Color Emoji",
+  "Segoe UI Emoji",
+  "Segoe UI Symbol",
+  "Noto Color Emoji" !default;
 $font-size-base: 1.25rem;
 $line-height-base: 1.33;
 
-$color-primary: #0f2450;
+$primary: #0f2450;
+$secondary: #6c757d;
+$info: #328fc7;
+
 $color-blackish: #2e2d29;
 $color-black-medium: #585754;
 $color-black-light: #777;
@@ -14,16 +31,10 @@ $color-gray-light: #ededed;
 $color-gray-lighter: #edeeef;
 $color-gray-lightest: #f8f8f8;
 
-$theme-colors: (
-  "primary": $color-primary,
-  "secondary": #6c757d,
-  "info": #328fc7,
-);
-
-$link-color: lighten($color-primary, 10%);
+$link-color: lighten($primary, 10%);
 $body-background-color: #f7f7f7;
 
-$footer-background-color: $color-primary;
+$footer-background-color: $primary;
 $footer-height: 160px;
 $footer-top-margin: 20px;
 $footer-mobile-adjustment: 100px;
@@ -31,14 +42,14 @@ $footer-mobile-adjustment: 100px;
 $text-muted: $color-black-medium; // with gray body bg, need darker muted color
 
 $pagination-active-color: $color-gray-lightest;
-$pagination-active-bg: $color-primary;
+$pagination-active-bg: $primary;
 $pagination-active-border: $color-gray-medium;
 
 $breadcrumb-bg: transparent;
 $breadcrumb-active-color: $color-black-medium;
 $breadcrumb-divider-color: $color-black-light;
 
-$topnav-background-color: rgba($color-primary, 0.85);
+$topnav-background-color: rgba($primary, 0.85);
 $navbar-active-bg: rgba(255, 255, 255, 0.33);
 $text-muted: #666;
 

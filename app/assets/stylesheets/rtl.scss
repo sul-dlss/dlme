@@ -1,5 +1,4 @@
 $breadcrumb-item-padding-x: 0.5rem !default;
-@import '../../../vendor/assets/stylesheets/bootstrap/rtl';
 
 .facet-label .facet-select,
 .facet-label .selected,
@@ -14,7 +13,8 @@ $breadcrumb-item-padding-x: 0.5rem !default;
 }
 
 .tooltip-inner {
-  .from, .to {
+  .from,
+  .to {
     direction: ltr;
     unicode-bidi: isolate;
   }
@@ -31,14 +31,14 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     text-align: right;
     direction: rtl;
     // Custom font for using Eastern Arabic numerals in Arabic / RTL UI
-    font-family: 'easternarabicnumeralregular', $font-family-base;
+    font-family: "easternarabicnumeralregular", $font-family-base;
   }
 
   // Use Western Arabic numerals for inputs and facet labels
   input,
   textarea,
   .metadata-value,
-  .facet-label  {
+  .facet-label {
     font-family: $font-family-base;
   }
 
@@ -81,7 +81,6 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     justify-content: right;
   }
 
-
   /** Blacklight-specific overrides */
   .facet-field-heading button::after {
     float: left;
@@ -105,7 +104,8 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     float: right;
   }
 
-  #documents.documents-list .documentHeader, #documents.documents-list .document-metadata {
+  #documents.documents-list .documentHeader,
+  #documents.documents-list .document-metadata {
     margin-left: 0;
     margin-right: 120px;
   }
@@ -115,7 +115,7 @@ $breadcrumb-item-padding-x: 0.5rem !default;
   }
 
   .view-type-list {
-      transform: scale(-1);
+    transform: scale(-1);
   }
 
   .constraint-value {
@@ -148,8 +148,9 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     }
   }
 
-  .limit_content.range_limit{
-    .profile, form.range_limit {
+  .limit_content.range_limit {
+    .profile,
+    form.range_limit {
       direction: ltr;
     }
 
@@ -173,7 +174,7 @@ $breadcrumb-item-padding-x: 0.5rem !default;
   }
 
   .image-masthead {
-    .navbar-nav  {
+    .navbar-nav {
       padding-right: 0;
     }
 
@@ -186,7 +187,6 @@ $breadcrumb-item-padding-x: 0.5rem !default;
   #new_contact_form .col-form-label {
     text-align: left;
   }
-
 
   .record-feedback {
     left: 0;

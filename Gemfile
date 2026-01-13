@@ -6,8 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 7.2.2'
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem 'sprockets-rails'
+gem 'propshaft'
 
 # Use Puma as the app server
 gem 'puma', '~> 7.0'
@@ -71,15 +70,15 @@ group :deployment do
 end
 
 gem 'blacklight', '~> 8.2'
-gem 'blacklight-spotlight', '~> 4.0'
+gem 'blacklight-spotlight', '~> 5.0'
 
-gem 'bootstrap_form', '~> 4.5' # needs to match Bootstrap version
+gem 'bootstrap_form', '~> 5.3' # needs to match Bootstrap version
 
 gem 'friendly_id'
 gem 'riiif', '~> 2.0'
 gem 'sitemap_generator'
 
-gem 'blacklight-gallery', '~> 4.2'
+gem 'blacklight-gallery', '~> 4.8'
 gem 'blacklight-hierarchy', '~> 6.1'
 gem 'blacklight-oembed', '>= 0.1.0'
 gem 'blacklight_range_limit', '~> 8.0'
@@ -99,8 +98,6 @@ gem 'okcomputer'
 gem 'slowpoke', '~> 0.4'
 
 gem 'font-awesome-rails'
-
-gem 'shakapacker', '~> 6.4'
 
 gem 'cache_with_locale'
 

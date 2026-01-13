@@ -2,46 +2,25 @@
   "name": "app",
   "private": true,
   "dependencies": {
-    "@babel/core": "7",
-    "@babel/plugin-transform-runtime": "7",
-    "@babel/preset-env": "7",
-    "@babel/runtime": "7",
     "@blueprintjs/core": "^4.13.0",
     "@blueprintjs/icons": "^4.11.0",
     "@hotwired/turbo-rails": "^7.2.5",
-    "babel-loader": "8",
     "blacklight-frontend": "^8.2.1",
-    "blacklight-gallery": "^4.0.2-beta.1",
+    "blacklight-gallery": "^4.8.0",
     "blacklight-hierarchy": "^6.1.0",
     "blacklight-range-limit": "^8.2.4-beta.1",
-    "bootstrap": "^4",
-    "bootstrap-tagsinput": "^0.7.1",
+    "bootstrap": "^5",
     "browser": "^0.2.6",
-    "compression-webpack-plugin": "9",
     "leaflet": "^1.9.3",
-    "mirador": "^3.3.0",
-    "mirador-image-tools": "^0.11.0",
     "openseadragon-rails": "^1.0.14",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "sass": "^1.58.3",
-    "shakapacker": "^6.5.6",
     "sir-trevor": "^0.8.2",
-    "spotlight-frontend": "^4.0.3",
-    "terser-webpack-plugin": "5",
-    "url": "^0.11.0",
-    "webpack": "5",
-    "webpack-assets-manifest": "5",
-    "webpack-cli": "4",
-    "webpack-dev-server": "^4.11.1",
-    "webpack-merge": "5"
+    "spotlight-frontend": "^5.0.0",
+    "url": "^0.11.0"
   },
   "version": "0.1.0",
-  "babel": {
-    "presets": [
-      "./node_modules/shakapacker/package/babel/preset.js"
-    ]
-  },
   "browserslist": [
     "defaults"
   ],
