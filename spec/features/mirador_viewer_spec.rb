@@ -20,12 +20,6 @@ RSpec.describe 'Mirador viewer' do
 
   it 'renders a Mirador viewer for IIIF items', js: true do
     visit spotlight.exhibit_solr_document_path(exhibit_id: exhibit.slug, id: '36ebabd9-4d62-4d8e-8e7b-1afd048e872e')
-    expect(page).to have_css('#m3')
-    expect(page).to have_css('.mirador-viewer')
-  end
-
-  it 'enables Mirador Image Tools plugin', js: true do
-    visit spotlight.exhibit_solr_document_path(exhibit_id: exhibit.slug, id: '36ebabd9-4d62-4d8e-8e7b-1afd048e872e')
-    expect(page).to have_css('div[class*=MiradorImageTools]')
+    expect(page).to have_css('iframe[src="https://embed.stanford.edu/iiif?url=https://iiif.bodleian.ox.ac.uk/iiif/manifest/22974622-d838-4496-8835-33ecda85f21f.json"]')
   end
 end
