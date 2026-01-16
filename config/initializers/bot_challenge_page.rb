@@ -29,7 +29,8 @@ Rails.application.config.to_prepare do
   # Also exempt any IPs contained in the CIDR blocks in SAFELIST.
   BotChallengePage::BotChallengePageController.bot_challenge_config.allow_exempt = lambda do |controller, _config|
     (controller.is_a?(CatalogController) && controller.params[:action].in?(%w[facet]) && controller.request.headers['sec-fetch-dest'] == 'empty') ||
-      SAFELIST.map { |cidr| IPAddr.new(cidr) }.any? { |range| controller.request.remote_ip.in?(range) }
+      SAFELIST.map { |cidr| IPAddr.new(cidr) }.any? { |range| controller.request.remote_ip.in?(range) } ||
+      controller.request.user_agent&.match?(/siteimprove/i)
   end
 
   # More configuration is available; see:
