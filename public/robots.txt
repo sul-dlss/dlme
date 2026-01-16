@@ -1,2 +1,9 @@
+# Siteimprove content suite user agent
+User-agent: SiteimproveBot-Crawler
+# Siteimprove performance user agent
+User-agent: siteimprove-lookup
+Allow: /
+
+# Ban all other crawlers
 User-agent: *
 Disallow: /
