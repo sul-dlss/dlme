@@ -100,8 +100,6 @@ gem 'slowpoke', '~> 0.4'
 
 gem 'font-awesome-rails'
 
-gem 'shakapacker', '~> 6.4'
-
 gem 'cache_with_locale'
 
 gem 'i18n-tasks'
