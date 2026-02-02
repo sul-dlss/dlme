@@ -154,7 +154,7 @@ GEM
       blacklight (>= 7.25.2, < 9)
       deprecation
       view_component (>= 2.54, < 4)
-    bootsnap (1.21.1)
+    bootsnap (1.22.0)
       msgpack (~> 1.2)
     bootstrap_form (4.5.0)
       actionpack (>= 5.2)
@@ -366,7 +366,7 @@ GEM
       logger
     highline (3.1.2)
       reline
-    honeybadger (6.2.1)
+    honeybadger (6.3.0)
       logger
       ostruct
     http (5.3.1)
@@ -516,7 +516,7 @@ GEM
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
-    prism (1.8.0)
+    prism (1.9.0)
     psych (5.3.1)
       date
       stringio
@@ -638,10 +638,10 @@ GEM
       rspec-expectations (~> 3.13)
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
-    rspec-support (3.13.6)
+    rspec-support (3.13.7)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.82.1)
+    rubocop (1.84.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.1.0)
@@ -649,7 +649,7 @@ GEM
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 2.9.3, < 3.0)
-      rubocop-ast (>= 1.48.0, < 2.0)
+      rubocop-ast (>= 1.49.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.49.0)
@@ -862,4 +862,4 @@ DEPENDENCIES
   web-console (>= 4.1.0)
 
 BUNDLED WITH
-  4.0.4
+  4.0.5
