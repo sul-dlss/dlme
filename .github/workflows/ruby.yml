@@ -18,7 +18,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
       - name: Install Ruby and dependencies
-        uses: ruby/setup-ruby@v1.287.0
+        uses: ruby/setup-ruby@v1.288.0
         with:
           bundler-cache: true
           ruby-version: ${{ matrix.ruby }}
