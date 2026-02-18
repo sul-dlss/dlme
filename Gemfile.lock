@@ -150,9 +150,8 @@ GEM
       signet
       tophat
       view_component (>= 2.66, < 4)
-    blacklight_range_limit (8.5.0)
+    blacklight_range_limit (9.0.0)
       blacklight (>= 7.25.2, < 9)
-      deprecation
       view_component (>= 2.54, < 4)
     bootsnap (1.23.0)
       msgpack (~> 1.2)
@@ -801,7 +800,7 @@ DEPENDENCIES
   blacklight-hierarchy (~> 6.1)
   blacklight-oembed (>= 0.1.0)
   blacklight-spotlight (~> 4.0)
-  blacklight_range_limit (~> 8.0)
+  blacklight_range_limit (~> 9.0)
   bootsnap (>= 1.4.4)
   bootstrap_form (~> 4.5)
   bot_challenge_page (~> 0.4.0)
