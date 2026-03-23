@@ -1,6 +1,8 @@
-<%= javascript_tag do %>
-  window.addEventListener('load', () => {
+<script type="module">
+  import { I18n } from 'https://cdn.jsdelivr.net/npm/i18n-js@4.5.3/+esm';
+  document.addEventListener('turbo:load', () => {
+    const i18n = new I18n();
     i18n.defaultLocale = "<%= I18n.default_locale %>";
     i18n.locale = "<%= I18n.locale %>";
-  })
-<% end %>
+  });
+</script>

@@ -4,20 +4,26 @@
   "dependencies": {
     "@blueprintjs/core": "^4.13.0",
     "@blueprintjs/icons": "^4.11.0",
-    "@hotwired/turbo-rails": "^7.2.5",
+    "@github/auto-complete-element": "^3.6.2",
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.12",
+    "@popperjs/core": "^2.11.8",
     "blacklight-frontend": "^8.2.1",
     "blacklight-gallery": "^4.0.2-beta.1",
     "blacklight-hierarchy": "^6.1.0",
-    "blacklight-range-limit": "^8.2.4-beta.1",
-    "bootstrap": "^4",
+    "blacklight-oembed": "^1.4.2",
+    "blacklight-range-limit": "^9.0.0",
+    "bootstrap": "^5",
     "browser": "^0.2.6",
     "leaflet": "^1.9.3",
-    "openseadragon-rails": "^1.0.14",
+    "openseadragon": "^5.0.1",
+    "openseadragon-rails": "^1.0.17",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "sass": "^1.58.3",
     "sir-trevor": "^0.8.2",
-    "spotlight-frontend": "^4.0.3",
+    "sortablejs": "^1.15.6",
+    "spotlight-frontend": "^5.0.0",
     "url": "^0.11.0"
   },
   "version": "0.1.0",
@@ -25,10 +31,16 @@
     "defaults"
   ],
   "scripts": {
-    "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+    "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
+    "build": "rollup -c --bundleConfigAsCjs rollup.config.js"
   },
   "main": "index.js",
   "repository": "https://github.com/sul-dlss/dlme.git",
   "author": "Justin Coyne <jcoyne@justincoyne.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.2",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "rollup": "^4.60.0"
+  }
 }

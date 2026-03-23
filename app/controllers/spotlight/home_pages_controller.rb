@@ -6,15 +6,15 @@ require_dependency File.join(spotlight_path, 'app/controllers/spotlight/home_pag
 
 module Spotlight
   # Override the upstream HomePagesController in order to inject range limit behaviors
-  class HomePagesController
+  class HomePagesController < Spotlight::PagesController
     include BlacklightRangeLimit::ControllerOverride
 
     # rubocop:disable Rails/LexicallyScopedActionFilter
     # Tweak the authorization for the range limit actions
-    before_action :authenticate_user!, except: %i[show range_limit range_limit_panel]
-    skip_authorize_resource only: %i[range_limit range_limit_panel]
+    before_action :authenticate_user!, except: %i[show range_limit]
+    skip_authorize_resource only: %i[range_limit]
 
-    before_action only: %i[range_limit range_limit_panel] do
+    before_action only: %i[range_limit] do
       authorize! :read, @page
     end
     # rubocop:enable Rails/LexicallyScopedActionFilter

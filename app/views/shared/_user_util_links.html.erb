@@ -1,5 +1,5 @@
-<ul class="navbar-nav mr-auto">
-  <%= render_nav_actions do |config, action|%>
+<ul class="navbar-nav me-auto">
+  <%= render_nav_actions do |config, action| %>
     <li class="nav-item"><%= action %></li>
   <% end %>
 </ul>
@@ -8,7 +8,7 @@
   <%= render '/spotlight/shared/locale_picker' %>
   <% if current_user %>
     <li class="nav-item dropdown d-none d-md-block">
-      <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><%=current_user%> <b class="caret"></b></a>
+      <a href="#" role="button" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><%= current_user %> <b class="caret"></b></a>
       <ul class="dropdown-menu">
         <% if can? :manage, Spotlight::Site.instance %>
           <li><%= link_to t(:'spotlight.header_links.edit_site'), spotlight.edit_site_path, class: 'dropdown-item' %></li>

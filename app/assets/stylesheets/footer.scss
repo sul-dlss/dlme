@@ -9,11 +9,11 @@
   text-align: center;
   width: 100%;
 
-  @include media-breakpoint-down('md') {
+  @include media-breakpoint-down(lg) {
     height: $footer-height + 100px;
   }
 
-  @include media-breakpoint-down('xs') {
+  @include media-breakpoint-down(sm) {
     height: $footer-height + 200px;
   }
 
@@ -39,7 +39,7 @@
     align-self: center;
     flex-grow: 1;
 
-    @include media-breakpoint-down('md') {
+    @include media-breakpoint-down(lg) {
       height: 100px;
     }
   }
