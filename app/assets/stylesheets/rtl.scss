@@ -65,22 +65,6 @@ $breadcrumb-item-padding-x: 0.5rem !default;
     }
   }
 
-  /** Fix margins for the inline list (used in the footer) */
-  .list-inline-item {
-    &:last-child {
-      margin-right: 0.5rem;
-    }
-
-    &:first-child {
-      margin-right: 0;
-    }
-  }
-
-  /** Adjust accessibility information display (used in the footer) */
-  .accessibility-contact {
-    justify-content: right;
-  }
-
   /** Blacklight-specific overrides */
   .facet-field-heading button::after {
     float: left;
