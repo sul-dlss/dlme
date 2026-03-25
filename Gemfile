@@ -6,8 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 7.2.2'
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem 'sprockets-rails'
+gem 'propshaft'
 
 # Use Puma as the app server
 gem 'puma', '~> 7.0'
@@ -71,9 +70,9 @@ group :deployment do
 end
 
 gem 'blacklight', '~> 8.2'
-gem 'blacklight-spotlight', '~> 4.0'
+gem 'blacklight-spotlight', '~> 5.2'
 
-gem 'bootstrap_form', '~> 4.5' # needs to match Bootstrap version
+gem 'bootstrap_form', '~> 5.6' # needs to match Bootstrap version
 
 gem 'friendly_id'
 gem 'riiif', '~> 2.0'
@@ -82,7 +81,7 @@ gem 'sitemap_generator'
 gem 'blacklight-gallery', '~> 4.2'
 gem 'blacklight-hierarchy', '~> 6.1'
 gem 'blacklight-oembed', '>= 0.1.0'
-gem 'blacklight_range_limit', '~> 8.0'
+gem 'blacklight_range_limit', '~> 9.0'
 gem 'rails_autolink'
 gem 'rsolr', '>= 1.0'
 
@@ -106,11 +105,11 @@ gem 'i18n-tasks'
 
 gem 'turbo-rails', '~> 1.3'
 
-gem 'importmap-rails', '~> 2.0'
-
 gem 'cssbundling-rails', '~> 1.1'
 gem 'stimulus-rails', '~> 1.2'
 
 gem 'recaptcha', '~> 5.16'
 
 gem 'connection_pool', '~> 2.5' # pinned until fix for https://github.com/rails/rails/issues/56291 is released
+
+gem 'jsbundling-rails', '~> 1.3'

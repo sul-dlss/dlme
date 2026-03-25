@@ -1,8 +1,8 @@
 <% cache [current_exhibit] do %>
   <h1 class="page-title h2"><%= t('contributors.header') %></h1>
 
-  <div class="d-none d-md-flex card-deck text-center">
-    <div class="jumbotron card">
+  <div class="d-none d-md-flex justify-content-between">
+    <div class="jumbotron card mx-3">
       <h2 class="h4">
         <%= t('contributors.dashboard.header.total_collections', count: @statistics_dashboard.collections.total, formatted_count: number_with_delimiter(@statistics_dashboard.collections.total)) %>
       </h2>
@@ -43,15 +43,15 @@
     </div>
   </div>
 
-  <hr />
+  <hr>
 
   <%= render @statistics_dashboard.data_providers %>
 
-  <hr />
+  <hr>
 
   <%= render @statistics_dashboard.holding_institutions %>
 
-  <hr />
+  <hr>
 
   <%= render @statistics_dashboard.items %>
 <% end %>

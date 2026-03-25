@@ -1,0 +1,80 @@
+// This is a fork of https://github.com/twbs/bootstrap/blob/main/scss/bootstrap.scss
+// with the make-col-offset() overriden to use margin-inline-start
+
+@import "bootstrap/scss/mixins/banner";
+@include bsBanner("");
+
+// scss-docs-start import-stack
+// Configuration
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+
+@import "bootstrap/scss/utilities";
+
+// Remove this method override if we go to Bootstrap 6
+// See https://github.com/twbs/bootstrap/issues/42238
+@mixin make-col-offset($size, $columns: $grid-columns) {
+  $num: divide($size, $columns);
+  margin-inline-start: if($num == 0, 0, percentage($num));
+}
+
+// Overrides https://github.com/twbs/bootstrap/blob/41e325303fe650ae720814d400ff9792f00f4e2a/scss/mixins/_border-radius.scss#L34
+// Probably removable in Bootstrap 6
+@mixin border-end-radius($radius: $border-radius) {
+  @if $enable-rounded {
+    border-start-end-radius: valid-radius($radius);
+    border-end-end-radius: valid-radius($radius);
+  }
+}
+
+//https://github.com/twbs/bootstrap/blob/41e325303fe650ae720814d400ff9792f00f4e2a/scss/mixins/_border-radius.scss#L48
+// Probably removable in Bootstrap 6
+@mixin border-start-radius($radius: $border-radius) {
+  @if $enable-rounded {
+    border-start-start-radius: valid-radius($radius);
+    border-end-start-radius: valid-radius($radius);
+  }
+}
+
+// Layout & components
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/tables";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+@import "bootstrap/scss/transitions";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/button-group";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+@import "bootstrap/scss/card";
+@import "bootstrap/scss/accordion";
+@import "bootstrap/scss/breadcrumb";
+@import "bootstrap/scss/pagination";
+@import "bootstrap/scss/badge";
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/progress";
+@import "bootstrap/scss/list-group";
+@import "bootstrap/scss/close";
+@import "bootstrap/scss/toasts";
+@import "bootstrap/scss/modal";
+@import "bootstrap/scss/tooltip";
+@import "bootstrap/scss/popover";
+@import "bootstrap/scss/carousel";
+@import "bootstrap/scss/spinners";
+@import "bootstrap/scss/offcanvas";
+@import "bootstrap/scss/placeholders";
+
+// Helpers
+@import "bootstrap/scss/helpers";
+
+// Utilities
+@import "bootstrap/scss/utilities/api";
+// scss-docs-end import-stack
