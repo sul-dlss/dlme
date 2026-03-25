@@ -12,15 +12,15 @@ AllCops:
   TargetRubyVersion: 3.0
   DisplayCopNames: true
   Exclude:
-    - 'bin/*'
-    - 'node_modules/**/*'
-    - 'db/**/*'
-    - 'config.ru'
-    - 'config/**/*'
-    - 'vendor/**/*'
-    - 'spec/fixtures/**/*'
-    - 'tmp/**/*'
-    - 'postgres-data/**/*'
+    - "bin/*"
+    - "node_modules/**/*"
+    - "db/**/*"
+    - "config.ru"
+    - "config/**/*"
+    - "vendor/**/*"
+    - "spec/fixtures/**/*"
+    - "tmp/**/*"
+    - "postgres-data/**/*"
 
 Rails:
   Enabled: true
@@ -30,20 +30,20 @@ Layout/LineLength:
 
 Metrics/AbcSize:
   Exclude:
-    - 'app/controllers/concerns/multilingual_locale_aware_field.rb'
+    - "app/controllers/concerns/multilingual_locale_aware_field.rb"
 
 Metrics/ClassLength:
   Exclude:
-    - 'app/controllers/catalog_controller.rb'
+    - "app/controllers/catalog_controller.rb"
 
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*'
-    - 'app/controllers/catalog_controller.rb'
+    - "spec/**/*"
+    - "app/controllers/catalog_controller.rb"
 
 Metrics/MethodLength:
   Exclude:
-    - 'app/controllers/concerns/multilingual_locale_aware_field.rb'
+    - "app/controllers/concerns/multilingual_locale_aware_field.rb"
 
 RSpec/ExampleLength:
   Max: 10
@@ -59,12 +59,12 @@ RSpec/MultipleMemoizedHelpers:
 
 Style/Documentation:
   Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/jobs/application_job.rb'
-    - 'app/mailers/application_mailer.rb'
-    - 'app/models/application_record.rb'
-    - 'app/models/user.rb'
+    - "app/controllers/application_controller.rb"
+    - "app/helpers/application_helper.rb"
+    - "app/jobs/application_job.rb"
+    - "app/mailers/application_mailer.rb"
+    - "app/models/application_record.rb"
+    - "app/models/user.rb"
 
 Gemspec/DeprecatedAttributeAssignment: # new in 1.30
   Enabled: true
@@ -559,4 +559,50 @@ Rails/MultipleRoutePaths: # new in 2.29
 Rails/StrongParametersExpect: # new in 2.29
   Enabled: true
 RSpec/IncludeExamples: # new in 3.6
+  Enabled: true
+Lint/DataDefineOverride: # new in 1.85
+  Enabled: true
+Lint/UnreachablePatternBranch: # new in 1.85
+  Enabled: true
+Style/ArrayIntersectWithSingleElement: # new in 1.81
+  Enabled: true
+Style/EmptyClassDefinition: # new in 1.84
+  Enabled: true
+Style/FileOpen: # new in 1.85
+  Enabled: true
+Style/MapJoin: # new in 1.85
+  Enabled: true
+Style/ModuleMemberExistenceCheck: # new in 1.82
+  Enabled: true
+Style/NegativeArrayIndex: # new in 1.84
+  Enabled: true
+Style/OneClassPerFile: # new in 1.85
+  Enabled: true
+Style/PartitionInsteadOfDoubleSelect: # new in 1.85
+  Enabled: true
+Style/PredicateWithKind: # new in 1.85
+  Enabled: true
+Style/ReduceToHash: # new in 1.85
+  Enabled: true
+Style/RedundantMinMaxBy: # new in 1.85
+  Enabled: true
+Style/RedundantStructKeywordInit: # new in 1.85
+  Enabled: true
+Style/ReverseFind: # new in 1.84
+  Enabled: true
+Style/SelectByKind: # new in 1.85
+  Enabled: true
+Style/SelectByRange: # new in 1.85
+  Enabled: true
+Style/TallyMethod: # new in 1.85
+  Enabled: true
+Rails/FindByOrAssignmentMemoization: # new in 2.33
+  Enabled: true
+Rails/HttpStatusNameConsistency: # new in 2.34
+  Enabled: true
+Rails/OrderArguments: # new in 2.33
+  Enabled: true
+Rails/RedirectBackOrTo: # new in 2.34
+  Enabled: true
+RSpec/LeakyLocalVariable: # new in 3.8
   Enabled: true
