@@ -20,8 +20,8 @@ module ControllerLevelHelpers
       @blacklight_configuration_context ||= Blacklight::Configuration::Context.new(controller)
     end
 
-    def search_action_path(*args, **kwargs)
-      controller.search_catalog_path(*args, **kwargs)
+    def search_action_path(*, **)
+      controller.search_catalog_path(*, **)
     end
   end
 
