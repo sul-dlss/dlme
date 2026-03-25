@@ -151,10 +151,9 @@ GEM
     bootstrap_form (5.6.0)
       actionpack (>= 7.2)
       activemodel (>= 7.2)
-    bot_challenge_page (0.4.0)
+    bot_challenge_page (1.1.0)
       http (~> 5.2)
-      rack-attack (~> 6.7)
-      rails (>= 7.1, < 8.1)
+      rails (>= 7.1, < 8.2)
     builder (3.3.0)
     cache_with_locale (0.0.3)
       actionview
@@ -518,8 +517,6 @@ GEM
       nio4r (~> 2.0)
     racc (1.8.1)
     rack (3.2.5)
-    rack-attack (6.8.0)
-      rack (>= 1.0, < 4)
     rack-mini-profiler (4.0.1)
       rack (>= 1.2.0)
     rack-session (2.1.1)
@@ -790,7 +787,7 @@ DEPENDENCIES
   blacklight_range_limit (~> 9.0)
   bootsnap (>= 1.4.4)
   bootstrap_form (~> 5.6)
-  bot_challenge_page (~> 0.4.0)
+  bot_challenge_page (~> 1.0)
   cache_with_locale
   capistrano-passenger
   capistrano-rails
