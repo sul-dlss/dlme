@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :harvests, only: [:create]
   end
-  
+
   scope '(:locale)', locale: Regexp.union(Spotlight::Engine.config.i18n_locales.keys.map(&:to_s)) do
     root to: 'spotlight/exhibits#index'
     devise_for :users
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
     concern :searchable, Blacklight::Routes::Searchable.new
 
-    resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog', id: %r{.+} do
+    resource :catalog, only: [], as: 'catalog', path: '/catalog', controller: 'catalog', id: %r{.+} do
       concerns :searchable
       concern :range_searchable, BlacklightRangeLimit::Routes::RangeSearchable.new
     end
