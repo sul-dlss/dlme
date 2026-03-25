@@ -54,7 +54,7 @@ class DlmeJsonsController < ApplicationController
   def destroy
     Blacklight.default_index.connection.delete_by_id @resource.json['id']
     @resource.destroy
-    redirect_back(fallback_location: root_path)
+    redirect_back_or_to(root_path)
   end
 
   private

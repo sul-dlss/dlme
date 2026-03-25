@@ -11,13 +11,12 @@ class RecordFeedbackController < Spotlight::ContactFormsController
 
   def send_feedback
     Spotlight::ContactMailer.report_problem(@contact_form).deliver_now
-    redirect_back fallback_location: spotlight.exhibit_solr_document_path(current_exhibit),
-                  notice: t(:'helpers.submit.record_feedback.created')
+    redirect_back_or_to(spotlight.exhibit_solr_document_path(current_exhibit),
+                        notice: t(:'helpers.submit.record_feedback.created'))
   end
 
   def report_failure
-    redirect_back fallback_location: spotlight.exhibit_solr_document_path(current_exhibit),
-                  alert: t(:'helpers.submit.record_feedback.error')
+    redirect_back_or_to(spotlight.exhibit_solr_document_path(current_exhibit), alert: t(:'helpers.submit.record_feedback.error'))
   end
 
   private
