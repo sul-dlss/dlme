@@ -9,7 +9,7 @@ plugins:
   - rubocop-rspec_rails
 
 AllCops:
-  TargetRubyVersion: 3.0
+  TargetRubyVersion: 4.0
   DisplayCopNames: true
   Exclude:
     - "bin/*"
