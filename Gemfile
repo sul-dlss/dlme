@@ -90,7 +90,7 @@ gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'dry-validation'
 
-gem 'bot_challenge_page', '~> 0.4.0'
+gem 'bot_challenge_page', '~> 1.0'
 gem 'honeybadger'
 gem 'http'
 gem 'lograge'

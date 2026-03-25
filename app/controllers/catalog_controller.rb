@@ -13,9 +13,7 @@ class CatalogController < ApplicationController
   # We protect requests for searches, but not for show pages, so we can still
   # crawl ourselves and let well-behaved search engines index our content via
   # the sitemap.
-  before_action only: :index do |controller|
-    BotChallengePage::BotChallengePageController.bot_challenge_enforce_filter(controller, immediate: true)
-  end
+  bot_challenge only: :index
 
   before_action do
     blacklight_config.bulk_actions&.delete_resources!
