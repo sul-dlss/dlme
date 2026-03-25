@@ -71,6 +71,7 @@ class CatalogController < ApplicationController
     config.max_page = 100
 
     config.header_component = HeaderComponent
+    config.exhibit_navbar_component = Spotlight::ExhibitNavbarComponent
     config.document_solr_path = 'get'
     config.document_unique_id_param = 'ids'
     config.raw_endpoint.enabled = true
