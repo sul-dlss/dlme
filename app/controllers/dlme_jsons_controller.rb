@@ -60,6 +60,6 @@ class DlmeJsonsController < ApplicationController
   private
 
   def resource_params
-    params.require(:dlme_json).permit(data: [:json])
+    params.expect(dlme_json: [{ data: [:json] }])
   end
 end
