@@ -3,6 +3,8 @@ en:
   api:
     harvest:
       duplicate_ids: JSON contained duplicate identifiers
+      invalid_json: Invalid JSON content
+      no_content: No content provided
       no_file: File not found
       no_url: Invalid file URL
       success: Harvest successfully initiated

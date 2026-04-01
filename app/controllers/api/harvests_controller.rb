@@ -6,9 +6,10 @@ module Api
     delegate :t, to: :I18n
 
     def create
-      upload = NdjsonUpload.new(params[:url])
+      upload = build_upload
 
       if upload.valid?
+        upload.write if upload.is_a?(NdjsonParse)
         AddResourcesJob.perform_later upload.filepath, exhibit: current_exhibit, local: true
 
         render json: { message: t('api.harvest.success') }, status: :accepted
@@ -19,17 +20,21 @@ module Api
 
     private
 
-    def handle_error(error)
-      case error
-      when :no_url
-        no_url
-      when :duplicate_ids
-        duplicate_ids
-      when :file_not_found
-        file_not_found
+    def build_upload
+      if params.key?(:content)
+        NdjsonParse.new(params[:content])
       else
-        unknown_error
+        NdjsonUpload.new(params[:url])
       end
+    end
+
+    def handle_error(error)
+      send(error_handler(error))
+    end
+
+    def error_handler(error)
+      { no_url: :no_url, no_body: :no_content, duplicate_ids: :duplicate_ids,
+        file_not_found: :file_not_found, invalid_json: :invalid_json }.fetch(error, :unknown_error)
     end
 
     def duplicate_ids
@@ -38,6 +43,14 @@ module Api
 
     def file_not_found
       render json: { error: t('api.harvest.no_file') }, status: :bad_request
+    end
+
+    def invalid_json
+      render json: { error: t('api.harvest.invalid_json') }, status: :unprocessable_content
+    end
+
+    def no_content
+      render json: { error: t('api.harvest.no_content') }, status: :bad_request
     end
 
     def no_url

@@ -77,4 +77,67 @@ RSpec.describe 'Api::Harvests' do
       end
     end
   end
+
+  describe 'POST create with content param' do
+    let(:content) { "{\"id\":\"one\"}\n{\"id\":\"two\"}" }
+    let(:auth_headers) { { Authorization: "Bearer #{secret}", Accept: 'application/json' } }
+
+    before do
+      allow(File).to receive(:write)
+      allow(AddResourcesJob).to receive(:perform_later)
+    end
+
+    it 'submits a job' do
+      post '/api/harvests', params: { content: content }, headers: auth_headers
+      json = response.parsed_body
+
+      expect(response).to have_http_status(:accepted)
+      expect(json['message']).to eq('Harvest successfully initiated')
+      expect(AddResourcesJob).to have_received(:perform_later)
+        .with(a_string_ending_with('.ndjson'), exhibit: exhibit, local: true)
+    end
+
+    it 'writes the content to a file' do
+      post '/api/harvests', params: { content: content }, headers: auth_headers
+
+      expect(File).to have_received(:write).with(a_string_ending_with('.ndjson'), content)
+    end
+
+    context 'when content is blank' do
+      it 'returns an error code' do
+        post '/api/harvests', params: { content: '' }, headers: auth_headers
+        json = response.parsed_body
+
+        expect(response).to have_http_status(:bad_request)
+        expect(json['error']).to eq('No content provided')
+        expect(AddResourcesJob).not_to have_received(:perform_later)
+      end
+    end
+
+    context 'when content contains duplicate identifiers' do
+      let(:content) { "{\"id\":\"one\"}\n{\"id\":\"one\"}" }
+
+      it 'returns an error code' do
+        post '/api/harvests', params: { content: content }, headers: auth_headers
+        json = response.parsed_body
+
+        expect(response).to have_http_status(:unprocessable_content)
+        expect(json['error']).to eq('JSON contained duplicate identifiers')
+        expect(AddResourcesJob).not_to have_received(:perform_later)
+      end
+    end
+
+    context 'when content contains invalid JSON' do
+      let(:content) { 'not json' }
+
+      it 'returns an error code' do
+        post '/api/harvests', params: { content: content }, headers: auth_headers
+        json = response.parsed_body
+
+        expect(response).to have_http_status(:unprocessable_content)
+        expect(json['error']).to eq('Invalid JSON content')
+        expect(AddResourcesJob).not_to have_received(:perform_later)
+      end
+    end
+  end
 end
