@@ -322,7 +322,7 @@ class CatalogController < ApplicationController
   private
 
   def enforce_max_page_limit
-    return unless agent_is_crawler? && params[:page] && params[:page].to_i > blacklight_config.max_page
+    return unless agent_is_crawler? && params[:page] && params.expect(:page).to_i > blacklight_config.max_page
 
     render plain: 'You have paginated too deep into the result set.', status: :too_many_requests
   end
