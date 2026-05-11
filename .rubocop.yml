@@ -556,8 +556,9 @@ Performance/ZipWithoutBlock: # new in 1.24
   Enabled: true
 Rails/MultipleRoutePaths: # new in 2.29
   Enabled: true
+# Pending https://github.com/rubocop/rubocop-rails/pull/1616
 Rails/StrongParametersExpect: # new in 2.29
-  Enabled: true
+  Enabled: false
 RSpec/IncludeExamples: # new in 3.6
   Enabled: true
 Lint/DataDefineOverride: # new in 1.85
