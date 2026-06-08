@@ -94,6 +94,7 @@ gem 'bot_challenge_page', '~> 1.0'
 gem 'honeybadger'
 gem 'http'
 gem 'lograge'
+gem 'multi_json' # required by the representable gem (https://github.com/trailblazer/representable)
 gem 'okcomputer'
 gem 'slowpoke', '~> 0.4'
 
