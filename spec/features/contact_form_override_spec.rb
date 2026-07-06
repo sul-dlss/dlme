@@ -22,7 +22,7 @@ RSpec.describe 'Contact form override' do
     it 'accepts a problem report', js: true do
       visit spotlight.exhibit_path(exhibit)
       click_on 'Contact us'
-      expect(page).to have_content 'To contact us about any matter related to DLME'
+      expect(page).to have_text 'To contact us about any matter related to DLME'
       expect(page).to have_no_css('.alert-primary') # We removed this markup from the spotlight form
       fill_in 'Your name', with: 'Some Body'
       fill_in 'Your email', with: 'test@example.com'
@@ -30,7 +30,7 @@ RSpec.describe 'Contact form override' do
 
       expect do
         click_on 'Send'
-        expect(page).to have_content 'Your feedback has been submitted'
+        expect(page).to have_text 'Your feedback has been submitted'
       end.to change { ActionMailer::Base.deliveries.count }.by(1)
     end
     # rubocop:enable RSpec/ExampleLength
