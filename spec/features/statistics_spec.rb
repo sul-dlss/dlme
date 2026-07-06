@@ -60,7 +60,7 @@ RSpec.describe 'Statistics page' do
     fill_in 'q', with: 'Book'
     click_button 'Search'
 
-    expect(page).to have_content 'Search Results'
+    expect(page).to have_text 'Search Results'
   end
 
   it 'has a page available to users via a menu item in the exhibit navbar' do

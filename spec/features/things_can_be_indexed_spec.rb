@@ -29,9 +29,9 @@ RSpec.describe 'Things can be indexed' do
       within '#documents' do
         expect(page).to have_css '.document', count: 1
       end
-      expect(page).to have_content 'Creator'
-      expect(page).to have_content 'Shown At'
-      expect(page).to have_content 'Indexed At'
+      expect(page).to have_text 'Creator'
+      expect(page).to have_text 'Shown At'
+      expect(page).to have_text 'Indexed At'
     end
   end
 
@@ -39,9 +39,9 @@ RSpec.describe 'Things can be indexed' do
     it 'hides some facets' do
       visit root_path
       click_button 'Search'
-      expect(page).to have_content 'Creator'
-      expect(page).to have_no_content 'Shown At'
-      expect(page).to have_no_content 'Indexed At'
+      expect(page).to have_text 'Creator'
+      expect(page).to have_no_text 'Shown At'
+      expect(page).to have_no_text 'Indexed At'
     end
   end
 end

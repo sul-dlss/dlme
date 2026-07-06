@@ -39,7 +39,7 @@ RSpec.describe ApplicationHelper do
           config: config
         )
 
-        expect(links).to have_content('Sound › Interview')
+        expect(links).to have_text('Sound › Interview')
         expect(links).to have_link('Sound', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound&?/)
         expect(links).to have_link('Interview', href: /\?f%5Bcho_type_facet.en_ssim%5D%5B%5D=Sound%3AInterview&?/)
       end
