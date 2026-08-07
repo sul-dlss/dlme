@@ -111,6 +111,4 @@ gem 'stimulus-rails', '~> 1.2'
 
 gem 'recaptcha', '~> 5.16'
 
-gem 'connection_pool', '~> 2.5' # pinned until fix for https://github.com/rails/rails/issues/56291 is released
-
 gem 'jsbundling-rails', '~> 1.3'
