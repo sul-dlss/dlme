@@ -169,8 +169,8 @@ class CatalogController < ApplicationController
     config.add_facet_field 'contributor', field: 'cho_contributor_ssim', limit: true
     config.add_facet_field 'medium',      field: 'cho_medium_ssim', limit: true
     config.add_facet_field 'dc_rights',   field: 'cho_dc_rights_ssim', limit: true
-    config.add_facet_field 'agg_data_provider_ar',    field: 'agg_data_provider.ar-Arab_ssim', limit: true, if: arabic_locale
-    config.add_facet_field 'agg_data_provider_en',    field: 'agg_data_provider.en_ssim', limit: true, if: en_locale
+    config.add_facet_field 'agg_data_provider_ar', field: 'agg_data_provider.ar-Arab_ssim', limit: true, if: arabic_locale
+    config.add_facet_field 'agg_data_provider_en', field: 'agg_data_provider.en_ssim', limit: true, if: en_locale
     config.add_facet_field 'holding_institution', field: 'agg_data_provider_ssim', show: false
     config.add_facet_field 'agg_provider_ar',    field: 'agg_provider.ar-Arab_ssim', limit: true, if: arabic_locale
     config.add_facet_field 'agg_provider_en',    field: 'agg_provider.en_ssim', limit: true, if: en_locale
