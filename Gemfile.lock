@@ -399,7 +399,7 @@ GEM
       activesupport (>= 7.0.0)
     jsbundling-rails (1.3.1)
       railties (>= 6.0.0)
-    json (3.0.2)
+    json (2.21.2)
     jwt (3.3.0)
       base64
     kaminari (1.2.2)
@@ -798,6 +798,7 @@ DEPENDENCIES
   i18n-tasks
   jbuilder (~> 2.7)
   jsbundling-rails (~> 1.3)
+  json (~> 2.0)
   lograge
   multi_json
   okcomputer
