@@ -112,3 +112,5 @@ gem 'stimulus-rails', '~> 1.2'
 gem 'recaptcha', '~> 5.16'
 
 gem 'jsbundling-rails', '~> 1.3'
+
+gem 'json', '~> 2.0' # Pinned until Rails 8.1.4 is released https://github.com/rails/rails/issues/58685
