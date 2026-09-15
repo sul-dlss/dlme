@@ -1,5 +1,19 @@
 require_relative "boot"
 
+# libvips on the deploy hosts predates 8.13, so it lacks vips_block_untrusted_set
+# and ruby-vips never defines Vips.block_untrusted. Active Storage 8.1 raises at
+# engine load when that method is missing. Nothing here reaches libvips: riiif
+# defaults use_vips to false, and variant_processor below is :disabled.
+# This must run before rails/all, because the raise happens in a class body.
+# A host with no libvips at all needs no shim, hence the rescue.
+# Remove all of this after the hosts get libvips >= 8.13.
+begin
+  require "ruby-vips"
+  Vips.define_singleton_method(:block_untrusted) { |_state| nil } unless Vips.respond_to?(:block_untrusted)
+rescue LoadError
+  # No libvips on this host, so Active Storage skips the check on its own.
+end
+
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
@@ -15,6 +29,10 @@ module Dlme
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
+
+    # We don't use Active Storage variants.
+    # Disabling dodges some libvips checks.
+    config.active_storage.variant_processor = :disabled
 
     # Configuration for the application, engines, and railties goes here.
     #
