@@ -113,7 +113,7 @@ GEM
       rails
       ruby-oembed
       view_component (>= 3.0)
-    blacklight-spotlight (5.3.1)
+    blacklight-spotlight (5.3.2)
       activejob-status
       acts-as-taggable-on (>= 5.0, < 14)
       blacklight (>= 8.7.0, < 9)
