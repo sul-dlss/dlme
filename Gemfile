@@ -69,8 +69,8 @@ group :deployment do
   gem 'dlss-capistrano'
 end
 
-gem 'blacklight', '~> 8.2'
-gem 'blacklight-spotlight', '~> 5.3'
+gem 'blacklight', '~> 9.2'
+gem 'blacklight-spotlight', '6.0.0.rc1'
 
 gem 'bootstrap_form', '~> 5.6' # needs to match Bootstrap version
 
@@ -78,7 +78,7 @@ gem 'friendly_id'
 gem 'riiif', '~> 2.0'
 gem 'sitemap_generator'
 
-gem 'blacklight-gallery', '~> 4.2'
+gem 'blacklight-gallery', '~> 6.1'
 gem 'blacklight-hierarchy', '~> 6.1'
 gem 'blacklight-oembed', '>= 0.1.0'
 gem 'blacklight_range_limit', '~> 9.0'

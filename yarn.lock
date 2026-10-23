@@ -364,27 +364,19 @@
   resolved "https://registry.yarnpkg.com/@types/resolve/-/resolve-1.20.2.tgz#97d26e00cd4a0423b4af620abecf3e6f442b7975"
   integrity sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==
 
-"blacklight-frontend@>=7.1 <10.0.0":
+"blacklight-frontend@>=7.1 <10.0.0", blacklight-frontend@>=9.0.0-beta1, "blacklight-frontend@^8.4.0 || ^9.0.0", blacklight-frontend@^9.2.1:
   version "9.2.1"
   resolved "https://registry.yarnpkg.com/blacklight-frontend/-/blacklight-frontend-9.2.1.tgz#f7b6a38855d0fd56f291f9f8141671e0e8f36ec6"
   integrity sha512-ahDgeQJaAQRwLupb1DeF/IW8eIGPYLBtxDB/3qABnmqv5V3yunj0TXVy/7rbOwVh/ITBls0nigUxsmZIR9rn7A==
   dependencies:
     bootstrap ">=5.3.5 <6.0.0"
 
-"blacklight-frontend@>=7.1.0 <9", blacklight-frontend@^8.2.1, blacklight-frontend@^8.4.0:
-  version "8.13.0"
-  resolved "https://registry.yarnpkg.com/blacklight-frontend/-/blacklight-frontend-8.13.0.tgz#0a492d8c48243101579c10801f341bb8a8cd7b88"
-  integrity sha512-0FOFUY9r9rreh7At4/44T6WGhHvqnBJNEsEqcTM8prDurZLG0Pn/wKFjfacHh7AWjQk9uUGzEOeiboGSXviSWg==
+"blacklight-gallery@^5.0.0 || ^6.0.0", blacklight-gallery@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/blacklight-gallery/-/blacklight-gallery-6.1.0.tgz#fe06c5c639f08536b318c0e8666e14197c366db7"
+  integrity sha512-tPhoJZBJSmAeAQjKX8G3eKD3L672fcwDfOKAAjgDTzHKPewDWrtnB0cdT1GJYsyMkjFWqctjtFucGLdVYkLnow==
   dependencies:
-    bootstrap ">=4.3.1 <6.0.0"
-
-blacklight-gallery@^4.0.2-beta.1:
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/blacklight-gallery/-/blacklight-gallery-4.9.0.tgz#f85e2071ef7971ee8e455a0a16eeddf652aa8372"
-  integrity sha512-ZmmkaXBUV8YHKwP0e90Z8SQhh/cvjazOgO1q+vJvf0YAfs0NaJpUWCgKxtCN2gUgISFD8JbsqDGeYbRzEN+Rtg==
-  dependencies:
-    blacklight-frontend ">=7.1.0 <9"
-    jquery ">=3.0"
+    blacklight-frontend ">=9.0.0-beta1"
     openseadragon-rails "^1.0.11"
 
 blacklight-hierarchy@^6.1.0:
@@ -414,7 +406,7 @@ boolbase@^1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
 
-"bootstrap@>=4.3.1 <6.0.0", "bootstrap@>=5.3.5 <6.0.0", bootstrap@^5:
+"bootstrap@>=5.3.5 <6.0.0", bootstrap@^5:
   version "5.3.8"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-5.3.8.tgz#6401a10057a22752d21f4e19055508980656aeed"
   integrity sha512-HP1SZDqaLDPwsNiqRqi5NcP0SSXciX2s9E+RyqJIIqGo+vJeN5AJVM98CXmW/Wux0nQ5L7jeWUdplCEf0Ee+tg==
@@ -890,16 +882,6 @@ is-regex@^1.1.4:
     has-tostringtag "^1.0.2"
     hasown "^2.0.2"
 
-jquery-serializejson@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/jquery-serializejson/-/jquery-serializejson-3.2.1.tgz#2d1b701695bf192f6e92cdf6b22db5a3177ea045"
-  integrity sha512-89UxVNC4ac9XC5tWPz3DjSTYFcT5z6JYsxGVw+qHhD61FzjbEzXJHjpdLnezWujjqtIECi/URQ6KdPmDE9imGA==
-
-jquery@>=3.0, jquery@>=3.7.1:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-4.0.0.tgz#95c33ac29005ff72ec444c5ba1cf457e61404fbb"
-  integrity sha512-TXCHVR3Lb6TZdtw1l3RTLf8RBWVGexdxL6AC8/e0xZKEpBflBsjh9/8LXw+dkNFuOyW9B7iB3O1sP7hS0Kiacg==
-
 "js-tokens@^3.0.0 || ^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -1324,14 +1306,13 @@ sortablejs@^1.15.3, sortablejs@^1.15.6:
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.2.tgz#79fb88d97535a21cb27162cb05d211b67acea4ab"
   integrity sha512-KGj/8Y43x35aZVDtt+J4mK1hoLGHULMYfSkODJNQjNDC3oW1PqPoxMwo0pLUsWM/UEGzON/NxeHywEfNXNP3Vw==
 
-spotlight-frontend@^5.0.0:
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/spotlight-frontend/-/spotlight-frontend-5.3.2.tgz#dbd50908af9e30eadb8145e5f74852ed7f65896c"
-  integrity sha512-EaKfZqS5fmCxE031Hy3g2SBy4q6yMHbI/e49tbTVwdZ54NDE6sgkhAKZuogHshPxqJt4WQ/raf6QsNmfSnHhaw==
+spotlight-frontend@^6.0.0-rc.1:
+  version "6.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/spotlight-frontend/-/spotlight-frontend-6.0.0-rc.1.tgz#ee2ce460bdebaa1ea2bd1b4deca3e10885b2b812"
+  integrity sha512-F8DzHVSFa0NI0JFkk6WveX/KBdG+akn4ItP71NXtFALI9Q56hX1WNgIt9pRE/GxLZbcP8T33U58MtPSe2SW9IQ==
   dependencies:
-    blacklight-frontend "^8.4.0"
-    jquery ">=3.7.1"
-    jquery-serializejson "^3.2.1"
+    blacklight-frontend "^8.4.0 || ^9.0.0"
+    blacklight-gallery "^5.0.0 || ^6.0.0"
     leaflet "^1.9.4"
     leaflet-iiif "^3.0.0"
     openseadragon-rails "^1.0.1"

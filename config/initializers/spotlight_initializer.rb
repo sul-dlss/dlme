@@ -71,7 +71,7 @@ if Settings.analytics.pkcs12_key && Settings.analytics.pkcs12_key_path
   end
 end
 
-Spotlight::Engine.config.ga_web_property_id = "G-89R2218T5G"
+Spotlight::Engine.config.ga_measurement_id = "G-89R2218T5G"
 Spotlight::Engine.config.ga_debug_mode = ActiveModel::Type::Boolean.new.cast(ENV.fetch('ANALYTICS_DEBUG', true))
 # Spotlight::Engine.config.analytics_provider = nil
 # Spotlight::Engine.config.ga_pkcs12_key_path = Settings.analytics.pkcs12_key_path
