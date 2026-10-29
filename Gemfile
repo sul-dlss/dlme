@@ -70,7 +70,7 @@ group :deployment do
 end
 
 gem 'blacklight', '~> 9.2'
-gem 'blacklight-spotlight', '6.0.0.rc1'
+gem 'blacklight-spotlight', '6.0.0.rc2'
 
 gem 'bootstrap_form', '~> 5.6' # needs to match Bootstrap version
 
