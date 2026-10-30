@@ -42,8 +42,8 @@
       </div>
     </nav>
 
-    <%= render partial: 'shared/header_navbar' %>
-    <%= render partial: 'shared/masthead' %>
+    <%= render blacklight_config.header_component.new(blacklight_config:) %>
+    <%= render Spotlight::MastheadComponent.new(current_exhibit:, current_masthead:, resource_masthead: resource_masthead?) %>
     <%= content_for?(:header_content) ? yield(:header_content) : "" %>
 
     <main id="main-container" class="<%= container_classes %>" role="main" aria-label="<%= t('blacklight.main.aria.main_container') %>">

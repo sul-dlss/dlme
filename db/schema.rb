@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2022_06_24_151339) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_23_195455) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -195,6 +195,7 @@ ActiveRecord::Schema[7.2].define(version: 2022_06_24_151339) do
     t.integer "weight", default: 50
     t.integer "site_id"
     t.string "theme"
+    t.boolean "discovery_enabled", default: true, null: false
     t.index ["masthead_id"], name: "index_spotlight_exhibits_on_masthead_id"
     t.index ["site_id"], name: "index_spotlight_exhibits_on_site_id"
     t.index ["slug"], name: "index_spotlight_exhibits_on_slug", unique: true
