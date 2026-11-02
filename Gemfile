@@ -88,6 +88,7 @@ gem 'rsolr', '>= 1.0'
 gem 'config'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
+gem 'devise_invitable', '~> 2.0' # 3.x requires a devise_invitations table and data migration
 gem 'dry-validation'
 
 gem 'bot_challenge_page', '~> 1.0'

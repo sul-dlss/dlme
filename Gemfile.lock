@@ -213,9 +213,9 @@ GEM
       warden (~> 1.2.3)
     devise-guests (0.8.3)
       devise
-    devise_invitable (3.0.3)
-      actionmailer (>= 7.0)
-      devise (>= 5.0)
+    devise_invitable (2.0.14)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     diff-lcs (1.6.2)
     dlss-capistrano (6.1.1)
       bcrypt_pbkdf
@@ -745,6 +745,7 @@ DEPENDENCIES
   debug
   devise
   devise-guests (~> 0.6)
+  devise_invitable (~> 2.0)
   dlss-capistrano
   dry-validation
   factory_bot_rails (~> 6.0)
