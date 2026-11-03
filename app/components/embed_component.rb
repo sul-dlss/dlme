@@ -2,8 +2,8 @@
 
 # Shows the media on the Blacklight show page
 class EmbedComponent < ViewComponent::Base
-  def initialize(document:, presenter:, **)
-    super
+  def initialize(presenter:, document: presenter.document, **)
+    super()
     @document = document
     @presenter = presenter
   end

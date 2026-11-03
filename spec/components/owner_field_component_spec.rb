@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe OwnerFieldComponent, type: :component do
-  let(:field) { instance_double(Blacklight::FieldPresenter, render_field?: true, key: 'foo', label: 'bar', render: 'baz') }
+  let(:field) { instance_double(Blacklight::FieldPresenter, render_field?: true, key: 'foo', label: 'bar', render: ['baz']) }
   let(:component) do
     described_class.new(field: field)
   end

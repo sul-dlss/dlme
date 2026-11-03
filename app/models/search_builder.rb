@@ -18,6 +18,11 @@ class SearchBuilder < Blacklight::SearchBuilder
 
   self.default_processor_chain += [:min_match_for_boolean]
 
+  # DLME doesn't use Blacklight's advanced search form, and this step assumes the search
+  # builder's scope is a real controller (responding to #action_name), which isn't true when
+  # StatisticsDashboard builds a search builder directly from a Blacklight::SearchService.
+  self.default_processor_chain -= [:add_facets_for_advanced_search_form]
+
   ##
   # Sets `mm` (minimum should match) to 1 based on presence of boolean operators, overriding default set in Solr.
   # The default value in the request handler (`6<-1 6<90%`) allows for some non-matching clauses in
