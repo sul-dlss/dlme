@@ -3,7 +3,7 @@
 # Override the date range component to support multiple calendar systems
 class MultilingualDateRangeComponent < ViewComponent::Base
   def initialize(facet_field:, layout: nil, classes: BlacklightRangeLimit.classes)
-    super
+    super()
 
     @facet_field = facet_field
     @layout = layout == false ? Blacklight::FacetFieldNoLayoutComponent : Blacklight::FacetFieldComponent

@@ -25,6 +25,12 @@ module ApplicationHelper
     facet_item_presenter(facet_config, facet_value, facet_field).href
   end
 
+  # Removed from Blacklight::FacetsHelperBehavior in Blacklight 9; reinstated here
+  # since it's used by #facet_path_for_type and the contributors views.
+  def facet_item_presenter(facet_config, facet_item, facet_field)
+    facet_config.item_presenter.new(facet_item, facet_config, self, facet_field)
+  end
+
   # Generate a display value for multi-calendar date ranges
   def display_date_ranges(values: [], **_args)
     values = Array(values).filter_map do |value|

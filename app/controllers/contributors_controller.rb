@@ -25,7 +25,7 @@ class ContributorsController < ApplicationController
     provider_facet_field = "agg_provider_#{I18n.locale}"
     results = CatalogController.search_service_class.new(
       config: CatalogController.blacklight_config,
-      user_params: { f: { provider_facet_field => params[provider_facet_field] } }
+      search_state: provider_search_state(provider_facet_field)
     ).search_results
     @provider_collection_field = "agg_data_provider_collection.#{StatisticsDashboard.mapped_locale}_ssim"
     @rows = results.facet_counts['facet_fields'][@provider_collection_field].each_slice(2)
@@ -37,6 +37,13 @@ class ContributorsController < ApplicationController
   # rubocop:enable Metrics/AbcSize
 
   private
+
+  def provider_search_state(provider_facet_field)
+    Blacklight::SearchState.new(
+      { f: { provider_facet_field => params[provider_facet_field] } },
+      CatalogController.blacklight_config
+    )
+  end
 
   def attach_breadcrumbs
     nav = current_exhibit.main_navigations.find_by(nav_type: 'statistics')
