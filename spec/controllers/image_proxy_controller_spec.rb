@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe ImageProxyController do
   describe 'GET access' do
     let(:url) { 'http://example.com/image1.jpg' }
+    let(:solr_connection) { instance_double(RSolr::Client) }
+    let(:num_found) { 1 }
 
     def upstream_response(body: 'image-bytes', content_type: 'image/jpeg', klass: Net::HTTPOK, code: '200')
       klass.new('1.1', code, 'msg').tap do |res|
@@ -16,6 +18,8 @@ RSpec.describe ImageProxyController do
     before do
       Rails.cache.clear
       request.headers['Referer'] = controller.search_catalog_url
+      allow(Blacklight.default_index).to receive(:connection).and_return(solr_connection)
+      allow(solr_connection).to receive(:get).and_return('response' => { 'numFound' => num_found })
     end
 
     context 'with a valid image response' do
@@ -30,6 +34,25 @@ RSpec.describe ImageProxyController do
         expect(response.body).to eq 'image-bytes'
         expect(response.media_type).to eq 'image/jpeg'
         expect(SsrfFilter).to have_received(:get).with(url, hash_including(:max_redirects, :http_options))
+      end
+
+      it 'checks that the url is an indexed thumbnail' do
+        get :access, params: { url: url }
+        expect(solr_connection).to have_received(:get).with(
+          'select', params: hash_including(fq: '{!term f=agg_preview.wr_id_ssim v=$thumbnail_url}', thumbnail_url: url)
+        )
+      end
+    end
+
+    context 'when the url is not an indexed thumbnail' do
+      let(:num_found) { 0 }
+
+      before { allow(SsrfFilter).to receive(:get) }
+
+      it 'is not found and does not fetch the url' do
+        get :access, params: { url: url }
+        expect(response).to have_http_status(:not_found)
+        expect(SsrfFilter).not_to have_received(:get)
       end
     end
 
