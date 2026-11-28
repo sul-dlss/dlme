@@ -805,6 +805,7 @@ DEPENDENCIES
   slowpoke (~> 0.4)
   solr_wrapper
   sqlite3 (~> 2.5)
+  ssrf_filter (~> 1.6)
   stimulus-rails (~> 1.2)
   terser (~> 1.1)
   turbo-rails (~> 1.3)
