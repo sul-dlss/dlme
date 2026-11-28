@@ -98,6 +98,7 @@ gem 'lograge'
 gem 'multi_json' # required by the representable gem (https://github.com/trailblazer/representable)
 gem 'okcomputer'
 gem 'slowpoke', '~> 0.4'
+gem 'ssrf_filter', '~> 1.6'
 
 gem 'font-awesome-rails'
 

@@ -55,3 +55,8 @@ acceptable_bcp47_codes:
 
 throttling:
   redis_url:
+
+image_proxy:
+  max_size: <%= 10.megabytes %>
+  open_timeout: 5
+  read_timeout: 10
